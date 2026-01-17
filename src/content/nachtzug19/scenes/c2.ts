@@ -298,6 +298,20 @@ Seine Augen sind ernst. Zu ernst für ein Kind.`,
           { type: 'inc', target: 'rel_boy', value: 2 }
         ],
         next: 'c2_s02a_recorder_listening'
+      },
+      {
+        id: 'observe_boy_silently',
+        label: 'Den Jungen stumm beobachten',
+        condition: {
+          type: 'compare',
+          target: 'memory_drift',
+          operator: '>=',
+          value: 2
+        },
+        effects: [
+          { type: 'inc', target: 'memory_drift', value: 1 }
+        ],
+        next: 'c2_s02b_corridor_anomaly'
       }
     ],
     tags: [],
@@ -935,7 +949,9 @@ Comp7 nickt. „Warum du hier bist. Das ist alles, was zählt."`,
     id: 'c2_s04a_conductor_approach',
     chapter: 2,
     title: 'Annäherung',
-    narrative: `Du hörst Schritte. Schwer. Rhythmisch. Mechanisch.
+    narrative: `Du stehst im Gang zwischen Abteil 3 und 4. Der Teppich hier ist abgewetzter als anderswo.
+
+Du hörst Schritte. Schwer. Rhythmisch. Mechanisch.
 
 Der Schaffner kommt durch den Gang. Du siehst ihn im Spiegelbild der Fensterscheibe.
 
@@ -1677,6 +1693,24 @@ Sie zeigt auf eine Zeile:
           { type: 'set', target: 'chapter_index', value: 3 },
           { type: 'inc', target: 'station_count', value: 1 },
           { type: 'inc', target: 'memory_drift', value: 1 }
+        ],
+        next: 'c3_s01_wagen7_locked'
+      },
+      {
+        id: 'think_of_boy',
+        label: 'An den Jungen denken',
+        condition: {
+          type: 'compare',
+          target: 'rel_boy',
+          operator: '>=',
+          value: 1
+        },
+        effects: [
+          { type: 'set', target: 'chapter_index', value: 3 },
+          { type: 'inc', target: 'station_count', value: 1 },
+          { type: 'inc', target: 'memory_drift', value: 1 },
+          { type: 'inc', target: 'rel_boy', value: 1 },
+          { type: 'inc', target: 'tickets_love', value: 1 }
         ],
         next: 'c3_s01_wagen7_locked'
       }

@@ -98,9 +98,9 @@ Falsch.`,
 
 Schmaler. Die Wände scheinen näher zusammengerückt zu sein.
 
-Oder… waren sie schon immer so eng?
+Du drückst die Hand gegen die Wandverkleidung. Sie gibt nach, weich und warm, wie Fleisch unter Stoff. Du ziehst die Finger zurück, ein Gefühl von Pulsieren bleibt auf deiner Haut.
 
-Du gehst langsam vorwärts.
+Du gehst langsam vorwärts. Deine Füße sinken tief in den Teppich ein, der sich feucht anfühlt, obwohl er trocken aussieht.
 
 Kein Geräusch. Nicht einmal deine Schritte machen ein Geräusch.
 

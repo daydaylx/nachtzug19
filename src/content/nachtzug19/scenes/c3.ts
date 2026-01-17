@@ -202,25 +202,11 @@ Der Schlaflose atmet, aber es klingt, als wäre er zwei Reihen weiter. Alles ver
     id: 'c3_interlude_01_lights',
     chapter: 3,
     title: 'Lichter',
-    narrative: `Die Neonröhren über dir flackern.
+    narrative: `Die Neonröhren flackern. Aus. An. Aus. An.
 
-Aus. An. Aus. An.
+Jedes Mal wenn das Licht zurückkommt, wirkt der Gang fremder. Ein Schatten zu viel, eine Tür, die vorher geschlossen war.
 
-Jedes Mal wenn das Licht zurückkommt, ist der Gang ein bisschen anders.
-
-Ein Schatten weiter links. Eine Tür weiter rechts. Der Teppich dunkler.
-
-Die Luft summt, als würde das Licht selbst Geräusche machen. In der Dunkelheit spürst du, wie der Boden kurz nachgibt, und wenn es wieder hell wird, ist die Naht im Teppich um einen Zentimeter verrutscht.
-
-Du versuchst, dir ein Muster zu merken. Es gelingt nicht. Jeder Wechsel nimmt dir die Sicherheit, dass der Gang noch derselbe ist.
-
-Einmal siehst du am Ende des Gangs eine Silhouette, die im nächsten Lichtwechsel fehlt. Einmal ist die Tür zur Sieben zu, dann offen. Du bleibst stehen, aber der Gang bewegt sich um dich herum.
-
-Dein Schatten hinkt dir hinterher, als wäre er einen Schritt zu spät. Du bewegst die Hand, und er bewegt sich einen Herzschlag später.
-
-Du blinzelst. Das Licht bleibt stabil.
-
-Alles ist, wie es war. Oder wie du denkst, dass es war.`,
+Du versuchst, dir ein Muster zu merken, aber es gleitet dir durch die Finger. Dein eigener Schatten hinkt dir hinterher, als wäre er müde.`,
     choices: [
       {
         id: 'continue',
@@ -1576,6 +1562,20 @@ Seine Stimme ist tiefer. Mechanischer. „Oder Sie können nichts geben. Dann ko
           { type: 'set', target: 'has_recorder', value: false },
           { type: 'inc', target: 'tickets_guilt', value: 2 },
           { type: 'dec', target: 'conductor_attention', value: 2 }
+        ],
+        next: 'c3_control_02_aftermath'
+      },
+      {
+        id: 'offer_recorder_memory',
+        label: 'Vom Rekorder erzählen (Erinnerung)',
+        condition: {
+          type: 'bool',
+          target: 'has_recorder',
+          value: false
+        },
+        effects: [
+          { type: 'inc', target: 'tickets_truth', value: 1 },
+          { type: 'dec', target: 'conductor_attention', value: 1 }
         ],
         next: 'c3_control_02_aftermath'
       },

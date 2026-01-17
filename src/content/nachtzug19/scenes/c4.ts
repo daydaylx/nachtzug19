@@ -103,8 +103,7 @@ Eine flüstert etwas. Du hörst es nicht. Aber du liest es von ihren Lippen:
         id: 'try_to_understand',
         label: 'Versuchen zu verstehen',
         effects: [
-          { type: 'inc', target: 'tickets_truth', value: 2 },
-          { type: 'inc', target: 'memory_drift', value: 1 }
+          { type: 'inc', target: 'tickets_truth', value: 2 }
         ],
         next: 'c4_s01b_wrong_memory'
       },
@@ -126,8 +125,7 @@ Eine flüstert etwas. Du hörst es nicht. Aber du liest es von ihren Lippen:
           value: 3
         },
         effects: [
-          { type: 'inc', target: 'tickets_truth', value: 2 },
-          { type: 'inc', target: 'memory_drift', value: 2 }
+          { type: 'inc', target: 'tickets_truth', value: 2 }
         ],
         next: 'c4_s01b_wrong_memory'
       }

@@ -1178,6 +1178,8 @@ Die Version, die im Unfall… geblieben ist.
 
 „Diesen Teil von dir."
 
+„Die Schuld, nicht geholfen zu haben. Die Last, der Einzige zu sein, der entkam."
+
 „Den Teil, der hier bleiben will."
 
 „Der Angst hat."

@@ -766,6 +766,20 @@ Seine Stimme zittert leicht.
         next: 'c5_s11_corridor_encounter'
       },
       {
+        id: 'admit_lost_recorder',
+        label: '„Ich habe meinen verloren."',
+        condition: {
+          type: 'bool',
+          target: 'has_recorder',
+          value: false
+        },
+        effects: [
+          { type: 'inc', target: 'tickets_truth', value: 1 },
+          { type: 'inc', target: 'rel_boy', value: 1 }
+        ],
+        next: 'c5_s11_corridor_encounter'
+      },
+      {
         id: 'show_tag19',
         label: 'Das Tag19-Etikett zeigen',
         condition: {
@@ -1948,6 +1962,7 @@ Comp7 steht dort. Im Türrahmen des Zuges.
       { type: 'inc', target: 'memory_drift', value: 1 }
     ],
     state_notes: [
+      'Station-End: memory_drift +1 (R1)',
       'Station-End: Übergang zu Kapitel 6',
       'Comp7 hält den Spieler im Zug',
       'Noch eine Station bis zum wahren Ende'

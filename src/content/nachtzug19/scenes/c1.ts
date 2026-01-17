@@ -34,10 +34,12 @@ Du weißt nicht mehr, warum du hier bist. Die Erinnerung fühlt sich an wie ein 
 
 Aber du weißt: Du wartest auf etwas.
 
-Die Luft riecht nach altem Zigarettenrauch und Maschinenöl. Kalt. Zu kalt für Juni. Du ziehst die Jacke enger, aber es hilft nicht. Die Kälte kommt von innen.`,
+Die Luft riecht nach altem Zigarettenrauch und Maschinenöl. Kalt. Zu kalt für Juni. Du ziehst die Jacke enger, aber es hilft nicht. Die Kälte kommt von innen.
+
+Ein Gefühl von Verlust flackert auf. Ein Name, den du fast greifen kannst, aber der wie Rauch verweht. Du solltest nicht allein hier sein.`,
     narrative_variants: [
       {
-        min_drift: 3,
+        min_drift: 5,
         narrative: `Der Bahnsteig ist leer. Nicht „spät abends leer", sondern falsch leer.
 
 Keine Werbeplakate. Keine Bänke. Keine Automaten. Nur nackte Wände aus Beton, fleckig von Feuchtigkeit. Eine Neonröhre flackert über dir. Das Licht ist kalt, grünlich, wirft harte Schatten auf den Boden.
@@ -53,7 +55,7 @@ Aber du weißt: Du wartest auf etwas.
 Die Luft riecht nach altem Zigarettenrauch und Maschinenöl. Kalt. Zu kalt für Juli. Du ziehst die Jacke enger, aber es hilft nicht. Die Kälte kommt von innen.`
       },
       {
-        min_drift: 5,
+        min_drift: 7,
         narrative: `Der Bahnsteig ist leer. Nicht „spät abends leer", sondern falsch leer.
 
 Keine Werbeplakate. Keine Bänke. Keine Automaten. Nur nackte Wände aus Beton, fleckig von Feuchtigkeit. Zwei Neonröhren flackern über dir. Das Licht ist kalt, grünlich, wirft harte Schatten auf den Boden.
@@ -111,7 +113,7 @@ Die Luft riecht nach altem Zigarettenrauch und Maschinenöl. Kalt. Zu kalt für 
     id: 'c1_s01a_platform_details',
     chapter: 1,
     title: 'Details',
-    narrative: `Du gehst ein paar Schritte. Der Beton unter deinen Sohlen klingt hohl. Das Echo verliert sich in der Leere.
+    narrative: `Du setzt dich in Bewegung, unschlüssig ob du suchen oder fliehen willst. Der Beton unter deinen Sohlen klingt hohl. Das Echo verliert sich in der Leere.
 
 Am Rand des Bahnsteigs: Eine gelbe Linie, abgeblättert. Dahinter die Schienen. Sie glänzen nicht. Kein Rost, aber auch kein Metall. Schwarz. Matt. Als wären sie aus etwas anderem gemacht.
 
@@ -143,8 +145,7 @@ Nicht das Rattern von Schienen. Tiefer. Ein Brummen, das du im Brustkorb spürst
         id: 'feel_guilty',
         label: 'Denken: „Ich sollte nicht hier sein"',
         effects: [
-          { type: 'inc', target: 'tickets_guilt', value: 1 },
-          { type: 'inc', target: 'memory_drift', value: 1 }
+          { type: 'inc', target: 'tickets_guilt', value: 1 }
         ],
         next: 'c1_interlude_01_lights'
       }
@@ -187,9 +188,7 @@ Dann wird das Licht konstant. Die Röhre hört auf zu flackern. Das Brummen blei
       {
         id: 'continue',
         label: 'Weiter',
-        effects: [
-          { type: 'inc', target: 'memory_drift', value: 1 }
-        ],
+        effects: [],
         next: 'c1_s02_train_appears'
       }
     ],
@@ -224,7 +223,7 @@ Die Stufen glaenzen feucht. Ein duenner Nebel haengt in der Tuer, als haette der
 Niemand steigt aus.`,
     narrative_variants: [
       {
-        min_drift: 3,
+        min_drift: 5,
         narrative: `Das Brummen wird lauter. Es kommt nicht näher – es ist einfach da. Überall. In deinen Knochen.
 
 Dann gleitet der Zug in den Bahnhof. Lautlos.
@@ -240,7 +239,7 @@ Die Stufen glaenzen feucht. Ein duenner Nebel haengt in der Tuer, als haette der
 Niemand steigt aus.`
       },
       {
-        min_drift: 5,
+        min_drift: 7,
         narrative: `Das Brummen wird lauter. Es kommt nicht näher – es ist einfach da. Überall. In deinen Knochen.
 
 Dann gleitet der Zug in den Bahnhof. Lautlos.
@@ -1529,6 +1528,21 @@ Der Zug hält.`,
         next: 'c1_end_platform_look'
       },
       {
+        id: 'reflect_on_vibration',
+        label: 'Die Vibration analysieren',
+        condition: {
+          type: 'compare',
+          target: 'tickets_truth',
+          operator: '>=',
+          value: 1
+        },
+        effects: [
+          { type: 'inc', target: 'tickets_truth', value: 1 },
+          { type: 'inc', target: 'memory_drift', value: 1 }
+        ],
+        next: 'c1_end_platform_look'
+      },
+      {
         id: 'continue',
         label: 'Weiter',
         effects: [
@@ -1690,6 +1704,23 @@ Aber seine Hände zittern.`,
           { type: 'inc', target: 'memory_drift', value: 2 },
           { type: 'inc', target: 'tickets_truth', value: 1 },
           { type: 'inc', target: 'rel_sleepless', value: 1 }
+        ],
+        next: 'c2_s01_ticket_search'
+      },
+      {
+        id: 'nod_to_conductor',
+        label: 'Dem Schaffner zunicken',
+        condition: {
+          type: 'compare',
+          target: 'conductor_attention',
+          operator: '>=',
+          value: 2
+        },
+        effects: [
+          { type: 'set', target: 'chapter_index', value: 2 },
+          { type: 'inc', target: 'station_count', value: 1 },
+          { type: 'inc', target: 'conductor_attention', value: 1 },
+          { type: 'inc', target: 'tickets_guilt', value: 1 }
         ],
         next: 'c2_s01_ticket_search'
       }
