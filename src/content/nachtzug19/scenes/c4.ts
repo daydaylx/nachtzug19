@@ -103,8 +103,7 @@ Eine flüstert etwas. Du hörst es nicht. Aber du liest es von ihren Lippen:
         id: 'try_to_understand',
         label: 'Versuchen zu verstehen',
         effects: [
-          { type: 'inc', target: 'tickets_truth', value: 2 },
-          { type: 'inc', target: 'memory_drift', value: 1 }
+          { type: 'inc', target: 'tickets_truth', value: 2 }
         ],
         next: 'c4_s01b_wrong_memory'
       },
@@ -126,8 +125,7 @@ Eine flüstert etwas. Du hörst es nicht. Aber du liest es von ihren Lippen:
           value: 3
         },
         effects: [
-          { type: 'inc', target: 'tickets_truth', value: 2 },
-          { type: 'inc', target: 'memory_drift', value: 2 }
+          { type: 'inc', target: 'tickets_truth', value: 2 }
         ],
         next: 'c4_s01b_wrong_memory'
       }
@@ -709,6 +707,64 @@ Das Bild wechselt wieder.
 Du zählst. Wie oft siehst du dich?
 
 Fünfmal. Zehnmal. Du verlierst den Überblick.`,
+    narrative_variants: [
+      {
+        min_drift: 3,
+        narrative: `Du schaust aus dem Fenster.
+
+Draußen: Nicht die Dunkelheit. Nicht die Gleise.
+
+Sondern ein Bahnsteig. Der Bahnsteig aus Kapitel 1, nur heller.
+
+Du siehst dich selbst. Stehend. Wartend.
+
+Der Zug kommt. Der Zug, in dem du jetzt sitzt.
+
+Du siehst dich einsteigen.
+
+Dann fährt der Zug weiter.
+
+Das Bild wechselt.
+
+Wieder der Bahnsteig. Wieder du. Wieder der gleiche Moment.
+
+Aber diesmal steigst du nicht ein. Du drehst dich um. Gehst weg.
+
+Das Bild wechselt wieder.
+
+Du zählst. Wie oft siehst du dich?
+
+Viermal. Neunmal. Du verlierst den Überblick.`
+      },
+      {
+        min_drift: 5,
+        narrative: `Du schaust aus dem Fenster.
+
+Draußen: Nicht die Dunkelheit. Nicht die Gleise.
+
+Sondern ein Bahnsteig. Der Bahnsteig aus Kapitel 1, aber die Uhr zeigt 00:13.
+
+Du siehst dich selbst. Stehend. Wartend.
+
+Der Zug kommt. Der Zug, in dem du jetzt sitzt.
+
+Du siehst dich einsteigen. Rückwärts.
+
+Dann fährt der Zug weiter.
+
+Das Bild wechselt.
+
+Wieder der Bahnsteig. Wieder du. Wieder der gleiche Moment.
+
+Aber diesmal steigst du nicht ein. Du gehst rückwärts vom Rand weg.
+
+Das Bild wechselt wieder.
+
+Du zählst. Wie oft siehst du dich?
+
+Zehnmal. Zwölfmal. Du verlierst den Überblick.`
+      }
+    ],
     choices: [
       {
         id: 'continue',
@@ -912,6 +968,43 @@ Gültig bis: [KEINE ANGABE]"
 Das Ticket ist abgestempelt. Mehrfach. Zu oft.
 
 Siebenmal. Oder achtmal. Die Stempel überlagern sich.`,
+    narrative_variants: [
+      {
+        min_drift: 3,
+        narrative: `Du ziehst es heraus.
+
+Ein Ticket. Es fühlt sich feucht an, wie frisch gedruckt.
+
+Die Tinte ist verschmiert.
+
+„NACHTZUG 19
+Von: NIRGENDWO
+Nach: NIRGENDWO
+Passagier: NIEMAND"
+
+Die Buchstaben bewegen sich. Sie ordnen sich neu.
+
+„HILFE" steht kurz da. Dann wieder „TICKET".
+
+Das Papier wird heiß in deiner Hand.`
+      },
+      {
+        min_drift: 5,
+        narrative: `Du ziehst es heraus.
+
+Es ist kein Ticket. Es ist ein Stück Haut.
+
+Darauf eingebrannt: Eine Nummer. Deine Nummer.
+
+Die Ränder sind versengt und riechen nach Rauch.
+
+Du willst es fallen lassen, aber es klebt an deinen Fingern.
+
+Schwarze Tinte tropft auf den Boden. Jeder Tropfen macht ein Geräusch wie ein Schrei.
+
+„Gültig für eine einfache Fahrt," flüstert das Ticket.`
+      }
+    ],
     choices: [
       {
         id: 'keep_ticket',
@@ -1157,6 +1250,68 @@ Die Neonröhren flackern. Rückwärts.
 Dann stoppt es. Die Zeit läuft wieder normal.
 
 Oder war das normal?`,
+    narrative_variants: [
+      {
+        min_drift: 3,
+        narrative: `Du bleibst im Gang stehen.
+
+Etwas ist falsch.
+
+Das Rattern des Zuges. Es klingt anders.
+
+Rückwärts. Nur für einen Takt.
+
+Der Zug fährt rückwärts.
+
+Du schaust aus dem Fenster. Die Landschaft zieht vorbei. In die falsche Richtung.
+
+Nein. Nicht rückwärts.
+
+Sondern die Zeit läuft rückwärts.
+
+Du siehst deine Hand. Sie bewegt sich normal. Du hast Kontrolle.
+
+Aber um dich herum: Alles läuft rückwärts.
+
+Ein Passagier geht durch den Gang. Rückwärts.
+
+Die Neonröhren flackern. Rückwärts.
+
+Dann stoppt es. Die Zeit läuft wieder normal.
+
+Oder war das normal?`
+      },
+      {
+        min_drift: 5,
+        narrative: `Du bleibst im Gang stehen.
+
+Etwas ist falsch.
+
+Das Rattern des Zuges. Es klingt anders.
+
+Still. Dann rückwärts.
+
+Der Zug steht.
+
+Du schaust aus dem Fenster. Die Landschaft steht. Nur du bewegst dich.
+
+Nein. Nicht rückwärts.
+
+Sondern die Zeit läuft rückwärts.
+
+Du siehst deine Hand. Sie bewegt sich verzögert. Du hast nicht mehr Kontrolle.
+
+Aber um dich herum: Alles läuft rückwärts.
+
+Ein Passagier geht durch den Gang. Rückwärts.
+
+Die Neonröhren flackern. Rückwärts.
+
+Dann stoppt es. Die Zeit läuft wieder normal.
+
+Oder war das normal?`
+      }
+    ],
     choices: [
       {
         id: 'continue',
@@ -1487,30 +1642,23 @@ Sie nickt. „Bei jeder Station wird es stärker. Bis—"
 
 Sie antwortet nicht. Schaut aus dem Fenster.
 
-Der Zug wird langsamer.`,
+Der Zug wird langsamer.
+
+Dort, wo das Doppel stand, liegt etwas auf dem Boden. Ein kleiner Gegenstand aus Metall.`,
     choices: [
       {
-        id: 'ask_what_next',
-        label: '„Was kommt als Nächstes?"',
+        id: 'examine_object',
+        label: 'Den Gegenstand aufheben',
         effects: [
           { type: 'inc', target: 'tickets_truth', value: 1 }
         ],
-        next: 'c4_end_platform_watch'
+        next: 'c4_s07c_tag19_found'
       },
       {
-        id: 'stay_silent',
-        label: 'Schweigen',
+        id: 'ignore_object',
+        label: 'Liegenlassen',
         effects: [
           { type: 'inc', target: 'tickets_escape', value: 1 }
-        ],
-        next: 'c4_end_platform_watch'
-      },
-      {
-        id: 'thank_comp7',
-        label: '„Danke, dass du da bist"',
-        effects: [
-          { type: 'inc', target: 'tickets_love', value: 1 },
-          { type: 'inc', target: 'rel_comp7', value: 1 }
         ],
         next: 'c4_end_platform_watch'
       }
@@ -1518,10 +1666,65 @@ Der Zug wird langsamer.`,
     tags: [],
     state_notes: [
       'Peak Drift endet: Kurze Stabilisierung',
-      'Comp7 warnt: Bei jeder Station wird es schlimmer',
-      'thank_comp7 stärkt Beziehung vor Station'
+      'Doppel hat Gegenstand hinterlassen (Tag 19 Setup)'
     ],
     atmosphere: 'somber'
+  },
+
+  // ============================================================================
+  // c4_s07c_tag19_found: Fund des Schlüsselanhängers
+  // ============================================================================
+  'c4_s07c_tag19_found': {
+    id: 'c4_s07c_tag19_found',
+    chapter: 4,
+    title: 'Fundstück',
+    narrative: `Du hebst es auf.
+
+Es ist ein Schlüsselanhänger. Alt. Messing, abgegriffen an den Rändern.
+
+Eingraviert ist eine Zahl:
+
+19
+
+Er fühlt sich warm an, als hätte ihn jemand lange in der Hand gehalten.
+
+Comp7 sieht ihn. Ihre Augen weiten sich kurz.
+
+„Der Schlüssel," flüstert sie. „Oder der halbe Schlüssel."
+
+„Wofür?"
+
+„Für das Ende. Oder den Anfang. Behalt ihn. Verlier ihn nicht."
+
+Der Zug bremst. Die Station kommt in Sicht.`,
+    choices: [
+      {
+        id: 'take_tag19',
+        label: 'Den Anhänger einstecken',
+        effects: [
+          { type: 'set', target: 'has_tag19', value: true },
+          { type: 'inc', target: 'tickets_truth', value: 1 },
+          { type: 'inc', target: 'conductor_attention', value: 1 }
+        ],
+        next: 'c4_end_platform_watch'
+      },
+      {
+        id: 'give_to_comp7',
+        label: 'Ihn Comp7 geben',
+        effects: [
+          { type: 'inc', target: 'tickets_love', value: 1 },
+          { type: 'inc', target: 'rel_comp7', value: 1 }
+        ],
+        next: 'c4_end_platform_watch'
+      }
+    ],
+    tags: ['reveal'],
+    state_notes: [
+      'Key-Item gefunden: has_tag19',
+      'Wichtig für Kapitel 6A (Unlock)',
+      'conductor_attention steigt (Diebstahl aus der Logik)'
+    ],
+    atmosphere: 'mystic'
   },
 
   // ============================================================================

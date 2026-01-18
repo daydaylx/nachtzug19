@@ -254,6 +254,92 @@ Und alles ist still.
 Aber du spürst es: Etwas bewegt sich im Zug.
 
 Etwas, das nicht gesehen werden will.`,
+    narrative_variants: [
+      {
+        min_drift: 3,
+        narrative: `Die Lichter flackern wieder.
+
+Mit jedem Aus geht auch die Orientierung weg. Du merkst, wie deine Schritte kürzer werden.
+
+In der Dunkelheit hörst du dein eigenes Einatmen, rau, zu laut.
+
+Als das Licht kurz zurückkehrt, ist der Schatten an der Wand einen halben Schritt näher als du.
+
+Du blinzelst, suchst nach der Quelle, findest nur das zuckende Glas der Lampen.
+
+Ein kühler Luftzug streicht über deine Stirn. Du hebst die Hand, lässt sie wieder sinken.
+
+Das Flackern brennt sich als Nachbild in deine Augen, blaue Punkte, die bleiben, selbst wenn du sie schließt.
+
+Deine Augen brennen kurz, Tränen sammeln sich, aber du blinzelst sie weg.
+
+Im kurzen Licht siehst du die Tür am Ende einen Spalt offen, dann wieder ganz geschlossen. Du blinzelst, unsicher, ob du es dir einbildest.
+
+Der Boden ist kälter geworden, die Haut an deinen Knöcheln zieht sich zusammen. Du bleibst stehen, bis der nächste Lichtimpuls kommt.
+
+Diesmal länger. Intensiver.
+
+Dunkelheit.
+
+Licht.
+
+Dunkelheit.
+
+In den Momenten der Finsternis hörst du… etwas.
+
+Ein Geräusch. Wie Schritte. Oder das Öffnen einer Tür.
+
+Dann kommt das Licht zurück.
+
+Und alles ist still.
+
+Aber du spürst es: Etwas bewegt sich im Zug.
+
+Etwas, das nicht gesehen werden will.`
+      },
+      {
+        min_drift: 5,
+        narrative: `Die Lichter flackern wieder.
+
+Mit jedem Aus geht auch die Orientierung weg. Du merkst, wie deine Schritte kürzer werden.
+
+In der Dunkelheit hörst du dein eigenes Einatmen, rau, zu laut.
+
+Als das Licht kurz zurückkehrt, steht der Schatten an der Wand direkt neben dir.
+
+Du blinzelst, suchst nach der Quelle, findest nur das zuckende Glas der Lampen.
+
+Ein kühler Luftzug streicht über deine Stirn. Du hebst die Hand, lässt sie wieder sinken.
+
+Das Flackern brennt sich als Nachbild in deine Augen, rote Punkte, die bleiben, selbst wenn du sie schließt.
+
+Deine Augen brennen kurz, Tränen sammeln sich, aber du blinzelst sie weg.
+
+Im kurzen Licht siehst du die Tür am Ende offen. Sie bleibt offen. Du blinzelst, unsicher, ob du es dir einbildest.
+
+Der Boden ist kälter geworden, die Haut an deinen Knöcheln zieht sich zusammen. Du bleibst stehen, bis der nächste Lichtimpuls kommt.
+
+Diesmal länger. Intensiver.
+
+Dunkelheit.
+
+Licht.
+
+Dunkelheit.
+
+In den Momenten der Finsternis hörst du… etwas.
+
+Ein Geräusch. Wie Schritte. Oder das Öffnen einer Tür.
+
+Dann kommt das Licht zurück.
+
+Und alles ist still.
+
+Aber du spürst es: Etwas bewegt sich im Zug.
+
+Etwas, das nicht gesehen werden will.`
+      }
+    ],
     choices: [
       {
         id: 'investigate',
@@ -564,6 +650,60 @@ Eine Station, die ihr nicht angefahren habt.
 Ein Ort, den ihr übersprungen haben.
 
 Der Zug beschleunigt wieder.`,
+    narrative_variants: [
+      {
+        min_drift: 3,
+        narrative: `Der Zug schwankt.
+
+Nicht wie zuvor. Nicht das gleichmäßige Schaukeln.
+
+Diesmal ruckartig. Als würde er… bremsen.
+
+Du greifst nach der Wand, um das Gleichgewicht zu halten.
+
+Draußen – war da gerade… etwas?
+
+Ein rotes Licht? Eine Bewegung?
+
+Du presst dein Gesicht ans Fenster.
+
+Nichts. Nur Dunkelheit.
+
+Aber für einen Moment hattest du das Gefühl, etwas zu sehen.
+
+Eine Station, die ihr nicht angefahren habt.
+
+Ein Ort, den ihr ausgelassen habt.
+
+Der Zug beschleunigt wieder.`
+      },
+      {
+        min_drift: 5,
+        narrative: `Der Zug schwankt.
+
+Nicht wie zuvor. Nicht das gleichmäßige Schaukeln.
+
+Diesmal seitlich. Als würde er… kippen.
+
+Du greifst nach der Wand, um das Gleichgewicht zu halten.
+
+Draußen – war da gerade… etwas?
+
+Ein Licht? Eine Bewegung?
+
+Du presst dein Gesicht ans Fenster.
+
+Nichts. Nur Dunkelheit.
+
+Aber für einen Moment hattest du das Gefühl, etwas zu sehen.
+
+Einen Bahnsteig mit offenen Türen.
+
+Ein Ort, an dem ihr nie gehalten habt.
+
+Der Zug beschleunigt wieder.`
+      }
+    ],
     choices: [
       {
         id: 'continue_on',
@@ -622,6 +762,20 @@ Seine Stimme zittert leicht.
         effects: [
           { type: 'inc', target: 'tickets_love', value: 2 },
           { type: 'inc', target: 'rel_boy', value: 2 }
+        ],
+        next: 'c5_s11_corridor_encounter'
+      },
+      {
+        id: 'admit_lost_recorder',
+        label: '„Ich habe meinen verloren."',
+        condition: {
+          type: 'bool',
+          target: 'has_recorder',
+          value: false
+        },
+        effects: [
+          { type: 'inc', target: 'tickets_truth', value: 1 },
+          { type: 'inc', target: 'rel_boy', value: 1 }
         ],
         next: 'c5_s11_corridor_encounter'
       },
@@ -770,6 +924,54 @@ Du erinnerst dich nicht.
 Oder… du erinnerst dich an etwas anderes.
 
 An etwas, das nicht sein kann.`,
+    narrative_variants: [
+      {
+        min_drift: 3,
+        narrative: `Du blickst aus dem Fenster.
+
+Früher war da Dunkelheit.
+
+Jetzt ist da… weißes Rauschen.
+
+Wie ein Fernsehsender ohne Signal.
+
+Du legst die Handfläche an das Fenster. Es kribbelt. Statische Ladung.
+
+Ein leises Summen zieht dir über die Zähne. Du fragst dich, ob du fällst, obwohl du still stehst.
+
+Du legst die Stirn an das Glas. Es schmeckt nach Metall.
+
+Der Zug fährt durch das Signal.
+
+Und du fragst dich:
+
+Wer sendet?`
+      },
+      {
+        min_drift: 5,
+        narrative: `Du blickst aus dem Fenster.
+
+Früher war da Dunkelheit.
+
+Jetzt ist da… der Code.
+
+Du siehst keine Landschaft. Du siehst Linien. Strukturen. Geometrie.
+
+Der Zug fährt nicht. Er wird berechnet.
+
+Du legst die Handfläche an das Fenster. Deine Hand wird transparent. Du siehst die Knochen. Dann nur noch Drahtgitter.
+
+Ein leises Summen zieht dir über die Zähne.
+
+Du legst die Stirn an das Glas.
+
+Und du hörst die Maschine denken.
+
+„Rendering Sector 5," flüstert sie.
+
+„Subject is becoming aware."`
+      }
+    ],
     choices: [
       {
         id: 'accept_void',
@@ -956,6 +1158,66 @@ Die Luft im Abteil wird dünner.
 „Sag mir die Wahrheit."
 
 „Oder steig aus. Jetzt. An der nächsten Station."`,
+    narrative_variants: [
+      {
+        min_drift: 3,
+        narrative: `Der Schaffner legt die Fahrkarte auf den Tisch.
+
+Aber es ist keine Fahrkarte. Es ist ein Foto.
+
+Es zeigt dich. Schlafend.
+
+„Letzte Frage," sagt er. Seine Stimme klingt wie zwei Stimmen übereinander.
+
+„Warum wachst du nicht auf?"
+
+Er beugt sich vor. Sein Gesicht flimmert.
+
+„Nicht hier. Nicht dort."
+
+„Weil du es vergessen hast?"
+
+Eine Pause. Das Licht wird rot.
+
+„Oder weil du Angst hast?"
+
+Die Luft im Abteil riecht nach Ozon und verbranntem Haar.
+
+„Sag mir die Wahrheit."
+
+„Oder bleib hier. Für immer."`
+      },
+      {
+        min_drift: 5,
+        narrative: `Der Schaffner legt die Hand auf den Tisch.
+
+Er hat keine Fahrkarte. Er hat keine Kelle.
+
+Er hat keine Augen.
+
+Dort, wo sie sein sollten, ist nur Schatten.
+
+„Letzte Frage," sagt die Dunkelheit.
+
+„Wer bist du?"
+
+Er beugt sich vor. Du hörst das Knacken seiner Uniform, als würde sie ihn zerdrücken.
+
+„Nicht der Passagier. Nicht der Träumer."
+
+„Weil du es vergessen hast?"
+
+Eine Pause. Der Zug schreit.
+
+„Oder weil du niemand bist?"
+
+Die Luft im Abteil ist weg. Vakuum.
+
+„Sag mir die Wahrheit."
+
+„Bevor du aufhörst zu existieren."`
+      }
+    ],
     choices: [
       {
         id: 'admit_truth_high',
@@ -1669,7 +1931,24 @@ Comp7 steht dort. Im Türrahmen des Zuges.
 „Nur noch eine."`,
     choices: [
       {
-        id: 'continue_to_chapter_6',
+        id: 'enter_wagon_12',
+        label: 'Dem verborgenen Pfad folgen (Wagen 12)',
+        condition: {
+          type: 'or',
+          conditions: [
+            { type: 'compare', target: 'tickets_truth', operator: '>=', value: 4 },
+            { type: 'bool', target: 'has_tag19', value: true }
+          ]
+        },
+        effects: [
+          { type: 'set', target: 'chapter_index', value: 6 },
+          { type: 'inc', target: 'station_count', value: 1 },
+          { type: 'inc', target: 'tickets_truth', value: 1 }
+        ],
+        next: 'c6_s01_awakening'
+      },
+      {
+        id: 'continue_normal',
         label: 'Wieder einsteigen',
         effects: [
           { type: 'set', target: 'chapter_index', value: 6 },
@@ -1683,6 +1962,7 @@ Comp7 steht dort. Im Türrahmen des Zuges.
       { type: 'inc', target: 'memory_drift', value: 1 }
     ],
     state_notes: [
+      'Station-End: memory_drift +1 (R1)',
       'Station-End: Übergang zu Kapitel 6',
       'Comp7 hält den Spieler im Zug',
       'Noch eine Station bis zum wahren Ende'

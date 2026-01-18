@@ -1,0 +1,138 @@
+/* Reader Noir Theme */
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+/* --- FONTS & SCROLLBAR --- */
+.noir-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: #57534e transparent;
+}
+.noir-scroll::-webkit-scrollbar {
+  width: 4px;
+}
+.noir-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+.noir-scroll::-webkit-scrollbar-thumb {
+  background-color: #57534e;
+  border-radius: 20px;
+}
+
+/* --- TEXTURES & EFFECTS --- */
+
+/* Film Grain / Noise - Animated */
+@keyframes noise-anim {
+  0% { transform: translate(0, 0); }
+  10% { transform: translate(-5%, -5%); }
+  20% { transform: translate(-10%, 5%); }
+  30% { transform: translate(5%, -10%); }
+  40% { transform: translate(-5%, 15%); }
+  50% { transform: translate(-10%, 5%); }
+  60% { transform: translate(15%, 0); }
+  70% { transform: translate(0, 10%); }
+  80% { transform: translate(-15%, 0); }
+  90% { transform: translate(10%, 5%); }
+  100% { transform: translate(5%, 0); }
+}
+
+.noise-overlay {
+  position: fixed;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  pointer-events: none;
+  z-index: 50;
+  opacity: 0.04;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  animation: noise-anim 0.5s infinite steps(1);
+}
+
+/* Vignette */
+.vignette {
+  background: radial-gradient(circle at center, transparent 40%, rgba(0,0,0,0.4) 80%, rgba(0,0,0,0.8) 100%);
+}
+
+/* --- TICKET STYLING --- */
+
+/* Ticket jagged edge generator */
+.ticket-perforation {
+  background-image: linear-gradient(90deg, transparent 50%, #a8a29e 50%); /* stone-400 */
+  background-size: 10px 1px;
+  background-repeat: repeat-x;
+}
+
+.ticket-shape {
+  clip-path: polygon(
+    10px 0, 100% 0, 
+    100% calc(100% - 10px), calc(100% - 10px) 100%, 
+    0 100%, 0 10px
+  );
+}
+
+/* Punch Hole Effect */
+.punch-hole-l {
+  mask-image: radial-gradient(circle at left center, transparent 8px, black 8.5px);
+  -webkit-mask-image: radial-gradient(circle at left center, transparent 8px, black 8.5px);
+}
+.punch-hole-r {
+  mask-image: radial-gradient(circle at right center, transparent 8px, black 8.5px);
+  -webkit-mask-image: radial-gradient(circle at right center, transparent 8px, black 8.5px);
+}
+.punch-hole-both {
+  mask-image: 
+    radial-gradient(circle at left center, transparent 8px, black 8.5px),
+    radial-gradient(circle at right center, transparent 8px, black 8.5px);
+  -webkit-mask-image: 
+    radial-gradient(circle at left center, transparent 8px, black 8.5px),
+    radial-gradient(circle at right center, transparent 8px, black 8.5px);
+  mask-composite: intersect;
+  -webkit-mask-composite: source-in;
+}
+
+/* --- ANIMATIONS --- */
+
+/* Text Drift */
+@keyframes text-drift {
+  0% { opacity: 0.95; transform: skewX(0deg); }
+  25% { opacity: 0.85; transform: skewX(0.5deg) translateX(1px); filter: blur(0.5px); }
+  50% { opacity: 0.95; transform: skewX(0deg); }
+  75% { opacity: 0.9; transform: skewX(-0.5deg) translateX(-0.5px); }
+  100% { opacity: 0.95; transform: skewX(0deg); }
+}
+
+.animate-drift {
+  animation: text-drift 6s ease-in-out infinite;
+}
+
+/* Fade In Up */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+/* Station Flash */
+@keyframes stationFlash {
+  0% { opacity: 0; transform: scale(0.95); filter: blur(4px); }
+  10% { opacity: 1; transform: scale(1); filter: blur(0); }
+  90% { opacity: 1; transform: scale(1); filter: blur(0); }
+  100% { opacity: 0; transform: scale(1.05); filter: blur(2px); }
+}
+.animate-station {
+  animation: stationFlash 2.5s ease-out forwards;
+}
+
+/* --- REDUCE MOTION OVERRIDES --- */
+.reduce-motion * {
+  animation-duration: 0.001ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.001ms !important;
+}
+
+.reduce-motion .noise-overlay {
+  animation: none !important;
+}

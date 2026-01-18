@@ -30,13 +30,69 @@ Du greifst nach dem Griff. Kalt. Metall. Er dreht sich nicht.
 
 Die Tür ist verschlossen.
 
+Du lehnst die Stirn kurz gegen das Holz. Kein Widerhall, nur das dumpfe Summen des Zuges. Der Lack riecht süßlich, als wäre er frisch, aber deine Finger hinterlassen keinen Abdruck. Unter der 7 ist ein feiner Kratzer, der wie eine zweite Zahl aussieht, wieder wegradiert.
+
 Du erinnerst dich nicht, diese Tür vorher gesehen zu haben. Aber du bist sicher, dass du sie gesucht hast.
 
 Oder solltest du sie suchen?
 
+In deinem Kopf gibt es ein Bild von dieser Tür, aber es flackert, als wäre es eine Erinnerung an eine Erinnerung. Du bist dir nicht sicher, ob du hier schon einmal gestanden hast oder ob du es nur wiederholst.
+
 Der Zug rattert. Die Neonröhren flackern. Aus. An. Aus. An.
 
+Als du dich umdrehst, wirkt der Gang länger als eben. Die Notbeleuchtung am Boden zieht sich wie eine Linie, die nicht enden will. Irgendwo klackt eine Tür, aber kein Abteil geht auf.
+
+Das Neonlicht wirkt für einen Moment zu hell, als würde es dich markieren, und dann fällt es wieder zurück in sein Flackern.
+
+Erst dann hörst du das Rattern wieder klar.
+
 Hinter dir: Schritte. Oder das Echo deiner eigenen.`,
+    narrative_variants: [
+      {
+        min_drift: 3,
+        narrative: `Du stehst vor einer Tür am Ende des Gangs.
+
+Auf der Tür: Eine 7. Aber darunter schimmert eine andere Zahl durch. Eine 8? Eine 0?
+
+Du greifst nach dem Griff. Er ist warm. Zu warm. Als hätte ihn gerade jemand losgelassen. Er dreht sich nicht.
+
+Die Tür ist verschlossen. Aber sie vibriert leicht.
+
+Du lehnst die Stirn gegen das Holz. Du hörst Stimmen von der anderen Seite. Leise. Unverständlich. Der Lack riecht nach Ozon und altem Parfüm.
+
+Du erinnerst dich nicht, diese Tür vorher gesehen zu haben. Aber du weißt, was dahinter ist. Oder glaubst es zu wissen.
+
+In deinem Kopf gibt es ein Bild von dieser Tür, offen. Du stehst darin. Aber du bist nicht du.
+
+Der Zug rattert nicht mehr rhythmisch. Er stolpert. Die Neonröhren flackern in einem Muster, das wie ein Code aussieht.
+
+Als du dich umdrehst, wirkt der Gang endlos. Die Notbeleuchtung pulsiert wie eine Vene.
+
+Hinter dir: Keine Schritte. Aber ein Atmen.`
+      },
+      {
+        min_drift: 5,
+        narrative: `Du stehst vor einer Tür, die nicht da sein sollte.
+
+Auf der Tür: Keine Zahl. Nur ein tiefer Kratzer, der aussieht wie eine 7, die blutet. Das Holz ist dunkel, fast schwarz.
+
+Du greifst nach dem Griff. Er ist feucht. Klebrig. Er gibt nach, aber die Tür öffnet sich nicht, als würde sie von innen festgehalten.
+
+Du drückst das Ohr an das Holz. Ein Schrei. Ganz leise. Endlos.
+
+Der Lack riecht nach Kupfer. Nach Blut.
+
+Du hast diese Tür nie gesucht. Sie hat dich gefunden.
+
+In deinem Kopf gibt es kein Bild mehr. Nur das Gefühl von Fallen.
+
+Der Zug rattert so laut, dass deine Zähne vibrieren. Die Neonröhren sind aus. Nur das Licht vom Bahnsteig draußen huscht herein, obwohl ihr fahrt.
+
+Als du dich umdrehst, ist der Gang weg. Nur Schatten.
+
+Hinter dir: Du selbst. Deine Stimme.`
+      }
+    ],
     choices: [
       {
         id: 'try_to_open',
@@ -85,15 +141,23 @@ Hinter dir: Schritte. Oder das Echo deiner eigenen.`,
 
 Die Neonröhren flackern schneller. Nicht mehr synchron.
 
+Die Luft trägt noch den Geruch der Station: feuchte Kälte, Metall, ein Hauch von Ozon. Als hättest du kurz draußen gestanden, obwohl du es nicht hast.
+
 Du gehst zurück durch den Gang. Der Schlaflose sitzt drei Reihen weiter hinten. Seine Jacke ist jetzt schwarz.
 
 Du erinnerst dich: Sie war rot. Oder grün. Oder beides. Oder nie eine von beidem.
 
 Comp7 ist weg. Ihr Abteil leer. Nur das Notizbuch liegt noch da, aufgeschlagen.
 
+Die Seite zittert im Luftzug. Bei jedem Flackern scheint ein Wort zu verschwinden und wieder aufzutauchen, als würde jemand mit Radiergummi arbeiten, den du nicht siehst.
+
 Auf der Seite steht: „Passagier #[UNLESBAR]: Sucht nach Jungen. Findet Wagen 7."
 
-Du hast den Jungen nicht gesucht. Noch nicht.`,
+Du hast den Jungen nicht gesucht. Noch nicht.
+
+Du hörst für einen Moment ein entferntes Bandrauschen, dann ist es weg. Vielleicht war es nur das Rattern in deinem Kopf.
+
+Der Schlaflose atmet, aber es klingt, als wäre er zwei Reihen weiter. Alles verschiebt sich um einen Sitz, nur du bleibst stehen.`,
     choices: [
       {
         id: 'take_notebook',
@@ -138,17 +202,11 @@ Du hast den Jungen nicht gesucht. Noch nicht.`,
     id: 'c3_interlude_01_lights',
     chapter: 3,
     title: 'Lichter',
-    narrative: `Die Neonröhren über dir flackern.
+    narrative: `Die Neonröhren flackern. Aus. An. Aus. An.
 
-Aus. An. Aus. An.
+Jedes Mal wenn das Licht zurückkommt, wirkt der Gang fremder. Ein Schatten zu viel, eine Tür, die vorher geschlossen war.
 
-Jedes Mal wenn das Licht zurückkommt, ist der Gang ein bisschen anders.
-
-Ein Schatten weiter links. Eine Tür weiter rechts. Der Teppich dunkler.
-
-Du blinzelst. Das Licht bleibt stabil.
-
-Alles ist, wie es war. Oder wie du denkst, dass es war.`,
+Du versuchst, dir ein Muster zu merken, aber es gleitet dir durch die Finger. Dein eigener Schatten hinkt dir hinterher, als wäre er müde.`,
     choices: [
       {
         id: 'continue',
@@ -181,6 +239,12 @@ Du bist sicher: Er war weg. Das Abteil war leer. Du hast es gesehen.
 Er hält den Kassettenrekorder. Den gleichen, den er dir gegeben hat. Aber du hast ihn doch noch.
 
 Du greifst in deine Tasche. Der Rekorder ist da. Kalt. Schwer.
+
+Der Junge wirkt jünger als gestern. Oder älter. Seine Stimme kratzt, als hätte er lange nicht gesprochen. Hinter ihm liegt eine Jacke über dem Sitz, aber sie scheint nicht zu seinem Abteil zu gehören.
+
+Du hörst den anderen Rekorder in deiner Tasche, obwohl er still ist. Ein leises Bandrauschen, das nur da ist, wenn du hinhörst.
+
+Der Junge hält den Blick, seine Pupillen sind zu groß für das Licht. Für einen Augenblick wirkt sein Gesicht, als hätte es eine andere Form, dann fängt es sich wieder.
 
 Der Junge schaut dich an. „Es gibt zwei jetzt," sagt er. „Manchmal werden Dinge mehr."
 
@@ -234,11 +298,15 @@ Er drückt auf Play. Sein Rekorder spielt. Kein Knistern. Nur Stille.
     title: 'Die Aufnahme',
     narrative: `Du drückst auf Play.
 
+Das Band zieht an. Ein leiser Widerstand in der Mechanik, dann ein Klick, als würde etwas einrasten. Das Geräusch klingt vertraut, aber gleichzeitig zu nah, als käme es aus deinem eigenen Kopf.
+
 Knistern. Dann eine Stimme. Deine Stimme.
 
 „—ich bin im NACHTZUG 19. Ich habe kein Ticket. Der Schaffner kommt—"
 
 Das hast du nie gesagt. Das hast du nie aufgenommen.
+
+Im Hintergrund hörst du das Rattern der Räder, dann ein dumpfes Klopfen, als würde jemand gegen Metall schlagen. Ein Name fällt, aber er ist verschluckt. Dein eigener Atem liegt unter allem, als wäre er aufgenommen, während du jetzt gerade hörst.
 
 Die Stimme weiter: „—Comp7 sagt, es gibt keinen Ausstieg. Der Junge sagt, Dinge werden mehr—"
 
@@ -250,7 +318,9 @@ Dann eine andere Stimme. Der Schlaflose:
 
 Das hast du ihm gesagt. In einem anderen Gespräch. Aber wie ist es auf der Kassette?
 
-Der Junge nickt. „Der Zug zeichnet alles auf."`,
+Der Junge nickt. „Der Zug zeichnet alles auf."
+
+Sein Blick ist ruhig, als hätte er das schon oft gesagt. Das Band läuft weiter, obwohl niemand mehr spricht.`,
     choices: [
       {
         id: 'listen_more',
@@ -297,11 +367,17 @@ Der Junge nickt. „Der Zug zeichnet alles auf."`,
     title: 'Aufnahme (Fortsetzung)',
     narrative: `Die Kassette läuft weiter.
 
+Das Gehäuse wird warm in deiner Hand. Die Vibration des Motors mischt sich mit deinem Puls.
+
 Eine neue Stimme. Comp7:
 
 „—Passagier ohne Ticket. Kapitel 3. Kontrolle kommt. Er muss etwas geben—"
 
 Das hat sie nie gesagt. Oder doch? Oder wird sie es noch sagen?
+
+Du willst den Satz anhalten, zurückspulen, aber die Kassette scheint zu wissen, dass du es willst. Sie läuft ungerührt weiter.
+
+Das Band klingt plötzlich dumpf, als wäre es unter Stoff. Ein leises Klicken, dann setzt es wieder normal ein. Du fühlst dich beobachtet, als würde die Kassette prüfen, ob du weiterhörst. Der Junge schaut nicht hin, aber seine Hand liegt genau neben dem Stop-Knopf.
 
 Dann Rauschen. Ein Schienenstoß. Das Klacken der Türen.
 
@@ -314,6 +390,12 @@ Die Frage. Wieder die gleiche Frage.
 Dann deine Stimme: „Ich—"
 
 Stille.
+
+Du hörst dich selbst einatmen, aber der Atem kommt einen Moment zu spät, als wäre er an einer anderen Stelle im Band gelandet.
+
+Das Band wiederholt ein Satzfragment, als würde es festhängen. Es klingt, als hätte jemand darüber gesprochen, nur um es zu übertönen.
+
+Die Spulen drehen sich sichtbar, obwohl das Fenster des Rekorders fast schwarz ist. Der Junge blinzelt nicht.
 
 Der Junge nimmt dir den Rekorder aus der Hand. „Manche Antworten stehen noch nicht drauf," sagt er.`,
     choices: [
@@ -356,6 +438,8 @@ Der Junge nimmt dir den Rekorder aus der Hand. „Manche Antworten stehen noch n
 
 Die Stimme ist langsamer. Tiefer. Wie eine Schallplatte auf falscher Geschwindigkeit.
 
+Das Knacken klingt, als würde jemand mit den Fingern über trockenes Papier fahren. Ein Hauch warmen Staubs steigt aus dem Lautsprecher.
+
 „—erreichen—Station—[GELÖSCHT]—"
 
 Der Name der Station ist nicht da. Nur ein langer Ton.
@@ -363,6 +447,16 @@ Der Name der Station ist nicht da. Nur ein langer Ton.
 „—Bitte—[WIEDERHOLUNG]—Ticket—bereithalten—[WIEDERHOLUNG]—"
 
 Das Wort „Ticket" wiederholt sich. Siebenmal. Achtmal. Du zählst nicht mehr.
+
+Du merkst, wie das Wort seine Bedeutung verliert. Es bleibt nur der Klang, eine leere Hülle.
+
+Dazwischen glaubst du kurz, deinen Namen zu hören. Falsch ausgesprochen. Als würde die Stimme nach einer Version von dir suchen, die gerade passt.
+
+Das Rauschen schabt an deinen Ohren. Für einen Moment klingt es, als würde die Durchsage rückwärts laufen, und du hörst das Wort „Rückfahrt" klarer als alles andere.
+
+Der Lautsprecher knackt erneut, als würde er etwas ausspucken, das er nicht mehr halten kann.
+
+Das Rauschen klingt wie Stimmen, die hintereinander sprechen, aber du kannst keine Worte greifen.
 
 Dann Stille.`,
     choices: [
@@ -399,6 +493,16 @@ Vorhin: Schlaflosen-Abteil, dann leeres Abteil, dann das mit der Zeitung.
 Jetzt: Leeres Abteil, Zeitung, dann Schlaflosen.
 
 Du zählst die Abteile. Immer noch acht. Aber die Positionen haben gewechselt.
+
+Die Nummern an den Türen wirken neu aufgeklebt, als hätten sie nie richtig gepasst. Eine Lampe summt tiefer als vorher.
+
+Ein Feuerlöscher hängt jetzt auf der anderen Seite. Du bist sicher, er war links. Im Fenster siehst du dein Spiegelbild, aber es bleibt einen Augenblick zu lange stehen, bevor es dich nachahmt.
+
+Die Polsterfarbe eines Sitzes ist plötzlich heller, als hätte jemand den Stoff gewechselt. Auf dem Boden liegt ein Zettel, den du nicht wegheben kannst, weil er beim Bücken schon nicht mehr da ist.
+
+Ein Kribbeln läuft dir den Nacken hinauf, als würde der Gang dich neu einsortieren.
+
+Du gehst einen Schritt zurück, dann wieder vor, aber der Gang fühlt sich nicht mehr an wie derselbe Raum. Es ist, als würde er dich für jeden Blick neu zeichnen. Deine Schuhe hinterlassen keine Spuren.
 
 Der Schlaflose winkt dir zu. Als hätte er dich erwartet.`,
     choices: [
@@ -448,6 +552,8 @@ Der Schlaflose winkt dir zu. Als hätte er dich erwartet.`,
     title: 'Warnung',
     narrative: `Du setzt dich neben den Schlaflosen.
 
+Seine Hände sind ruhig, aber die Haut an den Knöcheln ist aufgeraut. Ein blasser Ringabdruck zieht sich um seinen Finger, als hätte er etwas getragen, das jetzt fehlt.
+
 „Du suchst Wagen 7," sagt er. Keine Frage.
 
 „Woher—"
@@ -458,9 +564,13 @@ Er deutet nach vorne. „Die Tür ist jetzt offen. War sie vorher nicht. Aber je
 
 Du erinnerst dich: Die Tür war verschlossen. Du hast daran gerüttelt.
 
+Sein Blick bleibt an deinen Händen hängen, als suche er nach etwas, das du tragen solltest. Er lächelt nicht, aber es ist kein Vorwurf, eher Müdigkeit.
+
 „Oder wird sie es sein," sagt er. „Zeit funktioniert hier anders. Kontrolle kommt bald. Du musst etwas haben. Etwas geben. Etwas opfern."
 
-Seine Augen sind müde. „Ich hatte nichts zu geben. Jetzt bin ich immer hier."`,
+Seine Augen sind müde. „Ich hatte nichts zu geben. Jetzt bin ich immer hier."
+
+Er reibt sich über die Schläfe. „Ich habe einmal gezählt," murmelt er. „Ich war bei fünf und dann wieder bei eins." Sein Blick rutscht zum Fenster, als würde dort die Zahl stehen, die ihm fehlt. Er schüttelt den Kopf, als ob er die Erinnerung abstreifen könnte.`,
     choices: [
       {
         id: 'ask_what_to_give',
@@ -505,7 +615,61 @@ Nur Lichter. Viele. Sie bewegen sich parallel zum Zug.
 
 Du erkennst Formen. Fenster. Abteile. Menschen.
 
+Dein Atem beschlägt das Glas, aber die Spur verschwindet sofort, als würde das Fenster nicht zu deinem Zug gehören. Die Lichter draußen pulsieren im Takt deines Herzschlags, oder du bildest es dir ein.
+
 Es ist ein anderer Zug. Er fährt neben euch.
+
+Du siehst eine Person am Fenster. Sie schaut zurück.
+
+Sie hebt die Hand. Du hebst deine Hand.
+
+Sie bewegt sich. Du bewegst dich.
+
+Für einen Moment bist du dir nicht sicher, welcher Zug sich bewegt.
+
+Im anderen Zug sitzt jemand mit dem Rücken zu dir. Für einen Augenblick meinst du, den Jungen zu erkennen, aber dann verschwindet die Gestalt im Dunkel.
+
+Die Scheiben spiegeln deine Hand, aber die Finger wirken einen Moment zu lang, als hätte jemand eine Version von dir gestreckt.
+
+In den Fenstern des anderen Zuges stehen Nummern, die du nicht kennst. Eine 9, dann eine 7, dann wieder eine 9. Du fragst dich, welcher Zug die richtige Ordnung hat.
+
+Es ist dein Spiegelbild.
+
+Aber der andere Zug fährt in die entgegengesetzte Richtung.`,
+    narrative_variants: [
+      {
+        min_drift: 3,
+        narrative: `Du schaust aus dem Fenster.
+
+Draußen: Keine Landschaft. Keine Dunkelheit.
+
+Nur Lichter. Wenige. Sie bewegen sich parallel zum Zug.
+
+Du erkennst Formen. Fenster. Abteile. Menschen.
+
+Es ist ein anderer Zug. Er fährt neben euch.
+
+Du siehst eine Person am Fenster. Sie schaut zurück.
+
+Sie hebt die Hand. Du hebst deine Hand.
+
+Sie bewegt sich einen Schlag später. Du bewegst dich.
+
+Es ist dein Spiegelbild.
+
+Aber der andere Zug fährt in die entgegengesetzte Richtung.`
+      },
+      {
+        min_drift: 5,
+        narrative: `Du schaust aus dem Fenster.
+
+Draußen: Keine Landschaft. Keine Dunkelheit.
+
+Nur Lichter. Zu viele. Sie flimmern.
+
+Du erkennst Formen. Fenster. Abteile. Menschen.
+
+Es ist derselbe Zug. Er fährt neben euch.
 
 Du siehst eine Person am Fenster. Sie schaut zurück.
 
@@ -515,7 +679,9 @@ Sie bewegt sich. Du bewegst dich.
 
 Es ist dein Spiegelbild.
 
-Aber der andere Zug fährt in die entgegengesetzte Richtung.`,
+Aber der andere Zug steht still.`
+      }
+    ],
     choices: [
       {
         id: 'continue',
@@ -543,13 +709,23 @@ Aber der andere Zug fährt in die entgegengesetzte Richtung.`,
     title: 'Die Sieben',
     narrative: `Du gehst nach vorne. Oder nach hinten. Der Gang sieht gleich aus in beide Richtungen.
 
+Der Boden fühlt sich weicher an, der Geruch verändert sich: Papier, Staub, etwas Süßes. Du hörst dein eigenes Blut rauschen, als würde der Gang jedes andere Geräusch schlucken.
+
 Am Ende: Die Tür. Die 7.
 
+Die Zahl wirkt nicht ganz fest. Der obere Strich flimmert, als würde er sich verschieben. Du blinzelst, und sie steht wieder sauber da. Ein leises Summen läuft durch den Boden, als würde der Zug selbst kurz den Atem anhalten. Dein Fuß klebt am Teppich, als wäre er feucht.
+
 Sie ist angelehnt. War sie vorher verschlossen? Du bist sicher, dass sie verschlossen war.
+
+Die Kante der Tür wirkt warm, als hätte jemand eben noch dort gestanden. Du siehst einen feinen Spalt, gerade breit genug, um einen Streifen Licht zu sehen.
 
 Aber jetzt steht sie offen.
 
 Licht fällt durch den Spalt. Warmes Licht. Nicht das kalte Neonlicht des Gangs.
+
+Das Rascheln, das du hörst, klingt wie Seiten, die sich von selbst umblättern.
+
+Das Holz der Tür knackt leise, als würde es sich ausdehnen. Ein Hauch warmer Luft streicht über dein Gesicht.
 
 Du hörst Papier rascheln. Eine Stimme. Comp7.
 
@@ -601,17 +777,27 @@ Du hörst Papier rascheln. Eine Stimme. Comp7.
 
 Die gleiche Handschrift wie in Comp7s Notizbuch.
 
+Die Tinte wirkt frisch und trotzdem trocken. Als hätte jemand gerade geschrieben und die Zeit übersprungen.
+
 Die Tür öffnet sich weiter. Von allein. Langsam.
+
+Der Türknauf ist warm, obwohl der Gang kalt ist. Du spürst einen leichten Zug, als würde der Raum dahinter atmen.
 
 Kein Quietschen. Kein Geräusch.
 
 Innen: Ein größerer Raum. Unmöglich groß für ein Abteil.
+
+Die Luft riecht nach Papier, kaltem Kaffee und Bleistiftstaub. Ein schwaches Summen liegt in der Stille.
+
+Du hörst das Kratzen eines Stifts, obwohl Comp7 sich nicht bewegt. Das Geräusch scheint aus den Notizbüchern selbst zu kommen, als würden sie von allein schreiben.
 
 An den Wänden: Notizbücher. Dutzende. Alle aufgeschlagen.
 
 Comp7 sitzt am Tisch. Ihr Gesicht immer noch verschwommen. Aber weniger als vorher.
 
 Du erkennst Züge. Augen. Mund. Eine Narbe am Kinn.
+
+Die Narbe sitzt einen Tick höher, als du sie erwartet hast. Du fragst dich, ob sie gewandert ist oder ob du sie nur falsch in Erinnerung hast. Comp7s Blick bleibt an dir hängen, als würde sie prüfen, ob du es bemerkst.
 
 „Willkommen," sagt sie. „Du bist spät. Oder früh. Je nachdem."`,
     choices: [
@@ -653,17 +839,69 @@ Du erkennst Züge. Augen. Mund. Eine Narbe am Kinn.
 
 Das Abteil ist größer. Viel größer als die anderen. Unmöglich größer.
 
+Der Klang deiner Schritte verliert sich, als wäre der Boden weich. Die Wände nehmen das Geräusch auf, anstatt es zurückzuwerfen.
+
 An den Wänden: Notizbücher. Dutzende. Alle aufgeschlagen. Alle vollgeschrieben.
 
+Einige Seiten bewegen sich von selbst, als hätte jemand gerade umgeblättert. Andere sind leer, als warteten sie auf einen Eintrag.
+
 Comp7 sitzt am Tisch. Ihr Gesicht immer noch unscharf, aber du siehst mehr jetzt.
+
+Sie hält einen Stift, aber ihre Hand ruht. Als wäre sie gerade erst aus einem Satz zurückgekehrt.
 
 „Willkommen in Wagen 7," sagt sie. „Oder Abteil 7. Je nachdem, wie du es siehst."
 
 Du schaust aus dem Fenster. Draußen: Nicht die Gleise. Nicht die Dunkelheit.
 
+Der Anblick macht dir schwindlig, als würdest du dich selbst von außen betrachten.
+
 Sondern der Gang des Zuges. Von außen.
 
-„Der Zug ist größer innen als außen," sagt Comp7. „Und kleiner außen als innen. Das ist Teil des Problems."`,
+„Der Zug ist größer innen als außen," sagt Comp7. „Und kleiner außen als innen. Das ist Teil des Problems."
+
+Sie lächelt kurz, nicht freundlich, eher müde.`,
+    narrative_variants: [
+      {
+        min_drift: 3,
+        narrative: `Du trittst ein.
+
+Das Abteil atmet. Die Wände scheinen sich im Takt eines langsamen Pulses zu dehnen.
+
+Der Raum ist endlos. Kein Ende in Sicht, nur Regale voller Notizbücher, die sich im Dämmerlicht verlieren.
+
+An den Wänden: Nicht nur Bücher. Zettel. Fotos. Manche kleben an der Decke.
+
+Die Seiten blättern wild, obwohl kein Wind weht. Ein Rascheln wie tausend Insektenflügel.
+
+Comp7 sitzt am Tisch. Ihr Gesicht flackert. Mal alt. Mal jung. Mal siehst du Züge des Schlaflosen darin.
+
+„Willkommen im Archiv," sagt sie. Ihre Stimme kommt von überall.
+
+Du schaust aus dem Fenster. Draußen: Ein Auge. Riesig. Es blinzelt.
+
+Sondern dein eigenes Auge.
+
+„Wir werden beobachtet," sagt Comp7. „Von uns selbst."`
+      },
+      {
+        min_drift: 5,
+        narrative: `Du trittst ein.
+
+Es gibt kein Abteil. Du stehst auf einer Insel aus Papier inmitten von Schwärze.
+
+Notizbücher schweben um dich herum wie Vögel. Manche brennen, aber das Feuer gibt keine Wärme, nur Licht.
+
+Comp7 sitzt nicht. Sie schwebt. Ihr Körper besteht zur Hälfte aus Tinte, die in die Dunkelheit tropft. Ihr Gesicht ist ein leeres Blatt Papier.
+
+„Willkommen am Ende," sagt die Stimme, die direkt in deinem Kopf entsteht.
+
+Du schaust aus dem Fenster. Aber da ist kein Fenster. Da ist nur ein Riss in der Realität.
+
+Dahinter siehst du Code. Oder Sterne. Oder den Text dieses Spiels.
+
+„Der Zug existiert nicht," sagt Comp7. „Nur die Geschichte."`
+      }
+    ],
     choices: [
       {
         id: 'examine_notebooks',
@@ -713,6 +951,8 @@ Sondern der Gang des Zuges. Von außen.
 
 Jedes ist aufgeschlagen. Jedes zeigt eine andere Seite.
 
+Einige Seiten sind voller Durchstreichungen, Zahlenreihen, Kreise. Andere sind leer, bis auf ein Datum, das kein Datum sein kann.
+
 „Passagier #12: Hat Ticket. Steigt bei Station 4 aus. Vergisst alles."
 
 „Passagier #7: Kein Ticket. Opfert Erinnerung. Wird Schaffner-Assistent."
@@ -721,13 +961,66 @@ Jedes ist aufgeschlagen. Jedes zeigt eine andere Seite.
 
 Die Handschrift ist überall die gleiche. Präzise. Klein. Comp7s Handschrift.
 
+An manchen Stellen wird sie zittrig, als hätte jemand in einem anderen Moment geschrieben.
+
+Ein Eintrag ist frisch, die Tinte noch feucht. Er endet mitten im Satz.
+
 Ein Notizbuch zeigt ein Foto. Du erkennst den Bahnsteig. Den leeren Bahnsteig aus Kapitel 1.
 
 Auf dem Foto: Eine Person. Du kannst das Gesicht nicht erkennen. Zu verschwommen.
 
 Aber du erkennst die Kleidung. Deine Kleidung.
 
+Am Rand des Fotos liegt ein zweiter Schatten, versetzt. Er passt nicht zu dem Licht. Als hätte noch jemand dort gestanden, den die Linse nicht zeigen will.
+
 „Du bist schon mal hier gewesen," sagt Comp7.`,
+    narrative_variants: [
+      {
+        min_drift: 3,
+        narrative: `Du gehst zu den Notizbüchern.
+
+Jedes ist aufgeschlagen. Aber die Buchstaben bewegen sich.
+
+Sie krabbeln über das Papier wie Ameisen. Formen neue Wörter, während du zusiehst.
+
+„Passagier #12: Tot. Lebendig. Tot."
+
+„Passagier #7: Vergisst. Erinnert sich. Vergisst."
+
+Die Handschrift ändert sich mit jedem Satz. Mal krakelig, mal elegant. Mal ist es deine eigene.
+
+Ein Eintrag ist in roter Tinte geschrieben. Oder Blut. Er trocknet nicht.
+
+Ein Notizbuch zeigt ein Foto. Das Foto bewegt sich. Ganz leicht. Die Person darauf dreht den Kopf zu dir.
+
+Du erkennst dich selbst. Aber die Augen sind leer.
+
+„Wir schreiben die Geschichte neu," sagt Comp7.
+„Jedes Mal."`
+      },
+      {
+        min_drift: 5,
+        narrative: `Du gehst zu den Notizbüchern.
+
+Aber da sind keine Bücher mehr. Nur Haut.
+
+Die Wände sind bespannt mit pergamentartiger Haut, auf die jemand Text tätowiert hat.
+
+„HILFE" steht da. Tausendmal. Klein.
+
+Dann: „KEIN AUSGANG."
+
+Die Buchstaben bluten. Schwarze Tinte läuft an der Wand herunter.
+
+Comp7 steht daneben und schreibt direkt auf die Wand. Ihr Stift schneidet in das Material.
+
+Ein Foto hängt an einem Nagel. Es zeigt keinen Bahnsteig. Es zeigt ein Grab.
+
+Auf dem Grabstein steht dein Name. Das Datum ist heute.
+
+„Das ist das Ende vom letzten Mal," sagt Comp7. „Versuch es besser zu machen."`
+      }
+    ],
     choices: [
       {
         id: 'ask_when',
@@ -743,6 +1036,16 @@ Aber du erkennst die Kleidung. Deine Kleidung.
         label: '„Das kann nicht sein"',
         effects: [
           { type: 'inc', target: 'tickets_escape', value: 1 }
+        ],
+        next: 'c3_s04_comp7_truth'
+      },
+      {
+        id: 'examine_photo',
+        label: 'Das Foto genauer betrachten',
+        effects: [
+          { type: 'inc', target: 'tickets_truth', value: 1 },
+          { type: 'set', target: 'photo_anomaly', value: true },
+          { type: 'inc', target: 'memory_drift', value: 1 }
         ],
         next: 'c3_s04_comp7_truth'
       },
@@ -766,7 +1069,8 @@ Aber du erkennst die Kleidung. Deine Kleidung.
     state_notes: [
       'CONDITION: read_own_entry nur bei tickets_truth >= 2',
       'Notizbücher zeigen andere Passagiere (Timeline-Varianten)',
-      'Foto zeigt Spieler auf Bahnsteig: Loop-Hinweis'
+      'Foto zeigt Spieler auf Bahnsteig: Loop-Hinweis',
+      'examine_photo setzt photo_anomaly (Foto-Anomalie erkannt)'
     ],
     atmosphere: 'danger'
   },
@@ -788,9 +1092,17 @@ Dann wieder: Abteil 1. Abteil 2. Abteil 3.
 
 Die gleichen Abteile. In der gleichen Reihenfolge.
 
+Die Luft wird wärmer, als würdest du im Kreis laufen. Der Geruch bleibt derselbe, nur deine Schritte verändern sich. Du markierst eine Kante im Teppich mit dem Schuh, aber beim nächsten Durchgang ist sie wieder glatt.
+
 Du gehst weiter. Die Abteile wiederholen sich.
 
 Du drehst dich um. Gehst zurück. Die gleiche Wiederholung.
+
+Deine Orientierung kippt. Du zählst neu, aber die Zahlen fühlen sich falsch an.
+
+Du zählst deine Schritte, aber die Zahl endet nie. Der Handlauf unter deiner Hand fühlt sich einmal glatt, dann rau an, als ob er jedes Mal neu gegossen wäre.
+
+Die Abteile wirken wie Kopien, kleine Fehler tauchen auf: ein Griff zu hoch, ein Fenster ohne Rahmen.
 
 Dann: Ein Unterschied. Eine Tür mit einer 7.
 
@@ -824,15 +1136,29 @@ Comp7 schaut auf. „Der Gang hat kein Ende. Nur Schleifen."`,
     title: 'Die Wahrheit',
     narrative: `Comp7 blättert in einem der Notizbücher.
 
+Sie blättert nicht richtig, sie tastet die Seiten ab, als hätte jede ein anderes Gewicht.
+
 „Der NACHTZUG 19 ist keine Zugfahrt," sagt sie. „Er ist eine Schleife. Wir fahren nicht von A nach B. Wir fahren von A nach A."
+
+Sie sagt es, als hätte sie es tausendmal gesagt und als hätte sie es gerade erst verstanden.
 
 Sie zeigt dir eine Seite. Eine Karte. Kreisförmig.
 
+Neben dem Kreis stehen Striche. Manche sind durchgestrichen, manche doppelt. Zählversuche.
+
 „Sieben Stationen. Jede ist die gleiche. Jede ist leer. Am Ende kommen wir wieder am Anfang an."
+
+„Und jedes Mal fehlen Details," sagt sie leise. „Farben. Namen. Kleine Dinge. So beginnt der Drift."
 
 „Warum?"
 
 „Weil jemand nicht loslassen kann. Weil jemand nicht aussteigen will. Weil jemand denkt, dass die nächste Station anders wird."
+
+Sie schaut kurz zum Fenster, als würde sie jemanden dort sehen.
+
+„Manchmal erinnere ich mich an eine Fahrt, die wir nie gemacht haben," sagt sie. „Manchmal an einen Bahnhof, der keinen Namen hat." Ihre Stimme bricht kurz, als wäre sie an einer Stelle hängen geblieben. „Die Notizbücher halten mich fest. Wenn ich sie nicht schreibe, vergesse ich mich."
+
+Sie schlägt eine Seite auf, auf der dein Name steht, falsch geschrieben. Du erkennst dich trotzdem. Das macht es schlimmer.
 
 Sie schließt das Notizbuch. „Der Junge sagt, es bist du. Der Schlaflose sagt, es bin ich. Ich weiß es nicht mehr."`,
     choices: [
@@ -882,17 +1208,27 @@ Sie schließt das Notizbuch. „Der Junge sagt, es bist du. Der Schlaflose sagt,
     title: 'Paradox',
     narrative: `Du schaust aus dem Fenster von Wagen 7.
 
+Das Glas ist warm, der Rahmen kalt. Als gehörten sie nicht zusammen.
+
 Draußen: Der Gang. Du siehst dich selbst.
 
 Du stehst im Gang. Schaust aus einem Fenster. Siehst in Wagen 7.
 
+Deine Jacke hat eine andere Farbe. Oder nur einen anderen Schatten.
+
 Siehst dich selbst, wie du aus dem Fenster schaust.
+
+Du bemerkst einen kleinen Riss im Glas, der im anderen Fenster fehlt. Als würdest du in eine Version sehen, die schon weiter ist. Dein Magen zieht sich zusammen, weil du nicht weißt, ob du nach vorne oder zurück blickst.
 
 „Schleife," sagt Comp7. „Innen ist außen. Außen ist innen."
 
 Du hebst die Hand. Das andere Du hebt auch die Hand.
 
 Aber es ist keine Spiegelung. Das andere Du bewegt sich anders. Später. Oder früher.
+
+Du siehst die Lippen sich bewegen, als würde es dir etwas sagen, aber kein Ton kommt über das Glas.
+
+Du hörst ein leises Klopfen von der anderen Seite, aber das Glas bleibt hart. Das andere Du dreht den Kopf, und für einen Moment siehst du seine Augen nicht, sondern nur Schatten.
 
 „Welches bin ich?" fragst du.
 
@@ -951,15 +1287,59 @@ Comp7 zuckt mit den Schultern. „Beide. Oder keines."`,
 
 An der Wand: Ein Spiegel. Du erinnerst dich nicht, einen Spiegel gesehen zu haben.
 
+Der Rahmen ist kalt und leicht beschlagen, als hätte jemand gerade davor gestanden.
+
 Du schaust hinein.
 
 Dein Gesicht ist unscharf. Nicht verschwommen. Sondern doppelt.
 
 Zwei Gesichter überlagert. Leicht verschoben. Eines lächelt. Eines nicht.
 
+Du hebst die Hand erneut. Im Spiegel hebt sie sich, aber der Winkel stimmt nicht. Es ist, als würde jemand dich nachspielen.
+
+Hinter dir zeigt der Spiegel einen Gang, den es nicht gibt. Er führt nach links, obwohl der reale Gang geradeaus geht.
+
+Du drehst dich reflexartig um, aber da ist nichts. Als du zurückschaust, ist der falsche Gang immer noch da, nur weiter entfernt, als würde er sich zurückziehen. Ein Licht flackert darin und zeigt kurz eine Gestalt, die nicht du bist.
+
+Dein Atem zieht eine kurze Spur auf das Glas. Das Spiegelbild reagiert einen Herzschlag zu spät.
+
 Du blinzelst. Das Bild stabilisiert sich. Ein Gesicht. Deines.
 
 Oder das, an das du dich erinnerst.`,
+    narrative_variants: [
+      {
+        min_drift: 3,
+        narrative: `Du gehst durch den Gang. Zurück zu deinem Platz.
+
+An der Wand: Ein Spiegel. Du erinnerst dich nicht, einen Spiegel gesehen zu haben.
+
+Du schaust hinein.
+
+Dein Gesicht ist unscharf. Nicht verschwommen. Sondern doppelt.
+
+Zwei Gesichter überlagert. Leicht verschoben. Eines lächelt. Eines schaut weg.
+
+Du blinzelst. Das Bild stabilisiert sich. Ein Gesicht. Deines.
+
+Oder das, an das du dich erinnerst.`
+      },
+      {
+        min_drift: 5,
+        narrative: `Du gehst durch den Gang. Zurück zu deinem Platz.
+
+An der Wand: Ein Spiegel. Du erinnerst dich nicht, einen Spiegel gesehen zu haben.
+
+Du schaust hinein.
+
+Dein Gesicht ist unscharf. Nicht verschwommen. Sondern dreifach.
+
+Drei Gesichter überlagert. Leicht verschoben. Eines lächelt. Eines ist leer. Eines blinzelt nicht.
+
+Du blinzelst. Das Bild stabilisiert sich. Ein Gesicht. Nicht deines.
+
+Oder das, an das du dich erinnern willst.`
+      }
+    ],
     choices: [
       {
         id: 'continue',
@@ -987,6 +1367,8 @@ Oder das, an das du dich erinnerst.`,
     title: 'Ankündigung',
     narrative: `Die Lautsprecher knacken. Laut. Zu laut.
 
+Ein feiner Staub rieselt aus dem Gitter. Der Lautsprecher vibriert, als wolle er sich lösen.
+
 „Sehr—[RAUSCHEN]—Fahrgäste—"
 
 Die Stimme ist verzerrt. Nicht mehr menschlich. Tiefer. Mechanisch.
@@ -999,9 +1381,19 @@ Das Wort wiederholt sich. Immer wieder. Schneller.
 
 „Kontrolle-Kontrolle-Kontrolle-Kontrolle—"
 
+Du spürst das Wort im Magen, wie ein Schlag.
+
+Die Lichter dimmen mit jedem Wiederholen, als würde die Stimme Strom ziehen. Der Boden vibriert in kurzen Stößen, die nicht zum Takt der Räder passen.
+
 Dann Stille.
 
 Comp7 steht auf. „Sie kommen. Wieder. Sie kommen immer wieder."
+
+Ihr Blick ist fest, aber ihre Hände zittern leicht.
+
+Comp7 sagt deinen Namen nicht, aber ihre Lippen bewegen sich, als würde sie ihn denken. Für einen Moment kommt das Rattern des Zuges zurück, dann verstummt es wieder, als hätte es nie existiert.
+
+Das Brummen des Zuges hält den Atem an. Für einen Moment ist alles zu still, als hätte die Kontrolle die Zeit selbst gestoppt.
 
 Du hörst Schritte. Schwer. Rhythmisch. Näher.
 
@@ -1052,19 +1444,29 @@ Der Schaffner.`,
     title: 'Kontrolle - Annäherung',
     narrative: `Die Schritte werden lauter.
 
+Jeder Schritt ist exakt gleich. Ein Rhythmus, der keine Abweichung kennt.
+
 Du siehst ihn durch die Tür von Wagen 7. Der Schaffner.
 
 Er ist größer als vorhin. Oder du bist kleiner. Schwer zu sagen.
 
+Seine Uniform wirkt zu eng, als wäre sie an einem anderen Körper angepasst worden. Die Kelle in seiner Hand glänzt kalt.
+
 Er geht langsam durch den Gang. Öffnet jede Tür. Schaut in jedes Abteil.
 
 Bei jedem Abteil bleibt er stehen. Nickt. Macht eine Notiz auf seiner Kelle.
+
+Seine Handschuhe sind weiß. Zu weiß für einen Zug.
+
+Sein Schatten zieht sich über den Boden, länger als er sein dürfte. Als er an einer Tür vorbeigeht, friert das Licht für einen Augenblick ein.
 
 Dann geht er weiter.
 
 Er kommt näher. Drei Abteile entfernt. Zwei. Eins.
 
 Comp7 steht neben dir. „Er kann Wagen 7 nicht betreten," flüstert sie. „Aber er kann warten."
+
+Ihr Atem geht flach. Du spürst, wie sie näher rückt, ohne dich zu berühren.
 
 Der Schaffner bleibt vor der Tür stehen. Schaut direkt zu dir.
 
@@ -1126,11 +1528,25 @@ Seine Kelle ist nicht leer. Darauf steht:
 
 „Passagier ohne Ticket. Station 3. Wiederholen: Station 3."
 
+„Name des Zielortes?" fragt er. Seine Stimme lässt keinen Zweifel zu.
+
+Er wartet. Zu lange. Deine Kehle wird trocken. Du hörst das Band im Rekorder, obwohl es still ist.
+
 „Sie haben zwei Optionen," sagt er. „Sie können aussteigen. Oder Sie können ein Ticket kaufen."
 
 „Mit was?"
 
+Deine Stimme klingt kleiner, als sie sollte.
+
 Er deutet auf den Rekorder. „Mit dem. Oder mit der Wahrheit. Oder mit jemandem."
+
+Sein Blick streift Comp7. Einen Sekundenbruchteil nur, aber es reicht. Du verstehst, was er meint.
+
+Die Kelle tippt einmal gegen sein Bein. Kein Ton, nur die Bewegung. Du spürst, wie er zählt.
+
+Die Schrift auf der Kelle flimmert, als würde sie sich neu schreiben. Für einen Moment steht dort etwas anderes, dann ist es weg.
+
+Er neigt den Kopf ein kleines Stück, als würde er zuhören. Seine Augen spiegeln dich nicht, nur das matte Licht. Du riechst kaltes Eisen. Der Moment dehnt sich.
 
 Seine Stimme ist tiefer. Mechanischer. „Oder Sie können nichts geben. Dann komme ich bei der nächsten Station wieder. Und die Frage wird härter."`,
     choices: [
@@ -1150,8 +1566,22 @@ Seine Stimme ist tiefer. Mechanischer. „Oder Sie können nichts geben. Dann ko
         next: 'c3_control_02_aftermath'
       },
       {
+        id: 'offer_recorder_memory',
+        label: 'Vom Rekorder erzählen (Erinnerung)',
+        condition: {
+          type: 'bool',
+          target: 'has_recorder',
+          value: false
+        },
+        effects: [
+          { type: 'inc', target: 'tickets_truth', value: 1 },
+          { type: 'dec', target: 'conductor_attention', value: 1 }
+        ],
+        next: 'c3_control_02_aftermath'
+      },
+      {
         id: 'offer_truth',
-        label: '„Die Wahrheit: Ich gehöre hierher"',
+        label: '„Die Wahrheit: Rückfahrt."',
         effects: [
           { type: 'inc', target: 'tickets_truth', value: 2 },
           { type: 'inc', target: 'conductor_attention', value: 1 }
@@ -1169,7 +1599,7 @@ Seine Stimme ist tiefer. Mechanischer. „Oder Sie können nichts geben. Dann ko
       },
       {
         id: 'offer_nothing',
-        label: 'Nichts sagen',
+        label: '„Ich steige nächste Station aus."',
         condition: {
           type: 'compare',
           target: 'conductor_attention',
@@ -1185,10 +1615,9 @@ Seine Stimme ist tiefer. Mechanischer. „Oder Sie können nichts geben. Dann ko
     ],
     tags: ['control'],
     state_notes: [
-      'CONDITION: offer_recorder nur wenn has_recorder == true',
-      'CONDITION: offer_nothing nur wenn conductor_attention >= 3 (härtere Version)',
-      'offer_recorder: Verlust von Key-Item, senkt attention stark',
-      'offer_someone: Deutet Opfer-Mechanik an'
+      'Conditions: offer_recorder (has_item), offer_nothing (high attention)',
+      'offer_truth uses keyword "Rückfahrt" (Concept Callback)',
+      'offer_recorder consumes item, offer_someone hints sacrifice'
     ],
     atmosphere: 'danger'
   },
@@ -1202,7 +1631,9 @@ Seine Stimme ist tiefer. Mechanischer. „Oder Sie können nichts geben. Dann ko
     title: 'Kontrolle - Nachwirkung',
     narrative: `Der Schaffner bleibt stehen. Bewegt sich nicht.
 
-„Sie haben gegeben," sagt er. „Aber nicht genug."
+„Die Antwort ist notiert," sagt er. „Aber sie reicht nicht."
+
+Seine Kelle kratzt leise, als würde er eine unsichtbare Notiz machen, obwohl er sich nicht bewegt.
 
 Comp7 tritt aus Wagen 7. Ihr Gesicht ist klarer jetzt. Schärfer. Du erkennst sie.
 
@@ -1215,6 +1646,10 @@ Der Schaffner dreht sich zu ihr. „Sie sollten nicht hier sein."
 Der Schaffner nickt. Langsam. Macht eine Notiz auf seiner Kelle.
 
 Dann geht er weiter. Seine Schritte entfernen sich.
+
+Die Luft fühlt sich dünn an, als hätte er etwas mitgenommen, das du nicht benennen kannst.
+
+Comp7s Hand zittert, als sie das Notizbuch schließt. Die Seiten klappen nicht sauber, als würden sie sich weigern.
 
 Comp7 schaut dich an. „Er kommt wieder. Bei der nächsten Station. Und der nächsten. Bis du die richtige Antwort gibst."
 
@@ -1275,7 +1710,19 @@ Die Frau mit der Zeitung. Weg.
 
 Alle Abteile leer. Nur noch Sitze. Stille.
 
+Eine Zeitung liegt halb aufgeklappt auf einem Sitz, die Seiten flattern im Luftzug. Eine Kaffeetasse steht im Gang, noch warm, als hätte sie niemand abgestellt.
+
 Du bist allein im Zug.
+
+Deine Schritte klingen zu laut. Sie sind das einzige Geräusch, das noch zu dir gehört.
+
+Der Zug wirkt plötzlich wie eine Kulisse. Die Sitze scheinen leichter, als wären sie nur gestellt. Selbst das Rattern klingt weiter weg.
+
+Du rufst leise einen Namen, aber deine Stimme klingt fremd und fällt sofort in die Stille zurück.
+
+Ein Sitz knarrt, als würde jemand aufstehen, aber der Wagen bleibt leer. Du wartest auf einen Atemzug, der nicht kommt.
+
+Du streichst über die Rückenlehne eines Sitzes. Sie ist kalt. Als hätte nie jemand darauf gesessen. Das macht die Leere echter.
 
 Oder fast allein. Comp7 steht in der Tür von Wagen 7. Schaut dir nach.
 
@@ -1330,6 +1777,8 @@ Du verstehst nicht. Aber du gehst weiter.`,
 
 Die Fenster zeigen nicht mehr nach draußen. Sie zeigen andere Gänge. Andere Züge. Oder den gleichen Zug.
 
+In einem Fenster siehst du den Bahnsteig aus Kapitel 1. In einem anderen das Abteil, in dem der Junge eben noch saß.
+
 Die Neonröhren flackern. Manche sind aus. Manche sind zu hell.
 
 Du zählst die Abteile. Eins. Zwei. Drei. Vier. Fünf. Sechs. Sieben.
@@ -1337,6 +1786,12 @@ Du zählst die Abteile. Eins. Zwei. Drei. Vier. Fünf. Sechs. Sieben.
 Dann wieder: Eins. Zwei. Drei.
 
 Der Gang hat keine Enden mehr. Er wiederholt sich.
+
+Du gehst weiter, aber dein Körper glaubt dir nicht mehr. Ein leichter Schwindel sitzt hinter deinen Augen.
+
+Die Nummern an den Türen wechseln, während du hinsiehst. Eine 7 wird zu einer 1, dann wieder zurück. Die Luft schmeckt nach Metall.
+
+Die Decke wirkt niedriger, dann wieder normal. Du spürst, wie der Zug dich neu zusammensetzt.
 
 Du gehst weiter. Die Wiederholung bleibt.
 
@@ -1391,15 +1846,21 @@ Dahinter: Der Junge. Er sitzt in seinem Abteil. Schaut dich an.
     title: 'Der Junge',
     narrative: `Du setzt dich neben den Jungen.
 
+Er wirkt im ersten Moment älter, dann wieder jünger. Als würde das Licht ihn neu sortieren.
+
 „Wo warst du?" fragst du.
 
 „Überall," sagt er. „Nirgends. Der Zug ist groß."
 
 Er zeigt dir den Rekorder. „Die Aufnahme ist fertig jetzt. Willst du hören?"
 
+Das Kunststoffgehäuse riecht nach warmem Staub. Ein Stück Band liegt lose neben der Kassette.
+
 Du nickst.
 
 Er drückt auf Play.
+
+Die Stille zwischen den Worten ist länger als sie sein sollte. Der Junge hält den Rekorder so fest, dass seine Knöchel weiß werden.
 
 Stille. Dann eine Stimme. Deine Stimme:
 
@@ -1409,7 +1870,11 @@ Das hast du noch nicht gesagt. Aber du weißt, dass du es sagen wirst.
 
 „Wofür bereit?" fragst du.
 
-Der Junge zuckt mit den Schultern. „Das weiß ich nicht. Das steht noch nicht auf der Kassette."`,
+Der Junge zuckt mit den Schultern. „Das weiß ich nicht. Das steht noch nicht auf der Kassette."
+
+Auf dem Etikett der Kassette steht ein Name, der fast deiner ist. Ein Buchstabe fehlt.
+
+Er sieht dich an, als müsste er sich dein Gesicht merken, bevor es sich verändert.`,
     choices: [
       {
         id: 'take_boys_recorder',
@@ -1456,6 +1921,14 @@ Aber nicht ganz.
 
 Am Ende des Bahnsteigs steht jemand. Eine Gestalt.
 
+Über dem Bahnsteig hängt ein Schild, aber der Name ist verwischt. Die Uhr darüber flackert zwischen zwei Zeiten.
+
+Kein Wind. Trotzdem bewegt sich der Mantel der Gestalt. Die Lampen flackern, und jedes Flackern lässt sie einen Schritt näher wirken, obwohl sie stillsteht.
+
+Die Gestalt bleibt am Rand, als würde sie auf ein Zeichen warten. Ein Licht hinter ihr geht an und wieder aus.
+
+Sie hebt den Blick, und du glaubst, dass sie dich sieht, obwohl das Glas zwischen euch ist. Dein Herzschlag drückt in die Stille.
+
 Du kannst das Gesicht nicht erkennen. Zu weit weg. Zu verschwommen.
 
 Aber du erkennst die Haltung. Die Kleidung.
@@ -1465,6 +1938,10 @@ Es ist jemand, den du kennst.
 Oder warst.
 
 Oder sein wirst.
+
+Dein Spiegelbild mischt sich im Fensterglas mit der Gestalt. Für einen Moment siehst du beides zugleich.
+
+Du hörst keine Ansage, nur das kurze Zischen der Bremsen. Die Gestalt hebt eine Hand, hält sie wieder, als würde sie zögern. Der Boden unter deinen Füßen fühlt sich plötzlich kälter an, als hätte die Station den Zug berührt.
 
 Der Zug hält.`,
     choices: [
@@ -1522,9 +1999,19 @@ Oder du.
 
 Die Gestalt winkt. Steigt ein.
 
+Als sie an dir vorbeigeht, spürst du einen kalten Luftzug, als würde ein Teil von dir nach außen gezogen.
+
 Geht an dir vorbei. Langsam. Du hörst ihre Schritte. Sie klingen wie deine.
 
 Sie setzt sich in ein Abteil. Dein Abteil.
+
+In ihrer Hand liegt ein Notizbuch. Der Einband ist neu, aber der Rand ist abgenutzt.
+
+Du siehst die kleinen Buchstaben auf der ersten Seite. Sie sehen aus wie Comp7s Handschrift.
+
+Sie beginnt zu schreiben. „Passagier #—" Der Strich verwischt, als würde die Zahl sich weigern, fest zu sein.
+
+Du siehst die Zeile, bevor ihre Hand sie verdeckt. Es ist dein Verlauf, als wäre er schon notiert.
 
 Die Tür schließt sich.
 

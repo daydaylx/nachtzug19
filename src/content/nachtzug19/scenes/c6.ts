@@ -98,9 +98,9 @@ Falsch.`,
 
 Schmaler. Die Wände scheinen näher zusammengerückt zu sein.
 
-Oder… waren sie schon immer so eng?
+Du drückst die Hand gegen die Wandverkleidung. Sie gibt nach, weich und warm, wie Fleisch unter Stoff. Du ziehst die Finger zurück, ein Gefühl von Pulsieren bleibt auf deiner Haut.
 
-Du gehst langsam vorwärts.
+Du gehst langsam vorwärts. Deine Füße sinken tief in den Teppich ein, der sich feucht anfühlt, obwohl er trocken aussieht.
 
 Kein Geräusch. Nicht einmal deine Schritte machen ein Geräusch.
 
@@ -123,6 +123,72 @@ Aber es gibt kein Gewitter hier.
 Nur diese Stille.
 
 Diese absolute, erstickende Stille.`,
+    narrative_variants: [
+      {
+        min_drift: 3,
+        narrative: `Der Gang ist… anders.
+
+Enger. Die Wände scheinen näher zusammengerückt zu sein.
+
+Oder… waren sie schon immer so eng?
+
+Du gehst langsam vorwärts.
+
+Kein Geräusch. Nicht einmal deine Schritte machen ein Geräusch.
+
+Als würdest du über Filz gehen.
+
+Du streichst mit dem Daumen über den Stoff deiner Jacke, erwartest ein Rascheln. Nichts. Die Stille frisst es.
+
+Du hältst kurz den Atem an, als könntest du die Luft hören. In deinen Ohren bleibt nur ein dumpfes Dröhnen, das eher in deinem Schädel sitzt als im Raum.
+
+Ein feiner Geruch nach kaltem Rauch zieht durch den Gang, ganz kurz, dann weg. Für einen Moment willst du umdrehen, dann setzt du einen weiteren Schritt.
+
+Die Wände wirken wie Polster, weich und nah, und du spürst den Drang, sie abzustützen, nur um sicher zu sein, dass sie wirklich da sind.
+
+Deine Fingerspitzen zittern, als du es tust.
+
+Die Luft vibriert leicht. Wie vor einem Gewitter.
+
+Aber es gibt kein Gewitter hier.
+
+Nur diese Stille.
+
+Diese absolute, erstickende Stille.`
+      },
+      {
+        min_drift: 5,
+        narrative: `Der Gang ist… anders.
+
+Weiter. Die Wände scheinen sich zu entfernen.
+
+Oder… waren sie schon immer so weit?
+
+Du gehst langsam vorwärts.
+
+Kein Geräusch. Und doch ein dumpfes Pochen, irgendwo hinter deinen Ohren.
+
+Als würdest du über Glas gehen.
+
+Du streichst mit dem Daumen über den Stoff deiner Jacke, erwartest ein Rascheln. Nichts. Die Stille frisst es.
+
+Du hältst kurz den Atem an, als könntest du die Luft hören. In deinen Ohren bleibt nur ein dumpfes Dröhnen, das eher in deinem Schädel sitzt als im Raum.
+
+Ein feiner Geruch nach Ozon zieht durch den Gang, ganz kurz, dann weg. Für einen Moment willst du umdrehen, dann setzt du einen weiteren Schritt.
+
+Die Wände wirken wie Polster, weich, aber fern, und du spürst den Drang, sie abzustützen, nur um sicher zu sein, dass sie wirklich da sind.
+
+Deine Fingerspitzen zittern, als du es tust.
+
+Die Luft vibriert leicht. Wie vor einem Gewitter.
+
+Aber es gibt kein Gewitter hier.
+
+Nur diese Stille.
+
+Diese absolute, erstickende Stille.`
+      }
+    ],
     choices: [
       {
         id: 'continue_walking',
@@ -781,6 +847,96 @@ Das Knistern verstummt.
 Der Zug fährt weiter.
 
 Als wäre nichts gewesen.`,
+    narrative_variants: [
+      {
+        min_drift: 3,
+        narrative: `Die Lautsprecher knistern.
+
+Das Knistern kratzt trocken, als würde Sand über Metall laufen. Der Lautsprecher über dir vibriert, kaum sichtbar, und ein feiner Geruch nach kaltem Staub steigt auf.
+
+Du stellst dich darunter, den Kopf leicht geneigt, als könntest du die Worte auffangen. Für einen Moment glaubst du, einen fremden Namen zu hören, nur ein Bruchstück, das sofort wieder im Rauschen verschwindet.
+
+Deine Kehle ist trocken, du schluckst, und selbst das klingt hier fremd.
+
+Als die Stimme tiefer wird, prickelt die Haut an deinen Unterarmen. Du drückst die Hand an die Brust, als wolltest du prüfen, ob dein Herz noch mitfährt.
+
+Das Knistern lässt einen Hauch Metall auf deiner Zunge.
+
+Dann – eine Stimme.
+
+Nicht die gewohnte Zugansage.
+
+Etwas anderes.
+
+„—chster Halt. Endstation. Endstation. End—"
+
+Knistern.
+
+„—itte alle aussteigen. Alle—"
+
+Die Stimme verzerrt sich.
+
+Wird tiefer.
+
+„—u kannst nicht zurück. Nicht zurück. Nicht—"
+
+Stille.
+
+Dann, ganz leise:
+
+„—s tut mir leid—"
+
+Das Knistern verstummt.
+
+Der Zug fährt weiter.
+
+Als wäre nichts gewesen.`
+      },
+      {
+        min_drift: 5,
+        narrative: `Die Lautsprecher knistern.
+
+Das Knistern kratzt trocken, als würde Sand über Metall laufen. Der Lautsprecher über dir vibriert, deutlich sichtbar, und ein feiner Geruch nach verbranntem Kunststoff steigt auf.
+
+Du stellst dich darunter, den Kopf leicht geneigt, als könntest du die Worte auffangen. Für einen Moment glaubst du, deinen Namen klar zu hören, und dann noch einmal.
+
+Deine Kehle ist trocken, du schluckst, und selbst das klingt hier fremd.
+
+Als die Stimme tiefer wird, prickelt die Haut an deinen Unterarmen. Du drückst die Hand an die Brust, als wolltest du prüfen, ob dein Herz noch mitfährt.
+
+Das Knistern lässt einen Hauch Metall auf deiner Zunge.
+
+Dann – deine Stimme.
+
+Nicht die gewohnte Zugansage.
+
+Etwas anderes.
+
+„—chster Halt. Endstation. Endstation. Ende—"
+
+Knistern.
+
+„—itte alle aussteigen. Alle—"
+
+Die Stimme verzerrt sich.
+
+Wird tiefer.
+
+„—u kannst nicht zurück. Nicht zurück. Nicht—"
+
+Stille.
+
+Dann, ganz leise:
+
+„—s tut mir leid—"
+
+Das Knistern verstummt.
+
+Der Zug fährt weiter.
+
+Als wäre nichts gewesen.`
+      }
+    ],
     choices: [
       {
         id: 'process_message',
@@ -1219,6 +1375,68 @@ Kommt näher.
 Der Schaffner.
 
 Er kommt.`,
+    narrative_variants: [
+      {
+        min_drift: 3,
+        narrative: `Die Lichter flackern.
+
+Dann – aus.
+
+Aber es ist keine normale Dunkelheit.
+
+Es ist, als hätte jemand den Raum ausgeschaltet.
+
+Du tastest nach den Wänden. Nichts.
+
+Nur unendlicher Raum.
+
+Das Rattern der Räder klingt wie ein Herzschlag.
+
+Sehr langsam.
+
+Bumm.
+
+Bumm.
+
+Dann – ein Licht.
+
+Ein Riss in der Dunkelheit.
+
+Dahinter: Jemand.
+
+Der Schaffner.
+
+Er tritt durch den Riss.`
+      },
+      {
+        min_drift: 5,
+        narrative: `Die Lichter flackern.
+
+Und bleiben an.
+
+Aber alles andere ist weg.
+
+Keine Wände. Kein Boden. Keine Decke.
+
+Du schwebst im weißen Nichts.
+
+Der Zug ist eine Zeichnung auf Papier.
+
+Und jemand radiert sie gerade aus.
+
+Du siehst deine Hände verblassen.
+
+„Noch nicht," sagt eine Stimme.
+
+Ein Strich wird gezogen. Schwarz auf Weiß.
+
+Er wird zu einer Tür.
+
+Der Schaffner tritt hindurch.
+
+Er besteht aus Tinte und Schatten.`
+      }
+    ],
     choices: [
       {
         id: 'wait_for_conductor',

@@ -274,6 +274,64 @@ export function getAvailableChoices(state: GameState, scene: Scene): Choice[] {
 }
 
 // ============================================================================
+// Core: Resolve Scene Narrative (Drift-Mechanik)
+// ============================================================================
+
+/**
+ * Wählt die passende Narrative für eine Szene basierend auf memory_drift.
+ *
+ * Logik:
+ * - Wenn keine narrative_variants vorhanden: Basis-Narrative zurückgeben
+ * - Sortiere Varianten nach min_drift (absteigend)
+ * - Wähle erste Variante, wo state.memory_drift >= min_drift
+ * - Fallback: Basis-Narrative
+ *
+ * @param scene - Die Szene mit optionalen Drift-Varianten
+ * @param state - Der aktuelle GameState (für memory_drift)
+ * @returns Die passende Narrative als String
+ */
+export function resolveSceneNarrative(scene: Scene, state: GameState): string {
+  // Fallback: Keine Narrative vorhanden
+  if (!scene.narrative && !scene.beschreibung) {
+    return '';
+  }
+
+  // Basis-Narrative (ohne Drift-Varianten)
+  const baseNarrative = scene.narrative || scene.beschreibung || '';
+
+  // Keine Varianten vorhanden -> Basis zurückgeben
+  if (!scene.narrative_variants || scene.narrative_variants.length === 0) {
+    return baseNarrative;
+  }
+
+  // Aktueller memory_drift Wert
+  const currentDrift = state.pressure.memory_drift;
+
+  // Sortiere Varianten nach min_drift (absteigend), um höchste passende Variante zu finden
+  const sortedVariants = [...scene.narrative_variants]
+    .sort((a, b) => b.min_drift - a.min_drift);
+
+  // Finde erste Variante, die erfüllt ist (memory_drift >= min_drift)
+  const matchingVariant = sortedVariants.find(
+    variant => currentDrift >= variant.min_drift
+  );
+
+  // Wenn passende Variante gefunden: verwende diese
+  if (matchingVariant) {
+    // Für jetzt: Nur "full" Replacement (replace_mode "overlay" wird später implementiert)
+    const mode = matchingVariant.replace_mode || 'full';
+    if (mode === 'full') {
+      return matchingVariant.narrative;
+    }
+    // 'overlay' mode: Kombiniere Basis + Variante (für jetzt: nur Variante)
+    return matchingVariant.narrative;
+  }
+
+  // Kein Match: Basis-Narrative zurückgeben
+  return baseNarrative;
+}
+
+// ============================================================================
 // Core: Transition to Next Scene
 // ============================================================================
 
@@ -457,7 +515,16 @@ export class GameEngine {
       const key = this.STORAGE_KEY_PREFIX + slot;
       const saved = localStorage.getItem(key);
       if (saved) {
-        this.state = JSON.parse(saved);
+        const parsed = JSON.parse(saved) as GameState;
+        if (
+          !parsed ||
+          typeof parsed.save_version !== 'number' ||
+          parsed.save_version !== this.state.save_version
+        ) {
+          console.warn(`[Load] Save version mismatch: ${key}`);
+          return false;
+        }
+        this.state = parsed;
         this.notify();
         console.log(`[Load] Spielstand geladen: ${key}`);
         return true;

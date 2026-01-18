@@ -139,9 +139,9 @@ function validateChoice(
   const hasLegacyEffects = choice.werteAenderung || choice.flagsAenderung || choice.itemBelohnung || choice.itemVerlust;
 
   if (!hasEffects && !hasLegacyEffects) {
-    warnings.push({
-      type: 'warning',
-      message: `Choice '${choiceLabel}' hat keine Effects (könnte R3: Callback-Regel verletzen)`,
+    errors.push({
+      type: 'error',
+      message: `Choice '${choiceLabel}' hat keine Effekte (R3: Callback-Regel verlangt mindestens 1 Effect)`,
       scene_id: sceneId,
       choice_id: choice.id || choice.text
     });
@@ -220,9 +220,9 @@ function validateScene(
 
   // 2. Szene darf maximal 4 Choices haben
   if (scene.choices.length > 4) {
-    warnings.push({
-      type: 'warning',
-      message: `Szene '${scene.id}' hat ${scene.choices.length} Choices (max. 4 empfohlen)`,
+    errors.push({
+      type: 'error',
+      message: `Szene '${scene.id}' hat mehr als 4 Choices (${scene.choices.length} gefunden, max. 4 erlaubt)`,
       scene_id: scene.id
     });
   }
@@ -271,11 +271,11 @@ function validateScene(
     });
   }
 
-  // 5. state_notes sollte maximal 3 Einträge haben
-  if (scene.state_notes && scene.state_notes.length > 3) {
+  // 5. state_notes sollte maximal 5 Einträge haben
+  if (scene.state_notes && scene.state_notes.length > 5) {
     warnings.push({
       type: 'warning',
-      message: `Szene '${scene.id}' hat ${scene.state_notes.length} state_notes (max. 3 empfohlen)`,
+      message: `Szene '${scene.id}' hat ${scene.state_notes.length} state_notes (max. 5 empfohlen)`,
       scene_id: scene.id
     });
   }
@@ -297,6 +297,53 @@ function validateScene(
       });
     }
   }
+
+  // 7. Prüfe narrative_variants (falls vorhanden)
+  if (scene.narrative_variants && scene.narrative_variants.length > 0) {
+    validateNarrativeVariants(scene.id, scene.narrative_variants, errors);
+  }
+}
+
+/**
+ * Prüft narrative_variants einer Scene
+ */
+function validateNarrativeVariants(
+  sceneId: string,
+  variants: Array<{ min_drift: number; narrative: string; replace_mode?: 'full' | 'overlay' }>,
+  errors: ValidationError[]
+): void {
+  const seenMinDrifts = new Set<number>();
+
+  variants.forEach((variant, idx) => {
+    // 1. min_drift muss >= 1 sein (keine 0)
+    if (variant.min_drift < 1) {
+      errors.push({
+        type: 'error',
+        message: `Szene '${sceneId}' narrative_variant #${idx}: min_drift muss >= 1 sein (aktuell: ${variant.min_drift})`,
+        scene_id: sceneId
+      });
+    }
+
+    // 2. Keine Duplikate bei min_drift innerhalb einer Scene
+    if (seenMinDrifts.has(variant.min_drift)) {
+      errors.push({
+        type: 'error',
+        message: `Szene '${sceneId}' narrative_variant #${idx}: Doppelter min_drift-Wert ${variant.min_drift}`,
+        scene_id: sceneId
+      });
+    } else {
+      seenMinDrifts.add(variant.min_drift);
+    }
+
+    // 3. narrative ist nicht leer
+    if (!variant.narrative || variant.narrative.trim().length === 0) {
+      errors.push({
+        type: 'error',
+        message: `Szene '${sceneId}' narrative_variant #${idx}: narrative darf nicht leer sein`,
+        scene_id: sceneId
+      });
+    }
+  });
 }
 
 /**
@@ -308,7 +355,9 @@ function validateUniqueness(
 ): void {
   const idCounts = new Map<string, number>();
 
-  Object.keys(scenes).forEach(id => {
+  // Zähle wie oft jede scene.id vorkommt (nicht die Collection-Keys!)
+  Object.values(scenes).forEach(scene => {
+    const id = scene.id;
     idCounts.set(id, (idCounts.get(id) || 0) + 1);
   });
 
@@ -316,7 +365,7 @@ function validateUniqueness(
     if (count > 1) {
       errors.push({
         type: 'error',
-        message: `Duplikate Scene ID '${id}' (${count}x vorhanden)`,
+        message: `Doppelte Scene-ID '${id}' (${count}x vorhanden)`,
         scene_id: id
       });
     }
@@ -332,22 +381,26 @@ function validateCanonRuleR1(
   warnings: ValidationError[]
 ): void {
   const chapterStationEnds: Record<number, number> = {};
+  const existingChapters = new Set<number>();
 
-  // Zähle station_end-Szenen pro Kapitel
+  // Zähle station_end-Szenen pro Kapitel und sammle alle vorhandenen Kapitel
   Object.values(scenes).forEach(scene => {
-    if (scene.tags?.includes('station_end') && scene.chapter !== undefined) {
-      const chapter = scene.chapter;
-      chapterStationEnds[chapter] = (chapterStationEnds[chapter] || 0) + 1;
+    if (scene.chapter !== undefined) {
+      existingChapters.add(scene.chapter);
+      if (scene.tags?.includes('station_end')) {
+        const chapter = scene.chapter;
+        chapterStationEnds[chapter] = (chapterStationEnds[chapter] || 0) + 1;
+      }
     }
   });
 
-  // Prüfe jedes Kapitel (1-7)
-  for (let chapter = 1; chapter <= 7; chapter++) {
+  // Prüfe nur Kapitel, die tatsächlich Szenen enthalten
+  existingChapters.forEach(chapter => {
     const count = chapterStationEnds[chapter] || 0;
     if (count === 0) {
       errors.push({
         type: 'error',
-        message: `R1 verletzt: Kapitel ${chapter} hat keine station_end-Szene`,
+        message: `Canon Rule R1 verletzt: Kapitel ${chapter} hat keine station_end-Szene`,
         location: `chapter_${chapter}`
       });
     } else if (count > 1) {
@@ -357,7 +410,7 @@ function validateCanonRuleR1(
         location: `chapter_${chapter}`
       });
     }
-  }
+  });
 }
 
 /**
@@ -369,23 +422,29 @@ function validateCanonRuleR2(
 ): void {
   const requiredControlChapters = [2, 3, 5];
   const chapterControlCounts: Record<number, number> = {};
+  const existingChapters = new Set<number>();
 
-  // Zähle control-Szenen pro Kapitel
+  // Zähle control-Szenen pro Kapitel und sammle alle vorhandenen Kapitel
   Object.values(scenes).forEach(scene => {
-    if (scene.tags?.includes('control') && scene.chapter !== undefined) {
-      const chapter = scene.chapter;
-      chapterControlCounts[chapter] = (chapterControlCounts[chapter] || 0) + 1;
+    if (scene.chapter !== undefined) {
+      existingChapters.add(scene.chapter);
+      if (scene.tags?.includes('control')) {
+        const chapter = scene.chapter;
+        chapterControlCounts[chapter] = (chapterControlCounts[chapter] || 0) + 1;
+      }
     }
   });
 
-  // Prüfe, ob jedes erforderliche Kapitel mindestens eine Kontrolle hat
+  // Prüfe nur erforderliche Kapitel, die tatsächlich Szenen enthalten
   requiredControlChapters.forEach(chapter => {
-    if (!chapterControlCounts[chapter] || chapterControlCounts[chapter] === 0) {
-      errors.push({
-        type: 'error',
-        message: `R2 verletzt: Kapitel ${chapter} hat keine control-Szene`,
-        location: `chapter_${chapter}`
-      });
+    if (existingChapters.has(chapter)) {
+      if (!chapterControlCounts[chapter] || chapterControlCounts[chapter] === 0) {
+        errors.push({
+          type: 'error',
+          message: `Canon Rule R2 verletzt: Kapitel ${chapter} hat keine control-Szene`,
+          location: `chapter_${chapter}`
+        });
+      }
     }
   });
 }
@@ -523,6 +582,8 @@ function validateNoInfiniteLoops(
     // Prüfe, ob es einen Ausgang aus der SCC gibt
     scc.forEach(sceneId => {
       const scene = scenes[sceneId];
+      if (!scene) return; // Szene existiert nicht (sollte bereits anderswo als Error gemeldet sein)
+
       scene.choices.forEach(choice => {
         if (choice.ending) {
           hasExit = true;

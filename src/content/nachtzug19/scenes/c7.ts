@@ -152,6 +152,92 @@ Als wäre die Welt… stumm geworden.
 Oder als wärst du… bereits woanders.
 
 An einem Ort, wo Geräusche nicht mehr existieren.`,
+    narrative_variants: [
+      {
+        min_drift: 3,
+        narrative: `Das Rattern der Räder… ist weg.
+
+Komplett.
+
+Der Zug bewegt sich noch.
+
+Du spürst es.
+
+Aber es gibt kein Geräusch mehr.
+
+Kaum eine Vibration.
+
+Du klatschst in die Hände. Die Bewegung ist da, der Ton fehlt. Es ist, als würde der Raum das Geräusch schlucken, noch bevor es entsteht.
+
+Dein Hals spannt sich, du räusperst dich, und selbst das bleibt innen.
+
+Der Boden unter deinen Füßen fühlt sich rau an, zu rau, als hätte er plötzlich mehr Reibung. Ein feines Schwindelgefühl zieht dir durch den Magen.
+
+Für einen Moment willst du schreien, nur um zu prüfen, ob du noch existierst. Du tust es nicht.
+
+Deine Fingerkuppen suchen die Wand, sie ist kühl und gibt minimal nach, als hätte sie Haut.
+
+Das macht dich wacher, und zugleich noch mehr allein.
+
+Nichts.
+
+Nur diese absolute, endgültige Stille.
+
+Du versuchst zu sprechen.
+
+Deine Lippen bewegen sich.
+
+Aber kein Ton kommt heraus.
+
+Als wäre die Welt… stumm geworden.
+
+Oder als wärst du… bereits woanders.
+
+An einem Ort, wo Geräusche nicht mehr existieren.`
+      },
+      {
+        min_drift: 5,
+        narrative: `Das Rattern der Räder… ist weg.
+
+Komplett.
+
+Der Zug bewegt sich noch.
+
+Du spürst es.
+
+Aber es gibt kein Geräusch mehr.
+
+Eine fremde Vibration.
+
+Du klatschst in die Hände. Die Bewegung ist da, ein fernes Echo antwortet, als käme es aus einem anderen Wagen.
+
+Dein Hals spannt sich, du räusperst dich, und selbst das klingt verzögert.
+
+Der Boden unter deinen Füßen fühlt sich weich an, zu weich, als würde er nachgeben. Ein feines Schwindelgefühl zieht dir durch den Magen.
+
+Für einen Moment willst du schreien, nur um zu prüfen, ob du noch existierst. Du tust es.
+
+Deine Fingerkuppen suchen die Wand, sie ist warm und gibt stärker nach, als hätte sie Haut.
+
+Das macht dich wacher, und zugleich noch mehr allein.
+
+Nichts.
+
+Nur diese absolute, endgültige Stille.
+
+Du versuchst zu sprechen.
+
+Deine Lippen bewegen sich.
+
+Ein Ton kommt heraus, aber er gehört dir nicht.
+
+Als wäre die Welt… stumm geworden.
+
+Oder als wärst du… bereits woanders.
+
+An einem Ort, wo Geräusche nicht mehr existieren.`
+      }
+    ],
     choices: [
       {
         id: 'accept_silence',
@@ -464,6 +550,68 @@ Dein Sitz.
 Die Lautsprecher kreischen.
 
 Dann – Stille.`,
+    narrative_variants: [
+      {
+        min_drift: 3,
+        narrative: `Die Lautsprecher knistern.
+
+Leise. Dann laut. Wie ein Schrei.
+
+Dann – eine Stimme.
+
+„Nächster Halt. Endstation."
+
+Die Stimme ist… deine eigene.
+
+„Bitte alle… aussteigen."
+
+Knistern.
+
+„Alle… die überlebt haben."
+
+Die Stimme stoppt.
+
+Dann:
+
+„Passagier in Wagen 7, Sitz 19."
+
+Du.
+
+„Ankunft… vor 50 Jahren."
+
+„Am 19. September 1973."
+
+Die Lautsprecher bluten. Schwarze Tropfen fallen herab.
+
+Dann – Stille.`
+      },
+      {
+        min_drift: 5,
+        narrative: `Die Lautsprecher explodieren nicht. Sie flüstern.
+
+Direkt in deinem Kopf.
+
+„Endstation."
+
+„Du bist schon da."
+
+„Seit immer."
+
+Knistern.
+
+„Wagen 7, Sitz 19."
+
+„Todesursache: Aufprall."
+
+„Zeitpunkt: 19:19 Uhr."
+
+„Status: Verweigert."
+
+Die Stimme lacht.
+
+„Willkommen zuhause.`
+      }
+    ],
     choices: [
       {
         id: 'realize_truth_high_drift',
@@ -1030,6 +1178,8 @@ Die Version, die im Unfall… geblieben ist.
 
 „Diesen Teil von dir."
 
+„Die Schuld, nicht geholfen zu haben. Die Last, der Einzige zu sein, der entkam."
+
 „Den Teil, der hier bleiben will."
 
 „Der Angst hat."
@@ -1570,6 +1720,80 @@ Jeden Moment.
 Und dann…
 
 Dann ist es vorbei.`,
+    narrative_variants: [
+      {
+        min_drift: 3,
+        narrative: `Der Zug… hält.
+
+Nicht langsam.
+
+Wie gebremst.
+
+Vollständig.
+
+Aber sanft.
+
+Wie ein Atemzug.
+
+Die Bewegung, die so lange da war…
+
+Ist weg.
+
+Ersetzt durch absolute Stille.
+
+Absolute Ruhe.
+
+Du spürst es.
+
+Das Ende.
+
+Es ist hier.
+
+Die Türen… könnten sich öffnen.
+
+Jeden Moment.
+
+Und dann…
+
+Dann ist es vorbei.`
+      },
+      {
+        min_drift: 5,
+        narrative: `Der Zug… hält.
+
+Nicht langsam.
+
+Sondern als würde er hängen bleiben.
+
+Vollständig.
+
+Aber sanft.
+
+Wie ein Einrasten.
+
+Die Bewegung, die so lange da war…
+
+Ist weg.
+
+Ersetzt durch ein dünnes Pfeifen.
+
+Absolute Ruhe.
+
+Du spürst es.
+
+Das Ende.
+
+Es ist hier.
+
+Die Türen… stehen bereits offen.
+
+Jeden Moment.
+
+Und dann…
+
+Dann ist es vorbei.`
+      }
+    ],
     choices: [
       {
         id: 'prepare',
@@ -2254,13 +2478,8 @@ Was nimmst du mit… ins Danach?`,
       { type: 'inc', target: 'station_count', value: 1 }
     ],
     state_notes: [
-      'ENDSTATION: Finale Wahl zwischen 4 Endings',
-      'CONDITION: truth_path nur bei tickets_truth >= 8',
-      'CONDITION: escape_path nur bei tickets_escape >= 6',
-      'CONDITION: guilt_path nur bei tickets_guilt >= 6',
-      'CONDITION: love_path nur bei tickets_love >= 6',
-      'Spieler wählt basierend auf gesammelten Tickets',
-      'Zug verblasst zurück zu 1973'
+      'Station-End: Finale - Zug verblasst (1973 aufgelöst)',
+      'ENDINGS: Truth, Escape, Guilt, Love (je nach Tickets)'
     ],
     atmosphere: 'mystic'
   }

@@ -298,6 +298,20 @@ Seine Augen sind ernst. Zu ernst für ein Kind.`,
           { type: 'inc', target: 'rel_boy', value: 2 }
         ],
         next: 'c2_s02a_recorder_listening'
+      },
+      {
+        id: 'observe_boy_silently',
+        label: 'Den Jungen stumm beobachten',
+        condition: {
+          type: 'compare',
+          target: 'memory_drift',
+          operator: '>=',
+          value: 2
+        },
+        effects: [
+          { type: 'inc', target: 'memory_drift', value: 1 }
+        ],
+        next: 'c2_s02b_corridor_anomaly'
       }
     ],
     tags: [],
@@ -533,6 +547,48 @@ Es hat Augen.
 Du springst zurück. Dein Herz rast.
 
 Als du wieder hinsiehst: Nur Schwärze. Nichts sonst.`,
+    narrative_variants: [
+      {
+        min_drift: 3,
+        narrative: `Du gehst ans Fenster.
+
+Draußen: Dunkelheit. Keine Landschaft. Keine Lichter. Nur Schwarz.
+
+Aber jetzt siehst du etwas. Strukturen. Formen.
+
+Ein Gebäude? Nein. Zu organisch. Es pulsiert.
+
+Du drückst dein Gesicht ans Glas. Das Glas ist warm. Klamm.
+
+Die Form draußen bewegt sich. Kommt näher.
+
+Es hat ein Auge.
+
+Du springst zurück. Dein Herz rast.
+
+Als du wieder hinsiehst: Nur Schwärze. Nichts sonst.`
+      },
+      {
+        min_drift: 5,
+        narrative: `Du gehst ans Fenster.
+
+Draußen: Grau. Kein Schwarz. Keine Lichter. Nur ein milchiger Schimmer.
+
+Aber jetzt siehst du etwas. Strukturen. Formen.
+
+Ein Gebäude? Nein. Zu organisch. Es bewegt sich.
+
+Du drückst dein Gesicht ans Glas. Das Glas ist kalt. Trocken.
+
+Die Form draußen bewegt sich. Kommt sehr nah.
+
+Es hat drei Augen.
+
+Du springst zurück. Dein Herz rast.
+
+Als du wieder hinsiehst: Nur Grau. Und ein heller Streifen.`
+      }
+    ],
     choices: [
       {
         id: 'keep_staring',
@@ -893,7 +949,9 @@ Comp7 nickt. „Warum du hier bist. Das ist alles, was zählt."`,
     id: 'c2_s04a_conductor_approach',
     chapter: 2,
     title: 'Annäherung',
-    narrative: `Du hörst Schritte. Schwer. Rhythmisch. Mechanisch.
+    narrative: `Du stehst im Gang zwischen Abteil 3 und 4. Der Teppich hier ist abgewetzter als anderswo.
+
+Du hörst Schritte. Schwer. Rhythmisch. Mechanisch.
 
 Der Schaffner kommt durch den Gang. Du siehst ihn im Spiegelbild der Fensterscheibe.
 
@@ -1024,6 +1082,42 @@ Dann geht das Licht wieder an.
 Der Schaffner steht jetzt direkt vor dir.
 
 „Fahrkarten bitte."`,
+    narrative_variants: [
+      {
+        min_drift: 3,
+        narrative: `Die Lichter gehen aus.
+
+Alle. Auf einmal.
+
+Komplette Dunkelheit. Nur ein schwacher Notstreifen glimmt.
+
+Du hörst die Schritte des Schaffners. Näher. Näher.
+
+Dann flackert das Licht wieder an.
+
+Der Schaffner steht jetzt direkt vor dir.
+
+„Fahrkarten bitte."`
+      },
+      {
+        min_drift: 5,
+        narrative: `Die Lichter gehen aus.
+
+Alle. Auf einmal.
+
+Komplette Dunkelheit.
+
+Du hörst keine Schritte. Nur ein Klacken direkt hinter dir.
+
+Dann geht das Licht wieder an.
+
+Der Schaffner steht nicht vor dir.
+
+Er steht neben dir.
+
+„Fahrkarten bitte."`
+      }
+    ],
     choices: [
       {
         id: 'steady',
@@ -1601,6 +1695,24 @@ Sie zeigt auf eine Zeile:
           { type: 'inc', target: 'memory_drift', value: 1 }
         ],
         next: 'c3_s01_wagen7_locked'
+      },
+      {
+        id: 'think_of_boy',
+        label: 'An den Jungen denken',
+        condition: {
+          type: 'compare',
+          target: 'rel_boy',
+          operator: '>=',
+          value: 1
+        },
+        effects: [
+          { type: 'set', target: 'chapter_index', value: 3 },
+          { type: 'inc', target: 'station_count', value: 1 },
+          { type: 'inc', target: 'memory_drift', value: 1 },
+          { type: 'inc', target: 'rel_boy', value: 1 },
+          { type: 'inc', target: 'tickets_love', value: 1 }
+        ],
+        next: 'c3_s01_wagen7_locked'
       }
     ],
     tags: ['station_end'],
@@ -1608,12 +1720,9 @@ Sie zeigt auf eine Zeile:
       { type: 'inc', target: 'memory_drift', value: 1 }
     ],
     state_notes: [
-      'Zweite station_end: memory_drift +1 (R1: Stationen verursachen Drift)',
-      'Sleepless-Position verschoben, Jacke wechselt (rot -> schwarz)',
-      'Junge verschwunden (Callback aus Kap. 2 Anfang)',
-      'Comp7 Gesicht wird klarer (Drift stabilisiert sich?)',
-      'Meta-Hinweis: Comp7 schreibt "Spieler geht zu Kapitel 3"',
-      'Übergang zu Kapitel 3: c3_s01_wagen7_locked'
+      'Zweite station_end: memory_drift +1 (R1)',
+      'Drift-Effects: Sleepless/Jacke verändert, Junge weg, Comp7 klarer',
+      'Meta-Hinweis: Comp7 schreibt "Spieler geht zu Kapitel 3"'
     ],
     atmosphere: 'somber'
   }

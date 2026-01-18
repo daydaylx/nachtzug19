@@ -11,8 +11,19 @@ import { OverlayMenu } from '../ui/components/OverlayMenu';
 import { AtmosphereEffects } from '../ui/components/AtmosphereEffects';
 import { DebugOverlay } from '../ui/components/DebugOverlay';
 import { DebugPlayer } from '../ui/debug';
+import { PlayerApp } from '../ui/player/PlayerApp'; // Import New Player
 
 function App() {
+  // Mode selection state
+  // Check URL query param for direct access ?mode=player
+  const [appMode, setAppMode] = useState<'launcher' | 'player' | 'legacy'>('launcher');
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('mode') === 'player') setAppMode('player');
+  }, []);
+
+  // --- LEGACY/DEBUG STATE ---
   const [engine, setEngine] = useState<GameEngine | null>(null);
   const [gameState, setGameState] = useState<GameState | null>(null);
   const [storyBundle, setStoryBundle] = useState<StoryBundle | null>(null);
@@ -26,7 +37,54 @@ function App() {
     soundEnabled: false
   });
 
+  // --- RENDER PLAYER APP ---
+  if (appMode === 'player') {
+    return <PlayerApp onExit={() => setAppMode('launcher')} />;
+  }
+
+  // --- LAUNCHER SCREEN ---
+  if (appMode === 'launcher') {
+    return (
+      <div className="min-h-screen bg-stone-950 flex flex-col items-center justify-center p-4 space-y-8 font-sans">
+        <div className="text-center space-y-2">
+            <h1 className="text-4xl md:text-5xl font-bold text-stone-200 tracking-tighter">NACHTZUG 19</h1>
+            <p className="text-stone-500 uppercase tracking-widest text-sm">Development Build</p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-2xl">
+            <button 
+                onClick={() => setAppMode('player')}
+                className="group relative overflow-hidden rounded-xl bg-amber-500 p-8 text-left transition-all hover:bg-amber-400"
+            >
+                <div className="relative z-10">
+                    <h2 className="text-2xl font-bold text-stone-900">Player Experience</h2>
+                    <p className="mt-2 text-stone-900/80">
+                        Reader Noir UI. Immersive, Mobile-First.
+                    </p>
+                </div>
+                <div className="absolute -right-4 -bottom-4 h-32 w-32 rounded-full bg-white/20 transition-transform group-hover:scale-150"></div>
+            </button>
+
+            <button 
+                onClick={() => setAppMode('legacy')}
+                className="group relative overflow-hidden rounded-xl bg-stone-800 p-8 text-left transition-all hover:bg-stone-700 border border-stone-700"
+            >
+                 <div className="relative z-10">
+                    <h2 className="text-2xl font-bold text-stone-200">Debug Dashboard</h2>
+                    <p className="mt-2 text-stone-400">
+                        Scene Inspector, State Editor, Logs.
+                    </p>
+                </div>
+            </button>
+        </div>
+      </div>
+    );
+  }
+
+  // --- LEGACY LOGIC BELOW ---
+
   // Subscribe to engine state changes
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   useEffect(() => {
     if (!engine) return;
 
@@ -127,6 +185,7 @@ function App() {
         <HeaderBar
             title={currentScene?.title || currentScene?.titel || ''}
             onMenuToggle={() => setIsMenuOpen(true)}
+            onExit={() => setAppMode('launcher')} 
         />
       )}
 
@@ -158,6 +217,10 @@ function App() {
                     MVP: Kapitel 1-2 spielbar
                   </div>
                 </button>
+              </div>
+
+              <div className="mt-8 text-center">
+                  <button onClick={() => setAppMode('launcher')} className="text-sm text-stone-500 underline">Zurück zum Launcher</button>
               </div>
 
               {isLoading && (

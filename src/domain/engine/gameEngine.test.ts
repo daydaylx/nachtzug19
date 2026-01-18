@@ -1,7 +1,8 @@
 import { describe, it, expect, beforeAll } from 'vitest';
 import { loadNachtzug19Story, StoryBundle } from './loadStory';
 import { createInitialState } from '../types';
-import { getAvailableChoices, transitionToNextScene } from './gameEngine';
+import { getAvailableChoices, transitionToNextScene, resolveSceneNarrative } from './gameEngine';
+import type { Scene, GameState } from '../types';
 
 let bundle: StoryBundle;
 
@@ -40,5 +41,166 @@ describe('NACHTZUG 19 engine integration', () => {
     expect(hiddenChoice).toBeTruthy();
     if (!hiddenChoice) return;
     expect(available).not.toContain(hiddenChoice);
+  });
+});
+
+describe('resolveSceneNarrative - Drift-Mechanik', () => {
+  it('returns base narrative when memory_drift is below all variant thresholds', () => {
+    const scene: Scene = {
+      id: 'test_scene',
+      chapter: 1,
+      title: 'Test Scene',
+      narrative: 'This is the base narrative.',
+      narrative_variants: [
+        { min_drift: 3, narrative: 'This is the drift=3 variant.' },
+        { min_drift: 5, narrative: 'This is the drift=5 variant.' }
+      ],
+      choices: [
+        {
+          id: 'test_choice',
+          label: 'Test',
+          effects: [{ type: 'inc', target: 'wissen', value: 1 }],
+          ending: 'A'
+        }
+      ]
+    };
+
+    const state: GameState = createInitialState('test_scene');
+    state.pressure.memory_drift = 2;
+
+    const result = resolveSceneNarrative(scene, state);
+
+    expect(result).toBe('This is the base narrative.');
+  });
+
+  it('returns min_drift=3 variant when memory_drift is 3', () => {
+    const scene: Scene = {
+      id: 'test_scene',
+      chapter: 1,
+      title: 'Test Scene',
+      narrative: 'This is the base narrative.',
+      narrative_variants: [
+        { min_drift: 3, narrative: 'This is the drift=3 variant.' },
+        { min_drift: 5, narrative: 'This is the drift=5 variant.' }
+      ],
+      choices: [
+        {
+          id: 'test_choice',
+          label: 'Test',
+          effects: [{ type: 'inc', target: 'wissen', value: 1 }],
+          ending: 'A'
+        }
+      ]
+    };
+
+    const state: GameState = createInitialState('test_scene');
+    state.pressure.memory_drift = 3;
+
+    const result = resolveSceneNarrative(scene, state);
+
+    expect(result).toBe('This is the drift=3 variant.');
+  });
+
+  it('returns min_drift=5 variant when memory_drift is 5', () => {
+    const scene: Scene = {
+      id: 'test_scene',
+      chapter: 1,
+      title: 'Test Scene',
+      narrative: 'This is the base narrative.',
+      narrative_variants: [
+        { min_drift: 3, narrative: 'This is the drift=3 variant.' },
+        { min_drift: 5, narrative: 'This is the drift=5 variant.' }
+      ],
+      choices: [
+        {
+          id: 'test_choice',
+          label: 'Test',
+          effects: [{ type: 'inc', target: 'wissen', value: 1 }],
+          ending: 'A'
+        }
+      ]
+    };
+
+    const state: GameState = createInitialState('test_scene');
+    state.pressure.memory_drift = 5;
+
+    const result = resolveSceneNarrative(scene, state);
+
+    expect(result).toBe('This is the drift=5 variant.');
+  });
+
+  it('returns highest applicable variant when memory_drift exceeds all thresholds', () => {
+    const scene: Scene = {
+      id: 'test_scene',
+      chapter: 1,
+      title: 'Test Scene',
+      narrative: 'This is the base narrative.',
+      narrative_variants: [
+        { min_drift: 3, narrative: 'This is the drift=3 variant.' },
+        { min_drift: 5, narrative: 'This is the drift=5 variant.' }
+      ],
+      choices: [
+        {
+          id: 'test_choice',
+          label: 'Test',
+          effects: [{ type: 'inc', target: 'wissen', value: 1 }],
+          ending: 'A'
+        }
+      ]
+    };
+
+    const state: GameState = createInitialState('test_scene');
+    state.pressure.memory_drift = 6;
+
+    const result = resolveSceneNarrative(scene, state);
+
+    expect(result).toBe('This is the drift=5 variant.');
+  });
+
+  it('returns base narrative when scene has no narrative_variants', () => {
+    const scene: Scene = {
+      id: 'test_scene',
+      chapter: 1,
+      title: 'Test Scene',
+      narrative: 'This is the base narrative.',
+      choices: [
+        {
+          id: 'test_choice',
+          label: 'Test',
+          effects: [{ type: 'inc', target: 'wissen', value: 1 }],
+          ending: 'A'
+        }
+      ]
+    };
+
+    const state: GameState = createInitialState('test_scene');
+    state.pressure.memory_drift = 5;
+
+    const result = resolveSceneNarrative(scene, state);
+
+    expect(result).toBe('This is the base narrative.');
+  });
+
+  it('returns empty string when scene has no narrative at all', () => {
+    const scene: Scene = {
+      id: 'test_scene',
+      chapter: 1,
+      title: 'Test Scene',
+      choices: [
+        {
+          id: 'test_choice',
+          label: 'Test',
+          effects: [{ type: 'inc', target: 'wissen', value: 1 }],
+          ending: 'A'
+        }
+      ]
+    };
+
+    const state: GameState = createInitialState('test_scene');
+    state.pressure.memory_drift = 5;
+
+    const result = resolveSceneNarrative(scene, state);
+
+    expect(result).toBe('');
   });
 });

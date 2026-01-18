@@ -501,7 +501,7 @@ export default function DebugPlayer({ storyBundle, onExit }: DebugPlayerProps) {
               {state.history.length === 0 && <div className="debug-muted">No history yet.</div>}
               {state.history.slice(-10).map((entry, idx) => (
                 <div key={`${entry.timestamp}-${idx}`} className="debug-history-entry">
-                  <div>{entry.scene_id} -> {entry.choice_id}</div>
+                  <div>{entry.scene_id} {'->'} {entry.choice_id}</div>
                   {entry.state_delta && (
                     <div className="debug-history-delta">
                       {JSON.stringify(entry.state_delta)}

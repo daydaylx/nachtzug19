@@ -34,7 +34,43 @@ Du weißt nicht mehr, warum du hier bist. Die Erinnerung fühlt sich an wie ein 
 
 Aber du weißt: Du wartest auf etwas.
 
-Die Luft riecht nach altem Zigarettenrauch und Maschinenöl. Kalt. Zu kalt für Juni. Du ziehst die Jacke enger, aber es hilft nicht. Die Kälte kommt von innen.`,
+Die Luft riecht nach altem Zigarettenrauch und Maschinenöl. Kalt. Zu kalt für Juni. Du ziehst die Jacke enger, aber es hilft nicht. Die Kälte kommt von innen.
+
+Ein Gefühl von Verlust flackert auf. Ein Name, den du fast greifen kannst, aber der wie Rauch verweht. Du solltest nicht allein hier sein.`,
+    narrative_variants: [
+      {
+        min_drift: 5,
+        narrative: `Der Bahnsteig ist leer. Nicht „spät abends leer", sondern falsch leer.
+
+Keine Werbeplakate. Keine Bänke. Keine Automaten. Nur nackte Wände aus Beton, fleckig von Feuchtigkeit. Eine Neonröhre flackert über dir. Das Licht ist kalt, grünlich, wirft harte Schatten auf den Boden.
+
+Die Anzeigetafel zeigt: 23:46.
+
+Kein Text. Kein „Nächster Zug". Nur ein blinkendes Feld, leer wie der Bahnsteig.
+
+Du weißt nicht mehr, warum du hier bist. Die Erinnerung fühlt sich an wie ein Traum, der dir beim Aufwachen durch die Finger rinnt. Es gibt einen Grund – du bist sicher, dass es einen gab – aber er ist weg. Verschluckt.
+
+Aber du weißt: Du wartest auf etwas.
+
+Die Luft riecht nach altem Zigarettenrauch und Maschinenöl. Kalt. Zu kalt für Juli. Du ziehst die Jacke enger, aber es hilft nicht. Die Kälte kommt von innen.`
+      },
+      {
+        min_drift: 7,
+        narrative: `Der Bahnsteig ist leer. Nicht „spät abends leer", sondern falsch leer.
+
+Keine Werbeplakate. Keine Bänke. Keine Automaten. Nur nackte Wände aus Beton, fleckig von Feuchtigkeit. Zwei Neonröhren flackern über dir. Das Licht ist kalt, grünlich, wirft harte Schatten auf den Boden.
+
+Die Anzeigetafel zeigt: 23:49.
+
+Kein Text. Kein „Nächster Zug". Nur ein blinkendes Feld, leer wie der Bahnsteig.
+
+Du weißt nicht mehr, warum du hier bist. Die Erinnerung fühlt sich an wie ein Traum, der dir beim Aufwachen durch die Finger rinnt. Es gibt einen Grund – du bist sicher, dass es einen gab – aber er ist weg. Verschluckt.
+
+Aber du weißt: Du wartest auf etwas.
+
+Die Luft riecht nach altem Zigarettenrauch und Maschinenöl. Kalt. Zu kalt für Juli. Du ziehst die Jacke enger, aber es hilft nicht. Die Kälte kommt von innen.`
+      }
+    ],
     choices: [
       {
         id: 'look_around',
@@ -77,7 +113,7 @@ Die Luft riecht nach altem Zigarettenrauch und Maschinenöl. Kalt. Zu kalt für 
     id: 'c1_s01a_platform_details',
     chapter: 1,
     title: 'Details',
-    narrative: `Du gehst ein paar Schritte. Der Beton unter deinen Sohlen klingt hohl. Das Echo verliert sich in der Leere.
+    narrative: `Du setzt dich in Bewegung, unschlüssig ob du suchen oder fliehen willst. Der Beton unter deinen Sohlen klingt hohl. Das Echo verliert sich in der Leere.
 
 Am Rand des Bahnsteigs: Eine gelbe Linie, abgeblättert. Dahinter die Schienen. Sie glänzen nicht. Kein Rost, aber auch kein Metall. Schwarz. Matt. Als wären sie aus etwas anderem gemacht.
 
@@ -109,8 +145,7 @@ Nicht das Rattern von Schienen. Tiefer. Ein Brummen, das du im Brustkorb spürst
         id: 'feel_guilty',
         label: 'Denken: „Ich sollte nicht hier sein"',
         effects: [
-          { type: 'inc', target: 'tickets_guilt', value: 1 },
-          { type: 'inc', target: 'memory_drift', value: 1 }
+          { type: 'inc', target: 'tickets_guilt', value: 1 }
         ],
         next: 'c1_interlude_01_lights'
       }
@@ -153,9 +188,7 @@ Dann wird das Licht konstant. Die Röhre hört auf zu flackern. Das Brummen blei
       {
         id: 'continue',
         label: 'Weiter',
-        effects: [
-          { type: 'inc', target: 'memory_drift', value: 1 }
-        ],
+        effects: [],
         next: 'c1_s02_train_appears'
       }
     ],
@@ -188,6 +221,40 @@ Die Türen öffnen sich mit einem Zischen. Warme Luft strömt heraus. Riecht nac
 Die Stufen glaenzen feucht. Ein duenner Nebel haengt in der Tuer, als haette der Zug seinen eigenen Atem. Du spuerst die Waerme an den Knoecheln, aber der Griff der Tuere ist kalt, Metall, das zu lange im Schatten lag. Am Rahmen klebt etwas Dunkles, ein Streifen wie getrockneter Oelstaub. Als du ihn beruehrst, bleibt ein grauer Abdruck auf deinem Finger.
 
 Niemand steigt aus.`,
+    narrative_variants: [
+      {
+        min_drift: 5,
+        narrative: `Das Brummen wird lauter. Es kommt nicht näher – es ist einfach da. Überall. In deinen Knochen.
+
+Dann gleitet der Zug in den Bahnhof. Lautlos.
+
+Er sieht aus wie ein alter Nachtzug. Siebziger Jahre. Abblätternde dunkelrote Farbe, stellenweise schwarz verfärbt. Fenster zu schmal, Rahmen vergilbt. Die Wagen sind lang. Zu lang. Mindestens neun. Vielleicht mehr.
+
+Durch die Scheiben siehst du Silhouetten – Menschen, die reglos auf ihren Plätzen sitzen. Niemand bewegt sich. Als wären sie eingefroren.
+
+Die Türen öffnen sich mit einem Zischen. Warme Luft strömt heraus. Riecht nach altem Polster und etwas Suesslichem, das du nicht benennen kannst. Verbrannter Zucker? Feuchtigkeit? Etwas darunter, das du nicht einordnen willst.
+
+Die Stufen glaenzen feucht. Ein duenner Nebel haengt in der Tuer, als haette der Zug seinen eigenen Atem. Du spuerst die Waerme an den Knoecheln, aber der Griff der Tuere ist kalt, Metall, das zu lange im Schatten lag. Am Rahmen klebt etwas Dunkles, ein Streifen wie getrockneter Oelstaub. Als du ihn beruehrst, bleibt ein schwarzer Abdruck auf deinem Finger.
+
+Niemand steigt aus.`
+      },
+      {
+        min_drift: 7,
+        narrative: `Das Brummen wird lauter. Es kommt nicht näher – es ist einfach da. Überall. In deinen Knochen.
+
+Dann gleitet der Zug in den Bahnhof. Lautlos.
+
+Er sieht aus wie ein alter Nachtzug. Siebziger Jahre. Abblätternde dunkelrote Farbe, stellenweise schwarz verfärbt. Fenster zu schmal, Rahmen vergilbt. Die Wagen sind lang. Zu lang. Mindestens zehn. Vielleicht mehr.
+
+Durch die Scheiben siehst du Silhouetten – Menschen, die reglos auf ihren Plätzen sitzen. Niemand bewegt sich. Als wären sie eingefroren.
+
+Die Türen öffnen sich mit einem Zischen. Kalte Luft strömt heraus. Riecht nach altem Polster und etwas Suesslichem, das du nicht benennen kannst. Verbrannter Zucker? Feuchtigkeit? Etwas darunter, das du nicht einordnen willst.
+
+Die Stufen glaenzen feucht. Ein duenner Nebel haengt in der Tuer, als haette der Zug seinen eigenen Atem. Du spuerst die Kaelte an den Knoecheln, und der Griff der Tuere ist kalt, Metall, das zu lange im Schatten lag. Am Rahmen klebt etwas Dunkles, ein Streifen wie getrockneter Oelstaub. Als du ihn beruehrst, bleibt ein schwarzer Abdruck auf deinem Finger.
+
+Niemand steigt aus.`
+      }
+    ],
     choices: [
       {
         id: 'board_immediately',
@@ -849,6 +916,68 @@ Du wischst ihn an der Hose ab und siehst kurz eine dunkle Spur.
 Du wartest. Zählst die Sekunden. Eins, zwei, drei… bis sechzig.
 
 Die Tafel zeigt immer noch: 23:47.`,
+    narrative_variants: [
+      {
+        min_drift: 3,
+        narrative: `Du siehst auf dein Handgelenk. Keine Uhr.
+
+Hattest du eine? Du erinnerst dich nicht.
+
+Die Anzeigetafel im Wagen zeigt: 23:43.
+
+Dieselbe Zeit wie am Bahnsteig.
+
+Die Ziffern flimmern, nicht flackernd, eher als würden sie müde atmen.
+
+Du streckst den Finger aus und berührst das Plastik unter der Anzeige. Es ist warm, fast weich, und gibt ein wenig nach.
+
+Du hörst ein leises Klicken irgendwo hinter der Wand, als würde ein Relais versuchen, die Minute zu wechseln.
+
+Du zählst weiter. Bei vierunddreißig hältst du den Atem an, bei fünfzig presst du die Lippen zusammen.
+
+Für einen Moment denkst du daran, die Tafel herunterzureißen. Dein Arm hebt sich schon, dann sinkt er wieder.
+
+Die Luft riecht nach staubigem Metall und kalter Elektrik, und das Brummen im Boden legt sich wie eine zweite Uhr auf deinen Brustkorb.
+
+Du tippst mit dem Fingernagel gegen die Anzeige. Der Ton ist stumpf, als würde er in Stoff landen. Ein dünner Film aus Staub bleibt an deinem Finger kleben.
+
+Du wischst ihn an der Hose ab und siehst kurz eine rötliche Spur.
+
+Du wartest. Zählst die Sekunden. Eins, zwei, drei… bis sechzig.
+
+Die Tafel zeigt immer noch: 23:43.`
+      },
+      {
+        min_drift: 5,
+        narrative: `Du siehst auf dein Handgelenk. Keine Uhr.
+
+Hattest du eine? Du erinnerst dich nicht.
+
+Die Anzeigetafel im Wagen zeigt: 00:12.
+
+Dieselbe Zeit wie am Bahnsteig.
+
+Die Ziffern flimmern, nicht flackernd, eher als würden sie müde atmen.
+
+Du streckst den Finger aus und berührst das Plastik unter der Anzeige. Es ist kalt, fast feucht, und gibt ein wenig nach.
+
+Du hörst ein leises Klicken irgendwo hinter der Wand, als würde ein Relais versuchen, die Minute zu wechseln.
+
+Du zählst weiter. Bei vierunddreißig hältst du den Atem an, bei fünfzig presst du die Lippen zusammen.
+
+Für einen Moment denkst du daran, die Tafel herunterzureißen. Dein Arm hebt sich schon, dann sinkt er wieder.
+
+Die Luft riecht nach staubigem Metall und kalter Elektrik, und das Brummen im Boden legt sich wie eine zweite Uhr auf deinen Brustkorb.
+
+Du tippst mit dem Fingernagel gegen die Anzeige. Der Ton ist stumpf, als würde er in Stoff landen. Ein dünner Film aus Staub bleibt an deinem Finger kleben.
+
+Du wischst ihn an der Hose ab und siehst kurz eine rötliche Spur.
+
+Du wartest. Zählst die Sekunden. Eins, zwei, drei… bis sechzig.
+
+Die Tafel zeigt immer noch: 00:12.`
+      }
+    ],
     choices: [
       {
         id: 'note_time',
@@ -1255,6 +1384,60 @@ Ihr Gesicht—
 Du blinzelst.
 
 Die Gestalt ist weg.`,
+    narrative_variants: [
+      {
+        min_drift: 3,
+        narrative: `Du gehst in den leeren Wagen. Deine Schritte hallen.
+
+Dann siehst du: Nicht ganz leer.
+
+Ganz vorne, am Fenster, sitzt jemand. Eine Gestalt. Du siehst nur die Silhouette.
+
+Sie dreht sich nicht um.
+
+Du gehst näher. Das Gefühl, dass du das nicht solltest, wird stärker mit jedem Schritt.
+
+Dann, eine Stimme. Nicht die Gestalt. Von überall:
+
+„Nächster Halt: Rückfahrt."
+
+Das ist nicht die Durchsage. Das ist keine Stimme aus dem Lautsprecher.
+
+Die Gestalt steht auf. Dreht sich um.
+
+Ihr Gesicht—
+
+Du blinzelst.
+
+Die Gestalt ist weg.`
+      },
+      {
+        min_drift: 5,
+        narrative: `Du gehst in den leeren Wagen. Deine Schritte hallen.
+
+Dann siehst du: Nicht ganz leer.
+
+Ganz vorne, am Fenster, stehen zwei Gestalten. Du siehst nur die Silhouetten.
+
+Sie drehen sich nicht um.
+
+Du gehst näher. Das Gefühl, dass du das nicht solltest, wird stärker mit jedem Schritt.
+
+Dann, eine Stimme. Nicht die Gestalten. Von überall:
+
+„Nächster Halt: Rückfahrt."
+
+Das ist nicht die Durchsage. Das ist keine Stimme aus dem Lautsprecher.
+
+Die Gestalten stehen auf. Drehen sich um.
+
+Ihre Gesichter—
+
+Du blinzelst.
+
+Die Gestalten sind weg.`
+      }
+    ],
     choices: [
       {
         id: 'search_wagon',
@@ -1341,6 +1524,21 @@ Der Zug hält.`,
         effects: [
           { type: 'inc', target: 'tickets_escape', value: 1 },
           { type: 'dec', target: 'conductor_attention', value: 1 }
+        ],
+        next: 'c1_end_platform_look'
+      },
+      {
+        id: 'reflect_on_vibration',
+        label: 'Die Vibration analysieren',
+        condition: {
+          type: 'compare',
+          target: 'tickets_truth',
+          operator: '>=',
+          value: 1
+        },
+        effects: [
+          { type: 'inc', target: 'tickets_truth', value: 1 },
+          { type: 'inc', target: 'memory_drift', value: 1 }
         ],
         next: 'c1_end_platform_look'
       },
@@ -1508,6 +1706,23 @@ Aber seine Hände zittern.`,
           { type: 'inc', target: 'rel_sleepless', value: 1 }
         ],
         next: 'c2_s01_ticket_search'
+      },
+      {
+        id: 'nod_to_conductor',
+        label: 'Dem Schaffner zunicken',
+        condition: {
+          type: 'compare',
+          target: 'conductor_attention',
+          operator: '>=',
+          value: 2
+        },
+        effects: [
+          { type: 'set', target: 'chapter_index', value: 2 },
+          { type: 'inc', target: 'station_count', value: 1 },
+          { type: 'inc', target: 'conductor_attention', value: 1 },
+          { type: 'inc', target: 'tickets_guilt', value: 1 }
+        ],
+        next: 'c2_s01_ticket_search'
       }
     ],
     tags: ['station_end'],
@@ -1516,10 +1731,8 @@ Aber seine Hände zittern.`,
     ],
     state_notes: [
       'Erste station_end-Szene: memory_drift automatisch erhöht (R1)',
-      'Jackenfarbe ändert sich (Drift-Effekt)',
-      'Sleepless reagiert nicht -> niemand bemerkt außer Spieler',
+      'Jackenfarbe ändert sich (Drift-Effekt), Sleepless reagiert nicht',
       'Zettel = Foreshadowing (später relevant)',
-      'Übergang zu Kapitel 2',
       'CONDITION: confront_jacket_change nur bei tickets_truth >= 3 ODER conductor_attention >= 3'
     ],
     atmosphere: 'somber'
