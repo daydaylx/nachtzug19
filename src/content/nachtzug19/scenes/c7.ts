@@ -310,13 +310,30 @@ Als würde sie bereits… verschwinden.
 Dann ist sie weg.`,
     choices: [
       {
+        id: 'say_goodbye_high_rel_recognized',
+        label: '„Danke. Für alles."',
+        condition: {
+          type: 'and',
+          conditions: [
+            { type: 'compare', target: 'rel_comp7', operator: '>=', value: 2 },
+            { type: 'compare', target: 'tickets_truth', operator: '>=', value: 4 }
+          ]
+        },
+        effects: [
+          { type: 'inc', target: 'tickets_love', value: 2 },
+          { type: 'inc', target: 'tickets_truth', value: 1 }
+        ],
+        next: 'c7_s04_boy_recognized'
+      },
+      {
         id: 'say_goodbye_high_rel',
         label: '„Danke. Für alles."',
         condition: {
-          type: 'compare',
-          target: 'rel_comp7',
-          operator: '>=',
-          value: 2
+          type: 'and',
+          conditions: [
+            { type: 'compare', target: 'rel_comp7', operator: '>=', value: 2 },
+            { type: 'compare', target: 'tickets_truth', operator: '<', value: 4 }
+          ]
         },
         effects: [
           { type: 'inc', target: 'tickets_love', value: 2 },
@@ -325,18 +342,30 @@ Dann ist sie weg.`,
         next: 'c7_s04_boy_transformation'
       },
       {
-        id: 'open_door',
+        id: 'open_door_recognized',
         label: 'Die Tür öffnen',
+        condition: {
+          type: 'compare',
+          target: 'tickets_truth',
+          operator: '>=',
+          value: 4
+        },
         effects: [
           { type: 'inc', target: 'tickets_truth', value: 1 }
         ],
-        next: 'c7_s04_boy_transformation'
+        next: 'c7_s04_boy_recognized'
       },
       {
-        id: 'hesitate',
-        label: 'Zögern',
+        id: 'open_door',
+        label: 'Die Tür öffnen',
+        condition: {
+          type: 'compare',
+          target: 'tickets_truth',
+          operator: '<',
+          value: 4
+        },
         effects: [
-          { type: 'inc', target: 'tickets_guilt', value: 1 }
+          { type: 'inc', target: 'tickets_truth', value: 1 }
         ],
         next: 'c7_s04_boy_transformation'
       }
@@ -436,6 +465,133 @@ Er lacht. Oder weint. Beides gleichzeitig.
       'Zeit ist gebrochen'
     ],
     atmosphere: 'mystic'
+  },
+
+  // ==========================================================================
+  // STANDARD: Junge - ERKANNT (High Truth)
+  // ==========================================================================
+
+  'c7_s04_boy_recognized': {
+    id: 'c7_s04_boy_recognized',
+    chapter: 7,
+    title: 'Die Erkenntnis - Der Junge',
+    narrative: `Der Junge sitzt in seinem Abteil.
+
+Aber… er ist anders.
+
+Älter. Oder jünger.
+
+Du kannst es nicht sagen.
+
+Sein Gesicht verändert sich.
+
+Flackert zwischen verschiedenen Altern.
+
+Kind. Teenager. Erwachsener.
+
+Und dann…
+
+Dann erkennst du es.
+
+Die Nase. Die Augen. Die Art, wie er den Kopf hält.
+
+Das bist du.
+
+Nicht "wie du". Nicht "ähnlich".
+
+**Du.**
+
+Vor dem 19. September 1973.
+
+Vor dem Unfall.
+
+Vor… allem.
+
+„Ich erinnere mich," sagt er.
+
+Aber es ist deine Stimme.
+
+Deine Stimme aus einer anderen Zeit.
+
+„Ich erinnere mich an… danach."
+
+„An das, was du geworden bist."
+
+„An das, was wir… verloren haben."
+
+Er hält den Rekorder hoch.
+
+Das Band dreht sich rückwärts.
+
+„Fünfzig Jahre," flüstert er.
+
+„Hast du nach mir gesucht."
+
+„Nach dem Teil von dir, der… nie erwachsen wurde."
+
+„Der nie… das Blut vergessen konnte."
+
+Seine Augen – deine Augen – füllen sich mit Tränen.
+
+„Ich bin müde."
+
+„So müde."
+
+„Kann ich endlich… nach Hause?"`,
+    choices: [
+      {
+        id: 'integrate_innocence',
+        label: '„Komm nach Hause. Zu mir."',
+        effects: [
+          { type: 'inc', target: 'tickets_love', value: 3 },
+          { type: 'inc', target: 'tickets_truth', value: 2 },
+          { type: 'inc', target: 'rel_boy', value: 2 }
+        ],
+        next: 'c7_s05_interlude_timeshift'
+      },
+      {
+        id: 'accept_loss',
+        label: '„Ich weiß jetzt, wer du warst. Wer ich war."',
+        effects: [
+          { type: 'inc', target: 'tickets_truth', value: 3 },
+          { type: 'inc', target: 'tickets_guilt', value: 1 }
+        ],
+        next: 'c7_s05_interlude_timeshift'
+      },
+      {
+        id: 'embrace_child',
+        label: 'Den Jungen umarmen',
+        condition: {
+          type: 'compare',
+          target: 'rel_boy',
+          operator: '>=',
+          value: 1
+        },
+        effects: [
+          { type: 'inc', target: 'tickets_love', value: 4 },
+          { type: 'inc', target: 'tickets_truth', value: 1 },
+          { type: 'set', target: 'rel_boy', value: 4 }
+        ],
+        next: 'c7_s05_interlude_timeshift'
+      },
+      {
+        id: 'cannot_let_go',
+        label: '„Ich kann dich nicht loslassen. Noch nicht."',
+        effects: [
+          { type: 'inc', target: 'tickets_guilt', value: 2 },
+          { type: 'inc', target: 'memory_drift', value: 2 }
+        ],
+        next: 'c7_s05_interlude_timeshift'
+      }
+    ],
+    state_notes: [
+      'TRUTH >= 4: Protagonist erkennt den Jungen als verlorene Unschuld',
+      'REVEAL: Der Junge ist das Selbst vor 1973',
+      'CONDITION: embrace_child nur bei rel_boy >= 1',
+      'Integration oder Akzeptanz möglich'
+    ],
+    tags: ['reveal'],
+    atmosphere: 'somber'
   },
 
   // ==========================================================================
@@ -1102,13 +1258,29 @@ Das Licht wird heller.
 Blendend.`,
     choices: [
       {
+        id: 'enter_seven_recognized',
+        label: 'Abteil 7 betreten',
+        condition: {
+          type: 'and',
+          conditions: [
+            { type: 'compare', target: 'tickets_truth', operator: '>=', value: 5 },
+            { type: 'compare', target: 'tickets_truth', operator: '>=', value: 4 }
+          ]
+        },
+        effects: [
+          { type: 'inc', target: 'tickets_truth', value: 3 }
+        ],
+        next: 'c7_s13_comp7_recognized'
+      },
+      {
         id: 'enter_seven',
         label: 'Abteil 7 betreten',
         condition: {
-          type: 'compare',
-          target: 'tickets_truth',
-          operator: '>=',
-          value: 5
+          type: 'and',
+          conditions: [
+            { type: 'compare', target: 'tickets_truth', operator: '>=', value: 5 },
+            { type: 'compare', target: 'tickets_truth', operator: '<', value: 4 }
+          ]
         },
         effects: [
           { type: 'inc', target: 'tickets_truth', value: 3 }
@@ -1116,18 +1288,30 @@ Blendend.`,
         next: 'c7_s13_seven_price'
       },
       {
-        id: 'hesitate_at_door',
+        id: 'hesitate_at_door_recognized',
         label: 'An der Tür zögern',
+        condition: {
+          type: 'compare',
+          target: 'tickets_truth',
+          operator: '>=',
+          value: 4
+        },
         effects: [
           { type: 'inc', target: 'tickets_guilt', value: 1 }
         ],
-        next: 'c7_s13_seven_price'
+        next: 'c7_s13_comp7_recognized'
       },
       {
-        id: 'ask_questions',
-        label: '„Was ist der Preis?"',
+        id: 'hesitate_at_door',
+        label: 'An der Tür zögern',
+        condition: {
+          type: 'compare',
+          target: 'tickets_truth',
+          operator: '<',
+          value: 4
+        },
         effects: [
-          { type: 'inc', target: 'tickets_truth', value: 1 }
+          { type: 'inc', target: 'tickets_guilt', value: 1 }
         ],
         next: 'c7_s13_seven_price'
       }
@@ -1260,6 +1444,152 @@ Die Gestalt steht auf.
     ],
     tags: ['reveal'],
     atmosphere: 'danger'
+  },
+
+  // ==========================================================================
+  // SET-PIECE 2: Abteil 7 - ERKANNT (High Truth)
+  // ==========================================================================
+
+  'c7_s13_comp7_recognized': {
+    id: 'c7_s13_comp7_recognized',
+    chapter: 7,
+    title: 'Die Erkenntnis - Abteil 7',
+    narrative: `Du trittst ein.
+
+Das Abteil ist… anders.
+
+Größer. Oder kleiner.
+
+Es verändert sich.
+
+Und da sitzt… du.
+
+Aber nicht nur du.
+
+**Comp7.**
+
+Die Gestalt aus Abteil 7.
+
+Die Gestalt, die niemals wirklich da war.
+
+Die niemals real war.
+
+„Du verstehst es jetzt," sagt sie.
+
+Und du tust es.
+
+Du verstehst.
+
+Comp7 war nie ein Mitreisender.
+
+Nie eine andere Person.
+
+Comp7 war… der Teil von dir, der nicht loslassen konnte.
+
+Der Teil, der an der Liebe festhielt. An der Bindung.
+
+An dem Menschen, der im Unfall starb.
+
+An allem, was du hättest sein können. Hättest tun können.
+
+„Fünfzig Jahre," flüstert die Gestalt.
+
+„Hast du an mich festgehalten."
+
+„An uns."
+
+„An der Liebe, die nicht sterben durfte."
+
+„An der Schuld, nicht genug geliebt zu haben."
+
+Sie steht auf.
+
+Und du erkennst das Gesicht.
+
+Es ist nicht dein Gesicht.
+
+Es ist… ihr Gesicht. Sein Gesicht.
+
+Das Gesicht derjenigen, die du verloren hast.
+
+„Der Preis," sagt die Gestalt, „ist die Liebe selbst."
+
+„Du kannst weitergehen."
+
+„Aber nur, wenn du… mich zurücklässt."
+
+„Diesen Teil von dir, der nie aufgehört hat zu trauern."
+
+„Der nie aufgehört hat zu lieben."
+
+„Oder…"
+
+Die Gestalt lächelt.
+
+Traurig. Liebevoll.
+
+„Du nimmst mich mit."
+
+„Integrierst diesen Teil wieder."
+
+„Und lebst mit der Liebe. Mit der Trauer. Mit allem."
+
+„Für den Rest deines Lebens."`,
+    choices: [
+      {
+        id: 'integrate_love',
+        label: '„Komm mit mir. Du gehörst zu mir."',
+        effects: [
+          { type: 'inc', target: 'tickets_love', value: 4 },
+          { type: 'inc', target: 'tickets_truth', value: 2 },
+          { type: 'set', target: 'rel_comp7', value: 4 }
+        ],
+        next: 'c7_s14_seven_decision'
+      },
+      {
+        id: 'release_attachment',
+        label: '„Ich muss dich loslassen. Endlich."',
+        condition: {
+          type: 'compare',
+          target: 'tickets_guilt',
+          operator: '>=',
+          value: 3
+        },
+        effects: [
+          { type: 'inc', target: 'tickets_truth', value: 3 },
+          { type: 'inc', target: 'tickets_guilt', value: 2 }
+        ],
+        next: 'c7_s14_seven_decision'
+      },
+      {
+        id: 'accept_both',
+        label: '„Liebe und Verlust – beides ist Teil von mir."',
+        effects: [
+          { type: 'inc', target: 'tickets_love', value: 2 },
+          { type: 'inc', target: 'tickets_truth', value: 3 },
+          { type: 'inc', target: 'tickets_guilt', value: 1 }
+        ],
+        next: 'c7_s14_seven_decision'
+      },
+      {
+        id: 'refuse_to_choose',
+        label: '„Ich bin noch nicht bereit."',
+        effects: [
+          { type: 'inc', target: 'tickets_escape', value: 2 },
+          { type: 'inc', target: 'memory_drift', value: 2 }
+        ],
+        next: 'c7_s14_seven_decision'
+      }
+    ],
+    state_notes: [
+      'TRUTH >= 4: Protagonist erkennt Comp7 als Liebe/Bindung-Teil',
+      'REVEAL: Comp7 ist der Teil, der nicht loslassen konnte',
+      'CONDITION: release_attachment nur bei tickets_guilt >= 3',
+      'Integration oder Loslassen möglich',
+      'Emotionaler Höhepunkt'
+    ],
+    tags: ['reveal', 'secret'],
+    atmosphere: 'somber'
   },
 
   // ==========================================================================
@@ -1903,15 +2233,113 @@ Endgültig.`,
           { type: 'inc', target: 'tickets_truth', value: 1 }
         ],
         next: 'c7_s21_photo_revelation'
+      },
+      {
+        id: 'last_sacrifice',
+        label: 'Ein letztes Opfer bringen',
+        effects: [
+          { type: 'inc', target: 'memory_drift', value: 3 }
+        ],
+        next: 'c7_s20b_last_sacrifice'
       }
     ],
     state_notes: [
-      'Schaffner Finale',
+      'Schaffner Finale (ÜBERARBEITET)',
       'CONDITION: thank_conductor_high_attention nur bei conductor_attention >= 4',
+      'NEW: last_sacrifice Choice führt zu Last-Minute Boost Subszene',
+      'Ermöglicht +2 auf beliebiges Ticket (Preis: +5 memory_drift gesamt)',
       'Fahrkarte vollständig',
       'Abschied'
     ],
     atmosphere: 'somber'
+  },
+
+  // ==========================================================================
+  // STANDARD: Letztes Opfer (NEW - Subszene)
+  // ==========================================================================
+
+  'c7_s20b_last_sacrifice': {
+    id: 'c7_s20b_last_sacrifice',
+    chapter: 7,
+    title: 'Das letzte Opfer',
+    narrative: `Du hältst inne.
+
+Der Schaffner ist bereits verschwunden.
+
+Aber du spürst… etwas.
+
+Eine letzte Möglichkeit.
+
+Eine letzte Chance… etwas zu ändern.
+
+Du könntest… einen Teil von dir dalassen.
+
+Einen größeren Teil.
+
+Mehr Erinnerung. Mehr Selbst.
+
+Mehr… Realität.
+
+Der Preis wäre hoch.
+
+Deine Erinnerungen würden… verschwimmen.
+
+Stark.
+
+Vielleicht unwiederbringlich.
+
+Aber du könntest… stärker werden.
+
+In dem, was du gewählt hast.
+
+In dem, was du sein willst.
+
+Welchen Preis zahlst du?`,
+    choices: [
+      {
+        id: 'sacrifice_for_truth',
+        label: 'Erinnerung opfern für Klarheit',
+        effects: [
+          { type: 'inc', target: 'tickets_truth', value: 2 },
+          { type: 'inc', target: 'memory_drift', value: 2 }
+        ],
+        next: 'c7_s21_photo_revelation'
+      },
+      {
+        id: 'sacrifice_for_escape',
+        label: 'Identität opfern für Flucht',
+        effects: [
+          { type: 'inc', target: 'tickets_escape', value: 2 },
+          { type: 'inc', target: 'memory_drift', value: 2 }
+        ],
+        next: 'c7_s21_photo_revelation'
+      },
+      {
+        id: 'sacrifice_for_guilt',
+        label: 'Zukunft opfern für Verantwortung',
+        effects: [
+          { type: 'inc', target: 'tickets_guilt', value: 2 },
+          { type: 'inc', target: 'memory_drift', value: 2 }
+        ],
+        next: 'c7_s21_photo_revelation'
+      },
+      {
+        id: 'sacrifice_for_love',
+        label: 'Selbst opfern für Verbindung',
+        effects: [
+          { type: 'inc', target: 'tickets_love', value: 2 },
+          { type: 'inc', target: 'memory_drift', value: 2 }
+        ],
+        next: 'c7_s21_photo_revelation'
+      }
+    ],
+    state_notes: [
+      'NEW: Last-Minute Boost Subszene',
+      'Spieler kann +2 auf gewähltes Ticket bekommen',
+      'Preis: +2-3 memory_drift (insgesamt)',
+      'Ermöglicht Erreichen von Ending-Schwellenwerten'
+    ],
+    atmosphere: 'danger'
   },
 
   // ==========================================================================
@@ -2008,7 +2436,25 @@ Es ist… schwer geworden.
 
 Nicht physisch.
 
-Aber es wiegt.
+Aber es wiegt. Es brennt.
+
+**Es wird heiß.**
+
+Die Kanten glühen. Nicht sichtbar, aber du spürst es. Das Metall wird heiß, dann kalt, dann heiß. Ein Pulsieren. Ein Herzschlag.
+
+Du willst es loslassen, aber deine Finger verkrampfen sich darum.
+
+**Es beginnt zu vibrieren.**
+
+Ein leises Summen. Tief. Unter der Hörschwelle, aber du spürst es im Knochen. In den Zähnen. Im Schädel.
+
+Das Summen wird lauter.
+
+Nein – nicht lauter. **Näher.**
+
+Als würde es nicht vom Tag kommen, sondern aus dir. Als würde das Tag… etwas aufschließen.
+
+Eine Tür. Eine Erinnerung. Eine Wahrheit.
 
 Wagen 7, Sitz 19.
 
@@ -2020,15 +2466,15 @@ Du verstehst jetzt.
 
 19 ist kein Zufall.
 
-19. September.
+**19. September.**
 
-19:19 Uhr.
+**19:19 Uhr.**
 
-Wagen 19.
+**Wagen 19.**
 
-Sitz 19.
+**Sitz 19.**
 
-Nachtzug 19.
+**Nachtzug 19.**
 
 Alles… 19.
 
@@ -2038,27 +2484,49 @@ Ein Muster.
 
 Ein… Code.
 
-Für was?
+Das Tag vibriert stärker. Die Hitze wird unerträglich. Du siehst – nein, fühlst – das Datum eingraviert im Metall. Die Ziffern **brennen sich in deine Handfläche**.
 
-Für… Abschluss.
+„19" ist nicht nur eine Nummer.
 
-Für… Ende.
+Es ist ein **Anker.**
 
-Für… Freilassung.
+Ein Fixpunkt in der Zeit.
 
-Du hältst das Etikett fest.
+Der einzige feste Punkt in diesem Zug, der durch Jahrzehnte gleitet.
 
-Und dann…
+Wenn du es festhältst… wenn du dich darauf konzentrierst… könntest du vielleicht die Zeit **stabilisieren**. Die Erinnerungen **fokussieren**. Den Drift **stoppen**.
 
-Lässt du es los.
+Oder…
 
-Es fällt zu Boden.
+Du lässt los.
 
-Verschwindet.`,
+Du lässt die Vergangenheit los.
+
+Lässt das Muster verschwinden.
+
+Das Tag pulsiert in deiner Hand.
+
+Wartend.`,
     choices: [
       {
+        id: 'use_as_anchor',
+        label: 'Das Tag als Anker benutzen – die Zeit stabilisieren',
+        condition: {
+          type: 'and',
+          conditions: [
+            { type: 'bool', target: 'has_tag19', value: true },
+            { type: 'compare', target: 'tickets_truth', operator: '>=', value: 5 }
+          ]
+        },
+        effects: [
+          { type: 'inc', target: 'tickets_truth', value: 4 },
+          { type: 'set', target: 'memory_drift', value: 0 }
+        ],
+        next: 'c7_s23_interlude_doors_open'
+      },
+      {
         id: 'let_go_tag',
-        label: 'Loslassen',
+        label: 'Loslassen und weitergehen',
         condition: {
           type: 'bool',
           target: 'has_tag19',
@@ -2071,14 +2539,15 @@ Verschwindet.`,
       },
       {
         id: 'keep_tag',
-        label: 'Festhalten',
+        label: 'Festhalten, aber nichts tun',
         condition: {
           type: 'bool',
           target: 'has_tag19',
           value: true
         },
         effects: [
-          { type: 'inc', target: 'tickets_guilt', value: 1 }
+          { type: 'inc', target: 'tickets_guilt', value: 1 },
+          { type: 'inc', target: 'memory_drift', value: 1 }
         ],
         next: 'c7_s23_interlude_doors_open'
       },
@@ -2092,10 +2561,13 @@ Verschwindet.`,
       }
     ],
     state_notes: [
-      'Tag19 finale Bedeutung',
+      'Tag19 finale Bedeutung - VERSTÄRKT',
+      'SYNÄSTHESIE: Tag wird heiß, vibriert, summt',
+      'CONDITION: use_as_anchor nur bei has_tag19 UND tickets_truth >= 5',
+      'use_as_anchor: MASSIVER BONUS (+4 Truth, memory_drift auf 0 gesetzt)',
       'CONDITION: let_go_tag nur bei has_tag19',
-      'CONDITION: keep_tag nur bei has_tag19',
-      '19 als Muster/Code',
+      'CONDITION: keep_tag nur bei has_tag19 (jetzt negativ: +guilt, +drift)',
+      '19 als Anker in der Zeit',
       'Loslassen möglich'
     ],
     atmosphere: 'mystic'
@@ -2423,26 +2895,12 @@ Was nimmst du mit… ins Danach?`,
           type: 'compare',
           target: 'tickets_truth',
           operator: '>=',
-          value: 8
-        },
-        effects: [
-          { type: 'set', target: 'chapter_index', value: 8 }
-        ],
-        ending: 'truth_ending'
-      },
-      {
-        id: 'escape_path',
-        label: 'Zurück in den Zug – für immer sicher',
-        condition: {
-          type: 'compare',
-          target: 'tickets_escape',
-          operator: '>=',
           value: 6
         },
         effects: [
           { type: 'set', target: 'chapter_index', value: 8 }
         ],
-        ending: 'escape_ending'
+        ending: 'truth_ending'
       },
       {
         id: 'guilt_path',
@@ -2471,15 +2929,22 @@ Was nimmst du mit… ins Danach?`,
           { type: 'set', target: 'chapter_index', value: 8 }
         ],
         ending: 'love_ending'
+      },
+      {
+        id: 'limbo_path',
+        label: 'Zwischen den Welten bleiben',
+        effects: [
+          { type: 'set', target: 'chapter_index', value: 8 }
+        ],
+        ending: 'limbo_ending'
       }
     ],
     tags: ['station_end'],
-    exit_effects: [
-      { type: 'inc', target: 'station_count', value: 1 }
-    ],
     state_notes: [
       'Station-End: Finale - Zug verblasst (1973 aufgelöst)',
-      'ENDINGS: Truth, Escape, Guilt, Love (je nach Tickets)'
+      'ENDINGS: Truth, Escape, Guilt, Love (Schwellenwerte GESENKT auf 6)',
+      'NEW: Limbo-Ending als Fallback (keine Condition)',
+      'station_count automatisch erhöht durch Engine (keine manuellen exit_effects)'
     ],
     atmosphere: 'mystic'
   }

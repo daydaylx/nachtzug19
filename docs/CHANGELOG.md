@@ -1,5 +1,61 @@
 # Migration Changelog: Content/Domain/UI Separation
 
+## Datum: 2026-01-18 (Narrative Enhancement Update)
+
+### Ludonarrative Harmonie und Emotionaler Payoff verstärkt
+
+**Grund**: Finale-Szenen zu generisch, Tag19-Item zu schwach, 70er-Foreshadowing fehlte.
+
+#### Änderungen:
+
+**Kapitel 7 - Emotionale Verstärkung**:
+- **NPC-Recognition Scenes hinzugefügt**:
+  - `c7_s04_boy_recognized`: High-Truth-Spieler (tickets_truth >= 4) erkennen den Jungen als verlorene Unschuld vor 1973
+  - `c7_s13_comp7_recognized`: High-Truth-Spieler erkennen Comp7 als Liebe/Bindung, die nicht losgelassen werden konnte
+  - Explizite Selbsterkenntnis-Dialoge ("Komm nach Hause. Zu mir.")
+  - Integration-Choices mit massiven Boni (+3-4 Love/Truth)
+
+- **Tag19-Item Power-Up** (`c7_s22_tag19_final`):
+  - Synästhetische Effekte: Tag wird heiß, vibriert, summt
+  - Neue "Als Anker benutzen"-Choice (nur bei has_tag19 UND tickets_truth >= 5)
+  - Effekte: +4 tickets_truth, memory_drift auf 0 gesetzt
+  - Tag19 ist jetzt Schlüssel-Item für Truth-Ending (gleichwertig zu Kassettenrekorder)
+
+- **Finale-Zugänglichkeit verbessert**:
+  - Ending-Schwellenwerte von 8 auf 6 gesenkt
+  - Limbo-Fallback-Ending hinzugefügt (keine Bedingung)
+  - `c7_s20b_last_sacrifice`: Last-Minute-Opfer-Mechanik (+2 zu beliebigem Ticket für +5 memory_drift)
+
+**Kapitel 1 - 70er-Anachronismen für Environmental Storytelling**:
+- **Bahnsteig** (`c1_s01_platform`):
+  - Verblasstes Plakat mit 70er-Typografie (orange/braun)
+  - Schlagzeile "ÖLKRISE VERSCHÄRFT SICH" in Frakturschrift
+  - Mechanische Klapp-Anzeigetafel statt LED
+  - Nikotinverfärbte Wände (jahrzehntelanger Rauch)
+  - Narrative Variants zeigen "19. SEPTEMBER" bei hohem Drift
+
+- **Handy-Verwirrung** (`c1_s01a_platform_details`):
+  - Gerät fühlt sich "fremd an, als gehörte es nicht hierher. Nicht in diese… Zeit"
+  - Display zeigt statisches Rauschen (70er-TV-Referenz)
+
+- **Zuginnenraum** (`c1_s03_inside_train`):
+  - Orange-braune Polster mit kratzigem 70er-Stoff
+  - Geometrische Muster (typisch 70er)
+  - Senfgelber Teppich mit braunen Streifen
+  - **Aschenbecher in jedem Abteil** (in 70ern normal, heute verboten)
+  - "Niemand starrt auf Bildschirme. Niemand trägt Kopfhörer."
+  - Mann in braunem Anzug mit breitem Revers
+  - Pfeifentabak-Geruch
+
+**Technische Details**:
+- Konditioniertes Routing basierend auf `tickets_truth >= 4`
+- Komplexe AND-Conditions für neue Choices
+- `set`-Effect-Type für memory_drift Reset
+
+**Status**: ✅ Implementiert und getestet, 619+ Zeilen hinzugefügt
+
+---
+
 ## Datum: 2026-01-13 (Dokumentation Update)
 
 ### Dokumentation an NACHTZUG 19 Konzept angepasst

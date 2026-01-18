@@ -25,7 +25,7 @@ const mockSettings = {
 describe('PlayerScreen', () => {
   it('renders narrative text correctly', () => {
     render(
-      <PlayerScreen 
+      <PlayerScreen
         scene={mockScene}
         choices={mockScene.choices}
         gameState={createInitialState('test_scene')}
@@ -42,7 +42,7 @@ describe('PlayerScreen', () => {
 
   it('renders choice buttons', () => {
     render(
-      <PlayerScreen 
+      <PlayerScreen
         scene={mockScene}
         choices={mockScene.choices}
         gameState={createInitialState('test_scene')}
@@ -61,7 +61,7 @@ describe('PlayerScreen', () => {
     vi.useFakeTimers();
     const handleChoice = vi.fn();
     render(
-      <PlayerScreen 
+      <PlayerScreen
         scene={mockScene}
         choices={mockScene.choices}
         gameState={createInitialState('test_scene')}
@@ -75,7 +75,7 @@ describe('PlayerScreen', () => {
     fireEvent.click(screen.getByText('Go Left'));
 
     act(() => {
-      vi.advanceTimersByTime(250);
+      vi.advanceTimersByTime(200);
     });
 
     expect(handleChoice).toHaveBeenCalledWith(mockScene.choices[0]);

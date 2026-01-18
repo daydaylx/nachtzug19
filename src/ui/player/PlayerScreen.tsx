@@ -1,6 +1,5 @@
-import React, { useRef, useState } from 'react';
-import { Scene, Choice, GameState } from '../../domain/types';
-import { resolveSceneNarrative } from '../../domain/engine/gameEngine';
+import React, { useEffect, useRef, useState } from 'react';
+import { Scene, Choice, GameState, resolveSceneNarrative } from '../../domain/types';
 import { PlayerSettings } from './state/settings';
 import { Topbar } from './components/Topbar';
 import { ReaderCard } from './components/ReaderCard';
@@ -33,76 +32,99 @@ export const PlayerScreen: React.FC<PlayerScreenProps> = ({
   const [isSettingsOpen, setSettingsOpen] = useState(false);
   const [isProcessing, setProcessing] = useState(false);
   const [trayHeight, setTrayHeight] = useState(0);
+  const [committedIndex, setCommittedIndex] = useState<number | null>(null);
   const processingRef = useRef(false);
   const resolvedNarrative = resolveSceneNarrative(scene, gameState);
   const renderScene = resolvedNarrative ? { ...scene, narrative: resolvedNarrative } : scene;
+  const chapter = renderScene.chapter ?? gameState.chapter_index;
+  const showFx = settings.immersionFx;
+  const animateDrift = showFx && !settings.reduceMotion;
 
-  const handleChoice = (c: Choice) => {
+  useEffect(() => {
+    if (!settings.showStatus && isDrawerOpen) {
+      setDrawerOpen(false);
+    }
+  }, [settings.showStatus, isDrawerOpen]);
+
+  const handleChoice = (choice: Choice, index: number) => {
     if (processingRef.current) return;
     processingRef.current = true;
     setProcessing(true);
-    const delay = settings.reduceMotion ? 0 : 250;
-    // Visual delay for "punching" ticket
-    setTimeout(() => {
-      onChoice(c);
+
+    if (!settings.reduceMotion) {
+      setCommittedIndex(index);
+    }
+
+    const delay = settings.reduceMotion ? 0 : 200;
+    window.setTimeout(() => {
+      onChoice(choice);
       setProcessing(false);
       processingRef.current = false;
+      setCommittedIndex(null);
     }, delay);
   };
 
+  const handleToggleStatus = () => {
+    if (!settings.showStatus) return;
+    setDrawerOpen((open) => !open);
+    setSettingsOpen(false);
+  };
+
+  const handleToggleSettings = () => {
+    setSettingsOpen((open) => !open);
+    setDrawerOpen(false);
+  };
+
   return (
-    <div className={`relative w-full h-full flex flex-col bg-stone-950 text-stone-200 overflow-hidden ${settings.reduceMotion ? 'reduce-motion' : ''}`}>
-      {/* Noise Overlay */}
-      {settings.immersionFx && !settings.reduceMotion && <div className="noise-overlay" />}
+    <div className={`rn-root ${settings.reduceMotion ? 'reduce-motion' : ''}`}>
+      <div className="rn-layer rn-bg" />
+      {animateDrift && <div className="rn-layer rn-bg rn-bg--drift" />}
+      {showFx && <div className="rn-layer rn-noise" />}
+      <div className="rn-layer rn-vignette" />
 
-      <Topbar 
-        gameState={gameState} 
-        onToggleStatus={() => {
-          setDrawerOpen(!isDrawerOpen);
-          setSettingsOpen(false);
-        }}
-        onToggleSettings={() => {
-          setSettingsOpen(!isSettingsOpen);
-          setDrawerOpen(false);
-        }}
-        showStatus={settings.showStatus}
-      />
+      <div className="rn-content">
+        <Topbar chapter={chapter} />
 
-      <div className="flex-1 flex flex-col pt-14 relative">
-        <AnnouncementBanner scene={renderScene} />
-        
-        <ReaderCard 
-          scene={renderScene} 
-          textSize={settings.textSize} 
-          driftEnabled={settings.immersionFx && !settings.reduceMotion && gameState.pressure.memory_drift > 2}
-          reduceMotion={settings.reduceMotion}
-          bottomPadding={trayHeight}
+        <div className="rn-main">
+          <AnnouncementBanner scene={renderScene} />
+
+          <ReaderCard
+            scene={renderScene}
+            textSize={settings.textSize}
+            driftEnabled={showFx && !settings.reduceMotion && gameState.pressure.memory_drift > 2}
+            bottomPadding={trayHeight}
+          />
+
+          <ChoiceTray
+            choices={choices}
+            onChoose={handleChoice}
+            isProcessing={isProcessing}
+            onHeightChange={setTrayHeight}
+            onToggleStatus={handleToggleStatus}
+            onToggleSettings={handleToggleSettings}
+            showStatusToggle={settings.showStatus}
+            committedIndex={committedIndex}
+          />
+        </div>
+
+        {settings.showStatus && (
+          <StatusDrawer
+            isOpen={isDrawerOpen}
+            onClose={() => setDrawerOpen(false)}
+            gameState={gameState}
+          />
+        )}
+
+        <SettingsDrawer
+          isOpen={isSettingsOpen}
+          onClose={() => setSettingsOpen(false)}
+          settings={settings}
+          onUpdateSettings={onUpdateSettings}
+          onExit={onExit}
         />
 
-        <ChoiceTray 
-          choices={choices} 
-          onChoose={handleChoice} 
-          isProcessing={isProcessing}
-          onHeightChange={setTrayHeight}
-        />
+        <StationOverlay scene={scene} reduceMotion={settings.reduceMotion} />
       </div>
-
-      <StatusDrawer 
-        isOpen={isDrawerOpen} 
-        onClose={() => setDrawerOpen(false)} 
-        gameState={gameState} 
-      />
-
-      <SettingsDrawer
-        isOpen={isSettingsOpen}
-        onClose={() => setSettingsOpen(false)}
-        settings={settings}
-        onUpdateSettings={onUpdateSettings}
-        onExit={onExit}
-      />
-
-      <StationOverlay scene={scene} />
-      
     </div>
   );
 };

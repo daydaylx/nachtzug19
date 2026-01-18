@@ -120,6 +120,7 @@ Dieser Index gibt einen Überblick über alle Dokumentations-Dateien im Projekt 
 **Zweck**: Migrations-Historie, Breaking Changes.
 
 **Inhalt**:
+- Datum: 2026-01-18 – Narrative Enhancement Update (NPC-Recognition, Tag19 Power-Up, 70s Foreshadowing)
 - Datum: 2026-01-13 – Dokumentation an NACHTZUG 19 angepasst
 - Datum: 2026-01-13 – Initiale Migration (Content/Domain/UI Separation)
 - Datei-Verschiebungen (Alt → Neu)
@@ -176,5 +177,5 @@ Siehe [NACHTZUG_19_RULES.md](NACHTZUG_19_RULES.md), Abschnitt 2 (Canon Rules):
 
 ---
 
-**Letzte Aktualisierung**: 2026-01-17
+**Letzte Aktualisierung**: 2026-01-18
 **Maintained by**: Repository-Dokumentations-Agent

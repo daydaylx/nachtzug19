@@ -9,118 +9,108 @@ interface PlayerAppProps {
 }
 
 export const PlayerApp: React.FC<PlayerAppProps> = ({ onExit }) => {
-  const { 
-    gameState, 
-    currentScene, 
-    availableChoices, 
-    makeChoice, 
-    isLoading, 
+  const {
+    gameState,
+    currentScene,
+    availableChoices,
+    makeChoice,
+    isLoading,
     error,
     continueGame,
     canContinue,
     restartGame
   } = usePlayerSession();
-  
+
   const { settings, updateSetting } = usePlayerSettings();
   const [started, setStarted] = useState(false);
   const rootMotionClass = settings.reduceMotion ? 'reduce-motion' : '';
+  const showFx = settings.immersionFx;
+  const animateDrift = showFx && !settings.reduceMotion;
 
-  // Loading Screen
+  const BackgroundLayers = () => (
+    <>
+      <div className="rn-layer rn-bg" />
+      {animateDrift && <div className="rn-layer rn-bg rn-bg--drift" />}
+      {showFx && <div className="rn-layer rn-noise" />}
+      <div className="rn-layer rn-vignette" />
+    </>
+  );
+
   if (isLoading) {
     return (
-      <div className={`w-full h-screen bg-stone-950 flex items-center justify-center relative overflow-hidden ${rootMotionClass}`}>
-        {settings.immersionFx && !settings.reduceMotion && <div className="noise-overlay" />}
-        <div className="text-amber-600/60 font-mono animate-pulse tracking-[0.5em] text-sm uppercase">
-          Verbindung zum Zugsystem...
+      <div className={`rn-root ${rootMotionClass}`}>
+        <BackgroundLayers />
+        <div className="rn-content rn-start">
+          <div className="rn-start-card">
+            <div className="rn-start-sub">Zugsystem</div>
+            <h1 className="rn-start-title">NACHTZUG 19</h1>
+            <div className="rn-link">Verbindung wird aufgebaut...</div>
+          </div>
         </div>
       </div>
     );
   }
 
-  // Error Screen
   if (error) {
     return (
-      <div className={`w-full h-screen bg-stone-950 flex flex-col items-center justify-center text-red-400 p-8 text-center relative font-mono ${rootMotionClass}`}>
-        {settings.immersionFx && !settings.reduceMotion && <div className="noise-overlay opacity-20" />}
-        <div className="border border-red-900/50 bg-red-950/10 p-8 max-w-md backdrop-blur-sm relative z-10">
-          <h1 className="text-xl font-bold mb-4 tracking-widest uppercase border-b border-red-900/50 pb-2">Fatal Error</h1>
-          <p className="mb-8 text-sm opacity-80">{error}</p>
-          <button 
-            onClick={onExit} 
-            className="px-6 py-2 bg-red-900/20 hover:bg-red-900/40 border border-red-800 transition-colors uppercase text-xs tracking-widest"
-          >
-            Notausstieg
-          </button>
+      <div className={`rn-root ${rootMotionClass}`}>
+        <BackgroundLayers />
+        <div className="rn-content rn-start">
+          <div className="rn-start-card">
+            <div className="rn-start-sub">Fehler</div>
+            <div className="rn-error-text">{error}</div>
+            <button
+              type="button"
+              className="rn-primary-action"
+              onClick={() => {
+                restartGame();
+                setStarted(true);
+              }}
+            >
+              Neustart
+            </button>
+            <button type="button" className="rn-secondary-action" onClick={onExit}>
+              Zum Launcher
+            </button>
+          </div>
         </div>
       </div>
     );
   }
 
-  // Start / Menu Screen
   if (!started) {
     return (
-      <div className={`w-full h-screen bg-stone-950 flex flex-col items-center justify-center text-stone-200 relative overflow-hidden ${rootMotionClass}`}>
-        {/* Background Atmosphere */}
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-stone-900 via-stone-950 to-black" />
-        {settings.immersionFx && !settings.reduceMotion && <div className="noise-overlay" />}
-        <div className="vignette fixed inset-0 pointer-events-none" />
-        
-        {/* Main Content */}
-        <div className="relative z-10 flex flex-col items-center space-y-12 animate-fade-in-up">
-          
-          {/* Logo / Title Area */}
-          <div className="text-center space-y-4">
-             <div className="text-amber-700/50 font-mono text-xs uppercase tracking-[0.4em] mb-2">
-               Psychological Mystery
-             </div>
-             <h1 className="text-5xl md:text-7xl font-serif font-bold text-stone-100 tracking-tighter drop-shadow-2xl">
-              NACHTZUG 19
-             </h1>
-             <div className="h-px w-32 bg-gradient-to-r from-transparent via-amber-600 to-transparent mx-auto opacity-70"></div>
-          </div>
-
-          {/* Menu Buttons */}
-          <div className="w-64 space-y-4">
+      <div className={`rn-root ${rootMotionClass}`}>
+        <BackgroundLayers />
+        <div className="rn-content rn-start">
+          <div className="rn-start-card">
+            <div className="rn-start-sub">Reader Noir</div>
+            <h1 className="rn-start-title">NACHTZUG 19</h1>
             {canContinue && (
-              <button 
-                onClick={() => { continueGame(); setStarted(true); }}
-                className="
-                  w-full py-4 relative group overflow-hidden
-                  bg-amber-700 hover:bg-amber-600 text-stone-950
-                  font-mono font-bold tracking-widest uppercase text-sm
-                  transition-all duration-300 shadow-lg hover:shadow-amber-900/40
-                  clip-path-ticket
-                "
+              <button
+                type="button"
+                className="rn-primary-action"
+                onClick={() => {
+                  continueGame();
+                  setStarted(true);
+                }}
               >
-                <div className="absolute inset-0 bg-white/10 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
-                <span className="relative z-10 flex items-center justify-center gap-2">
-                  <span>▶</span> Weiterfahren
-                </span>
+                Weiterfahren
               </button>
             )}
-
-            <button 
-              onClick={() => { restartGame(); setStarted(true); }}
-              className={`
-                w-full py-4 relative group
-                border border-stone-800 hover:border-amber-700/50 hover:bg-stone-900
-                text-stone-400 hover:text-stone-200
-                font-mono uppercase text-xs tracking-[0.2em]
-                transition-all duration-300
-              `}
+            <button
+              type="button"
+              className="rn-secondary-action"
+              onClick={() => {
+                restartGame();
+                setStarted(true);
+              }}
             >
-              Neues Ticket lösen
+              Neues Ticket loesen
             </button>
-          </div>
-          
-          {/* Footer / Exit */}
-          <div className="absolute bottom-8 text-center">
-             <button 
-                onClick={onExit}
-                className="text-stone-700 hover:text-stone-500 text-[10px] uppercase tracking-widest transition-colors font-mono"
-             >
-                Development Mode
-             </button>
+            <button type="button" className="rn-link" onClick={onExit}>
+              Zurueck zum Launcher
+            </button>
           </div>
         </div>
       </div>
@@ -129,24 +119,22 @@ export const PlayerApp: React.FC<PlayerAppProps> = ({ onExit }) => {
 
   if (!currentScene || !gameState) return null;
 
-  // Game Over
   if (gameState.isGameOver) {
-      return (
-          <div className={`w-full h-screen bg-stone-950 flex flex-col items-center justify-center text-stone-200 p-8 text-center animate-in fade-in duration-1000 relative ${rootMotionClass}`}>
-               {settings.immersionFx && !settings.reduceMotion && <div className="noise-overlay" />}
-               <h2 className="text-4xl font-serif text-amber-600 mb-6 tracking-widest uppercase drop-shadow-lg">Endstation</h2>
-               <div className="h-px w-16 bg-stone-700 mx-auto mb-8"></div>
-               <p className="max-w-prose mb-12 font-serif leading-loose text-lg text-stone-300/80 italic">
-                   "Alle Fahrgäste bitte aussteigen."
-               </p>
-               <button 
-                onClick={() => setStarted(false)}
-                className="text-amber-500/80 hover:text-amber-400 border-b border-transparent hover:border-amber-500 transition-all pb-1 font-mono text-xs uppercase tracking-widest"
-               >
-                   Zurück zum Bahnsteig
-               </button>
+    return (
+      <div className={`rn-root ${rootMotionClass}`}>
+        <BackgroundLayers />
+        <div className="rn-content rn-start">
+          <div className="rn-start-card">
+            <div className="rn-start-sub">Endstation</div>
+            <h2 className="rn-start-title">Endstation</h2>
+            <div className="rn-link">"Alle Fahrgaeste bitte aussteigen."</div>
+            <button type="button" className="rn-secondary-action" onClick={() => setStarted(false)}>
+              Zum Bahnsteig
+            </button>
           </div>
-      )
+        </div>
+      </div>
+    );
   }
 
   return (

@@ -33,3 +33,6 @@ Thumbs.db
 
 # DB
 sqlite_mcp_server.db
+
+# Export/generated content
+export/

@@ -2134,10 +2134,8 @@ Die wahre Endstation.`,
       }
     ],
     tags: ['station_end'],
-    exit_effects: [
-      { type: 'inc', target: 'memory_drift', value: 1 }
-    ],
     state_notes: [
+      'Station-End: memory_drift automatisch erhöht durch Engine-R1 (keine manuellen exit_effects)',
       'Station-End: Übergang zu Kapitel 7',
       'Name auf Schild (Selbsterkenntnis)',
       'Versionen des Selbst erscheinen',

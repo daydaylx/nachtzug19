@@ -1841,11 +1841,8 @@ Comp7 steht neben dir. „Station 4," sagt sie.
       }
     ],
     tags: ['station_end'],
-    exit_effects: [
-      { type: 'inc', target: 'memory_drift', value: 1 }
-    ],
     state_notes: [
-      'Vierte station_end: memory_drift +1 (automatisch)',
+      'Vierte station_end: memory_drift automatisch erhöht durch Engine-R1 (keine manuellen exit_effects)',
       'Kopien verschwinden synchron',
       'Comp7: "Drei Stationen oder unendlich"',
       'Übergang zu Kapitel 5 (Finale Kontrolle)'

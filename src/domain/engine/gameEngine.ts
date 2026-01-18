@@ -353,10 +353,18 @@ export function transitionToNextScene(
 
   // 2. Prüfe, ob aktuelle Szene station_end ist (R1: Drift nach Station)
   if (currentScene.tags?.includes('station_end')) {
-    // Erhöhe memory_drift automatisch
-    state.pressure.memory_drift += 1;
-    state.station_count += 1;
-    console.log(`[Canon Rule R1] Station-Ende erkannt: memory_drift +1, station_count=${state.station_count}`);
+    const hasManualDrift = (choice.effects ?? []).some((effect) => effect.target === 'memory_drift')
+      || (currentScene.exit_effects ?? []).some((effect) => effect.target === 'memory_drift');
+    const hasManualStation = (choice.effects ?? []).some((effect) => effect.target === 'station_count')
+      || (currentScene.exit_effects ?? []).some((effect) => effect.target === 'station_count');
+
+    if (!hasManualDrift) {
+      state.pressure.memory_drift += 1;
+    }
+    if (!hasManualStation) {
+      state.station_count += 1;
+    }
+    console.log(`[Canon Rule R1] Station-Ende erkannt: memory_drift ${hasManualDrift ? 'manual' : '+1'}, station_count ${hasManualStation ? 'manual' : state.station_count}`);
   }
 
   // 3. Wende Exit-Effects der aktuellen Szene an
@@ -500,7 +508,13 @@ export class GameEngine {
   saveGame(slot: string = 'auto'): void {
     try {
       const key = this.STORAGE_KEY_PREFIX + slot;
-      localStorage.setItem(key, JSON.stringify(this.state));
+      const payload = {
+        version: this.state.save_version,
+        current_scene_id: this.state.current_scene_id,
+        history: this.state.history,
+        state: this.state
+      };
+      localStorage.setItem(key, JSON.stringify(payload));
       console.log(`[Save] Spielstand gespeichert: ${key}`);
     } catch (e) {
       console.error('[Save] Fehler beim Speichern:', e);
@@ -515,16 +529,28 @@ export class GameEngine {
       const key = this.STORAGE_KEY_PREFIX + slot;
       const saved = localStorage.getItem(key);
       if (saved) {
-        const parsed = JSON.parse(saved) as GameState;
-        if (
-          !parsed ||
-          typeof parsed.save_version !== 'number' ||
-          parsed.save_version !== this.state.save_version
-        ) {
+        const parsed = JSON.parse(saved) as any;
+        const savedState: GameState | null = parsed && parsed.state ? parsed.state : parsed;
+        const version = typeof parsed?.version === 'number'
+          ? parsed.version
+          : savedState?.save_version;
+
+        if (!savedState || typeof version !== 'number' || version !== this.state.save_version) {
           console.warn(`[Load] Save version mismatch: ${key}`);
           return false;
         }
-        this.state = parsed;
+        const hydratedState: GameState = { ...savedState };
+        if (parsed && typeof parsed.current_scene_id === 'string') {
+          hydratedState.current_scene_id = parsed.current_scene_id;
+        }
+        if (parsed && Array.isArray(parsed.history)) {
+          hydratedState.history = parsed.history;
+        }
+        if (typeof parsed?.version === 'number') {
+          hydratedState.save_version = parsed.version;
+        }
+
+        this.state = hydratedState;
         this.notify();
         console.log(`[Load] Spielstand geladen: ${key}`);
         return true;

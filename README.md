@@ -17,6 +17,8 @@ Dieses Projekt ist eine **deterministische, testbare Interactive Fiction (IF) En
 - **Harte Regeln**: Der Zug lügt nie direkt. Kontrollen in Kapitel 2, 3, 5. Jede Entscheidung hat sichtbare Rückwirkung (Callback-Regel).
 - **Beziehungen**: NPCs mit eigener Agenda. Vertrauen aufbauen oder Distanz wahren – beides hat Konsequenzen.
 - **7 Kapitel**: Vollständig implementiert mit ~24–27 Szenen pro Kapitel, ~30–35 Minuten Spielzeit je Kapitel.
+- **NPC-Recognition**: High-Truth-Spieler erkennen NPCs in Kapitel 7 (verlorene Unschuld, nicht losgelassene Liebe).
+- **Tag 19 Power-Up**: Synästhetische Effekte und Anker-Mechanik für Truth-Ending.
 
 ### Engine-Features
 - **Deterministische Story-Engine**: Szenen als typisierte Daten, keine UI-Logik in Content.
