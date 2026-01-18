@@ -24,17 +24,21 @@ export const chapter1Scenes: ScenesCollection = {
     title: 'Leerer Bahnsteig',
     narrative: `Der Bahnsteig ist leer. Nicht „spät abends leer", sondern falsch leer.
 
-Keine Werbeplakate. Keine Bänke. Keine Automaten. Nur nackte Wände aus Beton, fleckig von Feuchtigkeit. Eine Neonröhre flackert über dir. Das Licht ist kalt, blaugrün, wirft harte Schatten auf den Boden.
+An der Wand klebt ein einzelnes Plakat. Verblasst. Orange Schrift auf braunem Grund – diese aggressive Typografie aus den Siebzigern, fett und kantig. „REISEN SIE MIT UNS", steht da. Keine Webseite. Keine QR-Codes. Nur eine Telefonnummer mit zu wenigen Ziffern.
 
-Die Anzeigetafel zeigt: 23:47.
+Keine Bänke. Keine Automaten. Nur nackte Wände aus Beton, fleckig von Feuchtigkeit und… Nikotin? Die Wände sind gelb verfärbt, als hätten hier jahrzehntelang Menschen geraucht. Eine Neonröhre flackert über dir. Das Licht ist kalt, blaugrün, wirft harte Schatten auf den Boden.
 
-Kein Text. Kein „Nächster Zug". Nur ein blinkendes Feld, leer wie der Bahnsteig.
+Die Anzeigetafel – ein mechanisches Klappmodell, kein LED-Display – zeigt: 23:47.
+
+Kein Text. Kein „Nächster Zug". Nur leere Fächer, die im Takt klacken, ohne etwas anzuzeigen.
 
 Du weißt nicht mehr, warum du hier bist. Die Erinnerung fühlt sich an wie ein Traum, der dir beim Aufwachen durch die Finger rinnt. Es gibt einen Grund – du bist sicher, dass es einen gab – aber er ist weg. Verschluckt.
 
 Aber du weißt: Du wartest auf etwas.
 
-Die Luft riecht nach altem Zigarettenrauch und Maschinenöl. Kalt. Zu kalt für Juni. Du ziehst die Jacke enger, aber es hilft nicht. Die Kälte kommt von innen.
+Die Luft riecht nach kaltem Zigarettenrauch und Maschinenöl. Nicht nach frischem Rauch – nach altem. Nach Jahrzehnten. Als hätte jemand die Luft eingefroren, als hier noch geraucht werden durfte. Kalt. Zu kalt für September. Du ziehst die Jacke enger, aber es hilft nicht. Die Kälte kommt von innen.
+
+Am Rand – auf einer Bank, die du vorhin nicht gesehen hast – sitzt eine Gestalt. Sie liest eine Zeitung. Du siehst die Schlagzeile, aber das Datum ist verwischt. „ÖLKRISE VERSCHÄRFT SICH", steht da in dieser altmodischen Frakturschrift. Die Gestalt blättert nicht um. Bewegt sich nicht.
 
 Ein Gefühl von Verlust flackert auf. Ein Name, den du fast greifen kannst, aber der wie Rauch verweht. Du solltest nicht allein hier sein.`,
     narrative_variants: [
@@ -42,33 +46,29 @@ Ein Gefühl von Verlust flackert auf. Ein Name, den du fast greifen kannst, aber
         min_drift: 5,
         narrative: `Der Bahnsteig ist leer. Nicht „spät abends leer", sondern falsch leer.
 
-Keine Werbeplakate. Keine Bänke. Keine Automaten. Nur nackte Wände aus Beton, fleckig von Feuchtigkeit. Eine Neonröhre flackert über dir. Das Licht ist kalt, grünlich, wirft harte Schatten auf den Boden.
+An der Wand klebt ein einzelnes Plakat. Verblasst. Orange Schrift auf braunem Grund. „REISEN SIE MIT UNS", steht da. Die Telefonnummer ist jetzt unleserlich.
 
-Die Anzeigetafel zeigt: 23:46.
+Die Anzeigetafel – mechanisch, klappend – zeigt: 23:46.
 
-Kein Text. Kein „Nächster Zug". Nur ein blinkendes Feld, leer wie der Bahnsteig.
+Du weißt nicht mehr, warum du hier bist. War es September? Oder Oktober? Die Erinnerung verschwimmt.
 
-Du weißt nicht mehr, warum du hier bist. Die Erinnerung fühlt sich an wie ein Traum, der dir beim Aufwachen durch die Finger rinnt. Es gibt einen Grund – du bist sicher, dass es einen gab – aber er ist weg. Verschluckt.
+Die Luft riecht nach kaltem Zigarettenrauch und Maschinenöl. Kalt. Zu kalt für Oktober. Du ziehst die Jacke enger, aber es hilft nicht.
 
-Aber du weißt: Du wartest auf etwas.
-
-Die Luft riecht nach altem Zigarettenrauch und Maschinenöl. Kalt. Zu kalt für Juli. Du ziehst die Jacke enger, aber es hilft nicht. Die Kälte kommt von innen.`
+Am Rand sitzt die Gestalt mit der Zeitung. Die Schlagzeile ist jetzt anders: „ENERGIEKRISE—". Der Rest ist verwischt. Die Gestalt blättert nicht um.`
       },
       {
         min_drift: 7,
         narrative: `Der Bahnsteig ist leer. Nicht „spät abends leer", sondern falsch leer.
 
-Keine Werbeplakate. Keine Bänke. Keine Automaten. Nur nackte Wände aus Beton, fleckig von Feuchtigkeit. Zwei Neonröhren flackern über dir. Das Licht ist kalt, grünlich, wirft harte Schatten auf den Boden.
+An der Wand klebt ein einzelnes Plakat. Oder… waren es zwei? Das Bild flackert in deinem Kopf. Orange. Braun. „REISEN—" Der Rest ist weg.
 
-Die Anzeigetafel zeigt: 23:49.
+Die Anzeigetafel zeigt: 23:49. Oder 23:43. Die Ziffern klappen, aber du kannst ihnen nicht folgen.
 
-Kein Text. Kein „Nächster Zug". Nur ein blinkendes Feld, leer wie der Bahnsteig.
+Du weißt nicht mehr, warum du hier bist. War es 1973? Nein, das kann nicht sein. Das ist… zu lange her.
 
-Du weißt nicht mehr, warum du hier bist. Die Erinnerung fühlt sich an wie ein Traum, der dir beim Aufwachen durch die Finger rinnt. Es gibt einen Grund – du bist sicher, dass es einen gab – aber er ist weg. Verschluckt.
+Die Luft riecht nach Zigarettenrauch. Alt. Jahrzehnte alt.
 
-Aber du weißt: Du wartest auf etwas.
-
-Die Luft riecht nach altem Zigarettenrauch und Maschinenöl. Kalt. Zu kalt für Juli. Du ziehst die Jacke enger, aber es hilft nicht. Die Kälte kommt von innen.`
+Die Gestalt mit der Zeitung ist näher gekommen. Oder du bist näher. Die Schlagzeile: „19. SEPTEMBER—". Das Datum. Heute? Gestern? Die Gestalt sieht auf. Aber wo das Gesicht sein sollte, ist nur Schwärze.`
       }
     ],
     choices: [
@@ -118,6 +118,16 @@ Die Luft riecht nach altem Zigarettenrauch und Maschinenöl. Kalt. Zu kalt für 
 Am Rand des Bahnsteigs: Eine gelbe Linie, abgeblättert. Dahinter die Schienen. Sie glänzen nicht. Kein Rost, aber auch kein Metall. Schwarz. Matt. Als wären sie aus etwas anderem gemacht.
 
 Die Uhr tickt nicht. Sie steht still. 23:47.
+
+Du greifst in deine Tasche. Da ist… etwas. Ein Gerät. Du ziehst es heraus.
+
+Ein rechteckiges Ding aus Plastik und Glas. Schwer. Zu schwer für seine Größe. Der Bildschirm ist schwarz. Du drückst darauf, suchst nach einem Knopf, aber… es reagiert nicht. Oder doch? Für einen Moment flackert das Display auf – nicht mit Icons oder Apps, sondern mit statischem Rauschen, wie bei einem alten Fernseher.
+
+Dann wird es wieder schwarz.
+
+Du starrst darauf. Das Ding fühlt sich fremd an in deiner Hand. Als gehörte es nicht hierher. Nicht in diese… Zeit. Der Gedanke kommt und geht, bevor du ihn greifen kannst.
+
+Du steckst es zurück. Deine Hand zittert.
 
 Du drehst dich um. Am anderen Ende des Bahnsteigs – vielleicht hundert Meter entfernt – flackert eine zweite Neonröhre. Zwischen dir und ihr: Nichts. Keine Schatten. Keine Bewegung. Nur Beton und diese falsche Stille.
 
@@ -188,7 +198,9 @@ Dann wird das Licht konstant. Die Röhre hört auf zu flackern. Das Brummen blei
       {
         id: 'continue',
         label: 'Weiter',
-        effects: [],
+        effects: [
+          { type: 'inc', target: 'memory_drift', value: 1 }
+        ],
         next: 'c1_s02_train_appears'
       }
     ],
@@ -433,15 +445,19 @@ Nur das Brummen, leise im Hintergrund. Konstant. Wie ein Herzschlag.`,
     title: 'Innen',
     narrative: `Der Zug setzt sich in Bewegung – sanft, als würde er schweben. Kein Ruck. Keine Beschleunigung. Er gleitet.
 
-Der Wagen ist ein Gang mit Abteilen. Rote Polstersitze, abgenutzt, mit hellen Flecken an den Armlehnen. Messinglampen, die flackern. Holzverkleidung, die nach altem Rauch riecht. Zigaretten, aber auch etwas anderes. Süßer.
+Der Wagen ist ein Gang mit Abteilen. Orange-braune Polstersitze, abgenutzt, mit diesem rauen, kratzigen Stoff, der in den Siebzigern überall war. Die Muster – geometrische Formen, braun auf orange – sind verblasst, an den Armlehnen fast weiß gerieben. Messinglampen mit milchigen Glasschirmen, die flackern. Holzverkleidung in dunklem Furnier, die nach altem Rauch riecht. Zigaretten, aber auch etwas anderes. Süßer. Nach Pfeifentabak vielleicht.
 
-Der Boden vibriert kaum merklich, mehr ein Puls als eine Bewegung. Unter deinen Schuhen ist der Teppich duenn, abgelaufen, an den Kanten hart vom Staub. An den Fenstern klebt ein feiner Film aus Kondenswasser, der kuehl ist, als du kurz mit dem Finger entlangfährst.
+Der Boden vibriert kaum merklich, mehr ein Puls als eine Bewegung. Unter deinen Schuhen ist der Teppich dünn, senfgelb mit braunen Streifen, abgelaufen, an den Kanten hart vom Staub. An den Fenstern klebt ein feiner Film aus Kondenswasser, der kühl ist, als du kurz mit dem Finger entlangfährst.
 
-Aus den Lampen kommt ein leises Summen, das nicht zum Flackern passt. Es haengt in der Luft wie ein Ton, den nur du hoerst. Irgendwo knackt Holz, als wuerde jemand im nächsten Abteil den Sitz verstellen, aber du siehst niemanden sich bewegen.
+Aus den Lampen kommt ein leises Summen, das nicht zum Flackern passt. Es hängt in der Luft wie ein Ton, den nur du hörst. Irgendwo knackt Holz, als würde jemand im nächsten Abteil den Sitz verstellen, aber du siehst niemanden sich bewegen.
 
-Zur Linken: Ein Mann, mittleren Alters, der aus dem Fenster starrt. Seine Augen sind rot umrandet. Als hätte er seit Tagen nicht geschlafen.
+An der Decke: Aschenbecher. Kleine metallene Klappen, die in die Wand eingelassen sind. In jedem Abteil. Du hast so etwas schon mal gesehen, aber… wann? Das war doch verboten worden. Vor Jahrzehnten.
 
-Zur Rechten: Ein leeres Abteil mit einem Koffer auf dem Sitz. Leder, verwittert. Niemand in der Nähe. Das Abteil ist unverschlossen.`,
+Niemand starrt auf Bildschirme. Niemand trägt Kopfhörer. Die Stille ist… echt. Ungebrochen.
+
+Zur Linken: Ein Mann, mittleren Alters, der aus dem Fenster starrt. Seine Augen sind rot umrandet. Als hätte er seit Tagen nicht geschlafen. Er trägt einen braunen Anzug mit breitem Revers. Die Krawatte ist zu breit. Alles an ihm wirkt… aus der Zeit gefallen.
+
+Zur Rechten: Ein leeres Abteil mit einem Koffer auf dem Sitz. Leder, verwittert, mit Messingschnallen. Niemand in der Nähe. Das Abteil ist unverschlossen.`,
     choices: [
       {
         id: 'talk_to_man',
@@ -1726,11 +1742,8 @@ Aber seine Hände zittern.`,
       }
     ],
     tags: ['station_end'],
-    exit_effects: [
-      { type: 'inc', target: 'memory_drift', value: 1 }
-    ],
     state_notes: [
-      'Erste station_end-Szene: memory_drift automatisch erhöht (R1)',
+      'Erste station_end-Szene: memory_drift automatisch erhöht durch Engine-R1 (keine manuellen exit_effects)',
       'Jackenfarbe ändert sich (Drift-Effekt), Sleepless reagiert nicht',
       'Zettel = Foreshadowing (später relevant)',
       'CONDITION: confront_jacket_change nur bei tickets_truth >= 3 ODER conductor_attention >= 3'
