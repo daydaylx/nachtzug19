@@ -52,6 +52,19 @@ function App() {
     soundEnabled: false
   });
 
+  // Subscribe to engine state changes (only in legacy mode)
+  useEffect(() => {
+    if (appMode !== 'legacy' || !engine) return;
+
+    const unsubscribe = engine.subscribe((newState) => {
+      setGameState({ ...newState });
+      if (newState.isGameOver) {
+        setView('ending');
+      }
+    });
+    return () => unsubscribe();
+  }, [appMode, engine]);
+
   // --- RENDER PLAYER APP ---
   if (appMode === 'player') {
     return <PlayerApp onExit={() => navigate('launcher')} />;
@@ -97,20 +110,6 @@ function App() {
   }
 
   // --- LEGACY LOGIC BELOW ---
-
-  // Subscribe to engine state changes
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  useEffect(() => {
-    if (!engine) return;
-
-    const unsubscribe = engine.subscribe((newState) => {
-      setGameState({ ...newState });
-      if (newState.isGameOver) {
-        setView('ending');
-      }
-    });
-    return () => unsubscribe();
-  }, [engine]);
 
   // Load Story
   const handleSelectStory = async (nextView: 'start' | 'debug' = 'start') => {

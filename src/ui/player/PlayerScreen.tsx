@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Scene, Choice, GameState } from '../../domain/types';
-import { resolveSceneNarrative } from '../../domain/engine/gameEngine';
+import { Scene, Choice, GameState, resolveSceneNarrative } from '../../domain/types';
 import { PlayerSettings } from './state/settings';
 import { Topbar } from './components/Topbar';
 import { ReaderCard } from './components/ReaderCard';

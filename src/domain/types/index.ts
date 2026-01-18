@@ -393,3 +393,9 @@ export function createInitialState(start_scene_id: string = 'c1_s01_platform'): 
     save_version: 1
   };
 }
+
+// ============================================================================
+// Utility Functions (Re-exported for UI layer)
+// ============================================================================
+
+export { resolveSceneNarrative } from '../engine/gameEngine';
