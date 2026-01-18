@@ -1,0 +1,51 @@
+# Gradle files
+.gradle/
+build/
+local.properties
+
+# Android Studio
+.idea/
+*.iml
+*.iws
+*.ipr
+.navigation/
+captures/
+
+# Keystore files
+*.jks
+*.keystore
+
+# External native build
+.cxx/
+.externalNativeBuild/
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Built application files
+*.apk
+*.aab
+*.ap_
+*.dex
+
+# Files for the ART/Dalvik VM
+*.dex
+*.class
+
+# Generated files
+bin/
+gen/
+out/
+
+# Signing files
+.signing/
+
+# Proguard folder
+proguard/
+
+# Log Files
+*.log
+
+# Android Profiling
+*.hprof
