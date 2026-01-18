@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { GameEngine } from '../domain/engine/gameEngine';
 import { GameState } from '../domain/types';
 import { loadNachtzug19Story, StoryBundle } from '../domain/engine/loadStory';
@@ -14,14 +14,29 @@ import { DebugPlayer } from '../ui/debug';
 import { PlayerApp } from '../ui/player/PlayerApp'; // Import New Player
 
 function App() {
-  // Mode selection state
-  // Check URL query param for direct access ?mode=player
-  const [appMode, setAppMode] = useState<'launcher' | 'player' | 'legacy'>('launcher');
+  const resolveMode = useCallback(() => {
+    const path = window.location.pathname;
+    if (path.startsWith('/play')) return 'player';
+    if (path.startsWith('/debug')) return 'legacy';
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('mode') === 'player') return 'player';
+    if (params.get('mode') === 'debug') return 'legacy';
+    return 'launcher';
+  }, []);
+
+  const [appMode, setAppMode] = useState<'launcher' | 'player' | 'legacy'>(() => resolveMode());
 
   useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    if (params.get('mode') === 'player') setAppMode('player');
-  }, []);
+    const handlePop = () => setAppMode(resolveMode());
+    window.addEventListener('popstate', handlePop);
+    return () => window.removeEventListener('popstate', handlePop);
+  }, [resolveMode]);
+
+  const navigate = (mode: 'launcher' | 'player' | 'legacy') => {
+    const path = mode === 'player' ? '/play' : mode === 'legacy' ? '/debug' : '/';
+    window.history.pushState({}, '', path);
+    setAppMode(mode);
+  };
 
   // --- LEGACY/DEBUG STATE ---
   const [engine, setEngine] = useState<GameEngine | null>(null);
@@ -39,7 +54,7 @@ function App() {
 
   // --- RENDER PLAYER APP ---
   if (appMode === 'player') {
-    return <PlayerApp onExit={() => setAppMode('launcher')} />;
+    return <PlayerApp onExit={() => navigate('launcher')} />;
   }
 
   // --- LAUNCHER SCREEN ---
@@ -53,7 +68,7 @@ function App() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-2xl">
             <button 
-                onClick={() => setAppMode('player')}
+                onClick={() => navigate('player')}
                 className="group relative overflow-hidden rounded-xl bg-amber-500 p-8 text-left transition-all hover:bg-amber-400"
             >
                 <div className="relative z-10">
@@ -66,7 +81,7 @@ function App() {
             </button>
 
             <button 
-                onClick={() => setAppMode('legacy')}
+                onClick={() => navigate('legacy')}
                 className="group relative overflow-hidden rounded-xl bg-stone-800 p-8 text-left transition-all hover:bg-stone-700 border border-stone-700"
             >
                  <div className="relative z-10">
@@ -185,7 +200,7 @@ function App() {
         <HeaderBar
             title={currentScene?.title || currentScene?.titel || ''}
             onMenuToggle={() => setIsMenuOpen(true)}
-            onExit={() => setAppMode('launcher')} 
+            onExit={() => navigate('launcher')} 
         />
       )}
 
@@ -220,7 +235,7 @@ function App() {
               </div>
 
               <div className="mt-8 text-center">
-                  <button onClick={() => setAppMode('launcher')} className="text-sm text-stone-500 underline">Zurück zum Launcher</button>
+                  <button onClick={() => navigate('launcher')} className="text-sm text-stone-500 underline">Zurück zum Launcher</button>
               </div>
 
               {isLoading && (

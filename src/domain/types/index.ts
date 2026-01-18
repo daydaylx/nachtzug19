@@ -202,7 +202,7 @@ export type Condition = SimpleCondition | BooleanCondition | AndCondition | OrCo
 /**
  * Scene Tags - Markierungen für spezielle Szenen
  */
-export type SceneTag = 'station_end' | 'control' | 'reveal' | 'drift_variant' | 'secret' | 'setup';
+export type SceneTag = 'station_end' | 'control' | 'reveal' | 'drift_variant' | 'drift_seed' | 'interlude' | 'secret' | 'setup' | 'announcement';
 
 /**
  * Choice - Eine Entscheidungsmöglichkeit

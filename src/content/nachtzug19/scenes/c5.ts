@@ -793,23 +793,6 @@ Seine Stimme zittert leicht.
         ],
         next: 'c5_s11_corridor_encounter'
       },
-      {
-        id: 'comfort_boy',
-        label: '„Du musst nicht aussteigen, wenn du nicht willst."',
-        effects: [
-          { type: 'inc', target: 'tickets_love', value: 1 },
-          { type: 'inc', target: 'rel_boy', value: 1 }
-        ],
-        next: 'c5_s11_corridor_encounter'
-      },
-      {
-        id: 'tell_truth_boy',
-        label: '„Ich weiß es nicht."',
-        effects: [
-          { type: 'inc', target: 'tickets_truth', value: 1 }
-        ],
-        next: 'c5_s11_corridor_encounter'
-      }
     ],
     state_notes: [
       'Recorder/Tag19 Items sind hier relevant',
@@ -1958,11 +1941,8 @@ Comp7 steht dort. Im Türrahmen des Zuges.
       }
     ],
     tags: ['station_end'],
-    exit_effects: [
-      { type: 'inc', target: 'memory_drift', value: 1 }
-    ],
     state_notes: [
-      'Station-End: memory_drift +1 (R1)',
+      'Station-End: memory_drift automatisch erhöht durch Engine-R1 (keine manuellen exit_effects)',
       'Station-End: Übergang zu Kapitel 6',
       'Comp7 hält den Spieler im Zug',
       'Noch eine Station bis zum wahren Ende'

@@ -8,7 +8,8 @@
     "build": "tsc && vite build",
     "preview": "vite preview",
     "test": "vitest",
-    "validate": "tsx scripts/validate.ts"
+    "validate": "tsx scripts/validate.ts",
+    "export:story": "tsx scripts/export_story_json.ts"
   },
   "dependencies": {
     "react": "^18.2.0",

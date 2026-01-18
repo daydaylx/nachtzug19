@@ -87,5 +87,12 @@ export const nachtzug19Endings: EndingsCollection = {
     title: 'Verbindung',
     beschreibung: 'Du folgst jemandem. Jemand, der wichtig war. Wichtig ist. Die Reise geht weiter – aber nicht allein.',
     narrative: 'Du folgst jemandem. Jemand, der wichtig war. Wichtig ist. Die Reise geht weiter – aber nicht allein.'
+  },
+  'limbo_ending': {
+    id: 'limbo_ending',
+    titel: 'Limbus',
+    title: 'Limbus',
+    beschreibung: 'Du bleibst. Weder hier noch dort. Im Zwischenraum. Die Fahrt endet nie – und beginnt nie neu.',
+    narrative: 'Du bleibst. Weder hier noch dort. Im Zwischenraum. Die Fahrt endet nie – und beginnt nie neu.'
   }
 };

@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback, useRef } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { GameEngine } from '../../../domain/engine/gameEngine';
 import { GameState, Choice, Scene } from '../../../domain/types';
 import { loadNachtzug19Story } from '../../../domain/engine/loadStory';
@@ -16,54 +16,44 @@ export interface PlayerSession {
   canContinue: boolean;
 }
 
+const SAVE_KEY = 'nachtzug19_save_auto';
+
 export function usePlayerSession() {
   const [engine, setEngine] = useState<GameEngine | null>(null);
   const [gameState, setGameState] = useState<GameState | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  
-  // Ref to avoid effect loops
-  const engineRef = useRef<GameEngine | null>(null);
+  const [startSceneId, setStartSceneId] = useState<string | null>(null);
 
-  // Initialize Engine and Content
   useEffect(() => {
     async function init() {
       try {
         const bundle = await loadNachtzug19Story();
-        
-        // Setup Engine
+
         const newEngine = new GameEngine(
-          bundle.scenes, 
-          bundle.endings, 
+          bundle.scenes,
+          bundle.endings,
           bundle.startSceneId
         );
-        
-        engineRef.current = newEngine;
+
         setEngine(newEngine);
-        
-        // Initial state from engine (default start)
+        setStartSceneId(bundle.startSceneId);
         setGameState(newEngine.getState());
-        
-        // Try to verify if we have a savegame to continue
-        // We don't load it yet, just check
-        // Logic handled in 'canContinue' derived state below
-        
       } catch (err: any) {
         setError(`Failed to load story content: ${err.message}`);
       } finally {
         setIsLoading(false);
       }
     }
-    
+
     init();
   }, []);
 
-  // Subscribe to Engine Updates
   useEffect(() => {
     if (!engine) return;
 
     const unsubscribe = engine.subscribe((newState) => {
-      setGameState({ ...newState }); // Spread to trigger re-render
+      setGameState({ ...newState });
     });
 
     return () => unsubscribe();
@@ -72,6 +62,7 @@ export function usePlayerSession() {
   const makeChoice = useCallback((choice: Choice) => {
     if (!engine) return;
     try {
+      setError(null);
       engine.makeChoice(choice);
     } catch (err: any) {
       setError(`Engine Error: ${err.message}`);
@@ -80,23 +71,28 @@ export function usePlayerSession() {
 
   const restartGame = useCallback(() => {
     if (!engine) return;
-    engine.startGame();
-  }, [engine]);
+    setError(null);
+    engine.startGame(startSceneId || undefined);
+  }, [engine, startSceneId]);
 
   const continueGame = useCallback(() => {
     if (!engine) return;
-    const loaded = engine.loadGame('auto'); // Uses default 'auto' slot
+    setError(null);
+    const loaded = engine.loadGame('auto');
     if (!loaded) {
-      // Fallback if load fails (shouldn't happen if button is enabled)
-      engine.startGame();
+      engine.startGame(startSceneId || undefined);
     }
-  }, [engine]);
+  }, [engine, startSceneId]);
 
-  // Check if save exists
   const hasSaveGame = useCallback(() => {
-    // Basic check without actually loading
     try {
-      return !!localStorage.getItem('nachtzug19_save_auto');
+      const saved = localStorage.getItem(SAVE_KEY);
+      if (!saved) return false;
+      const parsed = JSON.parse(saved) as any;
+      if (parsed && typeof parsed.version === 'number') return true;
+      if (parsed && parsed.state && typeof parsed.state.save_version === 'number') return true;
+      if (parsed && typeof parsed.save_version === 'number') return true;
+      return false;
     } catch {
       return false;
     }

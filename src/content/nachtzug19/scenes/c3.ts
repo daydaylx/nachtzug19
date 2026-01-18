@@ -1597,21 +1597,6 @@ Seine Stimme ist tiefer. Mechanischer. „Oder Sie können nichts geben. Dann ko
         ],
         next: 'c3_control_02_aftermath'
       },
-      {
-        id: 'offer_nothing',
-        label: '„Ich steige nächste Station aus."',
-        condition: {
-          type: 'compare',
-          target: 'conductor_attention',
-          operator: '>=',
-          value: 3
-        },
-        effects: [
-          { type: 'inc', target: 'tickets_escape', value: 1 },
-          { type: 'inc', target: 'conductor_attention', value: 3 }
-        ],
-        next: 'c3_control_02_aftermath'
-      }
     ],
     tags: ['control'],
     state_notes: [
@@ -2033,11 +2018,8 @@ Durch das Fenster siehst du: Die Gestalt öffnet ein Notizbuch. Beginnt zu schre
       }
     ],
     tags: ['station_end'],
-    exit_effects: [
-      { type: 'inc', target: 'memory_drift', value: 1 }
-    ],
     state_notes: [
-      'Dritte station_end: memory_drift +1 (automatisch)',
+      'Dritte station_end: memory_drift automatisch erhöht durch Engine-R1 (keine manuellen exit_effects)',
       'Doppelgänger steigt ein: Identity-Drift',
       'Übergang zu Kapitel 4 (Spiegelung)'
     ],

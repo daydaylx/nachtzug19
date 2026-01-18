@@ -65,7 +65,8 @@ Von weiter vorn kommt ein Metallklackern, als wuerde irgendwo eine Tuer einraste
         id: 'keep_walking',
         label: 'Weitergehen',
         effects: [
-          { type: 'inc', target: 'tickets_guilt', value: 1 }
+          { type: 'inc', target: 'tickets_guilt', value: 1 },
+          { type: 'inc', target: 'conductor_attention', value: 1 }
         ],
         next: 'c2_s01a_passenger_examination'
       }
@@ -74,7 +75,8 @@ Von weiter vorn kommt ein Metallklackern, als wuerde irgendwo eine Tuer einraste
     state_notes: [
       'Jacke des Schlaflosen wechselt (blau -> schwarz)',
       'Boy-Intro: Love-Ticket für Kontakt',
-      'search_self führt zu Taschen-Szene'
+      'search_self führt zu Taschen-Szene',
+      'keep_walking erhöht conductor_attention (Vermeidung fällt auf)'
     ],
     atmosphere: 'normal'
   },
@@ -96,7 +98,8 @@ Niemand redet. Niemand hustet. Niemand bewegt sich, außer in winzigen, mechanis
 
 Du fragst dich: Haben die Tickets? Oder tun sie nur so?
 
-Der Junge mit dem Kassettenrekorder sitzt noch da. Wartet auf etwas.`,
+Der Junge mit dem Kassettenrekorder sitzt noch da. Wartet auf etwas.
+`,
     choices: [
       {
         id: 'approach_newspaper_woman',
@@ -129,7 +132,8 @@ Der Junge mit dem Kassettenrekorder sitzt noch da. Wartet auf etwas.`,
     state_notes: [
       'Zeitungs-Schlagzeile unlesbar, Buchstaben bewegen sich: Drift-Detail',
       'Laptop zeigt nur pulsierendes Blau: keine Inhalte',
-      'approach_newspaper_woman erhöht Attention (fällt auf)'
+      'approach_newspaper_woman erhöht Attention (fällt auf)',
+      'conductor_attention >= 2 zeigt Feedback für keep_walking Choice'
     ],
     atmosphere: 'mystic'
   },
@@ -1716,11 +1720,8 @@ Sie zeigt auf eine Zeile:
       }
     ],
     tags: ['station_end'],
-    exit_effects: [
-      { type: 'inc', target: 'memory_drift', value: 1 }
-    ],
     state_notes: [
-      'Zweite station_end: memory_drift +1 (R1)',
+      'Zweite station_end: memory_drift automatisch erhöht durch Engine-R1 (keine manuellen exit_effects)',
       'Drift-Effects: Sleepless/Jacke verändert, Junge weg, Comp7 klarer',
       'Meta-Hinweis: Comp7 schreibt "Spieler geht zu Kapitel 3"'
     ],

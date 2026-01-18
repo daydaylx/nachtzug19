@@ -368,34 +368,6 @@ Dann ist sie weg.`,
           { type: 'inc', target: 'tickets_truth', value: 1 }
         ],
         next: 'c7_s04_boy_transformation'
-      },
-      {
-        id: 'hesitate_recognized',
-        label: 'Zögern',
-        condition: {
-          type: 'compare',
-          target: 'tickets_truth',
-          operator: '>=',
-          value: 4
-        },
-        effects: [
-          { type: 'inc', target: 'tickets_guilt', value: 1 }
-        ],
-        next: 'c7_s04_boy_recognized'
-      },
-      {
-        id: 'hesitate',
-        label: 'Zögern',
-        condition: {
-          type: 'compare',
-          target: 'tickets_truth',
-          operator: '<',
-          value: 4
-        },
-        effects: [
-          { type: 'inc', target: 'tickets_guilt', value: 1 }
-        ],
-        next: 'c7_s04_boy_transformation'
       }
     ],
     state_notes: [
@@ -1340,34 +1312,6 @@ Blendend.`,
         },
         effects: [
           { type: 'inc', target: 'tickets_guilt', value: 1 }
-        ],
-        next: 'c7_s13_seven_price'
-      },
-      {
-        id: 'ask_questions_recognized',
-        label: '„Was ist der Preis?"',
-        condition: {
-          type: 'compare',
-          target: 'tickets_truth',
-          operator: '>=',
-          value: 4
-        },
-        effects: [
-          { type: 'inc', target: 'tickets_truth', value: 1 }
-        ],
-        next: 'c7_s13_comp7_recognized'
-      },
-      {
-        id: 'ask_questions',
-        label: '„Was ist der Preis?"',
-        condition: {
-          type: 'compare',
-          target: 'tickets_truth',
-          operator: '<',
-          value: 4
-        },
-        effects: [
-          { type: 'inc', target: 'tickets_truth', value: 1 }
         ],
         next: 'c7_s13_seven_price'
       }
@@ -2387,14 +2331,6 @@ Welchen Preis zahlst du?`,
           { type: 'inc', target: 'memory_drift', value: 2 }
         ],
         next: 'c7_s21_photo_revelation'
-      },
-      {
-        id: 'refuse_sacrifice',
-        label: 'Nichts opfern',
-        effects: [
-          { type: 'inc', target: 'tickets_truth', value: 1 }
-        ],
-        next: 'c7_s21_photo_revelation'
       }
     ],
     state_notes: [
@@ -2965,20 +2901,6 @@ Was nimmst du mit… ins Danach?`,
           { type: 'set', target: 'chapter_index', value: 8 }
         ],
         ending: 'truth_ending'
-      },
-      {
-        id: 'escape_path',
-        label: 'Zurück in den Zug – für immer sicher',
-        condition: {
-          type: 'compare',
-          target: 'tickets_escape',
-          operator: '>=',
-          value: 6
-        },
-        effects: [
-          { type: 'set', target: 'chapter_index', value: 8 }
-        ],
-        ending: 'escape_ending'
       },
       {
         id: 'guilt_path',
