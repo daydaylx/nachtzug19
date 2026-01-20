@@ -23,7 +23,7 @@ class MainActivity : ComponentActivity() {
 
     setContent {
       NachtzugTheme {
-        AppRoot(viewModel)
+        AppRoot(viewModel, onExit = { finish() })
       }
     }
   }

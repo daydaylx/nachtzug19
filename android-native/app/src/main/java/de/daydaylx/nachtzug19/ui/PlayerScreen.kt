@@ -55,6 +55,10 @@ import de.daydaylx.nachtzug19.model.ReaderSettings
 import de.daydaylx.nachtzug19.model.SceneTag
 import de.daydaylx.nachtzug19.ui.components.*
 
+import androidx.activity.compose.BackHandler
+import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.TextButton
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun PlayerScreen(
@@ -62,11 +66,42 @@ fun PlayerScreen(
   onChoice: (Choice) -> Unit,
   onReset: () -> Unit,
   onOpenSettings: () -> Unit,
-  onUpdateSettings: (ReaderSettings) -> Unit
+  onUpdateSettings: (ReaderSettings) -> Unit,
+  onExit: () -> Unit
 ) {
   var showStatus by remember { mutableStateOf(false) }
+  var showExitDialog by remember { mutableStateOf(false) }
+  
   val settings = uiState.settings
   val animationsEnabled = !settings.reduceMotion && settings.immersionFx
+
+  BackHandler {
+    showExitDialog = true
+  }
+
+  if (showExitDialog) {
+    AlertDialog(
+      onDismissRequest = { showExitDialog = false },
+      title = { Text("Spiel beenden?") },
+      text = { Text("Dein Fortschritt wird automatisch gespeichert.") },
+      confirmButton = {
+        TextButton(onClick = { 
+          showExitDialog = false
+          onExit() 
+        }) {
+          Text("Beenden")
+        }
+      },
+      dismissButton = {
+        TextButton(onClick = { showExitDialog = false }) {
+          Text("Abbrechen")
+        }
+      },
+      containerColor = MaterialTheme.colorScheme.surface,
+      titleContentColor = MaterialTheme.colorScheme.onSurface,
+      textContentColor = MaterialTheme.colorScheme.onSurfaceVariant
+    )
+  }
 
   Scaffold(
     topBar = {

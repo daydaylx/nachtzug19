@@ -13,7 +13,11 @@ private const val ROUTE_PLAYER = "player"
 private const val ROUTE_SETTINGS = "settings"
 
 @Composable
-fun AppRoot(viewModel: GameViewModel, navController: NavHostController = rememberNavController()) {
+fun AppRoot(
+  viewModel: GameViewModel, 
+  onExit: () -> Unit,
+  navController: NavHostController = rememberNavController()
+) {
   val uiState by viewModel.uiState.collectAsState()
 
   NavHost(navController = navController, startDestination = ROUTE_PLAYER) {
@@ -23,7 +27,8 @@ fun AppRoot(viewModel: GameViewModel, navController: NavHostController = remembe
         onChoice = { viewModel.makeChoice(it) },
         onReset = { viewModel.resetGame() },
         onOpenSettings = { navController.navigate(ROUTE_SETTINGS) },
-        onUpdateSettings = { viewModel.updateSettings(it) }
+        onUpdateSettings = { viewModel.updateSettings(it) },
+        onExit = onExit
       )
     }
     composable(ROUTE_SETTINGS) {
