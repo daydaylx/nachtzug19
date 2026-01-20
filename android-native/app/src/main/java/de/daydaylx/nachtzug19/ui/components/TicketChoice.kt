@@ -3,30 +3,73 @@ package de.daydaylx.nachtzug19.ui.components
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.draw.drawWithContent
 import androidx.compose.ui.draw.scale
-import androidx.compose.ui.geometry.Offset
-import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.geometry.Rect
+import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.drawscope.Stroke
+import androidx.compose.ui.graphics.Outline
+import androidx.compose.ui.graphics.Path
+import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.Density
+import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import de.daydaylx.nachtzug19.ui.theme.NachtzugColors
+
+private class TicketShape(
+  private val cornerRadius: Float,
+  private val holeRadius: Float,
+  private val holeCount: Int = 7
+) : Shape {
+  override fun createOutline(
+    size: Size,
+    layoutDirection: LayoutDirection,
+    density: Density
+  ): Outline {
+    val path = Path().apply {
+      // Main rectangle with rounded corners
+      addRoundRect(
+        androidx.compose.ui.geometry.RoundRect(
+          rect = Rect(0f, 0f, size.width, size.height),
+          radiusX = cornerRadius,
+          radiusY = cornerRadius
+        )
+      )
+
+      // Cut out holes on the right edge
+      val holeSpacing = size.height / (holeCount + 1)
+      val holeX = size.width // Right edge center of hole
+      
+      for (i in 1..holeCount) {
+        val holeY = holeSpacing * i
+        val holeRect = Rect(
+          left = holeX - holeRadius,
+          top = holeY - holeRadius,
+          right = holeX + holeRadius,
+          bottom = holeY + holeRadius
+        )
+        // Creating a small path for the hole and subtracting it
+        val holePath = Path().apply { addOval(holeRect) }
+        op(this, holePath, androidx.compose.ui.graphics.PathOperation.Difference)
+      }
+    }
+    return Outline.Generic(path)
+  }
+}
 
 @Composable
 fun TicketChoice(
@@ -42,73 +85,70 @@ fun TicketChoice(
     animationSpec = androidx.compose.animation.core.tween(150)
   )
 
-  Card(
+  // Visual constants
+  val cornerRadius = 12.dp
+  val holeRadius = 4.dp
+  
+  // Custom Shape for the ticket
+  val ticketShape = remember { TicketShape(cornerRadius.value * 3f, holeRadius.value * 3f) }
+
+  Surface(
     modifier = modifier
       .fillMaxWidth()
       .scale(scale)
-      .drawWithContent {
-        drawContent()
-        // Punch holes along right edge
-        val holeSize = 4.dp.toPx()
-        val holeSpacing = 8.dp.toPx()
-        val startX = size.width - 6.dp.toPx()
-        val centerY = size.height / 2
-        
-        for (i in -3..3) {
-          drawCircle(
-            color = Color.Black.copy(alpha = 0.4f),
-            radius = holeSize / 2,
-            center = Offset(
-              x = startX,
-              y = centerY + (i * holeSpacing)
-            ),
-            style = Stroke(width = 1.dp.toPx())
-          )
-        }
-      },
-    shape = RoundedCornerShape(12.dp),
-    colors = CardDefaults.cardColors(
-      containerColor = NachtzugColors.TicketEmpty
-    ),
-    border = BorderStroke(
-      width = 1.dp,
-      color = NachtzugColors.ReaderBorder.copy(alpha = 0.3f)
-    ),
-    onClick = {
-      if (!isProcessing) {
+      .shadow(4.dp, ticketShape, spotColor = Color.Black)
+      .clickable(enabled = !isProcessing) {
         isPressed = true
         onClick()
-      }
-    }
+      },
+    shape = ticketShape,
+    color = NachtzugColors.TicketEmpty,
+    border = BorderStroke(
+      width = 1.dp,
+      color = if (isPressed) NachtzugColors.StationNeon.copy(alpha = 0.5f) 
+              else NachtzugColors.ReaderBorder.copy(alpha = 0.3f)
+    )
   ) {
     Row(
       modifier = Modifier
         .fillMaxWidth()
-        .padding(horizontal = 16.dp, vertical = 14.dp),
+        .padding(horizontal = 16.dp, vertical = 16.dp),
       horizontalArrangement = Arrangement.SpaceBetween,
       verticalAlignment = Alignment.CenterVertically
     ) {
       Text(
         text = label,
         style = MaterialTheme.typography.bodyLarge.copy(
-          fontSize = 15.sp,
+          fontSize = 16.sp,
           fontFamily = FontFamily.SansSerif,
-          color = MaterialTheme.colorScheme.onSurface
+          color = if (isPressed) NachtzugColors.StationNeon else MaterialTheme.colorScheme.onSurface
         ),
         textAlign = TextAlign.Start,
-        modifier = Modifier.weight(1f),
+        modifier = Modifier
+          .weight(1f)
+          .padding(end = 16.dp),
         maxLines = 2
       )
 
-      // Small ticket icon decoration
+      // Ticket stamp area
       Box(
         modifier = Modifier
-          .size(24.dp)
+          .size(32.dp)
           .background(
-            color = NachtzugColors.TicketFilled.copy(alpha = 0.1f),
+            color = if (isPressed) NachtzugColors.StationNeon.copy(alpha = 0.2f) 
+                    else NachtzugColors.TicketFilled.copy(alpha = 0.1f),
             shape = CircleShape
+          ),
+        contentAlignment = Alignment.Center
+      ) {
+        Text(
+          text = "19",
+          style = MaterialTheme.typography.labelSmall.copy(
+            fontSize = 10.sp,
+            color = if (isPressed) NachtzugColors.StationNeon else NachtzugColors.TicketFilled.copy(alpha = 0.5f)
           )
-      )
+        )
+      }
     }
   }
 
