@@ -1,0 +1,16 @@
+
+> nachtzug19@1.0.0 type-check
+> tsc --noEmit
+
+src/domain/engine/validateContent.test.ts(47,7): error TS2739: Type '{ id: string; title: string; narrative: string; }' is missing the following properties from type 'Ending': titel, beschreibung
+src/domain/engine/validateContent.test.ts(118,7): error TS2739: Type '{ id: string; title: string; narrative: string; }' is missing the following properties from type 'Ending': titel, beschreibung
+src/domain/engine/validateContent.test.ts(172,7): error TS2739: Type '{ id: string; title: string; narrative: string; }' is missing the following properties from type 'Ending': titel, beschreibung
+src/domain/engine/validateContent.test.ts(212,7): error TS2739: Type '{ id: string; title: string; narrative: string; }' is missing the following properties from type 'Ending': titel, beschreibung
+src/domain/engine/validateContent.test.ts(264,7): error TS2739: Type '{ id: string; title: string; narrative: string; }' is missing the following properties from type 'Ending': titel, beschreibung
+src/domain/engine/validateContent.test.ts(301,7): error TS2739: Type '{ id: string; title: string; narrative: string; }' is missing the following properties from type 'Ending': titel, beschreibung
+src/domain/engine/validateContent.test.ts(362,7): error TS2739: Type '{ id: string; title: string; narrative: string; }' is missing the following properties from type 'Ending': titel, beschreibung
+src/domain/engine/validateContent.ts(303,41): error TS2345: Argument of type 'NarrativeVariant[]' is not assignable to parameter of type '{ min_drift: number; narrative: string; replace_mode?: "full" | "overlay" | undefined; }[]'.
+  Type 'NarrativeVariant' is not assignable to type '{ min_drift: number; narrative: string; replace_mode?: "full" | "overlay" | undefined; }'.
+    Types of property 'min_drift' are incompatible.
+      Type 'number | undefined' is not assignable to type 'number'.
+        Type 'undefined' is not assignable to type 'number'.

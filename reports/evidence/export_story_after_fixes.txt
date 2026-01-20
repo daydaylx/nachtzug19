@@ -1,0 +1,11 @@
+
+> nachtzug19@1.0.0 export:story
+> tsx scripts/export_story_json.ts
+
+📦 Exportiere NACHTZUG 19 Story...
+
+✅ Content-Validierung erfolgreich
+
+Zusammenfassung: 0 Errors, 0 Warnings
+✅ Story exportiert: /home/user/nachtzug19/export/story.json
+✅ Kopiert nach Android Assets: /home/user/nachtzug19/android-native/app/src/main/assets/story.json
