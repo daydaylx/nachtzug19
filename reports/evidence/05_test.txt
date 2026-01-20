@@ -1,0 +1,17 @@
+
+> nachtzug19@1.0.0 test
+> vitest
+
+
+[1m[46m RUN [49m[22m [36mv4.0.17 [39m[90m/app[39m
+
+ [32m✓[39m src/domain/engine/validateContent.test.ts [2m([22m[2m8 tests[22m[2m)[22m[32m 11[2mms[22m[39m
+[90mstdout[2m | src/domain/engine/gameEngine.test.ts[2m > [22m[2mNACHTZUG 19 engine integration[2m > [22m[2mapplies choice effects and moves to the next scene
+[22m[39m[Transition] c1_s01_platform -> c1_s01a_platform_details
+
+ [32m✓[39m src/domain/engine/gameEngine.test.ts [2m([22m[2m9 tests[22m[2m)[22m[33m 398[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m2 passed[39m[22m[90m (2)[39m
+[2m      Tests [22m [1m[32m17 passed[39m[22m[90m (17)[39m
+[2m   Start at [22m 08:54:34
+[2m   Duration [22m 765ms[2m (transform 608ms, setup 0ms, import 327ms, tests 409ms, environment 0ms)[22m

@@ -1,0 +1,5939 @@
+{
+  "nodes": [
+    {
+      "id": "c1_end_platform_look",
+      "chapter": 1,
+      "tags": [],
+      "choiceIds": [
+        "observe_silently",
+        "ask_sleepless",
+        "check_clock_again",
+        "scan_exits"
+      ]
+    },
+    {
+      "id": "c1_end_station",
+      "chapter": 1,
+      "tags": [
+        "station_end"
+      ],
+      "choiceIds": [
+        "continue_to_chapter_2",
+        "confront_jacket_change",
+        "nod_to_conductor"
+      ]
+    },
+    {
+      "id": "c1_interlude_01_lights",
+      "chapter": 1,
+      "tags": [
+        "drift_seed"
+      ],
+      "choiceIds": [
+        "close_eyes",
+        "trace_shadow",
+        "avert_eyes",
+        "continue"
+      ]
+    },
+    {
+      "id": "c1_interlude_02_silence",
+      "chapter": 1,
+      "tags": [
+        "drift_seed"
+      ],
+      "choiceIds": [
+        "stay_quiet",
+        "test_voice",
+        "continue"
+      ]
+    },
+    {
+      "id": "c1_interlude_03_window",
+      "chapter": 1,
+      "tags": [
+        "drift_seed"
+      ],
+      "choiceIds": [
+        "touch_glass",
+        "continue"
+      ]
+    },
+    {
+      "id": "c1_interlude_04_clock",
+      "chapter": 1,
+      "tags": [
+        "drift_seed"
+      ],
+      "choiceIds": [
+        "note_time",
+        "continue"
+      ]
+    },
+    {
+      "id": "c1_interlude_05_vibration",
+      "chapter": 1,
+      "tags": [
+        "drift_seed"
+      ],
+      "choiceIds": [
+        "steady_breath",
+        "reflect_on_vibration",
+        "continue",
+        "echo_tone"
+      ]
+    },
+    {
+      "id": "c1_s01_platform",
+      "chapter": 1,
+      "tags": [
+        "setup"
+      ],
+      "choiceIds": [
+        "look_around",
+        "check_phone",
+        "try_leave"
+      ]
+    },
+    {
+      "id": "c1_s01a_platform_details",
+      "chapter": 1,
+      "tags": [
+        "drift_seed"
+      ],
+      "choiceIds": [
+        "step_back",
+        "look_tracks",
+        "feel_guilty",
+        "edge_glance"
+      ]
+    },
+    {
+      "id": "c1_s02_train_appears",
+      "chapter": 1,
+      "tags": [
+        "setup"
+      ],
+      "choiceIds": [
+        "board_immediately",
+        "inspect_train",
+        "hesitate",
+        "call_out"
+      ]
+    },
+    {
+      "id": "c1_s02a_train_exterior",
+      "chapter": 1,
+      "tags": [
+        "reveal"
+      ],
+      "choiceIds": [
+        "board_now",
+        "touch_exterior",
+        "ask_aloud",
+        "watch_windows"
+      ]
+    },
+    {
+      "id": "c1_s03_inside_train",
+      "chapter": 1,
+      "tags": [],
+      "choiceIds": [
+        "talk_to_man",
+        "examine_suitcase",
+        "find_seat",
+        "choose_door_seat"
+      ]
+    },
+    {
+      "id": "c1_s03a_corridor_walk",
+      "chapter": 1,
+      "tags": [
+        "drift_seed"
+      ],
+      "choiceIds": [
+        "ask_child",
+        "look_at_drawing",
+        "keep_walking_past",
+        "follow_hum"
+      ]
+    },
+    {
+      "id": "c1_s03b_find_seat",
+      "chapter": 1,
+      "tags": [],
+      "choiceIds": [
+        "turn_around",
+        "ignore_voice",
+        "stay_with_window"
+      ]
+    },
+    {
+      "id": "c1_s04_sleepless_intro",
+      "chapter": 1,
+      "tags": [
+        "reveal"
+      ],
+      "choiceIds": [
+        "ask_where",
+        "ask_how_long",
+        "deny",
+        "stay_silent"
+      ]
+    },
+    {
+      "id": "c1_s04a_sleepless_past",
+      "chapter": 1,
+      "tags": [
+        "reveal"
+      ],
+      "choiceIds": [
+        "admit_searching",
+        "admit_running",
+        "ask_about_watch"
+      ]
+    },
+    {
+      "id": "c1_s04b_sleepless_warning",
+      "chapter": 1,
+      "tags": [
+        "reveal"
+      ],
+      "choiceIds": [
+        "thank_him",
+        "ask_more",
+        "dismiss",
+        "mention_reflection"
+      ]
+    },
+    {
+      "id": "c1_s05_first_anomaly",
+      "chapter": 1,
+      "tags": [
+        "drift_seed"
+      ],
+      "choiceIds": [
+        "write_it_down",
+        "ignore_anomaly",
+        "ask_sleepless",
+        "analyze_announcement"
+      ]
+    },
+    {
+      "id": "c1_s05a_other_passengers",
+      "chapter": 1,
+      "tags": [
+        "setup"
+      ],
+      "choiceIds": [
+        "count_passengers",
+        "approach_woman",
+        "leave_them_alone",
+        "stay_inconspicuous"
+      ]
+    },
+    {
+      "id": "c1_s05b_compartment7_tease",
+      "chapter": 1,
+      "tags": [
+        "reveal",
+        "setup"
+      ],
+      "choiceIds": [
+        "knock_on_door",
+        "listen_to_sleepless",
+        "feel_drawn",
+        "examine_door_quietly"
+      ]
+    },
+    {
+      "id": "c1_s05c_announcement_repeat",
+      "chapter": 1,
+      "tags": [
+        "drift_seed"
+      ],
+      "choiceIds": [
+        "follow_woman",
+        "repeat_word",
+        "stay_back",
+        "name_the_time"
+      ]
+    },
+    {
+      "id": "c1_s05d_comp7_listen",
+      "chapter": 1,
+      "tags": [
+        "reveal"
+      ],
+      "choiceIds": [
+        "knock_again",
+        "step_away",
+        "speak_through_door",
+        "hold_position"
+      ]
+    },
+    {
+      "id": "c1_s06_corridor_end",
+      "chapter": 1,
+      "tags": [
+        "drift_seed"
+      ],
+      "choiceIds": [
+        "enter_next_wagon",
+        "stay_in_wagon"
+      ]
+    },
+    {
+      "id": "c1_s07_stranger_encounter",
+      "chapter": 1,
+      "tags": [
+        "reveal",
+        "drift_variant"
+      ],
+      "choiceIds": [
+        "search_wagon",
+        "answer_voice",
+        "go_back"
+      ]
+    },
+    {
+      "id": "c2_control_01_aftermath",
+      "chapter": 2,
+      "tags": [
+        "reveal"
+      ],
+      "choiceIds": [
+        "confront_sleepless",
+        "ask_comp7_meaning",
+        "stay_silent",
+        "look_for_boy"
+      ]
+    },
+    {
+      "id": "c2_control_01_approach",
+      "chapter": 2,
+      "tags": [
+        "control"
+      ],
+      "choiceIds": [
+        "wait_silent",
+        "look_to_sleepless",
+        "apologize",
+        "notice_voice_distortion"
+      ]
+    },
+    {
+      "id": "c2_control_01_question",
+      "chapter": 2,
+      "tags": [
+        "control"
+      ],
+      "choiceIds": [
+        "offer_truth",
+        "offer_search",
+        "offer_escape",
+        "use_recorder"
+      ]
+    },
+    {
+      "id": "c2_end_platform_watch",
+      "chapter": 2,
+      "tags": [],
+      "choiceIds": [
+        "tell_others",
+        "keep_silent",
+        "lower_gaze",
+        "recognize_figure"
+      ]
+    },
+    {
+      "id": "c2_end_station",
+      "chapter": 2,
+      "tags": [
+        "station_end"
+      ],
+      "choiceIds": [
+        "play_recorder",
+        "continue_to_chapter_3",
+        "think_of_boy"
+      ]
+    },
+    {
+      "id": "c2_interlude_01_toilet",
+      "chapter": 2,
+      "tags": [
+        "drift_seed"
+      ],
+      "choiceIds": [
+        "stare_back",
+        "continue"
+      ]
+    },
+    {
+      "id": "c2_interlude_02_window_dark",
+      "chapter": 2,
+      "tags": [
+        "drift_seed"
+      ],
+      "choiceIds": [
+        "keep_staring",
+        "avoid_window",
+        "continue"
+      ]
+    },
+    {
+      "id": "c2_interlude_03_announcement_glitch",
+      "chapter": 2,
+      "tags": [
+        "drift_variant"
+      ],
+      "choiceIds": [
+        "cover_ears",
+        "look_for_boy",
+        "continue"
+      ]
+    },
+    {
+      "id": "c2_interlude_04_lights",
+      "chapter": 2,
+      "tags": [
+        "drift_seed"
+      ],
+      "choiceIds": [
+        "steady",
+        "continue"
+      ]
+    },
+    {
+      "id": "c2_interlude_05_vibration",
+      "chapter": 2,
+      "tags": [
+        "drift_seed"
+      ],
+      "choiceIds": [
+        "steady_breath",
+        "continue"
+      ]
+    },
+    {
+      "id": "c2_s01_ticket_search",
+      "chapter": 2,
+      "tags": [],
+      "choiceIds": [
+        "ask_boy",
+        "examine_passengers",
+        "search_self",
+        "keep_walking"
+      ]
+    },
+    {
+      "id": "c2_s01a_passenger_examination",
+      "chapter": 2,
+      "tags": [
+        "drift_seed"
+      ],
+      "choiceIds": [
+        "approach_newspaper_woman",
+        "decipher_headline",
+        "watch_laptop_man",
+        "go_to_boy"
+      ]
+    },
+    {
+      "id": "c2_s01b_ticket_pocket",
+      "chapter": 2,
+      "tags": [
+        "drift_seed"
+      ],
+      "choiceIds": [
+        "keep_note",
+        "throw_away"
+      ]
+    },
+    {
+      "id": "c2_s02_boy_recorder",
+      "chapter": 2,
+      "tags": [],
+      "choiceIds": [
+        "take_recorder",
+        "refuse_recorder",
+        "ask_why",
+        "observe_boy_silently"
+      ]
+    },
+    {
+      "id": "c2_s02a_recorder_listening",
+      "chapter": 2,
+      "tags": [
+        "reveal"
+      ],
+      "choiceIds": [
+        "rewind_again",
+        "put_away",
+        "keep_listening"
+      ]
+    },
+    {
+      "id": "c2_s02b_corridor_anomaly",
+      "chapter": 2,
+      "tags": [
+        "drift_variant"
+      ],
+      "choiceIds": [
+        "count_compartments",
+        "check_sleepless",
+        "approach_lit_compartment",
+        "question_reality"
+      ]
+    },
+    {
+      "id": "c2_s02c_boy_vanish",
+      "chapter": 2,
+      "tags": [
+        "drift_variant"
+      ],
+      "choiceIds": [
+        "insist_boy_real",
+        "doubt_self"
+      ]
+    },
+    {
+      "id": "c2_s03_comp7_intro",
+      "chapter": 2,
+      "tags": [],
+      "choiceIds": [
+        "ask_notebook",
+        "ask_name",
+        "deny_amnesia"
+      ]
+    },
+    {
+      "id": "c2_s03a_comp7_notebook",
+      "chapter": 2,
+      "tags": [
+        "reveal"
+      ],
+      "choiceIds": [
+        "read_future",
+        "refuse_knowledge",
+        "ask_purpose",
+        "close_notebook"
+      ]
+    },
+    {
+      "id": "c2_s03b_comp7_warning",
+      "chapter": 2,
+      "tags": [
+        "reveal"
+      ],
+      "choiceIds": [
+        "thank_comp7",
+        "ask_more_options",
+        "leave_quickly"
+      ]
+    },
+    {
+      "id": "c2_s04_announcement",
+      "chapter": 2,
+      "tags": [],
+      "choiceIds": [
+        "prepare_truth",
+        "prepare_lie",
+        "prepare_hide"
+      ]
+    },
+    {
+      "id": "c2_s04a_conductor_approach",
+      "chapter": 2,
+      "tags": [],
+      "choiceIds": [
+        "stand_ready",
+        "move_to_next_car",
+        "ask_comp7_help"
+      ]
+    },
+    {
+      "id": "c2_s04b_passengers_shift",
+      "chapter": 2,
+      "tags": [
+        "drift_variant"
+      ],
+      "choiceIds": [
+        "face_conductor",
+        "try_run"
+      ]
+    },
+    {
+      "id": "c2_s05a_sleepless_talk",
+      "chapter": 2,
+      "tags": [
+        "reveal"
+      ],
+      "choiceIds": [
+        "accept_truth",
+        "ask_for_anchor",
+        "reject_truth"
+      ]
+    },
+    {
+      "id": "c2_s05b_reality_shift",
+      "chapter": 2,
+      "tags": [
+        "reveal",
+        "drift_variant"
+      ],
+      "choiceIds": [
+        "ask_comp7_more",
+        "ignore_vision"
+      ]
+    },
+    {
+      "id": "c3_control_02_aftermath",
+      "chapter": 3,
+      "tags": [
+        "reveal"
+      ],
+      "choiceIds": [
+        "thank_comp7",
+        "ask_how_many",
+        "walk_away",
+        "hold_comp7_hand"
+      ]
+    },
+    {
+      "id": "c3_control_02_approach",
+      "chapter": 3,
+      "tags": [
+        "control"
+      ],
+      "choiceIds": [
+        "step_outside",
+        "stay_inside",
+        "trust_comp7_protection",
+        "analyze_conductor"
+      ]
+    },
+    {
+      "id": "c3_control_02_question",
+      "chapter": 3,
+      "tags": [
+        "control"
+      ],
+      "choiceIds": [
+        "offer_recorder",
+        "offer_recorder_memory",
+        "offer_truth",
+        "offer_someone"
+      ]
+    },
+    {
+      "id": "c3_end_platform_watch",
+      "chapter": 3,
+      "tags": [
+        "drift_variant"
+      ],
+      "choiceIds": [
+        "try_to_exit",
+        "stay_on_train",
+        "wave_to_figure"
+      ]
+    },
+    {
+      "id": "c3_end_station",
+      "chapter": 3,
+      "tags": [
+        "station_end"
+      ],
+      "choiceIds": [
+        "test_door_again",
+        "study_doppelganger",
+        "recognize_figure",
+        "continue_to_chapter_4"
+      ]
+    },
+    {
+      "id": "c3_interlude_01_lights",
+      "chapter": 3,
+      "tags": [
+        "drift_variant"
+      ],
+      "choiceIds": [
+        "continue"
+      ]
+    },
+    {
+      "id": "c3_interlude_02_announcement",
+      "chapter": 3,
+      "tags": [
+        "drift_variant"
+      ],
+      "choiceIds": [
+        "continue"
+      ]
+    },
+    {
+      "id": "c3_interlude_03_window",
+      "chapter": 3,
+      "tags": [
+        "drift_variant"
+      ],
+      "choiceIds": [
+        "continue",
+        "search_for_exit",
+        "count_reflections",
+        "call_to_boy_silently"
+      ]
+    },
+    {
+      "id": "c3_interlude_04_corridor",
+      "chapter": 3,
+      "tags": [
+        "drift_variant"
+      ],
+      "choiceIds": [
+        "continue"
+      ]
+    },
+    {
+      "id": "c3_interlude_05_mirror",
+      "chapter": 3,
+      "tags": [
+        "drift_variant"
+      ],
+      "choiceIds": [
+        "continue"
+      ]
+    },
+    {
+      "id": "c3_s01_wagen7_locked",
+      "chapter": 3,
+      "tags": [
+        "setup",
+        "drift_seed"
+      ],
+      "choiceIds": [
+        "try_to_open",
+        "wait_at_door",
+        "knock_on_door"
+      ]
+    },
+    {
+      "id": "c3_s01a_after_station",
+      "chapter": 3,
+      "tags": [
+        "drift_seed"
+      ],
+      "choiceIds": [
+        "take_notebook",
+        "leave_notebook",
+        "read_notebook"
+      ]
+    },
+    {
+      "id": "c3_s01b_boy_return",
+      "chapter": 3,
+      "tags": [
+        "reveal"
+      ],
+      "choiceIds": [
+        "play_own_recorder",
+        "refuse_to_check",
+        "ask_about_duplication",
+        "check_notebook_reference"
+      ]
+    },
+    {
+      "id": "c3_s02_recorder_anomaly",
+      "chapter": 3,
+      "tags": [
+        "reveal"
+      ],
+      "choiceIds": [
+        "listen_more",
+        "stop_recorder",
+        "ask_boy_how"
+      ]
+    },
+    {
+      "id": "c3_s02a_recorder_listening",
+      "chapter": 3,
+      "tags": [
+        "reveal"
+      ],
+      "choiceIds": [
+        "ask_what_answer",
+        "take_recorder_back"
+      ]
+    },
+    {
+      "id": "c3_s02b_corridor_shift",
+      "chapter": 3,
+      "tags": [
+        "drift_variant"
+      ],
+      "choiceIds": [
+        "ignore_sleepless",
+        "talk_to_sleepless",
+        "count_compartments",
+        "call_for_boy"
+      ]
+    },
+    {
+      "id": "c3_s02c_sleepless_talk",
+      "chapter": 3,
+      "tags": [
+        "reveal"
+      ],
+      "choiceIds": [
+        "ask_what_to_give",
+        "refuse_advice"
+      ]
+    },
+    {
+      "id": "c3_s03_wagen7_approach",
+      "chapter": 3,
+      "tags": [
+        "setup"
+      ],
+      "choiceIds": [
+        "enter_immediately",
+        "examine_door",
+        "call_out"
+      ]
+    },
+    {
+      "id": "c3_s03a_compartment7_door",
+      "chapter": 3,
+      "tags": [
+        "reveal"
+      ],
+      "choiceIds": [
+        "enter_cautiously",
+        "ask_from_doorway"
+      ]
+    },
+    {
+      "id": "c3_s03b_inside_comp7",
+      "chapter": 3,
+      "tags": [
+        "reveal"
+      ],
+      "choiceIds": [
+        "examine_notebooks",
+        "look_out_window",
+        "ask_comp7_explain"
+      ]
+    },
+    {
+      "id": "c3_s03c_notebooks_explore",
+      "chapter": 3,
+      "tags": [
+        "reveal"
+      ],
+      "choiceIds": [
+        "ask_when",
+        "deny",
+        "examine_photo",
+        "read_own_entry"
+      ]
+    },
+    {
+      "id": "c3_s04_comp7_truth",
+      "chapter": 3,
+      "tags": [
+        "reveal"
+      ],
+      "choiceIds": [
+        "accept_truth",
+        "deny_truth",
+        "ask_who"
+      ]
+    },
+    {
+      "id": "c3_s04a_paradox_window",
+      "chapter": 3,
+      "tags": [
+        "drift_variant"
+      ],
+      "choiceIds": [
+        "accept_paradox",
+        "look_away",
+        "try_to_reach"
+      ]
+    },
+    {
+      "id": "c3_s04b_third_announcement",
+      "chapter": 3,
+      "tags": [],
+      "choiceIds": [
+        "hide_in_comp7",
+        "go_to_control",
+        "ask_comp7_help",
+        "step_into_corridor"
+      ]
+    },
+    {
+      "id": "c3_s06_passengers_vanish",
+      "chapter": 3,
+      "tags": [
+        "drift_variant"
+      ],
+      "choiceIds": [
+        "go_to_comp7",
+        "search_train",
+        "sit_down"
+      ]
+    },
+    {
+      "id": "c3_s06a_drift_intensifies",
+      "chapter": 3,
+      "tags": [
+        "drift_variant"
+      ],
+      "choiceIds": [
+        "talk_to_boy",
+        "ignore_boy",
+        "ask_where_others"
+      ]
+    },
+    {
+      "id": "c3_s06b_boy_final",
+      "chapter": 3,
+      "tags": [
+        "reveal"
+      ],
+      "choiceIds": [
+        "take_boys_recorder",
+        "leave_recorder"
+      ]
+    },
+    {
+      "id": "c4_end_platform_watch",
+      "chapter": 4,
+      "tags": [
+        "drift_variant"
+      ],
+      "choiceIds": [
+        "observe_copies",
+        "close_eyes",
+        "wave_to_copies"
+      ]
+    },
+    {
+      "id": "c4_end_station",
+      "chapter": 4,
+      "tags": [
+        "station_end"
+      ],
+      "choiceIds": [
+        "continue_to_chapter_5",
+        "search_for_self",
+        "call_out_to_copies",
+        "ignore_copies"
+      ]
+    },
+    {
+      "id": "c4_interlude_01_lights",
+      "chapter": 4,
+      "tags": [
+        "drift_variant"
+      ],
+      "choiceIds": [
+        "continue",
+        "embrace_false_reality",
+        "analyze_pattern",
+        "whisper_to_shadow"
+      ]
+    },
+    {
+      "id": "c4_interlude_02_announcement",
+      "chapter": 4,
+      "tags": [
+        "drift_variant"
+      ],
+      "choiceIds": [
+        "continue",
+        "check_doors",
+        "accept_loop_pattern",
+        "resist_temporal_shift"
+      ]
+    },
+    {
+      "id": "c4_interlude_03_window",
+      "chapter": 4,
+      "tags": [
+        "drift_variant"
+      ],
+      "choiceIds": [
+        "continue",
+        "question_reality",
+        "accept_altered_memory",
+        "seek_boy_pattern"
+      ]
+    },
+    {
+      "id": "c4_interlude_04_corridor",
+      "chapter": 4,
+      "tags": [
+        "drift_variant"
+      ],
+      "choiceIds": [
+        "continue"
+      ]
+    },
+    {
+      "id": "c4_interlude_05_time",
+      "chapter": 4,
+      "tags": [
+        "drift_variant"
+      ],
+      "choiceIds": [
+        "continue"
+      ]
+    },
+    {
+      "id": "c4_s01_mirror",
+      "chapter": 4,
+      "tags": [
+        "drift_variant",
+        "reveal"
+      ],
+      "choiceIds": [
+        "touch_mirror",
+        "back_away",
+        "talk_to_reflection"
+      ]
+    },
+    {
+      "id": "c4_s01a_double_reflection",
+      "chapter": 4,
+      "tags": [
+        "drift_variant",
+        "reveal"
+      ],
+      "choiceIds": [
+        "try_to_understand",
+        "leave_quickly",
+        "ask_when"
+      ]
+    },
+    {
+      "id": "c4_s01b_wrong_memory",
+      "chapter": 4,
+      "tags": [
+        "drift_variant"
+      ],
+      "choiceIds": [
+        "accept_false_memory",
+        "fight_memory",
+        "ask_who_spoke"
+      ]
+    },
+    {
+      "id": "c4_s02_recorder_prophecy",
+      "chapter": 4,
+      "tags": [
+        "reveal"
+      ],
+      "choiceIds": [
+        "listen_to_prophecy",
+        "turn_off_recorder",
+        "no_recorder"
+      ]
+    },
+    {
+      "id": "c4_s02a_recording_self",
+      "chapter": 4,
+      "tags": [
+        "reveal"
+      ],
+      "choiceIds": [
+        "rewind_and_listen",
+        "put_recorder_away"
+      ]
+    },
+    {
+      "id": "c4_s02b_recorder_loop",
+      "chapter": 4,
+      "tags": [
+        "reveal"
+      ],
+      "choiceIds": [
+        "accept_loop",
+        "try_to_break"
+      ]
+    },
+    {
+      "id": "c4_s03_passengers_return",
+      "chapter": 4,
+      "tags": [
+        "drift_variant"
+      ],
+      "choiceIds": [
+        "talk_to_sleepless",
+        "talk_to_boy",
+        "ignore_all"
+      ]
+    },
+    {
+      "id": "c4_s03a_sleepless_changed",
+      "chapter": 4,
+      "tags": [
+        "drift_variant",
+        "reveal"
+      ],
+      "choiceIds": [
+        "correct_him",
+        "accept_his_memory",
+        "ask_about_loop"
+      ]
+    },
+    {
+      "id": "c4_s03b_boy_paradox",
+      "chapter": 4,
+      "tags": [
+        "reveal"
+      ],
+      "choiceIds": [
+        "believe_boy",
+        "deny"
+      ]
+    },
+    {
+      "id": "c4_s04_announcement_glitch",
+      "chapter": 4,
+      "tags": [
+        "drift_variant"
+      ],
+      "choiceIds": [
+        "check_own_name",
+        "ignore_announcement",
+        "go_to_control"
+      ]
+    },
+    {
+      "id": "c4_s04a_name_confusion",
+      "chapter": 4,
+      "tags": [
+        "reveal"
+      ],
+      "choiceIds": [
+        "accept_loss",
+        "insist_on_name",
+        "ask_comp7_name"
+      ]
+    },
+    {
+      "id": "c4_s04b_ticket_appears",
+      "chapter": 4,
+      "tags": [
+        "reveal"
+      ],
+      "choiceIds": [
+        "keep_ticket",
+        "destroy_ticket"
+      ]
+    },
+    {
+      "id": "c4_s05_comp7_call",
+      "chapter": 4,
+      "tags": [
+        "setup"
+      ],
+      "choiceIds": [
+        "go_to_wagen7",
+        "refuse_call",
+        "examine_ticket_evidence",
+        "hide_from_system"
+      ]
+    },
+    {
+      "id": "c4_s05a_wagen7_changed",
+      "chapter": 4,
+      "tags": [
+        "reveal"
+      ],
+      "choiceIds": [
+        "ask_how_long",
+        "ask_about_escape",
+        "comfort_comp7"
+      ]
+    },
+    {
+      "id": "c4_s06_comp7_memory",
+      "chapter": 4,
+      "tags": [
+        "reveal"
+      ],
+      "choiceIds": [
+        "believe_her",
+        "doubt_her",
+        "ask_about_future",
+        "comfort_comp7_drift"
+      ]
+    },
+    {
+      "id": "c4_s06a_shared_memory",
+      "chapter": 4,
+      "tags": [
+        "reveal"
+      ],
+      "choiceIds": [
+        "accept_memory",
+        "reject_memory"
+      ]
+    },
+    {
+      "id": "c4_s07_reality_fracture",
+      "chapter": 4,
+      "tags": [
+        "drift_variant"
+      ],
+      "choiceIds": [
+        "remember_platform",
+        "remember_comp7",
+        "let_go",
+        "embrace_shared_timeline"
+      ]
+    },
+    {
+      "id": "c4_s07a_drift_peak",
+      "chapter": 4,
+      "tags": [
+        "reveal",
+        "drift_variant"
+      ],
+      "choiceIds": [
+        "confront_self",
+        "run_away",
+        "accept_double"
+      ]
+    },
+    {
+      "id": "c4_s07b_stabilization",
+      "chapter": 4,
+      "tags": [],
+      "choiceIds": [
+        "examine_object",
+        "ignore_object",
+        "trace_double",
+        "confront_self_echo"
+      ]
+    },
+    {
+      "id": "c4_s07c_tag19_found",
+      "chapter": 4,
+      "tags": [
+        "reveal"
+      ],
+      "choiceIds": [
+        "take_tag19",
+        "give_to_comp7"
+      ]
+    },
+    {
+      "id": "c5_end_station",
+      "chapter": 5,
+      "tags": [
+        "station_end"
+      ],
+      "choiceIds": [
+        "enter_wagon_12",
+        "continue_normal",
+        "acknowledge_guilt"
+      ]
+    },
+    {
+      "id": "c5_s01_final_preparation",
+      "chapter": 5,
+      "tags": [],
+      "choiceIds": [
+        "check_recorder",
+        "rest_prepare",
+        "walk_corridor"
+      ]
+    },
+    {
+      "id": "c5_s02_corridor_silence",
+      "chapter": 5,
+      "tags": [],
+      "choiceIds": [
+        "continue_forward",
+        "listen_for_patterns",
+        "retreat_to_safety",
+        "challenge_emptiness"
+      ]
+    },
+    {
+      "id": "c5_s03_comp7_reflection",
+      "chapter": 5,
+      "tags": [],
+      "choiceIds": [
+        "ask_about_destination",
+        "ask_about_compartment7",
+        "stay_silent",
+        "discuss_silence"
+      ]
+    },
+    {
+      "id": "c5_s04_lights_flicker",
+      "chapter": 5,
+      "tags": [],
+      "choiceIds": [
+        "investigate",
+        "confront_comp7_questions",
+        "analyze_abteil7_clue",
+        "hide_from_presence"
+      ]
+    },
+    {
+      "id": "c5_s05_sleepless_final",
+      "chapter": 5,
+      "tags": [],
+      "choiceIds": [
+        "comfort_him",
+        "tell_truth",
+        "leave_quietly",
+        "warn_about_presence"
+      ]
+    },
+    {
+      "id": "c5_s06_abteil7_approach",
+      "chapter": 5,
+      "tags": [
+        "setup"
+      ],
+      "choiceIds": [
+        "open_door",
+        "walk_past",
+        "protect_sleepless",
+        "open_door_for_truth"
+      ]
+    },
+    {
+      "id": "c5_s07_abteil7_inside",
+      "chapter": 5,
+      "tags": [
+        "reveal"
+      ],
+      "choiceIds": [
+        "read_names_truth",
+        "leave_immediately",
+        "touch_wall"
+      ]
+    },
+    {
+      "id": "c5_s08_abteil7_aftermath",
+      "chapter": 5,
+      "tags": [],
+      "choiceIds": [
+        "try_to_remember",
+        "let_it_go",
+        "write_down_names",
+        "ponder_the_wall"
+      ]
+    },
+    {
+      "id": "c5_s09_train_shifts",
+      "chapter": 5,
+      "tags": [],
+      "choiceIds": [
+        "continue_on",
+        "press_to_window",
+        "understand_skip",
+        "use_skip_chance"
+      ]
+    },
+    {
+      "id": "c5_s10_boy_reunion",
+      "chapter": 5,
+      "tags": [],
+      "choiceIds": [
+        "show_recorder_connection",
+        "admit_lost_recorder",
+        "show_tag19",
+        "reassure_boy"
+      ]
+    },
+    {
+      "id": "c5_s11_corridor_encounter",
+      "chapter": 5,
+      "tags": [],
+      "choiceIds": [
+        "approach_conductor",
+        "retreat_to_compartment"
+      ]
+    },
+    {
+      "id": "c5_s12_window_void",
+      "chapter": 5,
+      "tags": [],
+      "choiceIds": [
+        "accept_void",
+        "search_reflection"
+      ]
+    },
+    {
+      "id": "c5_s13_memory_fragment",
+      "chapter": 5,
+      "tags": [],
+      "choiceIds": [
+        "chase_memory",
+        "let_memory_fade",
+        "write_down_memory"
+      ]
+    },
+    {
+      "id": "c5_s14_control3_approach",
+      "chapter": 5,
+      "tags": [
+        "control",
+        "setup"
+      ],
+      "choiceIds": [
+        "show_confidence",
+        "show_uncertainty",
+        "mention_fragment"
+      ]
+    },
+    {
+      "id": "c5_s15_control3_question",
+      "chapter": 5,
+      "tags": [
+        "control"
+      ],
+      "choiceIds": [
+        "admit_truth_high",
+        "ask_comp7_help",
+        "harsh_response",
+        "deny_everything"
+      ]
+    },
+    {
+      "id": "c5_s16_control3_aftermath",
+      "chapter": 5,
+      "tags": [],
+      "choiceIds": [
+        "examine_ticket",
+        "rest_after_control",
+        "ponder_words"
+      ]
+    },
+    {
+      "id": "c5_s17_aftermath_reflection",
+      "chapter": 5,
+      "tags": [],
+      "choiceIds": [
+        "consider_staying",
+        "reject_staying"
+      ]
+    },
+    {
+      "id": "c5_s18_darkness_spreads",
+      "chapter": 5,
+      "tags": [],
+      "choiceIds": [
+        "keep_walking",
+        "search_for_door"
+      ]
+    },
+    {
+      "id": "c5_s19_final_conversation",
+      "chapter": 5,
+      "tags": [],
+      "choiceIds": [
+        "love_farewell",
+        "ask_final_question",
+        "silent_farewell"
+      ]
+    },
+    {
+      "id": "c5_s20_decision_approach",
+      "chapter": 5,
+      "tags": [
+        "setup"
+      ],
+      "choiceIds": [
+        "prepare_to_decide",
+        "resist_arrival"
+      ]
+    },
+    {
+      "id": "c5_s21_decision_core",
+      "chapter": 5,
+      "tags": [
+        "reveal"
+      ],
+      "choiceIds": [
+        "drift_variant_stay",
+        "guilt_sacrifice",
+        "step_out_truth",
+        "stay_in_train"
+      ]
+    },
+    {
+      "id": "c5_s22_decision_aftermath",
+      "chapter": 5,
+      "tags": [],
+      "choiceIds": [
+        "accept_choice",
+        "doubt_choice",
+        "embrace_drift"
+      ]
+    },
+    {
+      "id": "c5_s23_before_station",
+      "chapter": 5,
+      "tags": [],
+      "choiceIds": [
+        "look_forward",
+        "look_back"
+      ]
+    },
+    {
+      "id": "c5_s24_platform_arrives",
+      "chapter": 5,
+      "tags": [],
+      "choiceIds": [
+        "prepare_to_exit"
+      ]
+    },
+    {
+      "id": "c6_end_station",
+      "chapter": 6,
+      "tags": [
+        "station_end"
+      ],
+      "choiceIds": [
+        "continue_to_chapter_7"
+      ]
+    },
+    {
+      "id": "c6_s01_awakening",
+      "chapter": 6,
+      "tags": [],
+      "choiceIds": [
+        "check_surroundings",
+        "close_eyes",
+        "walk_corridor"
+      ]
+    },
+    {
+      "id": "c6_s02_silence",
+      "chapter": 6,
+      "tags": [],
+      "choiceIds": [
+        "continue_walking",
+        "listen_intently"
+      ]
+    },
+    {
+      "id": "c6_s03_comp7_final",
+      "chapter": 6,
+      "tags": [],
+      "choiceIds": [
+        "ask_directly_high_rel",
+        "admit_fear",
+        "stay_silent"
+      ]
+    },
+    {
+      "id": "c6_s04_corridor_changes",
+      "chapter": 6,
+      "tags": [],
+      "choiceIds": [
+        "approach_door",
+        "examine_details"
+      ]
+    },
+    {
+      "id": "c6_s05_door_seven",
+      "chapter": 6,
+      "tags": [
+        "setup"
+      ],
+      "choiceIds": [
+        "open_door_truth",
+        "hesitate",
+        "walk_away"
+      ]
+    },
+    {
+      "id": "c6_s06_inside_seven",
+      "chapter": 6,
+      "tags": [
+        "reveal"
+      ],
+      "choiceIds": [
+        "speak_high_drift",
+        "remember_hard",
+        "reach_out",
+        "close_door_quickly"
+      ]
+    },
+    {
+      "id": "c6_s07_seven_aftermath",
+      "chapter": 6,
+      "tags": [],
+      "choiceIds": [
+        "process_experience",
+        "forget_quickly",
+        "feel_connection"
+      ]
+    },
+    {
+      "id": "c6_s08_drift_intensifies",
+      "chapter": 6,
+      "tags": [],
+      "choiceIds": [
+        "observe_changes",
+        "analyze_time"
+      ]
+    },
+    {
+      "id": "c6_s09_boy_final",
+      "chapter": 6,
+      "tags": [],
+      "choiceIds": [
+        "share_recorder_experience",
+        "comfort_without_recorder",
+        "tell_truth_harsh"
+      ]
+    },
+    {
+      "id": "c6_s10_sleepless_gone",
+      "chapter": 6,
+      "tags": [],
+      "choiceIds": [
+        "take_photo",
+        "leave_photo",
+        "examine_closely"
+      ]
+    },
+    {
+      "id": "c6_s11_announcement",
+      "chapter": 6,
+      "tags": [],
+      "choiceIds": [
+        "process_message",
+        "whisper_year",
+        "listen_for_voice"
+      ]
+    },
+    {
+      "id": "c6_s12_mirror_self",
+      "chapter": 6,
+      "tags": [
+        "setup"
+      ],
+      "choiceIds": [
+        "confront_drift",
+        "engage_mirror",
+        "turn_away"
+      ]
+    },
+    {
+      "id": "c6_s13_mirror_choice",
+      "chapter": 6,
+      "tags": [
+        "reveal"
+      ],
+      "choiceIds": [
+        "take_hand_escape",
+        "take_hand_guilt",
+        "refuse_hand",
+        "attack_mirror"
+      ]
+    },
+    {
+      "id": "c6_s14_mirror_aftermath",
+      "chapter": 6,
+      "tags": [],
+      "choiceIds": [
+        "embrace_memory",
+        "push_away_memory"
+      ]
+    },
+    {
+      "id": "c6_s15_recorder_playback",
+      "chapter": 6,
+      "tags": [],
+      "choiceIds": [
+        "play_recorder",
+        "resist_playing"
+      ]
+    },
+    {
+      "id": "c6_s16_tag19_discovery",
+      "chapter": 6,
+      "tags": [],
+      "choiceIds": [
+        "understand_tag",
+        "ignore_implications",
+        "accept_truth"
+      ]
+    },
+    {
+      "id": "c6_s17_lights_failing",
+      "chapter": 6,
+      "tags": [],
+      "choiceIds": [
+        "wait_for_conductor",
+        "hold_tag19"
+      ]
+    },
+    {
+      "id": "c6_s18_offer_approach",
+      "chapter": 6,
+      "tags": [
+        "setup"
+      ],
+      "choiceIds": [
+        "ask_about_offer_high_attention",
+        "ask_simply",
+        "refuse_immediately"
+      ]
+    },
+    {
+      "id": "c6_s19_offer_choice",
+      "chapter": 6,
+      "tags": [
+        "reveal"
+      ],
+      "choiceIds": [
+        "choose_memory_love",
+        "choose_forget_escape",
+        "refuse_choice",
+        "accept_truth"
+      ]
+    },
+    {
+      "id": "c6_s20_offer_aftermath",
+      "chapter": 6,
+      "tags": [],
+      "choiceIds": [
+        "prepare_for_end",
+        "doubt_choice"
+      ]
+    },
+    {
+      "id": "c6_s21_final_reflection",
+      "chapter": 6,
+      "tags": [],
+      "choiceIds": [
+        "feel_ready",
+        "feel_uncertain",
+        "feel_afraid"
+      ]
+    },
+    {
+      "id": "c6_s22_conductor_last",
+      "chapter": 6,
+      "tags": [],
+      "choiceIds": [
+        "remember_high_attention",
+        "remember_partial",
+        "resist_memory"
+      ]
+    },
+    {
+      "id": "c6_s23_train_slows",
+      "chapter": 6,
+      "tags": [],
+      "choiceIds": [
+        "observe_platform",
+        "close_eyes_and_listen"
+      ]
+    },
+    {
+      "id": "c6_s24_platform_ahead",
+      "chapter": 6,
+      "tags": [],
+      "choiceIds": [
+        "feel_hope",
+        "feel_fear",
+        "feel_peace"
+      ]
+    },
+    {
+      "id": "c6_s25_final_moment",
+      "chapter": 6,
+      "tags": [],
+      "choiceIds": [
+        "open_door",
+        "hesitate_moment"
+      ]
+    },
+    {
+      "id": "c7_end_station",
+      "chapter": 7,
+      "tags": [
+        "station_end"
+      ],
+      "choiceIds": [
+        "truth_path",
+        "guilt_path",
+        "love_path",
+        "escape_path"
+      ]
+    },
+    {
+      "id": "c7_s01_final_approach",
+      "chapter": 7,
+      "tags": [],
+      "choiceIds": [
+        "observe_walls",
+        "walk_quickly",
+        "touch_walls_memories"
+      ]
+    },
+    {
+      "id": "c7_s02_interlude_silence",
+      "chapter": 7,
+      "tags": [
+        "interlude"
+      ],
+      "choiceIds": [
+        "accept_silence",
+        "break_silence"
+      ]
+    },
+    {
+      "id": "c7_s03_comp7_goodbye",
+      "chapter": 7,
+      "tags": [],
+      "choiceIds": [
+        "say_goodbye_high_rel_recognized",
+        "say_goodbye_high_rel",
+        "open_door_recognized",
+        "open_door"
+      ]
+    },
+    {
+      "id": "c7_s04_boy_recognized",
+      "chapter": 7,
+      "tags": [
+        "reveal"
+      ],
+      "choiceIds": [
+        "integrate_innocence",
+        "accept_loss",
+        "embrace_child",
+        "cannot_let_go"
+      ]
+    },
+    {
+      "id": "c7_s04_boy_transformation",
+      "chapter": 7,
+      "tags": [],
+      "choiceIds": [
+        "comfort_boy_high_rel",
+        "observe_cassette",
+        "leave_quickly"
+      ]
+    },
+    {
+      "id": "c7_s05_interlude_timeshift",
+      "chapter": 7,
+      "tags": [
+        "interlude"
+      ],
+      "choiceIds": [
+        "continue_forward",
+        "search_for_anchor"
+      ]
+    },
+    {
+      "id": "c7_s06_announcement_distorted",
+      "chapter": 7,
+      "tags": [
+        "setup",
+        "reveal"
+      ],
+      "choiceIds": [
+        "realize_truth_high_drift",
+        "check_ticket",
+        "deny_message"
+      ]
+    },
+    {
+      "id": "c7_s07_announcement_name",
+      "chapter": 7,
+      "tags": [
+        "reveal"
+      ],
+      "choiceIds": [
+        "accept_memory_truth",
+        "accept_partial",
+        "resist_memory",
+        "weep"
+      ]
+    },
+    {
+      "id": "c7_s08_announcement_aftermath",
+      "chapter": 7,
+      "tags": [],
+      "choiceIds": [
+        "stand_up",
+        "stay_down"
+      ]
+    },
+    {
+      "id": "c7_s09_corridor_dissolve",
+      "chapter": 7,
+      "tags": [],
+      "choiceIds": [
+        "enter_empty_compartment",
+        "keep_walking"
+      ]
+    },
+    {
+      "id": "c7_s10_passengers_vanish",
+      "chapter": 7,
+      "tags": [],
+      "choiceIds": [
+        "call_out",
+        "accept_solitude",
+        "panic"
+      ]
+    },
+    {
+      "id": "c7_s11_interlude_memory_flood",
+      "chapter": 7,
+      "tags": [
+        "interlude",
+        "reveal"
+      ],
+      "choiceIds": [
+        "understand"
+      ]
+    },
+    {
+      "id": "c7_s12_seven_offer",
+      "chapter": 7,
+      "tags": [
+        "setup"
+      ],
+      "choiceIds": [
+        "enter_seven_recognized",
+        "enter_seven",
+        "hesitate_at_door_recognized",
+        "hesitate_at_door"
+      ]
+    },
+    {
+      "id": "c7_s13_comp7_recognized",
+      "chapter": 7,
+      "tags": [
+        "reveal",
+        "secret"
+      ],
+      "choiceIds": [
+        "integrate_love",
+        "release_attachment",
+        "accept_both",
+        "refuse_to_choose"
+      ]
+    },
+    {
+      "id": "c7_s13_seven_price",
+      "chapter": 7,
+      "tags": [
+        "reveal"
+      ],
+      "choiceIds": [
+        "leave_shadow",
+        "embrace_shadow",
+        "stay_together",
+        "refuse_choice"
+      ]
+    },
+    {
+      "id": "c7_s14_seven_decision",
+      "chapter": 7,
+      "tags": [],
+      "choiceIds": [
+        "feel_complete",
+        "feel_fractured"
+      ]
+    },
+    {
+      "id": "c7_s15_recorder_trigger",
+      "chapter": 7,
+      "tags": [],
+      "choiceIds": [
+        "play_recorder_final",
+        "destroy_recorder",
+        "no_recorder"
+      ]
+    },
+    {
+      "id": "c7_s16_recorder_playback",
+      "chapter": 7,
+      "tags": [
+        "reveal"
+      ],
+      "choiceIds": [
+        "listen_more",
+        "stop_playback"
+      ]
+    },
+    {
+      "id": "c7_s17_recorder_truth",
+      "chapter": 7,
+      "tags": [
+        "reveal"
+      ],
+      "choiceIds": [
+        "accept_death",
+        "deny_death",
+        "cry"
+      ]
+    },
+    {
+      "id": "c7_s18_recorder_aftermath",
+      "chapter": 7,
+      "tags": [],
+      "choiceIds": [
+        "choose_leave",
+        "choose_stay"
+      ]
+    },
+    {
+      "id": "c7_s19_interlude_train_stops",
+      "chapter": 7,
+      "tags": [
+        "interlude"
+      ],
+      "choiceIds": [
+        "prepare",
+        "resist_end"
+      ]
+    },
+    {
+      "id": "c7_s20_conductor_finale",
+      "chapter": 7,
+      "tags": [],
+      "choiceIds": [
+        "thank_conductor_high_attention",
+        "say_nothing",
+        "take_ticket",
+        "last_sacrifice"
+      ]
+    },
+    {
+      "id": "c7_s20b_last_sacrifice",
+      "chapter": 7,
+      "tags": [],
+      "choiceIds": [
+        "sacrifice_for_truth",
+        "sacrifice_for_escape",
+        "sacrifice_for_guilt",
+        "sacrifice_for_love"
+      ]
+    },
+    {
+      "id": "c7_s21_photo_revelation",
+      "chapter": 7,
+      "tags": [],
+      "choiceIds": [
+        "understand_photo",
+        "trace_anomaly",
+        "put_away_photo"
+      ]
+    },
+    {
+      "id": "c7_s22_tag19_final",
+      "chapter": 7,
+      "tags": [],
+      "choiceIds": [
+        "use_as_anchor",
+        "let_go_tag",
+        "keep_tag",
+        "no_tag"
+      ]
+    },
+    {
+      "id": "c7_s23_interlude_doors_open",
+      "chapter": 7,
+      "tags": [
+        "interlude"
+      ],
+      "choiceIds": [
+        "step_forward"
+      ]
+    },
+    {
+      "id": "c7_s24_platform_real",
+      "chapter": 7,
+      "tags": [],
+      "choiceIds": [
+        "look_around",
+        "look_back",
+        "breathe"
+      ]
+    },
+    {
+      "id": "c7_s25_final_choice",
+      "chapter": 7,
+      "tags": [],
+      "choiceIds": [
+        "step_off",
+        "look_back_one_last_time"
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "from": "c1_end_platform_look",
+      "choiceId": "observe_silently",
+      "text": "Beobachten, nichts sagen",
+      "to": "c1_end_station",
+      "type": "scene"
+    },
+    {
+      "from": "c1_end_platform_look",
+      "choiceId": "ask_sleepless",
+      "text": "Den Schlaflosen leise fragen",
+      "to": "c1_end_station",
+      "type": "scene"
+    },
+    {
+      "from": "c1_end_platform_look",
+      "choiceId": "check_clock_again",
+      "text": "Die Uhr überprüfen",
+      "to": "c1_end_station",
+      "type": "scene"
+    },
+    {
+      "from": "c1_end_platform_look",
+      "choiceId": "scan_exits",
+      "text": "Nach Ausgängen suchen",
+      "to": "c1_end_station",
+      "type": "scene"
+    },
+    {
+      "from": "c1_end_station",
+      "choiceId": "continue_to_chapter_2",
+      "text": "Weiter",
+      "to": "c2_s01_ticket_search",
+      "type": "scene"
+    },
+    {
+      "from": "c1_end_station",
+      "choiceId": "confront_jacket_change",
+      "text": "Die Jackenfarbe direkt ansprechen",
+      "to": "c2_s01_ticket_search",
+      "type": "scene"
+    },
+    {
+      "from": "c1_end_station",
+      "choiceId": "nod_to_conductor",
+      "text": "Dem Schaffner zunicken",
+      "to": "c2_s01_ticket_search",
+      "type": "scene"
+    },
+    {
+      "from": "c1_interlude_01_lights",
+      "choiceId": "close_eyes",
+      "text": "Augen schliessen und atmen",
+      "to": "c1_s02_train_appears",
+      "type": "scene"
+    },
+    {
+      "from": "c1_interlude_01_lights",
+      "choiceId": "trace_shadow",
+      "text": "Den Schatten messen",
+      "to": "c1_s02_train_appears",
+      "type": "scene"
+    },
+    {
+      "from": "c1_interlude_01_lights",
+      "choiceId": "avert_eyes",
+      "text": "Den Blick senken",
+      "to": "c1_s02_train_appears",
+      "type": "scene"
+    },
+    {
+      "from": "c1_interlude_01_lights",
+      "choiceId": "continue",
+      "text": "Weiter",
+      "to": "c1_s02_train_appears",
+      "type": "scene"
+    },
+    {
+      "from": "c1_interlude_02_silence",
+      "choiceId": "stay_quiet",
+      "text": "Ganz still bleiben",
+      "to": "c1_s03_inside_train",
+      "type": "scene"
+    },
+    {
+      "from": "c1_interlude_02_silence",
+      "choiceId": "test_voice",
+      "text": "Den eigenen Namen fluestern",
+      "to": "c1_s03_inside_train",
+      "type": "scene"
+    },
+    {
+      "from": "c1_interlude_02_silence",
+      "choiceId": "continue",
+      "text": "Weiter",
+      "to": "c1_s03_inside_train",
+      "type": "scene"
+    },
+    {
+      "from": "c1_interlude_03_window",
+      "choiceId": "touch_glass",
+      "text": "Die Hand ans Glas legen",
+      "to": "c1_s04b_sleepless_warning",
+      "type": "scene"
+    },
+    {
+      "from": "c1_interlude_03_window",
+      "choiceId": "continue",
+      "text": "Weiter",
+      "to": "c1_s04b_sleepless_warning",
+      "type": "scene"
+    },
+    {
+      "from": "c1_interlude_04_clock",
+      "choiceId": "note_time",
+      "text": "Die Anzeige mitzaehlen",
+      "to": "c1_s05a_other_passengers",
+      "type": "scene"
+    },
+    {
+      "from": "c1_interlude_04_clock",
+      "choiceId": "continue",
+      "text": "Weiter",
+      "to": "c1_s05a_other_passengers",
+      "type": "scene"
+    },
+    {
+      "from": "c1_interlude_05_vibration",
+      "choiceId": "steady_breath",
+      "text": "Festhalten und zählen",
+      "to": "c1_end_platform_look",
+      "type": "scene"
+    },
+    {
+      "from": "c1_interlude_05_vibration",
+      "choiceId": "reflect_on_vibration",
+      "text": "Die Vibration analysieren",
+      "to": "c1_end_platform_look",
+      "type": "scene"
+    },
+    {
+      "from": "c1_interlude_05_vibration",
+      "choiceId": "continue",
+      "text": "Weiter",
+      "to": "c1_end_platform_look",
+      "type": "scene"
+    },
+    {
+      "from": "c1_interlude_05_vibration",
+      "choiceId": "echo_tone",
+      "text": "Den Ton nachsprechen",
+      "to": "c1_end_platform_look",
+      "type": "scene"
+    },
+    {
+      "from": "c1_s01_platform",
+      "choiceId": "look_around",
+      "text": "Umsehen und warten",
+      "to": "c1_s01a_platform_details",
+      "type": "scene"
+    },
+    {
+      "from": "c1_s01_platform",
+      "choiceId": "check_phone",
+      "text": "Handy checken",
+      "to": "c1_s01a_platform_details",
+      "type": "scene"
+    },
+    {
+      "from": "c1_s01_platform",
+      "choiceId": "try_leave",
+      "text": "Versuchen zu gehen",
+      "to": "c1_s01a_platform_details",
+      "type": "scene"
+    },
+    {
+      "from": "c1_s01a_platform_details",
+      "choiceId": "step_back",
+      "text": "Einen Schritt zurücktreten",
+      "to": "c1_interlude_01_lights",
+      "type": "scene"
+    },
+    {
+      "from": "c1_s01a_platform_details",
+      "choiceId": "look_tracks",
+      "text": "Die Schienen fixieren",
+      "to": "c1_interlude_01_lights",
+      "type": "scene"
+    },
+    {
+      "from": "c1_s01a_platform_details",
+      "choiceId": "feel_guilty",
+      "text": "Denken: „Ich sollte nicht hier sein\"",
+      "to": "c1_interlude_01_lights",
+      "type": "scene"
+    },
+    {
+      "from": "c1_s01a_platform_details",
+      "choiceId": "edge_glance",
+      "text": "Zum Rand schauen",
+      "to": "c1_interlude_01_lights",
+      "type": "scene"
+    },
+    {
+      "from": "c1_s02_train_appears",
+      "choiceId": "board_immediately",
+      "text": "Sofort einsteigen",
+      "to": "c1_s02a_train_exterior",
+      "type": "scene"
+    },
+    {
+      "from": "c1_s02_train_appears",
+      "choiceId": "inspect_train",
+      "text": "Den Zug genauer ansehen",
+      "to": "c1_s02a_train_exterior",
+      "type": "scene"
+    },
+    {
+      "from": "c1_s02_train_appears",
+      "choiceId": "hesitate",
+      "text": "Zögern",
+      "to": "c1_s02a_train_exterior",
+      "type": "scene"
+    },
+    {
+      "from": "c1_s02_train_appears",
+      "choiceId": "call_out",
+      "text": "In den Zug rufen",
+      "to": "c1_s02a_train_exterior",
+      "type": "scene"
+    },
+    {
+      "from": "c1_s02a_train_exterior",
+      "choiceId": "board_now",
+      "text": "Einsteigen",
+      "to": "c1_interlude_02_silence",
+      "type": "scene"
+    },
+    {
+      "from": "c1_s02a_train_exterior",
+      "choiceId": "touch_exterior",
+      "text": "Die Außenwand berühren",
+      "to": "c1_interlude_02_silence",
+      "type": "scene"
+    },
+    {
+      "from": "c1_s02a_train_exterior",
+      "choiceId": "ask_aloud",
+      "text": "„Ist da jemand?\" rufen",
+      "to": "c1_interlude_02_silence",
+      "type": "scene"
+    },
+    {
+      "from": "c1_s02a_train_exterior",
+      "choiceId": "watch_windows",
+      "text": "In die Fenster starren",
+      "to": "c1_interlude_02_silence",
+      "type": "scene"
+    },
+    {
+      "from": "c1_s03_inside_train",
+      "choiceId": "talk_to_man",
+      "text": "Den Mann ansprechen",
+      "to": "c1_s04_sleepless_intro",
+      "type": "scene"
+    },
+    {
+      "from": "c1_s03_inside_train",
+      "choiceId": "examine_suitcase",
+      "text": "Den Koffer untersuchen",
+      "to": "c1_s03a_corridor_walk",
+      "type": "scene"
+    },
+    {
+      "from": "c1_s03_inside_train",
+      "choiceId": "find_seat",
+      "text": "Einfach einen Platz suchen",
+      "to": "c1_s03a_corridor_walk",
+      "type": "scene"
+    },
+    {
+      "from": "c1_s03_inside_train",
+      "choiceId": "choose_door_seat",
+      "text": "Einen Platz nahe der Tuer suchen",
+      "to": "c1_s03a_corridor_walk",
+      "type": "scene"
+    },
+    {
+      "from": "c1_s03a_corridor_walk",
+      "choiceId": "ask_child",
+      "text": "„Was malst du?\"",
+      "to": "c1_s03b_find_seat",
+      "type": "scene"
+    },
+    {
+      "from": "c1_s03a_corridor_walk",
+      "choiceId": "look_at_drawing",
+      "text": "Die Zeichnung genauer ansehen",
+      "to": "c1_s03b_find_seat",
+      "type": "scene"
+    },
+    {
+      "from": "c1_s03a_corridor_walk",
+      "choiceId": "keep_walking_past",
+      "text": "Weitergehen",
+      "to": "c1_s03b_find_seat",
+      "type": "scene"
+    },
+    {
+      "from": "c1_s03a_corridor_walk",
+      "choiceId": "follow_hum",
+      "text": "Dem Summen folgen",
+      "to": "c1_s03b_find_seat",
+      "type": "scene"
+    },
+    {
+      "from": "c1_s03b_find_seat",
+      "choiceId": "turn_around",
+      "text": "Sich umdrehen",
+      "to": "c1_s04_sleepless_intro",
+      "type": "scene"
+    },
+    {
+      "from": "c1_s03b_find_seat",
+      "choiceId": "ignore_voice",
+      "text": "Ignorieren",
+      "to": "c1_s04_sleepless_intro",
+      "type": "scene"
+    },
+    {
+      "from": "c1_s03b_find_seat",
+      "choiceId": "stay_with_window",
+      "text": "Den Blick im Fenster halten",
+      "to": "c1_s04_sleepless_intro",
+      "type": "scene"
+    },
+    {
+      "from": "c1_s04_sleepless_intro",
+      "choiceId": "ask_where",
+      "text": "„Wo fährt der Zug hin?\"",
+      "to": "c1_s04a_sleepless_past",
+      "type": "scene"
+    },
+    {
+      "from": "c1_s04_sleepless_intro",
+      "choiceId": "ask_how_long",
+      "text": "„Wie lange bist du schon hier?\"",
+      "to": "c1_s04a_sleepless_past",
+      "type": "scene"
+    },
+    {
+      "from": "c1_s04_sleepless_intro",
+      "choiceId": "deny",
+      "text": "„Das kann nicht sein.\"",
+      "to": "c1_s04a_sleepless_past",
+      "type": "scene"
+    },
+    {
+      "from": "c1_s04_sleepless_intro",
+      "choiceId": "stay_silent",
+      "text": "Nichts sagen",
+      "to": "c1_s04a_sleepless_past",
+      "type": "scene"
+    },
+    {
+      "from": "c1_s04a_sleepless_past",
+      "choiceId": "admit_searching",
+      "text": "„Ich suche jemanden.\"",
+      "to": "c1_interlude_03_window",
+      "type": "scene"
+    },
+    {
+      "from": "c1_s04a_sleepless_past",
+      "choiceId": "admit_running",
+      "text": "„Ich laufe weg.\"",
+      "to": "c1_interlude_03_window",
+      "type": "scene"
+    },
+    {
+      "from": "c1_s04a_sleepless_past",
+      "choiceId": "ask_about_watch",
+      "text": "„Was ist mit deiner Uhr passiert?\"",
+      "to": "c1_interlude_03_window",
+      "type": "scene"
+    },
+    {
+      "from": "c1_s04b_sleepless_warning",
+      "choiceId": "thank_him",
+      "text": "„Danke.\"",
+      "to": "c1_s05_first_anomaly",
+      "type": "scene"
+    },
+    {
+      "from": "c1_s04b_sleepless_warning",
+      "choiceId": "ask_more",
+      "text": "„Was meinst du mit anders?\"",
+      "to": "c1_s05_first_anomaly",
+      "type": "scene"
+    },
+    {
+      "from": "c1_s04b_sleepless_warning",
+      "choiceId": "dismiss",
+      "text": "„Ich komme schon klar.\"",
+      "to": "c1_s05_first_anomaly",
+      "type": "scene"
+    },
+    {
+      "from": "c1_s04b_sleepless_warning",
+      "choiceId": "mention_reflection",
+      "text": "Die versetzte Reflexion erwaehnen",
+      "to": "c1_s05_first_anomaly",
+      "type": "scene"
+    },
+    {
+      "from": "c1_s05_first_anomaly",
+      "choiceId": "write_it_down",
+      "text": "Versuche, es aufzuschreiben",
+      "to": "c1_interlude_04_clock",
+      "type": "scene"
+    },
+    {
+      "from": "c1_s05_first_anomaly",
+      "choiceId": "ignore_anomaly",
+      "text": "Ignorieren und weitergehen",
+      "to": "c1_s05a_other_passengers",
+      "type": "scene"
+    },
+    {
+      "from": "c1_s05_first_anomaly",
+      "choiceId": "ask_sleepless",
+      "text": "Den Schlaflosen fragen",
+      "to": "c1_s05a_other_passengers",
+      "type": "scene"
+    },
+    {
+      "from": "c1_s05_first_anomaly",
+      "choiceId": "analyze_announcement",
+      "text": "Die Durchsage aufmerksam analysieren",
+      "to": "c1_interlude_04_clock",
+      "type": "scene"
+    },
+    {
+      "from": "c1_s05a_other_passengers",
+      "choiceId": "count_passengers",
+      "text": "Die Passagiere zählen",
+      "to": "c1_s05b_compartment7_tease",
+      "type": "scene"
+    },
+    {
+      "from": "c1_s05a_other_passengers",
+      "choiceId": "approach_woman",
+      "text": "Die Frau ansprechen",
+      "to": "c1_s05b_compartment7_tease",
+      "type": "scene"
+    },
+    {
+      "from": "c1_s05a_other_passengers",
+      "choiceId": "leave_them_alone",
+      "text": "Sie in Ruhe lassen",
+      "to": "c1_s05b_compartment7_tease",
+      "type": "scene"
+    },
+    {
+      "from": "c1_s05a_other_passengers",
+      "choiceId": "stay_inconspicuous",
+      "text": "Unauffällig bleiben",
+      "to": "c1_s05b_compartment7_tease",
+      "type": "scene"
+    },
+    {
+      "from": "c1_s05b_compartment7_tease",
+      "choiceId": "knock_on_door",
+      "text": "An die Tür klopfen",
+      "to": "c1_s05c_announcement_repeat",
+      "type": "scene"
+    },
+    {
+      "from": "c1_s05b_compartment7_tease",
+      "choiceId": "listen_to_sleepless",
+      "text": "Auf den Schlaflosen hören",
+      "to": "c1_s05c_announcement_repeat",
+      "type": "scene"
+    },
+    {
+      "from": "c1_s05b_compartment7_tease",
+      "choiceId": "feel_drawn",
+      "text": "Die Hand auf die Tür legen",
+      "to": "c1_s05c_announcement_repeat",
+      "type": "scene"
+    },
+    {
+      "from": "c1_s05b_compartment7_tease",
+      "choiceId": "examine_door_quietly",
+      "text": "Die Tür untersuchen, ohne zu klopfen",
+      "to": "c1_s05c_announcement_repeat",
+      "type": "scene"
+    },
+    {
+      "from": "c1_s05c_announcement_repeat",
+      "choiceId": "follow_woman",
+      "text": "Der Frau folgen",
+      "to": "c1_s05d_comp7_listen",
+      "type": "scene"
+    },
+    {
+      "from": "c1_s05c_announcement_repeat",
+      "choiceId": "repeat_word",
+      "text": "Das Wort leise wiederholen",
+      "to": "c1_s05d_comp7_listen",
+      "type": "scene"
+    },
+    {
+      "from": "c1_s05c_announcement_repeat",
+      "choiceId": "stay_back",
+      "text": "Zurückbleiben",
+      "to": "c1_s06_corridor_end",
+      "type": "scene"
+    },
+    {
+      "from": "c1_s05c_announcement_repeat",
+      "choiceId": "name_the_time",
+      "text": "Die Uhrzeit leise nennen",
+      "to": "c1_s05d_comp7_listen",
+      "type": "scene"
+    },
+    {
+      "from": "c1_s05d_comp7_listen",
+      "choiceId": "knock_again",
+      "text": "Klopfen",
+      "to": "c1_s06_corridor_end",
+      "type": "scene"
+    },
+    {
+      "from": "c1_s05d_comp7_listen",
+      "choiceId": "step_away",
+      "text": "Zurücktreten",
+      "to": "c1_s06_corridor_end",
+      "type": "scene"
+    },
+    {
+      "from": "c1_s05d_comp7_listen",
+      "choiceId": "speak_through_door",
+      "text": "Leise durch die Tür sprechen",
+      "to": "c1_s06_corridor_end",
+      "type": "scene"
+    },
+    {
+      "from": "c1_s05d_comp7_listen",
+      "choiceId": "hold_position",
+      "text": "Im Gang warten",
+      "to": "c1_s06_corridor_end",
+      "type": "scene"
+    },
+    {
+      "from": "c1_s06_corridor_end",
+      "choiceId": "enter_next_wagon",
+      "text": "Den nächsten Wagen betreten",
+      "to": "c1_s07_stranger_encounter",
+      "type": "scene"
+    },
+    {
+      "from": "c1_s06_corridor_end",
+      "choiceId": "stay_in_wagon",
+      "text": "Im Wagen bleiben",
+      "to": "c1_interlude_05_vibration",
+      "type": "scene"
+    },
+    {
+      "from": "c1_s07_stranger_encounter",
+      "choiceId": "search_wagon",
+      "text": "Den Wagen durchsuchen",
+      "to": "c1_interlude_05_vibration",
+      "type": "scene"
+    },
+    {
+      "from": "c1_s07_stranger_encounter",
+      "choiceId": "answer_voice",
+      "text": "Der Stimme leise antworten",
+      "to": "c1_interlude_05_vibration",
+      "type": "scene"
+    },
+    {
+      "from": "c1_s07_stranger_encounter",
+      "choiceId": "go_back",
+      "text": "Zurück in den ersten Wagen",
+      "to": "c1_interlude_05_vibration",
+      "type": "scene"
+    },
+    {
+      "from": "c2_control_01_aftermath",
+      "choiceId": "confront_sleepless",
+      "text": "„Deine Jacke. Sie ändert sich ständig.\"",
+      "to": "c2_s05a_sleepless_talk",
+      "type": "scene"
+    },
+    {
+      "from": "c2_control_01_aftermath",
+      "choiceId": "ask_comp7_meaning",
+      "text": "Comp7: „Was bedeutet das alles?\"",
+      "to": "c2_s05b_reality_shift",
+      "type": "scene"
+    },
+    {
+      "from": "c2_control_01_aftermath",
+      "choiceId": "stay_silent",
+      "text": "Schweigen und nachdenken",
+      "to": "c2_s05b_reality_shift",
+      "type": "scene"
+    },
+    {
+      "from": "c2_control_01_aftermath",
+      "choiceId": "look_for_boy",
+      "text": "Nach dem Jungen Ausschau halten",
+      "to": "c2_s05b_reality_shift",
+      "type": "scene"
+    },
+    {
+      "from": "c2_control_01_approach",
+      "choiceId": "wait_silent",
+      "text": "Schweigend warten",
+      "to": "c2_control_01_question",
+      "type": "scene"
+    },
+    {
+      "from": "c2_control_01_approach",
+      "choiceId": "look_to_sleepless",
+      "text": "Kurz zum Schlaflosen blicken",
+      "to": "c2_control_01_question",
+      "type": "scene"
+    },
+    {
+      "from": "c2_control_01_approach",
+      "choiceId": "apologize",
+      "text": "„Es tut mir leid.\"",
+      "to": "c2_control_01_question",
+      "type": "scene"
+    },
+    {
+      "from": "c2_control_01_approach",
+      "choiceId": "notice_voice_distortion",
+      "text": "Die Verzerrung in seiner Stimme bemerken",
+      "to": "c2_control_01_question",
+      "type": "scene"
+    },
+    {
+      "from": "c2_control_01_question",
+      "choiceId": "offer_truth",
+      "text": "„Ich weiß es nicht. Ich kann mich nicht erinnern.\"",
+      "to": "c2_control_01_aftermath",
+      "type": "scene"
+    },
+    {
+      "from": "c2_control_01_question",
+      "choiceId": "offer_search",
+      "text": "„Ich suche jemanden.\"",
+      "to": "c2_control_01_aftermath",
+      "type": "scene"
+    },
+    {
+      "from": "c2_control_01_question",
+      "choiceId": "offer_escape",
+      "text": "„Ich musste weg.\"",
+      "to": "c2_control_01_aftermath",
+      "type": "scene"
+    },
+    {
+      "from": "c2_control_01_question",
+      "choiceId": "use_recorder",
+      "text": "Den Rekorder zeigen",
+      "to": "c2_control_01_aftermath",
+      "type": "scene"
+    },
+    {
+      "from": "c2_end_platform_watch",
+      "choiceId": "tell_others",
+      "text": "Den anderen erzählen",
+      "to": "c2_end_station",
+      "type": "scene"
+    },
+    {
+      "from": "c2_end_platform_watch",
+      "choiceId": "keep_silent",
+      "text": "Für sich behalten",
+      "to": "c2_end_station",
+      "type": "scene"
+    },
+    {
+      "from": "c2_end_platform_watch",
+      "choiceId": "lower_gaze",
+      "text": "Den Blick senken",
+      "to": "c2_end_station",
+      "type": "scene"
+    },
+    {
+      "from": "c2_end_platform_watch",
+      "choiceId": "recognize_figure",
+      "text": "Versuchen, die Gestalt zu erkennen",
+      "to": "c2_end_station",
+      "type": "scene"
+    },
+    {
+      "from": "c2_end_station",
+      "choiceId": "play_recorder",
+      "text": "Die Aufnahme vorspielen",
+      "to": "c3_s01_wagen7_locked",
+      "type": "scene"
+    },
+    {
+      "from": "c2_end_station",
+      "choiceId": "continue_to_chapter_3",
+      "text": "Weiter",
+      "to": "c3_s01_wagen7_locked",
+      "type": "scene"
+    },
+    {
+      "from": "c2_end_station",
+      "choiceId": "think_of_boy",
+      "text": "An den Jungen denken",
+      "to": "c3_s01_wagen7_locked",
+      "type": "scene"
+    },
+    {
+      "from": "c2_interlude_01_toilet",
+      "choiceId": "stare_back",
+      "text": "Dem Spiegelbild standhalten",
+      "to": "c2_s02_boy_recorder",
+      "type": "scene"
+    },
+    {
+      "from": "c2_interlude_01_toilet",
+      "choiceId": "continue",
+      "text": "Rausgehen",
+      "to": "c2_s02_boy_recorder",
+      "type": "scene"
+    },
+    {
+      "from": "c2_interlude_02_window_dark",
+      "choiceId": "keep_staring",
+      "text": "Trotzdem hinschauen",
+      "to": "c2_s03_comp7_intro",
+      "type": "scene"
+    },
+    {
+      "from": "c2_interlude_02_window_dark",
+      "choiceId": "avoid_window",
+      "text": "Vom Fenster wegbleiben",
+      "to": "c2_s03_comp7_intro",
+      "type": "scene"
+    },
+    {
+      "from": "c2_interlude_02_window_dark",
+      "choiceId": "continue",
+      "text": "Weitergehen",
+      "to": "c2_s03_comp7_intro",
+      "type": "scene"
+    },
+    {
+      "from": "c2_interlude_03_announcement_glitch",
+      "choiceId": "cover_ears",
+      "text": "Ohren zuhalten",
+      "to": "c2_s04_announcement",
+      "type": "scene"
+    },
+    {
+      "from": "c2_interlude_03_announcement_glitch",
+      "choiceId": "look_for_boy",
+      "text": "Nach dem Jungen sehen",
+      "to": "c2_s04_announcement",
+      "type": "scene"
+    },
+    {
+      "from": "c2_interlude_03_announcement_glitch",
+      "choiceId": "continue",
+      "text": "Weiter",
+      "to": "c2_s04_announcement",
+      "type": "scene"
+    },
+    {
+      "from": "c2_interlude_04_lights",
+      "choiceId": "steady",
+      "text": "Ruhig bleiben",
+      "to": "c2_control_01_approach",
+      "type": "scene"
+    },
+    {
+      "from": "c2_interlude_04_lights",
+      "choiceId": "continue",
+      "text": "Kontrolle beginnt",
+      "to": "c2_control_01_approach",
+      "type": "scene"
+    },
+    {
+      "from": "c2_interlude_05_vibration",
+      "choiceId": "steady_breath",
+      "text": "Atem zählen",
+      "to": "c2_end_platform_watch",
+      "type": "scene"
+    },
+    {
+      "from": "c2_interlude_05_vibration",
+      "choiceId": "continue",
+      "text": "Zur Station",
+      "to": "c2_end_platform_watch",
+      "type": "scene"
+    },
+    {
+      "from": "c2_s01_ticket_search",
+      "choiceId": "ask_boy",
+      "text": "Den Jungen ansprechen",
+      "to": "c2_s02_boy_recorder",
+      "type": "scene"
+    },
+    {
+      "from": "c2_s01_ticket_search",
+      "choiceId": "examine_passengers",
+      "text": "Andere Passagiere beobachten",
+      "to": "c2_s01a_passenger_examination",
+      "type": "scene"
+    },
+    {
+      "from": "c2_s01_ticket_search",
+      "choiceId": "search_self",
+      "text": "Die eigenen Taschen durchsuchen",
+      "to": "c2_s01b_ticket_pocket",
+      "type": "scene"
+    },
+    {
+      "from": "c2_s01_ticket_search",
+      "choiceId": "keep_walking",
+      "text": "Weitergehen",
+      "to": "c2_s01a_passenger_examination",
+      "type": "scene"
+    },
+    {
+      "from": "c2_s01a_passenger_examination",
+      "choiceId": "approach_newspaper_woman",
+      "text": "Die Frau mit der Zeitung ansprechen",
+      "to": "c2_interlude_01_toilet",
+      "type": "scene"
+    },
+    {
+      "from": "c2_s01a_passenger_examination",
+      "choiceId": "decipher_headline",
+      "text": "Die Schlagzeile erraten",
+      "to": "c2_interlude_01_toilet",
+      "type": "scene"
+    },
+    {
+      "from": "c2_s01a_passenger_examination",
+      "choiceId": "watch_laptop_man",
+      "text": "Den Mann mit Laptop beobachten",
+      "to": "c2_s02_boy_recorder",
+      "type": "scene"
+    },
+    {
+      "from": "c2_s01a_passenger_examination",
+      "choiceId": "go_to_boy",
+      "text": "Zum Jungen gehen",
+      "to": "c2_s02_boy_recorder",
+      "type": "scene"
+    },
+    {
+      "from": "c2_s01b_ticket_pocket",
+      "choiceId": "keep_note",
+      "text": "Den Zettel behalten",
+      "to": "c2_interlude_01_toilet",
+      "type": "scene"
+    },
+    {
+      "from": "c2_s01b_ticket_pocket",
+      "choiceId": "throw_away",
+      "text": "Den Zettel zerreißen",
+      "to": "c2_s02_boy_recorder",
+      "type": "scene"
+    },
+    {
+      "from": "c2_s02_boy_recorder",
+      "choiceId": "take_recorder",
+      "text": "Den Rekorder nehmen",
+      "to": "c2_s02a_recorder_listening",
+      "type": "scene"
+    },
+    {
+      "from": "c2_s02_boy_recorder",
+      "choiceId": "refuse_recorder",
+      "text": "„Das kann ich nicht annehmen\"",
+      "to": "c2_s02b_corridor_anomaly",
+      "type": "scene"
+    },
+    {
+      "from": "c2_s02_boy_recorder",
+      "choiceId": "ask_why",
+      "text": "„Warum gibst du mir das?\"",
+      "to": "c2_s02a_recorder_listening",
+      "type": "scene"
+    },
+    {
+      "from": "c2_s02_boy_recorder",
+      "choiceId": "observe_boy_silently",
+      "text": "Den Jungen stumm beobachten",
+      "to": "c2_s02b_corridor_anomaly",
+      "type": "scene"
+    },
+    {
+      "from": "c2_s02a_recorder_listening",
+      "choiceId": "rewind_again",
+      "text": "Noch einmal zurückspulen",
+      "to": "c2_s02b_corridor_anomaly",
+      "type": "scene"
+    },
+    {
+      "from": "c2_s02a_recorder_listening",
+      "choiceId": "put_away",
+      "text": "Den Rekorder weglegen",
+      "to": "c2_s02c_boy_vanish",
+      "type": "scene"
+    },
+    {
+      "from": "c2_s02a_recorder_listening",
+      "choiceId": "keep_listening",
+      "text": "Weiterhören",
+      "to": "c2_s02c_boy_vanish",
+      "type": "scene"
+    },
+    {
+      "from": "c2_s02b_corridor_anomaly",
+      "choiceId": "count_compartments",
+      "text": "Die Abteile zählen",
+      "to": "c2_interlude_02_window_dark",
+      "type": "scene"
+    },
+    {
+      "from": "c2_s02b_corridor_anomaly",
+      "choiceId": "check_sleepless",
+      "text": "Zum Schlaflosen zurückgehen",
+      "to": "c2_s03_comp7_intro",
+      "type": "scene"
+    },
+    {
+      "from": "c2_s02b_corridor_anomaly",
+      "choiceId": "approach_lit_compartment",
+      "text": "Zum beleuchteten Abteil gehen",
+      "to": "c2_s03_comp7_intro",
+      "type": "scene"
+    },
+    {
+      "from": "c2_s02b_corridor_anomaly",
+      "choiceId": "question_reality",
+      "text": "Laut fragen: „Was passiert hier?\"",
+      "to": "c2_interlude_02_window_dark",
+      "type": "scene"
+    },
+    {
+      "from": "c2_s02c_boy_vanish",
+      "choiceId": "insist_boy_real",
+      "text": "„Er war hier. Ich habe ihn gesehen.\"",
+      "to": "c2_interlude_02_window_dark",
+      "type": "scene"
+    },
+    {
+      "from": "c2_s02c_boy_vanish",
+      "choiceId": "doubt_self",
+      "text": "An sich selbst zweifeln",
+      "to": "c2_s03_comp7_intro",
+      "type": "scene"
+    },
+    {
+      "from": "c2_s03_comp7_intro",
+      "choiceId": "ask_notebook",
+      "text": "„Was schreibst du auf?\"",
+      "to": "c2_s03a_comp7_notebook",
+      "type": "scene"
+    },
+    {
+      "from": "c2_s03_comp7_intro",
+      "choiceId": "ask_name",
+      "text": "„Du weißt deinen Namen nicht?\"",
+      "to": "c2_s03a_comp7_notebook",
+      "type": "scene"
+    },
+    {
+      "from": "c2_s03_comp7_intro",
+      "choiceId": "deny_amnesia",
+      "text": "„Ich weiß meinen Namen.\"",
+      "to": "c2_s03a_comp7_notebook",
+      "type": "scene"
+    },
+    {
+      "from": "c2_s03a_comp7_notebook",
+      "choiceId": "read_future",
+      "text": "Die nächste Seite lesen",
+      "to": "c2_s03b_comp7_warning",
+      "type": "scene"
+    },
+    {
+      "from": "c2_s03a_comp7_notebook",
+      "choiceId": "refuse_knowledge",
+      "text": "„Ich will es nicht wissen\"",
+      "to": "c2_interlude_03_announcement_glitch",
+      "type": "scene"
+    },
+    {
+      "from": "c2_s03a_comp7_notebook",
+      "choiceId": "ask_purpose",
+      "text": "„Warum schreibst du das auf?\"",
+      "to": "c2_s03b_comp7_warning",
+      "type": "scene"
+    },
+    {
+      "from": "c2_s03a_comp7_notebook",
+      "choiceId": "close_notebook",
+      "text": "Das Notizbuch schliessen",
+      "to": "c2_interlude_03_announcement_glitch",
+      "type": "scene"
+    },
+    {
+      "from": "c2_s03b_comp7_warning",
+      "choiceId": "thank_comp7",
+      "text": "„Danke.\"",
+      "to": "c2_interlude_03_announcement_glitch",
+      "type": "scene"
+    },
+    {
+      "from": "c2_s03b_comp7_warning",
+      "choiceId": "ask_more_options",
+      "text": "„Was sind die anderen Optionen?\"",
+      "to": "c2_interlude_03_announcement_glitch",
+      "type": "scene"
+    },
+    {
+      "from": "c2_s03b_comp7_warning",
+      "choiceId": "leave_quickly",
+      "text": "Schnell gehen",
+      "to": "c2_s04_announcement",
+      "type": "scene"
+    },
+    {
+      "from": "c2_s04_announcement",
+      "choiceId": "prepare_truth",
+      "text": "„Ich sage die Wahrheit\"",
+      "to": "c2_s04a_conductor_approach",
+      "type": "scene"
+    },
+    {
+      "from": "c2_s04_announcement",
+      "choiceId": "prepare_lie",
+      "text": "„Ich erfinde eine Geschichte\"",
+      "to": "c2_s04a_conductor_approach",
+      "type": "scene"
+    },
+    {
+      "from": "c2_s04_announcement",
+      "choiceId": "prepare_hide",
+      "text": "„Ich verstecke mich\"",
+      "to": "c2_s04b_passengers_shift",
+      "type": "scene"
+    },
+    {
+      "from": "c2_s04a_conductor_approach",
+      "choiceId": "stand_ready",
+      "text": "Stehenbleiben und warten",
+      "to": "c2_interlude_04_lights",
+      "type": "scene"
+    },
+    {
+      "from": "c2_s04a_conductor_approach",
+      "choiceId": "move_to_next_car",
+      "text": "In den nächsten Wagen gehen",
+      "to": "c2_s04b_passengers_shift",
+      "type": "scene"
+    },
+    {
+      "from": "c2_s04a_conductor_approach",
+      "choiceId": "ask_comp7_help",
+      "text": "Comp7 um Hilfe bitten",
+      "to": "c2_interlude_04_lights",
+      "type": "scene"
+    },
+    {
+      "from": "c2_s04b_passengers_shift",
+      "choiceId": "face_conductor",
+      "text": "Sich umdrehen und ihm gegenüberstehen",
+      "to": "c2_control_01_approach",
+      "type": "scene"
+    },
+    {
+      "from": "c2_s04b_passengers_shift",
+      "choiceId": "try_run",
+      "text": "Versuchen wegzulaufen",
+      "to": "c2_control_01_approach",
+      "type": "scene"
+    },
+    {
+      "from": "c2_s05a_sleepless_talk",
+      "choiceId": "accept_truth",
+      "text": "„Ich glaube dir.\"",
+      "to": "c2_interlude_05_vibration",
+      "type": "scene"
+    },
+    {
+      "from": "c2_s05a_sleepless_talk",
+      "choiceId": "ask_for_anchor",
+      "text": "„Sag mir, was sich nicht aendert.\"",
+      "to": "c2_interlude_05_vibration",
+      "type": "scene"
+    },
+    {
+      "from": "c2_s05a_sleepless_talk",
+      "choiceId": "reject_truth",
+      "text": "„Das kann nicht sein.\"",
+      "to": "c2_s05b_reality_shift",
+      "type": "scene"
+    },
+    {
+      "from": "c2_s05b_reality_shift",
+      "choiceId": "ask_comp7_more",
+      "text": "„Wann bin ich bereit?\"",
+      "to": "c2_interlude_05_vibration",
+      "type": "scene"
+    },
+    {
+      "from": "c2_s05b_reality_shift",
+      "choiceId": "ignore_vision",
+      "text": "Nicht darüber nachdenken",
+      "to": "c2_interlude_05_vibration",
+      "type": "scene"
+    },
+    {
+      "from": "c3_control_02_aftermath",
+      "choiceId": "thank_comp7",
+      "text": "„Danke\"",
+      "to": "c3_s06_passengers_vanish",
+      "type": "scene"
+    },
+    {
+      "from": "c3_control_02_aftermath",
+      "choiceId": "ask_how_many",
+      "text": "„Wie viele Stationen noch?\"",
+      "to": "c3_s06_passengers_vanish",
+      "type": "scene"
+    },
+    {
+      "from": "c3_control_02_aftermath",
+      "choiceId": "walk_away",
+      "text": "Weggehen ohne zu antworten",
+      "to": "c3_s06_passengers_vanish",
+      "type": "scene"
+    },
+    {
+      "from": "c3_control_02_aftermath",
+      "choiceId": "hold_comp7_hand",
+      "text": "Comp7s Hand halten",
+      "to": "c3_s06_passengers_vanish",
+      "type": "scene"
+    },
+    {
+      "from": "c3_control_02_approach",
+      "choiceId": "step_outside",
+      "text": "Nach draußen gehen",
+      "to": "c3_control_02_question",
+      "type": "scene"
+    },
+    {
+      "from": "c3_control_02_approach",
+      "choiceId": "stay_inside",
+      "text": "In Wagen 7 bleiben",
+      "to": "c3_control_02_question",
+      "type": "scene"
+    },
+    {
+      "from": "c3_control_02_approach",
+      "choiceId": "trust_comp7_protection",
+      "text": "Auf Comp7s Schutz vertrauen",
+      "to": "c3_control_02_question",
+      "type": "scene"
+    },
+    {
+      "from": "c3_control_02_approach",
+      "choiceId": "analyze_conductor",
+      "text": "Den Schaffner genau beobachten",
+      "to": "c3_control_02_question",
+      "type": "scene"
+    },
+    {
+      "from": "c3_control_02_question",
+      "choiceId": "offer_recorder",
+      "text": "Den Rekorder anbieten",
+      "to": "c3_control_02_aftermath",
+      "type": "scene"
+    },
+    {
+      "from": "c3_control_02_question",
+      "choiceId": "offer_recorder_memory",
+      "text": "Vom Rekorder erzählen (Erinnerung)",
+      "to": "c3_control_02_aftermath",
+      "type": "scene"
+    },
+    {
+      "from": "c3_control_02_question",
+      "choiceId": "offer_truth",
+      "text": "„Die Wahrheit: Rückfahrt.\"",
+      "to": "c3_control_02_aftermath",
+      "type": "scene"
+    },
+    {
+      "from": "c3_control_02_question",
+      "choiceId": "offer_someone",
+      "text": "„Was meinst du mit ›jemandem‹?\"",
+      "to": "c3_control_02_aftermath",
+      "type": "scene"
+    },
+    {
+      "from": "c3_end_platform_watch",
+      "choiceId": "try_to_exit",
+      "text": "Versuchen auszusteigen",
+      "to": "c3_end_station",
+      "type": "scene"
+    },
+    {
+      "from": "c3_end_platform_watch",
+      "choiceId": "stay_on_train",
+      "text": "Im Zug bleiben",
+      "to": "c3_end_station",
+      "type": "scene"
+    },
+    {
+      "from": "c3_end_platform_watch",
+      "choiceId": "wave_to_figure",
+      "text": "Der Gestalt zuwinken",
+      "to": "c3_end_station",
+      "type": "scene"
+    },
+    {
+      "from": "c3_end_station",
+      "choiceId": "test_door_again",
+      "text": "Die Tür nochmal testen",
+      "to": "c4_s01_mirror",
+      "type": "scene"
+    },
+    {
+      "from": "c3_end_station",
+      "choiceId": "study_doppelganger",
+      "text": "Den Doppelgänger beobachten",
+      "to": "c4_s01_mirror",
+      "type": "scene"
+    },
+    {
+      "from": "c3_end_station",
+      "choiceId": "recognize_figure",
+      "text": "Die Gestalt zu erkennen versuchen",
+      "to": "c4_s01_mirror",
+      "type": "scene"
+    },
+    {
+      "from": "c3_end_station",
+      "choiceId": "continue_to_chapter_4",
+      "text": "Weitergehen",
+      "to": "c4_s01_mirror",
+      "type": "scene"
+    },
+    {
+      "from": "c3_interlude_01_lights",
+      "choiceId": "continue",
+      "text": "Weitergehen",
+      "to": "c3_s01b_boy_return",
+      "type": "scene"
+    },
+    {
+      "from": "c3_interlude_02_announcement",
+      "choiceId": "continue",
+      "text": "Weitergehen",
+      "to": "c3_s02b_corridor_shift",
+      "type": "scene"
+    },
+    {
+      "from": "c3_interlude_03_window",
+      "choiceId": "continue",
+      "text": "Wegschauen",
+      "to": "c3_s03_wagen7_approach",
+      "type": "scene"
+    },
+    {
+      "from": "c3_interlude_03_window",
+      "choiceId": "search_for_exit",
+      "text": "Nach einem Ausstieg suchen",
+      "to": "c3_s03_wagen7_approach",
+      "type": "scene"
+    },
+    {
+      "from": "c3_interlude_03_window",
+      "choiceId": "count_reflections",
+      "text": "Die Spiegelungen zählen",
+      "to": "c3_s03_wagen7_approach",
+      "type": "scene"
+    },
+    {
+      "from": "c3_interlude_03_window",
+      "choiceId": "call_to_boy_silently",
+      "text": "Dem Jungen im Spiegelbild zuwinken",
+      "to": "c3_s03_wagen7_approach",
+      "type": "scene"
+    },
+    {
+      "from": "c3_interlude_04_corridor",
+      "choiceId": "continue",
+      "text": "Zurück zu Comp7",
+      "to": "c3_s04_comp7_truth",
+      "type": "scene"
+    },
+    {
+      "from": "c3_interlude_05_mirror",
+      "choiceId": "continue",
+      "text": "Weitergehen",
+      "to": "c3_s04b_third_announcement",
+      "type": "scene"
+    },
+    {
+      "from": "c3_s01_wagen7_locked",
+      "choiceId": "try_to_open",
+      "text": "Versuchen die Tür zu öffnen",
+      "to": "c3_s01a_after_station",
+      "type": "scene"
+    },
+    {
+      "from": "c3_s01_wagen7_locked",
+      "choiceId": "wait_at_door",
+      "text": "Vor der Tür warten",
+      "to": "c3_s01a_after_station",
+      "type": "scene"
+    },
+    {
+      "from": "c3_s01_wagen7_locked",
+      "choiceId": "knock_on_door",
+      "text": "An die Tür klopfen",
+      "to": "c3_s01a_after_station",
+      "type": "scene"
+    },
+    {
+      "from": "c3_s01a_after_station",
+      "choiceId": "take_notebook",
+      "text": "Das Notizbuch nehmen",
+      "to": "c3_interlude_01_lights",
+      "type": "scene"
+    },
+    {
+      "from": "c3_s01a_after_station",
+      "choiceId": "leave_notebook",
+      "text": "Das Notizbuch liegenlassen",
+      "to": "c3_interlude_01_lights",
+      "type": "scene"
+    },
+    {
+      "from": "c3_s01a_after_station",
+      "choiceId": "read_notebook",
+      "text": "Im Notizbuch lesen",
+      "to": "c3_s01b_boy_return",
+      "type": "scene"
+    },
+    {
+      "from": "c3_s01b_boy_return",
+      "choiceId": "play_own_recorder",
+      "text": "Den eigenen Rekorder abspielen",
+      "to": "c3_s02_recorder_anomaly",
+      "type": "scene"
+    },
+    {
+      "from": "c3_s01b_boy_return",
+      "choiceId": "refuse_to_check",
+      "text": "„Ich will es nicht wissen\"",
+      "to": "c3_interlude_02_announcement",
+      "type": "scene"
+    },
+    {
+      "from": "c3_s01b_boy_return",
+      "choiceId": "ask_about_duplication",
+      "text": "„Was meinst du mit ›mehr‹?\"",
+      "to": "c3_s02_recorder_anomaly",
+      "type": "scene"
+    },
+    {
+      "from": "c3_s01b_boy_return",
+      "choiceId": "check_notebook_reference",
+      "text": "An das Notizbuch zurückdenken",
+      "to": "c3_s02_recorder_anomaly",
+      "type": "scene"
+    },
+    {
+      "from": "c3_s02_recorder_anomaly",
+      "choiceId": "listen_more",
+      "text": "Weiterhören",
+      "to": "c3_s02a_recorder_listening",
+      "type": "scene"
+    },
+    {
+      "from": "c3_s02_recorder_anomaly",
+      "choiceId": "stop_recorder",
+      "text": "Den Rekorder ausschalten",
+      "to": "c3_interlude_02_announcement",
+      "type": "scene"
+    },
+    {
+      "from": "c3_s02_recorder_anomaly",
+      "choiceId": "ask_boy_how",
+      "text": "„Wie funktioniert das?\"",
+      "to": "c3_s02a_recorder_listening",
+      "type": "scene"
+    },
+    {
+      "from": "c3_s02a_recorder_listening",
+      "choiceId": "ask_what_answer",
+      "text": "„Welche Antwort soll ich geben?\"",
+      "to": "c3_s02b_corridor_shift",
+      "type": "scene"
+    },
+    {
+      "from": "c3_s02a_recorder_listening",
+      "choiceId": "take_recorder_back",
+      "text": "Den Rekorder zurücknehmen",
+      "to": "c3_s02b_corridor_shift",
+      "type": "scene"
+    },
+    {
+      "from": "c3_s02b_corridor_shift",
+      "choiceId": "ignore_sleepless",
+      "text": "Weitergehen ohne zu reagieren",
+      "to": "c3_interlude_03_window",
+      "type": "scene"
+    },
+    {
+      "from": "c3_s02b_corridor_shift",
+      "choiceId": "talk_to_sleepless",
+      "text": "Zum Schlaflosen gehen",
+      "to": "c3_s02c_sleepless_talk",
+      "type": "scene"
+    },
+    {
+      "from": "c3_s02b_corridor_shift",
+      "choiceId": "count_compartments",
+      "text": "Die Abteile nochmal zählen",
+      "to": "c3_interlude_03_window",
+      "type": "scene"
+    },
+    {
+      "from": "c3_s02b_corridor_shift",
+      "choiceId": "call_for_boy",
+      "text": "Leise nach dem Jungen rufen",
+      "to": "c3_interlude_03_window",
+      "type": "scene"
+    },
+    {
+      "from": "c3_s02c_sleepless_talk",
+      "choiceId": "ask_what_to_give",
+      "text": "„Was soll ich geben?\"",
+      "to": "c3_interlude_03_window",
+      "type": "scene"
+    },
+    {
+      "from": "c3_s02c_sleepless_talk",
+      "choiceId": "refuse_advice",
+      "text": "„Ich finde einen anderen Weg\"",
+      "to": "c3_interlude_03_window",
+      "type": "scene"
+    },
+    {
+      "from": "c3_s03_wagen7_approach",
+      "choiceId": "enter_immediately",
+      "text": "Sofort eintreten",
+      "to": "c3_s03b_inside_comp7",
+      "type": "scene"
+    },
+    {
+      "from": "c3_s03_wagen7_approach",
+      "choiceId": "examine_door",
+      "text": "Die Tür untersuchen",
+      "to": "c3_s03a_compartment7_door",
+      "type": "scene"
+    },
+    {
+      "from": "c3_s03_wagen7_approach",
+      "choiceId": "call_out",
+      "text": "„Comp7?\"",
+      "to": "c3_s03a_compartment7_door",
+      "type": "scene"
+    },
+    {
+      "from": "c3_s03a_compartment7_door",
+      "choiceId": "enter_cautiously",
+      "text": "Vorsichtig eintreten",
+      "to": "c3_s03b_inside_comp7",
+      "type": "scene"
+    },
+    {
+      "from": "c3_s03a_compartment7_door",
+      "choiceId": "ask_from_doorway",
+      "text": "„Was ist das hier?\"",
+      "to": "c3_s03b_inside_comp7",
+      "type": "scene"
+    },
+    {
+      "from": "c3_s03b_inside_comp7",
+      "choiceId": "examine_notebooks",
+      "text": "Die Notizbücher untersuchen",
+      "to": "c3_s03c_notebooks_explore",
+      "type": "scene"
+    },
+    {
+      "from": "c3_s03b_inside_comp7",
+      "choiceId": "look_out_window",
+      "text": "Aus dem Fenster schauen",
+      "to": "c3_interlude_04_corridor",
+      "type": "scene"
+    },
+    {
+      "from": "c3_s03b_inside_comp7",
+      "choiceId": "ask_comp7_explain",
+      "text": "„Erkläre mir das\"",
+      "to": "c3_s04_comp7_truth",
+      "type": "scene"
+    },
+    {
+      "from": "c3_s03c_notebooks_explore",
+      "choiceId": "ask_when",
+      "text": "„Wann war ich hier?\"",
+      "to": "c3_s04_comp7_truth",
+      "type": "scene"
+    },
+    {
+      "from": "c3_s03c_notebooks_explore",
+      "choiceId": "deny",
+      "text": "„Das kann nicht sein\"",
+      "to": "c3_s04_comp7_truth",
+      "type": "scene"
+    },
+    {
+      "from": "c3_s03c_notebooks_explore",
+      "choiceId": "examine_photo",
+      "text": "Das Foto genauer betrachten",
+      "to": "c3_s04_comp7_truth",
+      "type": "scene"
+    },
+    {
+      "from": "c3_s03c_notebooks_explore",
+      "choiceId": "read_own_entry",
+      "text": "Nach dem eigenen Eintrag suchen",
+      "to": "c3_s04_comp7_truth",
+      "type": "scene"
+    },
+    {
+      "from": "c3_s04_comp7_truth",
+      "choiceId": "accept_truth",
+      "text": "„Ich verstehe\"",
+      "to": "c3_s04a_paradox_window",
+      "type": "scene"
+    },
+    {
+      "from": "c3_s04_comp7_truth",
+      "choiceId": "deny_truth",
+      "text": "„Das kann nicht sein\"",
+      "to": "c3_interlude_05_mirror",
+      "type": "scene"
+    },
+    {
+      "from": "c3_s04_comp7_truth",
+      "choiceId": "ask_who",
+      "text": "„Wer hält uns hier?\"",
+      "to": "c3_s04a_paradox_window",
+      "type": "scene"
+    },
+    {
+      "from": "c3_s04a_paradox_window",
+      "choiceId": "accept_paradox",
+      "text": "Das Paradox akzeptieren",
+      "to": "c3_s04b_third_announcement",
+      "type": "scene"
+    },
+    {
+      "from": "c3_s04a_paradox_window",
+      "choiceId": "look_away",
+      "text": "Wegschauen",
+      "to": "c3_s04b_third_announcement",
+      "type": "scene"
+    },
+    {
+      "from": "c3_s04a_paradox_window",
+      "choiceId": "try_to_reach",
+      "text": "Versuchen das andere Du zu erreichen",
+      "to": "c3_s04b_third_announcement",
+      "type": "scene"
+    },
+    {
+      "from": "c3_s04b_third_announcement",
+      "choiceId": "hide_in_comp7",
+      "text": "In Wagen 7 bleiben",
+      "to": "c3_control_02_approach",
+      "type": "scene"
+    },
+    {
+      "from": "c3_s04b_third_announcement",
+      "choiceId": "go_to_control",
+      "text": "Rausgehen zur Kontrolle",
+      "to": "c3_control_02_approach",
+      "type": "scene"
+    },
+    {
+      "from": "c3_s04b_third_announcement",
+      "choiceId": "ask_comp7_help",
+      "text": "Comp7 um Hilfe bitten",
+      "to": "c3_control_02_approach",
+      "type": "scene"
+    },
+    {
+      "from": "c3_s04b_third_announcement",
+      "choiceId": "step_into_corridor",
+      "text": "In den Gang treten",
+      "to": "c3_control_02_approach",
+      "type": "scene"
+    },
+    {
+      "from": "c3_s06_passengers_vanish",
+      "choiceId": "go_to_comp7",
+      "text": "Zu Comp7 zurückgehen",
+      "to": "c3_s06a_drift_intensifies",
+      "type": "scene"
+    },
+    {
+      "from": "c3_s06_passengers_vanish",
+      "choiceId": "search_train",
+      "text": "Den Zug durchsuchen",
+      "to": "c3_s06a_drift_intensifies",
+      "type": "scene"
+    },
+    {
+      "from": "c3_s06_passengers_vanish",
+      "choiceId": "sit_down",
+      "text": "Sich hinsetzen und warten",
+      "to": "c3_s06a_drift_intensifies",
+      "type": "scene"
+    },
+    {
+      "from": "c3_s06a_drift_intensifies",
+      "choiceId": "talk_to_boy",
+      "text": "Mit dem Jungen reden",
+      "to": "c3_s06b_boy_final",
+      "type": "scene"
+    },
+    {
+      "from": "c3_s06a_drift_intensifies",
+      "choiceId": "ignore_boy",
+      "text": "Weitergehen",
+      "to": "c3_end_platform_watch",
+      "type": "scene"
+    },
+    {
+      "from": "c3_s06a_drift_intensifies",
+      "choiceId": "ask_where_others",
+      "text": "„Wo sind die anderen?\"",
+      "to": "c3_s06b_boy_final",
+      "type": "scene"
+    },
+    {
+      "from": "c3_s06b_boy_final",
+      "choiceId": "take_boys_recorder",
+      "text": "Den Rekorder nehmen",
+      "to": "c3_end_platform_watch",
+      "type": "scene"
+    },
+    {
+      "from": "c3_s06b_boy_final",
+      "choiceId": "leave_recorder",
+      "text": "Den Rekorder beim Jungen lassen",
+      "to": "c3_end_platform_watch",
+      "type": "scene"
+    },
+    {
+      "from": "c4_end_platform_watch",
+      "choiceId": "observe_copies",
+      "text": "Die Kopien beobachten",
+      "to": "c4_end_station",
+      "type": "scene"
+    },
+    {
+      "from": "c4_end_platform_watch",
+      "choiceId": "close_eyes",
+      "text": "Die Augen schließen",
+      "to": "c4_end_station",
+      "type": "scene"
+    },
+    {
+      "from": "c4_end_platform_watch",
+      "choiceId": "wave_to_copies",
+      "text": "Den Kopien zuwinken",
+      "to": "c4_end_station",
+      "type": "scene"
+    },
+    {
+      "from": "c4_end_station",
+      "choiceId": "continue_to_chapter_5",
+      "text": "Im Zug bleiben",
+      "to": "c5_s01_final_preparation",
+      "type": "scene"
+    },
+    {
+      "from": "c4_end_station",
+      "choiceId": "search_for_self",
+      "text": "Nach sich selbst in der Menge suchen",
+      "to": "c5_s01_final_preparation",
+      "type": "scene"
+    },
+    {
+      "from": "c4_end_station",
+      "choiceId": "call_out_to_copies",
+      "text": "Die Kopien ansprechen",
+      "to": "c5_s01_final_preparation",
+      "type": "scene"
+    },
+    {
+      "from": "c4_end_station",
+      "choiceId": "ignore_copies",
+      "text": "Die Kopien komplett ignorieren",
+      "to": "c5_s01_final_preparation",
+      "type": "scene"
+    },
+    {
+      "from": "c4_interlude_01_lights",
+      "choiceId": "continue",
+      "text": "Weitergehen",
+      "to": "c4_s02_recorder_prophecy",
+      "type": "scene"
+    },
+    {
+      "from": "c4_interlude_01_lights",
+      "choiceId": "embrace_false_reality",
+      "text": "Die veränderte Realität akzeptieren",
+      "to": "c4_s02_recorder_prophecy",
+      "type": "scene"
+    },
+    {
+      "from": "c4_interlude_01_lights",
+      "choiceId": "analyze_pattern",
+      "text": "Das Lichtmuster analysieren",
+      "to": "c4_s02_recorder_prophecy",
+      "type": "scene"
+    },
+    {
+      "from": "c4_interlude_01_lights",
+      "choiceId": "whisper_to_shadow",
+      "text": "Mit dem Schatten sprechen",
+      "to": "c4_s02_recorder_prophecy",
+      "type": "scene"
+    },
+    {
+      "from": "c4_interlude_02_announcement",
+      "choiceId": "continue",
+      "text": "Im Zug bleiben",
+      "to": "c4_s03_passengers_return",
+      "type": "scene"
+    },
+    {
+      "from": "c4_interlude_02_announcement",
+      "choiceId": "check_doors",
+      "text": "Zu den Tueren gehen",
+      "to": "c4_s03_passengers_return",
+      "type": "scene"
+    },
+    {
+      "from": "c4_interlude_02_announcement",
+      "choiceId": "accept_loop_pattern",
+      "text": "Das Schleifenmuster akzeptieren",
+      "to": "c4_s03_passengers_return",
+      "type": "scene"
+    },
+    {
+      "from": "c4_interlude_02_announcement",
+      "choiceId": "resist_temporal_shift",
+      "text": "Gegen die Zeitverschiebung ankämpfen",
+      "to": "c4_s03_passengers_return",
+      "type": "scene"
+    },
+    {
+      "from": "c4_interlude_03_window",
+      "choiceId": "continue",
+      "text": "Wegschauen",
+      "to": "c4_s04_announcement_glitch",
+      "type": "scene"
+    },
+    {
+      "from": "c4_interlude_03_window",
+      "choiceId": "question_reality",
+      "text": "Die Stationen hinterfragen",
+      "to": "c4_s04_announcement_glitch",
+      "type": "scene"
+    },
+    {
+      "from": "c4_interlude_03_window",
+      "choiceId": "accept_altered_memory",
+      "text": "Die veränderte Erinnerung annehmen",
+      "to": "c4_s04_announcement_glitch",
+      "type": "scene"
+    },
+    {
+      "from": "c4_interlude_03_window",
+      "choiceId": "seek_boy_pattern",
+      "text": "Nach dem Jungen im Loop suchen",
+      "to": "c4_s04_announcement_glitch",
+      "type": "scene"
+    },
+    {
+      "from": "c4_interlude_04_corridor",
+      "choiceId": "continue",
+      "text": "Weitergehen",
+      "to": "c4_s05_comp7_call",
+      "type": "scene"
+    },
+    {
+      "from": "c4_interlude_05_time",
+      "choiceId": "continue",
+      "text": "Weitergehen",
+      "to": "c4_s06_comp7_memory",
+      "type": "scene"
+    },
+    {
+      "from": "c4_s01_mirror",
+      "choiceId": "touch_mirror",
+      "text": "Den Spiegel berühren",
+      "to": "c4_s01a_double_reflection",
+      "type": "scene"
+    },
+    {
+      "from": "c4_s01_mirror",
+      "choiceId": "back_away",
+      "text": "Zurückweichen",
+      "to": "c4_interlude_01_lights",
+      "type": "scene"
+    },
+    {
+      "from": "c4_s01_mirror",
+      "choiceId": "talk_to_reflection",
+      "text": "„Wer bist du?\"",
+      "to": "c4_s01a_double_reflection",
+      "type": "scene"
+    },
+    {
+      "from": "c4_s01a_double_reflection",
+      "choiceId": "try_to_understand",
+      "text": "Versuchen zu verstehen",
+      "to": "c4_s01b_wrong_memory",
+      "type": "scene"
+    },
+    {
+      "from": "c4_s01a_double_reflection",
+      "choiceId": "leave_quickly",
+      "text": "Schnell weggehen",
+      "to": "c4_interlude_01_lights",
+      "type": "scene"
+    },
+    {
+      "from": "c4_s01a_double_reflection",
+      "choiceId": "ask_when",
+      "text": "„Wann war ich hier?\"",
+      "to": "c4_s01b_wrong_memory",
+      "type": "scene"
+    },
+    {
+      "from": "c4_s01b_wrong_memory",
+      "choiceId": "accept_false_memory",
+      "text": "Die falsche Erinnerung akzeptieren",
+      "to": "c4_interlude_01_lights",
+      "type": "scene"
+    },
+    {
+      "from": "c4_s01b_wrong_memory",
+      "choiceId": "fight_memory",
+      "text": "Gegen die Erinnerung ankämpfen",
+      "to": "c4_interlude_01_lights",
+      "type": "scene"
+    },
+    {
+      "from": "c4_s01b_wrong_memory",
+      "choiceId": "ask_who_spoke",
+      "text": "„Wer hat das gesagt?\"",
+      "to": "c4_interlude_01_lights",
+      "type": "scene"
+    },
+    {
+      "from": "c4_s02_recorder_prophecy",
+      "choiceId": "listen_to_prophecy",
+      "text": "Weiterhören",
+      "to": "c4_s02a_recording_self",
+      "type": "scene"
+    },
+    {
+      "from": "c4_s02_recorder_prophecy",
+      "choiceId": "turn_off_recorder",
+      "text": "Den Rekorder ausschalten",
+      "to": "c4_interlude_02_announcement",
+      "type": "scene"
+    },
+    {
+      "from": "c4_s02_recorder_prophecy",
+      "choiceId": "no_recorder",
+      "text": "Weitergehen",
+      "to": "c4_interlude_02_announcement",
+      "type": "scene"
+    },
+    {
+      "from": "c4_s02a_recording_self",
+      "choiceId": "rewind_and_listen",
+      "text": "Zurückspulen und nochmal hören",
+      "to": "c4_s02b_recorder_loop",
+      "type": "scene"
+    },
+    {
+      "from": "c4_s02a_recording_self",
+      "choiceId": "put_recorder_away",
+      "text": "Den Rekorder weglegen",
+      "to": "c4_interlude_02_announcement",
+      "type": "scene"
+    },
+    {
+      "from": "c4_s02b_recorder_loop",
+      "choiceId": "accept_loop",
+      "text": "Die Schleife akzeptieren",
+      "to": "c4_interlude_02_announcement",
+      "type": "scene"
+    },
+    {
+      "from": "c4_s02b_recorder_loop",
+      "choiceId": "try_to_break",
+      "text": "Versuchen die Schleife zu brechen",
+      "to": "c4_interlude_02_announcement",
+      "type": "scene"
+    },
+    {
+      "from": "c4_s03_passengers_return",
+      "choiceId": "talk_to_sleepless",
+      "text": "Den Schlaflosen ansprechen",
+      "to": "c4_s03a_sleepless_changed",
+      "type": "scene"
+    },
+    {
+      "from": "c4_s03_passengers_return",
+      "choiceId": "talk_to_boy",
+      "text": "Den Jungen ansprechen",
+      "to": "c4_s03b_boy_paradox",
+      "type": "scene"
+    },
+    {
+      "from": "c4_s03_passengers_return",
+      "choiceId": "ignore_all",
+      "text": "Alle ignorieren",
+      "to": "c4_interlude_03_window",
+      "type": "scene"
+    },
+    {
+      "from": "c4_s03a_sleepless_changed",
+      "choiceId": "correct_him",
+      "text": "„Aber wir hatten drei Stationen\"",
+      "to": "c4_interlude_03_window",
+      "type": "scene"
+    },
+    {
+      "from": "c4_s03a_sleepless_changed",
+      "choiceId": "accept_his_memory",
+      "text": "„Du hast recht\"",
+      "to": "c4_interlude_03_window",
+      "type": "scene"
+    },
+    {
+      "from": "c4_s03a_sleepless_changed",
+      "choiceId": "ask_about_loop",
+      "text": "„Wie oft sind wir schon gefahren?\"",
+      "to": "c4_interlude_03_window",
+      "type": "scene"
+    },
+    {
+      "from": "c4_s03b_boy_paradox",
+      "choiceId": "believe_boy",
+      "text": "„Wie oft habe ich das gemacht?\"",
+      "to": "c4_interlude_03_window",
+      "type": "scene"
+    },
+    {
+      "from": "c4_s03b_boy_paradox",
+      "choiceId": "deny",
+      "text": "„Das kann nicht sein\"",
+      "to": "c4_interlude_03_window",
+      "type": "scene"
+    },
+    {
+      "from": "c4_s04_announcement_glitch",
+      "choiceId": "check_own_name",
+      "text": "Versuchen sich an den eigenen Namen zu erinnern",
+      "to": "c4_s04a_name_confusion",
+      "type": "scene"
+    },
+    {
+      "from": "c4_s04_announcement_glitch",
+      "choiceId": "ignore_announcement",
+      "text": "Die Durchsage ignorieren",
+      "to": "c4_interlude_04_corridor",
+      "type": "scene"
+    },
+    {
+      "from": "c4_s04_announcement_glitch",
+      "choiceId": "go_to_control",
+      "text": "Zur Kontrolle gehen",
+      "to": "c4_s04b_ticket_appears",
+      "type": "scene"
+    },
+    {
+      "from": "c4_s04a_name_confusion",
+      "choiceId": "accept_loss",
+      "text": "Den Verlust akzeptieren",
+      "to": "c4_s05_comp7_call",
+      "type": "scene"
+    },
+    {
+      "from": "c4_s04a_name_confusion",
+      "choiceId": "insist_on_name",
+      "text": "„Ich weiß noch, wer ich bin\"",
+      "to": "c4_s05_comp7_call",
+      "type": "scene"
+    },
+    {
+      "from": "c4_s04a_name_confusion",
+      "choiceId": "ask_comp7_name",
+      "text": "„Wie heißt du wirklich?\"",
+      "to": "c4_s05_comp7_call",
+      "type": "scene"
+    },
+    {
+      "from": "c4_s04b_ticket_appears",
+      "choiceId": "keep_ticket",
+      "text": "Das Ticket behalten",
+      "to": "c4_s05_comp7_call",
+      "type": "scene"
+    },
+    {
+      "from": "c4_s04b_ticket_appears",
+      "choiceId": "destroy_ticket",
+      "text": "Das Ticket zerreißen",
+      "to": "c4_s05_comp7_call",
+      "type": "scene"
+    },
+    {
+      "from": "c4_s05_comp7_call",
+      "choiceId": "go_to_wagen7",
+      "text": "Nach Wagen 7 gehen",
+      "to": "c4_s05a_wagen7_changed",
+      "type": "scene"
+    },
+    {
+      "from": "c4_s05_comp7_call",
+      "choiceId": "refuse_call",
+      "text": "Nicht hingehen",
+      "to": "c4_interlude_05_time",
+      "type": "scene"
+    },
+    {
+      "from": "c4_s05_comp7_call",
+      "choiceId": "examine_ticket_evidence",
+      "text": "Das Ticket als Beweis prüfen",
+      "to": "c4_s05a_wagen7_changed",
+      "type": "scene"
+    },
+    {
+      "from": "c4_s05_comp7_call",
+      "choiceId": "hide_from_system",
+      "text": "Sich vor dem System verstecken",
+      "to": "c4_interlude_05_time",
+      "type": "scene"
+    },
+    {
+      "from": "c4_s05a_wagen7_changed",
+      "choiceId": "ask_how_long",
+      "text": "„Wie lange bist du schon hier?\"",
+      "to": "c4_s06_comp7_memory",
+      "type": "scene"
+    },
+    {
+      "from": "c4_s05a_wagen7_changed",
+      "choiceId": "ask_about_escape",
+      "text": "„Kann man noch raus?\"",
+      "to": "c4_s06_comp7_memory",
+      "type": "scene"
+    },
+    {
+      "from": "c4_s05a_wagen7_changed",
+      "choiceId": "comfort_comp7",
+      "text": "Comp7 trösten",
+      "to": "c4_s06_comp7_memory",
+      "type": "scene"
+    },
+    {
+      "from": "c4_s06_comp7_memory",
+      "choiceId": "believe_her",
+      "text": "„Vielleicht hast du recht\"",
+      "to": "c4_s06a_shared_memory",
+      "type": "scene"
+    },
+    {
+      "from": "c4_s06_comp7_memory",
+      "choiceId": "doubt_her",
+      "text": "„Ich glaube, du verwechselst mich\"",
+      "to": "c4_s07_reality_fracture",
+      "type": "scene"
+    },
+    {
+      "from": "c4_s06_comp7_memory",
+      "choiceId": "ask_about_future",
+      "text": "„Was passiert als Nächstes?\"",
+      "to": "c4_s06a_shared_memory",
+      "type": "scene"
+    },
+    {
+      "from": "c4_s06_comp7_memory",
+      "choiceId": "comfort_comp7_drift",
+      "text": "Comp7s Drift verstehen",
+      "to": "c4_s06a_shared_memory",
+      "type": "scene"
+    },
+    {
+      "from": "c4_s06a_shared_memory",
+      "choiceId": "accept_memory",
+      "text": "Die Erinnerung als echt akzeptieren",
+      "to": "c4_s07_reality_fracture",
+      "type": "scene"
+    },
+    {
+      "from": "c4_s06a_shared_memory",
+      "choiceId": "reject_memory",
+      "text": "„Das ist nicht meine Erinnerung\"",
+      "to": "c4_s07_reality_fracture",
+      "type": "scene"
+    },
+    {
+      "from": "c4_s07_reality_fracture",
+      "choiceId": "remember_platform",
+      "text": "An den Bahnsteig denken",
+      "to": "c4_s07a_drift_peak",
+      "type": "scene"
+    },
+    {
+      "from": "c4_s07_reality_fracture",
+      "choiceId": "remember_comp7",
+      "text": "An Comp7 denken",
+      "to": "c4_s07a_drift_peak",
+      "type": "scene"
+    },
+    {
+      "from": "c4_s07_reality_fracture",
+      "choiceId": "let_go",
+      "text": "Loslassen",
+      "to": "c4_s07a_drift_peak",
+      "type": "scene"
+    },
+    {
+      "from": "c4_s07_reality_fracture",
+      "choiceId": "embrace_shared_timeline",
+      "text": "Die geteilte Erinnerung festhalten",
+      "to": "c4_s07a_drift_peak",
+      "type": "scene"
+    },
+    {
+      "from": "c4_s07a_drift_peak",
+      "choiceId": "confront_self",
+      "text": "„Wer bist du?\"",
+      "to": "c4_s07b_stabilization",
+      "type": "scene"
+    },
+    {
+      "from": "c4_s07a_drift_peak",
+      "choiceId": "run_away",
+      "text": "Weglaufen",
+      "to": "c4_s07b_stabilization",
+      "type": "scene"
+    },
+    {
+      "from": "c4_s07a_drift_peak",
+      "choiceId": "accept_double",
+      "text": "„Ich weiß\"",
+      "to": "c4_s07b_stabilization",
+      "type": "scene"
+    },
+    {
+      "from": "c4_s07b_stabilization",
+      "choiceId": "examine_object",
+      "text": "Den Gegenstand aufheben",
+      "to": "c4_s07c_tag19_found",
+      "type": "scene"
+    },
+    {
+      "from": "c4_s07b_stabilization",
+      "choiceId": "ignore_object",
+      "text": "Liegenlassen",
+      "to": "c4_end_platform_watch",
+      "type": "scene"
+    },
+    {
+      "from": "c4_s07b_stabilization",
+      "choiceId": "trace_double",
+      "text": "Dem Doppel nachgehen",
+      "to": "c4_s07c_tag19_found",
+      "type": "scene"
+    },
+    {
+      "from": "c4_s07b_stabilization",
+      "choiceId": "confront_self_echo",
+      "text": "Das Doppel als Teil von sich akzeptieren",
+      "to": "c4_s07c_tag19_found",
+      "type": "scene"
+    },
+    {
+      "from": "c4_s07c_tag19_found",
+      "choiceId": "take_tag19",
+      "text": "Den Anhänger einstecken",
+      "to": "c4_end_platform_watch",
+      "type": "scene"
+    },
+    {
+      "from": "c4_s07c_tag19_found",
+      "choiceId": "give_to_comp7",
+      "text": "Ihn Comp7 geben",
+      "to": "c4_end_platform_watch",
+      "type": "scene"
+    },
+    {
+      "from": "c5_end_station",
+      "choiceId": "enter_wagon_12",
+      "text": "Dem verborgenen Pfad folgen (Wagen 12)",
+      "to": "c6_s01_awakening",
+      "type": "scene"
+    },
+    {
+      "from": "c5_end_station",
+      "choiceId": "continue_normal",
+      "text": "Wieder einsteigen",
+      "to": "c6_s01_awakening",
+      "type": "scene"
+    },
+    {
+      "from": "c5_end_station",
+      "choiceId": "acknowledge_guilt",
+      "text": "Die Namen auf dem Bahnsteig suchen",
+      "to": "c6_s01_awakening",
+      "type": "scene"
+    },
+    {
+      "from": "c5_s01_final_preparation",
+      "choiceId": "check_recorder",
+      "text": "Den Rekorder noch einmal ansehen",
+      "to": "c5_s02_corridor_silence",
+      "type": "scene"
+    },
+    {
+      "from": "c5_s01_final_preparation",
+      "choiceId": "rest_prepare",
+      "text": "Ausruhen und sich vorbereiten",
+      "to": "c5_s02_corridor_silence",
+      "type": "scene"
+    },
+    {
+      "from": "c5_s01_final_preparation",
+      "choiceId": "walk_corridor",
+      "text": "In den Gang gehen",
+      "to": "c5_s02_corridor_silence",
+      "type": "scene"
+    },
+    {
+      "from": "c5_s02_corridor_silence",
+      "choiceId": "continue_forward",
+      "text": "Weitergehen",
+      "to": "c5_s03_comp7_reflection",
+      "type": "scene"
+    },
+    {
+      "from": "c5_s02_corridor_silence",
+      "choiceId": "listen_for_patterns",
+      "text": "Nach Mustern im Licht lauschen",
+      "to": "c5_s03_comp7_reflection",
+      "type": "scene"
+    },
+    {
+      "from": "c5_s02_corridor_silence",
+      "choiceId": "retreat_to_safety",
+      "text": "Zurück ins Abteil flüchten",
+      "to": "c5_s03_comp7_reflection",
+      "type": "scene"
+    },
+    {
+      "from": "c5_s02_corridor_silence",
+      "choiceId": "challenge_emptiness",
+      "text": "Laut in die Stille rufen",
+      "to": "c5_s03_comp7_reflection",
+      "type": "scene"
+    },
+    {
+      "from": "c5_s03_comp7_reflection",
+      "choiceId": "ask_about_destination",
+      "text": "„Wohin fährt dieser Zug?\"",
+      "to": "c5_s04_lights_flicker",
+      "type": "scene"
+    },
+    {
+      "from": "c5_s03_comp7_reflection",
+      "choiceId": "ask_about_compartment7",
+      "text": "„Was ist in Abteil 7?\"",
+      "to": "c5_s04_lights_flicker",
+      "type": "scene"
+    },
+    {
+      "from": "c5_s03_comp7_reflection",
+      "choiceId": "stay_silent",
+      "text": "Schweigen",
+      "to": "c5_s04_lights_flicker",
+      "type": "scene"
+    },
+    {
+      "from": "c5_s03_comp7_reflection",
+      "choiceId": "discuss_silence",
+      "text": "„Die Stille hier… sie ist nicht normal.\"",
+      "to": "c5_s04_lights_flicker",
+      "type": "scene"
+    },
+    {
+      "from": "c5_s04_lights_flicker",
+      "choiceId": "investigate",
+      "text": "Dem Geräusch nachgehen",
+      "to": "c5_s05_sleepless_final",
+      "type": "scene"
+    },
+    {
+      "from": "c5_s04_lights_flicker",
+      "choiceId": "confront_comp7_questions",
+      "text": "An Comp7s Worte denken",
+      "to": "c5_s05_sleepless_final",
+      "type": "scene"
+    },
+    {
+      "from": "c5_s04_lights_flicker",
+      "choiceId": "analyze_abteil7_clue",
+      "text": "Die Hinweise auf Abteil 7 deuten",
+      "to": "c5_s05_sleepless_final",
+      "type": "scene"
+    },
+    {
+      "from": "c5_s04_lights_flicker",
+      "choiceId": "hide_from_presence",
+      "text": "Sich vor der Präsenz verstecken",
+      "to": "c5_s05_sleepless_final",
+      "type": "scene"
+    },
+    {
+      "from": "c5_s05_sleepless_final",
+      "choiceId": "comfort_him",
+      "text": "„Wir kommen beide durch.\"",
+      "to": "c5_s06_abteil7_approach",
+      "type": "scene"
+    },
+    {
+      "from": "c5_s05_sleepless_final",
+      "choiceId": "tell_truth",
+      "text": "„Ich weiß es nicht. Ich erinnere mich nicht.\"",
+      "to": "c5_s06_abteil7_approach",
+      "type": "scene"
+    },
+    {
+      "from": "c5_s05_sleepless_final",
+      "choiceId": "leave_quietly",
+      "text": "Ihn allein lassen",
+      "to": "c5_s06_abteil7_approach",
+      "type": "scene"
+    },
+    {
+      "from": "c5_s05_sleepless_final",
+      "choiceId": "warn_about_presence",
+      "text": "„Da ist etwas im Gang. Sei vorsichtig.\"",
+      "to": "c5_s06_abteil7_approach",
+      "type": "scene"
+    },
+    {
+      "from": "c5_s06_abteil7_approach",
+      "choiceId": "open_door",
+      "text": "Die Tür öffnen",
+      "to": "c5_s07_abteil7_inside",
+      "type": "scene"
+    },
+    {
+      "from": "c5_s06_abteil7_approach",
+      "choiceId": "walk_past",
+      "text": "Vorbeigehen",
+      "to": "c5_s08_abteil7_aftermath",
+      "type": "scene"
+    },
+    {
+      "from": "c5_s06_abteil7_approach",
+      "choiceId": "protect_sleepless",
+      "text": "Zurück zum Schlaflosen gehen",
+      "to": "c5_s08_abteil7_aftermath",
+      "type": "scene"
+    },
+    {
+      "from": "c5_s06_abteil7_approach",
+      "choiceId": "open_door_for_truth",
+      "text": "Öffnen – für die Antworten",
+      "to": "c5_s07_abteil7_inside",
+      "type": "scene"
+    },
+    {
+      "from": "c5_s07_abteil7_inside",
+      "choiceId": "read_names_truth",
+      "text": "Die Namen genau ansehen",
+      "to": "c5_s08_abteil7_aftermath",
+      "type": "scene"
+    },
+    {
+      "from": "c5_s07_abteil7_inside",
+      "choiceId": "leave_immediately",
+      "text": "Sofort das Abteil verlassen",
+      "to": "c5_s08_abteil7_aftermath",
+      "type": "scene"
+    },
+    {
+      "from": "c5_s07_abteil7_inside",
+      "choiceId": "touch_wall",
+      "text": "Die Wand berühren",
+      "to": "c5_s08_abteil7_aftermath",
+      "type": "scene"
+    },
+    {
+      "from": "c5_s08_abteil7_aftermath",
+      "choiceId": "try_to_remember",
+      "text": "Versuchen, sich zu erinnern",
+      "to": "c5_s09_train_shifts",
+      "type": "scene"
+    },
+    {
+      "from": "c5_s08_abteil7_aftermath",
+      "choiceId": "let_it_go",
+      "text": "Es loslassen",
+      "to": "c5_s09_train_shifts",
+      "type": "scene"
+    },
+    {
+      "from": "c5_s08_abteil7_aftermath",
+      "choiceId": "write_down_names",
+      "text": "Die Namen aufschreiben",
+      "to": "c5_s09_train_shifts",
+      "type": "scene"
+    },
+    {
+      "from": "c5_s08_abteil7_aftermath",
+      "choiceId": "ponder_the_wall",
+      "text": "Die Kälte der Wand noch spüren",
+      "to": "c5_s09_train_shifts",
+      "type": "scene"
+    },
+    {
+      "from": "c5_s09_train_shifts",
+      "choiceId": "continue_on",
+      "text": "Weitergehen",
+      "to": "c5_s10_boy_reunion",
+      "type": "scene"
+    },
+    {
+      "from": "c5_s09_train_shifts",
+      "choiceId": "press_to_window",
+      "text": "Am Fenster bleiben",
+      "to": "c5_s10_boy_reunion",
+      "type": "scene"
+    },
+    {
+      "from": "c5_s09_train_shifts",
+      "choiceId": "understand_skip",
+      "text": "Die übersprungene Station verstehen",
+      "to": "c5_s10_boy_reunion",
+      "type": "scene"
+    },
+    {
+      "from": "c5_s09_train_shifts",
+      "choiceId": "use_skip_chance",
+      "text": "Den Sprung als Chance nutzen",
+      "to": "c5_s10_boy_reunion",
+      "type": "scene"
+    },
+    {
+      "from": "c5_s10_boy_reunion",
+      "choiceId": "show_recorder_connection",
+      "text": "Deinen Rekorder zeigen",
+      "to": "c5_s11_corridor_encounter",
+      "type": "scene"
+    },
+    {
+      "from": "c5_s10_boy_reunion",
+      "choiceId": "admit_lost_recorder",
+      "text": "„Ich habe meinen verloren.\"",
+      "to": "c5_s11_corridor_encounter",
+      "type": "scene"
+    },
+    {
+      "from": "c5_s10_boy_reunion",
+      "choiceId": "show_tag19",
+      "text": "Das Tag19-Etikett zeigen",
+      "to": "c5_s11_corridor_encounter",
+      "type": "scene"
+    },
+    {
+      "from": "c5_s10_boy_reunion",
+      "choiceId": "reassure_boy",
+      "text": "Ihm versichern, dass er nicht allein ist",
+      "to": "c5_s11_corridor_encounter",
+      "type": "scene"
+    },
+    {
+      "from": "c5_s11_corridor_encounter",
+      "choiceId": "approach_conductor",
+      "text": "Auf ihn zugehen",
+      "to": "c5_s12_window_void",
+      "type": "scene"
+    },
+    {
+      "from": "c5_s11_corridor_encounter",
+      "choiceId": "retreat_to_compartment",
+      "text": "Zurück ins Abteil gehen",
+      "to": "c5_s12_window_void",
+      "type": "scene"
+    },
+    {
+      "from": "c5_s12_window_void",
+      "choiceId": "accept_void",
+      "text": "Die Leere akzeptieren",
+      "to": "c5_s13_memory_fragment",
+      "type": "scene"
+    },
+    {
+      "from": "c5_s12_window_void",
+      "choiceId": "search_reflection",
+      "text": "Den Schatten des Schaffners im Glas suchen",
+      "to": "c5_s13_memory_fragment",
+      "type": "scene"
+    },
+    {
+      "from": "c5_s13_memory_fragment",
+      "choiceId": "chase_memory",
+      "text": "Der Erinnerung nachjagen",
+      "to": "c5_s14_control3_approach",
+      "type": "scene"
+    },
+    {
+      "from": "c5_s13_memory_fragment",
+      "choiceId": "let_memory_fade",
+      "text": "Die Erinnerung loslassen",
+      "to": "c5_s14_control3_approach",
+      "type": "scene"
+    },
+    {
+      "from": "c5_s13_memory_fragment",
+      "choiceId": "write_down_memory",
+      "text": "Versuchen, sie festzuhalten",
+      "to": "c5_s14_control3_approach",
+      "type": "scene"
+    },
+    {
+      "from": "c5_s14_control3_approach",
+      "choiceId": "show_confidence",
+      "text": "„Ich habe ein Recht, hier zu sein.\"",
+      "to": "c5_s15_control3_question",
+      "type": "scene"
+    },
+    {
+      "from": "c5_s14_control3_approach",
+      "choiceId": "show_uncertainty",
+      "text": "„Ich… ich weiß nicht.\"",
+      "to": "c5_s15_control3_question",
+      "type": "scene"
+    },
+    {
+      "from": "c5_s14_control3_approach",
+      "choiceId": "mention_fragment",
+      "text": "Ihm von dem Bahnhof erzählen",
+      "to": "c5_s15_control3_question",
+      "type": "scene"
+    },
+    {
+      "from": "c5_s15_control3_question",
+      "choiceId": "admit_truth_high",
+      "text": "„Ich wollte es vergessen. Ich habe es verdient.\"",
+      "to": "c5_s16_control3_aftermath",
+      "type": "scene"
+    },
+    {
+      "from": "c5_s15_control3_question",
+      "choiceId": "ask_comp7_help",
+      "text": "An Comp7 denken – sie könnte helfen",
+      "to": "c5_s16_control3_aftermath",
+      "type": "scene"
+    },
+    {
+      "from": "c5_s15_control3_question",
+      "choiceId": "harsh_response",
+      "text": "„Ich schulde dir keine Antwort.\"",
+      "to": "c5_s16_control3_aftermath",
+      "type": "scene"
+    },
+    {
+      "from": "c5_s15_control3_question",
+      "choiceId": "deny_everything",
+      "text": "„Ich weiß es wirklich nicht.\"",
+      "to": "c5_s16_control3_aftermath",
+      "type": "scene"
+    },
+    {
+      "from": "c5_s16_control3_aftermath",
+      "choiceId": "examine_ticket",
+      "text": "Die Fahrkarte ansehen",
+      "to": "c5_s17_aftermath_reflection",
+      "type": "scene"
+    },
+    {
+      "from": "c5_s16_control3_aftermath",
+      "choiceId": "rest_after_control",
+      "text": "Ausruhen",
+      "to": "c5_s17_aftermath_reflection",
+      "type": "scene"
+    },
+    {
+      "from": "c5_s16_control3_aftermath",
+      "choiceId": "ponder_words",
+      "text": "Über die Worte des Schaffners nachgrübeln",
+      "to": "c5_s17_aftermath_reflection",
+      "type": "scene"
+    },
+    {
+      "from": "c5_s17_aftermath_reflection",
+      "choiceId": "consider_staying",
+      "text": "Den Gedanken zulassen",
+      "to": "c5_s18_darkness_spreads",
+      "type": "scene"
+    },
+    {
+      "from": "c5_s17_aftermath_reflection",
+      "choiceId": "reject_staying",
+      "text": "Den Gedanken verwerfen",
+      "to": "c5_s18_darkness_spreads",
+      "type": "scene"
+    },
+    {
+      "from": "c5_s18_darkness_spreads",
+      "choiceId": "keep_walking",
+      "text": "Weitergehen",
+      "to": "c5_s19_final_conversation",
+      "type": "scene"
+    },
+    {
+      "from": "c5_s18_darkness_spreads",
+      "choiceId": "search_for_door",
+      "text": "Nach einer vertrauten Tür suchen",
+      "to": "c5_s19_final_conversation",
+      "type": "scene"
+    },
+    {
+      "from": "c5_s19_final_conversation",
+      "choiceId": "love_farewell",
+      "text": "„Danke. Für alles.\"",
+      "to": "c5_s20_decision_approach",
+      "type": "scene"
+    },
+    {
+      "from": "c5_s19_final_conversation",
+      "choiceId": "ask_final_question",
+      "text": "„Wirst du auch aussteigen?\"",
+      "to": "c5_s20_decision_approach",
+      "type": "scene"
+    },
+    {
+      "from": "c5_s19_final_conversation",
+      "choiceId": "silent_farewell",
+      "text": "Schweigen und gehen",
+      "to": "c5_s20_decision_approach",
+      "type": "scene"
+    },
+    {
+      "from": "c5_s20_decision_approach",
+      "choiceId": "prepare_to_decide",
+      "text": "Sich vorbereiten",
+      "to": "c5_s21_decision_core",
+      "type": "scene"
+    },
+    {
+      "from": "c5_s20_decision_approach",
+      "choiceId": "resist_arrival",
+      "text": "Der Ankunft widerstehen",
+      "to": "c5_s21_decision_core",
+      "type": "scene"
+    },
+    {
+      "from": "c5_s21_decision_core",
+      "choiceId": "drift_variant_stay",
+      "text": "Im Zug bleiben – alles vergessen",
+      "to": "c5_s22_decision_aftermath",
+      "type": "scene"
+    },
+    {
+      "from": "c5_s21_decision_core",
+      "choiceId": "guilt_sacrifice",
+      "text": "Aussteigen – die Verantwortung tragen",
+      "to": "c5_s22_decision_aftermath",
+      "type": "scene"
+    },
+    {
+      "from": "c5_s21_decision_core",
+      "choiceId": "step_out_truth",
+      "text": "Aussteigen – der Wahrheit begegnen",
+      "to": "c5_s22_decision_aftermath",
+      "type": "scene"
+    },
+    {
+      "from": "c5_s21_decision_core",
+      "choiceId": "stay_in_train",
+      "text": "Im Zug bleiben – weiterfahren",
+      "to": "c5_s22_decision_aftermath",
+      "type": "scene"
+    },
+    {
+      "from": "c5_s22_decision_aftermath",
+      "choiceId": "accept_choice",
+      "text": "Die Wahl akzeptieren",
+      "to": "c5_s23_before_station",
+      "type": "scene"
+    },
+    {
+      "from": "c5_s22_decision_aftermath",
+      "choiceId": "doubt_choice",
+      "text": "Zweifeln",
+      "to": "c5_s23_before_station",
+      "type": "scene"
+    },
+    {
+      "from": "c5_s22_decision_aftermath",
+      "choiceId": "embrace_drift",
+      "text": "Sich dem Vergessen hingeben",
+      "to": "c5_s23_before_station",
+      "type": "scene"
+    },
+    {
+      "from": "c5_s23_before_station",
+      "choiceId": "look_forward",
+      "text": "Nach vorn blicken",
+      "to": "c5_s24_platform_arrives",
+      "type": "scene"
+    },
+    {
+      "from": "c5_s23_before_station",
+      "choiceId": "look_back",
+      "text": "Zurückblicken",
+      "to": "c5_s24_platform_arrives",
+      "type": "scene"
+    },
+    {
+      "from": "c5_s24_platform_arrives",
+      "choiceId": "prepare_to_exit",
+      "text": "Bereit machen",
+      "to": "c5_end_station",
+      "type": "scene"
+    },
+    {
+      "from": "c6_end_station",
+      "choiceId": "continue_to_chapter_7",
+      "text": "Weiter zur letzten Station",
+      "to": "c7_s01_final_approach",
+      "type": "scene"
+    },
+    {
+      "from": "c6_s01_awakening",
+      "choiceId": "check_surroundings",
+      "text": "Die Umgebung genau ansehen",
+      "to": "c6_s02_silence",
+      "type": "scene"
+    },
+    {
+      "from": "c6_s01_awakening",
+      "choiceId": "close_eyes",
+      "text": "Augen schließen und warten",
+      "to": "c6_s02_silence",
+      "type": "scene"
+    },
+    {
+      "from": "c6_s01_awakening",
+      "choiceId": "walk_corridor",
+      "text": "In den Gang gehen",
+      "to": "c6_s02_silence",
+      "type": "scene"
+    },
+    {
+      "from": "c6_s02_silence",
+      "choiceId": "continue_walking",
+      "text": "Weitergehen",
+      "to": "c6_s03_comp7_final",
+      "type": "scene"
+    },
+    {
+      "from": "c6_s02_silence",
+      "choiceId": "listen_intently",
+      "text": "Der Stille lauschen",
+      "to": "c6_s03_comp7_final",
+      "type": "scene"
+    },
+    {
+      "from": "c6_s03_comp7_final",
+      "choiceId": "ask_directly_high_rel",
+      "text": "„Sag es mir. Was ist dort?\"",
+      "to": "c6_s04_corridor_changes",
+      "type": "scene"
+    },
+    {
+      "from": "c6_s03_comp7_final",
+      "choiceId": "admit_fear",
+      "text": "„Ich habe Angst, es herauszufinden.\"",
+      "to": "c6_s04_corridor_changes",
+      "type": "scene"
+    },
+    {
+      "from": "c6_s03_comp7_final",
+      "choiceId": "stay_silent",
+      "text": "Schweigen",
+      "to": "c6_s04_corridor_changes",
+      "type": "scene"
+    },
+    {
+      "from": "c6_s04_corridor_changes",
+      "choiceId": "approach_door",
+      "text": "Zur Tür gehen",
+      "to": "c6_s05_door_seven",
+      "type": "scene"
+    },
+    {
+      "from": "c6_s04_corridor_changes",
+      "choiceId": "examine_details",
+      "text": "Die Details der Wand prüfen",
+      "to": "c6_s05_door_seven",
+      "type": "scene"
+    },
+    {
+      "from": "c6_s05_door_seven",
+      "choiceId": "open_door_truth",
+      "text": "Die Tür öffnen",
+      "to": "c6_s06_inside_seven",
+      "type": "scene"
+    },
+    {
+      "from": "c6_s05_door_seven",
+      "choiceId": "hesitate",
+      "text": "Zögern",
+      "to": "c6_s06_inside_seven",
+      "type": "scene"
+    },
+    {
+      "from": "c6_s05_door_seven",
+      "choiceId": "walk_away",
+      "text": "Weggehen",
+      "to": "c6_s07_seven_aftermath",
+      "type": "scene"
+    },
+    {
+      "from": "c6_s06_inside_seven",
+      "choiceId": "speak_high_drift",
+      "text": "„Wer bist du?\"",
+      "to": "c6_s07_seven_aftermath",
+      "type": "scene"
+    },
+    {
+      "from": "c6_s06_inside_seven",
+      "choiceId": "remember_hard",
+      "text": "Versuchen, sich zu erinnern",
+      "to": "c6_s07_seven_aftermath",
+      "type": "scene"
+    },
+    {
+      "from": "c6_s06_inside_seven",
+      "choiceId": "reach_out",
+      "text": "Die Hand ausstrecken",
+      "to": "c6_s07_seven_aftermath",
+      "type": "scene"
+    },
+    {
+      "from": "c6_s06_inside_seven",
+      "choiceId": "close_door_quickly",
+      "text": "Die Tür schnell schließen",
+      "to": "c6_s07_seven_aftermath",
+      "type": "scene"
+    },
+    {
+      "from": "c6_s07_seven_aftermath",
+      "choiceId": "process_experience",
+      "text": "Verarbeiten, was passiert ist",
+      "to": "c6_s08_drift_intensifies",
+      "type": "scene"
+    },
+    {
+      "from": "c6_s07_seven_aftermath",
+      "choiceId": "forget_quickly",
+      "text": "Es vergessen wollen",
+      "to": "c6_s08_drift_intensifies",
+      "type": "scene"
+    },
+    {
+      "from": "c6_s07_seven_aftermath",
+      "choiceId": "feel_connection",
+      "text": "Die Wärme der Berührung nachspüren",
+      "to": "c6_s08_drift_intensifies",
+      "type": "scene"
+    },
+    {
+      "from": "c6_s08_drift_intensifies",
+      "choiceId": "observe_changes",
+      "text": "Die Veränderungen beobachten",
+      "to": "c6_s09_boy_final",
+      "type": "scene"
+    },
+    {
+      "from": "c6_s08_drift_intensifies",
+      "choiceId": "analyze_time",
+      "text": "Versuchen, das Zeitmuster zu erkennen",
+      "to": "c6_s09_boy_final",
+      "type": "scene"
+    },
+    {
+      "from": "c6_s09_boy_final",
+      "choiceId": "share_recorder_experience",
+      "text": "Von deiner Kassette erzählen",
+      "to": "c6_s10_sleepless_gone",
+      "type": "scene"
+    },
+    {
+      "from": "c6_s09_boy_final",
+      "choiceId": "comfort_without_recorder",
+      "text": "„Du musst nicht aussteigen, wenn du nicht bereit bist.\"",
+      "to": "c6_s10_sleepless_gone",
+      "type": "scene"
+    },
+    {
+      "from": "c6_s09_boy_final",
+      "choiceId": "tell_truth_harsh",
+      "text": "„Wir können nicht ewig hierbleiben.\"",
+      "to": "c6_s10_sleepless_gone",
+      "type": "scene"
+    },
+    {
+      "from": "c6_s10_sleepless_gone",
+      "choiceId": "take_photo",
+      "text": "Das Foto mitnehmen",
+      "to": "c6_s11_announcement",
+      "type": "scene"
+    },
+    {
+      "from": "c6_s10_sleepless_gone",
+      "choiceId": "leave_photo",
+      "text": "Das Foto liegen lassen",
+      "to": "c6_s11_announcement",
+      "type": "scene"
+    },
+    {
+      "from": "c6_s10_sleepless_gone",
+      "choiceId": "examine_closely",
+      "text": "Das Foto genau ansehen",
+      "to": "c6_s11_announcement",
+      "type": "scene"
+    },
+    {
+      "from": "c6_s11_announcement",
+      "choiceId": "process_message",
+      "text": "Über die Ansage nachdenken",
+      "to": "c6_s12_mirror_self",
+      "type": "scene"
+    },
+    {
+      "from": "c6_s11_announcement",
+      "choiceId": "whisper_year",
+      "text": "„1973\" leise wiederholen",
+      "to": "c6_s12_mirror_self",
+      "type": "scene"
+    },
+    {
+      "from": "c6_s11_announcement",
+      "choiceId": "listen_for_voice",
+      "text": "Auf die Stimme unter dem Rauschen achten",
+      "to": "c6_s12_mirror_self",
+      "type": "scene"
+    },
+    {
+      "from": "c6_s12_mirror_self",
+      "choiceId": "confront_drift",
+      "text": "„Du bist nicht real.\"",
+      "to": "c6_s13_mirror_choice",
+      "type": "scene"
+    },
+    {
+      "from": "c6_s12_mirror_self",
+      "choiceId": "engage_mirror",
+      "text": "„Wer bist du?\"",
+      "to": "c6_s13_mirror_choice",
+      "type": "scene"
+    },
+    {
+      "from": "c6_s12_mirror_self",
+      "choiceId": "turn_away",
+      "text": "Sich abwenden",
+      "to": "c6_s13_mirror_choice",
+      "type": "scene"
+    },
+    {
+      "from": "c6_s13_mirror_choice",
+      "choiceId": "take_hand_escape",
+      "text": "Die Hand nehmen",
+      "to": "c6_s14_mirror_aftermath",
+      "type": "scene"
+    },
+    {
+      "from": "c6_s13_mirror_choice",
+      "choiceId": "take_hand_guilt",
+      "text": "„Zeig es mir. Ich bin bereit.\"",
+      "to": "c6_s14_mirror_aftermath",
+      "type": "scene"
+    },
+    {
+      "from": "c6_s13_mirror_choice",
+      "choiceId": "refuse_hand",
+      "text": "Die Hand ablehnen",
+      "to": "c6_s14_mirror_aftermath",
+      "type": "scene"
+    },
+    {
+      "from": "c6_s13_mirror_choice",
+      "choiceId": "attack_mirror",
+      "text": "Die Gestalt angreifen",
+      "to": "c6_s14_mirror_aftermath",
+      "type": "scene"
+    },
+    {
+      "from": "c6_s14_mirror_aftermath",
+      "choiceId": "embrace_memory",
+      "text": "Die Erinnerungen akzeptieren",
+      "to": "c6_s15_recorder_playback",
+      "type": "scene"
+    },
+    {
+      "from": "c6_s14_mirror_aftermath",
+      "choiceId": "push_away_memory",
+      "text": "Die Erinnerungen verdrängen",
+      "to": "c6_s15_recorder_playback",
+      "type": "scene"
+    },
+    {
+      "from": "c6_s15_recorder_playback",
+      "choiceId": "play_recorder",
+      "text": "Die Kassette abspielen",
+      "to": "c6_s16_tag19_discovery",
+      "type": "scene"
+    },
+    {
+      "from": "c6_s15_recorder_playback",
+      "choiceId": "resist_playing",
+      "text": "Den Rekorder weglegen",
+      "to": "c6_s16_tag19_discovery",
+      "type": "scene"
+    },
+    {
+      "from": "c6_s16_tag19_discovery",
+      "choiceId": "understand_tag",
+      "text": "Die Bedeutung verstehen",
+      "to": "c6_s17_lights_failing",
+      "type": "scene"
+    },
+    {
+      "from": "c6_s16_tag19_discovery",
+      "choiceId": "ignore_implications",
+      "text": "Es ignorieren",
+      "to": "c6_s17_lights_failing",
+      "type": "scene"
+    },
+    {
+      "from": "c6_s16_tag19_discovery",
+      "choiceId": "accept_truth",
+      "text": "Die Wahrheit akzeptieren",
+      "to": "c6_s17_lights_failing",
+      "type": "scene"
+    },
+    {
+      "from": "c6_s17_lights_failing",
+      "choiceId": "wait_for_conductor",
+      "text": "Warten",
+      "to": "c6_s18_offer_approach",
+      "type": "scene"
+    },
+    {
+      "from": "c6_s17_lights_failing",
+      "choiceId": "hold_tag19",
+      "text": "Den Schlüsselanhänger fest umklammern",
+      "to": "c6_s18_offer_approach",
+      "type": "scene"
+    },
+    {
+      "from": "c6_s18_offer_approach",
+      "choiceId": "ask_about_offer_high_attention",
+      "text": "„Was ist der Preis?\"",
+      "to": "c6_s19_offer_choice",
+      "type": "scene"
+    },
+    {
+      "from": "c6_s18_offer_approach",
+      "choiceId": "ask_simply",
+      "text": "„Warum bietest du mir das an?\"",
+      "to": "c6_s19_offer_choice",
+      "type": "scene"
+    },
+    {
+      "from": "c6_s18_offer_approach",
+      "choiceId": "refuse_immediately",
+      "text": "„Nein.\"",
+      "to": "c6_s19_offer_choice",
+      "type": "scene"
+    },
+    {
+      "from": "c6_s19_offer_choice",
+      "choiceId": "choose_memory_love",
+      "text": "„Ich will mich erinnern. Um ihretwillen.\"",
+      "to": "c6_s20_offer_aftermath",
+      "type": "scene"
+    },
+    {
+      "from": "c6_s19_offer_choice",
+      "choiceId": "choose_forget_escape",
+      "text": "„Ich will vergessen.\"",
+      "to": "c6_s20_offer_aftermath",
+      "type": "scene"
+    },
+    {
+      "from": "c6_s19_offer_choice",
+      "choiceId": "refuse_choice",
+      "text": "„Ich wähle weder das eine noch das andere.\"",
+      "to": "c6_s20_offer_aftermath",
+      "type": "scene"
+    },
+    {
+      "from": "c6_s19_offer_choice",
+      "choiceId": "accept_truth",
+      "text": "„Ich nehme die Erinnerung.\"",
+      "to": "c6_s20_offer_aftermath",
+      "type": "scene"
+    },
+    {
+      "from": "c6_s20_offer_aftermath",
+      "choiceId": "prepare_for_end",
+      "text": "Sich vorbereiten",
+      "to": "c6_s21_final_reflection",
+      "type": "scene"
+    },
+    {
+      "from": "c6_s20_offer_aftermath",
+      "choiceId": "doubt_choice",
+      "text": "Die Wahl anzweifeln",
+      "to": "c6_s21_final_reflection",
+      "type": "scene"
+    },
+    {
+      "from": "c6_s21_final_reflection",
+      "choiceId": "feel_ready",
+      "text": "„Ja. Ich bin bereit.\"",
+      "to": "c6_s22_conductor_last",
+      "type": "scene"
+    },
+    {
+      "from": "c6_s21_final_reflection",
+      "choiceId": "feel_uncertain",
+      "text": "„Ich weiß es nicht.\"",
+      "to": "c6_s22_conductor_last",
+      "type": "scene"
+    },
+    {
+      "from": "c6_s21_final_reflection",
+      "choiceId": "feel_afraid",
+      "text": "„Nein. Aber ich habe keine Wahl.\"",
+      "to": "c6_s22_conductor_last",
+      "type": "scene"
+    },
+    {
+      "from": "c6_s22_conductor_last",
+      "choiceId": "remember_high_attention",
+      "text": "Sich vollständig erinnern",
+      "to": "c6_s23_train_slows",
+      "type": "scene"
+    },
+    {
+      "from": "c6_s22_conductor_last",
+      "choiceId": "remember_partial",
+      "text": "Teilweise erinnern",
+      "to": "c6_s23_train_slows",
+      "type": "scene"
+    },
+    {
+      "from": "c6_s22_conductor_last",
+      "choiceId": "resist_memory",
+      "text": "Der Erinnerung widerstehen",
+      "to": "c6_s23_train_slows",
+      "type": "scene"
+    },
+    {
+      "from": "c6_s23_train_slows",
+      "choiceId": "observe_platform",
+      "text": "Den Bahnsteig beobachten",
+      "to": "c6_s24_platform_ahead",
+      "type": "scene"
+    },
+    {
+      "from": "c6_s23_train_slows",
+      "choiceId": "close_eyes_and_listen",
+      "text": "Die Augen schließen und lauschen",
+      "to": "c6_s24_platform_ahead",
+      "type": "scene"
+    },
+    {
+      "from": "c6_s24_platform_ahead",
+      "choiceId": "feel_hope",
+      "text": "Hoffnung spüren",
+      "to": "c6_s25_final_moment",
+      "type": "scene"
+    },
+    {
+      "from": "c6_s24_platform_ahead",
+      "choiceId": "feel_fear",
+      "text": "Angst spüren",
+      "to": "c6_s25_final_moment",
+      "type": "scene"
+    },
+    {
+      "from": "c6_s24_platform_ahead",
+      "choiceId": "feel_peace",
+      "text": "Frieden spüren",
+      "to": "c6_s25_final_moment",
+      "type": "scene"
+    },
+    {
+      "from": "c6_s25_final_moment",
+      "choiceId": "open_door",
+      "text": "Die Tür öffnen",
+      "to": "c6_end_station",
+      "type": "scene"
+    },
+    {
+      "from": "c6_s25_final_moment",
+      "choiceId": "hesitate_moment",
+      "text": "Einen Moment zögern",
+      "to": "c6_end_station",
+      "type": "scene"
+    },
+    {
+      "from": "c7_end_station",
+      "choiceId": "truth_path",
+      "text": "Der Wahrheit begegnen – koste es, was es wolle",
+      "to": "truth_ending",
+      "type": "ending"
+    },
+    {
+      "from": "c7_end_station",
+      "choiceId": "guilt_path",
+      "text": "Die Verantwortung tragen – und weitergehen",
+      "to": "guilt_ending",
+      "type": "ending"
+    },
+    {
+      "from": "c7_end_station",
+      "choiceId": "love_path",
+      "text": "Jemandem folgen – nicht allein sein",
+      "to": "love_ending",
+      "type": "ending"
+    },
+    {
+      "from": "c7_end_station",
+      "choiceId": "escape_path",
+      "text": "Im Zug bleiben – für immer",
+      "to": "escape_ending",
+      "type": "ending"
+    },
+    {
+      "from": "c7_s01_final_approach",
+      "choiceId": "observe_walls",
+      "text": "Die durchsichtigen Wände beobachten",
+      "to": "c7_s02_interlude_silence",
+      "type": "scene"
+    },
+    {
+      "from": "c7_s01_final_approach",
+      "choiceId": "walk_quickly",
+      "text": "Schnell weitergehen",
+      "to": "c7_s02_interlude_silence",
+      "type": "scene"
+    },
+    {
+      "from": "c7_s01_final_approach",
+      "choiceId": "touch_walls_memories",
+      "text": "In die Erinnerungen greifen",
+      "to": "c7_s02_interlude_silence",
+      "type": "scene"
+    },
+    {
+      "from": "c7_s02_interlude_silence",
+      "choiceId": "accept_silence",
+      "text": "Die Stille akzeptieren",
+      "to": "c7_s03_comp7_goodbye",
+      "type": "scene"
+    },
+    {
+      "from": "c7_s02_interlude_silence",
+      "choiceId": "break_silence",
+      "text": "Gegen die Stille anschreien",
+      "to": "c7_s03_comp7_goodbye",
+      "type": "scene"
+    },
+    {
+      "from": "c7_s03_comp7_goodbye",
+      "choiceId": "say_goodbye_high_rel_recognized",
+      "text": "„Danke. Für alles.\"",
+      "to": "c7_s04_boy_recognized",
+      "type": "scene"
+    },
+    {
+      "from": "c7_s03_comp7_goodbye",
+      "choiceId": "say_goodbye_high_rel",
+      "text": "„Danke. Für alles.\"",
+      "to": "c7_s04_boy_transformation",
+      "type": "scene"
+    },
+    {
+      "from": "c7_s03_comp7_goodbye",
+      "choiceId": "open_door_recognized",
+      "text": "Die Tür öffnen",
+      "to": "c7_s04_boy_recognized",
+      "type": "scene"
+    },
+    {
+      "from": "c7_s03_comp7_goodbye",
+      "choiceId": "open_door",
+      "text": "Die Tür öffnen",
+      "to": "c7_s04_boy_transformation",
+      "type": "scene"
+    },
+    {
+      "from": "c7_s04_boy_recognized",
+      "choiceId": "integrate_innocence",
+      "text": "„Komm nach Hause. Zu mir.\"",
+      "to": "c7_s05_interlude_timeshift",
+      "type": "scene"
+    },
+    {
+      "from": "c7_s04_boy_recognized",
+      "choiceId": "accept_loss",
+      "text": "„Ich weiß jetzt, wer du warst. Wer ich war.\"",
+      "to": "c7_s05_interlude_timeshift",
+      "type": "scene"
+    },
+    {
+      "from": "c7_s04_boy_recognized",
+      "choiceId": "embrace_child",
+      "text": "Den Jungen umarmen",
+      "to": "c7_s05_interlude_timeshift",
+      "type": "scene"
+    },
+    {
+      "from": "c7_s04_boy_recognized",
+      "choiceId": "cannot_let_go",
+      "text": "„Ich kann dich nicht loslassen. Noch nicht.\"",
+      "to": "c7_s05_interlude_timeshift",
+      "type": "scene"
+    },
+    {
+      "from": "c7_s04_boy_transformation",
+      "choiceId": "comfort_boy_high_rel",
+      "text": "„Du wirst es herausfinden. Außerhalb.\"",
+      "to": "c7_s05_interlude_timeshift",
+      "type": "scene"
+    },
+    {
+      "from": "c7_s04_boy_transformation",
+      "choiceId": "observe_cassette",
+      "text": "Das rückwärts laufende Band beobachten",
+      "to": "c7_s05_interlude_timeshift",
+      "type": "scene"
+    },
+    {
+      "from": "c7_s04_boy_transformation",
+      "choiceId": "leave_quickly",
+      "text": "Das Abteil verlassen",
+      "to": "c7_s05_interlude_timeshift",
+      "type": "scene"
+    },
+    {
+      "from": "c7_s05_interlude_timeshift",
+      "choiceId": "continue_forward",
+      "text": "Weitergehen",
+      "to": "c7_s06_announcement_distorted",
+      "type": "scene"
+    },
+    {
+      "from": "c7_s05_interlude_timeshift",
+      "choiceId": "search_for_anchor",
+      "text": "Nach einer vertrauten Verbindung suchen",
+      "to": "c7_s06_announcement_distorted",
+      "type": "scene"
+    },
+    {
+      "from": "c7_s06_announcement_distorted",
+      "choiceId": "realize_truth_high_drift",
+      "text": "Die Wahrheit verstehen",
+      "to": "c7_s07_announcement_name",
+      "type": "scene"
+    },
+    {
+      "from": "c7_s06_announcement_distorted",
+      "choiceId": "check_ticket",
+      "text": "Deine Fahrkarte ansehen",
+      "to": "c7_s07_announcement_name",
+      "type": "scene"
+    },
+    {
+      "from": "c7_s06_announcement_distorted",
+      "choiceId": "deny_message",
+      "text": "Die Ansage ignorieren",
+      "to": "c7_s07_announcement_name",
+      "type": "scene"
+    },
+    {
+      "from": "c7_s07_announcement_name",
+      "choiceId": "accept_memory_truth",
+      "text": "Die Erinnerung vollständig annehmen",
+      "to": "c7_s08_announcement_aftermath",
+      "type": "scene"
+    },
+    {
+      "from": "c7_s07_announcement_name",
+      "choiceId": "accept_partial",
+      "text": "Teilweise erinnern",
+      "to": "c7_s08_announcement_aftermath",
+      "type": "scene"
+    },
+    {
+      "from": "c7_s07_announcement_name",
+      "choiceId": "resist_memory",
+      "text": "Gegen die Erinnerung ankämpfen",
+      "to": "c7_s08_announcement_aftermath",
+      "type": "scene"
+    },
+    {
+      "from": "c7_s07_announcement_name",
+      "choiceId": "weep",
+      "text": "Weinen",
+      "to": "c7_s08_announcement_aftermath",
+      "type": "scene"
+    },
+    {
+      "from": "c7_s08_announcement_aftermath",
+      "choiceId": "stand_up",
+      "text": "Aufstehen",
+      "to": "c7_s09_corridor_dissolve",
+      "type": "scene"
+    },
+    {
+      "from": "c7_s08_announcement_aftermath",
+      "choiceId": "stay_down",
+      "text": "Sitzen bleiben",
+      "to": "c7_s09_corridor_dissolve",
+      "type": "scene"
+    },
+    {
+      "from": "c7_s09_corridor_dissolve",
+      "choiceId": "enter_empty_compartment",
+      "text": "Ein leeres Abteil betreten",
+      "to": "c7_s10_passengers_vanish",
+      "type": "scene"
+    },
+    {
+      "from": "c7_s09_corridor_dissolve",
+      "choiceId": "keep_walking",
+      "text": "Weitergehen",
+      "to": "c7_s10_passengers_vanish",
+      "type": "scene"
+    },
+    {
+      "from": "c7_s10_passengers_vanish",
+      "choiceId": "call_out",
+      "text": "Nach ihnen rufen",
+      "to": "c7_s11_interlude_memory_flood",
+      "type": "scene"
+    },
+    {
+      "from": "c7_s10_passengers_vanish",
+      "choiceId": "accept_solitude",
+      "text": "Die Einsamkeit akzeptieren",
+      "to": "c7_s11_interlude_memory_flood",
+      "type": "scene"
+    },
+    {
+      "from": "c7_s10_passengers_vanish",
+      "choiceId": "panic",
+      "text": "In Panik geraten",
+      "to": "c7_s11_interlude_memory_flood",
+      "type": "scene"
+    },
+    {
+      "from": "c7_s11_interlude_memory_flood",
+      "choiceId": "understand",
+      "text": "Verstehen",
+      "to": "c7_s12_seven_offer",
+      "type": "scene"
+    },
+    {
+      "from": "c7_s12_seven_offer",
+      "choiceId": "enter_seven_recognized",
+      "text": "Abteil 7 betreten",
+      "to": "c7_s13_comp7_recognized",
+      "type": "scene"
+    },
+    {
+      "from": "c7_s12_seven_offer",
+      "choiceId": "enter_seven",
+      "text": "Abteil 7 betreten",
+      "to": "c7_s13_seven_price",
+      "type": "scene"
+    },
+    {
+      "from": "c7_s12_seven_offer",
+      "choiceId": "hesitate_at_door_recognized",
+      "text": "An der Tür zögern",
+      "to": "c7_s13_comp7_recognized",
+      "type": "scene"
+    },
+    {
+      "from": "c7_s12_seven_offer",
+      "choiceId": "hesitate_at_door",
+      "text": "An der Tür zögern",
+      "to": "c7_s13_seven_price",
+      "type": "scene"
+    },
+    {
+      "from": "c7_s13_comp7_recognized",
+      "choiceId": "integrate_love",
+      "text": "„Komm mit mir. Du gehörst zu mir.\"",
+      "to": "c7_s14_seven_decision",
+      "type": "scene"
+    },
+    {
+      "from": "c7_s13_comp7_recognized",
+      "choiceId": "release_attachment",
+      "text": "„Ich muss dich loslassen. Endlich.\"",
+      "to": "c7_s14_seven_decision",
+      "type": "scene"
+    },
+    {
+      "from": "c7_s13_comp7_recognized",
+      "choiceId": "accept_both",
+      "text": "„Liebe und Verlust – beides ist Teil von mir.\"",
+      "to": "c7_s14_seven_decision",
+      "type": "scene"
+    },
+    {
+      "from": "c7_s13_comp7_recognized",
+      "choiceId": "refuse_to_choose",
+      "text": "„Ich bin noch nicht bereit.\"",
+      "to": "c7_s14_seven_decision",
+      "type": "scene"
+    },
+    {
+      "from": "c7_s13_seven_price",
+      "choiceId": "leave_shadow",
+      "text": "„Ich muss diesen Teil loslassen.\"",
+      "to": "c7_s14_seven_decision",
+      "type": "scene"
+    },
+    {
+      "from": "c7_s13_seven_price",
+      "choiceId": "embrace_shadow",
+      "text": "„Wir gehen zusammen.\"",
+      "to": "c7_s14_seven_decision",
+      "type": "scene"
+    },
+    {
+      "from": "c7_s13_seven_price",
+      "choiceId": "stay_together",
+      "text": "„Wir bleiben beide.\"",
+      "to": "c7_s14_seven_decision",
+      "type": "scene"
+    },
+    {
+      "from": "c7_s13_seven_price",
+      "choiceId": "refuse_choice",
+      "text": "„Es gibt einen anderen Weg.\"",
+      "to": "c7_s14_seven_decision",
+      "type": "scene"
+    },
+    {
+      "from": "c7_s14_seven_decision",
+      "choiceId": "feel_complete",
+      "text": "Sich vollständig fühlen",
+      "to": "c7_s15_recorder_trigger",
+      "type": "scene"
+    },
+    {
+      "from": "c7_s14_seven_decision",
+      "choiceId": "feel_fractured",
+      "text": "Sich zerbrochen fühlen",
+      "to": "c7_s15_recorder_trigger",
+      "type": "scene"
+    },
+    {
+      "from": "c7_s15_recorder_trigger",
+      "choiceId": "play_recorder_final",
+      "text": "Abspielen",
+      "to": "c7_s16_recorder_playback",
+      "type": "scene"
+    },
+    {
+      "from": "c7_s15_recorder_trigger",
+      "choiceId": "destroy_recorder",
+      "text": "Den Rekorder zerstören",
+      "to": "c7_s19_interlude_train_stops",
+      "type": "scene"
+    },
+    {
+      "from": "c7_s15_recorder_trigger",
+      "choiceId": "no_recorder",
+      "text": "Weitergehen",
+      "to": "c7_s19_interlude_train_stops",
+      "type": "scene"
+    },
+    {
+      "from": "c7_s16_recorder_playback",
+      "choiceId": "listen_more",
+      "text": "Weiterhören",
+      "to": "c7_s17_recorder_truth",
+      "type": "scene"
+    },
+    {
+      "from": "c7_s16_recorder_playback",
+      "choiceId": "stop_playback",
+      "text": "Stoppen",
+      "to": "c7_s18_recorder_aftermath",
+      "type": "scene"
+    },
+    {
+      "from": "c7_s17_recorder_truth",
+      "choiceId": "accept_death",
+      "text": "„Ich bin bereit.\"",
+      "to": "c7_s18_recorder_aftermath",
+      "type": "scene"
+    },
+    {
+      "from": "c7_s17_recorder_truth",
+      "choiceId": "deny_death",
+      "text": "„Das ist nicht wahr.\"",
+      "to": "c7_s18_recorder_aftermath",
+      "type": "scene"
+    },
+    {
+      "from": "c7_s17_recorder_truth",
+      "choiceId": "cry",
+      "text": "Weinen",
+      "to": "c7_s18_recorder_aftermath",
+      "type": "scene"
+    },
+    {
+      "from": "c7_s18_recorder_aftermath",
+      "choiceId": "choose_leave",
+      "text": "Gehen",
+      "to": "c7_s19_interlude_train_stops",
+      "type": "scene"
+    },
+    {
+      "from": "c7_s18_recorder_aftermath",
+      "choiceId": "choose_stay",
+      "text": "Bleiben",
+      "to": "c7_s19_interlude_train_stops",
+      "type": "scene"
+    },
+    {
+      "from": "c7_s19_interlude_train_stops",
+      "choiceId": "prepare",
+      "text": "Sich vorbereiten",
+      "to": "c7_s20_conductor_finale",
+      "type": "scene"
+    },
+    {
+      "from": "c7_s19_interlude_train_stops",
+      "choiceId": "resist_end",
+      "text": "Sich gegen das Ende sträuben",
+      "to": "c7_s20_conductor_finale",
+      "type": "scene"
+    },
+    {
+      "from": "c7_s20_conductor_finale",
+      "choiceId": "thank_conductor_high_attention",
+      "text": "„Danke. Für alles.\"",
+      "to": "c7_s21_photo_revelation",
+      "type": "scene"
+    },
+    {
+      "from": "c7_s20_conductor_finale",
+      "choiceId": "say_nothing",
+      "text": "Schweigen",
+      "to": "c7_s21_photo_revelation",
+      "type": "scene"
+    },
+    {
+      "from": "c7_s20_conductor_finale",
+      "choiceId": "take_ticket",
+      "text": "Die Fahrkarte nehmen",
+      "to": "c7_s21_photo_revelation",
+      "type": "scene"
+    },
+    {
+      "from": "c7_s20_conductor_finale",
+      "choiceId": "last_sacrifice",
+      "text": "Ein letztes Opfer bringen",
+      "to": "c7_s20b_last_sacrifice",
+      "type": "scene"
+    },
+    {
+      "from": "c7_s20b_last_sacrifice",
+      "choiceId": "sacrifice_for_truth",
+      "text": "Erinnerung opfern für Klarheit",
+      "to": "c7_s21_photo_revelation",
+      "type": "scene"
+    },
+    {
+      "from": "c7_s20b_last_sacrifice",
+      "choiceId": "sacrifice_for_escape",
+      "text": "Identität opfern für Flucht",
+      "to": "c7_s21_photo_revelation",
+      "type": "scene"
+    },
+    {
+      "from": "c7_s20b_last_sacrifice",
+      "choiceId": "sacrifice_for_guilt",
+      "text": "Zukunft opfern für Verantwortung",
+      "to": "c7_s21_photo_revelation",
+      "type": "scene"
+    },
+    {
+      "from": "c7_s20b_last_sacrifice",
+      "choiceId": "sacrifice_for_love",
+      "text": "Selbst opfern für Verbindung",
+      "to": "c7_s21_photo_revelation",
+      "type": "scene"
+    },
+    {
+      "from": "c7_s21_photo_revelation",
+      "choiceId": "understand_photo",
+      "text": "Das Foto verstehen",
+      "to": "c7_s22_tag19_final",
+      "type": "scene"
+    },
+    {
+      "from": "c7_s21_photo_revelation",
+      "choiceId": "trace_anomaly",
+      "text": "Die Verzerrung nachzeichnen",
+      "to": "c7_s22_tag19_final",
+      "type": "scene"
+    },
+    {
+      "from": "c7_s21_photo_revelation",
+      "choiceId": "put_away_photo",
+      "text": "Das Foto weglegen",
+      "to": "c7_s22_tag19_final",
+      "type": "scene"
+    },
+    {
+      "from": "c7_s22_tag19_final",
+      "choiceId": "use_as_anchor",
+      "text": "Das Tag als Anker benutzen – die Zeit stabilisieren",
+      "to": "c7_s23_interlude_doors_open",
+      "type": "scene"
+    },
+    {
+      "from": "c7_s22_tag19_final",
+      "choiceId": "let_go_tag",
+      "text": "Loslassen und weitergehen",
+      "to": "c7_s23_interlude_doors_open",
+      "type": "scene"
+    },
+    {
+      "from": "c7_s22_tag19_final",
+      "choiceId": "keep_tag",
+      "text": "Festhalten, aber nichts tun",
+      "to": "c7_s23_interlude_doors_open",
+      "type": "scene"
+    },
+    {
+      "from": "c7_s22_tag19_final",
+      "choiceId": "no_tag",
+      "text": "Weitergehen",
+      "to": "c7_s23_interlude_doors_open",
+      "type": "scene"
+    },
+    {
+      "from": "c7_s23_interlude_doors_open",
+      "choiceId": "step_forward",
+      "text": "Einen Schritt nach vorne",
+      "to": "c7_s24_platform_real",
+      "type": "scene"
+    },
+    {
+      "from": "c7_s24_platform_real",
+      "choiceId": "look_around",
+      "text": "Sich umsehen",
+      "to": "c7_s25_final_choice",
+      "type": "scene"
+    },
+    {
+      "from": "c7_s24_platform_real",
+      "choiceId": "look_back",
+      "text": "Zurückblicken",
+      "to": "c7_s25_final_choice",
+      "type": "scene"
+    },
+    {
+      "from": "c7_s24_platform_real",
+      "choiceId": "breathe",
+      "text": "Tief einatmen",
+      "to": "c7_s25_final_choice",
+      "type": "scene"
+    },
+    {
+      "from": "c7_s25_final_choice",
+      "choiceId": "step_off",
+      "text": "Aussteigen",
+      "to": "c7_end_station",
+      "type": "scene"
+    },
+    {
+      "from": "c7_s25_final_choice",
+      "choiceId": "look_back_one_last_time",
+      "text": "Ein letztes Mal zurückblicken",
+      "to": "c7_end_station",
+      "type": "scene"
+    }
+  ],
+  "meta": {
+    "sceneCount": 183,
+    "endingCount": 6,
+    "unreachableScenes": [],
+    "deadEnds": [],
+    "cycles": [],
+    "maxOutDegree": 4
+  }
+}
