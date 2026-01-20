@@ -104,9 +104,18 @@ fun resolveSceneNarrative(scene: Scene, state: GameState): String {
   val variants = scene.narrative_variants ?: emptyList()
   if (variants.isEmpty()) return baseNarrative
 
+  // 1. Condition check (Priority)
+  val conditionVariant = variants.find { it.condition != null && evaluateCondition(state, it.condition) }
+  if (conditionVariant != null) {
+    return conditionVariant.narrative
+  }
+
+  // 2. Drift check (Fallback)
   val currentDrift = state.pressure.memory_drift
-  val sorted = variants.sortedByDescending { it.min_drift }
-  val match = sorted.firstOrNull { currentDrift >= it.min_drift }
+  val driftVariants = variants.filter { it.min_drift != null }
+  val sorted = driftVariants.sortedByDescending { it.min_drift!! }
+  val match = sorted.firstOrNull { currentDrift >= it.min_drift!! }
+  
   return match?.narrative ?: baseNarrative
 }
 

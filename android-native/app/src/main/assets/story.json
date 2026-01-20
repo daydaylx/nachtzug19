@@ -49,23 +49,6 @@
       "narrative": "Du gehst zurück ans Fenster.\n\nDraußen: Ein Bahnsteig. Leer. Identisch zum ersten. Dieselbe Neonröhre. Dieselbe Uhr.\n\n23:47.\n\nNiemand steigt ein. Niemand steigt aus. Die Türen bleiben geschlossen.\n\nDie Frau im Mantel steht immer noch an der Tür. Wartet. Aber die Tür öffnet sich nicht.\n\nNach dreißig Sekunden: Der Zug fährt weiter. Die Frau setzt sich wieder hin. Legt den Koffer ab. Als wäre nichts gewesen.",
       "choices": [
         {
-          "id": "ask_woman",
-          "label": "Die Frau fragen",
-          "effects": [
-            {
-              "type": "inc",
-              "target": "tickets_love",
-              "value": 1
-            },
-            {
-              "type": "inc",
-              "target": "conductor_attention",
-              "value": 1
-            }
-          ],
-          "next": "c1_end_station"
-        },
-        {
           "id": "observe_silently",
           "label": "Beobachten, nichts sagen",
           "effects": [
@@ -127,13 +110,32 @@
             }
           ],
           "next": "c1_end_station"
+        },
+        {
+          "id": "scan_exits",
+          "label": "Nach Ausgängen suchen",
+          "condition": {
+            "type": "compare",
+            "target": "tickets_escape",
+            "operator": ">=",
+            "value": 2
+          },
+          "effects": [
+            {
+              "type": "inc",
+              "target": "tickets_escape",
+              "value": 1
+            }
+          ],
+          "next": "c1_end_station"
         }
       ],
       "tags": [],
       "state_notes": [
         "Türen öffnen sich nicht (erste Station-Regel: nicht jeder darf raus)",
         "ask_sleepless nur bei rel_sleepless >= 1",
-        "CONDITION: check_clock_again nur bei memory_drift >= 2"
+        "CONDITION: check_clock_again nur bei memory_drift >= 2",
+        "CONDITION: scan_exits nur bei tickets_escape >= 2 (Callback für steady_breath)"
       ],
       "atmosphere": "somber"
     },
@@ -151,16 +153,6 @@
               "type": "set",
               "target": "chapter_index",
               "value": 2
-            },
-            {
-              "type": "inc",
-              "target": "station_count",
-              "value": 1
-            },
-            {
-              "type": "inc",
-              "target": "memory_drift",
-              "value": 1
             }
           ],
           "next": "c2_s01_ticket_search"
@@ -190,11 +182,6 @@
               "type": "set",
               "target": "chapter_index",
               "value": 2
-            },
-            {
-              "type": "inc",
-              "target": "station_count",
-              "value": 1
             },
             {
               "type": "inc",
@@ -231,11 +218,6 @@
             },
             {
               "type": "inc",
-              "target": "station_count",
-              "value": 1
-            },
-            {
-              "type": "inc",
               "target": "conductor_attention",
               "value": 1
             },
@@ -252,7 +234,7 @@
         "station_end"
       ],
       "state_notes": [
-        "Erste station_end-Szene: memory_drift automatisch erhöht durch Engine-R1 (keine manuellen exit_effects)",
+        "R1: Engine erhoeht memory_drift/station_count automatisch; confront_jacket_change setzt memory_drift +2 (Override)",
         "Jackenfarbe ändert sich (Drift-Effekt), Sleepless reagiert nicht",
         "Zettel = Foreshadowing (später relevant)",
         "CONDITION: confront_jacket_change nur bei tickets_truth >= 3 ODER conductor_attention >= 3"
@@ -283,6 +265,52 @@
           "next": "c1_s02_train_appears"
         },
         {
+          "id": "trace_shadow",
+          "label": "Den Schatten messen",
+          "condition": {
+            "type": "compare",
+            "target": "tickets_truth",
+            "operator": ">=",
+            "value": 2
+          },
+          "effects": [
+            {
+              "type": "inc",
+              "target": "tickets_truth",
+              "value": 1
+            },
+            {
+              "type": "inc",
+              "target": "memory_drift",
+              "value": 1
+            }
+          ],
+          "next": "c1_s02_train_appears"
+        },
+        {
+          "id": "avert_eyes",
+          "label": "Den Blick senken",
+          "condition": {
+            "type": "compare",
+            "target": "tickets_guilt",
+            "operator": ">=",
+            "value": 1
+          },
+          "effects": [
+            {
+              "type": "inc",
+              "target": "tickets_guilt",
+              "value": 1
+            },
+            {
+              "type": "dec",
+              "target": "conductor_attention",
+              "value": 1
+            }
+          ],
+          "next": "c1_s02_train_appears"
+        },
+        {
           "id": "continue",
           "label": "Weiter",
           "effects": [
@@ -301,7 +329,8 @@
       "state_notes": [
         "Schatten stimmt nicht (erste visuelle Drift)",
         "Interlude: kurz, atmosphärisch, kein Plot",
-        "close_eyes senkt attention, wenn bereits aufgebaut"
+        "close_eyes senkt attention, wenn bereits aufgebaut",
+        "avert_eyes nur bei tickets_guilt >= 1 (Guilt-Callback)"
       ],
       "atmosphere": "mystic"
     },
@@ -309,7 +338,7 @@
       "id": "c1_interlude_02_silence",
       "chapter": 1,
       "title": "Stille",
-      "narrative": "Du steigst ein. Die Tür schließt sich hinter dir mit einem finalen Klack.\n\nUnd dann: Stille.\n\nNicht die normale Stille, wenn man in einen Zug einsteigt. Eine zu saubere Stille. Als wäre der Raum schalldicht.\n\nDu schluckst. Das Geräusch bleibt aus. Es fühlt sich an, als hätte jemand den Raum ausgekleidet.\n\nDu hebst die Hand, klopfst leicht gegen das Metall. Kein Echo. Nur ein stumpfer Widerstand, der in deine Finger kriecht.\n\nDu öffnest den Mund, um deinen Namen zu sagen. Luft bewegt sich, aber der Ton bleibt hängen, als hätte er keinen Platz.\n\nDein eigener Puls drückt von innen gegen die Ohren. Ein dumpfes Pochen, das nicht von außen kommt.\n\nDer Geruch von altem Polster ist plötzlich schärfer, süßlich und staubig, und du merkst, wie du flacher atmest.\n\nDu reibst die Fingerspitzen an der Kante des Sitzes, suchst ein Geräusch, ein Zeichen. Nichts. Die Stille antwortet nicht, sie bleibt.\n\nDu hörst, wie der Stoff deiner Jacke an deinem Hals scheuert, ein Geräusch, das nur in dir stattfindet. Die Stille drückt gegen die Augen, als wäre sie greifbar, und du blinzelst, nur um etwas zu bewegen. Es hilft nicht. Die Luft bleibt fest.\n\nKein Rattern. Kein Ventilator. Kein Gemurmel.\n\nNur das Brummen, leise im Hintergrund. Konstant. Wie ein Herzschlag.",
+      "narrative": "Du steigst ein. Die Tür schließt sich hinter dir mit einem finalen Klack.\n\nUnd dann: Stille.\n\nNicht die normale Stille, wenn man in einen Zug einsteigt. Eine zu saubere Stille. Als wäre der Raum schalldicht. Als hätte jemand den Ton abgedreht.\n\nDu schluckst. Das Geräusch bleibt aus. Es fühlt sich an, als hätte jemand den Raum mit Watte ausgekleidet. Der Druck auf deinen Ohren wächst, ein dumpfes Pochen, das von innen gegen das Trommelfell drückt, als würdest du tief unter Wasser tauchen.\n\nDu hebst die Hand, klopfst leicht gegen das Metall der Wand. Kein Echo. Nur ein stumpfer Widerstand, der in deine Finger kriecht, eine Vibration, die nirgendwohin geht. Das Metall ist kalt, aber nicht glatt – es fühlt sich porös an, als würde es deine Berührung aufsaugen.\n\nDu öffnest den Mund, um deinen Namen zu sagen. Luft bewegt sich, aber der Ton bleibt hängen, als hätte er keinen Platz in dieser dichten Luft. Deine Zunge fühlt sich schwer an, trocken, wie Sandpapier.\n\nDein eigener Puls drückt von innen gegen die Schläfen. Ein rhythmisches Pochen, das viel zu laut ist für diesen leeren Raum. Bumm. Bumm. Bumm.\n\nDer Geruch von altem Polster ist plötzlich schärfer, süßlich und staubig, gemischt mit etwas Metallischem – Kupfer oder Blut? Du merkst, wie du flacher atmest, um den Geschmack nicht auf die Zunge zu bekommen.\n\nDu reibst die Fingerspitzen an der Kante des Sitzes, suchst ein Geräusch, ein Zeichen. Nichts. Das Velours ist rau, widerborstig, aber es gibt keinen Laut von sich. Die Stille antwortet nicht, sie bleibt. Sie liegt schwer auf deinen Schultern, wie eine bleierne Decke.\n\nDu hörst, wie der Stoff deiner Jacke an deinem Hals scheuert, ein Geräusch, das nur in dir stattfindet, übertragen durch Knochenleitung. Die Stille drückt gegen die Augen, als wäre sie greifbar, und du blinzelst, nur um etwas zu bewegen. Es hilft nicht. Die Luft bleibt fest, unbewegt.\n\nKein Rattern. Kein Ventilator. Kein Gemurmel.\n\nNur das Brummen, leise im Hintergrund. Konstant. Wie ein Herzschlag, der nicht deiner ist.",
       "choices": [
         {
           "id": "stay_quiet",
@@ -328,6 +357,29 @@
             },
             {
               "type": "dec",
+              "target": "conductor_attention",
+              "value": 1
+            }
+          ],
+          "next": "c1_s03_inside_train"
+        },
+        {
+          "id": "test_voice",
+          "label": "Den eigenen Namen fluestern",
+          "condition": {
+            "type": "compare",
+            "target": "conductor_attention",
+            "operator": ">=",
+            "value": 1
+          },
+          "effects": [
+            {
+              "type": "inc",
+              "target": "tickets_truth",
+              "value": 1
+            },
+            {
+              "type": "inc",
               "target": "conductor_attention",
               "value": 1
             }
@@ -360,7 +412,7 @@
       "id": "c1_interlude_03_window",
       "chapter": 1,
       "title": "Fenster",
-      "narrative": "Der Schlaflose geht zurück zu seinem Platz.\n\nDu bleibst am Fenster stehen.\n\nDraußen: Immer noch Schwärze. Aber jetzt siehst du Strukturen. Schatten von Bäumen? Häusern? Oder nur deine Reflexion, die sich bewegt?\n\nDu hebst die Hand. Deine Reflexion hebt die Hand.\n\nAber eine Sekunde zu spät.",
+      "narrative": "Der Schlaflose geht zurück zu seinem Platz. Seine Schritte sind schwer, schlurfend, als würde er ein Gewicht tragen, das du nicht sehen kannst.\n\nDu bleibst am Fenster stehen.\n\nDraußen: Immer noch Schwärze. Eine dichte, undurchdringliche Masse, die das Licht des Zuges einfach verschluckt, ohne etwas zurückzuwerfen. Keine Sterne. Kein Mond. Keine Lichter von Häusern oder Straßenlaternen. Nur dieses endlose, matte Schwarz.\n\nAber jetzt, als sich deine Augen an das Dunkel gewöhnen, siehst du Strukturen. Schatten von Bäumen? Verzerrte Äste, die wie Finger nach dem Zug greifen? Häusern ohne Fenster? Oder ist es nur deine eigene Angst, die Formen in die Leere projiziert?\n\nVielleicht ist es nur deine Reflexion, die sich im Doppelglas bricht und bewegt.\n\nDu hebst die Hand, langsam, fast zögernd. Deine Reflexion im Glas hebt die Hand.\n\nAber eine Sekunde zu spät.\n\nDer Bruchteil eines Augenblicks, kaum wahrnehmbar, aber dein Gehirn registriert die Verzögerung. Ein Schauer läuft dir über den Rücken. Die Reflexion starrt dich an, die Augen dunkel und leer, als würde sie warten. Als würde sie nur imitieren, was du tust, aber mit einem eigenen Willen dahinter.\n\nDu legst die Fingerspitzen an das Glas. Es ist eiskalt, kälter als die Luft draußen sein dürfte. Die Kälte brennt fast auf der Haut. Dein Atem bildet einen kleinen Nebelfleck auf der Scheibe, der sofort wieder verschwindet, als würde das Glas ihn aufsaugen.\n\nDahinter, in der Tiefe der Schwärze, bewegt sich etwas. Ein Schatten, der dunkler ist als die Nacht. Er gleitet parallel zum Zug, hält Schritt, ohne Anstrengung.\n\nDu blinzelst, und die Bewegung ist weg. Nur dein verzögertes Spiegelbild starrt zurück.",
       "choices": [
         {
           "id": "touch_glass",
@@ -527,6 +579,29 @@
             }
           ],
           "next": "c1_end_platform_look"
+        },
+        {
+          "id": "echo_tone",
+          "label": "Den Ton nachsprechen",
+          "condition": {
+            "type": "compare",
+            "target": "memory_drift",
+            "operator": ">=",
+            "value": 2
+          },
+          "effects": [
+            {
+              "type": "inc",
+              "target": "tickets_truth",
+              "value": 1
+            },
+            {
+              "type": "inc",
+              "target": "memory_drift",
+              "value": 1
+            }
+          ],
+          "next": "c1_end_platform_look"
         }
       ],
       "tags": [
@@ -643,6 +718,29 @@
             {
               "type": "inc",
               "target": "tickets_guilt",
+              "value": 1
+            }
+          ],
+          "next": "c1_interlude_01_lights"
+        },
+        {
+          "id": "edge_glance",
+          "label": "Zum Rand schauen",
+          "condition": {
+            "type": "compare",
+            "target": "conductor_attention",
+            "operator": ">=",
+            "value": 1
+          },
+          "effects": [
+            {
+              "type": "inc",
+              "target": "tickets_escape",
+              "value": 1
+            },
+            {
+              "type": "dec",
+              "target": "conductor_attention",
               "value": 1
             }
           ],
@@ -807,6 +905,29 @@
             }
           ],
           "next": "c1_interlude_02_silence"
+        },
+        {
+          "id": "watch_windows",
+          "label": "In die Fenster starren",
+          "condition": {
+            "type": "compare",
+            "target": "memory_drift",
+            "operator": ">=",
+            "value": 1
+          },
+          "effects": [
+            {
+              "type": "inc",
+              "target": "tickets_truth",
+              "value": 1
+            },
+            {
+              "type": "inc",
+              "target": "memory_drift",
+              "value": 1
+            }
+          ],
+          "next": "c1_interlude_02_silence"
         }
       ],
       "tags": [
@@ -857,6 +978,24 @@
         {
           "id": "find_seat",
           "label": "Einfach einen Platz suchen",
+          "effects": [
+            {
+              "type": "inc",
+              "target": "tickets_escape",
+              "value": 1
+            }
+          ],
+          "next": "c1_s03a_corridor_walk"
+        },
+        {
+          "id": "choose_door_seat",
+          "label": "Einen Platz nahe der Tuer suchen",
+          "condition": {
+            "type": "compare",
+            "target": "tickets_escape",
+            "operator": ">=",
+            "value": 2
+          },
           "effects": [
             {
               "type": "inc",
@@ -920,6 +1059,29 @@
             }
           ],
           "next": "c1_s03b_find_seat"
+        },
+        {
+          "id": "follow_hum",
+          "label": "Dem Summen folgen",
+          "condition": {
+            "type": "compare",
+            "target": "memory_drift",
+            "operator": ">=",
+            "value": 1
+          },
+          "effects": [
+            {
+              "type": "inc",
+              "target": "tickets_truth",
+              "value": 1
+            },
+            {
+              "type": "inc",
+              "target": "memory_drift",
+              "value": 1
+            }
+          ],
+          "next": "c1_s03b_find_seat"
         }
       ],
       "tags": [
@@ -957,6 +1119,29 @@
             {
               "type": "inc",
               "target": "tickets_escape",
+              "value": 1
+            }
+          ],
+          "next": "c1_s04_sleepless_intro"
+        },
+        {
+          "id": "stay_with_window",
+          "label": "Den Blick im Fenster halten",
+          "condition": {
+            "type": "compare",
+            "target": "memory_drift",
+            "operator": ">=",
+            "value": 1
+          },
+          "effects": [
+            {
+              "type": "inc",
+              "target": "memory_drift",
+              "value": 1
+            },
+            {
+              "type": "inc",
+              "target": "tickets_truth",
               "value": 1
             }
           ],
@@ -1013,6 +1198,29 @@
         {
           "id": "deny",
           "label": "„Das kann nicht sein.\"",
+          "effects": [
+            {
+              "type": "inc",
+              "target": "tickets_escape",
+              "value": 1
+            },
+            {
+              "type": "dec",
+              "target": "rel_sleepless",
+              "value": 1
+            }
+          ],
+          "next": "c1_s04a_sleepless_past"
+        },
+        {
+          "id": "stay_silent",
+          "label": "Nichts sagen",
+          "condition": {
+            "type": "compare",
+            "target": "tickets_escape",
+            "operator": ">=",
+            "value": 2
+          },
           "effects": [
             {
               "type": "inc",
@@ -1160,6 +1368,29 @@
             }
           ],
           "next": "c1_s05_first_anomaly"
+        },
+        {
+          "id": "mention_reflection",
+          "label": "Die versetzte Reflexion erwaehnen",
+          "condition": {
+            "type": "compare",
+            "target": "memory_drift",
+            "operator": ">=",
+            "value": 2
+          },
+          "effects": [
+            {
+              "type": "inc",
+              "target": "tickets_truth",
+              "value": 1
+            },
+            {
+              "type": "inc",
+              "target": "memory_drift",
+              "value": 1
+            }
+          ],
+          "next": "c1_s05_first_anomaly"
         }
       ],
       "tags": [
@@ -1268,6 +1499,12 @@
         {
           "id": "count_passengers",
           "label": "Die Passagiere zählen",
+          "condition": {
+            "type": "compare",
+            "target": "memory_drift",
+            "operator": ">=",
+            "value": 2
+          },
           "effects": [
             {
               "type": "inc",
@@ -1338,7 +1575,7 @@
         "Kopfhörer ohne Kabel (Details stimmen nicht)",
         "approach_woman erhöht conductor_attention (Interaktion = Risiko)",
         "Frau = Comp7-Foreshadowing",
-        "CONDITION: stay_inconspicuous nur bei conductor_attention >= 2"
+        "CONDITION: stay_inconspicuous nur bei conductor_attention >= 2; count_passengers nur bei memory_drift >= 2"
       ],
       "atmosphere": "somber"
     },
@@ -1504,6 +1741,29 @@
             }
           ],
           "next": "c1_s06_corridor_end"
+        },
+        {
+          "id": "name_the_time",
+          "label": "Die Uhrzeit leise nennen",
+          "condition": {
+            "type": "compare",
+            "target": "tickets_truth",
+            "operator": ">=",
+            "value": 2
+          },
+          "effects": [
+            {
+              "type": "inc",
+              "target": "tickets_truth",
+              "value": 1
+            },
+            {
+              "type": "inc",
+              "target": "memory_drift",
+              "value": 1
+            }
+          ],
+          "next": "c1_s05d_comp7_listen"
         }
       ],
       "tags": [
@@ -1574,6 +1834,29 @@
               "type": "inc",
               "target": "rel_comp7",
               "value": 2
+            }
+          ],
+          "next": "c1_s06_corridor_end"
+        },
+        {
+          "id": "hold_position",
+          "label": "Im Gang warten",
+          "condition": {
+            "type": "compare",
+            "target": "conductor_attention",
+            "operator": ">=",
+            "value": 2
+          },
+          "effects": [
+            {
+              "type": "inc",
+              "target": "tickets_escape",
+              "value": 1
+            },
+            {
+              "type": "dec",
+              "target": "conductor_attention",
+              "value": 1
             }
           ],
           "next": "c1_s06_corridor_end"
@@ -1778,6 +2061,29 @@
             }
           ],
           "next": "c2_s05b_reality_shift"
+        },
+        {
+          "id": "look_for_boy",
+          "label": "Nach dem Jungen Ausschau halten",
+          "condition": {
+            "type": "compare",
+            "target": "tickets_love",
+            "operator": ">=",
+            "value": 4
+          },
+          "effects": [
+            {
+              "type": "inc",
+              "target": "tickets_love",
+              "value": 1
+            },
+            {
+              "type": "inc",
+              "target": "rel_boy",
+              "value": 1
+            }
+          ],
+          "next": "c2_s05b_reality_shift"
         }
       ],
       "tags": [
@@ -1785,10 +2091,10 @@
       ],
       "state_notes": [
         "Set-Piece Teil 3: Auflösung der Kontrolle",
-        "Kelle ist leer: Schaffner folgt keinem Script (Improvisation/Willkür)",
-        "Jacke des Schlaflosen ändert erneut Farbe (grün -> rot)",
-        "confront_sleepless erhöht memory_drift (Realität direkt hinterfragen)",
-        "Comp7 erscheint wieder (war nie weg? Oder Drift?)"
+        "Kelle ist leer: Schaffner folgt keinem Script",
+        "Jacke des Schlaflosen ändert erneut Farbe",
+        "Comp7 erscheint wieder (war nie weg? Oder Drift?)",
+        "CONDITION: look_for_boy nur bei tickets_love >= 4 (Callback für offer_search)"
       ],
       "atmosphere": "somber"
     },
@@ -1839,29 +2145,35 @@
           "next": "c2_control_01_question"
         },
         {
-          "id": "interrupt",
-          "label": "„Was bedeutet das?\"",
-          "effects": [
-            {
-              "type": "inc",
-              "target": "tickets_escape",
-              "value": 1
-            },
-            {
-              "type": "inc",
-              "target": "conductor_attention",
-              "value": 1
-            }
-          ],
-          "next": "c2_control_01_question"
-        },
-        {
           "id": "apologize",
           "label": "„Es tut mir leid.\"",
           "effects": [
             {
               "type": "inc",
               "target": "tickets_guilt",
+              "value": 1
+            }
+          ],
+          "next": "c2_control_01_question"
+        },
+        {
+          "id": "notice_voice_distortion",
+          "label": "Die Verzerrung in seiner Stimme bemerken",
+          "condition": {
+            "type": "compare",
+            "target": "memory_drift",
+            "operator": ">=",
+            "value": 2
+          },
+          "effects": [
+            {
+              "type": "inc",
+              "target": "tickets_truth",
+              "value": 1
+            },
+            {
+              "type": "inc",
+              "target": "memory_drift",
               "value": 1
             }
           ],
@@ -1874,7 +2186,8 @@
       "state_notes": [
         "Set-Piece Teil 1: Aufbau der Kontrolle",
         "Kelle ist leer (Schaffner liest nicht ab, improvisiert)",
-        "interrupt erhöht conductor_attention, look_to_sleepless nur bei rel_sleepless >= 1"
+        "look_to_sleepless nur bei rel_sleepless >= 1",
+        "CONDITION: notice_voice_distortion nur bei memory_drift >= 2 (Callback für continue)"
       ],
       "atmosphere": "danger"
     },
@@ -1996,6 +2309,29 @@
           "next": "c2_end_station"
         },
         {
+          "id": "lower_gaze",
+          "label": "Den Blick senken",
+          "condition": {
+            "type": "compare",
+            "target": "tickets_guilt",
+            "operator": ">=",
+            "value": 2
+          },
+          "effects": [
+            {
+              "type": "inc",
+              "target": "tickets_guilt",
+              "value": 1
+            },
+            {
+              "type": "dec",
+              "target": "conductor_attention",
+              "value": 1
+            }
+          ],
+          "next": "c2_end_station"
+        },
+        {
           "id": "recognize_figure",
           "label": "Versuchen, die Gestalt zu erkennen",
           "condition": {
@@ -2035,7 +2371,8 @@
         "Gestalt auf Bahnsteig (wer? Spieler? Comp7? Schaffner?)",
         "Uhr zeigt wieder 23:47 (Zeit-Loop)",
         "tell_others erhöht conductor_attention (Lautstärke)",
-        "CONDITION: recognize_figure nur bei rel_comp7 >= 2 ODER tickets_truth >= 4"
+        "CONDITION: lower_gaze nur bei tickets_guilt >= 2",
+        "CONDITION: recognize_figure nur bei rel_comp7 >= 2 OR tickets_truth >= 4"
       ],
       "atmosphere": "mystic"
     },
@@ -2061,16 +2398,6 @@
             },
             {
               "type": "inc",
-              "target": "station_count",
-              "value": 1
-            },
-            {
-              "type": "inc",
-              "target": "memory_drift",
-              "value": 1
-            },
-            {
-              "type": "inc",
               "target": "rel_comp7",
               "value": 1
             }
@@ -2085,16 +2412,6 @@
               "type": "set",
               "target": "chapter_index",
               "value": 3
-            },
-            {
-              "type": "inc",
-              "target": "station_count",
-              "value": 1
-            },
-            {
-              "type": "inc",
-              "target": "memory_drift",
-              "value": 1
             }
           ],
           "next": "c3_s01_wagen7_locked"
@@ -2116,16 +2433,6 @@
             },
             {
               "type": "inc",
-              "target": "station_count",
-              "value": 1
-            },
-            {
-              "type": "inc",
-              "target": "memory_drift",
-              "value": 1
-            },
-            {
-              "type": "inc",
               "target": "rel_boy",
               "value": 1
             },
@@ -2142,7 +2449,7 @@
         "station_end"
       ],
       "state_notes": [
-        "Zweite station_end: memory_drift automatisch erhöht durch Engine-R1 (keine manuellen exit_effects)",
+        "R1: Engine erhoeht memory_drift/station_count automatisch (keine manuellen station_end-Effects)",
         "Drift-Effects: Sleepless/Jacke verändert, Junge weg, Comp7 klarer",
         "Meta-Hinweis: Comp7 schreibt \"Spieler geht zu Kapitel 3\""
       ],
@@ -2239,6 +2546,29 @@
           "next": "c2_s03_comp7_intro"
         },
         {
+          "id": "avoid_window",
+          "label": "Vom Fenster wegbleiben",
+          "condition": {
+            "type": "compare",
+            "target": "tickets_escape",
+            "operator": ">=",
+            "value": 2
+          },
+          "effects": [
+            {
+              "type": "inc",
+              "target": "tickets_escape",
+              "value": 1
+            },
+            {
+              "type": "dec",
+              "target": "conductor_attention",
+              "value": 1
+            }
+          ],
+          "next": "c2_s03_comp7_intro"
+        },
+        {
           "id": "continue",
           "label": "Weitergehen",
           "effects": [
@@ -2257,7 +2587,8 @@
       "state_notes": [
         "Form mit Augen draußen (Halluzination oder nicht?)",
         "Warmes, feuchtes Glas (sensorische Anomalie)",
-        "keep_staring nur bei memory_drift >= 2"
+        "keep_staring nur bei memory_drift >= 2",
+        "avoid_window nur bei tickets_escape >= 2"
       ],
       "atmosphere": "danger"
     },
@@ -2285,6 +2616,29 @@
           "next": "c2_s04_announcement"
         },
         {
+          "id": "look_for_boy",
+          "label": "Nach dem Jungen sehen",
+          "condition": {
+            "type": "compare",
+            "target": "tickets_love",
+            "operator": ">=",
+            "value": 1
+          },
+          "effects": [
+            {
+              "type": "inc",
+              "target": "tickets_love",
+              "value": 1
+            },
+            {
+              "type": "inc",
+              "target": "rel_boy",
+              "value": 1
+            }
+          ],
+          "next": "c2_s04_announcement"
+        },
+        {
           "id": "continue",
           "label": "Weiter",
           "effects": [
@@ -2303,7 +2657,8 @@
       "state_notes": [
         "Durchsage glitcht mit Spielerstimme (Memory-Echo)",
         "Passagiere frieren ein und bewegen sich wieder",
-        "cover_ears senkt attention, wenn bereits aufgebaut"
+        "cover_ears senkt attention, wenn bereits aufgebaut",
+        "look_for_boy nur bei tickets_love >= 1"
       ],
       "atmosphere": "danger"
     },
@@ -2518,6 +2873,29 @@
           "next": "c2_interlude_01_toilet"
         },
         {
+          "id": "decipher_headline",
+          "label": "Die Schlagzeile erraten",
+          "condition": {
+            "type": "compare",
+            "target": "tickets_truth",
+            "operator": ">=",
+            "value": 2
+          },
+          "effects": [
+            {
+              "type": "inc",
+              "target": "tickets_truth",
+              "value": 1
+            },
+            {
+              "type": "inc",
+              "target": "memory_drift",
+              "value": 1
+            }
+          ],
+          "next": "c2_interlude_01_toilet"
+        },
+        {
           "id": "watch_laptop_man",
           "label": "Den Mann mit Laptop beobachten",
           "effects": [
@@ -2554,7 +2932,8 @@
         "Zeitungs-Schlagzeile unlesbar, Buchstaben bewegen sich: Drift-Detail",
         "Laptop zeigt nur pulsierendes Blau: keine Inhalte",
         "approach_newspaper_woman erhöht Attention (fällt auf)",
-        "conductor_attention >= 2 zeigt Feedback für keep_walking Choice"
+        "conductor_attention >= 2 zeigt Feedback für keep_walking Choice",
+        "decipher_headline nur bei tickets_truth >= 2"
       ],
       "atmosphere": "mystic"
     },
@@ -2694,7 +3073,8 @@
       "state_notes": [
         "Rekorder ist Key-Item (hat_recorder wird gesetzt)",
         "ask_why: Stärkere Beziehung (+2), zeigt Empathie",
-        "refuse_recorder: Guilt-Pattern, verschlechtert Beziehung"
+        "refuse_recorder: Guilt-Pattern, verschlechtert Beziehung",
+        "CONDITION: observe_boy_silently nur bei memory_drift >= 2"
       ],
       "atmosphere": "mystic"
     },
@@ -3029,6 +3409,29 @@
             }
           ],
           "next": "c2_s03b_comp7_warning"
+        },
+        {
+          "id": "close_notebook",
+          "label": "Das Notizbuch schliessen",
+          "condition": {
+            "type": "compare",
+            "target": "tickets_escape",
+            "operator": ">=",
+            "value": 2
+          },
+          "effects": [
+            {
+              "type": "inc",
+              "target": "tickets_escape",
+              "value": 1
+            },
+            {
+              "type": "inc",
+              "target": "conductor_attention",
+              "value": 1
+            }
+          ],
+          "next": "c2_interlude_03_announcement_glitch"
         }
       ],
       "tags": [
@@ -3471,6 +3874,29 @@
             }
           ],
           "next": "c3_s06_passengers_vanish"
+        },
+        {
+          "id": "hold_comp7_hand",
+          "label": "Comp7s Hand halten",
+          "condition": {
+            "type": "compare",
+            "target": "rel_comp7",
+            "operator": ">=",
+            "value": 3
+          },
+          "effects": [
+            {
+              "type": "inc",
+              "target": "tickets_love",
+              "value": 1
+            },
+            {
+              "type": "inc",
+              "target": "rel_comp7",
+              "value": 1
+            }
+          ],
+          "next": "c3_s06_passengers_vanish"
         }
       ],
       "tags": [
@@ -3479,7 +3905,8 @@
       "state_notes": [
         "Comp7 konfrontiert Schaffner: NPC-Agency",
         "thank_comp7: Starke Beziehung (+2)",
-        "Schleife wird explizit: \"Er kommt wieder\""
+        "Schleife wird explizit: \"Er kommt wieder\"",
+        "CONDITION: hold_comp7_hand nur bei rel_comp7 >= 3 (Callback für let_comp7_talk)"
       ],
       "atmosphere": "somber"
     },
@@ -3524,13 +3951,13 @@
           "next": "c3_control_02_question"
         },
         {
-          "id": "let_comp7_talk",
-          "label": "Comp7 sprechen lassen",
+          "id": "trust_comp7_protection",
+          "label": "Auf Comp7s Schutz vertrauen",
           "condition": {
             "type": "compare",
             "target": "rel_comp7",
             "operator": ">=",
-            "value": 2
+            "value": 3
           },
           "effects": [
             {
@@ -3539,8 +3966,36 @@
               "value": 1
             },
             {
+              "type": "inc",
+              "target": "rel_comp7",
+              "value": 1
+            },
+            {
               "type": "dec",
               "target": "conductor_attention",
+              "value": 1
+            }
+          ],
+          "next": "c3_control_02_question"
+        },
+        {
+          "id": "analyze_conductor",
+          "label": "Den Schaffner genau beobachten",
+          "condition": {
+            "type": "compare",
+            "target": "tickets_truth",
+            "operator": ">=",
+            "value": 5
+          },
+          "effects": [
+            {
+              "type": "inc",
+              "target": "tickets_truth",
+              "value": 1
+            },
+            {
+              "type": "inc",
+              "target": "memory_drift",
               "value": 1
             }
           ],
@@ -3551,9 +4006,10 @@
         "control"
       ],
       "state_notes": [
-        "CONDITION: let_comp7_talk nur bei rel_comp7 >= 2",
         "stay_inside erhöht attention stärker (Flucht)",
-        "Wagen 7 ist Safe Space, aber Kontrolle ist unvermeidlich"
+        "Wagen 7 ist Safe Space, aber Kontrolle ist unvermeidlich",
+        "CONDITION: trust_comp7_protection nur bei rel_comp7 >= 3 (Callback für ask_comp7_help)",
+        "CONDITION: analyze_conductor nur bei tickets_truth >= 5 (Callback für go_to_control)"
       ],
       "atmosphere": "danger"
     },
@@ -3716,6 +4172,90 @@
       "narrative": "Die Tür öffnet sich.\n\nDer Bahnsteig ist nicht leer.\n\nDa steht jemand. Eine Gestalt. Gesicht unscharf.\n\nDu erkennst die Kleidung. Die Haltung.\n\nEs ist der Schlaflose. Oder der Junge. Oder Comp7.\n\nOder du.\n\nDie Gestalt winkt. Steigt ein.\n\nAls sie an dir vorbeigeht, spürst du einen kalten Luftzug, als würde ein Teil von dir nach außen gezogen.\n\nGeht an dir vorbei. Langsam. Du hörst ihre Schritte. Sie klingen wie deine.\n\nSie setzt sich in ein Abteil. Dein Abteil.\n\nIn ihrer Hand liegt ein Notizbuch. Der Einband ist neu, aber der Rand ist abgenutzt.\n\nDu siehst die kleinen Buchstaben auf der ersten Seite. Sie sehen aus wie Comp7s Handschrift.\n\nSie beginnt zu schreiben. „Passagier #—\" Der Strich verwischt, als würde die Zahl sich weigern, fest zu sein.\n\nDu siehst die Zeile, bevor ihre Hand sie verdeckt. Es ist dein Verlauf, als wäre er schon notiert.\n\nDie Tür schließt sich.\n\nDer Zug fährt weiter.\n\nDu bleibst stehen. Zwischen den Wagen.\n\nDurch das Fenster siehst du: Die Gestalt öffnet ein Notizbuch. Beginnt zu schreiben.",
       "choices": [
         {
+          "id": "test_door_again",
+          "label": "Die Tür nochmal testen",
+          "condition": {
+            "type": "compare",
+            "target": "tickets_escape",
+            "operator": ">=",
+            "value": 5
+          },
+          "effects": [
+            {
+              "type": "inc",
+              "target": "tickets_escape",
+              "value": 1
+            },
+            {
+              "type": "inc",
+              "target": "memory_drift",
+              "value": 1
+            },
+            {
+              "type": "set",
+              "target": "chapter_index",
+              "value": 4
+            }
+          ],
+          "next": "c4_s01_mirror"
+        },
+        {
+          "id": "study_doppelganger",
+          "label": "Den Doppelgänger beobachten",
+          "condition": {
+            "type": "compare",
+            "target": "tickets_truth",
+            "operator": ">=",
+            "value": 6
+          },
+          "effects": [
+            {
+              "type": "inc",
+              "target": "tickets_truth",
+              "value": 1
+            },
+            {
+              "type": "inc",
+              "target": "memory_drift",
+              "value": 1
+            },
+            {
+              "type": "set",
+              "target": "chapter_index",
+              "value": 4
+            }
+          ],
+          "next": "c4_s01_mirror"
+        },
+        {
+          "id": "recognize_figure",
+          "label": "Die Gestalt zu erkennen versuchen",
+          "condition": {
+            "type": "compare",
+            "target": "tickets_love",
+            "operator": ">=",
+            "value": 5
+          },
+          "effects": [
+            {
+              "type": "inc",
+              "target": "tickets_love",
+              "value": 1
+            },
+            {
+              "type": "inc",
+              "target": "rel_sleepless",
+              "value": 1
+            },
+            {
+              "type": "set",
+              "target": "chapter_index",
+              "value": 4
+            }
+          ],
+          "next": "c4_s01_mirror"
+        },
+        {
           "id": "continue_to_chapter_4",
           "label": "Weitergehen",
           "effects": [
@@ -3723,16 +4263,6 @@
               "type": "set",
               "target": "chapter_index",
               "value": 4
-            },
-            {
-              "type": "inc",
-              "target": "station_count",
-              "value": 1
-            },
-            {
-              "type": "inc",
-              "target": "memory_drift",
-              "value": 1
             }
           ],
           "next": "c4_s01_mirror"
@@ -3742,9 +4272,10 @@
         "station_end"
       ],
       "state_notes": [
-        "Dritte station_end: memory_drift automatisch erhöht durch Engine-R1 (keine manuellen exit_effects)",
+        "R1: Engine erhoeht memory_drift/station_count automatisch (keine manuellen station_end-Effects)",
         "Doppelgänger steigt ein: Identity-Drift",
-        "Übergang zu Kapitel 4 (Spiegelung)"
+        "Übergang zu Kapitel 4 (Spiegelung)",
+        "CONDITIONS: test_door_again (escape >= 5), study_doppelganger (truth >= 6), recognize_figure (love >= 5)"
       ],
       "atmosphere": "dark"
     },
@@ -3831,6 +4362,75 @@
             }
           ],
           "next": "c3_s03_wagen7_approach"
+        },
+        {
+          "id": "search_for_exit",
+          "label": "Nach einem Ausstieg suchen",
+          "condition": {
+            "type": "compare",
+            "target": "tickets_escape",
+            "operator": ">=",
+            "value": 3
+          },
+          "effects": [
+            {
+              "type": "inc",
+              "target": "tickets_escape",
+              "value": 1
+            },
+            {
+              "type": "inc",
+              "target": "conductor_attention",
+              "value": 1
+            }
+          ],
+          "next": "c3_s03_wagen7_approach"
+        },
+        {
+          "id": "count_reflections",
+          "label": "Die Spiegelungen zählen",
+          "condition": {
+            "type": "compare",
+            "target": "memory_drift",
+            "operator": ">=",
+            "value": 3
+          },
+          "effects": [
+            {
+              "type": "inc",
+              "target": "tickets_truth",
+              "value": 1
+            },
+            {
+              "type": "inc",
+              "target": "memory_drift",
+              "value": 1
+            }
+          ],
+          "next": "c3_s03_wagen7_approach"
+        },
+        {
+          "id": "call_to_boy_silently",
+          "label": "Dem Jungen im Spiegelbild zuwinken",
+          "condition": {
+            "type": "compare",
+            "target": "tickets_love",
+            "operator": ">=",
+            "value": 3
+          },
+          "effects": [
+            {
+              "type": "inc",
+              "target": "tickets_love",
+              "value": 1
+            },
+            {
+              "type": "inc",
+              "target": "rel_boy",
+              "value": 1
+            }
+          ],
+          "next": "c3_s03_wagen7_approach"
         }
       ],
       "tags": [
@@ -3838,7 +4438,10 @@
       ],
       "state_notes": [
         "Spiegelbild in anderem Zug: Identity-Drift",
-        "Züge fahren in entgegengesetzte Richtungen: Paradox"
+        "Züge fahren in entgegengesetzte Richtungen: Paradox",
+        "CONDITION: search_for_exit nur bei tickets_escape >= 3 (Callback für go_back)",
+        "CONDITION: count_reflections nur bei memory_drift >= 3 (Callback für count_compartments)",
+        "CONDITION: call_to_boy_silently nur bei tickets_love >= 3 (Callback für call_for_boy)"
       ],
       "atmosphere": "mystic"
     },
@@ -4101,6 +4704,29 @@
             }
           ],
           "next": "c3_s02_recorder_anomaly"
+        },
+        {
+          "id": "check_notebook_reference",
+          "label": "An das Notizbuch zurückdenken",
+          "condition": {
+            "type": "compare",
+            "target": "rel_comp7",
+            "operator": ">=",
+            "value": 1
+          },
+          "effects": [
+            {
+              "type": "inc",
+              "target": "tickets_truth",
+              "value": 1
+            },
+            {
+              "type": "inc",
+              "target": "rel_comp7",
+              "value": 1
+            }
+          ],
+          "next": "c3_s02_recorder_anomaly"
         }
       ],
       "tags": [
@@ -4109,7 +4735,7 @@
       "state_notes": [
         "Junge kehrt zurück mit dupliziertem Rekorder",
         "Drift-Mechanik: Objekte können sich verdoppeln",
-        "refuse_to_check verschlechtert rel_boy"
+        "CONDITION: check_notebook_reference nur bei rel_comp7 >= 1 (Callback für take_notebook)"
       ],
       "atmosphere": "mystic"
     },
@@ -4268,6 +4894,29 @@
             {
               "type": "inc",
               "target": "memory_drift",
+              "value": 1
+            }
+          ],
+          "next": "c3_interlude_03_window"
+        },
+        {
+          "id": "call_for_boy",
+          "label": "Leise nach dem Jungen rufen",
+          "condition": {
+            "type": "compare",
+            "target": "rel_boy",
+            "operator": ">=",
+            "value": 2
+          },
+          "effects": [
+            {
+              "type": "inc",
+              "target": "tickets_love",
+              "value": 1
+            },
+            {
+              "type": "inc",
+              "target": "conductor_attention",
               "value": 1
             }
           ],
@@ -4807,6 +5456,29 @@
             }
           ],
           "next": "c3_control_02_approach"
+        },
+        {
+          "id": "step_into_corridor",
+          "label": "In den Gang treten",
+          "condition": {
+            "type": "compare",
+            "target": "tickets_escape",
+            "operator": ">=",
+            "value": 2
+          },
+          "effects": [
+            {
+              "type": "inc",
+              "target": "tickets_escape",
+              "value": 1
+            },
+            {
+              "type": "inc",
+              "target": "conductor_attention",
+              "value": 1
+            }
+          ],
+          "next": "c3_control_02_approach"
         }
       ],
       "tags": [],
@@ -5056,16 +5728,90 @@
               "type": "set",
               "target": "chapter_index",
               "value": 5
-            },
+            }
+          ],
+          "next": "c5_s01_final_preparation"
+        },
+        {
+          "id": "search_for_self",
+          "label": "Nach sich selbst in der Menge suchen",
+          "condition": {
+            "type": "compare",
+            "target": "tickets_truth",
+            "operator": ">=",
+            "value": 8
+          },
+          "effects": [
             {
               "type": "inc",
-              "target": "station_count",
+              "target": "tickets_truth",
               "value": 1
             },
             {
               "type": "inc",
               "target": "memory_drift",
               "value": 1
+            },
+            {
+              "type": "set",
+              "target": "chapter_index",
+              "value": 5
+            }
+          ],
+          "next": "c5_s01_final_preparation"
+        },
+        {
+          "id": "call_out_to_copies",
+          "label": "Die Kopien ansprechen",
+          "condition": {
+            "type": "compare",
+            "target": "tickets_love",
+            "operator": ">=",
+            "value": 5
+          },
+          "effects": [
+            {
+              "type": "inc",
+              "target": "tickets_love",
+              "value": 1
+            },
+            {
+              "type": "inc",
+              "target": "memory_drift",
+              "value": 1
+            },
+            {
+              "type": "set",
+              "target": "chapter_index",
+              "value": 5
+            }
+          ],
+          "next": "c5_s01_final_preparation"
+        },
+        {
+          "id": "ignore_copies",
+          "label": "Die Kopien komplett ignorieren",
+          "condition": {
+            "type": "compare",
+            "target": "tickets_escape",
+            "operator": ">=",
+            "value": 7
+          },
+          "effects": [
+            {
+              "type": "inc",
+              "target": "tickets_escape",
+              "value": 1
+            },
+            {
+              "type": "inc",
+              "target": "conductor_attention",
+              "value": 1
+            },
+            {
+              "type": "set",
+              "target": "chapter_index",
+              "value": 5
             }
           ],
           "next": "c5_s01_final_preparation"
@@ -5075,7 +5821,8 @@
         "station_end"
       ],
       "state_notes": [
-        "Vierte station_end: memory_drift automatisch erhöht durch Engine-R1 (keine manuellen exit_effects)",
+        "CONDITIONS: search_for_self (truth >= 8), call_out_to_copies (love >= 5), ignore_copies (escape >= 7)",
+        "R1: Engine erhoeht memory_drift/station_count automatisch (keine manuellen station_end-Effects)",
         "Kopien verschwinden synchron",
         "Comp7: \"Drei Stationen oder unendlich\"",
         "Übergang zu Kapitel 5 (Finale Kontrolle)"
@@ -5099,12 +5846,84 @@
             }
           ],
           "next": "c4_s02_recorder_prophecy"
+        },
+        {
+          "id": "embrace_false_reality",
+          "label": "Die veränderte Realität akzeptieren",
+          "condition": {
+            "type": "compare",
+            "target": "tickets_escape",
+            "operator": ">=",
+            "value": 2
+          },
+          "effects": [
+            {
+              "type": "inc",
+              "target": "tickets_escape",
+              "value": 1
+            },
+            {
+              "type": "inc",
+              "target": "memory_drift",
+              "value": 1
+            }
+          ],
+          "next": "c4_s02_recorder_prophecy"
+        },
+        {
+          "id": "analyze_pattern",
+          "label": "Das Lichtmuster analysieren",
+          "condition": {
+            "type": "compare",
+            "target": "tickets_truth",
+            "operator": ">=",
+            "value": 5
+          },
+          "effects": [
+            {
+              "type": "inc",
+              "target": "tickets_truth",
+              "value": 1
+            },
+            {
+              "type": "inc",
+              "target": "conductor_attention",
+              "value": 1
+            }
+          ],
+          "next": "c4_s02_recorder_prophecy"
+        },
+        {
+          "id": "whisper_to_shadow",
+          "label": "Mit dem Schatten sprechen",
+          "condition": {
+            "type": "compare",
+            "target": "tickets_love",
+            "operator": ">=",
+            "value": 3
+          },
+          "effects": [
+            {
+              "type": "inc",
+              "target": "tickets_love",
+              "value": 1
+            },
+            {
+              "type": "inc",
+              "target": "memory_drift",
+              "value": 1
+            }
+          ],
+          "next": "c4_s02_recorder_prophecy"
         }
       ],
       "tags": [
         "drift_variant"
       ],
       "state_notes": [
+        "CONDITION: embrace_false_reality bei tickets_escape >= 2",
+        "CONDITION: analyze_pattern bei tickets_truth >= 5",
+        "CONDITION: whisper_to_shadow bei tickets_love >= 3",
         "Lichter flackern in Muster (1-2-3-4)",
         "Schatten zeigt falsche Richtung: Raumlogik bricht"
       ],
@@ -5127,12 +5946,83 @@
             }
           ],
           "next": "c4_s03_passengers_return"
+        },
+        {
+          "id": "check_doors",
+          "label": "Zu den Tueren gehen",
+          "condition": {
+            "type": "compare",
+            "target": "conductor_attention",
+            "operator": ">=",
+            "value": 1
+          },
+          "effects": [
+            {
+              "type": "inc",
+              "target": "tickets_escape",
+              "value": 1
+            },
+            {
+              "type": "inc",
+              "target": "conductor_attention",
+              "value": 1
+            }
+          ],
+          "next": "c4_s03_passengers_return"
+        },
+        {
+          "id": "accept_loop_pattern",
+          "label": "Das Schleifenmuster akzeptieren",
+          "condition": {
+            "type": "compare",
+            "target": "tickets_truth",
+            "operator": ">=",
+            "value": 6
+          },
+          "effects": [
+            {
+              "type": "inc",
+              "target": "tickets_truth",
+              "value": 1
+            },
+            {
+              "type": "inc",
+              "target": "memory_drift",
+              "value": 1
+            }
+          ],
+          "next": "c4_s03_passengers_return"
+        },
+        {
+          "id": "resist_temporal_shift",
+          "label": "Gegen die Zeitverschiebung ankämpfen",
+          "condition": {
+            "type": "compare",
+            "target": "conductor_attention",
+            "operator": ">=",
+            "value": 2
+          },
+          "effects": [
+            {
+              "type": "inc",
+              "target": "tickets_escape",
+              "value": 1
+            },
+            {
+              "type": "inc",
+              "target": "conductor_attention",
+              "value": 1
+            }
+          ],
+          "next": "c4_s03_passengers_return"
         }
       ],
       "tags": [
         "drift_variant"
       ],
       "state_notes": [
+        "CONDITION: accept_loop_pattern bei tickets_truth >= 6",
+        "CONDITION: resist_temporal_shift bei conductor_attention >= 2",
         "Durchsage zeitlich verschoben: \"verlassen\" vor dem Halt",
         "Kausalität bricht zusammen"
       ],
@@ -5165,12 +6055,84 @@
             }
           ],
           "next": "c4_s04_announcement_glitch"
+        },
+        {
+          "id": "question_reality",
+          "label": "Die Stationen hinterfragen",
+          "condition": {
+            "type": "compare",
+            "target": "tickets_truth",
+            "operator": ">=",
+            "value": 4
+          },
+          "effects": [
+            {
+              "type": "inc",
+              "target": "tickets_truth",
+              "value": 1
+            },
+            {
+              "type": "inc",
+              "target": "memory_drift",
+              "value": 1
+            }
+          ],
+          "next": "c4_s04_announcement_glitch"
+        },
+        {
+          "id": "accept_altered_memory",
+          "label": "Die veränderte Erinnerung annehmen",
+          "condition": {
+            "type": "compare",
+            "target": "memory_drift",
+            "operator": ">=",
+            "value": 4
+          },
+          "effects": [
+            {
+              "type": "inc",
+              "target": "tickets_escape",
+              "value": 1
+            },
+            {
+              "type": "inc",
+              "target": "memory_drift",
+              "value": 2
+            }
+          ],
+          "next": "c4_s04_announcement_glitch"
+        },
+        {
+          "id": "seek_boy_pattern",
+          "label": "Nach dem Jungen im Loop suchen",
+          "condition": {
+            "type": "compare",
+            "target": "rel_boy",
+            "operator": ">=",
+            "value": 2
+          },
+          "effects": [
+            {
+              "type": "inc",
+              "target": "tickets_love",
+              "value": 1
+            },
+            {
+              "type": "inc",
+              "target": "rel_boy",
+              "value": 1
+            }
+          ],
+          "next": "c4_s04_announcement_glitch"
         }
       ],
       "tags": [
         "drift_variant"
       ],
       "state_notes": [
+        "CONDITION: question_reality bei tickets_truth >= 4",
+        "CONDITION: accept_altered_memory bei memory_drift >= 4",
+        "CONDITION: seek_boy_pattern bei rel_boy >= 2",
         "Fenster zeigt Bahnsteig-Loop: Spieler steigt mehrfach ein/nicht ein",
         "Hinweis: Schleife läuft schon lange"
       ],
@@ -5351,6 +6313,11 @@
               "type": "inc",
               "target": "tickets_truth",
               "value": 2
+            },
+            {
+              "type": "inc",
+              "target": "memory_drift",
+              "value": 1
             }
           ],
           "next": "c4_s01b_wrong_memory"
@@ -5471,6 +6438,11 @@
               "type": "inc",
               "target": "tickets_escape",
               "value": 1
+            },
+            {
+              "type": "inc",
+              "target": "memory_drift",
+              "value": 1
             }
           ],
           "next": "c4_interlude_02_announcement"
@@ -5494,7 +6466,7 @@
       "state_notes": [
         "CONDITION: listen_to_prophecy und turn_off_recorder nur wenn has_recorder == true",
         "Rekorder schaltet sich selbst ein",
-        "Spieler hört eigene Zukunft"
+        "turn_off_recorder erhoeht memory_drift (Abbruch der Aufnahme)"
       ],
       "atmosphere": "danger"
     },
@@ -6017,12 +6989,60 @@
             }
           ],
           "next": "c4_interlude_05_time"
+        },
+        {
+          "id": "examine_ticket_evidence",
+          "label": "Das Ticket als Beweis prüfen",
+          "condition": {
+            "type": "compare",
+            "target": "tickets_truth",
+            "operator": ">=",
+            "value": 6
+          },
+          "effects": [
+            {
+              "type": "inc",
+              "target": "tickets_truth",
+              "value": 1
+            },
+            {
+              "type": "inc",
+              "target": "rel_comp7",
+              "value": 1
+            }
+          ],
+          "next": "c4_s05a_wagen7_changed"
+        },
+        {
+          "id": "hide_from_system",
+          "label": "Sich vor dem System verstecken",
+          "condition": {
+            "type": "compare",
+            "target": "conductor_attention",
+            "operator": ">=",
+            "value": 4
+          },
+          "effects": [
+            {
+              "type": "inc",
+              "target": "tickets_escape",
+              "value": 1
+            },
+            {
+              "type": "inc",
+              "target": "memory_drift",
+              "value": 1
+            }
+          ],
+          "next": "c4_interlude_05_time"
         }
       ],
       "tags": [
         "setup"
       ],
       "state_notes": [
+        "CONDITION: examine_ticket_evidence bei tickets_truth >= 6",
+        "CONDITION: hide_from_system bei conductor_attention >= 4",
         "Comp7 ruft dringend",
         "refuse_call: Hoher Drift-Preis (Spieler verliert Orientierung)",
         "Wagen 7 als Safe Space wird wichtiger"
@@ -6161,6 +7181,29 @@
             }
           ],
           "next": "c4_s06a_shared_memory"
+        },
+        {
+          "id": "comfort_comp7_drift",
+          "label": "Comp7s Drift verstehen",
+          "condition": {
+            "type": "compare",
+            "target": "rel_comp7",
+            "operator": ">=",
+            "value": 4
+          },
+          "effects": [
+            {
+              "type": "inc",
+              "target": "tickets_love",
+              "value": 1
+            },
+            {
+              "type": "inc",
+              "target": "rel_comp7",
+              "value": 1
+            }
+          ],
+          "next": "c4_s06a_shared_memory"
         }
       ],
       "tags": [
@@ -6168,9 +7211,9 @@
       ],
       "state_notes": [
         "CONDITION: ask_about_future nur bei tickets_truth >= 3",
+        "CONDITION: comfort_comp7_drift bei rel_comp7 >= 4",
         "Comp7 hat Erinnerungen an gemeinsame Zukunft/Vergangenheit",
-        "Zeitlinien überlappen: Non-lineare Narrative",
-        "doubt_her verschlechtert Beziehung"
+        "Zeitlinien überlappen: Non-lineare Narrative"
       ],
       "atmosphere": "somber"
     },
@@ -6281,12 +7324,36 @@
             }
           ],
           "next": "c4_s07a_drift_peak"
+        },
+        {
+          "id": "embrace_shared_timeline",
+          "label": "Die geteilte Erinnerung festhalten",
+          "condition": {
+            "type": "compare",
+            "target": "rel_comp7",
+            "operator": ">=",
+            "value": 5
+          },
+          "effects": [
+            {
+              "type": "inc",
+              "target": "tickets_love",
+              "value": 1
+            },
+            {
+              "type": "inc",
+              "target": "rel_comp7",
+              "value": 1
+            }
+          ],
+          "next": "c4_s07a_drift_peak"
         }
       ],
       "tags": [
         "drift_variant"
       ],
       "state_notes": [
+        "CONDITION: embrace_shared_timeline bei rel_comp7 >= 5",
         "Reality Fracture: Raum flackert zwischen Zuständen",
         "let_go: Hoher Drift-Preis (Spieler gibt Kontrolle auf)",
         "remember_comp7 stärkt Beziehung in kritischem Moment"
@@ -6381,10 +7448,57 @@
             }
           ],
           "next": "c4_end_platform_watch"
+        },
+        {
+          "id": "trace_double",
+          "label": "Dem Doppel nachgehen",
+          "condition": {
+            "type": "compare",
+            "target": "tickets_truth",
+            "operator": ">=",
+            "value": 3
+          },
+          "effects": [
+            {
+              "type": "inc",
+              "target": "tickets_truth",
+              "value": 1
+            },
+            {
+              "type": "inc",
+              "target": "memory_drift",
+              "value": 1
+            }
+          ],
+          "next": "c4_s07c_tag19_found"
+        },
+        {
+          "id": "confront_self_echo",
+          "label": "Das Doppel als Teil von sich akzeptieren",
+          "condition": {
+            "type": "compare",
+            "target": "tickets_love",
+            "operator": ">=",
+            "value": 4
+          },
+          "effects": [
+            {
+              "type": "inc",
+              "target": "tickets_love",
+              "value": 1
+            },
+            {
+              "type": "inc",
+              "target": "memory_drift",
+              "value": 1
+            }
+          ],
+          "next": "c4_s07c_tag19_found"
         }
       ],
       "tags": [],
       "state_notes": [
+        "CONDITION: confront_self_echo bei tickets_love >= 4",
         "Peak Drift endet: Kurze Stabilisierung",
         "Doppel hat Gegenstand hinterlassen (Tag 19 Setup)"
       ],
@@ -6479,11 +7593,6 @@
             },
             {
               "type": "inc",
-              "target": "station_count",
-              "value": 1
-            },
-            {
-              "type": "inc",
               "target": "tickets_truth",
               "value": 1
             }
@@ -6498,11 +7607,29 @@
               "type": "set",
               "target": "chapter_index",
               "value": 6
-            },
+            }
+          ],
+          "next": "c6_s01_awakening"
+        },
+        {
+          "id": "acknowledge_guilt",
+          "label": "Die Namen auf dem Bahnsteig suchen",
+          "condition": {
+            "type": "compare",
+            "target": "tickets_guilt",
+            "operator": ">=",
+            "value": 4
+          },
+          "effects": [
             {
               "type": "inc",
-              "target": "station_count",
-              "value": 1
+              "target": "tickets_guilt",
+              "value": 2
+            },
+            {
+              "type": "set",
+              "target": "chapter_index",
+              "value": 6
             }
           ],
           "next": "c6_s01_awakening"
@@ -6512,10 +7639,9 @@
         "station_end"
       ],
       "state_notes": [
-        "Station-End: memory_drift automatisch erhöht durch Engine-R1 (keine manuellen exit_effects)",
+        "R1: Engine erhoeht memory_drift/station_count automatisch (keine manuellen station_end-Effects)",
         "Station-End: Übergang zu Kapitel 6",
-        "Comp7 hält den Spieler im Zug",
-        "Noch eine Station bis zum wahren Ende"
+        "CONDITION: acknowledge_guilt nur bei tickets_guilt >= 4 (Callback auf s08)"
       ],
       "atmosphere": "mystic"
     },
@@ -6562,6 +7688,11 @@
               "type": "inc",
               "target": "tickets_truth",
               "value": 1
+            },
+            {
+              "type": "inc",
+              "target": "conductor_attention",
+              "value": 1
             }
           ],
           "next": "c5_s02_corridor_silence"
@@ -6570,7 +7701,7 @@
       "state_notes": [
         "Eröffnungsszene Kapitel 5",
         "CONDITION: check_recorder nur bei has_recorder",
-        "Vorbereitung auf Kontrolle 3"
+        "walk_corridor erhoeht attention; Vorbereitung auf Kontrolle 3"
       ],
       "atmosphere": "somber"
     },
@@ -6591,11 +7722,83 @@
             }
           ],
           "next": "c5_s03_comp7_reflection"
+        },
+        {
+          "id": "listen_for_patterns",
+          "label": "Nach Mustern im Licht lauschen",
+          "condition": {
+            "type": "compare",
+            "target": "tickets_truth",
+            "operator": ">=",
+            "value": 7
+          },
+          "effects": [
+            {
+              "type": "inc",
+              "target": "tickets_truth",
+              "value": 1
+            },
+            {
+              "type": "inc",
+              "target": "memory_drift",
+              "value": 1
+            }
+          ],
+          "next": "c5_s03_comp7_reflection"
+        },
+        {
+          "id": "retreat_to_safety",
+          "label": "Zurück ins Abteil flüchten",
+          "condition": {
+            "type": "compare",
+            "target": "tickets_escape",
+            "operator": ">=",
+            "value": 5
+          },
+          "effects": [
+            {
+              "type": "inc",
+              "target": "tickets_escape",
+              "value": 1
+            },
+            {
+              "type": "dec",
+              "target": "conductor_attention",
+              "value": 1
+            }
+          ],
+          "next": "c5_s03_comp7_reflection"
+        },
+        {
+          "id": "challenge_emptiness",
+          "label": "Laut in die Stille rufen",
+          "condition": {
+            "type": "compare",
+            "target": "conductor_attention",
+            "operator": ">=",
+            "value": 4
+          },
+          "effects": [
+            {
+              "type": "inc",
+              "target": "conductor_attention",
+              "value": 1
+            },
+            {
+              "type": "inc",
+              "target": "tickets_truth",
+              "value": 1
+            }
+          ],
+          "next": "c5_s03_comp7_reflection"
         }
       ],
       "state_notes": [
         "Interlude: Atmosphäre aufbauen",
-        "memory_drift steigt (Zug wird unheimlicher)"
+        "memory_drift steigt (Zug wird unheimlicher)",
+        "CONDITION: listen_for_patterns (tickets_truth >= 7)",
+        "CONDITION: retreat_to_safety (tickets_escape >= 5)",
+        "CONDITION: challenge_emptiness (conductor_attention >= 4)"
       ],
       "atmosphere": "tense"
     },
@@ -6655,12 +7858,35 @@
             }
           ],
           "next": "c5_s04_lights_flicker"
+        },
+        {
+          "id": "discuss_silence",
+          "label": "„Die Stille hier… sie ist nicht normal.\"",
+          "condition": {
+            "type": "compare",
+            "target": "conductor_attention",
+            "operator": ">=",
+            "value": 3
+          },
+          "effects": [
+            {
+              "type": "inc",
+              "target": "tickets_truth",
+              "value": 1
+            },
+            {
+              "type": "inc",
+              "target": "rel_comp7",
+              "value": 1
+            }
+          ],
+          "next": "c5_s04_lights_flicker"
         }
       ],
       "state_notes": [
         "Comp7 gibt Hinweise auf Endgame",
         "ask_about_compartment7 erhöht conductor_attention (gefährliche Frage)",
-        "Callback zu Abteil 7 (wird später wichtig)"
+        "CONDITION: discuss_silence nur bei conductor_attention >= 3 (Callback auf s02)"
       ],
       "atmosphere": "mystic"
     },
@@ -6696,11 +7922,83 @@
             }
           ],
           "next": "c5_s05_sleepless_final"
+        },
+        {
+          "id": "confront_comp7_questions",
+          "label": "An Comp7s Worte denken",
+          "condition": {
+            "type": "compare",
+            "target": "rel_comp7",
+            "operator": ">=",
+            "value": 3
+          },
+          "effects": [
+            {
+              "type": "inc",
+              "target": "tickets_love",
+              "value": 1
+            },
+            {
+              "type": "inc",
+              "target": "rel_comp7",
+              "value": 1
+            }
+          ],
+          "next": "c5_s05_sleepless_final"
+        },
+        {
+          "id": "analyze_abteil7_clue",
+          "label": "Die Hinweise auf Abteil 7 deuten",
+          "condition": {
+            "type": "compare",
+            "target": "tickets_truth",
+            "operator": ">=",
+            "value": 8
+          },
+          "effects": [
+            {
+              "type": "inc",
+              "target": "tickets_truth",
+              "value": 1
+            },
+            {
+              "type": "inc",
+              "target": "memory_drift",
+              "value": 1
+            }
+          ],
+          "next": "c5_s05_sleepless_final"
+        },
+        {
+          "id": "hide_from_presence",
+          "label": "Sich vor der Präsenz verstecken",
+          "condition": {
+            "type": "compare",
+            "target": "tickets_escape",
+            "operator": ">=",
+            "value": 6
+          },
+          "effects": [
+            {
+              "type": "inc",
+              "target": "tickets_escape",
+              "value": 1
+            },
+            {
+              "type": "dec",
+              "target": "conductor_attention",
+              "value": 1
+            }
+          ],
+          "next": "c5_s05_sleepless_final"
         }
       ],
       "state_notes": [
         "Interlude: Spannung aufbauen",
-        "Vorbereitung auf Abteil 7"
+        "Vorbereitung auf Abteil 7",
+        "CONDITION: confront_comp7_questions (rel_comp7 >= 3)",
+        "CONDITION: analyze_abteil7_clue (tickets_truth >= 8)",
+        "CONDITION: hide_from_presence (tickets_escape >= 6)"
       ],
       "atmosphere": "danger"
     },
@@ -6760,12 +8058,35 @@
             }
           ],
           "next": "c5_s06_abteil7_approach"
+        },
+        {
+          "id": "warn_about_presence",
+          "label": "„Da ist etwas im Gang. Sei vorsichtig.\"",
+          "condition": {
+            "type": "compare",
+            "target": "conductor_attention",
+            "operator": ">=",
+            "value": 4
+          },
+          "effects": [
+            {
+              "type": "inc",
+              "target": "tickets_love",
+              "value": 1
+            },
+            {
+              "type": "inc",
+              "target": "rel_sleepless",
+              "value": 1
+            }
+          ],
+          "next": "c5_s06_abteil7_approach"
         }
       ],
       "state_notes": [
         "Letztes Gespräch mit Schlaflosem",
         "rel_sleepless beeinflusst spätere Szenen",
-        "Hinweis auf verschärfte Kontrollen"
+        "CONDITION: warn_about_presence nur bei conductor_attention >= 4 (Callback auf s04)"
       ],
       "atmosphere": "somber"
     },
@@ -6808,12 +8129,60 @@
             }
           ],
           "next": "c5_s08_abteil7_aftermath"
+        },
+        {
+          "id": "protect_sleepless",
+          "label": "Zurück zum Schlaflosen gehen",
+          "condition": {
+            "type": "compare",
+            "target": "rel_sleepless",
+            "operator": ">=",
+            "value": 2
+          },
+          "effects": [
+            {
+              "type": "inc",
+              "target": "tickets_love",
+              "value": 1
+            },
+            {
+              "type": "inc",
+              "target": "rel_sleepless",
+              "value": 1
+            }
+          ],
+          "next": "c5_s08_abteil7_aftermath"
+        },
+        {
+          "id": "open_door_for_truth",
+          "label": "Öffnen – für die Antworten",
+          "condition": {
+            "type": "compare",
+            "target": "tickets_truth",
+            "operator": ">=",
+            "value": 9
+          },
+          "effects": [
+            {
+              "type": "inc",
+              "target": "tickets_truth",
+              "value": 2
+            },
+            {
+              "type": "inc",
+              "target": "conductor_attention",
+              "value": 3
+            }
+          ],
+          "next": "c5_s07_abteil7_inside"
         }
       ],
       "state_notes": [
         "Set-Piece Teil 1: Abteil 7",
         "open_door erhöht conductor_attention stark (+2)",
-        "Wichtige Weichenstellung"
+        "Wichtige Weichenstellung",
+        "CONDITION: protect_sleepless (rel_sleepless >= 2)",
+        "CONDITION: open_door_for_truth (tickets_truth >= 9, hohe attention)"
       ],
       "tags": [
         "setup"
@@ -6933,11 +8302,58 @@
             }
           ],
           "next": "c5_s09_train_shifts"
+        },
+        {
+          "id": "write_down_names",
+          "label": "Die Namen aufschreiben",
+          "condition": {
+            "type": "compare",
+            "target": "tickets_truth",
+            "operator": ">=",
+            "value": 10
+          },
+          "effects": [
+            {
+              "type": "inc",
+              "target": "tickets_truth",
+              "value": 1
+            },
+            {
+              "type": "inc",
+              "target": "tickets_guilt",
+              "value": 1
+            }
+          ],
+          "next": "c5_s09_train_shifts"
+        },
+        {
+          "id": "ponder_the_wall",
+          "label": "Die Kälte der Wand noch spüren",
+          "condition": {
+            "type": "compare",
+            "target": "tickets_guilt",
+            "operator": ">=",
+            "value": 1
+          },
+          "effects": [
+            {
+              "type": "inc",
+              "target": "tickets_guilt",
+              "value": 2
+            },
+            {
+              "type": "inc",
+              "target": "memory_drift",
+              "value": 1
+            }
+          ],
+          "next": "c5_s09_train_shifts"
         }
       ],
       "state_notes": [
         "Set-Piece Teil 3: Nachwirkungen",
-        "Callback zu memory_drift (Erinnerungen werden unzuverlässig)"
+        "CONDITION: write_down_names (tickets_truth >= 10)",
+        "CONDITION: ponder_the_wall (tickets_guilt >= 1, Callback auf s07)"
       ],
       "atmosphere": "tense"
     },
@@ -6968,11 +8384,82 @@
             }
           ],
           "next": "c5_s10_boy_reunion"
+        },
+        {
+          "id": "press_to_window",
+          "label": "Am Fenster bleiben",
+          "condition": {
+            "type": "compare",
+            "target": "memory_drift",
+            "operator": ">=",
+            "value": 2
+          },
+          "effects": [
+            {
+              "type": "inc",
+              "target": "tickets_truth",
+              "value": 1
+            },
+            {
+              "type": "inc",
+              "target": "memory_drift",
+              "value": 1
+            }
+          ],
+          "next": "c5_s10_boy_reunion"
+        },
+        {
+          "id": "understand_skip",
+          "label": "Die übersprungene Station verstehen",
+          "condition": {
+            "type": "compare",
+            "target": "tickets_truth",
+            "operator": ">=",
+            "value": 11
+          },
+          "effects": [
+            {
+              "type": "inc",
+              "target": "tickets_truth",
+              "value": 1
+            },
+            {
+              "type": "inc",
+              "target": "conductor_attention",
+              "value": 1
+            }
+          ],
+          "next": "c5_s10_boy_reunion"
+        },
+        {
+          "id": "use_skip_chance",
+          "label": "Den Sprung als Chance nutzen",
+          "condition": {
+            "type": "compare",
+            "target": "tickets_escape",
+            "operator": ">=",
+            "value": 8
+          },
+          "effects": [
+            {
+              "type": "inc",
+              "target": "tickets_escape",
+              "value": 1
+            },
+            {
+              "type": "dec",
+              "target": "memory_drift",
+              "value": 1
+            }
+          ],
+          "next": "c5_s10_boy_reunion"
         }
       ],
       "state_notes": [
         "Interlude: Zug wird unberechenbarer",
-        "station_count erhöht sich (übersprungene Station)"
+        "station_count erhöht sich (übersprungene Station)",
+        "CONDITION: understand_skip if tickets_truth >= 11 (c5_s08_abteil7_aftermath remembering)",
+        "CONDITION: use_skip_chance if tickets_escape >= 8 (c5_s08_abteil7_aftermath letting go)"
       ],
       "atmosphere": "tense"
     },
@@ -7047,12 +8534,36 @@
             }
           ],
           "next": "c5_s11_corridor_encounter"
+        },
+        {
+          "id": "reassure_boy",
+          "label": "Ihm versichern, dass er nicht allein ist",
+          "condition": {
+            "type": "compare",
+            "target": "rel_boy",
+            "operator": ">=",
+            "value": 2
+          },
+          "effects": [
+            {
+              "type": "inc",
+              "target": "tickets_love",
+              "value": 1
+            },
+            {
+              "type": "inc",
+              "target": "rel_boy",
+              "value": 1
+            }
+          ],
+          "next": "c5_s11_corridor_encounter"
         }
       ],
       "state_notes": [
         "Recorder/Tag19 Items sind hier relevant",
         "CONDITION: show_recorder_connection nur bei has_recorder",
         "CONDITION: show_tag19 nur bei has_tag19",
+        "CONDITION: reassure_boy nur bei rel_boy >= 2",
         "Callback zu Items aus früheren Kapiteln"
       ],
       "atmosphere": "somber"
@@ -7137,11 +8648,35 @@
             }
           ],
           "next": "c5_s13_memory_fragment"
+        },
+        {
+          "id": "search_reflection",
+          "label": "Den Schatten des Schaffners im Glas suchen",
+          "condition": {
+            "type": "compare",
+            "target": "conductor_attention",
+            "operator": ">=",
+            "value": 5
+          },
+          "effects": [
+            {
+              "type": "inc",
+              "target": "tickets_truth",
+              "value": 1
+            },
+            {
+              "type": "inc",
+              "target": "conductor_attention",
+              "value": 1
+            }
+          ],
+          "next": "c5_s13_memory_fragment"
         }
       ],
       "state_notes": [
         "Interlude: Realität löst sich auf",
-        "memory_drift steigt weiter"
+        "memory_drift steigt weiter",
+        "CONDITION: search_reflection nur bei conductor_attention >= 5 (Callback auf s11)"
       ],
       "atmosphere": "dark"
     },
@@ -7244,12 +8779,36 @@
             }
           ],
           "next": "c5_s15_control3_question"
+        },
+        {
+          "id": "mention_fragment",
+          "label": "Ihm von dem Bahnhof erzählen",
+          "condition": {
+            "type": "compare",
+            "target": "tickets_truth",
+            "operator": ">=",
+            "value": 12
+          },
+          "effects": [
+            {
+              "type": "inc",
+              "target": "tickets_truth",
+              "value": 1
+            },
+            {
+              "type": "inc",
+              "target": "conductor_attention",
+              "value": 2
+            }
+          ],
+          "next": "c5_s15_control3_question"
         }
       ],
       "state_notes": [
         "Set-Piece Teil 1: Kontrolle 3 Beginn",
         "Letzte und härteste Kontrolle",
-        "conductor_attention beeinflusst nächste Szene"
+        "conductor_attention beeinflusst nächste Szene",
+        "CONDITION: mention_fragment nur bei tickets_truth >= 12 (Callback auf s13)"
       ],
       "tags": [
         "control",
@@ -7401,11 +8960,35 @@
             }
           ],
           "next": "c5_s17_aftermath_reflection"
+        },
+        {
+          "id": "ponder_words",
+          "label": "Über die Worte des Schaffners nachgrübeln",
+          "condition": {
+            "type": "compare",
+            "target": "conductor_attention",
+            "operator": ">=",
+            "value": 4
+          },
+          "effects": [
+            {
+              "type": "inc",
+              "target": "tickets_truth",
+              "value": 1
+            },
+            {
+              "type": "inc",
+              "target": "memory_drift",
+              "value": 1
+            }
+          ],
+          "next": "c5_s17_aftermath_reflection"
         }
       ],
       "state_notes": [
         "Set-Piece Teil 3: Nachwirkungen Kontrolle 3",
-        "Kontrolle überstanden – nächste Station rückt näher"
+        "Kontrolle überstanden – nächste Station rückt näher",
+        "CONDITION: ponder_words nur bei conductor_attention >= 4 (Callback auf s15)"
       ],
       "atmosphere": "tense"
     },
@@ -7468,11 +9051,35 @@
             }
           ],
           "next": "c5_s19_final_conversation"
+        },
+        {
+          "id": "search_for_door",
+          "label": "Nach einer vertrauten Tür suchen",
+          "condition": {
+            "type": "compare",
+            "target": "tickets_escape",
+            "operator": ">=",
+            "value": 6
+          },
+          "effects": [
+            {
+              "type": "inc",
+              "target": "tickets_escape",
+              "value": 1
+            },
+            {
+              "type": "inc",
+              "target": "memory_drift",
+              "value": 1
+            }
+          ],
+          "next": "c5_s19_final_conversation"
         }
       ],
       "state_notes": [
         "Interlude: Zug verändert sich fundamental",
-        "Vorbereitung auf Endgame"
+        "Vorbereitung auf Endgame",
+        "CONDITION: search_for_door nur bei tickets_escape >= 6 (Callback auf s17)"
       ],
       "atmosphere": "dark"
     },
@@ -7690,11 +9297,35 @@
             }
           ],
           "next": "c5_s23_before_station"
+        },
+        {
+          "id": "embrace_drift",
+          "label": "Sich dem Vergessen hingeben",
+          "condition": {
+            "type": "compare",
+            "target": "memory_drift",
+            "operator": ">=",
+            "value": 5
+          },
+          "effects": [
+            {
+              "type": "inc",
+              "target": "tickets_escape",
+              "value": 2
+            },
+            {
+              "type": "inc",
+              "target": "memory_drift",
+              "value": 1
+            }
+          ],
+          "next": "c5_s23_before_station"
         }
       ],
       "state_notes": [
         "Set-Piece Teil 3: Nachwirkungen der finalen Entscheidung",
-        "Übergang zur letzten Station"
+        "Übergang zur letzten Station",
+        "CONDITION: embrace_drift nur bei memory_drift >= 5 (Callback auf s21)"
       ],
       "atmosphere": "somber"
     },
@@ -7774,11 +9405,6 @@
               "type": "set",
               "target": "chapter_index",
               "value": 7
-            },
-            {
-              "type": "inc",
-              "target": "station_count",
-              "value": 1
             }
           ],
           "next": "c7_s01_final_approach"
@@ -7788,7 +9414,7 @@
         "station_end"
       ],
       "state_notes": [
-        "Station-End: memory_drift automatisch erhöht durch Engine-R1 (keine manuellen exit_effects)",
+        "R1: Engine erhoeht memory_drift/station_count automatisch (keine manuellen station_end-Effects)",
         "Station-End: Übergang zu Kapitel 7",
         "Name auf Schild (Selbsterkenntnis)",
         "Versionen des Selbst erscheinen",
@@ -7801,6 +9427,16 @@
       "chapter": 6,
       "title": "Erwachen",
       "narrative": "Du sitzt wieder im Abteil.\n\nWann bist du wieder eingestiegen?\n\nDu erinnerst dich an die Station. An Comp7 im Türrahmen.\n\n„Noch eine Station.\"\n\nAber… war das real?\n\nOder träumst du schon?\n\nDer Zug fährt. Das Rattern ist leiser geworden. Fast unhörbar.\n\nAls würde der Zug selbst… verschwinden.\n\nDu blickst aus dem Fenster.\n\nDraußen ist nichts. Nicht einmal Dunkelheit.\n\nNur Abwesenheit.\n\nDer Geruch im Abteil ist seltsam. Zu sauber. Wie Desinfektionsmittel in einem leeren Krankenhaus.\n\nKalt. Steril.\n\nFalsch.",
+      "narrative_variants": [
+        {
+          "condition": {
+            "type": "bool",
+            "target": "has_tag19",
+            "value": true
+          },
+          "narrative": "Du sitzt wieder im Abteil.\n\nEin rhythmisches Pochen in deiner Tasche weckt dich. Der Schlüsselanhänger ist heiß geworden, eine pulsierende Wärme, die durch den Stoff deiner Hose bis auf die Haut dringt.\n\nWann bist du wieder eingestiegen? Du erinnerst dich an die Station, an Comp7 im Türrahmen.\n\n„Noch eine Station.\"\n\nDer Anhänger vibriert leise, ein tiefer Ton, den du eher im Kiefer spürst als hörst. Er gibt dir ein Gefühl von Gewicht, von Festigkeit in einer Welt, die sich aufzulösen scheint.\n\nDraußen ist nichts. Nur Abwesenheit.\n\nAber das Metall in deiner Hand – oder in deiner Tasche – ist real. Es ist ein Anker. Ein Versprechen, dass es ein Ende gibt.\n\nDer sterile Geruch im Abteil wird von einer Note nach altem Messing und warmem Öl überlagert.\n\nDu bist hier. Du bist noch da."
+        }
+      ],
       "choices": [
         {
           "id": "check_surroundings",
@@ -7878,12 +9514,36 @@
             }
           ],
           "next": "c6_s03_comp7_final"
+        },
+        {
+          "id": "listen_intently",
+          "label": "Der Stille lauschen",
+          "condition": {
+            "type": "compare",
+            "target": "tickets_escape",
+            "operator": ">=",
+            "value": 1
+          },
+          "effects": [
+            {
+              "type": "inc",
+              "target": "tickets_escape",
+              "value": 1
+            },
+            {
+              "type": "inc",
+              "target": "memory_drift",
+              "value": 1
+            }
+          ],
+          "next": "c6_s03_comp7_final"
         }
       ],
       "state_notes": [
         "Interlude: Stille und Veränderung",
         "Raum verändert sich (schmaler, enger)",
-        "Vibration als sensorischer Anker"
+        "Vibration als sensorischer Anker",
+        "CONDITION: listen_intently bei tickets_escape >= 1 (Callback für close_eyes in s01)"
       ],
       "atmosphere": "tense"
     },
@@ -7970,12 +9630,36 @@
             }
           ],
           "next": "c6_s05_door_seven"
+        },
+        {
+          "id": "examine_details",
+          "label": "Die Details der Wand prüfen",
+          "condition": {
+            "type": "compare",
+            "target": "tickets_truth",
+            "operator": ">=",
+            "value": 1
+          },
+          "effects": [
+            {
+              "type": "inc",
+              "target": "tickets_truth",
+              "value": 1
+            },
+            {
+              "type": "inc",
+              "target": "memory_drift",
+              "value": 1
+            }
+          ],
+          "next": "c6_s05_door_seven"
         }
       ],
       "state_notes": [
         "Interlude: Gang verwandelt sich",
         "Wände warm (körperwarm) - sensorischer Anker",
-        "Abteil 7 Tür erscheint"
+        "Abteil 7 Tür erscheint",
+        "CONDITION: examine_details bei tickets_truth >= 1"
       ],
       "atmosphere": "mystic"
     },
@@ -7984,6 +9668,16 @@
       "chapter": 6,
       "title": "Abteil 7 - Die Tür",
       "narrative": "Du stehst vor der Tür.\n\nDie Nummer ist eingraviert. Tief. Als wäre sie seit Jahrhunderten da.\n\n7.\n\nDeine Hand zittert, als du sie zum Türknauf ausstreckst.\n\nWarm. Der Knauf ist warm.\n\nWie eine Hand.\n\nDu spürst… etwas. Durch die Tür.\n\nEine Präsenz.\n\nEtwas Vertrautes.\n\nEtwas, das du verloren hast.\n\nOder… nie hattest.\n\nOder… vergessen wolltest.\n\nÖffnest du die Tür?",
+      "narrative_variants": [
+        {
+          "condition": {
+            "type": "bool",
+            "target": "has_tag19",
+            "value": true
+          },
+          "narrative": "Du stehst vor der Tür.\n\nDer Schlüsselanhänger in deiner Hand beginnt im Takt deines Herzschlags zu glühen. Ein tiefes, goldenes Licht scheint durch deine geschlossenen Finger.\n\nDie Nummer 7 auf der Tür leuchtet im gleichen Rhythmus auf. Es ist kein Zufall mehr. Es ist eine Resonanz.\n\nDeine Hand zittert nicht mehr, als du sie zum Knauf ausstreckst. Die Hitze des Metalls und die Wärme des Anhängers verschmelzen zu einer einzigen Empfindung.\n\nDu spürst die Präsenz hinter der Tür nicht nur – du hörst sie als einen klaren, reinen Ton, der aus dem Anhänger aufsteigt.\n\nEtwas Vertrautes. Etwas, das dir gehört.\n\nDas Tag 19 ist der Schlüssel. Nicht für ein Schloss, sondern für die Wahrheit.\n\nÖffnest du die Tür?"
+        }
+      ],
       "choices": [
         {
           "id": "open_door_truth",
@@ -8187,12 +9881,36 @@
             }
           ],
           "next": "c6_s08_drift_intensifies"
+        },
+        {
+          "id": "feel_connection",
+          "label": "Die Wärme der Berührung nachspüren",
+          "condition": {
+            "type": "compare",
+            "target": "tickets_love",
+            "operator": ">=",
+            "value": 2
+          },
+          "effects": [
+            {
+              "type": "inc",
+              "target": "tickets_love",
+              "value": 1
+            },
+            {
+              "type": "inc",
+              "target": "memory_drift",
+              "value": 1
+            }
+          ],
+          "next": "c6_s08_drift_intensifies"
         }
       ],
       "state_notes": [
         "Set-Piece Teil 3: Nachwirkungen Abteil 7",
         "Tür verschwindet (Drift-Effekt)",
-        "Emotionale Transformation"
+        "Emotionale Transformation",
+        "CONDITION: feel_connection bei tickets_love >= 2 (Callback für reach_out)"
       ],
       "atmosphere": "somber"
     },
@@ -8218,12 +9936,36 @@
             }
           ],
           "next": "c6_s09_boy_final"
+        },
+        {
+          "id": "analyze_time",
+          "label": "Versuchen, das Zeitmuster zu erkennen",
+          "condition": {
+            "type": "compare",
+            "target": "memory_drift",
+            "operator": ">=",
+            "value": 2
+          },
+          "effects": [
+            {
+              "type": "inc",
+              "target": "tickets_truth",
+              "value": 1
+            },
+            {
+              "type": "inc",
+              "target": "memory_drift",
+              "value": 1
+            }
+          ],
+          "next": "c6_s09_boy_final"
         }
       ],
       "state_notes": [
         "Interlude: Drift intensiviert sich",
         "Zeit springt (Uhr zeigt willkürliche Zeiten)",
-        "Temperatur neutral/nichts - sensorischer Anker"
+        "Temperatur neutral/nichts - sensorischer Anker",
+        "CONDITION: analyze_time bei memory_drift >= 2"
       ],
       "atmosphere": "dark"
     },
@@ -8390,12 +10132,54 @@
             }
           ],
           "next": "c6_s12_mirror_self"
+        },
+        {
+          "id": "whisper_year",
+          "label": "„1973\" leise wiederholen",
+          "condition": {
+            "type": "compare",
+            "target": "memory_drift",
+            "operator": ">=",
+            "value": 3
+          },
+          "effects": [
+            {
+              "type": "inc",
+              "target": "tickets_guilt",
+              "value": 1
+            }
+          ],
+          "next": "c6_s12_mirror_self"
+        },
+        {
+          "id": "listen_for_voice",
+          "label": "Auf die Stimme unter dem Rauschen achten",
+          "condition": {
+            "type": "compare",
+            "target": "conductor_attention",
+            "operator": ">=",
+            "value": 3
+          },
+          "effects": [
+            {
+              "type": "inc",
+              "target": "tickets_truth",
+              "value": 1
+            },
+            {
+              "type": "inc",
+              "target": "conductor_attention",
+              "value": 1
+            }
+          ],
+          "next": "c6_s12_mirror_self"
         }
       ],
       "state_notes": [
         "Interlude: Verzerrte Ansage",
         "Warnung \"Endstation\"",
-        "Entschuldigung (von wem?)"
+        "Entschuldigung (von wem?)",
+        "CONDITION: listen_for_voice bei conductor_attention >= 3"
       ],
       "atmosphere": "danger"
     },
@@ -8404,6 +10188,16 @@
       "chapter": 6,
       "title": "Spiegel - Begegnung",
       "narrative": "Du gehst zurück zu deinem Abteil.\n\nAber als du die Tür öffnest…\n\nDa sitzt jemand.\n\nDu selbst.\n\nEin exaktes Spiegelbild.\n\nDie Gestalt sitzt auf deinem Platz. Blickt aus dem Fenster.\n\nDreht sich langsam um.\n\nSieht dich an.\n\nLächelt.\n\nNicht freundlich.\n\nWissend.\n\n„Endlich,\" sagt die Gestalt mit deiner Stimme.\n\n„Ich habe gewartet.\"\n\nSie steht auf.\n\n„Weißt du, warum du hier bist?\"\n\nDie Gestalt kommt näher.\n\n„Wirklich?\"",
+      "narrative_variants": [
+        {
+          "condition": {
+            "type": "bool",
+            "target": "has_tag19",
+            "value": true
+          },
+          "narrative": "Du öffnest die Tür zu deinem Abteil und erstarrst.\n\nDer Schlüsselanhänger, der eben noch glühend heiß war, wird schlagartig eiskalt. Die Kälte beißt sich in deine Haut, ein stechender Schmerz, der dich vor der Gestalt warnt, die auf deinem Platz sitzt.\n\nDu selbst. Ein exaktes Spiegelbild.\n\nDie Gestalt blickt aus dem Fenster in die Leere und dreht sich dann langsam um. Sie lächelt wissend, aber das Lächeln erreicht die Augen nicht.\n\n„Endlich,\" sagt sie mit deiner Stimme. „Ich habe gewartet.\"\n\nWährend sie aufsteht, spürst du durch den Anhänger, dass etwas an dieser Begegnung falsch ist. Er vibriert nicht mehr rhythmisch, sondern stößt kurze, hektische Impulse aus – wie ein Alarm.\n\n„Weißt du, warum du hier bist?\"\n\nDie Kälte des Metalls in deiner Hand ist der einzige Beweis dafür, dass du noch die Kontrolle hast. Die Gestalt vor dir hat kein solches Gewicht. Sie ist nur ein Schatten.\n\n„Wirklich?\""
+        }
+      ],
       "choices": [
         {
           "id": "confront_drift",
@@ -8751,12 +10545,35 @@
             }
           ],
           "next": "c6_s18_offer_approach"
+        },
+        {
+          "id": "hold_tag19",
+          "label": "Den Schlüsselanhänger fest umklammern",
+          "condition": {
+            "type": "bool",
+            "target": "has_tag19",
+            "value": true
+          },
+          "effects": [
+            {
+              "type": "inc",
+              "target": "tickets_truth",
+              "value": 1
+            },
+            {
+              "type": "inc",
+              "target": "memory_drift",
+              "value": 1
+            }
+          ],
+          "next": "c6_s18_offer_approach"
         }
       ],
       "state_notes": [
         "Interlude: Totale Dunkelheit",
         "Schaffner nähert sich (Licht)",
-        "Vorbereitung auf Angebot"
+        "Vorbereitung auf Angebot",
+        "CONDITION: hold_tag19 nur bei has_tag19"
       ],
       "atmosphere": "dark"
     },
@@ -9081,12 +10898,36 @@
             }
           ],
           "next": "c6_s24_platform_ahead"
+        },
+        {
+          "id": "close_eyes_and_listen",
+          "label": "Die Augen schließen und lauschen",
+          "condition": {
+            "type": "compare",
+            "target": "memory_drift",
+            "operator": ">=",
+            "value": 3
+          },
+          "effects": [
+            {
+              "type": "inc",
+              "target": "memory_drift",
+              "value": 1
+            },
+            {
+              "type": "inc",
+              "target": "tickets_escape",
+              "value": 1
+            }
+          ],
+          "next": "c6_s24_platform_ahead"
         }
       ],
       "state_notes": [
         "Interlude: Zug verlangsamt für letzte Station",
         "Licht erscheint (Gegensatz zu Dunkelheit)",
-        "Bahnsteig wird sichtbar"
+        "Bahnsteig wird sichtbar",
+        "CONDITION: close_eyes_and_listen bei memory_drift >= 3"
       ],
       "atmosphere": "tense"
     },
@@ -9095,6 +10936,16 @@
       "chapter": 6,
       "title": "Der letzte Bahnsteig",
       "narrative": "Der Bahnsteig ist… real.\n\nNicht wie die anderen.\n\nNicht verschwommen oder traumhaft.\n\nReal.\n\nFest.\n\nDa.\n\nDu siehst… Menschen.\n\nSchemen. Gestalten.\n\nSie warten.\n\nAuf dich?\n\nAuf den Zug?\n\nDu erkennst niemanden.\n\nAber… da ist ein Gefühl.\n\nVon Vertrautheit.\n\nVon… Heimkehr.\n\nOder von Ende.\n\nOder beides.",
+      "narrative_variants": [
+        {
+          "condition": {
+            "type": "bool",
+            "target": "has_tag19",
+            "value": true
+          },
+          "narrative": "Der Bahnsteig ist… real.\n\nDer Schlüsselanhänger in deiner Hand vibriert jetzt mit einer solchen Intensität, dass er fast ein Geräusch macht – eine leise, summende Melodie, die dich an Sonntage in einem sonnendurchfluteten Zimmer erinnert.\n\nDie Schemen und Gestalten auf dem Bahnsteig werden durch den Anhänger schärfer gezeichnet. Sein rhythmisches Pochen wirkt wie ein Herzschlag für die Welt da draußen, die darauf wartet, wieder zum Leben zu erwachen.\n\nEs ist nicht nur ein Bahnsteig. Es ist das Ende einer Reise, die viel zu lange gedauert hat.\n\nDu spürst durch das Metall eine tiefe, unerschütterliche Vertrautheit. Ein Gefühl von Heimkehr, so stark, dass es die Tränen in deine Augen treibt.\n\nDer Anhänger hat dich hierher geführt. Er ist ruhig geworden jetzt, eine sanfte, stetige Wärme.\n\nDu bist bereit."
+        }
+      ],
       "choices": [
         {
           "id": "feel_hope",
@@ -9157,12 +11008,36 @@
             }
           ],
           "next": "c6_end_station"
+        },
+        {
+          "id": "hesitate_moment",
+          "label": "Einen Moment zögern",
+          "condition": {
+            "type": "compare",
+            "target": "tickets_guilt",
+            "operator": ">=",
+            "value": 3
+          },
+          "effects": [
+            {
+              "type": "inc",
+              "target": "tickets_guilt",
+              "value": 1
+            },
+            {
+              "type": "inc",
+              "target": "station_count",
+              "value": 1
+            }
+          ],
+          "next": "c6_end_station"
         }
       ],
       "state_notes": [
         "Letzter Moment vor dem Ende",
         "Emotionale Klimax",
-        "Übergang zu Endstation"
+        "Übergang zu Endstation",
+        "CONDITION: hesitate_moment bei tickets_guilt >= 3"
       ],
       "atmosphere": "tense"
     },
@@ -9227,8 +11102,8 @@
           "ending": "love_ending"
         },
         {
-          "id": "limbo_path",
-          "label": "Zwischen den Welten bleiben",
+          "id": "escape_path",
+          "label": "Im Zug bleiben – für immer",
           "effects": [
             {
               "type": "set",
@@ -9236,7 +11111,7 @@
               "value": 8
             }
           ],
-          "ending": "limbo_ending"
+          "ending": "escape_ending"
         }
       ],
       "tags": [
@@ -9244,9 +11119,9 @@
       ],
       "state_notes": [
         "Station-End: Finale - Zug verblasst (1973 aufgelöst)",
-        "ENDINGS: Truth, Escape, Guilt, Love (Schwellenwerte GESENKT auf 6)",
-        "NEW: Limbo-Ending als Fallback (keine Condition)",
-        "station_count automatisch erhöht durch Engine (keine manuellen exit_effects)"
+        "ENDINGS: Truth, Guilt, Love (Schwellenwerte 6)",
+        "FALLBACK: Escape Ending (Im Zug bleiben)",
+        "R1: Engine erhoeht memory_drift/station_count automatisch (keine manuellen station_end-Effects)"
       ],
       "atmosphere": "mystic"
     },
@@ -9255,6 +11130,16 @@
       "chapter": 7,
       "title": "Die letzte Annäherung",
       "narrative": "Du steigst wieder ein.\n\nZum letzten Mal.\n\nDie Türen schließen sich hinter dir.\n\nEndgültig.\n\nDer Zug setzt sich in Bewegung.\n\nAber es fühlt sich anders an.\n\nSchwerer. Langsamer.\n\nAls würde der Zug selbst… zögern.\n\nDie Luft ist dick. Schwer zu atmen.\n\nNicht stickig. Einfach… dicht.\n\nAls wäre sie aus etwas anderem gemacht.\n\nAus Zeit vielleicht.\n\nOder aus Erinnerungen.\n\nDu gehst den Gang entlang.\n\nDie Wände sind jetzt durchsichtig.\n\nNicht ganz. Aber du kannst… hindurchsehen.\n\nSchemen. Bewegungen.\n\nAndere Versionen dieses Gangs.\n\nAndere Zeiten.\n\nAndere Fahrgäste.\n\nAber alle… verschwinden.\n\nLangsam.\n\nWie Rauch.",
+      "narrative_variants": [
+        {
+          "condition": {
+            "type": "bool",
+            "target": "has_tag19",
+            "value": true
+          },
+          "narrative": "Du steigst wieder ein. Zum letzten Mal.\n\nDie Türen schließen sich mit einem Geräusch, das der Schlüsselanhänger in deiner Hand als tiefes, metallisches Echo wiedergibt. Er ist schwerer geworden, ein bleiernes Gewicht, das dich nach unten zieht, tiefer in den Kern des Zuges.\n\nDer Zug setzt sich in Bewegung, und durch das Tag 19 spürst du den Widerstand der Zeit selbst. Die Luft ist nicht nur dicht – sie schmeckt nach Messing und Elektrizität.\n\nDie Wände sind durchsichtig, und wo andere nur Schemen sehen, erkennst du durch den Anhänger klare Fragmente deiner eigenen Geschichte. Du siehst nicht nur Rauch, sondern die Gesichter derer, die du verloren hast, eingefroren in Momenten, die nie endeten.\n\nDer Anhänger vibriert mit einer Frequenz, die die durchsichtigen Wände zum Zittern bringt. Es ist keine passive Beobachtung mehr. Es ist eine Resonanz.\n\nDu bist kein Passagier mehr. Du bist der Anker."
+        }
+      ],
       "choices": [
         {
           "id": "observe_walls",
@@ -9286,13 +11171,24 @@
           "next": "c7_s02_interlude_silence"
         },
         {
-          "id": "touch_walls",
-          "label": "Die Wand berühren",
+          "id": "touch_walls_memories",
+          "label": "In die Erinnerungen greifen",
+          "condition": {
+            "type": "compare",
+            "target": "memory_drift",
+            "operator": ">=",
+            "value": 2
+          },
           "effects": [
             {
               "type": "inc",
               "target": "tickets_truth",
               "value": 1
+            },
+            {
+              "type": "inc",
+              "target": "memory_drift",
+              "value": 2
             }
           ],
           "next": "c7_s02_interlude_silence"
@@ -9302,7 +11198,7 @@
         "Eröffnungsszene Kapitel 7 (Finale)",
         "Zug verändert sich drastisch",
         "Wände durchsichtig (Zeitschichten sichtbar)",
-        "Schwere Atmosphäre"
+        "CONDITION: touch_walls_memories bei memory_drift >= 2"
       ],
       "atmosphere": "dark"
     },
@@ -9333,12 +11229,36 @@
             }
           ],
           "next": "c7_s03_comp7_goodbye"
+        },
+        {
+          "id": "break_silence",
+          "label": "Gegen die Stille anschreien",
+          "condition": {
+            "type": "compare",
+            "target": "conductor_attention",
+            "operator": ">=",
+            "value": 3
+          },
+          "effects": [
+            {
+              "type": "inc",
+              "target": "conductor_attention",
+              "value": 1
+            },
+            {
+              "type": "inc",
+              "target": "tickets_escape",
+              "value": 1
+            }
+          ],
+          "next": "c7_s03_comp7_goodbye"
         }
       ],
       "state_notes": [
         "Interlude: Totale Stille",
         "Kein Ton mehr (Endgültigkeit)",
-        "Isolation/Liminalität"
+        "Isolation/Liminalität",
+        "CONDITION: break_silence bei conductor_attention >= 3"
       ],
       "tags": [
         "interlude"
@@ -9650,13 +11570,36 @@
             }
           ],
           "next": "c7_s06_announcement_distorted"
+        },
+        {
+          "id": "search_for_anchor",
+          "label": "Nach einer vertrauten Verbindung suchen",
+          "condition": {
+            "type": "compare",
+            "target": "tickets_love",
+            "operator": ">=",
+            "value": 3
+          },
+          "effects": [
+            {
+              "type": "inc",
+              "target": "tickets_love",
+              "value": 1
+            },
+            {
+              "type": "inc",
+              "target": "memory_drift",
+              "value": 1
+            }
+          ],
+          "next": "c7_s06_announcement_distorted"
         }
       ],
       "state_notes": [
         "Interlude: Zeit bricht zusammen",
         "Uhren zeigen verschiedene Jahre",
         "Gang faltet sich",
-        "Selbstbegegnung"
+        "CONDITION: search_for_anchor bei tickets_love >= 3"
       ],
       "tags": [
         "interlude"
@@ -9669,6 +11612,14 @@
       "title": "Die letzte Ansage",
       "narrative": "Die Lautsprecher knistern.\n\nLauter als je zuvor.\n\nDann – eine Stimme.\n\n„Nächster Halt. Endstation.\"\n\nAber die Stimme… ist falsch.\n\nZu tief. Zu verzerrt.\n\n„Bitte alle… aussteigen.\"\n\nKnistern.\n\n„Alle… außer…\"\n\nDie Stimme stoppt.\n\nDann:\n\n„Alle außer… den Passagieren von Wagen 7, Sitz 19.\"\n\nDein Sitz.\n\n„Ankunft… 19:19 Uhr.\"\n\n„Am 19. September.\"\n\n„1973.\"\n\nDie Lautsprecher kreischen.\n\nDann – Stille.",
       "narrative_variants": [
+        {
+          "condition": {
+            "type": "bool",
+            "target": "has_tag19",
+            "value": true
+          },
+          "narrative": "Die Lautsprecher knistern, aber der Lärm erreicht dich nicht direkt. Der Schlüsselanhänger in deiner Hand fungiert wie ein Filter, er wandelt das schrille Kreischen in ein rhythmisches Pulsieren um.\n\nDann – eine Stimme. Klarer als je zuvor. Deine eigene Stimme, aufgenommen auf einem Band, das nie existieren sollte.\n\n„Nächster Halt. Endstation.\"\n\nWährend die Stimme von Wagen 7 und Sitz 19 spricht, brennt sich die Zahl 19 auf dem Anhänger in deine Wahrnehmung ein. Sie glüht weißheiß, ein gleißendes Licht, das die Dunkelheit im Gang für einen Moment vertreibt.\n\n„Ankunft… vor fünfzig Jahren.\"\n\nDu spürst durch das Metall das Beben des Aufpralls, den Moment, in dem die Zeit für dich stehen blieb. Es ist kein fernes Ereignis mehr. Es ist jetzt.\n\nDer Anhänger vibriert so stark, dass deine ganze Hand taub wird. Die Stille, die folgt, ist nicht leer. Sie ist gefüllt mit dem Wissen, das du endlich zugelassen hast.\n\nWagen 7. Sitz 19. 19. September 1973.\n\nAlles fällt an seinen Platz."
+        },
         {
           "min_drift": 3,
           "narrative": "Die Lautsprecher knistern.\n\nLeise. Dann laut. Wie ein Schrei.\n\nDann – eine Stimme.\n\n„Nächster Halt. Endstation.\"\n\nDie Stimme ist… deine eigene.\n\n„Bitte alle… aussteigen.\"\n\nKnistern.\n\n„Alle… die überlebt haben.\"\n\nDie Stimme stoppt.\n\nDann:\n\n„Passagier in Wagen 7, Sitz 19.\"\n\nDu.\n\n„Ankunft… vor 50 Jahren.\"\n\n„Am 19. September 1973.\"\n\nDie Lautsprecher bluten. Schwarze Tropfen fallen herab.\n\nDann – Stille."
@@ -9721,7 +11672,7 @@
             {
               "type": "inc",
               "target": "tickets_escape",
-              "value": 1
+              "value": 2
             }
           ],
           "next": "c7_s07_announcement_name"
@@ -9793,6 +11744,12 @@
         {
           "id": "resist_memory",
           "label": "Gegen die Erinnerung ankämpfen",
+          "condition": {
+            "type": "compare",
+            "target": "tickets_escape",
+            "operator": ">=",
+            "value": 2
+          },
           "effects": [
             {
               "type": "inc",
@@ -10010,6 +11967,16 @@
       "chapter": 7,
       "title": "Abteil 7 - Das letzte Angebot",
       "narrative": "Du stehst wieder vor Abteil 7.\n\nDie Tür ist da.\n\nWar sie nicht verschwunden?\n\nAber jetzt ist sie wieder da.\n\nUnd sie ist… offen.\n\nEinen Spaltbreit.\n\nLicht scheint heraus.\n\nWarmes, goldenes Licht.\n\nEine Stimme ruft von innen:\n\n„Komm herein.\"\n\nEs ist… deine Stimme.\n\nAber auch… nicht.\n\n„Ich habe auf dich gewartet.\"\n\n„Fünfzig Jahre.\"\n\n„Oder fünfzig Minuten.\"\n\n„Zeit ist hier… anders.\"\n\n„Komm. Wir können es beenden.\"\n\n„Gemeinsam.\"\n\nDie Tür öffnet sich weiter.\n\nDas Licht wird heller.\n\nBlendend.",
+      "narrative_variants": [
+        {
+          "condition": {
+            "type": "bool",
+            "target": "has_tag19",
+            "value": true
+          },
+          "narrative": "Du stehst wieder vor Abteil 7. Die Tür ist da, massiv und realer als alles andere im Zug.\n\nSie ist offen. Ein Spaltbreit goldenes Licht dringt heraus, aber es blendet dich nicht. Der Schlüsselanhänger in deiner Hand erzeugt ein schützendes Feld, eine kühle Brise, die das Feuer des Lichts abmildert.\n\nEine Stimme ruft von innen – es ist deine eigene, aber sie klingt geheilt, vollständig. „Komm herein. Ich habe auf dich gewartet. Fünfzig Jahre… oder nur diesen einen Moment.\"\n\nDer Anhänger vibriert sanft, ein beständiges, beruhigendes Brummen, das dir den Weg weist. Er zieht dich förmlich zur Tür hin, ein sanfter magnetischer Sog, dem du vertrauen kannst.\n\n„Komm. Wir können es beenden. Gemeinsam.\"\n\nDie Tür öffnet sich weit. Das Licht flutet den Gang, doch durch das Tag 19 siehst du die Strukturen dahinter – den Weg nach Hause.\n\nDu trittst über die Schwelle."
+        }
+      ],
       "choices": [
         {
           "id": "enter_seven_recognized",
@@ -10603,12 +12570,36 @@
             }
           ],
           "next": "c7_s20_conductor_finale"
+        },
+        {
+          "id": "resist_end",
+          "label": "Sich gegen das Ende sträuben",
+          "condition": {
+            "type": "compare",
+            "target": "tickets_escape",
+            "operator": ">=",
+            "value": 3
+          },
+          "effects": [
+            {
+              "type": "inc",
+              "target": "tickets_escape",
+              "value": 1
+            },
+            {
+              "type": "inc",
+              "target": "memory_drift",
+              "value": 1
+            }
+          ],
+          "next": "c7_s20_conductor_finale"
         }
       ],
       "state_notes": [
         "Interlude: Zug hält endgültig",
         "Stille/Ruhe",
-        "Ende nahe"
+        "Ende nahe",
+        "CONDITION: resist_end bei tickets_escape >= 3"
       ],
       "tags": [
         "interlude"
@@ -10682,7 +12673,6 @@
         }
       ],
       "state_notes": [
-        "Schaffner Finale (ÜBERARBEITET)",
         "CONDITION: thank_conductor_high_attention nur bei conductor_attention >= 4",
         "NEW: last_sacrifice Choice führt zu Last-Minute Boost Subszene",
         "Ermöglicht +2 auf beliebiges Ticket (Preis: +5 memory_drift gesamt)",
@@ -10793,6 +12783,28 @@
           "next": "c7_s22_tag19_final"
         },
         {
+          "id": "trace_anomaly",
+          "label": "Die Verzerrung nachzeichnen",
+          "condition": {
+            "type": "bool",
+            "target": "photo_anomaly",
+            "value": true
+          },
+          "effects": [
+            {
+              "type": "inc",
+              "target": "tickets_truth",
+              "value": 1
+            },
+            {
+              "type": "inc",
+              "target": "memory_drift",
+              "value": 1
+            }
+          ],
+          "next": "c7_s22_tag19_final"
+        },
+        {
           "id": "put_away_photo",
           "label": "Das Foto weglegen",
           "effects": [
@@ -10806,10 +12818,9 @@
         }
       ],
       "state_notes": [
-        "Foto Enthüllung",
-        "Spieler auf Foto sichtbar",
-        "156 Passagiere (alle im Zug)",
-        "\"Alle angekommen\" - mehrdeutig"
+        "Foto Enthuellung: Spieler auf Foto sichtbar (1973)",
+        "Rueckseite: \"Letzte Fahrt... Alle angekommen\" - mehrdeutig",
+        "CONDITION: trace_anomaly nur bei photo_anomaly"
       ],
       "atmosphere": "mystic"
     },
@@ -10905,14 +12916,11 @@
         }
       ],
       "state_notes": [
-        "Tag19 finale Bedeutung - VERSTÄRKT",
         "SYNÄSTHESIE: Tag wird heiß, vibriert, summt",
         "CONDITION: use_as_anchor nur bei has_tag19 UND tickets_truth >= 5",
         "use_as_anchor: MASSIVER BONUS (+4 Truth, memory_drift auf 0 gesetzt)",
         "CONDITION: let_go_tag nur bei has_tag19",
-        "CONDITION: keep_tag nur bei has_tag19 (jetzt negativ: +guilt, +drift)",
-        "19 als Anker in der Zeit",
-        "Loslassen möglich"
+        "CONDITION: keep_tag nur bei has_tag19 (jetzt negativ: +guilt, +drift)"
       ],
       "atmosphere": "mystic"
     },
@@ -11014,13 +13022,37 @@
             }
           ],
           "next": "c7_end_station"
+        },
+        {
+          "id": "look_back_one_last_time",
+          "label": "Ein letztes Mal zurückblicken",
+          "condition": {
+            "type": "compare",
+            "target": "tickets_truth",
+            "operator": ">=",
+            "value": 3
+          },
+          "effects": [
+            {
+              "type": "inc",
+              "target": "tickets_truth",
+              "value": 1
+            },
+            {
+              "type": "inc",
+              "target": "station_count",
+              "value": 1
+            }
+          ],
+          "next": "c7_end_station"
         }
       ],
       "state_notes": [
         "Letzte Reflexion",
         "Vorbereitung auf Ending",
         "Identitätsfrage",
-        "Übergang zu Endstation"
+        "Übergang zu Endstation",
+        "CONDITION: look_back_one_last_time bei tickets_truth >= 3"
       ],
       "atmosphere": "somber"
     }

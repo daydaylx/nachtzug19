@@ -186,7 +186,8 @@ sealed class Condition {
 
 @Serializable
 data class NarrativeVariant(
-  val min_drift: Int,
+  val min_drift: Int? = null,
+  val condition: Condition? = null,
   val narrative: String,
   val replace_mode: String? = null
 )

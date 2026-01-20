@@ -3072,31 +3072,17 @@ Was nimmst du mit… ins Danach?`,
       {
         id: 'escape_path',
         label: 'Im Zug bleiben – für immer',
-        condition: {
-          type: 'compare',
-          target: 'tickets_escape',
-          operator: '>=',
-          value: 6
-        },
         effects: [
           { type: 'set', target: 'chapter_index', value: 8 }
         ],
         ending: 'escape_ending'
-      },
-      {
-        id: 'limbo_path',
-        label: 'Zwischen den Welten bleiben',
-        effects: [
-          { type: 'set', target: 'chapter_index', value: 8 }
-        ],
-        ending: 'limbo_ending'
       }
     ],
     tags: ['station_end'],
     state_notes: [
       'Station-End: Finale - Zug verblasst (1973 aufgelöst)',
-      'ENDINGS: Truth, Escape, Guilt, Love (Schwellenwerte 6)',
-      'NEW: Limbo-Ending als Fallback (keine Condition)',
+      'ENDINGS: Truth, Guilt, Love (Schwellenwerte 6)',
+      'FALLBACK: Escape Ending (Im Zug bleiben)',
       'R1: Engine erhoeht memory_drift/station_count automatisch (keine manuellen station_end-Effects)'
     ],
     atmosphere: 'mystic'
