@@ -1,45 +1,45 @@
 # NACHTZUG 19 - Story QA Audit
 
-**Date:** 2024-01-20
-**Auditor:** QA Agent Jules
-**Scope:** Story Logic, Choice Graph, State Integrity, Engine Parity
+**Datum:** 20.01.2024
+**Prüfer:** QA Agent Jules
+**Umfang:** Story-Logik, Choice-Graph, State-Integrität, Engine-Parität
 
 ## 1. Executive Summary
 
-**CRITICAL FINDING (P0):** The game is unwinnable in its current state. The "Truth", "Guilt", and "Love" endings require ticket values $\ge 6$, but the Engine (both TS and Kotlin) strictly clamps ticket values to a maximum of `5`. Players will always be forced into the "Escape" ending or a fallback state.
+**KRITISCHER FUND (P0):** Das Spiel ist in seinem aktuellen Zustand nicht gewinnbar. Die Enden "Wahrheit", "Schuld" und "Liebe" erfordern Ticket-Werte von $\ge 6$, aber die Engine (sowohl TS als auch Kotlin) begrenzt ("clampt") Ticket-Werte strikt auf ein Maximum von `5`. Spieler werden zwangsläufig immer in das "Flucht"-Ende oder einen Fallback-Status gezwungen.
 
 **Status:**
-- **Graph Structure:** Healthy (No dead ends, no cycles, reachable endings).
-- **State/Logic:** BROKEN (Clamping conflict).
-- **Content:** Generally high quality, minimal unused targets.
-- **Parity:** High (TS and Kotlin share the same logic logic, including the critical bug).
+- **Graph-Struktur:** Gesund (Keine Sackgassen, keine Zyklen, erreichbare Enden).
+- **State/Logik:** KAPUTT (Clamping-Konflikt).
+- **Content:** Generell hohe Qualität, minimal ungenutzte Targets.
+- **Parität:** Hoch (TS und Kotlin teilen sich dieselbe Logik, inklusive des kritischen Bugs).
 
-## 2. Project Facts
+## 2. Projektfakten
 
-- **Source of Truth:** `export/story.json` (Exported from TS content)
-- **Scene Count:** 183
-- **Ending Count:** 6
-- **Chapters:** 7
-- **Central State:** Tickets (4 types), Pressure (2 types), Relations (3 types), Items (3 flags)
+- **Source of Truth:** `export/story.json` (Exportiert aus TS-Content)
+- **Szenen-Anzahl:** 183
+- **Ending-Anzahl:** 6
+- **Kapitel:** 7
+- **Zentraler State:** Tickets (4 Typen), Pressure (2 Typen), Relations (3 Typen), Items (3 Flags)
 - **Engines:** TypeScript (Web/Dev) & Kotlin (Android)
 
-## 3. Graph Metrics
+## 3. Graph-Metriken
 
-- **Max Out Degree:** 4 choices
-- **Unreachable Scenes:** 0
-- **Dead Ends:** 0
-- **Cycles:** 0 detected
-- **Note:** The graph structure is exceptionally clean.
+- **Max Out Degree:** 4 Auswahlmöglichkeiten
+- **Unerreichbare Szenen:** 0
+- **Sackgassen (Dead Ends):** 0
+- **Zyklen:** 0 erkannt
+- **Notiz:** Die Graph-Struktur ist außergewöhnlich sauber.
 
-## 4. Top Findings (Prioritized)
+## 4. Top Findings (Priorisiert)
 
-### [P0] ENGINE-001: Endings Unreachable due to Ticket Clamping
+### [P0] ENGINE-001: Enden unerreichbar durch Ticket-Clamping
 
-**Symptom:** Players who play perfectly for a specific path (Truth/Guilt/Love) cannot select the corresponding ending in Chapter 7.
-**Root Cause:**
-- Content (`c7.ts`) requires `tickets_truth >= 6`.
-- Engine (`gameEngine.ts` / `GameEngine.kt`) forces `tickets_truth` to be `Math.min(5, value)`.
-**Evidence:**
+**Symptom:** Spieler, die perfekt für einen bestimmten Pfad (Wahrheit/Schuld/Liebe) spielen, können im Kapitel 7 das entsprechende Ende nicht auswählen.
+**Ursache (Root Cause):**
+- Content (`c7.ts`) verlangt `tickets_truth >= 6`.
+- Engine (`gameEngine.ts` / `GameEngine.kt`) erzwingt `tickets_truth` auf `Math.min(5, value)`.
+**Beleg (Evidence):**
 *src/content/nachtzug19/scenes/c7.ts:400*
 ```typescript
         condition: {
@@ -53,59 +53,59 @@
 ```typescript
   state.tickets.tickets_truth = Math.max(0, Math.min(5, state.tickets.tickets_truth));
 ```
-**Fix:** Increase clamp limit in Engine to 10+ OR reduce content requirement to 5.
+**Lösung (Fix):** Clamp-Limit in der Engine auf 10+ erhöhen ODER Content-Anforderung auf 5 senken.
 
-### [P2] CHOICE-001: Illusion Choice in Chapter 4
+### [P2] CHOICE-001: Illusions-Entscheidung in Kapitel 4
 
-**Symptom:** Two choices lead to the exact same outcome with no narrative difference, making the player feel their choice didn't matter.
-**Location:** `c4_s05_comp7_call`
-**Evidence:**
-- Choice `go_to_wagen7`: `next: 'c4_s05a_wagen7_changed'`, Effect: `truth+1, rel_comp7+1`
-- Choice `examine_ticket_evidence`: `next: 'c4_s05a_wagen7_changed'`, Effect: `truth+1, rel_comp7+1` (requires `truth>=6`)
-**Analysis:** The second choice is a "reward" option (locked by condition), but it yields the exact same result as the standard option. It should ideally have a stronger effect or a different narrative variant in the next scene.
+**Symptom:** Zwei Entscheidungen führen zum exakt gleichen Ergebnis ohne narrativen Unterschied, wodurch der Spieler das Gefühl hat, seine Wahl sei bedeutungslos.
+**Ort:** `c4_s05_comp7_call`
+**Beleg (Evidence):**
+- Wahl `go_to_wagen7`: `next: 'c4_s05a_wagen7_changed'`, Effekt: `truth+1, rel_comp7+1`
+- Wahl `examine_ticket_evidence`: `next: 'c4_s05a_wagen7_changed'`, Effekt: `truth+1, rel_comp7+1` (benötigt `truth>=6`)
+**Analyse:** Die zweite Wahl ist eine "Belohnungs"-Option (gesperrt durch Condition), liefert aber exakt dasselbe Ergebnis wie die Standard-Option. Sie sollte idealerweise einen stärkeren Effekt oder eine andere narrative Variante in der Folgeszene haben.
 
-### [P3] STATE-001: Ticket Inflation
+### [P3] STATE-001: Ticket-Inflation
 
-**Symptom:** Ticket counts in a typical playthrough reach 100-200 (if unclamped), trivializing any threshold check of 6.
-**Root Cause:** Loops or repeated granting of tickets without caps, or simply high frequency of rewards.
-**Evidence:** Simulator run "Truth Path" reached 201 Truth Tickets (unclamped).
-**Fix:** Rebalance ticket economy. If checks are for specific thresholds, ensure the maximum reachable is reasonable (e.g. 20-30), not 200.
+**Symptom:** Ticket-Anzahl erreicht in einem typischen Durchlauf 100-200 (wenn ungeclampt), was jede Prüfung auf 6 trivialisiert.
+**Ursache (Root Cause):** Loops oder wiederholtes Gewähren von Tickets ohne Obergrenzen (Caps), oder einfach zu hohe Frequenz an Belohnungen.
+**Beleg (Evidence):** Simulator-Lauf "Wahrheit-Pfad" erreichte 201 Wahrheit-Tickets (ungeclampt).
+**Lösung (Fix):** Ticket-Ökonomie rebalancieren. Wenn Prüfungen auf spezifische Schwellenwerte erfolgen, sicherstellen, dass das erreichbare Maximum vernünftig ist (z.B. 20-30), nicht 200.
 
-## 5. Issues List
+## 5. Issues Liste
 
-| ID | Severity | Category | Description |
-|----|----------|----------|-------------|
-| **ENGINE-001** | **P0** | Logic | **Ticket Clamping prevents Endings.** Engine caps tickets at 5, Content asks for 6. |
-| **CHOICE-001** | P2 | Content | **Illusion Choice in C4.** `c4_s05_comp7_call` offers identical outcomes. |
-| **STATE-001** | P3 | Balance | **Ticket Inflation.** Unclamped values reach 200+, making thresholds trivial or meaningless if clamping is fixed. |
-| **STATE-002** | P3 | Cleanliness| **Unused Engine Meta.** `chapter_index`, `station_count` are written but not read in content conditions (Engine internal use only). Acceptable. |
+| ID | Schweregrad | Kategorie | Beschreibung |
+|----|-------------|-----------|--------------|
+| **ENGINE-001** | **P0** | Logik | **Ticket-Clamping verhindert Enden.** Engine deckelt Tickets bei 5, Content verlangt 6. |
+| **CHOICE-001** | P2 | Content | **Illusions-Wahl in C4.** `c4_s05_comp7_call` bietet identische Ergebnisse. |
+| **STATE-001** | P3 | Balance | **Ticket-Inflation.** Ungeclampte Werte erreichen 200+, was Schwellenwerte trivial macht, falls Clamping korrigiert wird. |
+| **STATE-002** | P3 | Sauberkeit| **Ungenutzte Engine-Meta.** `chapter_index`, `station_count` werden geschrieben aber in Content-Conditions nicht gelesen (nur intern genutzt). Akzeptabel. |
 
 ## 6. Fix Roadmap
 
-### Phase 1: Critical Fixes (Immediate)
+### Phase 1: Kritische Fixes (Sofort)
 
-**1. Fix Ticket Clamping (ENGINE-001)**
-- **File:** `src/domain/engine/gameEngine.ts` AND `android-native/.../GameEngine.kt`
-- **Action:** Change `.min(5, ...)` to `.min(100, ...)` or appropriate max.
-- **Verify:** Run a test case where tickets go above 6.
+**1. Fix Ticket-Clamping (ENGINE-001)**
+- **Datei:** `src/domain/engine/gameEngine.ts` UND `android-native/.../GameEngine.kt`
+- **Aktion:** `.min(5, ...)` ändern zu `.min(100, ...)` oder passendem Max-Wert.
+- **Verifizieren:** Testfall ausführen, bei dem Tickets über 6 steigen.
 
-### Phase 2: Polish (Next Release)
+### Phase 2: Feinschliff (Nächstes Release)
 
-**2. Resolve Illusion Choice (CHOICE-001)**
-- **File:** `src/content/nachtzug19/scenes/c4.ts`
-- **Action:** Add a `narrative_variant` in `c4_s05a_wagen7_changed` that checks for `history` or a specific flag if the player chose `examine_ticket_evidence`. Or add a significant bonus effect (e.g. `wissen + 1`).
+**2. Illusions-Wahl auflösen (CHOICE-001)**
+- **Datei:** `src/content/nachtzug19/scenes/c4.ts`
+- **Aktion:** Eine `narrative_variant` in `c4_s05a_wagen7_changed` hinzufügen, die `history` oder ein Flag prüft, falls der Spieler `examine_ticket_evidence` gewählt hat. Oder einen signifikanten Bonus-Effekt hinzufügen (z.B. `wissen + 1`).
 
 **3. Balance Review**
-- **Action:** Review ticket economy. If 200 tickets are possible, are the thresholds of 6 meaningful? Consider scaling thresholds or reducing ticket sources.
+- **Aktion:** Ticket-Ökonomie überprüfen. Wenn 200 Tickets möglich sind, sind Schwellenwerte von 6 sinnvoll? Schwellenwerte skalieren oder Ticket-Quellen reduzieren.
 
-## Appendix
+## Anhang
 
-### Evidence Files
-- `reports/evidence/05_test.txt`: Unit tests pass (but don't cover high ticket counts integration).
-- `reports/evidence/06_export_story.txt`: Export successful.
-- `reports/graph_dump.json`: Full graph analysis.
-- `reports/path_playthroughs.md`: Simulated playthrough logs (revealing the inflation issue).
-- `reports/state_audit.json`: State usage analysis.
+### Beleg-Dateien (Evidence)
+- `reports/evidence/05_test.txt`: Unit-Tests bestehen (decken aber Integration hoher Ticket-Zahlen nicht ab).
+- `reports/evidence/06_export_story.txt`: Export erfolgreich.
+- `reports/graph_dump.json`: Vollständige Graph-Analyse.
+- `reports/path_playthroughs.md`: Simulierte Durchlauf-Logs (zeigen das Inflations-Problem).
+- `reports/state_audit.json`: Analyse der State-Nutzung.
 
 ### Limitierungen
 - Der Simulator (`scripts/simulate_playthrough.mjs`) nutzte **nicht** die Engine-Logik (`autoClamp`), weshalb die "Inflation" sichtbar wurde, aber der "Unreachable Ending" Bug erst durch Code-Review entdeckt wurde. Das unterstreicht die Wichtigkeit von Code-Audits neben Blackbox-Testing.
