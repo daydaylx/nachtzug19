@@ -1,0 +1,42 @@
+{
+  "totalScenes": 183,
+  "totalChoices": 549,
+  "totalEdges": 549,
+  "chapters": {
+    "1": {
+      "sceneCount": 24,
+      "choiceCount": 84
+    },
+    "2": {
+      "sceneCount": 25,
+      "choiceCount": 77
+    },
+    "3": {
+      "sceneCount": 27,
+      "choiceCount": 78
+    },
+    "4": {
+      "sceneCount": 27,
+      "choiceCount": 79
+    },
+    "5": {
+      "sceneCount": 25,
+      "choiceCount": 77
+    },
+    "6": {
+      "sceneCount": 26,
+      "choiceCount": 70
+    },
+    "7": {
+      "sceneCount": 29,
+      "choiceCount": 84
+    }
+  },
+  "unreachableScenes": [],
+  "deadEndScenes": [],
+  "cycles": [],
+  "maxOutdegree": {
+    "sceneId": "c7_end_station",
+    "degree": 4
+  }
+}
