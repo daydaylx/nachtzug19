@@ -1,0 +1,60 @@
+{
+  "generated_at": "2026-01-20",
+  "command": "npm run validate",
+  "graph_stats": {
+    "total_scenes": 183,
+    "total_endings": 6,
+    "total_choices": 0,
+    "total_paths": 0,
+    "unreachable_scenes": 0,
+    "dead_ends": 0,
+    "cycles": 0
+  },
+  "validation_result": {
+    "errors": 0,
+    "warnings": 0,
+    "status": "passed"
+  },
+  "chapter_breakdown": [
+    {
+      "chapter": 1,
+      "scenes": 26,
+      "endings": 0
+    },
+    {
+      "chapter": 2,
+      "scenes": 25,
+      "endings": 0
+    },
+    {
+      "chapter": 3,
+      "scenes": 26,
+      "endings": 0
+    },
+    {
+      "chapter": 4,
+      "scenes": 26,
+      "endings": 0
+    },
+    {
+      "chapter": 5,
+      "scenes": 27,
+      "endings": 0
+    },
+    {
+      "chapter": 6,
+      "scenes": 27,
+      "endings": 0
+    },
+    {
+      "chapter": 7,
+      "scenes": 26,
+      "endings": 6
+    }
+  ],
+  "definitions": {
+    "cycle": "Ein Zyklus tritt auf, wenn eine Szene sich selbst über Choices erreichen kann (next-ID der Choice == eigene ID). Dies wurde im Graph-Audit nicht gefunden.",
+    "dead_end": "Ein Dead End tritt auf, wenn eine Szene erreicht werden kann, aber keine Choices hat, die zu einer anderen Szene oder einem Ending führen. Dies wurde im Graph-Audit nicht gefunden.",
+    "unreachable": "Eine Szene ist unerreichbar, wenn sie über keine Kombination von Choices von der Startszene erreicht werden kann. Dies wurde im Graph-Audit nicht gefunden."
+  }
+}

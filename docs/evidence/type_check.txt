@@ -1,0 +1,295 @@
+NACHTZUG 19 TypeScript Type-Check Output
+========================================
+
+Command: npm run type-check
+Generated: 2026-01-20
+
+scripts/export_story_json.ts:8:16 - error TS2307: Cannot find module 'node:fs/promises' or its corresponding type declarations.
+
+8 import fs from 'node:fs/promises';
+                 ~~~~~~~~~~~~~~~~~~
+
+scripts/export_story_json.ts:9:18 - error TS2307: Cannot find module 'node:path' or its corresponding type declarations.
+
+9 import path from 'node:path';
+                   ~~~~~~~~~~~
+
+scripts/export_story_json.ts:14:3 - error TS2584: Cannot find name 'console'. Do you need to change your target library? Try changing the 'lib' compiler option to include 'dom'.
+
+14   console.log('📦 Exportiere NACHTZUG 19 Story...\n');
+     ~~~~~~~
+
+scripts/export_story_json.ts:27:7 - error TS2584: Cannot find name 'console'. Do you need to change your target library? Try changing the 'lib' compiler option to include 'dom'.
+
+27       console.error('\n❌ Content-Validierung fehlgeschlagen. Export wird trotzdem geschrieben.');
+         ~~~~~~~
+
+scripts/export_story_json.ts:47:5 - error TS2584: Cannot find name 'console'. Do you need to change your target library? Try changing the 'lib' compiler option to include 'dom'.
+
+47     console.log(`✅ Story exportiert: ${exportPath}`);
+       ~~~~~~~
+
+scripts/export_story_json.ts:54:7 - error TS2584: Cannot find name 'console'. Do you need to change your target library? Try changing the 'lib' compiler option to include 'dom'.
+
+54       console.log(`✅ Kopiert nach Android Assets: ${androidAssetsPath}`);
+       ~~~~~~~
+
+scripts/export_story_json.ts:56:7 - error TS2584: Cannot find name 'console'. Do you need to change your target library? Try changing the 'lib' compiler option to include 'dom'.
+
+56       console.log('ℹ️  Android Assets nicht gefunden, Copy übersprungen.');
+       ~~~~~~~
+
+scripts/export_story_json.ts:59:5 - error TS2580: Cannot find name 'process'. Do you need to install type definitions for node? Try `npm i --save-dev @types/node`.
+
+59     process.exit(result.valid ? 0 : 1);
+       ~~~~~~~
+
+scripts/export_story_json.ts:61:5 - error TS2584: Cannot find name 'console'. Do you need to change your target library? Try changing the 'lib' compiler option to include 'dom'.
+
+61     console.error('❌ Fehler beim Export:');
+       ~~~~~~~
+
+scripts/export_story_json.ts:62:5 - error TS2584: Cannot find name 'console'. Do you need to change your target library? Try changing the 'lib' compiler option to include 'dom'.
+
+62     console.error(error);
+       ~~~~~~~
+
+scripts/export_story_json.ts:63:5 - error TS2580: Cannot find name 'process'. Do you need to install type definitions for node? Try `npm i --save-dev @types/node`.
+
+63     process.exit(1);
+       ~~~~~~~
+
+scripts/validate.ts:14:3 - error TS2584: Cannot find name 'console'. Do you need to change your target library? Try changing the 'lib' compiler option to include 'dom'.
+
+14   console.log('🔍 Lade NACHTZUG 19 Story...\n');
+     ~~~~~~~
+
+scripts/validate.ts:19:5 - error TS2584: Cannot find name 'console'. Do you need to change your target library? Try changing the 'lib' compiler option to include 'dom'.
+
+19     console.log(`✅ Story geladen: ${Object.keys(story.scenes).length} Szenen, ${Object.keys(story.endings).length} Endings\n`);
+       ~~~~~~~
+
+scripts/validate.ts:20:5 - error TS2584: Cannot find name 'console'. Do you need to change your target library? Try changing the 'lib' compiler option to include 'dom'.
+
+20     console.log('🔍 Starte Content-Validierung...\n');
+       ~~~~~~~
+
+scripts/validate.ts:31:7 - error TS2584: Cannot find name 'console'. Do you need to change your target library? Try changing the 'lib' compiler option to include 'dom'.
+
+31       console.error('\n❌ Validierung fehlgeschlagen. Bitte beheben Sie die Errors.');
+         ~~~~~~~
+
+scripts/validate.ts:32:7 - error TS2580: Cannot find name 'process'. Do you need to install type definitions for node? Try `npm i --save-dev @types/node`.
+
+32       process.exit(1);
+         ~~~~~~~
+
+scripts/validate.ts:34:7 - error TS2584: Cannot find name 'console'. Do you need to change your target library? Try changing the 'lib' compiler option to include 'dom'.
+
+34       console.log('\n✅ Alle Checks bestanden!');
+       ~~~~~~~
+
+scripts/validate.ts:36:9 - error TS2584: Cannot find name 'console'. Do you need to change your target library? Try changing the 'lib' compiler option to include 'dom'.
+
+36         console.log(`\n⚠️  Hinweis: Es gibt ${result.warnings.length} Warnings, die geprüft werden sollten.`);
+           ~~~~~~~
+
+scripts/validate.ts:38:7 - error TS2580: Cannot find name 'process'. Do you need to install type definitions for node? Try `npm i --save-dev @types/node`.
+
+38       process.exit(0);
+         ~~~~~~~
+
+scripts/validate.ts:41:5 - error TS2584: Cannot find name 'console'. Do you need to change your target library? Try changing the 'lib' compiler option to include 'dom'.
+
+41     console.error('❌ Fehler beim Laden der Story:');
+       ~~~~~~~
+
+scripts/validate.ts:42:5 - error TS2584: Cannot find name 'console'. Do you need to change your target library? Try changing the 'lib' compiler option to include 'dom'.
+
+42     console.error(error);
+       ~~~~~~~
+
+scripts/validate.ts:43:5 - error TS2580: Cannot find name 'process'. Do you need to install type definitions for node? Try `npm i --save-dev @types/node`.
+
+43     process.exit(1);
+       ~~~~~~~
+
+src/domain/engine/gameEngine.ts:156:7 - error TS2584: Cannot find name 'console'. Do you need to change your target library? Try changing the 'lib' compiler option to include 'dom'.
+
+156       console.log(`[Effect] ${effect.note}: ${effect.target} = ${newValue}`);
+          ~~~~~~~
+
+src/domain/engine/gameEngine.ts:378:5 - error TS2584: Cannot find name 'console'. Do you need to change your target library? Try changing the 'lib' compiler option to include 'dom'.
+
+378     console.log(`[Canon Rule R1] Station-Ende erkannt: memory_drift ${hasManualDrift ? 'manual' : '+1'}, station_count ${hasManualStation ? 'manual' : '+1'}`);
+        ~~~~~~~
+
+src/domain/engine/gameEngine.ts:398:5 - error TS2584: Cannot find name 'console'. Do you need to change your target library? Try changing the 'lib' compiler option to include 'dom'.
+
+398     console.log(`[Transition] Game Over: Ending ${choice.ending}`);
+        ~~~~~~~
+
+src/domain/engine/gameEngine.ts:421:7 - error TS2584: Cannot find name 'console'. Do you need to change your target library? Try changing the 'lib' compiler option to include 'dom'.
+
+421       console.log(`[Transition] Neues Kapitel: ${nextScene.chapter}`);
+          ~~~~~~~
+
+src/domain/engine/gameEngine.ts:424:5 - error TS2584: Cannot find name 'console'. Do you need to change your target library? Try changing the 'lib' compiler option to include 'dom'.
+
+424     console.log(`[Transition] ${currentScene.id} -> ${nextScene.id}`);
+        ~~~~~~~
+
+src/domain/engine/gameEngine.ts:528:7 - error TS2304: Cannot find name 'localStorage'.
+
+528       localStorage.setItem(key, JSON.stringify(payload));
+          ~~~~~~~~~~~~
+
+src/domain/engine/gameEngine.ts:529:7 - error TS2584: Cannot find name 'console'. Do you need to change your target library? Try changing the 'lib' compiler option to include 'dom'.
+
+529     console.log(`[Save] Spielstand gespeichert: ${key}`);
+          ~~~~~~~
+
+src/domain/engine/gameEngine.ts:531:7 - error TS2584: Cannot find name 'console'. Do you need to change your target library? Try changing the 'lib' compiler option to include 'dom'.
+
+531     console.error('[Save] Fehler beim Speichern:', e);
+          ~~~~~~~
+
+src/domain/engine/gameEngine.ts:541:21 - error TS2304: Cannot find name 'localStorage'.
+
+541       const saved = localStorage.getItem(key);
+                        ~~~~~~~~~~~~
+
+src/domain/engine/gameEngine.ts:550:11 - error TS2584: Cannot find name 'console'. Do you need to change your target library? Try changing the 'lib' compiler option to include 'dom'.
+
+550           console.warn(`[Load] Save version mismatch: ${key}`);
+              ~~~~~~~
+
+src/domain/engine/gameEngine.ts:566:9 - error TS2584: Cannot find name 'console'. Do you need to change your target library? Try changing the 'lib' compiler option to include 'dom'.
+
+566         console.log(`[Load] Spielstand geladen: ${key}`);
+            ~~~~~~~
+
+src/domain/engine/gameEngine.ts:569:9 - error TS2584: Cannot find name 'console'. Do you need to change your target library? Try changing the 'lib' compiler option to include 'dom'.
+
+569         console.warn(`[Load] Kein Spielstand gefunden: ${key}`);
+            ~~~~~~~
+
+src/domain/engine/gameEngine.ts:573:7 - error TS2584: Cannot find name 'console'. Do you need to change your target library? Try changing the 'lib' compiler option to include 'dom'.
+
+573       console.error('[Load] Fehler beim Laden:', e);
+          ~~~~~~~
+
+src/domain/engine/gameEngine.ts:583:7 - error TS2584: Cannot find name 'console'. Do you need to change your target library? Try changing the 'lib' compiler option to include 'dom'.
+
+583       console.warn('[Engine] Spiel ist bereits beendet');
+          ~~~~~~~
+
+src/domain/engine/gameEngine.ts:589:7 - error TS2584: Cannot find name 'console'. Do you need to change your target library? Try changing the 'lib' compiler option to include 'dom'.
+
+589       console.error('[Engine] Keine aktuelle Szene gefunden');
+          ~~~~~~~
+
+src/domain/engine/loadStory.ts:42:9 - error TS2584: Cannot find name 'console'. Do you need to change your target library? Try changing the 'lib' compiler option to include 'dom'.
+
+42         console.warn(`[loadStory] Duplicate scene ID: ${id}`);
+           ~~~~~~~
+
+src/domain/engine/validateContent.test.ts:47:7 - error TS2739: Type '{ id: string; title: string; narrative: string; }' is missing the following properties from type 'Ending': titel, beschreibung
+
+47       A: {
+         ~
+
+src/domain/engine/validateContent.test.ts:118:7 - error TS2739: Type '{ id: string; title: string; narrative: string; }' is missing the following properties from type 'Ending': titel, beschreibung
+
+118      A: {
+         ~
+
+src/domain/engine/validateContent.test.ts:172:7 - error TS2739: Type '{ id: string; title: string; narrative: string; }' is missing the following properties from type 'Ending': titel, beschreibung
+
+172      A: {
+         ~
+
+src/domain/engine/validateContent.test.ts:212:7 - error TS2739: Type '{ id: string; title: string; narrative: string; }' is missing the following properties from type 'Ending': titel, beschreibung
+
+212      A: {
+         ~
+
+src/domain/engine/validateContent.test.ts:264:7 - error TS2739: Type '{ id: string; title: string; narrative: string; }' is missing the following properties from type 'Ending': titel, beschreibung
+
+264      A: {
+         ~
+
+src/domain/engine/validateContent.test.ts:301:7 - error TS2739: Type '{ id: string; title: string; narrative: string; }' is missing the following properties from type 'Ending': titel, beschreibung
+
+301      A: {
+         ~
+
+src/domain/engine/validateContent.test.ts:362:7 - error TS2739: Type '{ id: string; title: string; narrative: string; }' is missing the following properties from type 'Ending': titel, beschreibung
+
+362      A: {
+         ~
+
+src/domain/engine/validateContent.ts:303:41 - error TS2345: Argument of type 'NarrativeVariant[]' is not assignable to parameter of type '{ min_drift: number; narrative: string; replace_mode?: "full" | "overlay" | undefined; }[]'.
+  Type 'NarrativeVariant' is not assignable to type '{ min_drift: number; narrative: string; replace_mode?: "full" | "overlay" | undefined; }'.
+    Types of property 'min_drift' are incompatible.
+      Type 'number | undefined' is not assignable to type 'number'.
+        Type 'undefined' is not assignable to type 'number'.
+
+303     validateNarrativeVariants(scene.id, scene.narrative_variants, errors);
+                                            ~~~~~~~~~~~~~~~~~~~~~~~~
+
+src/domain/engine/validateContent.ts:664:5 - error TS2584: Cannot find name 'console'. Do you need to change your target library? Try changing the 'lib' compiler option to include 'dom'.
+
+664     console.log('✅ Content-Validierung erfolgreich');
+        ~~~~~~~
+
+src/domain/engine/validateContent.ts:666:5 - error TS2584: Cannot find name 'console'. Do you need to change your target library? Try changing the 'lib' compiler option to include 'dom'.
+
+666     console.error('❌ Content-Validierung fehlgeschlagen');
+        ~~~~~~~
+
+src/domain/engine/validateContent.ts:670:5 - error TS2584: Cannot find name 'console'. Do you need to change your target library? Try changing the 'lib' compiler option to include 'dom'.
+
+670     console.group('🔴 Errors:');
+        ~~~~~~~
+
+src/domain/engine/validateContent.ts:673:7 - error TS2584: Cannot find name 'console'. Do you need to change your target library? Try changing the 'lib' compiler option to include 'dom'.
+
+673       console.error(`  [${location}] ${err.message}`);
+          ~~~~~~~
+
+src/domain/engine/validateContent.ts:675:5 - error TS2584: Cannot find name 'console'. Do you need to change your target library? Try changing the 'lib' compiler option to include 'dom'.
+
+675     console.groupEnd();
+        ~~~~~~~
+
+src/domain/engine/validateContent.ts:679:5 - error TS2584: Cannot find name 'console'. Do you need to change your target library? Try changing the 'lib' compiler option to include 'dom'.
+
+679     console.group('⚠️  Warnings:');
+        ~~~~~~~
+
+src/domain/engine/validateContent.ts:682:7 - error TS2584: Cannot find name 'console'. Do you need to change your target library? Try changing the 'lib' compiler option to include 'dom'.
+
+682       console.warn(`  [${location}] ${warn.message}`);
+          ~~~~~~~
+
+src/domain/engine/validateContent.ts:684:5 - error TS2584: Cannot find name 'console'. Do you need to change your target library? Try changing the 'lib' compiler option to include 'dom'.
+
+684     console.groupEnd();
+        ~~~~~~~
+
+src/domain/engine/validateContent.ts:687:3 - error TS2584: Cannot find name 'console'. Do you need to change your target library? Try changing the 'lib' compiler option to include 'dom'.
+
+687   console.log(`\nZusammenfassung: ${result.errors.length} Errors, ${result.warnings.length} Warnings`);
+      ~~~~~~~
+
+
+Found 55 errors in 6 files.
+
+Errors  Files
+    11  scripts/export_story_json.ts:8
+    11  scripts/validate.ts:14
+    15  src/domain/engine/gameEngine.ts:156
+     1  src/domain/engine/loadStory.ts:42
+     7  src/domain/engine/validateContent.test.ts:47
+    10  src/domain/engine/validateContent.ts:303

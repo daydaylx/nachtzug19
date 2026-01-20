@@ -1,0 +1,17 @@
+NACHTZUG 19 Content Validation Output
+======================================
+
+Command: npm run validate
+Generated: 2026-01-20
+
+🔍 Lade NACHTZUG 19 Story...
+
+✅ Story geladen: 183 Szenen, 6 Endings
+
+🔍 Starte Content-Validierung...
+
+✅ Content-Validierung erfolgreich
+
+Zusammenfassung: 0 Errors, 0 Warnings
+
+✅ Alle Checks bestanden!
