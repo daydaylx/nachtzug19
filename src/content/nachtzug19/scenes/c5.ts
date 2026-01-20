@@ -1129,37 +1129,35 @@ Finaler.`,
     title: 'Leere',
     narrative: `Du blickst aus dem Fenster.
 
-Früher war da Dunkelheit.
+Früher war da Dunkelheit. Ein Schwarz, das man mit der Hand greifen konnte.
 
 Jetzt ist da… nichts.
 
-Nicht einmal schwarz.
+Nicht einmal die Abwesenheit von Licht. Es ist eine Leere, die dein Auge nicht fokussieren kann, ein blinder Fleck in der Realität, der direkt in deinen Verstand schneidet. Ein Vakuum, das hungrig ist.
 
-Du legst die Handfläche an das Fenster. Kein Widerstand von Kälte. Nur eine dumpfe Wärme, die deine Haut nicht erreicht. Deine Finger verschwinden im Spiegelbild, als würde das Glas dich nicht erkennen. Du ziehst die Hand zurück und siehst einen feuchten Abdruck, der sofort verblasst.
+Du legst die Handfläche an das Fenster. Es gibt keinen Widerstand von Kälte. Nur eine dumpfe, vibrierende Wärme, die deine Haut nicht erreicht, sondern tief in deinen Knochen siedet. Deine Finger verschwinden im Spiegelbild, als würde das Glas dich nicht mehr als feste Materie erkennen. Du ziehst die Hand zurück und starrst auf den feuchten Abdruck, der nicht verblasst, sondern wie Säure in die Scheibe zu ätzen scheint.
 
-Ein leises Summen zieht dir über die Zähne. Du fragst dich, ob du fällst, obwohl du still stehst. Dein Magen zieht sich zusammen, und du zwingst dich, nicht wegzusehen. Für einen Moment glaubst du, hinter dem Nichts eine Bewegung zu sehen, wie ein Schatten ohne Körper. Du blinzelst, der Eindruck bleibt, als hätte er sich in die Glasfläche gebrannt.
+Ein leises, hohes Summen zieht dir über die Zähne, ein Ton an der Grenze des Erträglichen. Du fragst dich, ob du fällst, obwohl du vollkommen still stehst. Dein Magen krampft sich zusammen, und du musst dich zwingen, nicht wegzusehen. Der Sog der Leere ist physisch spürbar, ein magnetischer Druck, der dich gegen das Glas ziehen will. Für einen Moment glaubst du, hinter dem Nichts eine Bewegung zu sehen, einen Schatten ohne Körper, ein Auge, das größer ist als der ganze Zug. Du blinzelst, der Eindruck bleibt als glühendes Nachbild auf deiner Netzhaut hängen.
 
-Du legst die Stirn an das Glas. Es fühlt sich glatter an als normal, fast ölig. Ein leiser Druck setzt hinter deinen Augen an, als würdest du in die Tiefe schauen.
+Du presst die Stirn an das Glas. Es fühlt sich glatter an als normal, fast ölig, eine dünne Membran zwischen dir und dem Ende von allem. Ein leiser, dumpfer Druck setzt hinter deinen Augen an, als würdest du in eine Tiefe schauen, die keine Grenzen kennt.
 
-Du ziehst dich zurück und merkst, dass deine Hand kalt geworden ist. Der Zug klingt für einen Atemzug weiter weg.
+Du ziehst dich keuchend zurück und merkst, dass deine Hand taub geworden ist. Das Rattern des Zuges klingt für einen Atemzug meilenweit entfernt, ein unwichtiges Geräusch aus einer Welt, die bereits hinter dir liegt.
 
-Nur eine Abwesenheit.
+Nur eine absolute Abwesenheit.
 
-Ein Vakuum, das dein Auge nicht erfassen kann.
-
-Der Zug fährt durch das Nichts.
+Der Zug fährt nicht durch eine Landschaft. Er schält sich durch das Gewebe der Existenz.
 
 Und du fragst dich:
 
 Was war vorher da?
 
-Gab es Landschaft? Städte? Wälder?
+Gab es je eine Welt mit Farben? Mit Wäldern, Städten, Menschen?
 
-Du erinnerst dich nicht.
+Die Erinnerung daran fühlt sich wie eine Lüge an. Oder wie ein Traum, den du vor langer Zeit einmal geträumt hast.
 
-Oder… du erinnerst dich an etwas anderes.
+An etwas anderes erinnerst du dich jetzt.
 
-An etwas, das nicht sein kann.`,
+An etwas, das niemals hätte sein dürfen.`,
     narrative_variants: [
       {
         min_drift: 3,

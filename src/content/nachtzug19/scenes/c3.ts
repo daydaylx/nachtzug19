@@ -380,39 +380,39 @@ Sein Blick ist ruhig, als hätte er das schon oft gesagt. Das Band läuft weiter
     id: 'c3_s02a_recorder_listening',
     chapter: 3,
     title: 'Aufnahme (Fortsetzung)',
-    narrative: `Die Kassette läuft weiter.
+    narrative: `Die Kassette läuft weiter, ein unerbittliches Mahlen kleiner Zahnräder tief im Gehäuse.
 
-Das Gehäuse wird warm in deiner Hand. Die Vibration des Motors mischt sich mit deinem Puls.
+Das Metall des Rekorders wird heiß in deiner Hand, eine fiebrige Wärme, die sich bis in deine Fingerspitzen frisst. Die Vibration des winzigen Motors ist nicht mehr gleichmäßig; sie zuckt und stolpert, synchron mit deinem eigenen, rasenden Puls.
 
-Eine neue Stimme. Comp7:
+Eine neue Stimme schält sich aus dem Rauschen. Comp7:
 
-„—Passagier ohne Ticket. Kapitel 3. Kontrolle kommt. Er muss etwas geben—"
+„—Passagier ohne Ticket. Kapitel 3. Die Kontrolle rückt näher. Er muss etwas geben. Etwas von sich selbst abspalten.—“
 
-Das hat sie nie gesagt. Oder doch? Oder wird sie es noch sagen?
+Das Kratzen auf dem Band klingt jetzt wie das Schaben von tausend Insektenflügeln gegen Glas. Hat sie das je gesagt? Oder drängen diese Worte erst jetzt, in diesem Moment, aus der Zukunft zurück in dein Bewusstsein?
 
-Du willst den Satz anhalten, zurückspulen, aber die Kassette scheint zu wissen, dass du es willst. Sie läuft ungerührt weiter.
+Du willst den Stop-Knopf drücken, willst das Band zum Schweigen bringen, aber die Mechanik leistet Widerstand. Die Tasten fühlen sich klebrig an, als würde das Gerät dich festhalten wollen. Die Kassette läuft ungerührt weiter, gierig und hungrig.
 
-Das Band klingt plötzlich dumpf, als wäre es unter Stoff. Ein leises Klicken, dann setzt es wieder normal ein. Du fühlst dich beobachtet, als würde die Kassette prüfen, ob du weiterhörst. Der Junge schaut nicht hin, aber seine Hand liegt genau neben dem Stop-Knopf.
+Der Klang wird dumpf, als käme er aus dem Inneren eines Sarges. Ein leises, nasses Klicken, dann setzt die Aufnahme wieder ein, klarer jetzt, zu klar. Es fühlt sich an, als würde die Stimme nicht aus dem Lautsprecher kommen, sondern direkt in deinem Schädel entstehen, ein Echo hinter deinen Augen.
 
-Dann Rauschen. Ein Schienenstoß. Das Klacken der Türen.
+Dann bricht ein Rauschen los, das wie brechendes Eis klingt. Ein heftiger Schienenstoß lässt den Wagen erzittern. Das Klacken der Türen am Ende des Ganges hallt wie ein Schuss durch die Stille.
 
-Eine tiefere Stimme. Der Schaffner:
+Eine tiefere, bodenlose Stimme überlagert alles. Der Schaffner:
 
-„—Warum sind Sie hier—"
+„—Warum sind Sie hier? Geben Sie Rechenschaft.—“
 
-Die Frage. Wieder die gleiche Frage.
+Die Frage hallt in dir wider, ein dumpfer Schmerz in den Zähnen.
 
-Dann deine Stimme: „Ich—"
+Dann deine eigene Stimme, brüchig und fremd: „Ich— ich wollte doch nur—“
 
-Stille.
+Stille. Plötzlich und absolut.
 
-Du hörst dich selbst einatmen, aber der Atem kommt einen Moment zu spät, als wäre er an einer anderen Stelle im Band gelandet.
+Du hörst dich selbst einatmen, aber das Geräusch auf dem Band folgt erst einen quälenden Moment später, versetzt und falsch, als hättest du dich bereits in zwei Versionen aufgeteilt.
 
-Das Band wiederholt ein Satzfragment, als würde es festhängen. Es klingt, als hätte jemand darüber gesprochen, nur um es zu übertönen.
+Das Band wiederholt ein kurzes Fragment, ein hängengebliebenes Wort, das sich wie ein Bohrer in dein Gehör schraubt. Jemand hat versucht, diese Stelle zu übertönen, ein verzweifeltes Murmeln unter dem Rauschen.
 
-Die Spulen drehen sich sichtbar, obwohl das Fenster des Rekorders fast schwarz ist. Der Junge blinzelt nicht.
+Die Spulen drehen sich weiter, obwohl das kleine Fenster des Rekorders jetzt vollkommen schwarz angelaufen ist, als würde es Rauch atmen. Der Junge starrt dich an, seine Augen weit und unnatürlich hell. Er blinzelt nicht ein einziges Mal.
 
-Der Junge nimmt dir den Rekorder aus der Hand. „Manche Antworten stehen noch nicht drauf," sagt er.`,
+Er streckt die Hand aus und nimmt dir den Rekorder sanft, aber bestimmt aus der Hand. „Manche Antworten stehen noch nicht drauf,“ sagt er, und seine Stimme klingt wie das Echo der Aufnahme. „Du musst sie erst erleben.“`,
     choices: [
       {
         id: 'ask_what_answer',

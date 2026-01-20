@@ -1017,25 +1017,25 @@ Comp7 nickt. „Warum du hier bist. Das ist alles, was zählt."`,
     id: 'c2_s04a_conductor_approach',
     chapter: 2,
     title: 'Annäherung',
-    narrative: `Du stehst im Gang zwischen Abteil 3 und 4. Der Teppich hier ist abgewetzter als anderswo.
+    narrative: `Du stehst im Gang zwischen Abteil 3 und 4. Der Teppich hier ist abgewetzter als anderswo, die Fasern plattgedrückt von unzähligen Schritten, die keine Spuren hinterlassen haben.
 
-Du hörst Schritte. Schwer. Rhythmisch. Mechanisch.
+Du hörst sie jetzt. Schritte. Schwer. Rhythmisch. Mechanisch. Jeder Schlag ein hohles *Tock*, das nicht nur vom Boden, sondern aus den Wänden zu kommen scheint. Ein Takt, der keine Eile kennt, aber auch kein Innehalten.
 
-Der Schaffner kommt durch den Gang. Du siehst ihn im Spiegelbild der Fensterscheibe.
+Der Schaffner schiebt sich langsam in dein Sichtfeld, erst nur als Spiegelung im dunklen Glas der Fenster. Seine Silhouette ist zu ruhig, zu stabil für die Bewegung des Zuges.
 
-Groß. Uniform dunkelblau, zu perfekt gebügelt. Gesicht ausdruckslos. Keine Mimik. Als wäre es eine Maske.
+Er ist groß. Die dunkelblaue Uniform wirkt nicht wie Stoff, sondern wie eine zweite Haut, zu perfekt gebügelt, ohne eine einzige Falte, selbst an den Gelenken. Sein Gesicht ist eine Maske aus bleichem Wachs, die Augen starr auf einen Punkt gerichtet, den nur er sieht.
 
-Er stoppt bei jedem Abteil. Sagt etwas. Die Passagiere zeigen ihm etwas – oder tun so. Er nickt. Geht weiter.
+Die Luft vor ihm verändert sich. Sie riecht nach Ozon und scharfem Reinigungsmittel, eine klinische Kälte, die das Atmen schwer macht. Ein leises Summen geht von ihm aus, ein elektrisches Prickeln, das die Härchen auf deinen Armen aufstellt.
 
-Der Schlaflose zeigt ihm nichts. Der Schaffner nickt trotzdem. Geht weiter.
+Er stoppt bei jedem Abteil. Er sagt nichts, aber du hörst das metallische Klacken seiner Kelle. Die Passagiere reagieren wie Automaten – sie zeigen etwas vor, eine Geste, ein Fragment, und er nickt mit einer Präzision, die dir den Magen umdreht.
 
-Die Frau mit der Zeitung zeigt ihm nichts. Der Schaffner nickt trotzdem. Geht weiter.
+Der Schlaflose starrt stumm an ihm vorbei. Die Frau mit der Zeitung rührt sich nicht. Der Schaffner akzeptiert ihr Schweigen, als wäre es Teil eines Protokolls, das du nicht kennst.
 
-Jetzt ist er zwei Abteile von dir entfernt.
+Jetzt ist er nur noch zwei Abteile entfernt. Die Luft zwischen euch scheint zu vibrieren, ein unsichtbarer Sog, der dich an den Boden fesselt.
 
-Comp7 flüstert: „Er kommt zu dir. Er kommt immer zu dir."
+Comp7 flüstert hinter dir, ihre Stimme kaum mehr als ein Hauch kalter Luft: „Er kommt zu dir. Er kommt immer zu dir. Lauf nicht weg. Das macht es nur… lauter.“
 
-Du hast kein Ticket. Nur eine Geschichte.`,
+Du hast kein Ticket. Nur deine Geschichte. Und die Zeit, sie zu erzählen, rinnt wie Sand durch deine Finger.`,
     choices: [
       {
         id: 'stand_ready',
