@@ -75,6 +75,11 @@
 
 **Status**: ✅ Content-Bugs behoben, Tests erweitert.
 
+**Narrative Consistency (2026-01-20 Supplement)**:
+- **Recorder-Amnesie behoben**: Neues State-Flag `played_recorder` eingeführt.
+- **Tracking**: Wird gesetzt in `c2_s02_boy_recorder`, `c2_end_station` und `c3_s01b_boy_return`.
+- **Callback**: `c6_s15_recorder_playback` hat nun eine Narrative Variant, die früheres Abspielen anerkennt.
+
 ---
 
 ## Datum: 2026-01-13 (Dokumentation Update)

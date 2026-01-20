@@ -1379,6 +1379,30 @@ Oder… weißt du bereits, was darauf ist?
 Der Knopf wartet.
 
 Drückst du ihn?`,
+    narrative_variants: [
+      {
+        condition: { type: 'bool', target: 'played_recorder', value: true },
+        narrative: `Du sitzt da und blickst auf den Kassettenrekorder.
+
+Den Rekorder, den du schon einmal benutzt hast.
+
+Du erinnerst dich an das Klicken. Das Rauschen. Die Stimmen.
+
+Aber das fühlt sich an wie ein anderes Leben. Eine andere Schleife.
+
+Deine Finger bewegen sich zum Play-Knopf.
+
+Du zögerst, ihn wieder zu drücken.
+
+Weil du weißt, dass es diesmal anders sein wird.
+
+Endgültiger.
+
+Der Knopf wartet.
+
+Drückst du ihn wieder?`
+      }
+    ],
     choices: [
       {
         id: 'play_recorder',

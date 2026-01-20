@@ -259,7 +259,8 @@ Er drückt auf Play. Sein Rekorder spielt. Kein Knistern. Nur Stille.
         effects: [
           { type: 'inc', target: 'tickets_truth', value: 1 },
           { type: 'inc', target: 'rel_boy', value: 1 },
-          { type: 'set', target: 'has_recorder', value: false }
+          { type: 'set', target: 'has_recorder', value: false },
+          { type: 'set', target: 'played_recorder', value: true }
         ],
         next: 'c3_s02_recorder_anomaly'
       },

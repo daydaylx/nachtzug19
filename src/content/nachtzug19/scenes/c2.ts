@@ -295,6 +295,7 @@ Seine Augen sind ernst. Zu ernst für ein Kind.`,
         label: 'Den Rekorder nehmen',
         effects: [
           { type: 'set', target: 'has_recorder', value: true },
+          { type: 'set', target: 'played_recorder', value: true },
           { type: 'inc', target: 'tickets_truth', value: 1 },
           { type: 'inc', target: 'rel_boy', value: 1 }
         ],
@@ -314,6 +315,7 @@ Seine Augen sind ernst. Zu ernst für ein Kind.`,
         label: '„Warum gibst du mir das?"',
         effects: [
           { type: 'set', target: 'has_recorder', value: true },
+          { type: 'set', target: 'played_recorder', value: true },
           { type: 'inc', target: 'tickets_love', value: 1 },
           { type: 'inc', target: 'rel_boy', value: 2 }
         ],
@@ -1786,6 +1788,7 @@ Sie zeigt auf eine Zeile:
         },
         effects: [
           { type: 'set', target: 'chapter_index', value: 3 },
+          { type: 'set', target: 'played_recorder', value: true },
           { type: 'inc', target: 'rel_comp7', value: 1 }
         ],
         next: 'c3_s01_wagen7_locked'

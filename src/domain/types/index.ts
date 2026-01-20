@@ -56,6 +56,7 @@ export type Items = {
   has_recorder: boolean;    // Kassettenrekorder (Comp7)
   has_tag19: boolean;       // Tag19-Etikett gefunden
   photo_anomaly: boolean;   // Foto mit Anomalie
+  played_recorder: boolean; // Ob der Rekorder jemals abgespielt wurde
 };
 
 /**
@@ -130,7 +131,7 @@ export type EffectTarget =
   // Relations
   | 'rel_comp7' | 'rel_boy' | 'rel_sleepless'
   // Items
-  | 'has_recorder' | 'has_tag19' | 'photo_anomaly'
+  | 'has_recorder' | 'has_tag19' | 'photo_anomaly' | 'played_recorder'
   // Meta
   | 'chapter_index' | 'station_count';
 
@@ -379,7 +380,8 @@ export function createInitialState(start_scene_id: string = 'c1_s01_platform'): 
     items: {
       has_recorder: false,
       has_tag19: false,
-      photo_anomaly: false
+      photo_anomaly: false,
+      played_recorder: false
     },
 
     // Meta
