@@ -1,0 +1,40 @@
+{
+  "illusionChoices": [
+    {
+      "sceneId": "c4_s05_comp7_call",
+      "destination": "c4_s05a_wagen7_changed",
+      "choiceIds": [
+        "go_to_wagen7",
+        "examine_ticket_evidence"
+      ],
+      "reason": "Same destination, same effects"
+    },
+    {
+      "sceneId": "c6_s08_drift_intensifies",
+      "destination": "c6_s09_boy_final",
+      "choiceIds": [
+        "observe_changes",
+        "analyze_time"
+      ],
+      "reason": "Same destination, same effects"
+    }
+  ],
+  "potentialUselessTargets": [
+    "chapter_index",
+    "station_count"
+  ],
+  "readTargets": [
+    "rel_sleepless",
+    "memory_drift",
+    "tickets_escape",
+    "tickets_truth",
+    "conductor_attention",
+    "tickets_guilt",
+    "rel_comp7",
+    "tickets_love",
+    "has_recorder",
+    "rel_boy",
+    "has_tag19",
+    "photo_anomaly"
+  ]
+}

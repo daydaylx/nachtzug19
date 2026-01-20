@@ -1,0 +1,13 @@
+NACHTZUG19 audit (chapters 1-7)
+
+Error [ERR_UNSUPPORTED_DIR_IMPORT]: Directory import '/app/src/domain/types' is not supported resolving ES modules imported from /app/src/content/nachtzug19/scenes/c1.ts
+    at finalizeResolution (node:internal/modules/esm/resolve:262:11)
+    at moduleResolve (node:internal/modules/esm/resolve:859:10)
+    at defaultResolve (node:internal/modules/esm/resolve:983:11)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:731:20)
+    at ModuleLoader.resolve (node:internal/modules/esm/loader:708:38)
+    at ModuleLoader.getModuleJobForImport (node:internal/modules/esm/loader:310:38)
+    at ModuleJob._link (node:internal/modules/esm/module_job:182:49) {
+  code: 'ERR_UNSUPPORTED_DIR_IMPORT',
+  url: 'file:///app/src/domain/types'
+}
