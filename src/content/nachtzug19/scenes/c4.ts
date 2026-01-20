@@ -125,7 +125,8 @@ Eine flüstert etwas. Du hörst es nicht. Aber du liest es von ihren Lippen:
           value: 3
         },
         effects: [
-          { type: 'inc', target: 'tickets_truth', value: 2 }
+          { type: 'inc', target: 'tickets_truth', value: 2 },
+          { type: 'inc', target: 'memory_drift', value: 1 }
         ],
         next: 'c4_s01b_wrong_memory'
       }
@@ -238,10 +239,58 @@ Aber er zeigt zur Seite. Als käme das Licht von woanders.`,
           { type: 'inc', target: 'memory_drift', value: 1 }
         ],
         next: 'c4_s02_recorder_prophecy'
+      },
+      {
+        id: 'embrace_false_reality',
+        label: 'Die veränderte Realität akzeptieren',
+        condition: {
+          type: 'compare',
+          target: 'tickets_escape',
+          operator: '>=',
+          value: 2
+        },
+        effects: [
+          { type: 'inc', target: 'tickets_escape', value: 1 },
+          { type: 'inc', target: 'memory_drift', value: 1 }
+        ],
+        next: 'c4_s02_recorder_prophecy'
+      },
+      {
+        id: 'analyze_pattern',
+        label: 'Das Lichtmuster analysieren',
+        condition: {
+          type: 'compare',
+          target: 'tickets_truth',
+          operator: '>=',
+          value: 5
+        },
+        effects: [
+          { type: 'inc', target: 'tickets_truth', value: 1 },
+          { type: 'inc', target: 'conductor_attention', value: 1 }
+        ],
+        next: 'c4_s02_recorder_prophecy'
+      },
+      {
+        id: 'whisper_to_shadow',
+        label: 'Mit dem Schatten sprechen',
+        condition: {
+          type: 'compare',
+          target: 'tickets_love',
+          operator: '>=',
+          value: 3
+        },
+        effects: [
+          { type: 'inc', target: 'tickets_love', value: 1 },
+          { type: 'inc', target: 'memory_drift', value: 1 }
+        ],
+        next: 'c4_s02_recorder_prophecy'
       }
     ],
     tags: ['drift_variant'],
     state_notes: [
+      'CONDITION: embrace_false_reality bei tickets_escape >= 2',
+      'CONDITION: analyze_pattern bei tickets_truth >= 5',
+      'CONDITION: whisper_to_shadow bei tickets_love >= 3',
       'Lichter flackern in Muster (1-2-3-4)',
       'Schatten zeigt falsche Richtung: Raumlogik bricht'
     ],
@@ -301,7 +350,8 @@ Deine Stimme: „—Nicht ausschalten. Du musst hören.—"`,
           value: true
         },
         effects: [
-          { type: 'inc', target: 'tickets_escape', value: 1 }
+          { type: 'inc', target: 'tickets_escape', value: 1 },
+          { type: 'inc', target: 'memory_drift', value: 1 }
         ],
         next: 'c4_interlude_02_announcement'
       },
@@ -318,7 +368,7 @@ Deine Stimme: „—Nicht ausschalten. Du musst hören.—"`,
     state_notes: [
       'CONDITION: listen_to_prophecy und turn_off_recorder nur wenn has_recorder == true',
       'Rekorder schaltet sich selbst ein',
-      'Spieler hört eigene Zukunft'
+      'turn_off_recorder erhoeht memory_drift (Abbruch der Aufnahme)'
     ],
     atmosphere: 'danger'
   },
@@ -469,10 +519,57 @@ Die Durchsage kam vor dem Halt. Oder nach dem Halt. Oder während.`,
           { type: 'inc', target: 'memory_drift', value: 1 }
         ],
         next: 'c4_s03_passengers_return'
+      },
+      {
+        id: 'check_doors',
+        label: 'Zu den Tueren gehen',
+        condition: {
+          type: 'compare',
+          target: 'conductor_attention',
+          operator: '>=',
+          value: 1
+        },
+        effects: [
+          { type: 'inc', target: 'tickets_escape', value: 1 },
+          { type: 'inc', target: 'conductor_attention', value: 1 }
+        ],
+        next: 'c4_s03_passengers_return'
+      },
+      {
+        id: 'accept_loop_pattern',
+        label: 'Das Schleifenmuster akzeptieren',
+        condition: {
+          type: 'compare',
+          target: 'tickets_truth',
+          operator: '>=',
+          value: 6
+        },
+        effects: [
+          { type: 'inc', target: 'tickets_truth', value: 1 },
+          { type: 'inc', target: 'memory_drift', value: 1 }
+        ],
+        next: 'c4_s03_passengers_return'
+      },
+      {
+        id: 'resist_temporal_shift',
+        label: 'Gegen die Zeitverschiebung ankämpfen',
+        condition: {
+          type: 'compare',
+          target: 'conductor_attention',
+          operator: '>=',
+          value: 2
+        },
+        effects: [
+          { type: 'inc', target: 'tickets_escape', value: 1 },
+          { type: 'inc', target: 'conductor_attention', value: 1 }
+        ],
+        next: 'c4_s03_passengers_return'
       }
     ],
     tags: ['drift_variant'],
     state_notes: [
+      'CONDITION: accept_loop_pattern bei tickets_truth >= 6',
+      'CONDITION: resist_temporal_shift bei conductor_attention >= 2',
       'Durchsage zeitlich verschoben: "verlassen" vor dem Halt',
       'Kausalität bricht zusammen'
     ],
@@ -773,10 +870,58 @@ Zehnmal. Zwölfmal. Du verlierst den Überblick.`
           { type: 'inc', target: 'memory_drift', value: 1 }
         ],
         next: 'c4_s04_announcement_glitch'
+      },
+      {
+        id: 'question_reality',
+        label: 'Die Stationen hinterfragen',
+        condition: {
+          type: 'compare',
+          target: 'tickets_truth',
+          operator: '>=',
+          value: 4
+        },
+        effects: [
+          { type: 'inc', target: 'tickets_truth', value: 1 },
+          { type: 'inc', target: 'memory_drift', value: 1 }
+        ],
+        next: 'c4_s04_announcement_glitch'
+      },
+      {
+        id: 'accept_altered_memory',
+        label: 'Die veränderte Erinnerung annehmen',
+        condition: {
+          type: 'compare',
+          target: 'memory_drift',
+          operator: '>=',
+          value: 4
+        },
+        effects: [
+          { type: 'inc', target: 'tickets_escape', value: 1 },
+          { type: 'inc', target: 'memory_drift', value: 2 }
+        ],
+        next: 'c4_s04_announcement_glitch'
+      },
+      {
+        id: 'seek_boy_pattern',
+        label: 'Nach dem Jungen im Loop suchen',
+        condition: {
+          type: 'compare',
+          target: 'rel_boy',
+          operator: '>=',
+          value: 2
+        },
+        effects: [
+          { type: 'inc', target: 'tickets_love', value: 1 },
+          { type: 'inc', target: 'rel_boy', value: 1 }
+        ],
+        next: 'c4_s04_announcement_glitch'
       }
     ],
     tags: ['drift_variant'],
     state_notes: [
+      'CONDITION: question_reality bei tickets_truth >= 4',
+      'CONDITION: accept_altered_memory bei memory_drift >= 4',
+      'CONDITION: seek_boy_pattern bei rel_boy >= 2',
       'Fenster zeigt Bahnsteig-Loop: Spieler steigt mehrfach ein/nicht ein',
       'Hinweis: Schleife läuft schon lange'
     ],
@@ -1128,10 +1273,42 @@ Warmes Licht fällt heraus. Aber es flackert.
           { type: 'inc', target: 'memory_drift', value: 2 }
         ],
         next: 'c4_interlude_05_time'
+      },
+      {
+        id: 'examine_ticket_evidence',
+        label: 'Das Ticket als Beweis prüfen',
+        condition: {
+          type: 'compare',
+          target: 'tickets_truth',
+          operator: '>=',
+          value: 6
+        },
+        effects: [
+          { type: 'inc', target: 'tickets_truth', value: 1 },
+          { type: 'inc', target: 'rel_comp7', value: 1 }
+        ],
+        next: 'c4_s05a_wagen7_changed'
+      },
+      {
+        id: 'hide_from_system',
+        label: 'Sich vor dem System verstecken',
+        condition: {
+          type: 'compare',
+          target: 'conductor_attention',
+          operator: '>=',
+          value: 4
+        },
+        effects: [
+          { type: 'inc', target: 'tickets_escape', value: 1 },
+          { type: 'inc', target: 'memory_drift', value: 1 }
+        ],
+        next: 'c4_interlude_05_time'
       }
     ],
     tags: ['setup'],
     state_notes: [
+      'CONDITION: examine_ticket_evidence bei tickets_truth >= 6',
+      'CONDITION: hide_from_system bei conductor_attention >= 4',
       'Comp7 ruft dringend',
       'refuse_call: Hoher Drift-Preis (Spieler verliert Orientierung)',
       'Wagen 7 als Safe Space wird wichtiger'
@@ -1392,14 +1569,29 @@ Du erinnerst dich nicht daran.
           { type: 'inc', target: 'memory_drift', value: 1 }
         ],
         next: 'c4_s06a_shared_memory'
+      },
+      {
+        id: 'comfort_comp7_drift',
+        label: 'Comp7s Drift verstehen',
+        condition: {
+          type: 'compare',
+          target: 'rel_comp7',
+          operator: '>=',
+          value: 4
+        },
+        effects: [
+          { type: 'inc', target: 'tickets_love', value: 1 },
+          { type: 'inc', target: 'rel_comp7', value: 1 }
+        ],
+        next: 'c4_s06a_shared_memory'
       }
     ],
     tags: ['reveal'],
     state_notes: [
       'CONDITION: ask_about_future nur bei tickets_truth >= 3',
+      'CONDITION: comfort_comp7_drift bei rel_comp7 >= 4',
       'Comp7 hat Erinnerungen an gemeinsame Zukunft/Vergangenheit',
-      'Zeitlinien überlappen: Non-lineare Narrative',
-      'doubt_her verschlechtert Beziehung'
+      'Zeitlinien überlappen: Non-lineare Narrative'
     ],
     atmosphere: 'somber'
   },
@@ -1528,10 +1720,26 @@ Comp7s Gesicht wechselt. Klare Züge. Verschwommen. Klar.
           { type: 'inc', target: 'memory_drift', value: 2 }
         ],
         next: 'c4_s07a_drift_peak'
+      },
+      {
+        id: 'embrace_shared_timeline',
+        label: 'Die geteilte Erinnerung festhalten',
+        condition: {
+          type: 'compare',
+          target: 'rel_comp7',
+          operator: '>=',
+          value: 5
+        },
+        effects: [
+          { type: 'inc', target: 'tickets_love', value: 1 },
+          { type: 'inc', target: 'rel_comp7', value: 1 }
+        ],
+        next: 'c4_s07a_drift_peak'
       }
     ],
     tags: ['drift_variant'],
     state_notes: [
+      'CONDITION: embrace_shared_timeline bei rel_comp7 >= 5',
       'Reality Fracture: Raum flackert zwischen Zuständen',
       'let_go: Hoher Drift-Preis (Spieler gibt Kontrolle auf)',
       'remember_comp7 stärkt Beziehung in kritischem Moment'
@@ -1661,10 +1869,41 @@ Dort, wo das Doppel stand, liegt etwas auf dem Boden. Ein kleiner Gegenstand aus
           { type: 'inc', target: 'tickets_escape', value: 1 }
         ],
         next: 'c4_end_platform_watch'
+      },
+      {
+        id: 'trace_double',
+        label: 'Dem Doppel nachgehen',
+        condition: {
+          type: 'compare',
+          target: 'tickets_truth',
+          operator: '>=',
+          value: 3
+        },
+        effects: [
+          { type: 'inc', target: 'tickets_truth', value: 1 },
+          { type: 'inc', target: 'memory_drift', value: 1 }
+        ],
+        next: 'c4_s07c_tag19_found'
+      },
+      {
+        id: 'confront_self_echo',
+        label: 'Das Doppel als Teil von sich akzeptieren',
+        condition: {
+          type: 'compare',
+          target: 'tickets_love',
+          operator: '>=',
+          value: 4
+        },
+        effects: [
+          { type: 'inc', target: 'tickets_love', value: 1 },
+          { type: 'inc', target: 'memory_drift', value: 1 }
+        ],
+        next: 'c4_s07c_tag19_found'
       }
     ],
     tags: [],
     state_notes: [
+      'CONDITION: confront_self_echo bei tickets_love >= 4',
       'Peak Drift endet: Kurze Stabilisierung',
       'Doppel hat Gegenstand hinterlassen (Tag 19 Setup)'
     ],
@@ -1833,16 +2072,63 @@ Comp7 steht neben dir. „Station 4," sagt sie.
         id: 'continue_to_chapter_5',
         label: 'Im Zug bleiben',
         effects: [
-          { type: 'set', target: 'chapter_index', value: 5 },
-          { type: 'inc', target: 'station_count', value: 1 },
-          { type: 'inc', target: 'memory_drift', value: 1 }
+          { type: 'set', target: 'chapter_index', value: 5 }
+        ],
+        next: 'c5_s01_final_preparation'
+      },
+      {
+        id: 'search_for_self',
+        label: 'Nach sich selbst in der Menge suchen',
+        condition: {
+          type: 'compare',
+          target: 'tickets_truth',
+          operator: '>=',
+          value: 8
+        },
+        effects: [
+          { type: 'inc', target: 'tickets_truth', value: 1 },
+          { type: 'inc', target: 'memory_drift', value: 1 },
+          { type: 'set', target: 'chapter_index', value: 5 }
+        ],
+        next: 'c5_s01_final_preparation'
+      },
+      {
+        id: 'call_out_to_copies',
+        label: 'Die Kopien ansprechen',
+        condition: {
+          type: 'compare',
+          target: 'tickets_love',
+          operator: '>=',
+          value: 5
+        },
+        effects: [
+          { type: 'inc', target: 'tickets_love', value: 1 },
+          { type: 'inc', target: 'memory_drift', value: 1 },
+          { type: 'set', target: 'chapter_index', value: 5 }
+        ],
+        next: 'c5_s01_final_preparation'
+      },
+      {
+        id: 'ignore_copies',
+        label: 'Die Kopien komplett ignorieren',
+        condition: {
+          type: 'compare',
+          target: 'tickets_escape',
+          operator: '>=',
+          value: 7
+        },
+        effects: [
+          { type: 'inc', target: 'tickets_escape', value: 1 },
+          { type: 'inc', target: 'conductor_attention', value: 1 },
+          { type: 'set', target: 'chapter_index', value: 5 }
         ],
         next: 'c5_s01_final_preparation'
       }
     ],
     tags: ['station_end'],
     state_notes: [
-      'Vierte station_end: memory_drift automatisch erhöht durch Engine-R1 (keine manuellen exit_effects)',
+      'CONDITIONS: search_for_self (truth >= 8), call_out_to_copies (love >= 5), ignore_copies (escape >= 7)',
+      'R1: Engine erhoeht memory_drift/station_count automatisch (keine manuellen station_end-Effects)',
       'Kopien verschwinden synchron',
       'Comp7: "Drei Stationen oder unendlich"',
       'Übergang zu Kapitel 5 (Finale Kontrolle)'

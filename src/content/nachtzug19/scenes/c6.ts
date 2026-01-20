@@ -51,6 +51,28 @@ Der Geruch im Abteil ist seltsam. Zu sauber. Wie Desinfektionsmittel in einem le
 Kalt. Steril.
 
 Falsch.`,
+    narrative_variants: [
+      {
+        condition: { type: 'bool', target: 'has_tag19', value: true },
+        narrative: `Du sitzt wieder im Abteil.
+
+Ein rhythmisches Pochen in deiner Tasche weckt dich. Der Schlüsselanhänger ist heiß geworden, eine pulsierende Wärme, die durch den Stoff deiner Hose bis auf die Haut dringt.
+
+Wann bist du wieder eingestiegen? Du erinnerst dich an die Station, an Comp7 im Türrahmen.
+
+„Noch eine Station."
+
+Der Anhänger vibriert leise, ein tiefer Ton, den du eher im Kiefer spürst als hörst. Er gibt dir ein Gefühl von Gewicht, von Festigkeit in einer Welt, die sich aufzulösen scheint.
+
+Draußen ist nichts. Nur Abwesenheit.
+
+Aber das Metall in deiner Hand – oder in deiner Tasche – ist real. Es ist ein Anker. Ein Versprechen, dass es ein Ende gibt.
+
+Der sterile Geruch im Abteil wird von einer Note nach altem Messing und warmem Öl überlagert.
+
+Du bist hier. Du bist noch da.`
+      }
+    ],
     choices: [
       {
         id: 'check_surroundings',
@@ -197,12 +219,28 @@ Diese absolute, erstickende Stille.`
           { type: 'inc', target: 'memory_drift', value: 1 }
         ],
         next: 'c6_s03_comp7_final'
+      },
+      {
+        id: 'listen_intently',
+        label: 'Der Stille lauschen',
+        condition: {
+          type: 'compare',
+          target: 'tickets_escape',
+          operator: '>=',
+          value: 1
+        },
+        effects: [
+          { type: 'inc', target: 'tickets_escape', value: 1 },
+          { type: 'inc', target: 'memory_drift', value: 1 }
+        ],
+        next: 'c6_s03_comp7_final'
       }
     ],
     state_notes: [
       'Interlude: Stille und Veränderung',
       'Raum verändert sich (schmaler, enger)',
-      'Vibration als sensorischer Anker'
+      'Vibration als sensorischer Anker',
+      'CONDITION: listen_intently bei tickets_escape >= 1 (Callback für close_eyes in s01)'
     ],
     atmosphere: 'tense'
   },
@@ -331,12 +369,28 @@ Jetzt.`,
           { type: 'inc', target: 'tickets_truth', value: 1 }
         ],
         next: 'c6_s05_door_seven'
+      },
+      {
+        id: 'examine_details',
+        label: 'Die Details der Wand prüfen',
+        condition: {
+          type: 'compare',
+          target: 'tickets_truth',
+          operator: '>=',
+          value: 1
+        },
+        effects: [
+          { type: 'inc', target: 'tickets_truth', value: 1 },
+          { type: 'inc', target: 'memory_drift', value: 1 }
+        ],
+        next: 'c6_s05_door_seven'
       }
     ],
     state_notes: [
       'Interlude: Gang verwandelt sich',
       'Wände warm (körperwarm) - sensorischer Anker',
-      'Abteil 7 Tür erscheint'
+      'Abteil 7 Tür erscheint',
+      'CONDITION: examine_details bei tickets_truth >= 1'
     ],
     atmosphere: 'mystic'
   },
@@ -374,6 +428,26 @@ Oder… nie hattest.
 Oder… vergessen wolltest.
 
 Öffnest du die Tür?`,
+    narrative_variants: [
+      {
+        condition: { type: 'bool', target: 'has_tag19', value: true },
+        narrative: `Du stehst vor der Tür.
+
+Der Schlüsselanhänger in deiner Hand beginnt im Takt deines Herzschlags zu glühen. Ein tiefes, goldenes Licht scheint durch deine geschlossenen Finger.
+
+Die Nummer 7 auf der Tür leuchtet im gleichen Rhythmus auf. Es ist kein Zufall mehr. Es ist eine Resonanz.
+
+Deine Hand zittert nicht mehr, als du sie zum Knauf ausstreckst. Die Hitze des Metalls und die Wärme des Anhängers verschmelzen zu einer einzigen Empfindung.
+
+Du spürst die Präsenz hinter der Tür nicht nur – du hörst sie als einen klaren, reinen Ton, der aus dem Anhänger aufsteigt.
+
+Etwas Vertrautes. Etwas, das dir gehört.
+
+Das Tag 19 ist der Schlüssel. Nicht für ein Schloss, sondern für die Wahrheit.
+
+Öffnest du die Tür?`
+      }
+    ],
     choices: [
       {
         id: 'open_door_truth',
@@ -565,12 +639,28 @@ Aber du bist nicht mehr derselbe.`,
           { type: 'inc', target: 'memory_drift', value: 1 }
         ],
         next: 'c6_s08_drift_intensifies'
+      },
+      {
+        id: 'feel_connection',
+        label: 'Die Wärme der Berührung nachspüren',
+        condition: {
+          type: 'compare',
+          target: 'tickets_love',
+          operator: '>=',
+          value: 2
+        },
+        effects: [
+          { type: 'inc', target: 'tickets_love', value: 1 },
+          { type: 'inc', target: 'memory_drift', value: 1 }
+        ],
+        next: 'c6_s08_drift_intensifies'
       }
     ],
     state_notes: [
       'Set-Piece Teil 3: Nachwirkungen Abteil 7',
       'Tür verschwindet (Drift-Effekt)',
-      'Emotionale Transformation'
+      'Emotionale Transformation',
+      'CONDITION: feel_connection bei tickets_love >= 2 (Callback für reach_out)'
     ],
     atmosphere: 'somber'
   },
@@ -637,12 +727,28 @@ Einfach… nichts.`,
           { type: 'inc', target: 'memory_drift', value: 1 }
         ],
         next: 'c6_s09_boy_final'
+      },
+      {
+        id: 'analyze_time',
+        label: 'Versuchen, das Zeitmuster zu erkennen',
+        condition: {
+          type: 'compare',
+          target: 'memory_drift',
+          operator: '>=',
+          value: 2
+        },
+        effects: [
+          { type: 'inc', target: 'tickets_truth', value: 1 },
+          { type: 'inc', target: 'memory_drift', value: 1 }
+        ],
+        next: 'c6_s09_boy_final'
       }
     ],
     state_notes: [
       'Interlude: Drift intensiviert sich',
       'Zeit springt (Uhr zeigt willkürliche Zeiten)',
-      'Temperatur neutral/nichts - sensorischer Anker'
+      'Temperatur neutral/nichts - sensorischer Anker',
+      'CONDITION: analyze_time bei memory_drift >= 2'
     ],
     atmosphere: 'dark'
   },
@@ -946,12 +1052,42 @@ Als wäre nichts gewesen.`
           { type: 'inc', target: 'memory_drift', value: 1 }
         ],
         next: 'c6_s12_mirror_self'
+      },
+      {
+        id: 'whisper_year',
+        label: '„1973" leise wiederholen',
+        condition: {
+          type: 'compare',
+          target: 'memory_drift',
+          operator: '>=',
+          value: 3
+        },
+        effects: [
+          { type: 'inc', target: 'tickets_guilt', value: 1 }
+        ],
+        next: 'c6_s12_mirror_self'
+      },
+      {
+        id: 'listen_for_voice',
+        label: 'Auf die Stimme unter dem Rauschen achten',
+        condition: {
+          type: 'compare',
+          target: 'conductor_attention',
+          operator: '>=',
+          value: 3
+        },
+        effects: [
+          { type: 'inc', target: 'tickets_truth', value: 1 },
+          { type: 'inc', target: 'conductor_attention', value: 1 }
+        ],
+        next: 'c6_s12_mirror_self'
       }
     ],
     state_notes: [
       'Interlude: Verzerrte Ansage',
       'Warnung "Endstation"',
-      'Entschuldigung (von wem?)'
+      'Entschuldigung (von wem?)',
+      'CONDITION: listen_for_voice bei conductor_attention >= 3'
     ],
     atmosphere: 'danger'
   },
@@ -997,6 +1133,28 @@ Sie steht auf.
 Die Gestalt kommt näher.
 
 „Wirklich?"`,
+    narrative_variants: [
+      {
+        condition: { type: 'bool', target: 'has_tag19', value: true },
+        narrative: `Du öffnest die Tür zu deinem Abteil und erstarrst.
+
+Der Schlüsselanhänger, der eben noch glühend heiß war, wird schlagartig eiskalt. Die Kälte beißt sich in deine Haut, ein stechender Schmerz, der dich vor der Gestalt warnt, die auf deinem Platz sitzt.
+
+Du selbst. Ein exaktes Spiegelbild.
+
+Die Gestalt blickt aus dem Fenster in die Leere und dreht sich dann langsam um. Sie lächelt wissend, aber das Lächeln erreicht die Augen nicht.
+
+„Endlich," sagt sie mit deiner Stimme. „Ich habe gewartet."
+
+Während sie aufsteht, spürst du durch den Anhänger, dass etwas an dieser Begegnung falsch ist. Er vibriert nicht mehr rhythmisch, sondern stößt kurze, hektische Impulse aus – wie ein Alarm.
+
+„Weißt du, warum du hier bist?"
+
+Die Kälte des Metalls in deiner Hand ist der einzige Beweis dafür, dass du noch die Kontrolle hast. Die Gestalt vor dir hat kein solches Gewicht. Sie ist nur ein Schatten.
+
+„Wirklich?"`
+      }
+    ],
     choices: [
       {
         id: 'confront_drift',
@@ -1445,12 +1603,27 @@ Er besteht aus Tinte und Schatten.`
           { type: 'inc', target: 'conductor_attention', value: 1 }
         ],
         next: 'c6_s18_offer_approach'
+      },
+      {
+        id: 'hold_tag19',
+        label: 'Den Schlüsselanhänger fest umklammern',
+        condition: {
+          type: 'bool',
+          target: 'has_tag19',
+          value: true
+        },
+        effects: [
+          { type: 'inc', target: 'tickets_truth', value: 1 },
+          { type: 'inc', target: 'memory_drift', value: 1 }
+        ],
+        next: 'c6_s18_offer_approach'
       }
     ],
     state_notes: [
       'Interlude: Totale Dunkelheit',
       'Schaffner nähert sich (Licht)',
-      'Vorbereitung auf Angebot'
+      'Vorbereitung auf Angebot',
+      'CONDITION: hold_tag19 nur bei has_tag19'
     ],
     atmosphere: 'dark'
   },
@@ -1905,12 +2078,28 @@ Immer näher.`,
           { type: 'inc', target: 'tickets_truth', value: 1 }
         ],
         next: 'c6_s24_platform_ahead'
+      },
+      {
+        id: 'close_eyes_and_listen',
+        label: 'Die Augen schließen und lauschen',
+        condition: {
+          type: 'compare',
+          target: 'memory_drift',
+          operator: '>=',
+          value: 3
+        },
+        effects: [
+          { type: 'inc', target: 'memory_drift', value: 1 },
+          { type: 'inc', target: 'tickets_escape', value: 1 }
+        ],
+        next: 'c6_s24_platform_ahead'
       }
     ],
     state_notes: [
       'Interlude: Zug verlangsamt für letzte Station',
       'Licht erscheint (Gegensatz zu Dunkelheit)',
-      'Bahnsteig wird sichtbar'
+      'Bahnsteig wird sichtbar',
+      'CONDITION: close_eyes_and_listen bei memory_drift >= 3'
     ],
     atmosphere: 'tense'
   },
@@ -1956,6 +2145,24 @@ Von… Heimkehr.
 Oder von Ende.
 
 Oder beides.`,
+    narrative_variants: [
+      {
+        condition: { type: 'bool', target: 'has_tag19', value: true },
+        narrative: `Der Bahnsteig ist… real.
+
+Der Schlüsselanhänger in deiner Hand vibriert jetzt mit einer solchen Intensität, dass er fast ein Geräusch macht – eine leise, summende Melodie, die dich an Sonntage in einem sonnendurchfluteten Zimmer erinnert.
+
+Die Schemen und Gestalten auf dem Bahnsteig werden durch den Anhänger schärfer gezeichnet. Sein rhythmisches Pochen wirkt wie ein Herzschlag für die Welt da draußen, die darauf wartet, wieder zum Leben zu erwachen.
+
+Es ist nicht nur ein Bahnsteig. Es ist das Ende einer Reise, die viel zu lange gedauert hat.
+
+Du spürst durch das Metall eine tiefe, unerschütterliche Vertrautheit. Ein Gefühl von Heimkehr, so stark, dass es die Tränen in deine Augen treibt.
+
+Der Anhänger hat dich hierher geführt. Er ist ruhig geworden jetzt, eine sanfte, stetige Wärme.
+
+Du bist bereit.`
+      }
+    ],
     choices: [
       {
         id: 'feel_hope',
@@ -2049,12 +2256,28 @@ Bist du bereit?`,
           { type: 'inc', target: 'station_count', value: 1 }
         ],
         next: 'c6_end_station'
+      },
+      {
+        id: 'hesitate_moment',
+        label: 'Einen Moment zögern',
+        condition: {
+          type: 'compare',
+          target: 'tickets_guilt',
+          operator: '>=',
+          value: 3
+        },
+        effects: [
+          { type: 'inc', target: 'tickets_guilt', value: 1 },
+          { type: 'inc', target: 'station_count', value: 1 }
+        ],
+        next: 'c6_end_station'
       }
     ],
     state_notes: [
       'Letzter Moment vor dem Ende',
       'Emotionale Klimax',
-      'Übergang zu Endstation'
+      'Übergang zu Endstation',
+      'CONDITION: hesitate_moment bei tickets_guilt >= 3'
     ],
     atmosphere: 'tense'
   },
@@ -2127,15 +2350,14 @@ Die wahre Endstation.`,
         id: 'continue_to_chapter_7',
         label: 'Weiter zur letzten Station',
         effects: [
-          { type: 'set', target: 'chapter_index', value: 7 },
-          { type: 'inc', target: 'station_count', value: 1 }
+          { type: 'set', target: 'chapter_index', value: 7 }
         ],
         next: 'c7_s01_final_approach'
       }
     ],
     tags: ['station_end'],
     state_notes: [
-      'Station-End: memory_drift automatisch erhöht durch Engine-R1 (keine manuellen exit_effects)',
+      'R1: Engine erhoeht memory_drift/station_count automatisch (keine manuellen station_end-Effects)',
       'Station-End: Übergang zu Kapitel 7',
       'Name auf Schild (Selbsterkenntnis)',
       'Versionen des Selbst erscheinen',

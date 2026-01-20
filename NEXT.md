@@ -5,7 +5,7 @@
 
 ---
 
-## 📋 Abgeschlossene Aufgaben (2026-01-17)
+## 📋 Abgeschlossene Aufgaben (Stand 2026-01-18)
 
 ### ✅ Alle abgeschlossenen Meilensteine
 
@@ -22,12 +22,16 @@
 
 **Qualität:**
 - ✅ 0 Validation Errors
-- ✅ 0 Warnings
+- ✅ 0 Warnings (state_notes bereinigt)
 - ✅ Alle Tests grün
 
 **UI-Test:**
 - ✅ Drift-Mechanik im Browser verifiziert
 - ✅ Narrative variants korrekt angezeigt bei verschiedenen Drift-Leveln
+
+**QA-Fixes (2026-01-18):**
+- ✅ FAKE-CHOICEs differenziert (c4_s01a_double_reflection, c4_s02_recorder_prophecy, c5_s01_final_preparation)
+- ✅ photo_anomaly Payoff in c7_s21_photo_revelation
 
 ---
 
@@ -147,6 +151,7 @@ Status:
 - Content-Validierung
 - Unit-Tests
 - Debug-Tools
+- QA-Fixes (FAKE-CHOICEs, photo_anomaly Payoff)
 
 ### 🚧 In Entwicklung (0%)
 - [ ] End-to-End Playthrough Testing
@@ -172,3 +177,4 @@ Status:
 | 2026-01-17 | Dokument erstellt | Initiale Version mit 4 Optionen |
 | 2026-01-17 | Kapitel 3-7 Finalisiert | Content Complete |
 | 2026-01-18 | Dokument aktualisiert | Abgeschlossene Aufgaben in History verschoben |
+| 2026-01-18 | QA-Fixes abgeschlossen | FAKE-CHOICEs differenziert, photo_anomaly Payoff, Validation clean |

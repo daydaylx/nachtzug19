@@ -2,9 +2,9 @@
 
 ## Executive Summary
 
-**Problem**: Duplicate memory_drift increments causing +2 per station instead of +1 as per Canon Rule R1.
-**Solution**: Removed redundant exit_effects from all station_end scenes.
-**Result**: memory_drift now increases by exactly +1 per station as specified in policy.
+**Problem**: Historisch doppelte drift-Inkremente + gemischte station_end-Overrides (Docs vs Code).
+**Solution**: exit_effects entfernt, station_end-Choice-Effects standardisiert (Default via Engine, Overrides explizit).
+**Result**: Default +1 pro Station, keine Doppelzaehlung; Overrides bleiben bewusst sichtbar.
 
 ## Policy Reference
 
@@ -30,11 +30,8 @@ if (currentScene.tags?.includes('station_end')) {
 ## Problem Analysis
 
 ### Root Cause
-All station_end scenes (c1-c7) had **duplicate** memory_drift increments:
-1. **Engine automatic**: `memory_drift += 1` (via station_end tag detection)
-2. **Manual exit_effects**: `memory_drift += 1` (in scene definition)
-
-**Result**: `memory_drift += 2` per station instead of `memory_drift += 1`
+Historisch: station_end-Szenen hatten **exit_effects** fuer memory_drift, obwohl die Engine bereits auto-incrementiert.  
+Zusaetzlich: station_end-Choices setzten drift/station_count teils manuell, teils nicht, was die Doku inkonsistent machte.
 
 ### Affected Scenes
 - `c1_end_station` (c1.ts)
@@ -71,7 +68,7 @@ state_notes: [
 ]
 ```
 
-**Impact**: memory_drift now increases by exactly +1 per station (chapters 1-6)
+**Impact**: Default-Inkrement erfolgt nur ueber Engine-R1.
 
 ### Fix 2: Remove duplicate station_count exit_effect (c7)
 **File Modified**: `src/content/nachtzug19/scenes/c7.ts`
@@ -98,7 +95,11 @@ state_notes: [
 ]
 ```
 
-**Impact**: station_count now increases by exactly +1 for final station
+**Impact**: station_count wird ueber Engine-R1 konsistent erhoeht
+
+### Fix 3: Standardize station_end choice effects (c1-c6)
+**Change**: Entfernt manuelle `memory_drift`/`station_count` Effekte aus Standard-Choices;  
+**Exception**: Explizite Overrides bleiben (z.B. c1_end_station/confront_jacket_change mit memory_drift +2).
 
 ## Control Rules Verification (R2)
 
@@ -142,7 +143,7 @@ Zusammenfassung: 0 Errors, 0 Warnings
 ```
 
 ### Policy Compliance
-- ✅ **R1 (Drift nach Station)**: Now correctly implements +1 memory_drift per station
+- ✅ **R1 (Drift nach Station)**: Default +1 pro Station, Overrides explizit und bewusst
 - ✅ **R2 (Kontrollen)**: All control scenes properly modify required state variables
 - ✅ **Engine Integration**: Automatic R1 rule remains intact and functional
 - ✅ **Content Cleanup**: No redundant effects, cleaner state management
@@ -150,12 +151,12 @@ Zusammenfassung: 0 Errors, 0 Warnings
 ## Technical Impact
 
 ### Before Fix
-- memory_drift progression: 0 → 2 → 4 → 6 → 8 → 10 → 12 (WRONG)
-- station_count progression: 0 → 1 → 2 → 3 → 4 → 5 → 7 (c7 had +2)
+- memory_drift progression: +2 pro Station durch exit_effects (WRONG)
+- station_count progression: c7 hatte +2 (WRONG)
 
 ### After Fix  
-- memory_drift progression: 0 → 1 → 2 → 3 → 4 → 5 → 6 (CORRECT)
-- station_count progression: 0 → 1 → 2 → 3 → 4 → 5 → 6 (CORRECT)
+- memory_drift progression: Default +1 pro Station (Overrides moeglich)
+- station_count progression: Default +1 pro Station (Engine)
 
 ### Benefits
 1. **Policy Compliance**: Exact implementation of R1 as documented
@@ -182,7 +183,7 @@ Zusammenfassung: 0 Errors, 0 Warnings
 
 ✅ **Policy R1 fully implemented** - memory_drift increases by exactly +1 per station
 ✅ **Policy R2 verified compliant** - all control scenes properly implemented  
-✅ **No story content changed** - only technical cleanup
+✅ **Minimal content changes** - nur Effects/State Notes standardisiert
 ✅ **All validation tests pass** - 0 errors, 0 warnings
 ✅ **Minimal invasive approach** - only removed redundant code
 

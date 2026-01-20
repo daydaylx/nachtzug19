@@ -111,6 +111,21 @@ Der Junge mit dem Kassettenrekorder sitzt noch da. Wartet auf etwas.
         next: 'c2_interlude_01_toilet'
       },
       {
+        id: 'decipher_headline',
+        label: 'Die Schlagzeile erraten',
+        condition: {
+          type: 'compare',
+          target: 'tickets_truth',
+          operator: '>=',
+          value: 2
+        },
+        effects: [
+          { type: 'inc', target: 'tickets_truth', value: 1 },
+          { type: 'inc', target: 'memory_drift', value: 1 }
+        ],
+        next: 'c2_interlude_01_toilet'
+      },
+      {
         id: 'watch_laptop_man',
         label: 'Den Mann mit Laptop beobachten',
         effects: [
@@ -133,7 +148,8 @@ Der Junge mit dem Kassettenrekorder sitzt noch da. Wartet auf etwas.
       'Zeitungs-Schlagzeile unlesbar, Buchstaben bewegen sich: Drift-Detail',
       'Laptop zeigt nur pulsierendes Blau: keine Inhalte',
       'approach_newspaper_woman erhöht Attention (fällt auf)',
-      'conductor_attention >= 2 zeigt Feedback für keep_walking Choice'
+      'conductor_attention >= 2 zeigt Feedback für keep_walking Choice',
+      'decipher_headline nur bei tickets_truth >= 2'
     ],
     atmosphere: 'mystic'
   },
@@ -322,7 +338,8 @@ Seine Augen sind ernst. Zu ernst für ein Kind.`,
     state_notes: [
       'Rekorder ist Key-Item (hat_recorder wird gesetzt)',
       'ask_why: Stärkere Beziehung (+2), zeigt Empathie',
-      'refuse_recorder: Guilt-Pattern, verschlechtert Beziehung'
+      'refuse_recorder: Guilt-Pattern, verschlechtert Beziehung',
+      'CONDITION: observe_boy_silently nur bei memory_drift >= 2'
     ],
     atmosphere: 'mystic'
   },
@@ -610,6 +627,21 @@ Als du wieder hinsiehst: Nur Grau. Und ein heller Streifen.`
         next: 'c2_s03_comp7_intro'
       },
       {
+        id: 'avoid_window',
+        label: 'Vom Fenster wegbleiben',
+        condition: {
+          type: 'compare',
+          target: 'tickets_escape',
+          operator: '>=',
+          value: 2
+        },
+        effects: [
+          { type: 'inc', target: 'tickets_escape', value: 1 },
+          { type: 'dec', target: 'conductor_attention', value: 1 }
+        ],
+        next: 'c2_s03_comp7_intro'
+      },
+      {
         id: 'continue',
         label: 'Weitergehen',
         effects: [
@@ -622,7 +654,8 @@ Als du wieder hinsiehst: Nur Grau. Und ein heller Streifen.`
     state_notes: [
       'Form mit Augen draußen (Halluzination oder nicht?)',
       'Warmes, feuchtes Glas (sensorische Anomalie)',
-      'keep_staring nur bei memory_drift >= 2'
+      'keep_staring nur bei memory_drift >= 2',
+      'avoid_window nur bei tickets_escape >= 2'
     ],
     atmosphere: 'danger'
   },
@@ -749,6 +782,21 @@ Sie deutet auf eine Seite weiter hinten. „Dort steht, was als Nächstes kommt.
           { type: 'inc', target: 'rel_comp7', value: 2 }
         ],
         next: 'c2_s03b_comp7_warning'
+      },
+      {
+        id: 'close_notebook',
+        label: 'Das Notizbuch schliessen',
+        condition: {
+          type: 'compare',
+          target: 'tickets_escape',
+          operator: '>=',
+          value: 2
+        },
+        effects: [
+          { type: 'inc', target: 'tickets_escape', value: 1 },
+          { type: 'inc', target: 'conductor_attention', value: 1 }
+        ],
+        next: 'c2_interlude_03_announcement_glitch'
       }
     ],
     tags: ['reveal'],
@@ -866,6 +914,21 @@ Dann bewegen sie sich wieder. Als wäre nichts gewesen.`,
         next: 'c2_s04_announcement'
       },
       {
+        id: 'look_for_boy',
+        label: 'Nach dem Jungen sehen',
+        condition: {
+          type: 'compare',
+          target: 'tickets_love',
+          operator: '>=',
+          value: 1
+        },
+        effects: [
+          { type: 'inc', target: 'tickets_love', value: 1 },
+          { type: 'inc', target: 'rel_boy', value: 1 }
+        ],
+        next: 'c2_s04_announcement'
+      },
+      {
         id: 'continue',
         label: 'Weiter',
         effects: [
@@ -878,7 +941,8 @@ Dann bewegen sie sich wieder. Als wäre nichts gewesen.`,
     state_notes: [
       'Durchsage glitcht mit Spielerstimme (Memory-Echo)',
       'Passagiere frieren ein und bewegen sich wieder',
-      'cover_ears senkt attention, wenn bereits aufgebaut'
+      'cover_ears senkt attention, wenn bereits aufgebaut',
+      'look_for_boy nur bei tickets_love >= 1'
     ],
     atmosphere: 'danger'
   },
@@ -1211,19 +1275,25 @@ Er stoppt. Wartet.`,
         next: 'c2_control_01_question'
       },
       {
-        id: 'interrupt',
-        label: '„Was bedeutet das?"',
-        effects: [
-          { type: 'inc', target: 'tickets_escape', value: 1 },
-          { type: 'inc', target: 'conductor_attention', value: 1 }
-        ],
-        next: 'c2_control_01_question'
-      },
-      {
         id: 'apologize',
         label: '„Es tut mir leid."',
         effects: [
           { type: 'inc', target: 'tickets_guilt', value: 1 }
+        ],
+        next: 'c2_control_01_question'
+      },
+      {
+        id: 'notice_voice_distortion',
+        label: 'Die Verzerrung in seiner Stimme bemerken',
+        condition: {
+          type: 'compare',
+          target: 'memory_drift',
+          operator: '>=',
+          value: 2
+        },
+        effects: [
+          { type: 'inc', target: 'tickets_truth', value: 1 },
+          { type: 'inc', target: 'memory_drift', value: 1 }
         ],
         next: 'c2_control_01_question'
       }
@@ -1232,7 +1302,8 @@ Er stoppt. Wartet.`,
     state_notes: [
       'Set-Piece Teil 1: Aufbau der Kontrolle',
       'Kelle ist leer (Schaffner liest nicht ab, improvisiert)',
-      'interrupt erhöht conductor_attention, look_to_sleepless nur bei rel_sleepless >= 1'
+      'look_to_sleepless nur bei rel_sleepless >= 1',
+      'CONDITION: notice_voice_distortion nur bei memory_drift >= 2 (Callback für continue)'
     ],
     atmosphere: 'danger'
   },
@@ -1372,15 +1443,30 @@ Seine Jacke ist jetzt rot. War sie nicht grün?`,
           { type: 'inc', target: 'tickets_escape', value: 1 }
         ],
         next: 'c2_s05b_reality_shift'
+      },
+      {
+        id: 'look_for_boy',
+        label: 'Nach dem Jungen Ausschau halten',
+        condition: {
+          type: 'compare',
+          target: 'tickets_love',
+          operator: '>=',
+          value: 4
+        },
+        effects: [
+          { type: 'inc', target: 'tickets_love', value: 1 },
+          { type: 'inc', target: 'rel_boy', value: 1 }
+        ],
+        next: 'c2_s05b_reality_shift'
       }
     ],
     tags: ['reveal'],
     state_notes: [
       'Set-Piece Teil 3: Auflösung der Kontrolle',
-      'Kelle ist leer: Schaffner folgt keinem Script (Improvisation/Willkür)',
-      'Jacke des Schlaflosen ändert erneut Farbe (grün -> rot)',
-      'confront_sleepless erhöht memory_drift (Realität direkt hinterfragen)',
-      'Comp7 erscheint wieder (war nie weg? Oder Drift?)'
+      'Kelle ist leer: Schaffner folgt keinem Script',
+      'Jacke des Schlaflosen ändert erneut Farbe',
+      'Comp7 erscheint wieder (war nie weg? Oder Drift?)',
+      'CONDITION: look_for_boy nur bei tickets_love >= 4 (Callback für offer_search)'
     ],
     atmosphere: 'somber'
   },
@@ -1621,6 +1707,21 @@ Der Zug fährt weiter.`,
         next: 'c2_end_station'
       },
       {
+        id: 'lower_gaze',
+        label: 'Den Blick senken',
+        condition: {
+          type: 'compare',
+          target: 'tickets_guilt',
+          operator: '>=',
+          value: 2
+        },
+        effects: [
+          { type: 'inc', target: 'tickets_guilt', value: 1 },
+          { type: 'dec', target: 'conductor_attention', value: 1 }
+        ],
+        next: 'c2_end_station'
+      },
+      {
         id: 'recognize_figure',
         label: 'Versuchen, die Gestalt zu erkennen',
         condition: {
@@ -1642,7 +1743,8 @@ Der Zug fährt weiter.`,
       'Gestalt auf Bahnsteig (wer? Spieler? Comp7? Schaffner?)',
       'Uhr zeigt wieder 23:47 (Zeit-Loop)',
       'tell_others erhöht conductor_attention (Lautstärke)',
-      'CONDITION: recognize_figure nur bei rel_comp7 >= 2 ODER tickets_truth >= 4'
+      'CONDITION: lower_gaze nur bei tickets_guilt >= 2',
+      'CONDITION: recognize_figure nur bei rel_comp7 >= 2 OR tickets_truth >= 4'
     ],
     atmosphere: 'mystic'
   },
@@ -1684,8 +1786,6 @@ Sie zeigt auf eine Zeile:
         },
         effects: [
           { type: 'set', target: 'chapter_index', value: 3 },
-          { type: 'inc', target: 'station_count', value: 1 },
-          { type: 'inc', target: 'memory_drift', value: 1 },
           { type: 'inc', target: 'rel_comp7', value: 1 }
         ],
         next: 'c3_s01_wagen7_locked'
@@ -1694,9 +1794,7 @@ Sie zeigt auf eine Zeile:
         id: 'continue_to_chapter_3',
         label: 'Weiter',
         effects: [
-          { type: 'set', target: 'chapter_index', value: 3 },
-          { type: 'inc', target: 'station_count', value: 1 },
-          { type: 'inc', target: 'memory_drift', value: 1 }
+          { type: 'set', target: 'chapter_index', value: 3 }
         ],
         next: 'c3_s01_wagen7_locked'
       },
@@ -1711,8 +1809,6 @@ Sie zeigt auf eine Zeile:
         },
         effects: [
           { type: 'set', target: 'chapter_index', value: 3 },
-          { type: 'inc', target: 'station_count', value: 1 },
-          { type: 'inc', target: 'memory_drift', value: 1 },
           { type: 'inc', target: 'rel_boy', value: 1 },
           { type: 'inc', target: 'tickets_love', value: 1 }
         ],
@@ -1721,7 +1817,7 @@ Sie zeigt auf eine Zeile:
     ],
     tags: ['station_end'],
     state_notes: [
-      'Zweite station_end: memory_drift automatisch erhöht durch Engine-R1 (keine manuellen exit_effects)',
+      'R1: Engine erhoeht memory_drift/station_count automatisch (keine manuellen station_end-Effects)',
       'Drift-Effects: Sleepless/Jacke verändert, Junge weg, Comp7 klarer',
       'Meta-Hinweis: Comp7 schreibt "Spieler geht zu Kapitel 3"'
     ],

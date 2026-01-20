@@ -227,10 +227,11 @@ export type Choice = {
 };
 
 /**
- * Narrative Variant - Drift-basierte Textvariante
+ * Narrative Variant - Bedingte Textvariante (z.B. Drift oder Items)
  */
 export type NarrativeVariant = {
-  min_drift: number;              // Ab welchem memory_drift diese Variante gilt
+  min_drift?: number;             // Optional: Ab welchem memory_drift diese Variante gilt
+  condition?: Condition;          // Optional: Generische Condition (z.B. has_tag19)
   narrative: string;              // Alternative Narrative
   replace_mode?: 'full' | 'overlay';  // Default: 'full' (komplette Ersetzung)
 };

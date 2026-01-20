@@ -66,7 +66,8 @@ Und du weißt: Die nächste Kontrolle wird die härteste sein.`,
         id: 'walk_corridor',
         label: 'In den Gang gehen',
         effects: [
-          { type: 'inc', target: 'tickets_truth', value: 1 }
+          { type: 'inc', target: 'tickets_truth', value: 1 },
+          { type: 'inc', target: 'conductor_attention', value: 1 }
         ],
         next: 'c5_s02_corridor_silence'
       }
@@ -74,7 +75,7 @@ Und du weißt: Die nächste Kontrolle wird die härteste sein.`,
     state_notes: [
       'Eröffnungsszene Kapitel 5',
       'CONDITION: check_recorder nur bei has_recorder',
-      'Vorbereitung auf Kontrolle 3'
+      'walk_corridor erhoeht attention; Vorbereitung auf Kontrolle 3'
     ],
     atmosphere: 'somber'
   },
@@ -132,11 +133,59 @@ Und das Rattern der Räder.`,
           { type: 'inc', target: 'memory_drift', value: 1 }
         ],
         next: 'c5_s03_comp7_reflection'
+      },
+      {
+        id: 'listen_for_patterns',
+        label: 'Nach Mustern im Licht lauschen',
+        condition: {
+          type: 'compare',
+          target: 'tickets_truth',
+          operator: '>=',
+          value: 7
+        },
+        effects: [
+          { type: 'inc', target: 'tickets_truth', value: 1 },
+          { type: 'inc', target: 'memory_drift', value: 1 }
+        ],
+        next: 'c5_s03_comp7_reflection'
+      },
+      {
+        id: 'retreat_to_safety',
+        label: 'Zurück ins Abteil flüchten',
+        condition: {
+          type: 'compare',
+          target: 'tickets_escape',
+          operator: '>=',
+          value: 5
+        },
+        effects: [
+          { type: 'inc', target: 'tickets_escape', value: 1 },
+          { type: 'dec', target: 'conductor_attention', value: 1 }
+        ],
+        next: 'c5_s03_comp7_reflection'
+      },
+      {
+        id: 'challenge_emptiness',
+        label: 'Laut in die Stille rufen',
+        condition: {
+          type: 'compare',
+          target: 'conductor_attention',
+          operator: '>=',
+          value: 4
+        },
+        effects: [
+          { type: 'inc', target: 'conductor_attention', value: 1 },
+          { type: 'inc', target: 'tickets_truth', value: 1 }
+        ],
+        next: 'c5_s03_comp7_reflection'
       }
     ],
     state_notes: [
       'Interlude: Atmosphäre aufbauen',
-      'memory_drift steigt (Zug wird unheimlicher)'
+      'memory_drift steigt (Zug wird unheimlicher)',
+      'CONDITION: listen_for_patterns (tickets_truth >= 7)',
+      'CONDITION: retreat_to_safety (tickets_escape >= 5)',
+      'CONDITION: challenge_emptiness (conductor_attention >= 4)'
     ],
     atmosphere: 'tense'
   },
@@ -197,12 +246,27 @@ Ihre Stimme ist kaum mehr als ein Flüstern.
           { type: 'dec', target: 'rel_comp7', value: 1 }
         ],
         next: 'c5_s04_lights_flicker'
+      },
+      {
+        id: 'discuss_silence',
+        label: '„Die Stille hier… sie ist nicht normal."',
+        condition: {
+          type: 'compare',
+          target: 'conductor_attention',
+          operator: '>=',
+          value: 3
+        },
+        effects: [
+          { type: 'inc', target: 'tickets_truth', value: 1 },
+          { type: 'inc', target: 'rel_comp7', value: 1 }
+        ],
+        next: 'c5_s04_lights_flicker'
       }
     ],
     state_notes: [
       'Comp7 gibt Hinweise auf Endgame',
       'ask_about_compartment7 erhöht conductor_attention (gefährliche Frage)',
-      'Callback zu Abteil 7 (wird später wichtig)'
+      'CONDITION: discuss_silence nur bei conductor_attention >= 3 (Callback auf s02)'
     ],
     atmosphere: 'mystic'
   },
@@ -349,11 +413,59 @@ Etwas, das nicht gesehen werden will.`
           { type: 'inc', target: 'conductor_attention', value: 1 }
         ],
         next: 'c5_s05_sleepless_final'
+      },
+      {
+        id: 'confront_comp7_questions',
+        label: 'An Comp7s Worte denken',
+        condition: {
+          type: 'compare',
+          target: 'rel_comp7',
+          operator: '>=',
+          value: 3
+        },
+        effects: [
+          { type: 'inc', target: 'tickets_love', value: 1 },
+          { type: 'inc', target: 'rel_comp7', value: 1 }
+        ],
+        next: 'c5_s05_sleepless_final'
+      },
+      {
+        id: 'analyze_abteil7_clue',
+        label: 'Die Hinweise auf Abteil 7 deuten',
+        condition: {
+          type: 'compare',
+          target: 'tickets_truth',
+          operator: '>=',
+          value: 8
+        },
+        effects: [
+          { type: 'inc', target: 'tickets_truth', value: 1 },
+          { type: 'inc', target: 'memory_drift', value: 1 }
+        ],
+        next: 'c5_s05_sleepless_final'
+      },
+      {
+        id: 'hide_from_presence',
+        label: 'Sich vor der Präsenz verstecken',
+        condition: {
+          type: 'compare',
+          target: 'tickets_escape',
+          operator: '>=',
+          value: 6
+        },
+        effects: [
+          { type: 'inc', target: 'tickets_escape', value: 1 },
+          { type: 'dec', target: 'conductor_attention', value: 1 }
+        ],
+        next: 'c5_s05_sleepless_final'
       }
     ],
     state_notes: [
       'Interlude: Spannung aufbauen',
-      'Vorbereitung auf Abteil 7'
+      'Vorbereitung auf Abteil 7',
+      'CONDITION: confront_comp7_questions (rel_comp7 >= 3)',
+      'CONDITION: analyze_abteil7_clue (tickets_truth >= 8)',
+      'CONDITION: hide_from_presence (tickets_escape >= 6)'
     ],
     atmosphere: 'danger'
   },
@@ -416,12 +528,27 @@ Seine Stimme bricht.
           { type: 'dec', target: 'rel_sleepless', value: 2 }
         ],
         next: 'c5_s06_abteil7_approach'
+      },
+      {
+        id: 'warn_about_presence',
+        label: '„Da ist etwas im Gang. Sei vorsichtig."',
+        condition: {
+          type: 'compare',
+          target: 'conductor_attention',
+          operator: '>=',
+          value: 4
+        },
+        effects: [
+          { type: 'inc', target: 'tickets_love', value: 1 },
+          { type: 'inc', target: 'rel_sleepless', value: 1 }
+        ],
+        next: 'c5_s06_abteil7_approach'
       }
     ],
     state_notes: [
       'Letztes Gespräch mit Schlaflosem',
       'rel_sleepless beeinflusst spätere Szenen',
-      'Hinweis auf verschärfte Kontrollen'
+      'CONDITION: warn_about_presence nur bei conductor_attention >= 4 (Callback auf s04)'
     ],
     atmosphere: 'somber'
   },
@@ -475,12 +602,44 @@ Was tust du?`,
           { type: 'dec', target: 'conductor_attention', value: 1 }
         ],
         next: 'c5_s08_abteil7_aftermath'
+      },
+      {
+        id: 'protect_sleepless',
+        label: 'Zurück zum Schlaflosen gehen',
+        condition: {
+          type: 'compare',
+          target: 'rel_sleepless',
+          operator: '>=',
+          value: 2
+        },
+        effects: [
+          { type: 'inc', target: 'tickets_love', value: 1 },
+          { type: 'inc', target: 'rel_sleepless', value: 1 }
+        ],
+        next: 'c5_s08_abteil7_aftermath'
+      },
+      {
+        id: 'open_door_for_truth',
+        label: 'Öffnen – für die Antworten',
+        condition: {
+          type: 'compare',
+          target: 'tickets_truth',
+          operator: '>=',
+          value: 9
+        },
+        effects: [
+          { type: 'inc', target: 'tickets_truth', value: 2 },
+          { type: 'inc', target: 'conductor_attention', value: 3 }
+        ],
+        next: 'c5_s07_abteil7_inside'
       }
     ],
     state_notes: [
       'Set-Piece Teil 1: Abteil 7',
       'open_door erhöht conductor_attention stark (+2)',
-      'Wichtige Weichenstellung'
+      'Wichtige Weichenstellung',
+      'CONDITION: protect_sleepless (rel_sleepless >= 2)',
+      'CONDITION: open_door_for_truth (tickets_truth >= 9, hohe attention)'
     ],
     tags: ['setup'],
     atmosphere: 'tense'
@@ -610,11 +769,42 @@ Der Zug rattert weiter.`,
           { type: 'dec', target: 'memory_drift', value: 1 }
         ],
         next: 'c5_s09_train_shifts'
+      },
+      {
+        id: 'write_down_names',
+        label: 'Die Namen aufschreiben',
+        condition: {
+          type: 'compare',
+          target: 'tickets_truth',
+          operator: '>=',
+          value: 10
+        },
+        effects: [
+          { type: 'inc', target: 'tickets_truth', value: 1 },
+          { type: 'inc', target: 'tickets_guilt', value: 1 }
+        ],
+        next: 'c5_s09_train_shifts'
+      },
+      {
+        id: 'ponder_the_wall',
+        label: 'Die Kälte der Wand noch spüren',
+        condition: {
+          type: 'compare',
+          target: 'tickets_guilt',
+          operator: '>=',
+          value: 1
+        },
+        effects: [
+          { type: 'inc', target: 'tickets_guilt', value: 2 },
+          { type: 'inc', target: 'memory_drift', value: 1 }
+        ],
+        next: 'c5_s09_train_shifts'
       }
     ],
     state_notes: [
       'Set-Piece Teil 3: Nachwirkungen',
-      'Callback zu memory_drift (Erinnerungen werden unzuverlässig)'
+      'CONDITION: write_down_names (tickets_truth >= 10)',
+      'CONDITION: ponder_the_wall (tickets_guilt >= 1, Callback auf s07)'
     ],
     atmosphere: 'tense'
   },
@@ -712,11 +902,58 @@ Der Zug beschleunigt wieder.`
           { type: 'inc', target: 'station_count', value: 1 }
         ],
         next: 'c5_s10_boy_reunion'
+      },
+      {
+        id: 'press_to_window',
+        label: 'Am Fenster bleiben',
+        condition: {
+          type: 'compare',
+          target: 'memory_drift',
+          operator: '>=',
+          value: 2
+        },
+        effects: [
+          { type: 'inc', target: 'tickets_truth', value: 1 },
+          { type: 'inc', target: 'memory_drift', value: 1 }
+        ],
+        next: 'c5_s10_boy_reunion'
+      },
+      {
+        id: 'understand_skip',
+        label: 'Die übersprungene Station verstehen',
+        condition: {
+          type: 'compare',
+          target: 'tickets_truth',
+          operator: '>=',
+          value: 11
+        },
+        effects: [
+          { type: 'inc', target: 'tickets_truth', value: 1 },
+          { type: 'inc', target: 'conductor_attention', value: 1 }
+        ],
+        next: 'c5_s10_boy_reunion'
+      },
+      {
+        id: 'use_skip_chance',
+        label: 'Den Sprung als Chance nutzen',
+        condition: {
+          type: 'compare',
+          target: 'tickets_escape',
+          operator: '>=',
+          value: 8
+        },
+        effects: [
+          { type: 'inc', target: 'tickets_escape', value: 1 },
+          { type: 'dec', target: 'memory_drift', value: 1 }
+        ],
+        next: 'c5_s10_boy_reunion'
       }
     ],
     state_notes: [
       'Interlude: Zug wird unberechenbarer',
-      'station_count erhöht sich (übersprungene Station)'
+      'station_count erhöht sich (übersprungene Station)',
+      'CONDITION: understand_skip if tickets_truth >= 11 (c5_s08_abteil7_aftermath remembering)',
+      'CONDITION: use_skip_chance if tickets_escape >= 8 (c5_s08_abteil7_aftermath letting go)'
     ],
     atmosphere: 'tense'
   },
@@ -793,11 +1030,27 @@ Seine Stimme zittert leicht.
         ],
         next: 'c5_s11_corridor_encounter'
       },
+      {
+        id: 'reassure_boy',
+        label: 'Ihm versichern, dass er nicht allein ist',
+        condition: {
+          type: 'compare',
+          target: 'rel_boy',
+          operator: '>=',
+          value: 2
+        },
+        effects: [
+          { type: 'inc', target: 'tickets_love', value: 1 },
+          { type: 'inc', target: 'rel_boy', value: 1 }
+        ],
+        next: 'c5_s11_corridor_encounter'
+      }
     ],
     state_notes: [
       'Recorder/Tag19 Items sind hier relevant',
       'CONDITION: show_recorder_connection nur bei has_recorder',
       'CONDITION: show_tag19 nur bei has_tag19',
+      'CONDITION: reassure_boy nur bei rel_boy >= 2',
       'Callback zu Items aus früheren Kapiteln'
     ],
     atmosphere: 'somber'
@@ -964,11 +1217,27 @@ Und du hörst die Maschine denken.
           { type: 'inc', target: 'memory_drift', value: 1 }
         ],
         next: 'c5_s13_memory_fragment'
+      },
+      {
+        id: 'search_reflection',
+        label: 'Den Schatten des Schaffners im Glas suchen',
+        condition: {
+          type: 'compare',
+          target: 'conductor_attention',
+          operator: '>=',
+          value: 5
+        },
+        effects: [
+          { type: 'inc', target: 'tickets_truth', value: 1 },
+          { type: 'inc', target: 'conductor_attention', value: 1 }
+        ],
+        next: 'c5_s13_memory_fragment'
       }
     ],
     state_notes: [
       'Interlude: Realität löst sich auf',
-      'memory_drift steigt weiter'
+      'memory_drift steigt weiter',
+      'CONDITION: search_reflection nur bei conductor_attention >= 5 (Callback auf s11)'
     ],
     atmosphere: 'dark'
   },
@@ -1097,12 +1366,28 @@ Eine Pause.
           { type: 'inc', target: 'tickets_escape', value: 1 }
         ],
         next: 'c5_s15_control3_question'
+      },
+      {
+        id: 'mention_fragment',
+        label: 'Ihm von dem Bahnhof erzählen',
+        condition: {
+          type: 'compare',
+          target: 'tickets_truth',
+          operator: '>=',
+          value: 12
+        },
+        effects: [
+          { type: 'inc', target: 'tickets_truth', value: 1 },
+          { type: 'inc', target: 'conductor_attention', value: 2 }
+        ],
+        next: 'c5_s15_control3_question'
       }
     ],
     state_notes: [
       'Set-Piece Teil 1: Kontrolle 3 Beginn',
       'Letzte und härteste Kontrolle',
-      'conductor_attention beeinflusst nächste Szene'
+      'conductor_attention beeinflusst nächste Szene',
+      'CONDITION: mention_fragment nur bei tickets_truth >= 12 (Callback auf s13)'
     ],
     tags: ['control', 'setup'],
     atmosphere: 'danger'
@@ -1321,11 +1606,27 @@ Noch.`,
           { type: 'dec', target: 'conductor_attention', value: 1 }
         ],
         next: 'c5_s17_aftermath_reflection'
+      },
+      {
+        id: 'ponder_words',
+        label: 'Über die Worte des Schaffners nachgrübeln',
+        condition: {
+          type: 'compare',
+          target: 'conductor_attention',
+          operator: '>=',
+          value: 4
+        },
+        effects: [
+          { type: 'inc', target: 'tickets_truth', value: 1 },
+          { type: 'inc', target: 'memory_drift', value: 1 }
+        ],
+        next: 'c5_s17_aftermath_reflection'
       }
     ],
     state_notes: [
       'Set-Piece Teil 3: Nachwirkungen Kontrolle 3',
-      'Kontrolle überstanden – nächste Station rückt näher'
+      'Kontrolle überstanden – nächste Station rückt näher',
+      'CONDITION: ponder_words nur bei conductor_attention >= 4 (Callback auf s15)'
     ],
     atmosphere: 'tense'
   },
@@ -1434,11 +1735,27 @@ Als würde er sich um dich herum zusammenziehen.`,
           { type: 'inc', target: 'memory_drift', value: 1 }
         ],
         next: 'c5_s19_final_conversation'
+      },
+      {
+        id: 'search_for_door',
+        label: 'Nach einer vertrauten Tür suchen',
+        condition: {
+          type: 'compare',
+          target: 'tickets_escape',
+          operator: '>=',
+          value: 6
+        },
+        effects: [
+          { type: 'inc', target: 'tickets_escape', value: 1 },
+          { type: 'inc', target: 'memory_drift', value: 1 }
+        ],
+        next: 'c5_s19_final_conversation'
       }
     ],
     state_notes: [
       'Interlude: Zug verändert sich fundamental',
-      'Vorbereitung auf Endgame'
+      'Vorbereitung auf Endgame',
+      'CONDITION: search_for_door nur bei tickets_escape >= 6 (Callback auf s17)'
     ],
     atmosphere: 'dark'
   },
@@ -1724,11 +2041,27 @@ Für immer.`,
           { type: 'inc', target: 'tickets_guilt', value: 1 }
         ],
         next: 'c5_s23_before_station'
+      },
+      {
+        id: 'embrace_drift',
+        label: 'Sich dem Vergessen hingeben',
+        condition: {
+          type: 'compare',
+          target: 'memory_drift',
+          operator: '>=',
+          value: 5
+        },
+        effects: [
+          { type: 'inc', target: 'tickets_escape', value: 2 },
+          { type: 'inc', target: 'memory_drift', value: 1 }
+        ],
+        next: 'c5_s23_before_station'
       }
     ],
     state_notes: [
       'Set-Piece Teil 3: Nachwirkungen der finalen Entscheidung',
-      'Übergang zur letzten Station'
+      'Übergang zur letzten Station',
+      'CONDITION: embrace_drift nur bei memory_drift >= 5 (Callback auf s21)'
     ],
     atmosphere: 'somber'
   },
@@ -1925,7 +2258,6 @@ Comp7 steht dort. Im Türrahmen des Zuges.
         },
         effects: [
           { type: 'set', target: 'chapter_index', value: 6 },
-          { type: 'inc', target: 'station_count', value: 1 },
           { type: 'inc', target: 'tickets_truth', value: 1 }
         ],
         next: 'c6_s01_awakening'
@@ -1934,18 +2266,31 @@ Comp7 steht dort. Im Türrahmen des Zuges.
         id: 'continue_normal',
         label: 'Wieder einsteigen',
         effects: [
-          { type: 'set', target: 'chapter_index', value: 6 },
-          { type: 'inc', target: 'station_count', value: 1 }
+          { type: 'set', target: 'chapter_index', value: 6 }
+        ],
+        next: 'c6_s01_awakening'
+      },
+      {
+        id: 'acknowledge_guilt',
+        label: 'Die Namen auf dem Bahnsteig suchen',
+        condition: {
+          type: 'compare',
+          target: 'tickets_guilt',
+          operator: '>=',
+          value: 4
+        },
+        effects: [
+          { type: 'inc', target: 'tickets_guilt', value: 2 },
+          { type: 'set', target: 'chapter_index', value: 6 }
         ],
         next: 'c6_s01_awakening'
       }
     ],
     tags: ['station_end'],
     state_notes: [
-      'Station-End: memory_drift automatisch erhöht durch Engine-R1 (keine manuellen exit_effects)',
+      'R1: Engine erhoeht memory_drift/station_count automatisch (keine manuellen station_end-Effects)',
       'Station-End: Übergang zu Kapitel 6',
-      'Comp7 hält den Spieler im Zug',
-      'Noch eine Station bis zum wahren Ende'
+      'CONDITION: acknowledge_guilt nur bei tickets_guilt >= 4 (Callback auf s08)'
     ],
     atmosphere: 'mystic'
   }

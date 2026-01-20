@@ -13,6 +13,8 @@ const chapterFiles = [
   "src/content/nachtzug19/scenes/c3.ts",
   "src/content/nachtzug19/scenes/c4.ts",
   "src/content/nachtzug19/scenes/c5.ts",
+  "src/content/nachtzug19/scenes/c6.ts",
+  "src/content/nachtzug19/scenes/c7.ts",
 ];
 
 function isSceneLike(v) {
@@ -140,7 +142,7 @@ function validateGraph(allScenesById, chapterName, scenes) {
 }
 
 async function main() {
-  console.log("NACHTZUG19 audit (chapters 1-4)\n");
+  console.log("NACHTZUG19 audit (chapters 1-7)\n");
 
   // Import TS via tsx runtime (npx tsx ...) or node --loader.
   const imported = [];

@@ -278,13 +278,28 @@ Er drückt auf Play. Sein Rekorder spielt. Kein Knistern. Nur Stille.
           { type: 'inc', target: 'rel_boy', value: 1 }
         ],
         next: 'c3_s02_recorder_anomaly'
+      },
+      {
+        id: 'check_notebook_reference',
+        label: 'An das Notizbuch zurückdenken',
+        condition: {
+          type: 'compare',
+          target: 'rel_comp7',
+          operator: '>=',
+          value: 1
+        },
+        effects: [
+          { type: 'inc', target: 'tickets_truth', value: 1 },
+          { type: 'inc', target: 'rel_comp7', value: 1 }
+        ],
+        next: 'c3_s02_recorder_anomaly'
       }
     ],
     tags: ['reveal'],
     state_notes: [
       'Junge kehrt zurück mit dupliziertem Rekorder',
       'Drift-Mechanik: Objekte können sich verdoppeln',
-      'refuse_to_check verschlechtert rel_boy'
+      'CONDITION: check_notebook_reference nur bei rel_comp7 >= 1 (Callback für take_notebook)'
     ],
     atmosphere: 'mystic'
   },
@@ -531,6 +546,21 @@ Der Schlaflose winkt dir zu. Als hätte er dich erwartet.`,
           { type: 'inc', target: 'memory_drift', value: 1 }
         ],
         next: 'c3_interlude_03_window'
+      },
+      {
+        id: 'call_for_boy',
+        label: 'Leise nach dem Jungen rufen',
+        condition: {
+          type: 'compare',
+          target: 'rel_boy',
+          operator: '>=',
+          value: 2
+        },
+        effects: [
+          { type: 'inc', target: 'tickets_love', value: 1 },
+          { type: 'inc', target: 'conductor_attention', value: 1 }
+        ],
+        next: 'c3_interlude_03_window'
       }
     ],
     tags: ['drift_variant'],
@@ -690,12 +720,60 @@ Aber der andere Zug steht still.`
           { type: 'inc', target: 'memory_drift', value: 1 }
         ],
         next: 'c3_s03_wagen7_approach'
+      },
+      {
+        id: 'search_for_exit',
+        label: 'Nach einem Ausstieg suchen',
+        condition: {
+          type: 'compare',
+          target: 'tickets_escape',
+          operator: '>=',
+          value: 3
+        },
+        effects: [
+          { type: 'inc', target: 'tickets_escape', value: 1 },
+          { type: 'inc', target: 'conductor_attention', value: 1 }
+        ],
+        next: 'c3_s03_wagen7_approach'
+      },
+      {
+        id: 'count_reflections',
+        label: 'Die Spiegelungen zählen',
+        condition: {
+          type: 'compare',
+          target: 'memory_drift',
+          operator: '>=',
+          value: 3
+        },
+        effects: [
+          { type: 'inc', target: 'tickets_truth', value: 1 },
+          { type: 'inc', target: 'memory_drift', value: 1 }
+        ],
+        next: 'c3_s03_wagen7_approach'
+      },
+      {
+        id: 'call_to_boy_silently',
+        label: 'Dem Jungen im Spiegelbild zuwinken',
+        condition: {
+          type: 'compare',
+          target: 'tickets_love',
+          operator: '>=',
+          value: 3
+        },
+        effects: [
+          { type: 'inc', target: 'tickets_love', value: 1 },
+          { type: 'inc', target: 'rel_boy', value: 1 }
+        ],
+        next: 'c3_s03_wagen7_approach'
       }
     ],
     tags: ['drift_variant'],
     state_notes: [
       'Spiegelbild in anderem Zug: Identity-Drift',
-      'Züge fahren in entgegengesetzte Richtungen: Paradox'
+      'Züge fahren in entgegengesetzte Richtungen: Paradox',
+      'CONDITION: search_for_exit nur bei tickets_escape >= 3 (Callback für go_back)',
+      'CONDITION: count_reflections nur bei memory_drift >= 3 (Callback für count_compartments)',
+      'CONDITION: call_to_boy_silently nur bei tickets_love >= 3 (Callback für call_for_boy)'
     ],
     atmosphere: 'mystic'
   },
@@ -1424,6 +1502,21 @@ Der Schaffner.`,
           { type: 'inc', target: 'rel_comp7', value: 2 }
         ],
         next: 'c3_control_02_approach'
+      },
+      {
+        id: 'step_into_corridor',
+        label: 'In den Gang treten',
+        condition: {
+          type: 'compare',
+          target: 'tickets_escape',
+          operator: '>=',
+          value: 2
+        },
+        effects: [
+          { type: 'inc', target: 'tickets_escape', value: 1 },
+          { type: 'inc', target: 'conductor_attention', value: 1 }
+        ],
+        next: 'c3_control_02_approach'
       }
     ],
     tags: [],
@@ -1491,26 +1584,43 @@ Der Schaffner bleibt vor der Tür stehen. Schaut direkt zu dir.
         next: 'c3_control_02_question'
       },
       {
-        id: 'let_comp7_talk',
-        label: 'Comp7 sprechen lassen',
+        id: 'trust_comp7_protection',
+        label: 'Auf Comp7s Schutz vertrauen',
         condition: {
           type: 'compare',
           target: 'rel_comp7',
           operator: '>=',
-          value: 2
+          value: 3
         },
         effects: [
           { type: 'inc', target: 'tickets_love', value: 1 },
+          { type: 'inc', target: 'rel_comp7', value: 1 },
           { type: 'dec', target: 'conductor_attention', value: 1 }
+        ],
+        next: 'c3_control_02_question'
+      },
+      {
+        id: 'analyze_conductor',
+        label: 'Den Schaffner genau beobachten',
+        condition: {
+          type: 'compare',
+          target: 'tickets_truth',
+          operator: '>=',
+          value: 5
+        },
+        effects: [
+          { type: 'inc', target: 'tickets_truth', value: 1 },
+          { type: 'inc', target: 'memory_drift', value: 1 }
         ],
         next: 'c3_control_02_question'
       }
     ],
     tags: ['control'],
     state_notes: [
-      'CONDITION: let_comp7_talk nur bei rel_comp7 >= 2',
       'stay_inside erhöht attention stärker (Flucht)',
-      'Wagen 7 ist Safe Space, aber Kontrolle ist unvermeidlich'
+      'Wagen 7 ist Safe Space, aber Kontrolle ist unvermeidlich',
+      'CONDITION: trust_comp7_protection nur bei rel_comp7 >= 3 (Callback für ask_comp7_help)',
+      'CONDITION: analyze_conductor nur bei tickets_truth >= 5 (Callback für go_to_control)'
     ],
     atmosphere: 'danger'
   },
@@ -1667,13 +1777,29 @@ Comp7 schaut dich an. „Er kommt wieder. Bei der nächsten Station. Und der nä
           { type: 'dec', target: 'rel_comp7', value: 1 }
         ],
         next: 'c3_s06_passengers_vanish'
+      },
+      {
+        id: 'hold_comp7_hand',
+        label: 'Comp7s Hand halten',
+        condition: {
+          type: 'compare',
+          target: 'rel_comp7',
+          operator: '>=',
+          value: 3
+        },
+        effects: [
+          { type: 'inc', target: 'tickets_love', value: 1 },
+          { type: 'inc', target: 'rel_comp7', value: 1 }
+        ],
+        next: 'c3_s06_passengers_vanish'
       }
     ],
     tags: ['reveal'],
     state_notes: [
       'Comp7 konfrontiert Schaffner: NPC-Agency',
       'thank_comp7: Starke Beziehung (+2)',
-      'Schleife wird explizit: "Er kommt wieder"'
+      'Schleife wird explizit: "Er kommt wieder"',
+      'CONDITION: hold_comp7_hand nur bei rel_comp7 >= 3 (Callback für let_comp7_talk)'
     ],
     atmosphere: 'somber'
   },
@@ -2007,21 +2133,68 @@ Du bleibst stehen. Zwischen den Wagen.
 Durch das Fenster siehst du: Die Gestalt öffnet ein Notizbuch. Beginnt zu schreiben.`,
     choices: [
       {
+        id: 'test_door_again',
+        label: 'Die Tür nochmal testen',
+        condition: {
+          type: 'compare',
+          target: 'tickets_escape',
+          operator: '>=',
+          value: 5
+        },
+        effects: [
+          { type: 'inc', target: 'tickets_escape', value: 1 },
+          { type: 'inc', target: 'memory_drift', value: 1 },
+          { type: 'set', target: 'chapter_index', value: 4 }
+        ],
+        next: 'c4_s01_mirror'
+      },
+      {
+        id: 'study_doppelganger',
+        label: 'Den Doppelgänger beobachten',
+        condition: {
+          type: 'compare',
+          target: 'tickets_truth',
+          operator: '>=',
+          value: 6
+        },
+        effects: [
+          { type: 'inc', target: 'tickets_truth', value: 1 },
+          { type: 'inc', target: 'memory_drift', value: 1 },
+          { type: 'set', target: 'chapter_index', value: 4 }
+        ],
+        next: 'c4_s01_mirror'
+      },
+      {
+        id: 'recognize_figure',
+        label: 'Die Gestalt zu erkennen versuchen',
+        condition: {
+          type: 'compare',
+          target: 'tickets_love',
+          operator: '>=',
+          value: 5
+        },
+        effects: [
+          { type: 'inc', target: 'tickets_love', value: 1 },
+          { type: 'inc', target: 'rel_sleepless', value: 1 },
+          { type: 'set', target: 'chapter_index', value: 4 }
+        ],
+        next: 'c4_s01_mirror'
+      },
+      {
         id: 'continue_to_chapter_4',
         label: 'Weitergehen',
         effects: [
-          { type: 'set', target: 'chapter_index', value: 4 },
-          { type: 'inc', target: 'station_count', value: 1 },
-          { type: 'inc', target: 'memory_drift', value: 1 }
+          { type: 'set', target: 'chapter_index', value: 4 }
         ],
         next: 'c4_s01_mirror'
       }
     ],
     tags: ['station_end'],
     state_notes: [
-      'Dritte station_end: memory_drift automatisch erhöht durch Engine-R1 (keine manuellen exit_effects)',
+      'R1: Engine erhoeht memory_drift/station_count automatisch (keine manuellen station_end-Effects)',
       'Doppelgänger steigt ein: Identity-Drift',
-      'Übergang zu Kapitel 4 (Spiegelung)'
+      'Übergang zu Kapitel 4 (Spiegelung)',
+      'CONDITIONS: test_door_again (escape >= 5), study_doppelganger (truth >= 6), recognize_figure (love >= 5)'
     ],
     atmosphere: 'dark'
   }

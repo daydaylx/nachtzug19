@@ -156,7 +156,7 @@ Zusammenfassung: 0 Errors, 0 Warnings
 
 | Regel | Status | Details |
 |-------|--------|---------|
-| R1: Stationen verursachen Drift | ✅ | Alle 7 Kapitel haben station_end mit memory_drift +1 |
+| R1: Stationen verursachen Drift | ✅ | Alle 7 Kapitel haben station_end; Engine-R1 erhoeht default +1 (Overrides explizit) |
 | R2: Kontrollen sind feste Gatepoints | ✅ | Kapitel 2, 3, 5 haben control-Szenen |
 | R3: Entscheidungen brauchen Rückwirkung | ✅ | Alle Choices haben Effects (Fix 1 behoben) |
 | R4: Der Zug lügt nicht direkt | ✅ | Subtile Ambivalenz im Narrative |

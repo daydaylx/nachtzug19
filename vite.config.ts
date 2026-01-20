@@ -7,6 +7,7 @@ export default defineConfig({
   base: "/Nachtzug19/",
   test: {
     environment: 'jsdom',
-    globals: true
+    globals: true,
+    setupFiles: ['./src/setupTests.ts']
   }
 })

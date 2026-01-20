@@ -244,7 +244,7 @@
 
 **Status:** ✅ **Aktiv & Essentiell**
 
-**Hinweis:** Aktuell wird memory_drift dupliziert (R1 + manuelle Erhöhungen) - siehe QA_REPORT_NACHTZUG19.md P1-03
+**Hinweis:** Default +1 pro Station via Engine-R1; manuelle Overrides nur explizit (z.B. c1_end_station/confront_jacket_change).
 
 ---
 

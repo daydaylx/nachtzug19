@@ -14,8 +14,8 @@
 **Betrifft:** Content / Engine
 
 **Umsetzung:**
-- **Engine:** `src/domain/engine/gameEngine.ts` Zeile 168-173 (automatische Erhöhung bei Tag `station_end`)
-- **Content:** Alle station_end Szenen (c1_end_station bis c7_end_station) haben zusätzlich `exit_effects` mit memory_drift → **DUPLIKAT** (siehe `reports/rules_policy_r1_drift_fix.md`)
+- **Engine:** `transitionToNextScene()` erhöht memory_drift/station_count automatisch bei `station_end`, solange keine manuellen Effects für diese Targets gesetzt sind.
+- **Content:** station_end-Szenen nutzen keine `exit_effects`; Standard-Choices setzen keinen drift/station_count. Explizite Overrides bleiben Choice-basiert (z.B. c1_end_station/confront_jacket_change).
 
 ---
 
@@ -653,9 +653,9 @@
 **Explizite Canon Rules:** 2 (R1, R2)
 **Implizite System-Rules:** ~40 (T1-T40, C1-C40)
 
-**Kritisches Problem:** 
-- R1 wird dupliziert (memory_drift += 2 pro Station statt +1)
-- Siehe `reports/rules_policy_r1_drift_fix.md` für Details und Empfehlungen
+**R1 Status:** 
+- Keine doppelte Erhöhung; Engine übernimmt Default +1, Overrides nur bei expliziten Choice-Effects
+- Details siehe `reports/rules_policy_r1_drift_fix.md`
 
 **Teile:**
 - Engine: Canon Rules und State Management

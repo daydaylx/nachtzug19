@@ -158,6 +158,21 @@ Nicht das Rattern von Schienen. Tiefer. Ein Brummen, das du im Brustkorb spürst
           { type: 'inc', target: 'tickets_guilt', value: 1 }
         ],
         next: 'c1_interlude_01_lights'
+      },
+      {
+        id: 'edge_glance',
+        label: 'Zum Rand schauen',
+        condition: {
+          type: 'compare',
+          target: 'conductor_attention',
+          operator: '>=',
+          value: 1
+        },
+        effects: [
+          { type: 'inc', target: 'tickets_escape', value: 1 },
+          { type: 'dec', target: 'conductor_attention', value: 1 }
+        ],
+        next: 'c1_interlude_01_lights'
       }
     ],
     tags: ['drift_seed'],
@@ -196,6 +211,36 @@ Dann wird das Licht konstant. Die Röhre hört auf zu flackern. Das Brummen blei
         next: 'c1_s02_train_appears'
       },
       {
+        id: 'trace_shadow',
+        label: 'Den Schatten messen',
+        condition: {
+          type: 'compare',
+          target: 'tickets_truth',
+          operator: '>=',
+          value: 2
+        },
+        effects: [
+          { type: 'inc', target: 'tickets_truth', value: 1 },
+          { type: 'inc', target: 'memory_drift', value: 1 }
+        ],
+        next: 'c1_s02_train_appears'
+      },
+      {
+        id: 'avert_eyes',
+        label: 'Den Blick senken',
+        condition: {
+          type: 'compare',
+          target: 'tickets_guilt',
+          operator: '>=',
+          value: 1
+        },
+        effects: [
+          { type: 'inc', target: 'tickets_guilt', value: 1 },
+          { type: 'dec', target: 'conductor_attention', value: 1 }
+        ],
+        next: 'c1_s02_train_appears'
+      },
+      {
         id: 'continue',
         label: 'Weiter',
         effects: [
@@ -208,7 +253,8 @@ Dann wird das Licht konstant. Die Röhre hört auf zu flackern. Das Brummen blei
     state_notes: [
       'Schatten stimmt nicht (erste visuelle Drift)',
       'Interlude: kurz, atmosphärisch, kein Plot',
-      'close_eyes senkt attention, wenn bereits aufgebaut'
+      'close_eyes senkt attention, wenn bereits aufgebaut',
+      'avert_eyes nur bei tickets_guilt >= 1 (Guilt-Callback)'
     ],
     atmosphere: 'mystic'
   },
@@ -362,6 +408,21 @@ Hinter dir: Ein Geräusch. Schritte? Nein. Nur das Brummen, das leiser wird. Der
           { type: 'inc', target: 'conductor_attention', value: 1 }
         ],
         next: 'c1_interlude_02_silence'
+      },
+      {
+        id: 'watch_windows',
+        label: 'In die Fenster starren',
+        condition: {
+          type: 'compare',
+          target: 'memory_drift',
+          operator: '>=',
+          value: 1
+        },
+        effects: [
+          { type: 'inc', target: 'tickets_truth', value: 1 },
+          { type: 'inc', target: 'memory_drift', value: 1 }
+        ],
+        next: 'c1_interlude_02_silence'
       }
     ],
     tags: ['reveal'],
@@ -384,25 +445,25 @@ Hinter dir: Ein Geräusch. Schritte? Nein. Nur das Brummen, das leiser wird. Der
 
 Und dann: Stille.
 
-Nicht die normale Stille, wenn man in einen Zug einsteigt. Eine zu saubere Stille. Als wäre der Raum schalldicht.
+Nicht die normale Stille, wenn man in einen Zug einsteigt. Eine zu saubere Stille. Als wäre der Raum schalldicht. Als hätte jemand den Ton abgedreht.
 
-Du schluckst. Das Geräusch bleibt aus. Es fühlt sich an, als hätte jemand den Raum ausgekleidet.
+Du schluckst. Das Geräusch bleibt aus. Es fühlt sich an, als hätte jemand den Raum mit Watte ausgekleidet. Der Druck auf deinen Ohren wächst, ein dumpfes Pochen, das von innen gegen das Trommelfell drückt, als würdest du tief unter Wasser tauchen.
 
-Du hebst die Hand, klopfst leicht gegen das Metall. Kein Echo. Nur ein stumpfer Widerstand, der in deine Finger kriecht.
+Du hebst die Hand, klopfst leicht gegen das Metall der Wand. Kein Echo. Nur ein stumpfer Widerstand, der in deine Finger kriecht, eine Vibration, die nirgendwohin geht. Das Metall ist kalt, aber nicht glatt – es fühlt sich porös an, als würde es deine Berührung aufsaugen.
 
-Du öffnest den Mund, um deinen Namen zu sagen. Luft bewegt sich, aber der Ton bleibt hängen, als hätte er keinen Platz.
+Du öffnest den Mund, um deinen Namen zu sagen. Luft bewegt sich, aber der Ton bleibt hängen, als hätte er keinen Platz in dieser dichten Luft. Deine Zunge fühlt sich schwer an, trocken, wie Sandpapier.
 
-Dein eigener Puls drückt von innen gegen die Ohren. Ein dumpfes Pochen, das nicht von außen kommt.
+Dein eigener Puls drückt von innen gegen die Schläfen. Ein rhythmisches Pochen, das viel zu laut ist für diesen leeren Raum. Bumm. Bumm. Bumm.
 
-Der Geruch von altem Polster ist plötzlich schärfer, süßlich und staubig, und du merkst, wie du flacher atmest.
+Der Geruch von altem Polster ist plötzlich schärfer, süßlich und staubig, gemischt mit etwas Metallischem – Kupfer oder Blut? Du merkst, wie du flacher atmest, um den Geschmack nicht auf die Zunge zu bekommen.
 
-Du reibst die Fingerspitzen an der Kante des Sitzes, suchst ein Geräusch, ein Zeichen. Nichts. Die Stille antwortet nicht, sie bleibt.
+Du reibst die Fingerspitzen an der Kante des Sitzes, suchst ein Geräusch, ein Zeichen. Nichts. Das Velours ist rau, widerborstig, aber es gibt keinen Laut von sich. Die Stille antwortet nicht, sie bleibt. Sie liegt schwer auf deinen Schultern, wie eine bleierne Decke.
 
-Du hörst, wie der Stoff deiner Jacke an deinem Hals scheuert, ein Geräusch, das nur in dir stattfindet. Die Stille drückt gegen die Augen, als wäre sie greifbar, und du blinzelst, nur um etwas zu bewegen. Es hilft nicht. Die Luft bleibt fest.
+Du hörst, wie der Stoff deiner Jacke an deinem Hals scheuert, ein Geräusch, das nur in dir stattfindet, übertragen durch Knochenleitung. Die Stille drückt gegen die Augen, als wäre sie greifbar, und du blinzelst, nur um etwas zu bewegen. Es hilft nicht. Die Luft bleibt fest, unbewegt.
 
 Kein Rattern. Kein Ventilator. Kein Gemurmel.
 
-Nur das Brummen, leise im Hintergrund. Konstant. Wie ein Herzschlag.`,
+Nur das Brummen, leise im Hintergrund. Konstant. Wie ein Herzschlag, der nicht deiner ist.`,
     choices: [
       {
         id: 'stay_quiet',
@@ -416,6 +477,21 @@ Nur das Brummen, leise im Hintergrund. Konstant. Wie ein Herzschlag.`,
         effects: [
           { type: 'inc', target: 'tickets_escape', value: 1 },
           { type: 'dec', target: 'conductor_attention', value: 1 }
+        ],
+        next: 'c1_s03_inside_train'
+      },
+      {
+        id: 'test_voice',
+        label: 'Den eigenen Namen fluestern',
+        condition: {
+          type: 'compare',
+          target: 'conductor_attention',
+          operator: '>=',
+          value: 1
+        },
+        effects: [
+          { type: 'inc', target: 'tickets_truth', value: 1 },
+          { type: 'inc', target: 'conductor_attention', value: 1 }
         ],
         next: 'c1_s03_inside_train'
       },
@@ -483,6 +559,20 @@ Zur Rechten: Ein leeres Abteil mit einem Koffer auf dem Sitz. Leder, verwittert,
           { type: 'inc', target: 'tickets_escape', value: 1 }
         ],
         next: 'c1_s03a_corridor_walk'
+      },
+      {
+        id: 'choose_door_seat',
+        label: 'Einen Platz nahe der Tuer suchen',
+        condition: {
+          type: 'compare',
+          target: 'tickets_escape',
+          operator: '>=',
+          value: 2
+        },
+        effects: [
+          { type: 'inc', target: 'tickets_escape', value: 1 }
+        ],
+        next: 'c1_s03a_corridor_walk'
       }
     ],
     tags: [],
@@ -534,6 +624,21 @@ Dann zurück zur Zeichnung.`,
           { type: 'inc', target: 'tickets_escape', value: 1 }
         ],
         next: 'c1_s03b_find_seat'
+      },
+      {
+        id: 'follow_hum',
+        label: 'Dem Summen folgen',
+        condition: {
+          type: 'compare',
+          target: 'memory_drift',
+          operator: '>=',
+          value: 1
+        },
+        effects: [
+          { type: 'inc', target: 'tickets_truth', value: 1 },
+          { type: 'inc', target: 'memory_drift', value: 1 }
+        ],
+        next: 'c1_s03b_find_seat'
       }
     ],
     tags: ['drift_seed'],
@@ -575,6 +680,21 @@ Dann, eine Stimme hinter dir: „Du auch?"`,
         label: 'Ignorieren',
         effects: [
           { type: 'inc', target: 'tickets_escape', value: 1 }
+        ],
+        next: 'c1_s04_sleepless_intro'
+      },
+      {
+        id: 'stay_with_window',
+        label: 'Den Blick im Fenster halten',
+        condition: {
+          type: 'compare',
+          target: 'memory_drift',
+          operator: '>=',
+          value: 1
+        },
+        effects: [
+          { type: 'inc', target: 'memory_drift', value: 1 },
+          { type: 'inc', target: 'tickets_truth', value: 1 }
         ],
         next: 'c1_s04_sleepless_intro'
       }
@@ -631,6 +751,21 @@ Er zuckt mit den Schultern. „Hattest du eins?"`,
       {
         id: 'deny',
         label: '„Das kann nicht sein."',
+        effects: [
+          { type: 'inc', target: 'tickets_escape', value: 1 },
+          { type: 'dec', target: 'rel_sleepless', value: 1 }
+        ],
+        next: 'c1_s04a_sleepless_past'
+      },
+      {
+        id: 'stay_silent',
+        label: 'Nichts sagen',
+        condition: {
+          type: 'compare',
+          target: 'tickets_escape',
+          operator: '>=',
+          value: 2
+        },
         effects: [
           { type: 'inc', target: 'tickets_escape', value: 1 },
           { type: 'dec', target: 'rel_sleepless', value: 1 }
@@ -719,15 +854,27 @@ Eine Pause.
     id: 'c1_interlude_03_window',
     chapter: 1,
     title: 'Fenster',
-    narrative: `Der Schlaflose geht zurück zu seinem Platz.
+    narrative: `Der Schlaflose geht zurück zu seinem Platz. Seine Schritte sind schwer, schlurfend, als würde er ein Gewicht tragen, das du nicht sehen kannst.
 
 Du bleibst am Fenster stehen.
 
-Draußen: Immer noch Schwärze. Aber jetzt siehst du Strukturen. Schatten von Bäumen? Häusern? Oder nur deine Reflexion, die sich bewegt?
+Draußen: Immer noch Schwärze. Eine dichte, undurchdringliche Masse, die das Licht des Zuges einfach verschluckt, ohne etwas zurückzuwerfen. Keine Sterne. Kein Mond. Keine Lichter von Häusern oder Straßenlaternen. Nur dieses endlose, matte Schwarz.
 
-Du hebst die Hand. Deine Reflexion hebt die Hand.
+Aber jetzt, als sich deine Augen an das Dunkel gewöhnen, siehst du Strukturen. Schatten von Bäumen? Verzerrte Äste, die wie Finger nach dem Zug greifen? Häusern ohne Fenster? Oder ist es nur deine eigene Angst, die Formen in die Leere projiziert?
 
-Aber eine Sekunde zu spät.`,
+Vielleicht ist es nur deine Reflexion, die sich im Doppelglas bricht und bewegt.
+
+Du hebst die Hand, langsam, fast zögernd. Deine Reflexion im Glas hebt die Hand.
+
+Aber eine Sekunde zu spät.
+
+Der Bruchteil eines Augenblicks, kaum wahrnehmbar, aber dein Gehirn registriert die Verzögerung. Ein Schauer läuft dir über den Rücken. Die Reflexion starrt dich an, die Augen dunkel und leer, als würde sie warten. Als würde sie nur imitieren, was du tust, aber mit einem eigenen Willen dahinter.
+
+Du legst die Fingerspitzen an das Glas. Es ist eiskalt, kälter als die Luft draußen sein dürfte. Die Kälte brennt fast auf der Haut. Dein Atem bildet einen kleinen Nebelfleck auf der Scheibe, der sofort wieder verschwindet, als würde das Glas ihn aufsaugen.
+
+Dahinter, in der Tiefe der Schwärze, bewegt sich etwas. Ein Schatten, der dunkler ist als die Nacht. Er gleitet parallel zum Zug, hält Schritt, ohne Anstrengung.
+
+Du blinzelst, und die Bewegung ist weg. Nur dein verzögertes Spiegelbild starrt zurück.`,
     choices: [
       {
         id: 'touch_glass',
@@ -806,6 +953,21 @@ Du willst nachfragen, aber er schüttelt den Kopf. „Du wirst es sehen. Jeder s
         label: '„Ich komme schon klar."',
         effects: [
           { type: 'inc', target: 'tickets_escape', value: 1 }
+        ],
+        next: 'c1_s05_first_anomaly'
+      },
+      {
+        id: 'mention_reflection',
+        label: 'Die versetzte Reflexion erwaehnen',
+        condition: {
+          type: 'compare',
+          target: 'memory_drift',
+          operator: '>=',
+          value: 2
+        },
+        effects: [
+          { type: 'inc', target: 'tickets_truth', value: 1 },
+          { type: 'inc', target: 'memory_drift', value: 1 }
         ],
         next: 'c1_s05_first_anomaly'
       }
@@ -1052,6 +1214,12 @@ Niemand spricht. Niemand bewegt sich. Außer diesen kleinen Gesten.`,
       {
         id: 'count_passengers',
         label: 'Die Passagiere zählen',
+        condition: {
+          type: 'compare',
+          target: 'memory_drift',
+          operator: '>=',
+          value: 2
+        },
         effects: [
           { type: 'inc', target: 'tickets_truth', value: 1 }
         ],
@@ -1096,7 +1264,7 @@ Niemand spricht. Niemand bewegt sich. Außer diesen kleinen Gesten.`,
       'Kopfhörer ohne Kabel (Details stimmen nicht)',
       'approach_woman erhöht conductor_attention (Interaktion = Risiko)',
       'Frau = Comp7-Foreshadowing',
-      'CONDITION: stay_inconspicuous nur bei conductor_attention >= 2'
+      'CONDITION: stay_inconspicuous nur bei conductor_attention >= 2; count_passengers nur bei memory_drift >= 2'
     ],
     atmosphere: 'somber'
   },
@@ -1243,6 +1411,21 @@ Der Zug hält noch nicht.`,
           { type: 'inc', target: 'tickets_escape', value: 1 }
         ],
         next: 'c1_s06_corridor_end'
+      },
+      {
+        id: 'name_the_time',
+        label: 'Die Uhrzeit leise nennen',
+        condition: {
+          type: 'compare',
+          target: 'tickets_truth',
+          operator: '>=',
+          value: 2
+        },
+        effects: [
+          { type: 'inc', target: 'tickets_truth', value: 1 },
+          { type: 'inc', target: 'memory_drift', value: 1 }
+        ],
+        next: 'c1_s05d_comp7_listen'
       }
     ],
     tags: ['drift_seed'],
@@ -1308,6 +1491,21 @@ Stille.`,
         effects: [
           { type: 'inc', target: 'tickets_love', value: 1 },
           { type: 'inc', target: 'rel_comp7', value: 2 }
+        ],
+        next: 'c1_s06_corridor_end'
+      },
+      {
+        id: 'hold_position',
+        label: 'Im Gang warten',
+        condition: {
+          type: 'compare',
+          target: 'conductor_attention',
+          operator: '>=',
+          value: 2
+        },
+        effects: [
+          { type: 'inc', target: 'tickets_escape', value: 1 },
+          { type: 'dec', target: 'conductor_attention', value: 1 }
         ],
         next: 'c1_s06_corridor_end'
       }
@@ -1565,6 +1763,21 @@ Der Zug hält.`,
           { type: 'inc', target: 'memory_drift', value: 1 }
         ],
         next: 'c1_end_platform_look'
+      },
+      {
+        id: 'echo_tone',
+        label: 'Den Ton nachsprechen',
+        condition: {
+          type: 'compare',
+          target: 'memory_drift',
+          operator: '>=',
+          value: 2
+        },
+        effects: [
+          { type: 'inc', target: 'tickets_truth', value: 1 },
+          { type: 'inc', target: 'memory_drift', value: 1 }
+        ],
+        next: 'c1_end_platform_look'
       }
     ],
     tags: ['drift_seed'],
@@ -1595,15 +1808,6 @@ Die Frau im Mantel steht immer noch an der Tür. Wartet. Aber die Tür öffnet s
 
 Nach dreißig Sekunden: Der Zug fährt weiter. Die Frau setzt sich wieder hin. Legt den Koffer ab. Als wäre nichts gewesen.`,
     choices: [
-      {
-        id: 'ask_woman',
-        label: 'Die Frau fragen',
-        effects: [
-          { type: 'inc', target: 'tickets_love', value: 1 },
-          { type: 'inc', target: 'conductor_attention', value: 1 }
-        ],
-        next: 'c1_end_station'
-      },
       {
         id: 'observe_silently',
         label: 'Beobachten, nichts sagen',
@@ -1642,13 +1846,28 @@ Nach dreißig Sekunden: Der Zug fährt weiter. Die Frau setzt sich wieder hin. L
           { type: 'inc', target: 'memory_drift', value: 1 }
         ],
         next: 'c1_end_station'
+      },
+      {
+        id: 'scan_exits',
+        label: 'Nach Ausgängen suchen',
+        condition: {
+          type: 'compare',
+          target: 'tickets_escape',
+          operator: '>=',
+          value: 2
+        },
+        effects: [
+          { type: 'inc', target: 'tickets_escape', value: 1 }
+        ],
+        next: 'c1_end_station'
       }
     ],
     tags: [],
     state_notes: [
       'Türen öffnen sich nicht (erste Station-Regel: nicht jeder darf raus)',
       'ask_sleepless nur bei rel_sleepless >= 1',
-      'CONDITION: check_clock_again nur bei memory_drift >= 2'
+      'CONDITION: check_clock_again nur bei memory_drift >= 2',
+      'CONDITION: scan_exits nur bei tickets_escape >= 2 (Callback für steady_breath)'
     ],
     atmosphere: 'somber'
   },
@@ -1698,9 +1917,7 @@ Aber seine Hände zittern.`,
         id: 'continue_to_chapter_2',
         label: 'Weiter',
         effects: [
-          { type: 'set', target: 'chapter_index', value: 2 },
-          { type: 'inc', target: 'station_count', value: 1 },
-          { type: 'inc', target: 'memory_drift', value: 1 }
+          { type: 'set', target: 'chapter_index', value: 2 }
         ],
         next: 'c2_s01_ticket_search'
       },
@@ -1716,7 +1933,6 @@ Aber seine Hände zittern.`,
         },
         effects: [
           { type: 'set', target: 'chapter_index', value: 2 },
-          { type: 'inc', target: 'station_count', value: 1 },
           { type: 'inc', target: 'memory_drift', value: 2 },
           { type: 'inc', target: 'tickets_truth', value: 1 },
           { type: 'inc', target: 'rel_sleepless', value: 1 }
@@ -1734,7 +1950,6 @@ Aber seine Hände zittern.`,
         },
         effects: [
           { type: 'set', target: 'chapter_index', value: 2 },
-          { type: 'inc', target: 'station_count', value: 1 },
           { type: 'inc', target: 'conductor_attention', value: 1 },
           { type: 'inc', target: 'tickets_guilt', value: 1 }
         ],
@@ -1743,7 +1958,7 @@ Aber seine Hände zittern.`,
     ],
     tags: ['station_end'],
     state_notes: [
-      'Erste station_end-Szene: memory_drift automatisch erhöht durch Engine-R1 (keine manuellen exit_effects)',
+      'R1: Engine erhoeht memory_drift/station_count automatisch; confront_jacket_change setzt memory_drift +2 (Override)',
       'Jackenfarbe ändert sich (Drift-Effekt), Sleepless reagiert nicht',
       'Zettel = Foreshadowing (später relevant)',
       'CONDITION: confront_jacket_change nur bei tickets_truth >= 3 ODER conductor_attention >= 3'

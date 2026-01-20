@@ -69,6 +69,22 @@ Aber alle… verschwinden.
 Langsam.
 
 Wie Rauch.`,
+    narrative_variants: [
+      {
+        condition: { type: 'bool', target: 'has_tag19', value: true },
+        narrative: `Du steigst wieder ein. Zum letzten Mal.
+
+Die Türen schließen sich mit einem Geräusch, das der Schlüsselanhänger in deiner Hand als tiefes, metallisches Echo wiedergibt. Er ist schwerer geworden, ein bleiernes Gewicht, das dich nach unten zieht, tiefer in den Kern des Zuges.
+
+Der Zug setzt sich in Bewegung, und durch das Tag 19 spürst du den Widerstand der Zeit selbst. Die Luft ist nicht nur dicht – sie schmeckt nach Messing und Elektrizität.
+
+Die Wände sind durchsichtig, und wo andere nur Schemen sehen, erkennst du durch den Anhänger klare Fragmente deiner eigenen Geschichte. Du siehst nicht nur Rauch, sondern die Gesichter derer, die du verloren hast, eingefroren in Momenten, die nie endeten.
+
+Der Anhänger vibriert mit einer Frequenz, die die durchsichtigen Wände zum Zittern bringt. Es ist keine passive Beobachtung mehr. Es ist eine Resonanz.
+
+Du bist kein Passagier mehr. Du bist der Anker.`
+      }
+    ],
     choices: [
       {
         id: 'observe_walls',
@@ -88,10 +104,17 @@ Wie Rauch.`,
         next: 'c7_s02_interlude_silence'
       },
       {
-        id: 'touch_walls',
-        label: 'Die Wand berühren',
+        id: 'touch_walls_memories',
+        label: 'In die Erinnerungen greifen',
+        condition: {
+          type: 'compare',
+          target: 'memory_drift',
+          operator: '>=',
+          value: 2
+        },
         effects: [
-          { type: 'inc', target: 'tickets_truth', value: 1 }
+          { type: 'inc', target: 'tickets_truth', value: 1 },
+          { type: 'inc', target: 'memory_drift', value: 2 }
         ],
         next: 'c7_s02_interlude_silence'
       }
@@ -100,7 +123,7 @@ Wie Rauch.`,
       'Eröffnungsszene Kapitel 7 (Finale)',
       'Zug verändert sich drastisch',
       'Wände durchsichtig (Zeitschichten sichtbar)',
-      'Schwere Atmosphäre'
+      'CONDITION: touch_walls_memories bei memory_drift >= 2'
     ],
     atmosphere: 'dark'
   },
@@ -246,12 +269,28 @@ An einem Ort, wo Geräusche nicht mehr existieren.`
           { type: 'inc', target: 'tickets_truth', value: 1 }
         ],
         next: 'c7_s03_comp7_goodbye'
+      },
+      {
+        id: 'break_silence',
+        label: 'Gegen die Stille anschreien',
+        condition: {
+          type: 'compare',
+          target: 'conductor_attention',
+          operator: '>=',
+          value: 3
+        },
+        effects: [
+          { type: 'inc', target: 'conductor_attention', value: 1 },
+          { type: 'inc', target: 'tickets_escape', value: 1 }
+        ],
+        next: 'c7_s03_comp7_goodbye'
       }
     ],
     state_notes: [
       'Interlude: Totale Stille',
       'Kein Ton mehr (Endgültigkeit)',
-      'Isolation/Liminalität'
+      'Isolation/Liminalität',
+      'CONDITION: break_silence bei conductor_attention >= 3'
     ],
     tags: ['interlude'],
     atmosphere: 'tense'
@@ -651,13 +690,28 @@ Welches "du" ist real?`,
           { type: 'inc', target: 'memory_drift', value: 1 }
         ],
         next: 'c7_s06_announcement_distorted'
+      },
+      {
+        id: 'search_for_anchor',
+        label: 'Nach einer vertrauten Verbindung suchen',
+        condition: {
+          type: 'compare',
+          target: 'tickets_love',
+          operator: '>=',
+          value: 3
+        },
+        effects: [
+          { type: 'inc', target: 'tickets_love', value: 1 },
+          { type: 'inc', target: 'memory_drift', value: 1 }
+        ],
+        next: 'c7_s06_announcement_distorted'
       }
     ],
     state_notes: [
       'Interlude: Zeit bricht zusammen',
       'Uhren zeigen verschiedene Jahre',
       'Gang faltet sich',
-      'Selbstbegegnung'
+      'CONDITION: search_for_anchor bei tickets_love >= 3'
     ],
     tags: ['interlude'],
     atmosphere: 'mystic'
@@ -707,6 +761,26 @@ Die Lautsprecher kreischen.
 
 Dann – Stille.`,
     narrative_variants: [
+      {
+        condition: { type: 'bool', target: 'has_tag19', value: true },
+        narrative: `Die Lautsprecher knistern, aber der Lärm erreicht dich nicht direkt. Der Schlüsselanhänger in deiner Hand fungiert wie ein Filter, er wandelt das schrille Kreischen in ein rhythmisches Pulsieren um.
+
+Dann – eine Stimme. Klarer als je zuvor. Deine eigene Stimme, aufgenommen auf einem Band, das nie existieren sollte.
+
+„Nächster Halt. Endstation."
+
+Während die Stimme von Wagen 7 und Sitz 19 spricht, brennt sich die Zahl 19 auf dem Anhänger in deine Wahrnehmung ein. Sie glüht weißheiß, ein gleißendes Licht, das die Dunkelheit im Gang für einen Moment vertreibt.
+
+„Ankunft… vor fünfzig Jahren."
+
+Du spürst durch das Metall das Beben des Aufpralls, den Moment, in dem die Zeit für dich stehen blieb. Es ist kein fernes Ereignis mehr. Es ist jetzt.
+
+Der Anhänger vibriert so stark, dass deine ganze Hand taub wird. Die Stille, die folgt, ist nicht leer. Sie ist gefüllt mit dem Wissen, das du endlich zugelassen hast.
+
+Wagen 7. Sitz 19. 19. September 1973.
+
+Alles fällt an seinen Platz.`
+      },
       {
         min_drift: 3,
         narrative: `Die Lautsprecher knistern.
@@ -796,7 +870,7 @@ Die Stimme lacht.
         id: 'deny_message',
         label: 'Die Ansage ignorieren',
         effects: [
-          { type: 'inc', target: 'tickets_escape', value: 1 }
+          { type: 'inc', target: 'tickets_escape', value: 2 }
         ],
         next: 'c7_s07_announcement_name'
       }
@@ -883,6 +957,12 @@ An alles.`,
       {
         id: 'resist_memory',
         label: 'Gegen die Erinnerung ankämpfen',
+        condition: {
+          type: 'compare',
+          target: 'tickets_escape',
+          operator: '>=',
+          value: 2
+        },
         effects: [
           { type: 'inc', target: 'tickets_escape', value: 2 }
         ],
@@ -1256,6 +1336,24 @@ Die Tür öffnet sich weiter.
 Das Licht wird heller.
 
 Blendend.`,
+    narrative_variants: [
+      {
+        condition: { type: 'bool', target: 'has_tag19', value: true },
+        narrative: `Du stehst wieder vor Abteil 7. Die Tür ist da, massiv und realer als alles andere im Zug.
+
+Sie ist offen. Ein Spaltbreit goldenes Licht dringt heraus, aber es blendet dich nicht. Der Schlüsselanhänger in deiner Hand erzeugt ein schützendes Feld, eine kühle Brise, die das Feuer des Lichts abmildert.
+
+Eine Stimme ruft von innen – es ist deine eigene, aber sie klingt geheilt, vollständig. „Komm herein. Ich habe auf dich gewartet. Fünfzig Jahre… oder nur diesen einen Moment."
+
+Der Anhänger vibriert sanft, ein beständiges, beruhigendes Brummen, das dir den Weg weist. Er zieht dich förmlich zur Tür hin, ein sanfter magnetischer Sog, dem du vertrauen kannst.
+
+„Komm. Wir können es beenden. Gemeinsam."
+
+Die Tür öffnet sich weit. Das Licht flutet den Gang, doch durch das Tag 19 siehst du die Strukturen dahinter – den Weg nach Hause.
+
+Du trittst über die Schwelle.`
+      }
+    ],
     choices: [
       {
         id: 'enter_seven_recognized',
@@ -2132,12 +2230,28 @@ Dann ist es vorbei.`
           { type: 'inc', target: 'tickets_truth', value: 1 }
         ],
         next: 'c7_s20_conductor_finale'
+      },
+      {
+        id: 'resist_end',
+        label: 'Sich gegen das Ende sträuben',
+        condition: {
+          type: 'compare',
+          target: 'tickets_escape',
+          operator: '>=',
+          value: 3
+        },
+        effects: [
+          { type: 'inc', target: 'tickets_escape', value: 1 },
+          { type: 'inc', target: 'memory_drift', value: 1 }
+        ],
+        next: 'c7_s20_conductor_finale'
       }
     ],
     state_notes: [
       'Interlude: Zug hält endgültig',
       'Stille/Ruhe',
-      'Ende nahe'
+      'Ende nahe',
+      'CONDITION: resist_end bei tickets_escape >= 3'
     ],
     tags: ['interlude'],
     atmosphere: 'tense'
@@ -2244,7 +2358,6 @@ Endgültig.`,
       }
     ],
     state_notes: [
-      'Schaffner Finale (ÜBERARBEITET)',
       'CONDITION: thank_conductor_high_attention nur bei conductor_attention >= 4',
       'NEW: last_sacrifice Choice führt zu Last-Minute Boost Subszene',
       'Ermöglicht +2 auf beliebiges Ticket (Preis: +5 memory_drift gesamt)',
@@ -2403,6 +2516,20 @@ Auf der Rückseite steht jetzt mehr:
         next: 'c7_s22_tag19_final'
       },
       {
+        id: 'trace_anomaly',
+        label: 'Die Verzerrung nachzeichnen',
+        condition: {
+          type: 'bool',
+          target: 'photo_anomaly',
+          value: true
+        },
+        effects: [
+          { type: 'inc', target: 'tickets_truth', value: 1 },
+          { type: 'inc', target: 'memory_drift', value: 1 }
+        ],
+        next: 'c7_s22_tag19_final'
+      },
+      {
         id: 'put_away_photo',
         label: 'Das Foto weglegen',
         effects: [
@@ -2412,10 +2539,9 @@ Auf der Rückseite steht jetzt mehr:
       }
     ],
     state_notes: [
-      'Foto Enthüllung',
-      'Spieler auf Foto sichtbar',
-      '156 Passagiere (alle im Zug)',
-      '"Alle angekommen" - mehrdeutig'
+      'Foto Enthuellung: Spieler auf Foto sichtbar (1973)',
+      'Rueckseite: "Letzte Fahrt... Alle angekommen" - mehrdeutig',
+      'CONDITION: trace_anomaly nur bei photo_anomaly'
     ],
     atmosphere: 'mystic'
   },
@@ -2561,14 +2687,11 @@ Wartend.`,
       }
     ],
     state_notes: [
-      'Tag19 finale Bedeutung - VERSTÄRKT',
       'SYNÄSTHESIE: Tag wird heiß, vibriert, summt',
       'CONDITION: use_as_anchor nur bei has_tag19 UND tickets_truth >= 5',
       'use_as_anchor: MASSIVER BONUS (+4 Truth, memory_drift auf 0 gesetzt)',
       'CONDITION: let_go_tag nur bei has_tag19',
-      'CONDITION: keep_tag nur bei has_tag19 (jetzt negativ: +guilt, +drift)',
-      '19 als Anker in der Zeit',
-      'Loslassen möglich'
+      'CONDITION: keep_tag nur bei has_tag19 (jetzt negativ: +guilt, +drift)'
     ],
     atmosphere: 'mystic'
   },
@@ -2813,13 +2936,29 @@ Bist bereit.`,
           { type: 'inc', target: 'station_count', value: 1 }
         ],
         next: 'c7_end_station'
+      },
+      {
+        id: 'look_back_one_last_time',
+        label: 'Ein letztes Mal zurückblicken',
+        condition: {
+          type: 'compare',
+          target: 'tickets_truth',
+          operator: '>=',
+          value: 3
+        },
+        effects: [
+          { type: 'inc', target: 'tickets_truth', value: 1 },
+          { type: 'inc', target: 'station_count', value: 1 }
+        ],
+        next: 'c7_end_station'
       }
     ],
     state_notes: [
       'Letzte Reflexion',
       'Vorbereitung auf Ending',
       'Identitätsfrage',
-      'Übergang zu Endstation'
+      'Übergang zu Endstation',
+      'CONDITION: look_back_one_last_time bei tickets_truth >= 3'
     ],
     atmosphere: 'somber'
   },
@@ -2931,6 +3070,20 @@ Was nimmst du mit… ins Danach?`,
         ending: 'love_ending'
       },
       {
+        id: 'escape_path',
+        label: 'Im Zug bleiben – für immer',
+        condition: {
+          type: 'compare',
+          target: 'tickets_escape',
+          operator: '>=',
+          value: 6
+        },
+        effects: [
+          { type: 'set', target: 'chapter_index', value: 8 }
+        ],
+        ending: 'escape_ending'
+      },
+      {
         id: 'limbo_path',
         label: 'Zwischen den Welten bleiben',
         effects: [
@@ -2942,9 +3095,9 @@ Was nimmst du mit… ins Danach?`,
     tags: ['station_end'],
     state_notes: [
       'Station-End: Finale - Zug verblasst (1973 aufgelöst)',
-      'ENDINGS: Truth, Escape, Guilt, Love (Schwellenwerte GESENKT auf 6)',
+      'ENDINGS: Truth, Escape, Guilt, Love (Schwellenwerte 6)',
       'NEW: Limbo-Ending als Fallback (keine Condition)',
-      'station_count automatisch erhöht durch Engine (keine manuellen exit_effects)'
+      'R1: Engine erhoeht memory_drift/station_count automatisch (keine manuellen station_end-Effects)'
     ],
     atmosphere: 'mystic'
   }

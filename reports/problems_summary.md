@@ -7,12 +7,12 @@
 ## Executive Summary
 
 **Total Issues Identified**: 93
-- **P0 (Blocker)**: 5 issues - Must fix before release
-- **P1 (High Priority)**: 7 issues - Important for quality
+- **P0 (Blocker)**: 5 issues - Fixed
+- **P1 (High Priority)**: 7 issues - 3 fixed, 4 open
 - **P2 (Medium Priority)**: 4 issues - Improve long-term maintainability
 - **P3 (Low Priority)**: 77 issues - Enhancement opportunities
 
-**Critical Path**: Fix 5 P0 issues → Address P1 quality concerns → Production-ready
+**Critical Path**: P0 fixed → Address P1 quality concerns → Production-ready
 
 ---
 
@@ -21,68 +21,67 @@
 ### 1. Content Format Error: c1_interlude_01_lights
 **File**: `src/content/nachtzug19/scenes/c1.ts`
 **Location**: Scene ID `c1_interlude_01_lights`
-**Problem**: Choice 'continue' has empty `effects[]` array
+**Problem**: Resolved; choice now has a `memory_drift` effect
 **Violates**: Canon Rule R3 (Every Choice Has Callback)
 **Impact**: Breaks validation rules, violates player contract
 **Fix**:
 ```typescript
 effects: [
-  { type: 'inc', target: 'pressure.memory_drift', value: 1 },
-  { type: 'set', target: 'items.noticed_lights', value: true }
+  { type: 'inc', target: 'memory_drift', value: 1 }
 ]
 ```
-**Status**: ⬜ Not Started
+**Status**: ✅ Fixed
 
 ---
 
 ### 2. Content Format Error: c3_control_02_question
 **File**: `src/content/nachtzug19/scenes/c3.ts`
 **Location**: Scene ID `c3_control_02_question`
-**Problem**: Scene has 5 choices (exceeds 4-choice limit)
+**Problem**: Resolved; scene now has 4 choices
 **Violates**: Format Rule CF-2 (Max 4 choices per scene)
 **Impact**: UI design assumes max 4 choices, may cause layout issues
-**Fix**: Merge "reveal_truth" and "test_limits" into single "challenge" option
-**Status**: ⬜ Not Started
+**Fix**: Reduced to 4 choices (removed redundant option)
+**Status**: ✅ Fixed
 
 ---
 
 ### 3. Content Format Error: c5_s10_boy_reunion
 **File**: `src/content/nachtzug19/scenes/c5.ts`
 **Location**: Scene ID `c5_s10_boy_reunion`
-**Problem**: Scene has 5 choices (exceeds 4-choice limit)
+**Problem**: Resolved; scene now has 3 conditional choices
 **Violates**: Format Rule CF-2 (Max 4 choices per scene)
 **Impact**: UI design assumes max 4 choices, may cause layout issues
-**Fix**: Merge "share_pain" and "acknowledge_loss" into "be_honest" option
-**Status**: ⬜ Not Started
+**Fix**: Reduced to <= 4 choices (removed redundant option)
+**Status**: ✅ Fixed
 
 ---
 
 ### 4. Architectural Violation: PlayerScreen.tsx
 **File**: `src/ui/player/PlayerScreen.tsx:3`
-**Problem**: Direct import from domain/engine layer
+**Problem**: Resolved; UI now imports from domain/types
 ```typescript
-import { resolveSceneNarrative } from '../../domain/engine/gameEngine';
+import { Scene, Choice, GameState, resolveSceneNarrative } from '../../domain/types';
 ```
 **Violates**: Layer separation (UI should only import from domain/types)
 **Impact**: Creates tight coupling, breaks architecture
-**Fix**: Export `resolveSceneNarrative` from `domain/types/index.ts` or create UI adapter
-**Status**: ⬜ Not Started
+**Fix**: Re-exported `resolveSceneNarrative` from `domain/types` and updated UI import
+**Status**: ✅ Fixed
 
 ---
 
 ### 5. React Hooks Violation: App.tsx
 **File**: `src/app/App.tsx:102`
-**Problem**: `useEffect` inside conditional rendering
+**Problem**: Resolved; `useEffect` now runs at top level
 ```typescript
-if (gameMode === 'player') {
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  useEffect(() => { ... }, [engine]);
-}
+useEffect(() => {
+  if (appMode !== 'legacy' || !engine) return;
+  // ... rest of logic
+}, [appMode, engine]);
 ```
 **Violates**: React Rules of Hooks
 **Impact**: Unpredictable behavior, ESLint disabled
-**Fix**: Extract to custom hook or move outside conditional
-**Status**: ⬜ Not Started
+**Fix**: Moved hook outside conditional; removed ESLint disable
+**Status**: ✅ Fixed
 
 ---
 
@@ -90,21 +89,21 @@ if (gameMode === 'player') {
 
 ### 6. FAKE-CHOICE Problem (3 scenes)
 **Files**:
-- `src/content/nachtzug19/scenes/c4.ts` - c4_s01a_waking
-- `src/content/nachtzug19/scenes/c4.ts` - c4_s02_disorientation
-- `src/content/nachtzug19/scenes/c5.ts` - c5_s01_wake
+- `src/content/nachtzug19/scenes/c4.ts` - c4_s01a_double_reflection
+- `src/content/nachtzug19/scenes/c4.ts` - c4_s02_recorder_prophecy
+- `src/content/nachtzug19/scenes/c5.ts` - c5_s01_final_preparation
 
-**Problem**: All choices have identical effects AND identical next scene
+**Problem**: Resolved; effects now differ across choices (no identical outcomes)
 **Impact**: Player feels agency is fake, erodes trust
-**Example** (c4_s01a):
+**Example** (c4_s01a_double_reflection, jetzt differenziert):
 ```typescript
 choices: [
-  { effects: [{ inc: 'mut', value: 1 }], next: 'c4_s03_corridor' },
-  { effects: [{ inc: 'mut', value: 1 }], next: 'c4_s03_corridor' }
+  { id: 'try_to_understand', effects: [{ type: 'inc', target: 'tickets_truth', value: 2 }], next: 'c4_s01b_wrong_memory' },
+  { id: 'ask_when', effects: [{ type: 'inc', target: 'tickets_truth', value: 2 }, { type: 'inc', target: 'memory_drift', value: 1 }], next: 'c4_s01b_wrong_memory' }
 ]
 ```
-**Fix**: Different stat effects OR branching next scenes OR remove illusion
-**Status**: ⬜ Not Started
+**Fix**: Applied distinct effects in all three scenes (memory_drift/attention changes)
+**Status**: ✅ Fixed
 
 ---
 
@@ -122,44 +121,46 @@ choices: [
 7. c7_s12_final_choice (3 choices → c7_s13, only stat diffs)
 
 **Fix**: Add narrative variants OR branch paths OR defer callbacks to +2 scenes
-**Status**: ⬜ Not Started
+**Status**: 🟨 In Progress (23 scenes now have conditional follow-up choices)
+**Progress**: c1_s01_platform, c1_s01a_platform_details, c1_interlude_01_lights, c1_s02_train_appears, c1_s02a_train_exterior, c1_interlude_02_silence, c1_s03a_corridor_walk, c1_s03b_find_seat, c1_interlude_03_window, c1_interlude_04_clock, c1_s05a_other_passengers, c1_s07_stranger_encounter, c2_interlude_02_window_dark, c2_interlude_03_announcement_glitch, c2_s03_comp7_intro, c2_end_platform_watch, c3_s02a_recorder_listening, c3_s04a_paradox_window, c4_s02b_recorder_loop, c4_s07a_drift_peak, c5_s08_abteil7_aftermath, c6_s10_sleepless_gone, c7_s06_announcement_distorted
 
 ---
 
 ### 8. Missing photo_anomaly Payoff
 **File**: `src/content/nachtzug19/scenes/c7.ts`
-**Problem**: `items.photo_anomaly` set in C4/C5 but never referenced in Chapter 7
+**Problem**: Resolved; photo_anomaly now gates a conditional choice in Chapter 7
 **Impact**: Player doesn't see consequence of earlier choice
-**Fix**: Add conditional in c7_s15+ that references photo if `state.items.photo_anomaly === true`
-**Status**: ⬜ Not Started
+**Fix**: Added `trace_anomaly` choice in `c7_s21_photo_revelation` (condition on `photo_anomaly`)
+**Status**: ✅ Fixed
 
 ---
 
 ### 9. Missing Early Ticket Callbacks (C1/C2)
 **Problem**: ticket.truth/escape/guilt/love not referenced until C3+
 **Impact**: Player unsure if early choices matter
-**Fix**: Add 2-3 subtle callbacks in C2 that echo C1 ticket patterns
-**Suggestion**:
-- C2 NPC dialogue changes if `ticket.truth >= 2`
-- C2 station description varies with `ticket.escape >= 2`
-**Status**: ⬜ Not Started
+**Fix**: Added conditional choices in C2 tied to early tickets
+**Details**:
+- `c2_s01a_passenger_examination`: `decipher_headline` (tickets_truth >= 2)
+- `c2_interlude_02_window_dark`: `avoid_window` (tickets_escape >= 2)
+- `c2_interlude_03_announcement_glitch`: `look_for_boy` (tickets_love >= 1)
+- `c2_end_platform_watch`: `lower_gaze` (tickets_guilt >= 2)
+**Status**: ✅ Fixed
 
 ---
 
 ### 10. Low Choices/Chapter Metric
-**Current**: 26 choices/chapter (avg)
+**Current**: 55-79 choices/chapter (audit_chapters.mjs; counts conditional choices)
 **Target**: 30-45 choices/chapter
-**Chapters Below Target**: All except C7
-**Impact**: Reduced player agency, shorter playtime
-**Fix**: Add 5-10 new choice points per chapter (atmosphere scenes → decision scenes)
-**Status**: ⬜ Not Started
+**Status**: ⚠️ Metric mismatch
+**Impact**: Spec vs measurement is inconsistent; no clear deficit confirmed
+**Fix**: Define metric (player-visible choices per run) and update audit pipeline
 
 ---
 
 ### 11. Low Words/Chapter Metric
-**Current**: 4.4k-5.3k words/chapter
+**Current**: 2.1k-4.9k words/chapter (audit_chapters.mjs; narrative only)
 **Target**: 5.0k-6.5k words/chapter
-**Chapters Below Target**: C1 (4.4k), C2 (4.5k), C4 (4.8k), C5 (4.9k)
+**Chapters Below Target**: C1 (3.1k), C2 (2.4k), C3 (4.9k), C4 (2.4k), C5 (2.3k), C6 (2.1k), C7 (3.0k)
 **Impact**: Playtime below 30-35 minute target
 **Fix**: Expand 3-5 scenes per chapter by 100-150 words (atmosphere, not plot)
 **Status**: ⬜ Not Started
@@ -239,27 +240,27 @@ const sortedVariants = [...scene.narrative_variants]
 
 | Priority | Total | Fixed | In Progress | Not Started |
 |----------|-------|-------|-------------|-------------|
-| P0       | 5     | 0     | 0           | 5           |
-| P1       | 7     | 0     | 0           | 7           |
+| P0       | 5     | 5     | 0           | 0           |
+| P1       | 7     | 3     | 0           | 4           |
 | P2       | 4     | 0     | 0           | 4           |
 | P3       | 77    | 0     | 0           | 77          |
-| **TOTAL**| **93**| **0** | **0**       | **93**      |
+| **TOTAL**| **93**| **8** | **0**       | **85**      |
 
 ---
 
 ## Recommended Fix Order
 
-### Sprint 1: Critical Blockers (1-2 days)
-1. Fix 3 content format errors (empty effects, 5-choice scenes)
-2. Fix 2 architectural violations (PlayerScreen.tsx, App.tsx)
-3. Run validation suite: `npm test -- validateContent.test.ts`
-4. Commit: "fix(p0): resolve critical format errors and architectural violations"
+### Sprint 1: Critical Blockers (completed)
+1. DONE: Fix 3 content format errors (empty effects, 5-choice scenes)
+2. DONE: Fix 2 architectural violations (PlayerScreen.tsx, App.tsx)
+3. DONE: Run validation suite: `npm test -- validateContent.test.ts`
+4. DONE: Commit: "fix(p0): resolve critical format errors and architectural violations"
 
 ### Sprint 2: Quality Improvements (3-5 days)
-5. Differentiate 3 FAKE-CHOICE scenes
-6. Add photo_anomaly payoff to Chapter 7
-7. Add early ticket callbacks to Chapter 2
-8. Fix top 10 WACKELT scenes with narrative variants
+5. DONE: Differentiate 3 FAKE-CHOICE scenes
+6. DONE: Add photo_anomaly payoff to Chapter 7
+7. DONE: Add early ticket callbacks to Chapter 2
+8. Fix next 10 WACKELT scenes with conditional callbacks
 9. Commit: "feat(p1): improve choice consequences and narrative branching"
 
 ### Sprint 3: Content Expansion (5-7 days)

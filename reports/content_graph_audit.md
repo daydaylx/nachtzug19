@@ -3,7 +3,7 @@
 > **Zweck**: Detaillierter Audit des Content-Graphs nach Validationsergebnissen
 > **Validierung am**: 2026-01-18
 > **Validator**: src/domain/engine/validateContent.ts
-> **Scope**: Alle 7 Kapitel (180 Szenen)
+> **Scope**: Alle 7 Kapitel (183 Szenen)
 
 ---
 
@@ -12,8 +12,9 @@
 **Verwendete Tools**:
 - `scripts/validate.ts` (via `npx tsx`)
 - `src/domain/engine/validateContent.ts` (vollständige Graph-Validierung)
+- `scripts/audit_chapters.mjs` (chapter metrics; narrative-only word count)
 
-**Validierungsergebnis**: ❌ FAIL (3 Errors, 0 Warnings)
+**Validierungsergebnis**: ✅ PASS (0 Errors, 0 Warnings)
 
 ---
 
@@ -21,36 +22,40 @@
 
 | Metrik | Wert | Status |
 |---------|-------|--------|
-| Szenen gesamt | 180 | ✅ |
-| Endings | 5 | ✅ |
-| Errors | 3 | 🔴 |
+| Szenen gesamt | 183 | ✅ |
+| Endings | 6 | ✅ |
+| Errors | 0 | ✅ |
 | Warnings | 0 | ✅ |
-| Canon Rules (R1-R4) | 4 | 3 erfüllt, 1 in Arbeit |
+| Canon Rules (R1-R4) | 4 | 4 erfuellt |
 
 ---
 
 ## Kapitel-Metriken
 
-| Kapitel | Szenen | Choices | Conditions | Wörter | Runtime | Tags (station_end/control/reveal/interlude/setpiece) |
-|---------|--------|---------|------------|--------|---------------------------------------------------|
-| **1** | 24 | 24 | 0 | 4.432 | 27 min | station_end:1, reveal:4, interlude:5, setpiece:1, drift_seed:4, drift_variant:1 |
-| **2** | 25 | 25 | 4 | 5.182 | 31 min | station_end:1, control:3, reveal:5, interlude:5, drift_seed:3, drift_variant:2 |
-| **3** | 27 | 27 | 5 | 5.299 | 32 min | station_end:1, control:3, reveal:4, interlude:4, setpiece:1, drift_seed:2, drift_variant:2 |
-| **4** | 26 | 26 | 8 | 5.330 | 32 min | station_end:1, reveal:3, interlude:4, drift_seed:2, drift_variant:1 |
-| **5** | 25 | 25 | 10 | 4.420 | 28 min | station_end:1, control:3, reveal:5, interlude:4, drift_seed:1, drift_variant:1 |
-| **6** | 26 | 26 | 14 | 4.687 | 30 min | station_end:1, reveal:4, interlude:4, setpiece:1, drift_seed:1, drift_variant:1 |
-| **7** | 26 | 26 | 18 | 4.784 | 30 min | station_end:1, reveal:4, interlude:4, setpiece:1, drift_seed:1, drift_variant:1 |
+| Kapitel | Szenen | Choices | Conditions | Wörter | Runtime | Tags (station_end/control/interlude/setpiece) |
+|---------|--------|---------|------------|--------|---------|----------------------------------------------|
+| **1** | 24 | 71 | 15 | 3110 | 27.0 min | station_end:1, control:0, interlude:0, setpiece:0 |
+| **2** | 25 | 71 | 15 | 2375 | 23.1 min | station_end:1, control:2, interlude:0, setpiece:0 |
+| **3** | 27 | 67 | 5 | 4871 | 35.7 min | station_end:1, control:2, interlude:0, setpiece:0 |
+| **4** | 27 | 61 | 8 | 2427 | 21.9 min | station_end:1, control:0, interlude:0, setpiece:0 |
+| **5** | 25 | 55 | 12 | 2253 | 20.1 min | station_end:1, control:2, interlude:0, setpiece:0 |
+| **6** | 26 | 61 | 14 | 2100 | 20.2 min | station_end:1, control:0, interlude:0, setpiece:0 |
+| **7** | 29 | 79 | 26 | 2973 | 27.5 min | station_end:1, control:0, interlude:5, setpiece:0 |
+
+**Hinweis**: Woerterzaehlung basiert nur auf `narrative`; narrative_variants sind nicht enthalten.
 
 **Zielwerte (aus LENGTH_IMMERSION_SPEC.md)**:
-- Szenen: 22–28 ✅ (alle erfüllt)
-- Choices: 30–45 ❌ (alle Kapitel zu niedrig: 24-27)
-- Conditions: 5+ (Kap 1-5), 10+ (Kap 6-7)
-- Wörter: 5.000–6.500
-- Runtime: 30–35 Minuten
+- Szenen: 22–28 ⚠️ (C7 ueber Ziel: 29)
+- Choices: 30–45 ⚠️ (alle Kapitel ueber Ziel: 55-79; includes conditional choices)
+- Conditions: 5+ (Kap 1-5), 10+ (Kap 6-7) ✅ (alle Kapitel erfuellt)
+- Wörter: 5.000–6.500 ❌ (alle Kapitel unter Ziel)
+- Runtime: 30–35 Minuten ❌ (meist 20-27 min; C3 35.7 min)
 
 ---
 
-## 🔴 Fehler (MUSS)
+## ✅ Fehler (historisch, behoben)
+
+Hinweis: Die folgenden Fehler stammen aus dem Audit vom 2026-01-18 und sind behoben (siehe reports/content_graph_fixes.md).
 
 ### ERROR 1: Choice ohne Effekte (verletzt R3)
 
@@ -152,13 +157,8 @@ Die Szene enthält 5 Choices, aber laut Content Format CF-2 dürfen maximal 4 Ch
 **Status**: ✅ Alle 7 Kapitel haben `station_end`-Szene
 
 **Details**:
-- Kapitel 1: `c1_end_station` (memory_drift +1 via exit_effects)
-- Kapitel 2: `c2_end_station` (memory_drift +1 via exit_effects)
-- Kapitel 3: `c3_end_station` (memory_drift +1 via exit_effects, vermutet)
-- Kapitel 4: `c4_end_station` (memory_drift +1, vermutet)
-- Kapitel 5: `c5_end_station` (memory_drift +1, vermutet)
-- Kapitel 6: `c6_end_station` (memory_drift +1, vermutet)
-- Kapitel 7: `c7_end_station` (memory_drift +1, vermutet)
+- Kapitel 1-7: `station_end` vorhanden; Engine-R1 erhoeht memory_drift/station_count automatisch.
+- Keine station_end-exit_effects fuer memory_drift; Choice-Overrides nur explizit (z.B. `c1_end_station`/confront_jacket_change).
 
 **Verletzte Regel**: [R1: Stationen verursachen Drift](reports/rules_index.md#r1-stationen-verursachen-drift)
 
@@ -175,17 +175,16 @@ Die Szene enthält 5 Choices, aber laut Content Format CF-2 dürfen maximal 4 Ch
 
 **Verletzte Regel**: [R2: Kontrollen sind feste Gatepoints](reports/rules_index.md#r2-kontrollen-sind-feste-gatepoints)
 
-**Hinweis**: c3_control_02_question ist ERROR (siehe ERROR 2 oben)
+**Hinweis**: Keine offenen Errors.
 
 ---
 
 ### 4. Canon Rules - R3 (Entscheidungen brauchen sichtbare Rückwirkung)
 
-**Status**: 🔴 1 Verletzung (siehe ERROR 1 oben)
+**Status**: ✅ 0 Verletzungen
 
 **Details**: 
-- Alle anderen 180 Szenen haben Choices mit Effects ✅
-- Nur `c1_interlude_01_lights` Choice 'continue' hat leere effects
+- Alle Szenen haben Choices mit Effects ✅
 
 **Verletzte Regel**: [R3: Entscheidungen brauchen sichtbare Rückwirkung](reports/rules_index.md#r3-entscheidungen-brauchen-sichtbare-rückwirkung)
 
@@ -206,11 +205,11 @@ Die Szene enthält 5 Choices, aber laut Content Format CF-2 dürfen maximal 4 Ch
 **Status**: ✅ Alle Szenen haben Pflichtfelder
 
 **Pflichtfelder validiert**:
-- `id` (string, eindeutig): ✅ Alle 180 Szenen
-- `chapter` (1–7): ✅ Alle 180 Szenen
-- `title` (kurz): ✅ Alle 180 Szenen
-- `narrative` (Text, 3–12 Absätze): ✅ Alle 180 Szenen
-- `choices[]` (mind. 1, max 4): 🔴 2 Verletzungen (c3, c5)
+- `id` (string, eindeutig): ✅ Alle 183 Szenen
+- `chapter` (1–7): ✅ Alle 183 Szenen
+- `title` (kurz): ✅ Alle 183 Szenen
+- `narrative` (Text, 3–12 Absätze): ✅ Alle 183 Szenen
+- `choices[]` (mind. 1, max 4): ✅ Keine Verletzungen
 - `tags[]`: ✅ Alle Szenen haben Tags
 - `state_notes[]` (max 3): ✅ Alle Szenen
 

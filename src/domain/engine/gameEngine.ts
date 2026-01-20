@@ -304,27 +304,38 @@ export function resolveSceneNarrative(scene: Scene, state: GameState): string {
     return baseNarrative;
   }
 
-  // Aktueller memory_drift Wert
+  // 1. Suche nach Varianten mit expliziter Condition (z.B. Items wie has_tag19)
+  // Diese haben Vorrang vor reinem Drift.
+  // Performance: Direkt iterieren statt .find() um Closure-Overhead zu minimieren (minimal)
+  for (const variant of scene.narrative_variants) {
+    if (variant.condition && evaluateCondition(state, variant.condition)) {
+      return variant.narrative;
+    }
+  }
+
+  // 2. Suche nach der besten Drift-Variante (höchster min_drift, der <= currentDrift ist)
+  // Performance: Single-Pass Iteration statt .filter().sort()
+  let bestDriftVariant = null;
+  let maxDriftFound = -1;
   const currentDrift = state.pressure.memory_drift;
 
-  // Sortiere Varianten nach min_drift (absteigend), um höchste passende Variante zu finden
-  const sortedVariants = [...scene.narrative_variants]
-    .sort((a, b) => b.min_drift - a.min_drift);
-
-  // Finde erste Variante, die erfüllt ist (memory_drift >= min_drift)
-  const matchingVariant = sortedVariants.find(
-    variant => currentDrift >= variant.min_drift
-  );
-
-  // Wenn passende Variante gefunden: verwende diese
-  if (matchingVariant) {
-    // Für jetzt: Nur "full" Replacement (replace_mode "overlay" wird später implementiert)
-    const mode = matchingVariant.replace_mode || 'full';
-    if (mode === 'full') {
-      return matchingVariant.narrative;
+  for (const variant of scene.narrative_variants) {
+    // Überspringe Varianten mit Condition (bereits geprüft) oder ohne min_drift
+    if (variant.condition || variant.min_drift === undefined) {
+      continue;
     }
-    // 'overlay' mode: Kombiniere Basis + Variante (für jetzt: nur Variante)
-    return matchingVariant.narrative;
+
+    if (currentDrift >= variant.min_drift) {
+      // Wenn wir eine Variante finden, die "schwerer" wiegt (höherer Drift-Wert), nehmen wir diese
+      if (variant.min_drift > maxDriftFound) {
+        maxDriftFound = variant.min_drift;
+        bestDriftVariant = variant;
+      }
+    }
+  }
+
+  if (bestDriftVariant) {
+    return bestDriftVariant.narrative;
   }
 
   // Kein Match: Basis-Narrative zurückgeben

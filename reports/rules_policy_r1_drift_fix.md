@@ -2,15 +2,14 @@
 
 ## Problem
 
-**Doppelte Inkrementierung von memory_drift bei jeder Station**
+**Historisch doppelte Drift-Inkrementierung + inkonsistente Content-Pattern**
 
-### Ursache
+### Ursache (historisch)
 
-Alle station_end Szenen (c1-c7) haben:
-1. Das Tag `station_end` → Engine führt R1 automatisch aus: `memory_drift += 1`
-2. `exit_effects` mit `memory_drift += 1` → Führt zu weiterer Erhöhung
+1. Tag `station_end` → Engine führt R1 automatisch aus: `memory_drift += 1`
+2. `exit_effects` mit `memory_drift += 1` → führte zu doppelter Erhöhung
 
-**Ergebnis:** memory_drift steigt um +2 pro Station statt +1
+Zusätzlich setzten station_end-Choices teils `memory_drift`/`station_count` manuell, teils nicht. Das erzeugte Doku-Inkonsistenzen, obwohl die Engine manuelle Effekte als Override behandelt.
 
 ### Regel R1 (aus NACHTZUG_19_RULES.md)
 
@@ -19,9 +18,10 @@ Alle station_end Szenen (c1-c7) haben:
 
 ## Lösung
 
-### Option A: exit_effects entfernen (EMPFOHLEN)
+### Option A: station_end-Effects bereinigen (EMPFOHLEN)
 
-Entferne alle `exit_effects` mit `memory_drift` aus station_end Szenen.
+1) Entferne alle `exit_effects` mit `memory_drift` aus station_end Szenen.  
+2) Entferne manuelle `memory_drift`/`station_count`-Effects aus Standard-Choices (nur explizite Overrides behalten).
 
 **Begründung:**
 - R1 ist eine Canon Rule, die von der Engine automatisch ausgeführt werden sollte
@@ -34,14 +34,17 @@ Entferne alle `exit_effects` mit `memory_drift` aus station_end Szenen.
 - Einfacher für zukünftige Changes (nur an einer Stelle)
 
 **Umsetzung:**
-In den betroffenen Dateien (c1.ts, c2.ts, c3.ts, c4.ts, c5.ts, c6.ts, c7.ts), entferne:
+In den betroffenen Dateien (c1.ts–c7.ts), entferne:
 
 ```typescript
-// Von station_end Szenen entfernen:
+// Von station_end Szenen entfernen (exit_effects):
 exit_effects: [
   { type: 'inc', target: 'memory_drift', value: 1 }
 ]
 ```
+
+Zusätzlich: station_end-Choices sollten keine `memory_drift`/`station_count` setzen,
+außer wenn eine explizite Abweichung gewollt ist (Override).
 
 ### Option B: Engine-R1 deaktivieren (NICHT EMPFOHLEN)
 
@@ -70,10 +73,10 @@ Entferne die automatische Erhöhung in `gameEngine.ts`.
 ## Validierung
 
 Nach Fix:
-- memory_drift wird nur einmal pro Station erhöht (+1)
-- Engine-R1 bleibt intakt
-- Content bleibt sauber (keine redundanten Effects)
+- memory_drift wird standardmäßig nur einmal pro Station erhöht (+1)
+- Engine-R1 bleibt intakt; manuelle Overrides sind explizit
+- Content bleibt sauber (keine redundanten station_end-Effects)
 
 ## Empfehlung
 
-**Implementiere Option A** - Entferne exit_effects mit memory_drift aus allen station_end Szenen.
+**Implementiere Option A** - exit_effects entfernen + station_end-Choice-Effects standardisieren.
