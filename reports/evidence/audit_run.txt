@@ -1,0 +1,38 @@
+🔍 NACHTZUG 19 Story QA Audit
+================================================================================
+📊 Loaded 183 scenes, 0 endings
+
+📊 PHASE A: Graph Analysis
+--------------------------------------------------------------------------------
+✅ Graph analysis complete:
+   - 183 scenes, 549 choices, 549 edges
+   - 0 unreachable scenes
+   - 0 dead-end scenes
+   - 0 self-loops
+
+🎯 PHASE B: Choice Analysis
+--------------------------------------------------------------------------------
+✅ Choice analysis complete:
+   - 0 illusion choice groups
+   - 2 potentially unused state keys
+
+🔧 PHASE C: State Validation
+--------------------------------------------------------------------------------
+✅ State validation complete:
+   - 0 unknown state keys
+
+🔗 PHASE D: Reference Validation
+--------------------------------------------------------------------------------
+✅ Reference validation complete:
+   - 0 broken scene references
+
+📝 PHASE E: Writing Reports
+--------------------------------------------------------------------------------
+✅ Written: reports/graph_dump.json
+✅ Written: reports/NACHTZUG19_STORY_QA_AUDIT.md
+✅ Written: reports/evidence/audit_summary.txt
+
+================================================================================
+✅ Audit Complete
+📊 Found 2 issues across 183 scenes
+

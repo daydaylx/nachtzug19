@@ -1,0 +1,10 @@
+🔧 TS-Kotlin Parity Analysis
+================================================================================
+✅ Clamping ranges match between TS and Kotlin
+✅ Both engines apply auto-clamp after effects
+✅ Both engines implement drift increment on station_end
+✅ Both engines prioritize condition-based variants over drift
+✅ Written: reports/ts_kotlin_parity.md
+
+================================================================================
+✅ Parity check complete: 0 issues found
