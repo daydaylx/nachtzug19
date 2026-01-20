@@ -4,9 +4,7 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build",
-    "preview": "vite preview",
+    "type-check": "tsc --noEmit",
     "test": "vitest",
     "validate": "tsx scripts/validate.ts",
     "export:story": "tsx scripts/export_story_json.ts"
