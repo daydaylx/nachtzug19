@@ -1374,11 +1374,10 @@ Du trittst über die Schwelle.`
         id: 'enter_seven',
         label: 'Abteil 7 betreten',
         condition: {
-          type: 'and',
-          conditions: [
-            { type: 'compare', target: 'tickets_truth', operator: '>=', value: 5 },
-            { type: 'compare', target: 'tickets_truth', operator: '<', value: 4 }
-          ]
+          type: 'compare',
+          target: 'tickets_truth',
+          operator: '<',
+          value: 5
         },
         effects: [
           { type: 'inc', target: 'tickets_truth', value: 3 }
@@ -1999,7 +1998,7 @@ Klick.`,
           type: 'compare',
           target: 'tickets_truth',
           operator: '>=',
-          value: 6
+          value: 5
         },
         effects: [
           { type: 'inc', target: 'tickets_truth', value: 3 },
@@ -3034,7 +3033,7 @@ Was nimmst du mit… ins Danach?`,
           type: 'compare',
           target: 'tickets_truth',
           operator: '>=',
-          value: 6
+          value: 5
         },
         effects: [
           { type: 'set', target: 'chapter_index', value: 8 }
@@ -3048,7 +3047,7 @@ Was nimmst du mit… ins Danach?`,
           type: 'compare',
           target: 'tickets_guilt',
           operator: '>=',
-          value: 6
+          value: 5
         },
         effects: [
           { type: 'set', target: 'chapter_index', value: 8 }
@@ -3062,7 +3061,7 @@ Was nimmst du mit… ins Danach?`,
           type: 'compare',
           target: 'tickets_love',
           operator: '>=',
-          value: 6
+          value: 5
         },
         effects: [
           { type: 'set', target: 'chapter_index', value: 8 }
@@ -3081,7 +3080,7 @@ Was nimmst du mit… ins Danach?`,
     tags: ['station_end'],
     state_notes: [
       'Station-End: Finale - Zug verblasst (1973 aufgelöst)',
-      'ENDINGS: Truth, Guilt, Love (Schwellenwerte 6)',
+      'ENDINGS: Truth, Guilt, Love (Schwellenwerte 5 = max Clamp)',
       'FALLBACK: Escape Ending (Im Zug bleiben)',
       'R1: Engine erhoeht memory_drift/station_count automatisch (keine manuellen station_end-Effects)'
     ],

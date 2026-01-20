@@ -155,7 +155,8 @@ Nicht das Rattern von Schienen. Tiefer. Ein Brummen, das du im Brustkorb spürst
         id: 'feel_guilty',
         label: 'Denken: „Ich sollte nicht hier sein"',
         effects: [
-          { type: 'inc', target: 'tickets_guilt', value: 1 }
+          { type: 'inc', target: 'tickets_guilt', value: 1 },
+          { type: 'inc', target: 'memory_drift', value: 1 }
         ],
         next: 'c1_interlude_01_lights'
       },
@@ -548,7 +549,8 @@ Zur Rechten: Ein leeres Abteil mit einem Koffer auf dem Sitz. Leder, verwittert,
         id: 'examine_suitcase',
         label: 'Den Koffer untersuchen',
         effects: [
-          { type: 'inc', target: 'tickets_truth', value: 1 }
+          { type: 'inc', target: 'tickets_truth', value: 1 },
+          { type: 'set', target: 'examined_suitcase', value: true }
         ],
         next: 'c1_s03a_corridor_walk'
       },
@@ -578,7 +580,7 @@ Zur Rechten: Ein leeres Abteil mit einem Koffer auf dem Sitz. Leder, verwittert,
     tags: [],
     state_notes: [
       'Talk_to_man führt direkt zu Sleepless',
-      'Koffer-Hinweis: Wird in Kap. 2 relevant (Comp7-Intro)'
+      'Koffer-Hinweis: optionales Detail'
     ],
     atmosphere: 'mystic'
   },

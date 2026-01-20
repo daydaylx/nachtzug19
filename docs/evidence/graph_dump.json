@@ -1,0 +1,62 @@
+{
+  "generated_at": "2026-01-20",
+  "source_file": "android-native/app/src/main/assets/story.json",
+  "command": "node scripts/graph_dump.mjs",
+  "graph_stats": {
+    "total_scenes": 183,
+    "total_endings": 6,
+    "total_choices": 549,
+    "total_edges": 227,
+    "reachable_scenes": 183,
+    "unreachable_scenes": 0,
+    "unreachable_list": [],
+    "dead_ends": 0,
+    "dead_ends_list": [],
+    "cycles": 0,
+    "cycles_list": [],
+    "self_loops": 0,
+    "self_loops_list": []
+  },
+  "chapter_breakdown": [
+    {
+      "chapter": 1,
+      "scenes": 24,
+      "endings_in_chapter": 0
+    },
+    {
+      "chapter": 2,
+      "scenes": 25,
+      "endings_in_chapter": 0
+    },
+    {
+      "chapter": 3,
+      "scenes": 27,
+      "endings_in_chapter": 0
+    },
+    {
+      "chapter": 4,
+      "scenes": 27,
+      "endings_in_chapter": 0
+    },
+    {
+      "chapter": 5,
+      "scenes": 25,
+      "endings_in_chapter": 0
+    },
+    {
+      "chapter": 6,
+      "scenes": 26,
+      "endings_in_chapter": 0
+    },
+    {
+      "chapter": 7,
+      "scenes": 29,
+      "endings_in_chapter": 4
+    }
+  ],
+  "definitions": {
+    "dead_end": "Eine Szene ist ein Dead End, wenn sie keine ausgehenden Choices hat (leeres choices-Array oder alle Choices ohne next/ending) UND nicht selbst ein Ending-Target ist.",
+    "cycle": "Ein Cycle (SCC mit Größe > 1) liegt vor, wenn eine Gruppe von Szenen sich gegenseitig erreichen kann. Self-Loops sind Szenen, die direkt auf sich selbst verweisen.",
+    "unreachable": "Eine Szene ist unreachable, wenn sie von der Startszene aus über keine Kombination von Choices erreicht werden kann."
+  }
+}

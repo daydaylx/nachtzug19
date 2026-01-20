@@ -56,6 +56,27 @@
 
 ---
 
+## Datum: 2026-01-20 (Bugfixes & Stabilization)
+
+### Content & Logic Fixes
+
+**Kritische Bugfixes**:
+- **Kapitel 7 (`c7_s12_seven_offer`)**: Unmögliche Condition (`tickets_truth >= 5` AND `< 4`) für Standard-Einstieg behoben. Einstieg nun möglich bei `tickets_truth < 5`.
+- **Kapitel 3 (`c3_s02a_recorder_listening`)**: Item-State (`has_recorder`) inkonsistent nach Interaktion mit dem Jungen. `has_recorder` wird nun korrekt auf `false` gesetzt, wenn der Junge den Rekorder nimmt.
+- **Kapitel 1 (`c1_s03_inside_train`)**: `examine_suitcase` setzt nun einen State-Flag (`examined_suitcase`), um spätere Callbacks zu ermöglichen.
+
+**Ticket Balancing**:
+- **Thresholds gesenkt**: Ending- und High-Truth-Thresholds global von 6 auf 5 gesenkt, um mit dem Max-Clamp-Wert (5) der Engine konsistent zu sein. Endings sind nun erreichbar.
+
+**Tech & QA**:
+- **TypeScript**: `@types/node` zu devDependencies hinzugefügt.
+- **Tests**: `validateContent.test.ts` Mock-Daten korrigiert und neue Regression-Tests für Ending-Reachability hinzugefügt.
+- **Dokumentation**: `MASTER_REPORT.md` aktualisiert und obsolete Reports (`QA_REPORT_NACHTZUG19.md`) entfernt/konsolidiert.
+
+**Status**: ✅ Content-Bugs behoben, Tests erweitert.
+
+---
+
 ## Datum: 2026-01-13 (Dokumentation Update)
 
 ### Dokumentation an NACHTZUG 19 Konzept angepasst

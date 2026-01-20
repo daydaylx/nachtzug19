@@ -326,6 +326,18 @@ Die Aufnahme geht weiter:
 Du greifst nach dem Rekorder. Willst ihn ausschalten.
 
 Deine Stimme: „—Nicht ausschalten. Du musst hören.—"`,
+    narrative_variants: [
+      {
+        condition: { type: 'bool', target: 'has_recorder', value: false },
+        narrative: `Du sitzt in deinem Abteil. Der Tisch ist leer.
+
+Du erinnerst dich an den Rekorder, aber er ist nicht da. Vielleicht war er nie da.
+
+Das Rattern ist leiser. Die Luft riecht nach kaltem Metall.
+
+Du stehst auf, aber der Moment haelt dich fest.`
+      }
+    ],
     choices: [
       {
         id: 'listen_to_prophecy',
@@ -542,7 +554,7 @@ Die Durchsage kam vor dem Halt. Oder nach dem Halt. Oder während.`,
           type: 'compare',
           target: 'tickets_truth',
           operator: '>=',
-          value: 6
+          value: 5
         },
         effects: [
           { type: 'inc', target: 'tickets_truth', value: 1 },
@@ -568,7 +580,7 @@ Die Durchsage kam vor dem Halt. Oder nach dem Halt. Oder während.`,
     ],
     tags: ['drift_variant'],
     state_notes: [
-      'CONDITION: accept_loop_pattern bei tickets_truth >= 6',
+      'CONDITION: accept_loop_pattern bei tickets_truth >= 5',
       'CONDITION: resist_temporal_shift bei conductor_attention >= 2',
       'Durchsage zeitlich verschoben: "verlassen" vor dem Halt',
       'Kausalität bricht zusammen'
@@ -1276,12 +1288,12 @@ Warmes Licht fällt heraus. Aber es flackert.
       },
       {
         id: 'examine_ticket_evidence',
-        label: 'Das Ticket als Beweis prüfen',
+        label: 'Die Hinweise als Beweis pruefen',
         condition: {
           type: 'compare',
           target: 'tickets_truth',
           operator: '>=',
-          value: 6
+          value: 5
         },
         effects: [
           { type: 'inc', target: 'tickets_truth', value: 1 },
@@ -1307,7 +1319,7 @@ Warmes Licht fällt heraus. Aber es flackert.
     ],
     tags: ['setup'],
     state_notes: [
-      'CONDITION: examine_ticket_evidence bei tickets_truth >= 6',
+      'CONDITION: examine_ticket_evidence bei tickets_truth >= 5',
       'CONDITION: hide_from_system bei conductor_attention >= 4',
       'Comp7 ruft dringend',
       'refuse_call: Hoher Drift-Preis (Spieler verliert Orientierung)',

@@ -822,8 +822,8 @@ Sie deutet auf eine Seite weiter hinten. „Dort steht, was als Nächstes kommt.
 
 „Drei Wege:"
 „1) Wahrheit sagen: Truth +2, Attention -1"
-„2) Flucht/Ausweichen: Escape +2, Attention +2"
-„3) Schuld bekennen: Guilt +2, Attention 0"
+„2) Flucht/Ausweichen: Escape +2"
+„3) Jemanden suchen: Love +2"
 
 Du siehst Comp7 an. „Das sind meine Optionen?"
 

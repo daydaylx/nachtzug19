@@ -451,7 +451,7 @@ Etwas, das nicht gesehen werden will.`
           type: 'compare',
           target: 'tickets_escape',
           operator: '>=',
-          value: 6
+          value: 5
         },
         effects: [
           { type: 'inc', target: 'tickets_escape', value: 1 },
@@ -899,7 +899,7 @@ Der Zug beschleunigt wieder.`
         id: 'continue_on',
         label: 'Weitergehen',
         effects: [
-          { type: 'inc', target: 'station_count', value: 1 }
+          { type: 'inc', target: 'memory_drift', value: 1 }
         ],
         next: 'c5_s10_boy_reunion'
       },
@@ -951,7 +951,7 @@ Der Zug beschleunigt wieder.`
     ],
     state_notes: [
       'Interlude: Zug wird unberechenbarer',
-      'station_count erhöht sich (übersprungene Station)',
+      'memory_drift steigt (uebersprungene Station fuehlt sich falsch an)',
       'CONDITION: understand_skip if tickets_truth >= 11 (c5_s08_abteil7_aftermath remembering)',
       'CONDITION: use_skip_chance if tickets_escape >= 8 (c5_s08_abteil7_aftermath letting go)'
     ],
@@ -1741,7 +1741,7 @@ Als würde er sich um dich herum zusammenziehen.`,
           type: 'compare',
           target: 'tickets_escape',
           operator: '>=',
-          value: 6
+          value: 5
         },
         effects: [
           { type: 'inc', target: 'tickets_escape', value: 1 },
@@ -2172,7 +2172,7 @@ Dann ist die Fahrt vorbei.`,
         id: 'prepare_to_exit',
         label: 'Bereit machen',
         effects: [
-          { type: 'inc', target: 'station_count', value: 1 }
+          { type: 'inc', target: 'memory_drift', value: 1 }
         ],
         next: 'c5_end_station'
       }

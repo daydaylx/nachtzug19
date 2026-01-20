@@ -107,7 +107,8 @@ Hinter dir: Du selbst. Deine Stimme.`
         id: 'wait_at_door',
         label: 'Vor der Tür warten',
         effects: [
-          { type: 'inc', target: 'tickets_escape', value: 1 }
+          { type: 'inc', target: 'tickets_escape', value: 1 },
+          { type: 'set', target: 'has_recorder', value: true }
         ],
         next: 'c3_s01a_after_station'
       },
@@ -257,7 +258,8 @@ Er drückt auf Play. Sein Rekorder spielt. Kein Knistern. Nur Stille.
         label: 'Den eigenen Rekorder abspielen',
         effects: [
           { type: 'inc', target: 'tickets_truth', value: 1 },
-          { type: 'inc', target: 'rel_boy', value: 1 }
+          { type: 'inc', target: 'rel_boy', value: 1 },
+          { type: 'set', target: 'has_recorder', value: false }
         ],
         next: 'c3_s02_recorder_anomaly'
       },
@@ -419,7 +421,8 @@ Er streckt die Hand aus und nimmt dir den Rekorder sanft, aber bestimmt aus der 
         label: '„Welche Antwort soll ich geben?"',
         effects: [
           { type: 'inc', target: 'tickets_truth', value: 1 },
-          { type: 'inc', target: 'rel_boy', value: 1 }
+          { type: 'inc', target: 'rel_boy', value: 1 },
+          { type: 'set', target: 'has_recorder', value: false }
         ],
         next: 'c3_s02b_corridor_shift'
       },
@@ -427,7 +430,8 @@ Er streckt die Hand aus und nimmt dir den Rekorder sanft, aber bestimmt aus der 
         id: 'take_recorder_back',
         label: 'Den Rekorder zurücknehmen',
         effects: [
-          { type: 'inc', target: 'tickets_escape', value: 1 }
+          { type: 'inc', target: 'tickets_escape', value: 1 },
+          { type: 'set', target: 'has_recorder', value: true }
         ],
         next: 'c3_s02b_corridor_shift'
       }
@@ -1638,7 +1642,7 @@ Seine Kelle ist nicht leer. Darauf steht:
 
 „Passagier ohne Ticket. Station 3. Wiederholen: Station 3."
 
-„Name des Zielortes?" fragt er. Seine Stimme lässt keinen Zweifel zu.
+„Warum sind Sie hier?" fragt er. Seine Stimme lässt keinen Zweifel zu.
 
 Er wartet. Zu lange. Deine Kehle wird trocken. Du hörst das Band im Rekorder, obwohl es still ist.
 
@@ -1710,7 +1714,7 @@ Seine Stimme ist tiefer. Mechanischer. „Oder Sie können nichts geben. Dann ko
     ],
     tags: ['control'],
     state_notes: [
-      'Conditions: offer_recorder (has_item), offer_nothing (high attention)',
+      'Conditions: offer_recorder (has_recorder), offer_recorder_memory (has_recorder == false)',
       'offer_truth uses keyword "Rückfahrt" (Concept Callback)',
       'offer_recorder consumes item, offer_someone hints sacrifice'
     ],
@@ -2155,7 +2159,7 @@ Durch das Fenster siehst du: Die Gestalt öffnet ein Notizbuch. Beginnt zu schre
           type: 'compare',
           target: 'tickets_truth',
           operator: '>=',
-          value: 6
+          value: 5
         },
         effects: [
           { type: 'inc', target: 'tickets_truth', value: 1 },
@@ -2194,7 +2198,7 @@ Durch das Fenster siehst du: Die Gestalt öffnet ein Notizbuch. Beginnt zu schre
       'R1: Engine erhoeht memory_drift/station_count automatisch (keine manuellen station_end-Effects)',
       'Doppelgänger steigt ein: Identity-Drift',
       'Übergang zu Kapitel 4 (Spiegelung)',
-      'CONDITIONS: test_door_again (escape >= 5), study_doppelganger (truth >= 6), recognize_figure (love >= 5)'
+      'CONDITIONS: test_door_again (escape >= 5), study_doppelganger (truth >= 5), recognize_figure (love >= 5)'
     ],
     atmosphere: 'dark'
   }

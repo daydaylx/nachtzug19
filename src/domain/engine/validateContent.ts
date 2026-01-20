@@ -14,6 +14,7 @@ import {
   Effect,
   EffectTarget,
   EffectType,
+  NarrativeVariant,
   ScenesCollection,
   EndingsCollection,
   ValidationError,
@@ -309,33 +310,44 @@ function validateScene(
  */
 function validateNarrativeVariants(
   sceneId: string,
-  variants: Array<{ min_drift: number; narrative: string; replace_mode?: 'full' | 'overlay' }>,
+  variants: NarrativeVariant[],
   errors: ValidationError[]
 ): void {
   const seenMinDrifts = new Set<number>();
 
   variants.forEach((variant, idx) => {
-    // 1. min_drift muss >= 1 sein (keine 0)
-    if (variant.min_drift < 1) {
+    // 1. min_drift muss >= 1 sein (keine 0) - nur prüfen wenn definiert
+    if (variant.min_drift !== undefined) {
+      if (variant.min_drift < 1) {
+        errors.push({
+          type: 'error',
+          message: `Szene '${sceneId}' narrative_variant #${idx}: min_drift muss >= 1 sein (aktuell: ${variant.min_drift})`,
+          scene_id: sceneId
+        });
+      }
+
+      // 2. Keine Duplikate bei min_drift innerhalb einer Scene
+      if (seenMinDrifts.has(variant.min_drift)) {
+        errors.push({
+          type: 'error',
+          message: `Szene '${sceneId}' narrative_variant #${idx}: Doppelter min_drift-Wert ${variant.min_drift}`,
+          scene_id: sceneId
+        });
+      } else {
+        seenMinDrifts.add(variant.min_drift);
+      }
+    }
+
+    // 3. Variant muss min_drift oder condition haben (mindestens eines)
+    if (variant.min_drift === undefined && variant.condition === undefined) {
       errors.push({
         type: 'error',
-        message: `Szene '${sceneId}' narrative_variant #${idx}: min_drift muss >= 1 sein (aktuell: ${variant.min_drift})`,
+        message: `Szene '${sceneId}' narrative_variant #${idx}: Variante braucht min_drift oder condition`,
         scene_id: sceneId
       });
     }
 
-    // 2. Keine Duplikate bei min_drift innerhalb einer Scene
-    if (seenMinDrifts.has(variant.min_drift)) {
-      errors.push({
-        type: 'error',
-        message: `Szene '${sceneId}' narrative_variant #${idx}: Doppelter min_drift-Wert ${variant.min_drift}`,
-        scene_id: sceneId
-      });
-    } else {
-      seenMinDrifts.add(variant.min_drift);
-    }
-
-    // 3. narrative ist nicht leer
+    // 4. narrative ist nicht leer
     if (!variant.narrative || variant.narrative.trim().length === 0) {
       errors.push({
         type: 'error',
