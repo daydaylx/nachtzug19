@@ -541,10 +541,7 @@ Die Durchsage kam vor dem Halt. Oder nach dem Halt. Oder während.`,
           operator: '>=',
           value: 1
         },
-        effects: [
-          { type: 'inc', target: 'tickets_escape', value: 1 },
-          { type: 'inc', target: 'conductor_attention', value: 1 }
-        ],
+        effects: [],
         next: 'c4_s03_passengers_return'
       },
       {
@@ -1270,10 +1267,7 @@ Warmes Licht fällt heraus. Aber es flackert.
       {
         id: 'go_to_wagen7',
         label: 'Nach Wagen 7 gehen',
-        effects: [
-          { type: 'inc', target: 'tickets_truth', value: 1 },
-          { type: 'inc', target: 'rel_comp7', value: 1 }
-        ],
+        effects: [],
         next: 'c4_s05a_wagen7_changed'
       },
       {
@@ -1718,10 +1712,7 @@ Comp7s Gesicht wechselt. Klare Züge. Verschwommen. Klar.
       {
         id: 'remember_comp7',
         label: 'An Comp7 denken',
-        effects: [
-          { type: 'inc', target: 'tickets_love', value: 1 },
-          { type: 'inc', target: 'rel_comp7', value: 1 }
-        ],
+        effects: [],
         next: 'c4_s07a_drift_peak'
       },
       {
