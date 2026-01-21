@@ -47,7 +47,9 @@ describe('validateContent - Graph-Validierung', () => {
       A: {
         id: 'A',
         titel: 'Ending A',
-        beschreibung: 'You reached ending A.'
+        beschreibung: 'You reached ending A.',
+        title: 'Ending A',
+        narrative: 'You reached ending A.'
       }
     };
 
@@ -118,7 +120,9 @@ describe('validateContent - Graph-Validierung', () => {
       A: {
         id: 'A',
         titel: 'Ending A',
-        beschreibung: 'You reached ending A.'
+        beschreibung: 'You reached ending A.',
+        title: 'Ending A',
+        narrative: 'You reached ending A.'
       }
     };
 
@@ -172,7 +176,9 @@ describe('validateContent - Graph-Validierung', () => {
       A: {
         id: 'A',
         titel: 'Ending A',
-        beschreibung: 'End.'
+        beschreibung: 'End.',
+        title: 'Ending A',
+        narrative: 'End.'
       }
     };
 
@@ -212,7 +218,9 @@ describe('validateContent - Graph-Validierung', () => {
       A: {
         id: 'A',
         titel: 'Ending A',
-        beschreibung: 'End.'
+        beschreibung: 'End.',
+        title: 'Ending A',
+        narrative: 'End.'
       }
     };
 
@@ -264,7 +272,9 @@ describe('validateContent - Graph-Validierung', () => {
       A: {
         id: 'A',
         titel: 'Ending A',
-        beschreibung: 'End.'
+        beschreibung: 'End.',
+        title: 'Ending A',
+        narrative: 'End.'
       }
     };
 
@@ -301,7 +311,9 @@ describe('validateContent - Graph-Validierung', () => {
       A: {
         id: 'A',
         titel: 'Ending A',
-        beschreibung: 'End.'
+        beschreibung: 'End.',
+        title: 'Ending A',
+        narrative: 'End.'
       }
     };
 
@@ -362,7 +374,9 @@ describe('validateContent - Graph-Validierung', () => {
       A: {
         id: 'A',
         titel: 'Ending A',
-        beschreibung: 'End.'
+        beschreibung: 'End.',
+        title: 'Ending A',
+        narrative: 'End.'
       }
     };
 
