@@ -160,13 +160,24 @@ Die Orientierung gleitet dir durch die Finger. (Konsequenz)`,
     title: 'Rückkehr',
     narrative: `Der Junge sitzt wieder in seinem Abteil, als wäre er nie weg gewesen. (Hook)
 
+Er hält einen alten Kassettenrekorder in den Händen – das gleiche Modell, das du schon einmal gesehen hast. In der Luft liegt das leise Surren des Bandes. (Detail)
+
+„Manchmal werden Dinge mehr,“ sagt er mit einer Stimme, die viel zu alt klingt. (Konsequenz)`,
+    narrative_variants: [
+      {
+        condition: { type: 'bool', target: 'has_recorder', value: true },
+        narrative: `Der Junge sitzt wieder in seinem Abteil, als wäre er nie weg gewesen. (Hook)
+
 Er hält den gleichen Kassettenrekorder in den Händen, den er dir gegeben hat. Du greifst in deine Tasche – das Gerät ist noch da, schwer und kalt. (Detail)
 
-„Es gibt zwei jetzt,“ sagt er mit einer Stimme, die viel zu alt klingt. „Manchmal werden Dinge mehr.“ (Konsequenz)`,
+„Es gibt zwei jetzt,“ sagt er mit einer Stimme, die viel zu alt klingt. „Manchmal werden Dinge mehr.“ (Konsequenz)`
+      }
+    ],
     choices: [
       {
         id: 'play_own_recorder',
         label: 'Eigenen Rekorder prüfen',
+        condition: { type: 'bool', target: 'has_recorder', value: true },
         effects: [
           { type: 'inc', target: 'tickets_truth', value: 1 },
           { type: 'set', target: 'played_recorder', value: true }
@@ -178,6 +189,15 @@ Er hält den gleichen Kassettenrekorder in den Händen, den er dir gegeben hat. 
         label: '„Was meinst du mit mehr?"',
         effects: [
           { type: 'inc', target: 'tickets_love', value: 1 }
+        ],
+        next: 'c3_s02_recorder_anomaly'
+      },
+      {
+        id: 'listen_to_his',
+        label: 'Ihm zuhören',
+        condition: { type: 'bool', target: 'has_recorder', value: false },
+        effects: [
+          { type: 'inc', target: 'tickets_truth', value: 1 }
         ],
         next: 'c3_s02_recorder_anomaly'
       }

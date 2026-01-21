@@ -1126,7 +1126,8 @@ Schwarze Tinte tropft auf den Boden. Jeder Tropfen macht ein Geräusch wie ein S
         id: 'keep_ticket',
         label: 'Das Ticket behalten',
         effects: [
-          { type: 'inc', target: 'tickets_truth', value: 1 }
+          { type: 'inc', target: 'tickets_truth', value: 1 },
+          { type: 'set', target: 'has_ticket', value: true }
         ],
         next: 'c4_s05_comp7_call'
       },
@@ -1135,7 +1136,8 @@ Schwarze Tinte tropft auf den Boden. Jeder Tropfen macht ein Geräusch wie ein S
         label: 'Das Ticket zerreißen',
         effects: [
           { type: 'inc', target: 'tickets_escape', value: 2 },
-          { type: 'inc', target: 'conductor_attention', value: 2 }
+          { type: 'inc', target: 'conductor_attention', value: 2 },
+          { type: 'set', target: 'has_ticket', value: false }
         ],
         next: 'c4_s05_comp7_call'
       }
@@ -1246,10 +1248,11 @@ Warmes Licht fällt heraus. Aber es flackert.
         id: 'examine_ticket_evidence',
         label: 'Die Hinweise als Beweis pruefen',
         condition: {
-          type: 'compare',
-          target: 'tickets_truth',
-          operator: '>=',
-          value: 5
+          type: 'and',
+          conditions: [
+            { type: 'compare', target: 'tickets_truth', operator: '>=', value: 5 },
+            { type: 'bool', target: 'has_ticket', value: true }
+          ]
         },
         effects: [
           { type: 'inc', target: 'tickets_truth', value: 1 },

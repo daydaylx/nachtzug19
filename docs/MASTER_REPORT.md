@@ -16,7 +16,7 @@ Die Engine und der Content sind stabil und validiert.
 - **Tests:** ✅ 22/22 Passed
 - **Validation:** ✅ 0 Errors, 0 Warnings (Graph Integrität 100%)
 - **Type Check:** ✅ 0 Errors
-- **Story Scope:** 7 Kapitel, 185 Szenen (+2 durch Split), 6 Endings
+- **Story Scope:** 7 Kapitel, 202 Szenen, 6 Endings
 
 ---
 
@@ -30,6 +30,16 @@ Die Engine und der Content sind stabil und validiert.
 
 ## Erledigte Punkte (Neu)
 
+### ✅ TASK-008: Pacing Refactor (C3-C7)
+- **Was:** Alle restlichen Kapitel gemäß Beat-Regel (Hook-Detail-Consequence) überarbeitet.
+- **Artefakte:** `c3.ts` bis `c7.ts` refactored, kritische Szenen (z.B. C5 Void) gesplittet.
+- **Status:** **COMPLETED**
+
+### ✅ TASK-004: Narrative Inkonsistenzen (QA Report)
+- **Was:** `has_recorder` Logik in C3 und `has_ticket` State in C4 korrigiert.
+- **Artefakte:** `c3.ts`, `c4.ts`, `types/index.ts` und `validateContent.ts` aktualisiert.
+- **Status:** **COMPLETED**
+
 ### ✅ TASK-007: Pacing Refactor (C2)
 - **Was:** Kapitel 2 gemäß neuer "Beat-Regel" (Max 10 Sätze/Szene) komplett überarbeitet.
 - **Artefakte:** `c2.ts` refactored, `c2_s01` und `c2_s04` gesplittet.
@@ -39,26 +49,6 @@ Die Engine und der Content sind stabil und validiert.
 - **Was:** Szenen `c1_s01_platform` und `c1_s01a_platform_details` gesplittet, um Chunking-Regel (< 220 Wörter) einzuhalten.
 - **Artefakte:** `c1_s01_platform_b` und `c1_s01a_platform_details_b` erstellt.
 - **Status:** **COMPLETED**
-
-### ✅ TASK-006: Content Fixes (C6)
-- **Was:** Syntaxfehler in `c6.ts` behoben (fehlende Backticks/Klammern).
-- **Status:** **COMPLETED**
-
----
-
-## Offene Punkte (Priorisiert)
-
-### P2 (Polish) - SOLL FIXEN
-
-#### TASK-008: Pacing Refactor (C3-C7)
-- **Was:** Restliche Kapitel gemäß Beat-Regel überarbeiten. Besonders C5 Void Scene.
-- **Status:** **OPEN**
-
-#### TASK-004: Narrative Inkonsistenzen (QA Report)
-- **Punkte:**
-  - `c3_s02a_recorder_listening`: `has_recorder` Logik prüfen.
-  - `c4_s05_comp7_call`: Ticket Evidence ohne Ticket-State.
-- **Status:** **OPEN**
 
 ---
 
