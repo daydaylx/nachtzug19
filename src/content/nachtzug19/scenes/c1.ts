@@ -549,17 +549,14 @@ Zur Rechten: Ein leeres Abteil mit einem Koffer auf dem Sitz. Leder, verwittert,
         id: 'examine_suitcase',
         label: 'Den Koffer untersuchen',
         effects: [
-          { type: 'inc', target: 'tickets_truth', value: 1 },
-          { type: 'set', target: 'examined_suitcase', value: true }
+          { type: 'inc', target: 'tickets_truth', value: 1 }
         ],
         next: 'c1_s03a_corridor_walk'
       },
       {
         id: 'find_seat',
         label: 'Einfach einen Platz suchen',
-        effects: [
-          { type: 'inc', target: 'tickets_escape', value: 1 }
-        ],
+        effects: [],
         next: 'c1_s03a_corridor_walk'
       },
       {
@@ -636,10 +633,7 @@ Dann zurück zur Zeichnung.`,
           operator: '>=',
           value: 1
         },
-        effects: [
-          { type: 'inc', target: 'tickets_truth', value: 1 },
-          { type: 'inc', target: 'memory_drift', value: 1 }
-        ],
+        effects: [],
         next: 'c1_s03b_find_seat'
       }
     ],
@@ -768,10 +762,7 @@ Er zuckt mit den Schultern. „Hattest du eins?"`,
           operator: '>=',
           value: 2
         },
-        effects: [
-          { type: 'inc', target: 'tickets_escape', value: 1 },
-          { type: 'dec', target: 'rel_sleepless', value: 1 }
-        ],
+        effects: [],
         next: 'c1_s04a_sleepless_past'
       }
     ],
@@ -1400,10 +1391,7 @@ Der Zug hält noch nicht.`,
           operator: '>=',
           value: 2
         },
-        effects: [
-          { type: 'inc', target: 'tickets_truth', value: 1 },
-          { type: 'inc', target: 'memory_drift', value: 1 }
-        ],
+        effects: [],
         next: 'c1_s05d_comp7_listen'
       },
       {
@@ -1423,10 +1411,7 @@ Der Zug hält noch nicht.`,
           operator: '>=',
           value: 2
         },
-        effects: [
-          { type: 'inc', target: 'tickets_truth', value: 1 },
-          { type: 'inc', target: 'memory_drift', value: 1 }
-        ],
+        effects: [],
         next: 'c1_s05d_comp7_listen'
       }
     ],
@@ -1775,10 +1760,7 @@ Der Zug hält.`,
           operator: '>=',
           value: 2
         },
-        effects: [
-          { type: 'inc', target: 'tickets_truth', value: 1 },
-          { type: 'inc', target: 'memory_drift', value: 1 }
-        ],
+        effects: [],
         next: 'c1_end_platform_look'
       }
     ],

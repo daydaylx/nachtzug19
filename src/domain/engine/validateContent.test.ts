@@ -287,8 +287,8 @@ describe('validateContent - Graph-Validierung', () => {
     expect(stationEndError).toBeDefined();
   });
 
-  it('Choice without effects is detected', () => {
-    // Choice ohne Effects
+  it('Choice without effects is valid (Tone Choice)', () => {
+    // Choice ohne Effects ist jetzt erlaubt (Tone Choice)
     const scenes: ScenesCollection = {
       start: {
         id: 'start',
@@ -319,11 +319,12 @@ describe('validateContent - Graph-Validierung', () => {
 
     const result = validateContent('start', scenes, endings);
 
-    expect(result.valid).toBe(false);
+    expect(result.valid).toBe(true);
+    // Sollte keine Errors geben
     const noEffectError = result.errors.find(
       err => err.message.includes('keine Effekte')
     );
-    expect(noEffectError).toBeDefined();
+    expect(noEffectError).toBeUndefined();
   });
 
   it('Scene with more than 4 choices is detected', () => {

@@ -353,6 +353,9 @@ Seine Augen sind ernst. Zu ernst für ein Kind.`,
     id: 'c2_s02a_recorder_listening',
     chapter: 2,
     title: 'Aufnahme',
+    entry_effects: [
+      { type: 'set', target: 'played_recorder', value: true }
+    ],
     narrative: `Du nimmst den Rekorder. Schwer. Metall und Plastik, kalt in der Hand.
 
 Du drückst auf Rewind. Die Kassette rattert zurück. Mechanisch. Laut.

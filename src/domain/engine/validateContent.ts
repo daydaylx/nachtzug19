@@ -136,17 +136,19 @@ function validateChoice(
 
   // 4. Choice muss mindestens einen Effect haben (R3: Callback-Regel) - nur für NACHTZUG 19
   // Legacy-Choices haben werteAenderung statt effects
-  const hasEffects = choice.effects && choice.effects.length > 0;
-  const hasLegacyEffects = choice.werteAenderung || choice.flagsAenderung || choice.itemBelohnung || choice.itemVerlust;
+  
+  // R3 Update: Tone Choices (keine Effekte) sind erlaubt gemäss DECISION_SYSTEM.md
+  // const hasEffects = choice.effects && choice.effects.length > 0;
+  // const hasLegacyEffects = choice.werteAenderung || choice.flagsAenderung || choice.itemBelohnung || choice.itemVerlust;
 
-  if (!hasEffects && !hasLegacyEffects) {
-    errors.push({
-      type: 'error',
-      message: `Choice '${choiceLabel}' hat keine Effekte (R3: Callback-Regel verlangt mindestens 1 Effect)`,
-      scene_id: sceneId,
-      choice_id: choice.id || choice.text
-    });
-  }
+  // if (!hasEffects && !hasLegacyEffects) {
+  //   errors.push({
+  //     type: 'error',
+  //     message: `Choice '${choiceLabel}' hat keine Effekte (R3: Callback-Regel verlangt mindestens 1 Effect)`,
+  //     scene_id: sceneId,
+  //     choice_id: choice.id || choice.text
+  //   });
+  // }
 
   // 5. Alle Effects müssen bekannte Targets verwenden
   if (choice.effects) {
