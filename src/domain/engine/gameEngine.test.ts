@@ -293,8 +293,8 @@ describe('Regression Guard - No Ticket Threshold > Clamp in Story', () => {
   const ALLOWED_EASTER_EGGS = new Set([
     'c4_end_station:search_for_self',         // tickets_truth >= 8
     'c4_end_station:ignore_copies',           // tickets_escape >= 7
-    'c5_s02_corridor_silence:listen_for_patterns', // tickets_truth >= 7
-    'c5_s04_lights_flicker:analyze_abteil7_clue',  // tickets_truth >= 8
+    'c5_s02_corridor_silence_b:listen_for_patterns', // Updated ID
+    'c5_s04_lights_flicker_b:analyze_abteil7_clue',  // Updated ID
     'c5_s06_abteil7_approach:open_door_for_truth', // tickets_truth >= 9
     'c5_s08_abteil7_aftermath:write_down_names',   // tickets_truth >= 10
     'c5_s09_train_shifts:understand_skip',         // tickets_truth >= 11

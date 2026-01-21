@@ -22,25 +22,15 @@ export const chapter4Scenes: ScenesCollection = {
     id: 'c4_s01_mirror',
     chapter: 4,
     title: 'Spiegel',
-    narrative: `Du stehst vor dem Waschbecken. Das Wasser läuft. Kalt.
+    narrative: `Das Wasser läuft kalt über deine Hände, aber du spürst es kaum. (Hook)
 
-Der Spiegel über dem Becken ist beschlagen. Du wischst ihn mit der Hand ab.
+Der Spiegel ist beschlagen; als du ihn abwischst, starrt dich dein Spiegelbild an. Du hebst die linke Hand, es hebt die rechte – ein perfektes Abbild. Doch als du blinzelst, bleiben seine Augen weit offen. (Detail)
 
-Dein Spiegelbild schaut dich an.
-
-Aber es bewegt sich nicht richtig. Du hebst die linke Hand. Das Spiegelbild hebt die rechte.
-
-Das ist normal. Spiegel funktionieren so.
-
-Aber dann blinzelst du. Das Spiegelbild blinzelt nicht.
-
-Du hältst inne. Das Spiegelbild bewegt sich weiter. Es lächelt.
-
-Du lächelst nicht.`,
+Es lächelt dich an, während dein eigenes Gesicht starr bleibt. (Konsequenz)`,
     choices: [
       {
         id: 'touch_mirror',
-        label: 'Den Spiegel berühren',
+        label: 'Spiegel berühren',
         effects: [
           { type: 'inc', target: 'tickets_truth', value: 1 },
           { type: 'inc', target: 'memory_drift', value: 1 }
@@ -81,27 +71,15 @@ Du lächelst nicht.`,
     id: 'c4_s01a_double_reflection',
     chapter: 4,
     title: 'Verdopplung',
-    narrative: `Du berührst den Spiegel. Das Glas ist kalt. Zu kalt.
+    narrative: `Deine Fingerspitzen berühren das Glas – und treffen auf Wärme. (Hook)
 
-Dein Spiegelbild berührt die andere Seite. Fingerspitzen treffen Fingerspitzen.
+Hinter deinem Spiegelbild schält sich eine zweite Gestalt aus dem Dampf. Sie sieht aus wie du, aber sie blickt an dir vorbei, als wärst du unsichtbar. (Detail)
 
-Dann siehst du es: Hinter deinem Spiegelbild steht noch jemand.
-
-Eine zweite Gestalt. Sie sieht genauso aus wie du.
-
-Aber sie schaut in eine andere Richtung.
-
-Du drehst dich um. Niemand hinter dir.
-
-Im Spiegel: Zwei Versionen von dir. Beide bewegen sich anders als du.
-
-Eine flüstert etwas. Du hörst es nicht. Aber du liest es von ihren Lippen:
-
-„Ich war hier. Du wirst hier sein. Wir sind hier."`,
+Zwei Versionen von dir bewegen sich im Spiegel asynchron, und eine flüstert lautlos: „Wir sind hier.“ (Konsequenz)`,
     choices: [
       {
         id: 'try_to_understand',
-        label: 'Versuchen zu verstehen',
+        label: 'Verstehen',
         effects: [
           { type: 'inc', target: 'tickets_truth', value: 2 }
         ],
@@ -147,31 +125,15 @@ Eine flüstert etwas. Du hörst es nicht. Aber du liest es von ihren Lippen:
     id: 'c4_s01b_wrong_memory',
     chapter: 4,
     title: 'Erinnerung',
-    narrative: `Du erinnerst dich an etwas.
+    narrative: `Eine Erinnerung an den leeren Bahnsteig aus Kapitel 1 blitzt auf – aber sie ist falsch. (Hook)
 
-An den Bahnsteig. Den leeren Bahnsteig aus Kapitel 1.
+In deinem Kopf steht plötzlich jemand neben dir und flüstert: „Du hast keine Wahl.“ Das Bild flackert zwischen Einsamkeit und Gesellschaft hin und her, beide Versionen fühlen sich gleichermaßen echt an. (Detail)
 
-Aber die Erinnerung ist falsch.
-
-In deiner Erinnerung stand jemand neben dir. Hat mit dir geredet.
-
-„Du wirst den Zug nehmen," hat die Person gesagt. „Du hast keine Wahl."
-
-Aber da war niemand. Du warst allein.
-
-Oder?
-
-Du versuchst dich zu erinnern. Das Bild wechselt. Einmal mit Person. Einmal ohne.
-
-Beide Versionen fühlen sich echt an.
-
-„Memory Drift," flüstert eine Stimme. Du drehst dich um.
-
-Niemand da.`,
+„Memory Drift,“ haucht eine Stimme direkt hinter deinem Ohr. (Konsequenz)`,
     choices: [
       {
         id: 'accept_false_memory',
-        label: 'Die falsche Erinnerung akzeptieren',
+        label: 'Erinnerung akzeptieren',
         effects: [
           { type: 'inc', target: 'tickets_escape', value: 1 },
           { type: 'inc', target: 'memory_drift', value: 2 }

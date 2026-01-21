@@ -81,50 +81,54 @@ Und du weißt: Die nächste Kontrolle wird die härteste sein.`,
   },
 
   // ==========================================================================
-  // INTERLUDE 1: Stille
+  // INTERLUDE 1: Stille (Split Part 1)
   // ==========================================================================
 
   'c5_s02_corridor_silence': {
     id: 'c5_s02_corridor_silence',
     chapter: 5,
-    title: 'Stille im Gang',
-    narrative: `Der Gang ist leer.
+    title: 'Stille',
+    narrative: `Der Gang liegt in unnatürlicher Stille vor dir. (Hook)
 
-Kein Schaffner. Keine anderen Passagiere.
+Kein Schaffner, keine Passagiere. Nur das gedämpfte Notlicht wirft schwankende Schatten, die langsamer tanzen als der Zug selbst. Du ziehst die Finger über die Wandverkleidung; der Lack fühlt sich klebrig an, fast frisch. (Detail)
 
-Nur das gedämpfte Licht der Notbeleuchtung und das gleichmäßige Schwanken des Zuges.
+Ein kalter Luftzug streift deinen Nacken, obwohl alle Fenster geschlossen sind. (Konsequenz)`,
+    choices: [
+      {
+        id: 'investigate_silence',
+        label: 'Der Stille nachgehen',
+        effects: [],
+        next: 'c5_s02_corridor_silence_b'
+      },
+      {
+        id: 'retreat_briefly',
+        label: 'Zögern',
+        effects: [
+          { type: 'inc', target: 'tickets_escape', value: 1 }
+        ],
+        next: 'c5_s02_corridor_silence_b'
+      }
+    ],
+    state_notes: [
+      'Interlude Part 1: Atmosphäre aufbauen',
+      'Split für besseres Pacing'
+    ],
+    atmosphere: 'tense'
+  },
 
-Du gehst langsam vorwärts. Deine Schritte sind das einzige Geräusch.
+  // ==========================================================================
+  // INTERLUDE 1: Stille (Split Part 2)
+  // ==========================================================================
 
-Das Notlicht wirft einen schmalen Streifen auf den Boden, der bei jedem Schwanken verrutscht.
+  'c5_s02_corridor_silence_b': {
+    id: 'c5_s02_corridor_silence_b',
+    chapter: 5,
+    title: 'Schatten',
+    narrative: `Der Geruch von metallischem Reinigungsmittel beißt in der Nase. (Hook)
 
-Staub tanzt darin, langsam, als hätte die Luft ein eigenes Tempo.
+Die Notbeleuchtung zeichnet deinen Schatten doppelt an die Wand – einer folgt dir, der andere bleibt einen Herzschlag lang stehen, bevor er nachrutscht. Ein Flackern durchzuckt den Gang, als würde die Realität kurz aussetzen. (Detail)
 
-Du ziehst die Finger über die Wand. Der Lack fühlt sich klebrig an, als wäre er frisch gestrichen.
-
-Ein kalter Zug streift deinen Nacken. Du drehst dich, erwartest jemanden, aber der Gang bleibt leer.
-
-Für einen Herzschlag überlegst du, zurück ins Abteil zu gehen. Dann gehst du weiter, nur ein Schritt, dann noch einer.
-
-Der Geruch von Metall und Reinigungsmittel hängt in der Luft, scharf und trocken.
-
-Ein feines Summen der Notbeleuchtung sitzt darin, als würde sie sich gegen das Schweigen stemmen.
-
-Die Notbeleuchtung zeichnet deinen Schatten doppelt, einen klar, einen verschmiert. Du hältst kurz an, prüfst, welcher sich bewegt. Der klare bleibt stehen, der andere rutscht mit dem Zug.
-
-Du schluckst trocken. Die Stille wirkt plötzlich schwerer. Wie eine Decke.
-
-Dann – ein Flackern.
-
-Die Lichter zucken kurz. Erlöschen fast. Kehren zurück.
-
-Für einen Moment hattest du das Gefühl, nicht allein zu sein.
-
-Aber als du dich umdrehst, ist da niemand.
-
-Nur der leere Gang.
-
-Und das Rattern der Räder.`,
+Für einen Moment spürst du eine Präsenz direkt hinter dir, doch als du dich umdrehst, ist der Gang leer. (Konsequenz)`,
     choices: [
       {
         id: 'continue_forward',
@@ -136,7 +140,7 @@ Und das Rattern der Räder.`,
       },
       {
         id: 'listen_for_patterns',
-        label: 'Nach Mustern im Licht lauschen',
+        label: 'Nach Mustern lauschen',
         condition: {
           type: 'compare',
           target: 'tickets_truth',
@@ -150,23 +154,8 @@ Und das Rattern der Räder.`,
         next: 'c5_s03_comp7_reflection'
       },
       {
-        id: 'retreat_to_safety',
-        label: 'Zurück ins Abteil flüchten',
-        condition: {
-          type: 'compare',
-          target: 'tickets_escape',
-          operator: '>=',
-          value: 5
-        },
-        effects: [
-          { type: 'inc', target: 'tickets_escape', value: 1 },
-          { type: 'dec', target: 'conductor_attention', value: 1 }
-        ],
-        next: 'c5_s03_comp7_reflection'
-      },
-      {
         id: 'challenge_emptiness',
-        label: 'Laut in die Stille rufen',
+        label: 'Rufen',
         condition: {
           type: 'compare',
           target: 'conductor_attention',
@@ -181,11 +170,8 @@ Und das Rattern der Räder.`,
       }
     ],
     state_notes: [
-      'Interlude: Atmosphäre aufbauen',
-      'memory_drift steigt (Zug wird unheimlicher)',
-      'CONDITION: listen_for_patterns (tickets_truth >= 7)',
-      'CONDITION: retreat_to_safety (tickets_escape >= 5)',
-      'CONDITION: challenge_emptiness (conductor_attention >= 4)'
+      'Interlude Part 2: Schatten-Anomalie',
+      'memory_drift steigt'
     ],
     atmosphere: 'tense'
   },
@@ -272,138 +258,54 @@ Ihre Stimme ist kaum mehr als ein Flüstern.
   },
 
   // ==========================================================================
-  // INTERLUDE 2: Lichter flackern
+  // INTERLUDE 2: Lichter flackern (Split Part 1)
   // ==========================================================================
 
   'c5_s04_lights_flicker': {
     id: 'c5_s04_lights_flicker',
     chapter: 5,
-    title: 'Flackerndes Licht',
-    narrative: `Die Lichter flackern wieder.
+    title: 'Flackern',
+    narrative: `Die Lichter beginnen zu sterben. (Hook)
 
-Mit jedem Aus geht auch die Orientierung weg. Du merkst, wie deine Schritte kürzer werden.
+Mit jedem Flackern verlierst du kurz die Orientierung. In der Dunkelheit hörst du dein eigenes, raues Atmen, und wenn das Licht zurückkehrt, scheint dein Schatten an der Wand einen Schritt näher gerückt zu sein als du selbst. (Detail)
 
-In der Dunkelheit hörst du dein eigenes Einatmen, rau, zu laut.
-
-Als das Licht kurz zurückkehrt, ist der Schatten an der Wand einen Schritt näher als du.
-
-Du blinzelst, suchst nach der Quelle, findest nur das zuckende Glas der Lampen.
-
-Ein kühler Luftzug streicht über deine Stirn. Du hebst die Hand, lässt sie wieder sinken.
-
-Das Flackern brennt sich als Nachbild in deine Augen, grüne Punkte, die bleiben, selbst wenn du sie schließt.
-
-Deine Augen brennen kurz, Tränen sammeln sich, aber du blinzelst sie weg.
-
-Im kurzen Licht siehst du die Tür am Ende einen Spalt offen, dann wieder zu. Du blinzelst, unsicher, ob du es dir einbildest.
-
-Der Boden ist kälter geworden, die Haut an deinen Knöcheln zieht sich zusammen. Du bleibst stehen, bis der nächste Lichtimpuls kommt.
-
-Diesmal länger. Intensiver.
-
-Dunkelheit.
-
-Licht.
-
-Dunkelheit.
-
-In den Momenten der Finsternis hörst du… etwas.
-
-Ein Geräusch. Wie Schritte. Oder das Öffnen einer Tür.
-
-Dann kommt das Licht zurück.
-
-Und alles ist still.
-
-Aber du spürst es: Etwas bewegt sich im Zug.
-
-Etwas, das nicht gesehen werden will.`,
-    narrative_variants: [
+Ein kühler Luftzug streicht über deine Stirn, wie eine unsichtbare Hand. (Konsequenz)`,
+    choices: [
       {
-        min_drift: 3,
-        narrative: `Die Lichter flackern wieder.
-
-Mit jedem Aus geht auch die Orientierung weg. Du merkst, wie deine Schritte kürzer werden.
-
-In der Dunkelheit hörst du dein eigenes Einatmen, rau, zu laut.
-
-Als das Licht kurz zurückkehrt, ist der Schatten an der Wand einen halben Schritt näher als du.
-
-Du blinzelst, suchst nach der Quelle, findest nur das zuckende Glas der Lampen.
-
-Ein kühler Luftzug streicht über deine Stirn. Du hebst die Hand, lässt sie wieder sinken.
-
-Das Flackern brennt sich als Nachbild in deine Augen, blaue Punkte, die bleiben, selbst wenn du sie schließt.
-
-Deine Augen brennen kurz, Tränen sammeln sich, aber du blinzelst sie weg.
-
-Im kurzen Licht siehst du die Tür am Ende einen Spalt offen, dann wieder ganz geschlossen. Du blinzelst, unsicher, ob du es dir einbildest.
-
-Der Boden ist kälter geworden, die Haut an deinen Knöcheln zieht sich zusammen. Du bleibst stehen, bis der nächste Lichtimpuls kommt.
-
-Diesmal länger. Intensiver.
-
-Dunkelheit.
-
-Licht.
-
-Dunkelheit.
-
-In den Momenten der Finsternis hörst du… etwas.
-
-Ein Geräusch. Wie Schritte. Oder das Öffnen einer Tür.
-
-Dann kommt das Licht zurück.
-
-Und alles ist still.
-
-Aber du spürst es: Etwas bewegt sich im Zug.
-
-Etwas, das nicht gesehen werden will.`
+        id: 'hold_ground',
+        label: 'Stehenbleiben',
+        effects: [],
+        next: 'c5_s04_lights_flicker_b'
       },
       {
-        min_drift: 5,
-        narrative: `Die Lichter flackern wieder.
-
-Mit jedem Aus geht auch die Orientierung weg. Du merkst, wie deine Schritte kürzer werden.
-
-In der Dunkelheit hörst du dein eigenes Einatmen, rau, zu laut.
-
-Als das Licht kurz zurückkehrt, steht der Schatten an der Wand direkt neben dir.
-
-Du blinzelst, suchst nach der Quelle, findest nur das zuckende Glas der Lampen.
-
-Ein kühler Luftzug streicht über deine Stirn. Du hebst die Hand, lässt sie wieder sinken.
-
-Das Flackern brennt sich als Nachbild in deine Augen, rote Punkte, die bleiben, selbst wenn du sie schließt.
-
-Deine Augen brennen kurz, Tränen sammeln sich, aber du blinzelst sie weg.
-
-Im kurzen Licht siehst du die Tür am Ende offen. Sie bleibt offen. Du blinzelst, unsicher, ob du es dir einbildest.
-
-Der Boden ist kälter geworden, die Haut an deinen Knöcheln zieht sich zusammen. Du bleibst stehen, bis der nächste Lichtimpuls kommt.
-
-Diesmal länger. Intensiver.
-
-Dunkelheit.
-
-Licht.
-
-Dunkelheit.
-
-In den Momenten der Finsternis hörst du… etwas.
-
-Ein Geräusch. Wie Schritte. Oder das Öffnen einer Tür.
-
-Dann kommt das Licht zurück.
-
-Und alles ist still.
-
-Aber du spürst es: Etwas bewegt sich im Zug.
-
-Etwas, das nicht gesehen werden will.`
+        id: 'press_on',
+        label: 'Weiterdrängen',
+        effects: [
+          { type: 'inc', target: 'tickets_escape', value: 1 }
+        ],
+        next: 'c5_s04_lights_flicker_b'
       }
     ],
+    state_notes: [
+      'Interlude Part 1: Desorientierung',
+      'Split für Pacing'
+    ],
+    atmosphere: 'danger'
+  },
+
+  // ==========================================================================
+  // INTERLUDE 2: Lichter flackern (Split Part 2)
+  // ==========================================================================
+
+  'c5_s04_lights_flicker_b': {
+    id: 'c5_s04_lights_flicker_b',
+    chapter: 5,
+    title: 'Dunkelheit',
+    narrative: `Das Flackern brennt sich als grünes Nachbild in deine Augen. (Hook)
+
+Dunkelheit. Licht. Dunkelheit. In den Momenten der Finsternis hörst du etwas – Schritte, oder das Klicken einer Tür, die nicht da sein sollte. Wenn das Licht zurückkehrt, ist der Gang leer, aber die Atmosphäre hat sich verschoben. (Detail)
+
+Etwas bewegt sich im Zug, das nicht gesehen werden will. (Konsequenz)`,
     choices: [
       {
         id: 'investigate',
@@ -431,7 +333,7 @@ Etwas, das nicht gesehen werden will.`
       },
       {
         id: 'analyze_abteil7_clue',
-        label: 'Die Hinweise auf Abteil 7 deuten',
+        label: 'Hinweise deuten',
         condition: {
           type: 'compare',
           target: 'tickets_truth',
@@ -446,7 +348,7 @@ Etwas, das nicht gesehen werden will.`
       },
       {
         id: 'hide_from_presence',
-        label: 'Sich vor der Präsenz verstecken',
+        label: 'Verstecken',
         condition: {
           type: 'compare',
           target: 'tickets_escape',
@@ -461,11 +363,8 @@ Etwas, das nicht gesehen werden will.`
       }
     ],
     state_notes: [
-      'Interlude: Spannung aufbauen',
-      'Vorbereitung auf Abteil 7',
-      'CONDITION: confront_comp7_questions (rel_comp7 >= 3)',
-      'CONDITION: analyze_abteil7_clue (tickets_truth >= 8)',
-      'CONDITION: hide_from_presence (tickets_escape >= 6)'
+      'Interlude Part 2: Die Präsenz',
+      'Vorbereitung auf Abteil 7'
     ],
     atmosphere: 'danger'
   },
@@ -1120,92 +1019,88 @@ Finaler.`,
   },
 
   // ==========================================================================
-  // INTERLUDE 4: Leere außerhalb
+  // INTERLUDE 4: Leere außerhalb (Split Part 1)
   // ==========================================================================
 
   'c5_s12_window_void': {
     id: 'c5_s12_window_void',
     chapter: 5,
-    title: 'Leere',
-    narrative: `Du blickst aus dem Fenster.
+    title: 'Das Nichts',
+    narrative: `Du blickst aus dem Fenster, aber da ist keine Dunkelheit mehr. (Hook)
 
-Früher war da Dunkelheit. Ein Schwarz, das man mit der Hand greifen konnte.
+Nur eine absolute Leere, die das Auge nicht fokussieren kann. Ein blinder Fleck in der Realität, der direkt in deinen Verstand schneidet. Ein Vakuum, das hungrig ist. (Detail)
 
-Jetzt ist da… nichts.
-
-Nicht einmal die Abwesenheit von Licht. Es ist eine Leere, die dein Auge nicht fokussieren kann, ein blinder Fleck in der Realität, der direkt in deinen Verstand schneidet. Ein Vakuum, das hungrig ist.
-
-Du legst die Handfläche an das Fenster. Es gibt keinen Widerstand von Kälte. Nur eine dumpfe, vibrierende Wärme, die deine Haut nicht erreicht, sondern tief in deinen Knochen siedet. Deine Finger verschwinden im Spiegelbild, als würde das Glas dich nicht mehr als feste Materie erkennen. Du ziehst die Hand zurück und starrst auf den feuchten Abdruck, der nicht verblasst, sondern wie Säure in die Scheibe zu ätzen scheint.
-
-Ein leises, hohes Summen zieht dir über die Zähne, ein Ton an der Grenze des Erträglichen. Du fragst dich, ob du fällst, obwohl du vollkommen still stehst. Dein Magen krampft sich zusammen, und du musst dich zwingen, nicht wegzusehen. Der Sog der Leere ist physisch spürbar, ein magnetischer Druck, der dich gegen das Glas ziehen will. Für einen Moment glaubst du, hinter dem Nichts eine Bewegung zu sehen, einen Schatten ohne Körper, ein Auge, das größer ist als der ganze Zug. Du blinzelst, der Eindruck bleibt als glühendes Nachbild auf deiner Netzhaut hängen.
-
-Du presst die Stirn an das Glas. Es fühlt sich glatter an als normal, fast ölig, eine dünne Membran zwischen dir und dem Ende von allem. Ein leiser, dumpfer Druck setzt hinter deinen Augen an, als würdest du in eine Tiefe schauen, die keine Grenzen kennt.
-
-Du ziehst dich keuchend zurück und merkst, dass deine Hand taub geworden ist. Das Rattern des Zuges klingt für einen Atemzug meilenweit entfernt, ein unwichtiges Geräusch aus einer Welt, die bereits hinter dir liegt.
-
-Nur eine absolute Abwesenheit.
-
-Der Zug fährt nicht durch eine Landschaft. Er schält sich durch das Gewebe der Existenz.
-
-Und du fragst dich:
-
-Was war vorher da?
-
-Gab es je eine Welt mit Farben? Mit Wäldern, Städten, Menschen?
-
-Die Erinnerung daran fühlt sich wie eine Lüge an. Oder wie ein Traum, den du vor langer Zeit einmal geträumt hast.
-
-An etwas anderes erinnerst du dich jetzt.
-
-An etwas, das niemals hätte sein dürfen.`,
-    narrative_variants: [
+Der Zug fährt nicht durch eine Landschaft – er schält sich durch das Gewebe der Existenz. (Konsequenz)`,
+    choices: [
       {
-        min_drift: 3,
-        narrative: `Du blickst aus dem Fenster.
-
-Früher war da Dunkelheit.
-
-Jetzt ist da… weißes Rauschen.
-
-Wie ein Fernsehsender ohne Signal.
-
-Du legst die Handfläche an das Fenster. Es kribbelt. Statische Ladung.
-
-Ein leises Summen zieht dir über die Zähne. Du fragst dich, ob du fällst, obwohl du still stehst.
-
-Du legst die Stirn an das Glas. Es schmeckt nach Metall.
-
-Der Zug fährt durch das Signal.
-
-Und du fragst dich:
-
-Wer sendet?`
+        id: 'touch_glass',
+        label: 'Das Glas berühren',
+        effects: [],
+        next: 'c5_s12_window_void_b'
       },
       {
-        min_drift: 5,
-        narrative: `Du blickst aus dem Fenster.
-
-Früher war da Dunkelheit.
-
-Jetzt ist da… der Code.
-
-Du siehst keine Landschaft. Du siehst Linien. Strukturen. Geometrie.
-
-Der Zug fährt nicht. Er wird berechnet.
-
-Du legst die Handfläche an das Fenster. Deine Hand wird transparent. Du siehst die Knochen. Dann nur noch Drahtgitter.
-
-Ein leises Summen zieht dir über die Zähne.
-
-Du legst die Stirn an das Glas.
-
-Und du hörst die Maschine denken.
-
-„Rendering Sector 5," flüstert sie.
-
-„Subject is becoming aware."`
+        id: 'look_away_void',
+        label: 'Wegsehen',
+        effects: [
+          { type: 'inc', target: 'tickets_escape', value: 1 }
+        ],
+        next: 'c5_s12_window_void_b'
       }
     ],
+    state_notes: [
+      'Interlude Part 1: Visuelle Leere',
+      'Split 1/3'
+    ],
+    atmosphere: 'dark'
+  },
+
+  // ==========================================================================
+  // INTERLUDE 4: Leere außerhalb (Split Part 2)
+  // ==========================================================================
+
+  'c5_s12_window_void_b': {
+    id: 'c5_s12_window_void_b',
+    chapter: 5,
+    title: 'Kontakt',
+    narrative: `Du legst die Handfläche an das Fenster. (Hook)
+
+Es gibt keinen Widerstand von Kälte, nur eine dumpfe, vibrierende Wärme, die tief in deine Knochen siedet. Deine Finger verschwinden im Spiegelbild, als würde das Glas dich nicht mehr als feste Materie erkennen. (Detail)
+
+Ein hohes Summen zieht dir über die Zähne, ein Ton an der Grenze des Erträglichen. (Konsequenz)`,
+    choices: [
+      {
+        id: 'press_forehead',
+        label: 'Stirn gegen das Glas lehnen',
+        effects: [],
+        next: 'c5_s12_window_void_c'
+      },
+      {
+        id: 'pull_back',
+        label: 'Zurückziehen',
+        effects: [],
+        next: 'c5_s12_window_void_c'
+      }
+    ],
+    state_notes: [
+      'Interlude Part 2: Sensorische Leere',
+      'Split 2/3'
+    ],
+    atmosphere: 'dark'
+  },
+
+  // ==========================================================================
+  // INTERLUDE 4: Leere außerhalb (Split Part 3)
+  // ==========================================================================
+
+  'c5_s12_window_void_c': {
+    id: 'c5_s12_window_void_c',
+    chapter: 5,
+    title: 'Auflösung',
+    narrative: `Du fragst dich: Was war vorher da? (Hook)
+
+Gab es je eine Welt mit Farben, Wäldern, Städten? Die Erinnerung daran fühlt sich wie eine Lüge an, ein Traum aus einer anderen Zeit. An etwas anderes erinnerst du dich jetzt – an etwas, das niemals hätte sein dürfen. (Detail)
+
+Die Leere draußen ist die einzige Wahrheit, die noch übrig ist. (Konsequenz)`,
     choices: [
       {
         id: 'accept_void',
@@ -1218,7 +1113,7 @@ Und du hörst die Maschine denken.
       },
       {
         id: 'search_reflection',
-        label: 'Den Schatten des Schaffners im Glas suchen',
+        label: 'Den Schatten suchen',
         condition: {
           type: 'compare',
           target: 'conductor_attention',
@@ -1233,9 +1128,8 @@ Und du hörst die Maschine denken.
       }
     ],
     state_notes: [
-      'Interlude: Realität löst sich auf',
-      'memory_drift steigt weiter',
-      'CONDITION: search_reflection nur bei conductor_attention >= 5 (Callback auf s11)'
+      'Interlude Part 3: Kognitive Auflösung',
+      'memory_drift steigt weiter'
     ],
     atmosphere: 'dark'
   },
@@ -1398,100 +1292,53 @@ Eine Pause.
   'c5_s15_control3_question': {
     id: 'c5_s15_control3_question',
     chapter: 5,
-    title: 'Kontrolle 3 - Die Frage',
-    narrative: `Der Schaffner legt die Fahrkarte auf den Tisch. Das Papier knistert nicht. Es liegt dort, schwer wie Blei.
+    title: 'Die Frage',
+    narrative: `Der Schaffner legt die Fahrkarte auf den Tisch – sie knistert nicht, sondern liegt schwer wie Blei. (Hook)
 
-„Letzte Frage," sagt er. Seine Stimme vibriert nicht in der Luft, sondern direkt in deinem Schädel. Ein tiefer Bass, der deine Zähne zum Schmerzen bringt.
+„Letzte Frage," sagt er mit einer Stimme, die direkt in deinem Schädel vibriert. Er beugt sich vor, und der Geruch von Ozon und uraltem Staub schlägt dir entgegen. Die Schatten in seinen Augenhöhlen wirbeln wie Rauch. (Detail)
 
-„Und diesmal will ich die Wahrheit."
-
-Er beugt sich vor. Der Geruch von Ozon und uraltem Staub schlägt dir entgegen, trocken und elektrisch. Die Schatten in seinen Augenhöhlen scheinen sich zu bewegen, wirbelnd wie Rauch.
-
-„Warum kannst du dich nicht erinnern?"
-
-Seine Augen bohren sich in deine. Du spürst einen physischen Druck auf deiner Brust, als würde die Schwerkraft im Abteil zunehmen. Das Rattern des Zuges verblasst zu einem fernen Rauschen.
-
-„Nicht an den Anfang. Nicht an das, was vorher war."
-
-Du willst antworten, aber deine Zunge klebt am Gaumen. Die Kälte, die von ihm ausgeht, kriecht unter deine Haut.
-
-„Weil du es vergessen hast?"
-
-Eine Pause. Die Stille ist absolut. Kein Atmen. Kein Herzschlag. Nur seine Präsenz.
-
-„Oder weil du es vergessen wolltest?"
-
-Die Luft im Abteil wird dünner, sauerstoffarm. Deine Lungen brennen.
-
-„Sag mir die Wahrheit."
-
-Er tippt mit einem fingerlosen Handschuh auf den Tisch. Ein Geräusch wie ein Hammerschlag.
-
-„Oder steig aus. Jetzt. An der nächsten Station."`,
-    narrative_variants: [
+„Warum kannst du dich nicht erinnern?" (Konsequenz)`,
+    choices: [
       {
-        min_drift: 3,
-        narrative: `Der Schaffner legt die Fahrkarte auf den Tisch.
-
-Aber es ist keine Fahrkarte. Es ist ein Foto.
-
-Es zeigt dich. Schlafend.
-
-„Letzte Frage," sagt er. Seine Stimme klingt wie zwei Stimmen übereinander.
-
-„Warum wachst du nicht auf?"
-
-Er beugt sich vor. Sein Gesicht flimmert.
-
-„Nicht hier. Nicht dort."
-
-„Weil du es vergessen hast?"
-
-Eine Pause. Das Licht wird rot.
-
-„Oder weil du Angst hast?"
-
-Die Luft im Abteil riecht nach Ozon und verbranntem Haar.
-
-„Sag mir die Wahrheit."
-
-„Oder bleib hier. Für immer."`
+        id: 'try_to_answer',
+        label: 'Antworten wollen',
+        effects: [],
+        next: 'c5_s15_control3_question_b'
       },
       {
-        min_drift: 5,
-        narrative: `Der Schaffner legt die Hand auf den Tisch.
-
-Er hat keine Fahrkarte. Er hat keine Kelle.
-
-Er hat keine Augen.
-
-Dort, wo sie sein sollten, ist nur Schatten.
-
-„Letzte Frage," sagt die Dunkelheit.
-
-„Wer bist du?"
-
-Er beugt sich vor. Du hörst das Knacken seiner Uniform, als würde sie ihn zerdrücken.
-
-„Nicht der Passagier. Nicht der Träumer."
-
-„Weil du es vergessen hast?"
-
-Eine Pause. Der Zug schreit.
-
-„Oder weil du niemand bist?"
-
-Die Luft im Abteil ist weg. Vakuum.
-
-„Sag mir die Wahrheit."
-
-„Bevor du aufhörst zu existieren."`
+        id: 'stay_silent_pressure',
+        label: 'Dem Druck standhalten',
+        effects: [
+          { type: 'inc', target: 'conductor_attention', value: 1 }
+        ],
+        next: 'c5_s15_control3_question_b'
       }
     ],
+    state_notes: [
+      'Set-Piece Teil 2a: Die Frage',
+      'Split für Pacing'
+    ],
+    tags: ['control'],
+    atmosphere: 'danger'
+  },
+
+  // ==========================================================================
+  // SET-PIECE 2: Kontrolle 3 (Teil 2b - Druck)
+  // ==========================================================================
+
+  'c5_s15_control3_question_b': {
+    id: 'c5_s15_control3_question_b',
+    chapter: 5,
+    title: 'Druck',
+    narrative: `„Weil du es vergessen hast? Oder weil du es vergessen wolltest?" (Hook)
+
+Die Luft im Abteil wird dünner, sauerstoffarm. Deine Lungen brennen, während er mit einem fingerlosen Handschuh auf den Tisch tippt – ein Geräusch wie ein Hammerschlag. (Detail)
+
+„Sag mir die Wahrheit," fordert er. „Oder steig aus." (Konsequenz)`,
     choices: [
       {
         id: 'admit_truth_high',
-        label: '„Ich wollte es vergessen. Ich habe es verdient."',
+        label: '„Ich wollte es vergessen."',
         condition: {
           type: 'compare',
           target: 'tickets_truth',
@@ -1506,7 +1353,7 @@ Die Luft im Abteil ist weg. Vakuum.
       },
       {
         id: 'ask_comp7_help',
-        label: 'An Comp7 denken – sie könnte helfen',
+        label: 'Hilfe bei Comp7 suchen',
         condition: {
           type: 'compare',
           target: 'rel_comp7',
@@ -1521,7 +1368,7 @@ Die Luft im Abteil ist weg. Vakuum.
       },
       {
         id: 'harsh_response',
-        label: '„Ich schulde dir keine Antwort."',
+        label: '„Ich schulde dir nichts."',
         condition: {
           type: 'compare',
           target: 'conductor_attention',
@@ -1536,7 +1383,7 @@ Die Luft im Abteil ist weg. Vakuum.
       },
       {
         id: 'deny_everything',
-        label: '„Ich weiß es wirklich nicht."',
+        label: '„Ich weiß es nicht."',
         effects: [
           { type: 'inc', target: 'tickets_escape', value: 2 }
         ],
@@ -1544,11 +1391,8 @@ Die Luft im Abteil ist weg. Vakuum.
       }
     ],
     state_notes: [
-      'Set-Piece Teil 2: Kern-Entscheidung Kontrolle 3',
-      'CONDITION: admit_truth_high nur bei tickets_truth >= 4',
-      'CONDITION: ask_comp7_help nur bei rel_comp7 >= 2',
-      'CONDITION: harsh_response nur bei conductor_attention >= 4 (harte Variante)',
-      'Wichtigste Callback-Szene (Tickets beeinflussen Optionen)'
+      'Set-Piece Teil 2b: Die Entscheidung',
+      'Klimax der Kontrolle'
     ],
     tags: ['control'],
     atmosphere: 'danger'

@@ -129,142 +129,59 @@ Du bist kein Passagier mehr. Du bist der Anker.`
   },
 
   // ==========================================================================
-  // INTERLUDE 1: Absolute Stille
+  // INTERLUDE 1: Absolute Stille (Split Part 1)
   // ==========================================================================
 
   'c7_s02_interlude_silence': {
     id: 'c7_s02_interlude_silence',
     chapter: 7,
-    title: 'Totale Stille',
-    narrative: `Das Rattern der Räder… ist weg.
+    title: 'Stumm',
+    narrative: `Das Rattern der Räder ist weg. Komplett. (Hook)
 
-Komplett.
+Der Zug bewegt sich noch, du spürst die Bewegung in den Beinen, aber es gibt kein Geräusch mehr. Du klatschst in die Hände – die Bewegung ist da, aber der Ton fehlt, als würde der Raum ihn schlucken, bevor er entsteht. (Detail)
 
-Der Zug bewegt sich noch.
-
-Du spürst es.
-
-Aber es gibt kein Geräusch mehr.
-
-Keine Vibration.
-
-Du klatschst in die Hände. Die Bewegung ist da, der Ton fehlt. Es ist, als würde der Raum das Geräusch schlucken, noch bevor es entsteht.
-
-Dein Hals spannt sich, du räusperst dich, und selbst das bleibt innen.
-
-Der Boden unter deinen Füßen fühlt sich glatt an, zu glatt, als hätte er keine Reibung mehr. Ein feines Schwindelgefühl zieht dir durch den Magen.
-
-Für einen Moment willst du schreien, nur um zu prüfen, ob du noch existierst. Du tust es nicht.
-
-Deine Fingerkuppen suchen die Wand, sie ist kühl und gibt minimal nach, als hätte sie Haut.
-
-Das macht dich wacher, und zugleich noch mehr allein.
-
-Nichts.
-
-Nur diese absolute, endgültige Stille.
-
-Du versuchst zu sprechen.
-
-Deine Lippen bewegen sich.
-
-Aber kein Ton kommt heraus.
-
-Als wäre die Welt… stumm geworden.
-
-Oder als wärst du… bereits woanders.
-
-An einem Ort, wo Geräusche nicht mehr existieren.`,
-    narrative_variants: [
+Ein feiner Schwindel zieht dir durch den Magen: Die Welt ist stumm geworden. (Konsequenz)`,
+    choices: [
       {
-        min_drift: 3,
-        narrative: `Das Rattern der Räder… ist weg.
-
-Komplett.
-
-Der Zug bewegt sich noch.
-
-Du spürst es.
-
-Aber es gibt kein Geräusch mehr.
-
-Kaum eine Vibration.
-
-Du klatschst in die Hände. Die Bewegung ist da, der Ton fehlt. Es ist, als würde der Raum das Geräusch schlucken, noch bevor es entsteht.
-
-Dein Hals spannt sich, du räusperst dich, und selbst das bleibt innen.
-
-Der Boden unter deinen Füßen fühlt sich rau an, zu rau, als hätte er plötzlich mehr Reibung. Ein feines Schwindelgefühl zieht dir durch den Magen.
-
-Für einen Moment willst du schreien, nur um zu prüfen, ob du noch existierst. Du tust es nicht.
-
-Deine Fingerkuppen suchen die Wand, sie ist kühl und gibt minimal nach, als hätte sie Haut.
-
-Das macht dich wacher, und zugleich noch mehr allein.
-
-Nichts.
-
-Nur diese absolute, endgültige Stille.
-
-Du versuchst zu sprechen.
-
-Deine Lippen bewegen sich.
-
-Aber kein Ton kommt heraus.
-
-Als wäre die Welt… stumm geworden.
-
-Oder als wärst du… bereits woanders.
-
-An einem Ort, wo Geräusche nicht mehr existieren.`
+        id: 'test_voice',
+        label: 'Versuchen zu sprechen',
+        effects: [],
+        next: 'c7_s02_interlude_silence_b'
       },
       {
-        min_drift: 5,
-        narrative: `Das Rattern der Räder… ist weg.
-
-Komplett.
-
-Der Zug bewegt sich noch.
-
-Du spürst es.
-
-Aber es gibt kein Geräusch mehr.
-
-Eine fremde Vibration.
-
-Du klatschst in die Hände. Die Bewegung ist da, ein fernes Echo antwortet, als käme es aus einem anderen Wagen.
-
-Dein Hals spannt sich, du räusperst dich, und selbst das klingt verzögert.
-
-Der Boden unter deinen Füßen fühlt sich weich an, zu weich, als würde er nachgeben. Ein feines Schwindelgefühl zieht dir durch den Magen.
-
-Für einen Moment willst du schreien, nur um zu prüfen, ob du noch existierst. Du tust es.
-
-Deine Fingerkuppen suchen die Wand, sie ist warm und gibt stärker nach, als hätte sie Haut.
-
-Das macht dich wacher, und zugleich noch mehr allein.
-
-Nichts.
-
-Nur diese absolute, endgültige Stille.
-
-Du versuchst zu sprechen.
-
-Deine Lippen bewegen sich.
-
-Ein Ton kommt heraus, aber er gehört dir nicht.
-
-Als wäre die Welt… stumm geworden.
-
-Oder als wärst du… bereits woanders.
-
-An einem Ort, wo Geräusche nicht mehr existieren.`
+        id: 'touch_wall_silence',
+        label: 'Wand berühren',
+        effects: [
+          { type: 'inc', target: 'tickets_truth', value: 1 }
+        ],
+        next: 'c7_s02_interlude_silence_b'
       }
     ],
+    state_notes: [
+      'Interlude Part 1: Akustisches Vakuum',
+      'Split für Pacing'
+    ],
+    tags: ['interlude'],
+    atmosphere: 'tense'
+  },
+
+  // ==========================================================================
+  // INTERLUDE 1: Absolute Stille (Split Part 2)
+  // ==========================================================================
+
+  'c7_s02_interlude_silence_b': {
+    id: 'c7_s02_interlude_silence_b',
+    chapter: 7,
+    title: 'Isolation',
+    narrative: `Deine Lippen bewegen sich, aber kein Ton kommt heraus. (Hook)
+
+Der Boden unter deinen Füßen fühlt sich zu glatt an, ohne jede Reibung. Deine Fingerkuppen suchen die Wand, sie ist kühl und gibt minimal nach, als hätte sie Haut. (Detail)
+
+Du bist allein an einem Ort, wo Geräusche nicht mehr existieren. (Konsequenz)`,
     choices: [
       {
         id: 'accept_silence',
-        label: 'Die Stille akzeptieren',
+        label: 'Akzeptieren',
         effects: [
           { type: 'inc', target: 'tickets_truth', value: 1 }
         ],
@@ -272,7 +189,7 @@ An einem Ort, wo Geräusche nicht mehr existieren.`
       },
       {
         id: 'break_silence',
-        label: 'Gegen die Stille anschreien',
+        label: 'Anschreien',
         condition: {
           type: 'compare',
           target: 'conductor_attention',
@@ -287,10 +204,8 @@ An einem Ort, wo Geräusche nicht mehr existieren.`
       }
     ],
     state_notes: [
-      'Interlude: Totale Stille',
-      'Kein Ton mehr (Endgültigkeit)',
-      'Isolation/Liminalität',
-      'CONDITION: break_silence bei conductor_attention >= 3'
+      'Interlude Part 2: Physische Isolation',
+      'Vorbereitung auf Comp7 Abschied'
     ],
     tags: ['interlude'],
     atmosphere: 'tense'
@@ -634,54 +549,55 @@ Seine Augen – deine Augen – füllen sich mit Tränen.
   },
 
   // ==========================================================================
-  // INTERLUDE 2: Zeitverschiebung
+  // INTERLUDE 2: Zeitverschiebung (Split Part 1)
   // ==========================================================================
 
   'c7_s05_interlude_timeshift': {
     id: 'c7_s05_interlude_timeshift',
     chapter: 7,
-    title: 'Zeitsprung',
-    narrative: `Die Uhren an den Wänden…
+    title: 'Chronos',
+    narrative: `Die Uhren an den Wänden zeigen unmöglich Zeiten: 1973, 2024, und ein Jahr, das es noch nicht gibt. (Hook)
 
-Sie zeigen alle verschiedene Zeiten.
+Die Ziffern blättern nicht um, sie kippen einfach weg. Wenn du das Glas berührst, ist es feucht von einem kalten Film, und der Sekundenzeiger springt unter deinem Finger rückwärts. (Detail)
 
-Nicht nur verschiedene Uhrzeiten.
+Ein leises Summen legt sich über den Gang – der Klang von brechender Zeit. (Konsequenz)`,
+    choices: [
+      {
+        id: 'watch_clocks',
+        label: 'Uhren ansehen',
+        effects: [],
+        next: 'c7_s05_interlude_timeshift_b'
+      },
+      {
+        id: 'ignore_time',
+        label: 'Ignorieren',
+        effects: [
+          { type: 'inc', target: 'tickets_escape', value: 1 }
+        ],
+        next: 'c7_s05_interlude_timeshift_b'
+      }
+    ],
+    state_notes: [
+      'Interlude Part 1: Zeit-Anomalie',
+      'Split für Pacing'
+    ],
+    tags: ['interlude'],
+    atmosphere: 'mystic'
+  },
 
-Verschiedene… Zeiten.
+  // ==========================================================================
+  // INTERLUDE 2: Zeitverschiebung (Split Part 2)
+  // ==========================================================================
 
-Eine Uhr zeigt 1973.
+  'c7_s05_interlude_timeshift_b': {
+    id: 'c7_s05_interlude_timeshift_b',
+    chapter: 7,
+    title: 'Faltung',
+    narrative: `Der Gang dehnt sich wie Gummi, wird länger, dann wieder kurz. (Hook)
 
-Eine andere 2024.
+Du machst einen Schritt, und der Boden ist plötzlich da, wo er eben nicht war. Am anderen Ende siehst du dich selbst – du winkst dir zu, aber die Bewegung ist verzögert, wie bei einer schlechten Übertragung. (Detail)
 
-Eine dritte… ein Datum, das noch nicht existiert.
-
-Die Ziffern laufen nicht, sie kippen, als wären es lose Plättchen. Du streichst über das Glas einer Uhr; es ist kalt und feucht, ein dünner Film auf der Oberfläche.
-
-Unter deiner Berührung hält der Sekundenzeiger an, nur um im nächsten Augenblick rückwärts zu springen. Ein leises Summen legt sich über den Gang.
-
-Du machst einen Schritt vor, und der Boden ist plötzlich da, wo er eben nicht war. Dein Magen hebt sich kurz.
-
-Das andere Ich am Ende des Gangs hebt die Hand einen Moment zu spät.
-
-Du blinzelst, und für einen Atemzug sind da zwei Schatten von dir, die sich überlappen.
-
-Der Gang dehnt sich.
-
-Wird länger.
-
-Dann kürzer.
-
-Dann… faltet sich.
-
-Du siehst dich selbst.
-
-Am anderen Ende des Gangs.
-
-Du winkt dir zu.
-
-Oder… winkst du dir selbst zu?
-
-Welches "du" ist real?`,
+Du bist dir nicht mehr sicher, welches „Du“ das echte ist. (Konsequenz)`,
     choices: [
       {
         id: 'continue_forward',
@@ -693,7 +609,7 @@ Welches "du" ist real?`,
       },
       {
         id: 'search_for_anchor',
-        label: 'Nach einer vertrauten Verbindung suchen',
+        label: 'Anker suchen',
         condition: {
           type: 'compare',
           target: 'tickets_love',
@@ -708,10 +624,8 @@ Welches "du" ist real?`,
       }
     ],
     state_notes: [
-      'Interlude: Zeit bricht zusammen',
-      'Uhren zeigen verschiedene Jahre',
-      'Gang faltet sich',
-      'CONDITION: search_for_anchor bei tickets_love >= 3'
+      'Interlude Part 2: Raum-Faltung',
+      'Doppelgänger-Begegnung'
     ],
     tags: ['interlude'],
     atmosphere: 'mystic'

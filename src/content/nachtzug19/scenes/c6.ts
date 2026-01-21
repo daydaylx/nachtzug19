@@ -109,108 +109,54 @@ Du bist hier. Du bist noch da.`
   },
 
   // ==========================================================================
-  // INTERLUDE 1: Stille
+  // INTERLUDE 1: Stille (Split Part 1)
   // ==========================================================================
 
   'c6_s02_silence': {
     id: 'c6_s02_silence',
     chapter: 6,
     title: 'Totenstille',
-    narrative: `Der Gang ist… anders.
+    narrative: `Der Gang ist schmaler geworden. (Hook)
 
-Schmaler. Die Wände scheinen näher zusammengerückt zu sein.
+Die Wände scheinen zusammengerückt zu sein. Wenn du sie berührst, geben sie nach – weich und warm, wie Fleisch unter Stoff. Du ziehst die Finger zurück, aber das Gefühl eines Pulsschlags bleibt auf deiner Haut. (Detail)
 
-Du drückst die Hand gegen die Wandverkleidung. Sie gibt nach, weich und warm, wie Fleisch unter Stoff. Du ziehst die Finger zurück, ein Gefühl von Pulsieren bleibt auf deiner Haut.
-
-Du gehst langsam vorwärts. Deine Füße sinken tief in den Teppich ein, der sich feucht anfühlt, obwohl er trocken aussieht.
-
-Kein Geräusch. Nicht einmal deine Schritte machen ein Geräusch.
-
-Als würdest du über Samt gehen.
-
-Du streichst mit dem Daumen über den Stoff deiner Jacke, erwartest ein Rascheln. Nichts. Die Stille frisst es.
-
-Du hältst kurz den Atem an, als könntest du die Luft hören. In deinen Ohren bleibt nur ein dumpfes Dröhnen, das eher in deinem Schädel sitzt als im Raum.
-
-Ein feiner Geruch nach nassem Holz zieht durch den Gang, ganz kurz, dann weg. Für einen Moment willst du umdrehen, dann setzt du einen weiteren Schritt.
-
-Die Wände wirken wie Polster, weich und nah, und du spürst den Drang, sie abzustützen, nur um sicher zu sein, dass sie wirklich da sind.
-
-Deine Fingerspitzen zittern, als du es tust.
-
-Die Luft vibriert leicht. Wie vor einem Gewitter.
-
-Aber es gibt kein Gewitter hier.
-
-Nur diese Stille.
-
-Diese absolute, erstickende Stille.`,
-    narrative_variants: [
+Kein Geräusch. Nicht einmal deine Schritte machen einen Ton, als würdest du über dicken Samt gehen. (Konsequenz)`,
+    choices: [
       {
-        min_drift: 3,
-        narrative: `Der Gang ist… anders.
-
-Enger. Die Wände scheinen näher zusammengerückt zu sein.
-
-Oder… waren sie schon immer so eng?
-
-Du gehst langsam vorwärts.
-
-Kein Geräusch. Nicht einmal deine Schritte machen ein Geräusch.
-
-Als würdest du über Filz gehen.
-
-Du streichst mit dem Daumen über den Stoff deiner Jacke, erwartest ein Rascheln. Nichts. Die Stille frisst es.
-
-Du hältst kurz den Atem an, als könntest du die Luft hören. In deinen Ohren bleibt nur ein dumpfes Dröhnen, das eher in deinem Schädel sitzt als im Raum.
-
-Ein feiner Geruch nach kaltem Rauch zieht durch den Gang, ganz kurz, dann weg. Für einen Moment willst du umdrehen, dann setzt du einen weiteren Schritt.
-
-Die Wände wirken wie Polster, weich und nah, und du spürst den Drang, sie abzustützen, nur um sicher zu sein, dass sie wirklich da sind.
-
-Deine Fingerspitzen zittern, als du es tust.
-
-Die Luft vibriert leicht. Wie vor einem Gewitter.
-
-Aber es gibt kein Gewitter hier.
-
-Nur diese Stille.
-
-Diese absolute, erstickende Stille.`
+        id: 'move_forward',
+        label: 'Weitergehen',
+        effects: [],
+        next: 'c6_s02_silence_b'
       },
       {
-        min_drift: 5,
-        narrative: `Der Gang ist… anders.
-
-Weiter. Die Wände scheinen sich zu entfernen.
-
-Oder… waren sie schon immer so weit?
-
-Du gehst langsam vorwärts.
-
-Kein Geräusch. Und doch ein dumpfes Pochen, irgendwo hinter deinen Ohren.
-
-Als würdest du über Glas gehen.
-
-Du streichst mit dem Daumen über den Stoff deiner Jacke, erwartest ein Rascheln. Nichts. Die Stille frisst es.
-
-Du hältst kurz den Atem an, als könntest du die Luft hören. In deinen Ohren bleibt nur ein dumpfes Dröhnen, das eher in deinem Schädel sitzt als im Raum.
-
-Ein feiner Geruch nach Ozon zieht durch den Gang, ganz kurz, dann weg. Für einen Moment willst du umdrehen, dann setzt du einen weiteren Schritt.
-
-Die Wände wirken wie Polster, weich, aber fern, und du spürst den Drang, sie abzustützen, nur um sicher zu sein, dass sie wirklich da sind.
-
-Deine Fingerspitzen zittern, als du es tust.
-
-Die Luft vibriert leicht. Wie vor einem Gewitter.
-
-Aber es gibt kein Gewitter hier.
-
-Nur diese Stille.
-
-Diese absolute, erstickende Stille.`
+        id: 'touch_fabric',
+        label: 'Den Stoff prüfen',
+        effects: [
+          { type: 'inc', target: 'tickets_truth', value: 1 }
+        ],
+        next: 'c6_s02_silence_b'
       }
     ],
+    state_notes: [
+      'Interlude Part 1: Physische Veränderung',
+      'Split für Pacing'
+    ],
+    atmosphere: 'tense'
+  },
+
+  // ==========================================================================
+  // INTERLUDE 1: Stille (Split Part 2)
+  // ==========================================================================
+
+  'c6_s02_silence_b': {
+    id: 'c6_s02_silence_b',
+    chapter: 6,
+    title: 'Isolation',
+    narrative: `Du hältst den Atem an, um etwas zu hören – aber da ist nichts. (Hook)
+
+Nur ein dumpfes Dröhnen, das eher in deinem Schädel sitzt als im Raum. Ein feiner Geruch nach nassem Holz zieht kurz vorbei. Die Wände wirken wie Polster, die dich erdrücken wollen. (Detail)
+
+Die Luft vibriert wie vor einem Gewitter, aber es gibt hier kein Wetter. Nur diese absolute, erstickende Stille. (Konsequenz)`,
     choices: [
       {
         id: 'continue_walking',
@@ -222,7 +168,7 @@ Diese absolute, erstickende Stille.`
       },
       {
         id: 'listen_intently',
-        label: 'Der Stille lauschen',
+        label: 'Lauschen',
         condition: {
           type: 'compare',
           target: 'tickets_escape',
@@ -237,10 +183,8 @@ Diese absolute, erstickende Stille.`
       }
     ],
     state_notes: [
-      'Interlude: Stille und Veränderung',
-      'Raum verändert sich (schmaler, enger)',
-      'Vibration als sensorischer Anker',
-      'CONDITION: listen_intently bei tickets_escape >= 1 (Callback für close_eyes in s01)'
+      'Interlude Part 2: Totale Isolation',
+      'Atmosphäre verdichtet sich'
     ],
     atmosphere: 'tense'
   },
@@ -694,62 +638,58 @@ Aber du bist nicht mehr derselbe.`,
   },
 
   // ==========================================================================
-  // INTERLUDE 3: Drift intensiviert sich
+  // INTERLUDE 3: Drift intensiviert sich (Split Part 1)
   // ==========================================================================
 
   'c6_s08_drift_intensifies': {
     id: 'c6_s08_drift_intensifies',
     chapter: 6,
-    title: 'Verschiebung',
-    narrative: `Der Zug… verschiebt sich.
+    title: 'Zeitbruch',
+    narrative: `Die Uhr an der Wand spielt verrückt. (Hook)
 
-Nicht im Raum. In der Zeit.
+Sie springt von 3:47 auf 9:12, dann auf 2:33. Die Zeiger bewegen sich nicht, sie flackern von einer Position zur nächsten, als würde die Zeit selbst stottern. Das Glas ist beschlagen, und winzige Linien schreiben sich von selbst in den Nebel. (Detail)
 
-Oder… in etwas anderem.
+Rückwärts, vorwärts, willkürlich – Zeit hat hier keine Bedeutung mehr. (Konsequenz)`,
+    choices: [
+      {
+        id: 'watch_clock',
+        label: 'Uhr fixieren',
+        effects: [],
+        next: 'c6_s08_drift_intensifies_b'
+      },
+      {
+        id: 'look_away_time',
+        label: 'Wegsehen',
+        effects: [
+          { type: 'inc', target: 'tickets_escape', value: 1 }
+        ],
+        next: 'c6_s08_drift_intensifies_b'
+      }
+    ],
+    state_notes: [
+      'Interlude Part 1: Zeit-Anomalie',
+      'Split für Pacing'
+    ],
+    atmosphere: 'dark'
+  },
 
-Die Uhr an der Wand zeigt 3:47.
+  // ==========================================================================
+  // INTERLUDE 3: Drift intensiviert sich (Split Part 2)
+  // ==========================================================================
 
-Du blinkst.
+  'c6_s08_drift_intensifies_b': {
+    id: 'c6_s08_drift_intensifies_b',
+    chapter: 6,
+    title: 'Auflösung',
+    narrative: `Du legst die Hand an das Metall unter der Uhr. (Hook)
 
-Jetzt zeigt sie 9:12.
+Es ist erst eiskalt, dann plötzlich brennend heiß. Dein Gleichgewicht schwankt, der Boden kippt minimal nach links. Im Fenster siehst du kurz ein anderes Gesicht – älter, müder – bevor es wieder deins wird. (Detail)
 
-Du blinkst wieder.
-
-2:33.
-
-Die Zeiger bewegen sich nicht gleichmäßig. Sie springen.
-
-Bei jedem Sprung zuckt das Licht, als würde es sich dem Takt anpassen.
-
-Das Glas der Uhr ist beschlagen, und der Nebel darauf schreibt winzige Linien, die wieder verschwinden.
-
-Du legst die Hand an das Metall unter der Uhr; es ist kalt, dann plötzlich warm.
-
-Dein Gleichgewicht schwankt, der Boden kippt minimal, und du greifst nach der Sitzlehne, obwohl keine da ist.
-
-Für einen Herzschlag siehst du im Spiegel des Fensters ein anderes Gesicht, älter, müder, das sofort wieder deins ist.
-
-Du blinzelst und die Uhr springt zurück auf 23:47, als hätte sie dich beim Sehen ertappt.
-
-Ein dünner Faden von Kälte zieht dir über den Nacken.
-
-Rückwärts. Vorwärts. Willkürlich.
-
-Als hätte Zeit hier keine Bedeutung mehr.
-
-Dein Atem wird sichtbar. Kleine Wolken in der Luft.
-
-Aber es ist nicht kalt.
-
-Es ist… nichts.
-
-Weder warm noch kalt.
-
-Einfach… nichts.`,
+Dein Atem bildet kleine Wolken in der Luft, obwohl du keine Kälte spürst. Es ist einfach… nichts. (Konsequenz)`,
     choices: [
       {
         id: 'observe_changes',
-        label: 'Die Veränderungen beobachten',
+        label: 'Beobachten',
         effects: [
           { type: 'inc', target: 'tickets_truth', value: 1 },
           { type: 'inc', target: 'memory_drift', value: 1 }
@@ -758,7 +698,7 @@ Einfach… nichts.`,
       },
       {
         id: 'analyze_time',
-        label: 'Versuchen, das Zeitmuster zu erkennen',
+        label: 'Muster suchen',
         condition: {
           type: 'compare',
           target: 'memory_drift',
@@ -773,10 +713,8 @@ Einfach… nichts.`,
       }
     ],
     state_notes: [
-      'Interlude: Drift intensiviert sich',
-      'Zeit springt (Uhr zeigt willkürliche Zeiten)',
-      'Temperatur neutral/nichts - sensorischer Anker',
-      'CONDITION: analyze_time bei memory_drift >= 2'
+      'Interlude Part 2: Physische Anomalie',
+      'Vorbereitung auf Boy-Finale'
     ],
     atmosphere: 'dark'
   },
@@ -933,148 +871,58 @@ Das ist… vor über fünfzig Jahren.`,
   },
 
   // ==========================================================================
-  // INTERLUDE 4: Ansage
+  // INTERLUDE 4: Ansage (Split Part 1)
   // ==========================================================================
 
   'c6_s11_announcement': {
     id: 'c6_s11_announcement',
     chapter: 6,
     title: 'Durchsage',
-    narrative: `Die Lautsprecher knistern.
+    narrative: `Die Lautsprecher erwachen mit einem trockenen Kratzen, wie Sand auf Metall. (Hook)
 
-Das Knistern kratzt trocken, als würde Sand über Metall laufen. Der Lautsprecher über dir vibriert, kaum sichtbar, und ein feiner Geruch nach warmem Staub steigt auf.
+Der Staub vibriert auf dem Gitter. Du neigst den Kopf, um die Worte im Rauschen zu finden, während deine Kehle trocken wird. Ein Hauch von Metall legt sich auf deine Zunge. (Detail)
 
-Du stellst dich darunter, den Kopf leicht geneigt, als könntest du die Worte auffangen. Für einen Moment glaubst du, deinen Namen zu hören, nur ein Bruchstück, das sofort wieder im Rauschen verschwindet.
-
-Deine Kehle ist trocken, du schluckst, und selbst das klingt hier fremd.
-
-Als die Stimme tiefer wird, prickelt die Haut an deinen Unterarmen. Du drückst die Hand an die Brust, als wolltest du prüfen, ob dein Herz noch mitfährt.
-
-Das Knistern lässt einen Hauch Metall auf deiner Zunge.
-
-Dann – eine Stimme.
-
-Nicht die gewohnte Zugansage.
-
-Etwas anderes.
-
-„—chster Halt. Endstation. Endstation. End—"
-
-Knistern.
-
-„—itte alle aussteigen. Alle—"
-
-Die Stimme verzerrt sich.
-
-Wird tiefer.
-
-„—u kannst nicht zurück. Nicht zurück. Nicht—"
-
-Stille.
-
-Dann, ganz leise:
-
-„—s tut mir leid—"
-
-Das Knistern verstummt.
-
-Der Zug fährt weiter.
-
-Als wäre nichts gewesen.`,
-    narrative_variants: [
+Dann bricht eine Stimme durch, die nicht zum Zug gehört. (Konsequenz)`,
+    choices: [
       {
-        min_drift: 3,
-        narrative: `Die Lautsprecher knistern.
-
-Das Knistern kratzt trocken, als würde Sand über Metall laufen. Der Lautsprecher über dir vibriert, kaum sichtbar, und ein feiner Geruch nach kaltem Staub steigt auf.
-
-Du stellst dich darunter, den Kopf leicht geneigt, als könntest du die Worte auffangen. Für einen Moment glaubst du, einen fremden Namen zu hören, nur ein Bruchstück, das sofort wieder im Rauschen verschwindet.
-
-Deine Kehle ist trocken, du schluckst, und selbst das klingt hier fremd.
-
-Als die Stimme tiefer wird, prickelt die Haut an deinen Unterarmen. Du drückst die Hand an die Brust, als wolltest du prüfen, ob dein Herz noch mitfährt.
-
-Das Knistern lässt einen Hauch Metall auf deiner Zunge.
-
-Dann – eine Stimme.
-
-Nicht die gewohnte Zugansage.
-
-Etwas anderes.
-
-„—chster Halt. Endstation. Endstation. End—"
-
-Knistern.
-
-„—itte alle aussteigen. Alle—"
-
-Die Stimme verzerrt sich.
-
-Wird tiefer.
-
-„—u kannst nicht zurück. Nicht zurück. Nicht—"
-
-Stille.
-
-Dann, ganz leise:
-
-„—s tut mir leid—"
-
-Das Knistern verstummt.
-
-Der Zug fährt weiter.
-
-Als wäre nichts gewesen.`
+        id: 'listen_closely',
+        label: 'Hinhören',
+        effects: [],
+        next: 'c6_s11_announcement_b'
       },
       {
-        min_drift: 5,
-        narrative: `Die Lautsprecher knistern.
-
-Das Knistern kratzt trocken, als würde Sand über Metall laufen. Der Lautsprecher über dir vibriert, deutlich sichtbar, und ein feiner Geruch nach verbranntem Kunststoff steigt auf.
-
-Du stellst dich darunter, den Kopf leicht geneigt, als könntest du die Worte auffangen. Für einen Moment glaubst du, deinen Namen klar zu hören, und dann noch einmal.
-
-Deine Kehle ist trocken, du schluckst, und selbst das klingt hier fremd.
-
-Als die Stimme tiefer wird, prickelt die Haut an deinen Unterarmen. Du drückst die Hand an die Brust, als wolltest du prüfen, ob dein Herz noch mitfährt.
-
-Das Knistern lässt einen Hauch Metall auf deiner Zunge.
-
-Dann – deine Stimme.
-
-Nicht die gewohnte Zugansage.
-
-Etwas anderes.
-
-„—chster Halt. Endstation. Endstation. Ende—"
-
-Knistern.
-
-„—itte alle aussteigen. Alle—"
-
-Die Stimme verzerrt sich.
-
-Wird tiefer.
-
-„—u kannst nicht zurück. Nicht zurück. Nicht—"
-
-Stille.
-
-Dann, ganz leise:
-
-„—s tut mir leid—"
-
-Das Knistern verstummt.
-
-Der Zug fährt weiter.
-
-Als wäre nichts gewesen.`
+        id: 'cover_ears',
+        label: 'Ohren zuhalten',
+        effects: [
+          { type: 'inc', target: 'tickets_escape', value: 1 }
+        ],
+        next: 'c6_s11_announcement_b'
       }
     ],
+    state_notes: [
+      'Interlude Part 1: Audio-Störung',
+      'Split für Pacing'
+    ],
+    atmosphere: 'danger'
+  },
+
+  // ==========================================================================
+  // INTERLUDE 4: Ansage (Split Part 2)
+  // ==========================================================================
+
+  'c6_s11_announcement_b': {
+    id: 'c6_s11_announcement_b',
+    chapter: 6,
+    title: 'Botschaft',
+    narrative: `„—chster Halt. Endstation. End—" (Hook)
+
+Die Stimme verzerrt sich, wird tiefer, unmenschlich. „—itte alle aussteigen. Alle… die noch können." Dann bricht sie in ein Flüstern: „Es tut mir leid." (Detail)
+
+Das Knistern verstummt abrupt, und der Zug fährt weiter, als wäre nichts geschehen. (Konsequenz)`,
     choices: [
       {
         id: 'process_message',
-        label: 'Über die Ansage nachdenken',
+        label: 'Nachdenken',
         effects: [
           { type: 'inc', target: 'tickets_truth', value: 1 },
           { type: 'inc', target: 'memory_drift', value: 1 }
@@ -1083,7 +931,7 @@ Als wäre nichts gewesen.`
       },
       {
         id: 'whisper_year',
-        label: '„1973" leise wiederholen',
+        label: '„1973" flüstern',
         condition: {
           type: 'compare',
           target: 'memory_drift',
@@ -1097,7 +945,7 @@ Als wäre nichts gewesen.`
       },
       {
         id: 'listen_for_voice',
-        label: 'Auf die Stimme unter dem Rauschen achten',
+        label: 'Stimme analysieren',
         condition: {
           type: 'compare',
           target: 'conductor_attention',
@@ -1112,10 +960,8 @@ Als wäre nichts gewesen.`
       }
     ],
     state_notes: [
-      'Interlude: Verzerrte Ansage',
-      'Warnung "Endstation"',
-      'Entschuldigung (von wem?)',
-      'CONDITION: listen_for_voice bei conductor_attention >= 3'
+      'Interlude Part 2: Die Nachricht',
+      'Entschuldigung und Warnung'
     ],
     atmosphere: 'danger'
   },
