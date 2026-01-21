@@ -826,7 +826,7 @@ Sie deutet auf eine Seite weiter hinten. „Dort steht, was als Nächstes kommt.
 „Kontrolle 1. Wagen 1-4. Schaffner fragt nach Ticket. Spieler hat keins."
 
 „Drei Wege:"
-„1) Wahrheit sagen: Truth +2, Attention -1"
+„1) Ehrlichkeit / Nichtwissen: Truth +2, Attention -1"
 „2) Flucht/Ausweichen: Escape +2"
 „3) Jemanden suchen: Love +2"
 

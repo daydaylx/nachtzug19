@@ -259,7 +259,6 @@ Er drückt auf Play. Sein Rekorder spielt. Kein Knistern. Nur Stille.
         effects: [
           { type: 'inc', target: 'tickets_truth', value: 1 },
           { type: 'inc', target: 'rel_boy', value: 1 },
-          { type: 'set', target: 'has_recorder', value: false },
           { type: 'set', target: 'played_recorder', value: true }
         ],
         next: 'c3_s02_recorder_anomaly'
@@ -1696,7 +1695,7 @@ Seine Stimme ist tiefer. Mechanischer. „Oder Sie können nichts geben. Dann ko
       },
       {
         id: 'offer_truth',
-        label: '„Die Wahrheit: Rückfahrt."',
+        label: '„Die Wahrheit: Ich will zurück."',
         effects: [
           { type: 'inc', target: 'tickets_truth', value: 2 },
           { type: 'inc', target: 'conductor_attention', value: 1 }

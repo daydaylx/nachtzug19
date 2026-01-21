@@ -277,7 +277,36 @@ Angst? Mitgefühl? Schuld?
 
 „Weißt du, was in Abteil 7 ist?" fragt sie leise.
 
-„Wirklich?"`,
+    narrative_variants: [
+      {
+        min_drift: 4,
+        narrative: `Du findest Comp7... oder war ihr Name Comp8? In ihrem Abteil.
+
+Sie sitzt auf der Bank. Bewegungslos.
+
+Ihr Gesicht flackert wie eine schlechte Aufnahme. Mal alt, mal jung. Die Narbe an ihrem Kinn wandert von links nach rechts und wieder zurück.
+
+Ihre Augen sind geschlossen.
+
+„Du bist noch hier," sagt sie. Ihre Stimme klingt doppelt, als würde jemand zeitversetzt mitsprechen.
+
+„Ich habe gehofft, du wärst gegangen."
+
+Eine Pause. Das Licht im Abteil wird dunkler.
+
+„An der letzten Station. Du hättest gehen können."
+
+Sie öffnet die Augen. Ihre Pupillen sind nicht rund. Sie sind eckig. Wie Pixel.
+
+„Aber du bist zurückgekommen."
+
+Ihr Blick ist… schwer.
+
+„Weißt du, was in Abteil 7 ist?" fragst du dich selbst, aber es ist ihre Stimme, die es ausspricht.
+
+„Wirklich?"`
+      }
+    ],
     choices: [
       {
         id: 'ask_directly_high_rel',
@@ -1475,7 +1504,34 @@ Dein Sitz.
 
 Aber… 1973?
 
-Das kann nicht sein.`,
+    narrative_variants: [
+      {
+        min_drift: 5,
+        narrative: `Du findest das Etikett.
+
+Aber es ist nicht aus Metall. Es ist aus Knochen.
+
+Die Zahl 19 ist eingebrannt. Sie raucht noch leicht.
+
+Darunter steht dein Name. Aber die Buchstaben sind falsch angeordnet.
+
+„Wagen 7, Sitz 19"
+
+„1973"
+
+„Letzte Fahrt"
+
+Du willst es fallen lassen, aber es klebt an deiner Haut.
+
+Dein Herz schlägt gegen deine Rippen wie ein Vogel im Käfig.
+
+Das ist… dein Platz.
+
+Dein Sitz.
+
+„Komm nach Hause," flüstert der Knochen.`
+      }
+    ],
     choices: [
       {
         id: 'understand_tag',

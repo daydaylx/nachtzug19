@@ -96,6 +96,14 @@ Die Gestalt mit der Zeitung ist näher gekommen. Oder du bist näher. Die Schlag
           { type: 'inc', target: 'conductor_attention', value: 1 }
         ],
         next: 'c1_s01a_platform_details'
+      },
+      {
+        id: 'focus_on_smell',
+        label: 'Den Geruch einatmen',
+        effects: [
+          { type: 'inc', target: 'memory_drift', value: 1 }
+        ],
+        next: 'c1_s01a_platform_details'
       }
     ],
     tags: ['setup'],

@@ -1399,29 +1399,33 @@ Eine Pause.
     id: 'c5_s15_control3_question',
     chapter: 5,
     title: 'Kontrolle 3 - Die Frage',
-    narrative: `Der Schaffner legt die Fahrkarte auf den Tisch.
+    narrative: `Der Schaffner legt die Fahrkarte auf den Tisch. Das Papier knistert nicht. Es liegt dort, schwer wie Blei.
 
-„Letzte Frage," sagt er.
+„Letzte Frage," sagt er. Seine Stimme vibriert nicht in der Luft, sondern direkt in deinem Schädel. Ein tiefer Bass, der deine Zähne zum Schmerzen bringt.
 
 „Und diesmal will ich die Wahrheit."
 
-Er beugt sich vor.
+Er beugt sich vor. Der Geruch von Ozon und uraltem Staub schlägt dir entgegen, trocken und elektrisch. Die Schatten in seinen Augenhöhlen scheinen sich zu bewegen, wirbelnd wie Rauch.
 
 „Warum kannst du dich nicht erinnern?"
 
-Seine Augen bohren sich in deine.
+Seine Augen bohren sich in deine. Du spürst einen physischen Druck auf deiner Brust, als würde die Schwerkraft im Abteil zunehmen. Das Rattern des Zuges verblasst zu einem fernen Rauschen.
 
 „Nicht an den Anfang. Nicht an das, was vorher war."
 
+Du willst antworten, aber deine Zunge klebt am Gaumen. Die Kälte, die von ihm ausgeht, kriecht unter deine Haut.
+
 „Weil du es vergessen hast?"
 
-Eine Pause.
+Eine Pause. Die Stille ist absolut. Kein Atmen. Kein Herzschlag. Nur seine Präsenz.
 
 „Oder weil du es vergessen wolltest?"
 
-Die Luft im Abteil wird dünner.
+Die Luft im Abteil wird dünner, sauerstoffarm. Deine Lungen brennen.
 
 „Sag mir die Wahrheit."
+
+Er tippt mit einem fingerlosen Handschuh auf den Tisch. Ein Geräusch wie ein Hammerschlag.
 
 „Oder steig aus. Jetzt. An der nächsten Station."`,
     narrative_variants: [
