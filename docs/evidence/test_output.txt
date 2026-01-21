@@ -726,3 +726,126 @@
 
 [1m[42m PASS [49m[22m [32mWaiting for file changes...[39m
        [2mpress [22m[1mh[22m[2m to show help[22m[2m, [22m[2mpress [22m[1mq[22m[2m to quit[22m
+c[3J[1m[44m RERUN [49m[22m [34m[2mpackage.json [22m[39m
+
+node:internal/modules/package_json_reader:93
+        throw error;
+        ^
+
+SyntaxError: Error parsing /home/d/Schreibtisch/Nachtzug19/package.json: Expected property name or '}' in JSON at position 353
+    at parse (<anonymous>)
+    at read (node:internal/modules/package_json_reader:80:16)
+    at readPackage (node:internal/modules/package_json_reader:141:10)
+    at Object.readPackageScope (node:internal/modules/package_json_reader:164:19)
+    at trySelf (node:internal/modules/cjs/loader:589:58)
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1184:24)
+    at Module._load (node:internal/modules/cjs/loader:1038:27)
+    at internalRequire (node:internal/modules/cjs/loader:219:19)
+    at Module._preloadModules (node:internal/modules/cjs/loader:1785:5)
+    at loadPreloadModules (node:internal/process/pre_execution:747:5) {
+  path: '/home/d/Schreibtisch/Nachtzug19/package.json'
+}
+
+Node.js v20.19.5
+node:internal/modules/package_json_reader:93
+        throw error;
+        ^
+
+SyntaxError: Error parsing /home/d/Schreibtisch/Nachtzug19/package.json: Expected property name or '}' in JSON at position 353
+    at parse (<anonymous>)
+    at read (node:internal/modules/package_json_reader:80:16)
+    at readPackage (node:internal/modules/package_json_reader:141:10)
+    at Object.readPackageScope (node:internal/modules/package_json_reader:164:19)
+    at trySelf (node:internal/modules/cjs/loader:589:58)
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1184:24)
+    at Module._load (node:internal/modules/cjs/loader:1038:27)
+    at internalRequire (node:internal/modules/cjs/loader:219:19)
+    at Module._preloadModules (node:internal/modules/cjs/loader:1785:5)
+    at loadPreloadModules (node:internal/process/pre_execution:747:5) {
+  path: '/home/d/Schreibtisch/Nachtzug19/package.json'
+}
+
+Node.js v20.19.5
+[31m⎯⎯⎯⎯⎯⎯[39m[1m[41m Unhandled Errors [49m[22m[31m⎯⎯⎯⎯⎯⎯[39m
+[31m[1m
+Vitest caught 2 unhandled errors during the test run.
+This might cause false positive tests. Resolve unhandled errors to make sure your tests are not affected.[22m[39m
+
+[31m⎯⎯⎯⎯⎯⎯[39m[1m[41m Unhandled Error [49m[22m[31m⎯⎯⎯⎯⎯⎯⎯[39m
+[31m[1mError[22m: [vitest-pool]: Worker forks emitted error.[39m
+[90m [2m❯[22m EventEmitter.<anonymous> node_modules/vitest/dist/chunks/cli-api.Cx2DW4Bc.js:[2m8043:22[22m[39m
+[90m [2m❯[22m EventEmitter.emit node:events:[2m524:28[22m[39m
+[90m [2m❯[22m ChildProcess.emitUnexpectedExit node_modules/vitest/dist/chunks/cli-api.Cx2DW4Bc.js:[2m7610:22[22m[39m
+[90m [2m❯[22m ChildProcess.emit node:events:[2m524:28[22m[39m
+[90m [2m❯[22m Process.ChildProcess._handle.onexit node:internal/child_process:[2m293:12[22m[39m
+
+[31m[1mCaused by: Error[22m: Worker exited unexpectedly[39m
+[90m [2m❯[22m ChildProcess.emitUnexpectedExit node_modules/vitest/dist/chunks/cli-api.Cx2DW4Bc.js:[2m7609:33[22m[39m
+[90m [2m❯[22m ChildProcess.emit node:events:[2m524:28[22m[39m
+[90m [2m❯[22m Process.ChildProcess._handle.onexit node:internal/child_process:[2m293:12[22m[39m
+
+
+[31m⎯⎯⎯⎯⎯⎯[39m[1m[41m Unhandled Error [49m[22m[31m⎯⎯⎯⎯⎯⎯⎯[39m
+[31m[1mError[22m: [vitest-pool]: Worker forks emitted error.[39m
+[90m [2m❯[22m EventEmitter.<anonymous> node_modules/vitest/dist/chunks/cli-api.Cx2DW4Bc.js:[2m8043:22[22m[39m
+[90m [2m❯[22m EventEmitter.emit node:events:[2m524:28[22m[39m
+[90m [2m❯[22m ChildProcess.emitUnexpectedExit node_modules/vitest/dist/chunks/cli-api.Cx2DW4Bc.js:[2m7610:22[22m[39m
+[90m [2m❯[22m ChildProcess.emit node:events:[2m524:28[22m[39m
+[90m [2m❯[22m Process.ChildProcess._handle.onexit node:internal/child_process:[2m293:12[22m[39m
+
+[31m[1mCaused by: Error[22m: Worker exited unexpectedly[39m
+[90m [2m❯[22m ChildProcess.emitUnexpectedExit node_modules/vitest/dist/chunks/cli-api.Cx2DW4Bc.js:[2m7609:33[22m[39m
+[90m [2m❯[22m ChildProcess.emit node:events:[2m524:28[22m[39m
+[90m [2m❯[22m Process.ChildProcess._handle.onexit node:internal/child_process:[2m293:12[22m[39m
+
+[31m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[39m
+
+
+[2m Test Files [22m [1m[32m2 passed[39m[22m[90m (2)[39m
+[2m      Tests [22m [1m[32m22 passed[39m[22m[90m (22)[39m
+[2m     Errors [22m [1m[31m2 errors[39m[22m
+[2m   Start at [22m 19:08:03
+[2m   Duration [22m 640ms
+
+[1m[41m FAIL [49m[22m [31mTests failed. Watching for file changes...[39m
+       [2mpress [22m[1mh[22m[2m to show help[22m[2m, [22m[2mpress [22m[1mq[22m[2m to quit[22m
+c[3J[1m[44m RERUN [49m[22m [34m[2mpackage.json [22m[39m
+
+ [31m❯[39m src/domain/engine/validateContent.test.ts [2m([22m[2m0 test[22m[2m)[22m
+[90mstdout[2m | src/domain/engine/gameEngine.test.ts[2m > [22m[2mNACHTZUG 19 engine integration[2m > [22m[2mapplies choice effects and moves to the next scene
+[22m[39m[Transition] c1_s01_platform -> c1_s01a_platform_details
+
+ [32m✓[39m src/domain/engine/gameEngine.test.ts [2m([22m[2m14 tests[22m[2m)[22m[33m 2303[2mms[22m[39m
+
+[31m⎯⎯⎯⎯⎯⎯[39m[1m[41m Failed Suites 1 [49m[22m[31m⎯⎯⎯⎯⎯⎯⎯[39m
+
+[41m[1m FAIL [22m[49m src/domain/engine/validateContent.test.ts[2m [ src/domain/engine/validateContent.test.ts ][22m
+[31m[1mError[22m: Transform failed with 1 error:
+/home/d/Schreibtisch/Nachtzug19/src/domain/engine/validateContent.test.ts:50:0: ERROR: Expected identifier but found "<<"[39m
+  Plugin: [35mvite:esbuild[39m
+  File: [36m/home/d/Schreibtisch/Nachtzug19/src/domain/engine/validateContent.test.ts[39m:50:0
+[33m  
+  Expected identifier but found "<<"
+  48 |          id: 'A',
+  49 |          titel: 'Ending A',
+  50 |  <<<<<<< HEAD
+     |  ^
+  51 |          beschreibung: 'You reached ending A.'
+  52 |  ||||||| 564e8ca
+  [39m
+[90m [2m❯[22m failureErrorWithLog node_modules/vitest/node_modules/esbuild/lib/main.js:[2m1467:15[22m[39m
+[90m [2m❯[22m node_modules/vitest/node_modules/esbuild/lib/main.js:[2m736:50[22m[39m
+[90m [2m❯[22m responseCallbacks.<computed> node_modules/vitest/node_modules/esbuild/lib/main.js:[2m603:9[22m[39m
+[90m [2m❯[22m handleIncomingPacket node_modules/vitest/node_modules/esbuild/lib/main.js:[2m658:12[22m[39m
+[90m [2m❯[22m Socket.readFromStdout node_modules/vitest/node_modules/esbuild/lib/main.js:[2m581:7[22m[39m
+
+[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯[22m[39m
+
+
+[2m Test Files [22m [1m[31m1 failed[39m[22m[2m | [22m[1m[32m1 passed[39m[22m[90m (2)[39m
+[2m      Tests [22m [1m[32m14 passed[39m[22m[90m (14)[39m
+[2m   Start at [22m 19:09:40
+[2m   Duration [22m 2.70s
+
+[1m[41m FAIL [49m[22m [31mTests failed. Watching for file changes...[39m
+       [2mpress [22m[1mh[22m[2m to show help[22m[2m, [22m[2mpress [22m[1mq[22m[2m to quit[22m

@@ -275,8 +275,7 @@ Ihr Blick ist… traurig. Aber auch… etwas anderes.
 
 Angst? Mitgefühl? Schuld?
 
-„Weißt du, was in Abteil 7 ist?" fragt sie leise.
-
+„Weißt du, was in Abteil 7 ist?" fragt sie leise.`,
     narrative_variants: [
       {
         min_drift: 4,
@@ -1502,8 +1501,7 @@ Das ist… dein Platz.
 
 Dein Sitz.
 
-Aber… 1973?
-
+Aber… 1973?`,
     narrative_variants: [
       {
         min_drift: 5,

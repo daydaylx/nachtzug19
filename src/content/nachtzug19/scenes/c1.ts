@@ -1,8 +1,8 @@
 // ============================================================================
 // NACHTZUG 19 - Kapitel 1: Leerer Bahnsteig
 // ============================================================================
-// Szenen (24):
-// Setup: c1_s01_platform, c1_s01a_platform_details
+// Szenen (26):
+// Setup: c1_s01_platform, c1_s01_platform_b, c1_s01a_platform_details, c1_s01a_platform_details_b
 // Interludes: c1_interlude_01_lights, c1_interlude_02_silence, c1_interlude_03_window, c1_interlude_04_clock, c1_interlude_05_vibration
 // Train: c1_s02_train_appears, c1_s02a_train_exterior
 // Inside: c1_s03_inside_train, c1_s03a_corridor_walk, c1_s03b_find_seat
@@ -16,7 +16,7 @@ import { ScenesCollection } from '../../../domain/types';
 
 export const chapter1Scenes: ScenesCollection = {
   // ============================================================================
-  // c1_s01_platform: Einstieg
+  // c1_s01_platform: Einstieg (Split Part 1)
   // ============================================================================
   'c1_s01_platform': {
     id: 'c1_s01_platform',
@@ -32,9 +32,39 @@ Die Anzeigetafel – ein mechanisches Klappmodell, kein LED-Display – zeigt: 2
 
 Kein Text. Kein „Nächster Zug". Nur leere Fächer, die im Takt klacken, ohne etwas anzuzeigen.
 
-Du weißt nicht mehr, warum du hier bist. Die Erinnerung fühlt sich an wie ein Traum, der dir beim Aufwachen durch die Finger rinnt. Es gibt einen Grund – du bist sicher, dass es einen gab – aber er ist weg. Verschluckt.
+Du weißt nicht mehr, warum du hier bist. Die Erinnerung fühlt sich an wie ein Traum, der dir beim Aufwachen durch die Finger rinnt. Es gibt einen Grund – du bist sicher, dass es einen gab – aber er ist weg. Verschluckt.`,
+    choices: [
+      {
+        id: 'look_around',
+        label: 'Umsehen',
+        effects: [
+          { type: 'inc', target: 'tickets_truth', value: 1 }
+        ],
+        next: 'c1_s01_platform_b'
+      },
+      {
+        id: 'wait_patiently',
+        label: 'Warten',
+        effects: [],
+        next: 'c1_s01_platform_b'
+      }
+    ],
+    tags: ['setup'],
+    state_notes: [
+      'Split Part 1: Fokus auf Umgebung',
+      'Erste Orientierung'
+    ],
+    atmosphere: 'somber'
+  },
 
-Aber du weißt: Du wartest auf etwas.
+  // ============================================================================
+  // c1_s01_platform_b: Einstieg (Split Part 2)
+  // ============================================================================
+  'c1_s01_platform_b': {
+    id: 'c1_s01_platform_b',
+    chapter: 1,
+    title: 'Atmosphäre',
+    narrative: `Aber du weißt: Du wartest auf etwas.
 
 Die Luft riecht nach kaltem Zigarettenrauch und Maschinenöl. Nicht nach frischem Rauch – nach altem. Nach Jahrzehnten. Als hätte jemand die Luft eingefroren, als hier noch geraucht werden durfte. Kalt. Zu kalt für September. Du ziehst die Jacke enger, aber es hilft nicht. Die Kälte kommt von innen.
 
@@ -44,42 +74,18 @@ Ein Gefühl von Verlust flackert auf. Ein Name, den du fast greifen kannst, aber
     narrative_variants: [
       {
         min_drift: 5,
-        narrative: `Der Bahnsteig ist leer. Nicht „spät abends leer", sondern falsch leer.
-
-An der Wand klebt ein einzelnes Plakat. Verblasst. Orange Schrift auf braunem Grund. „REISEN SIE MIT UNS", steht da. Die Telefonnummer ist jetzt unleserlich.
-
-Die Anzeigetafel – mechanisch, klappend – zeigt: 23:46.
-
-Du weißt nicht mehr, warum du hier bist. War es September? Oder Oktober? Die Erinnerung verschwimmt.
-
-Die Luft riecht nach kaltem Zigarettenrauch und Maschinenöl. Kalt. Zu kalt für Oktober. Du ziehst die Jacke enger, aber es hilft nicht.
+        narrative: `Die Luft riecht nach kaltem Zigarettenrauch und Maschinenöl. Kalt. Zu kalt für Oktober. Du ziehst die Jacke enger, aber es hilft nicht.
 
 Am Rand sitzt die Gestalt mit der Zeitung. Die Schlagzeile ist jetzt anders: „ENERGIEKRISE—". Der Rest ist verwischt. Die Gestalt blättert nicht um.`
       },
       {
         min_drift: 7,
-        narrative: `Der Bahnsteig ist leer. Nicht „spät abends leer", sondern falsch leer.
-
-An der Wand klebt ein einzelnes Plakat. Oder… waren es zwei? Das Bild flackert in deinem Kopf. Orange. Braun. „REISEN—" Der Rest ist weg.
-
-Die Anzeigetafel zeigt: 23:49. Oder 23:43. Die Ziffern klappen, aber du kannst ihnen nicht folgen.
-
-Du weißt nicht mehr, warum du hier bist. War es 1973? Nein, das kann nicht sein. Das ist… zu lange her.
-
-Die Luft riecht nach Zigarettenrauch. Alt. Jahrzehnte alt.
+        narrative: `Die Luft riecht nach Zigarettenrauch. Alt. Jahrzehnte alt.
 
 Die Gestalt mit der Zeitung ist näher gekommen. Oder du bist näher. Die Schlagzeile: „19. SEPTEMBER—". Das Datum. Heute? Gestern? Die Gestalt sieht auf. Aber wo das Gesicht sein sollte, ist nur Schwärze.`
       }
     ],
     choices: [
-      {
-        id: 'look_around',
-        label: 'Umsehen und warten',
-        effects: [
-          { type: 'inc', target: 'tickets_truth', value: 1 }
-        ],
-        next: 'c1_s01a_platform_details'
-      },
       {
         id: 'check_phone',
         label: 'Handy checken',
@@ -108,14 +114,14 @@ Die Gestalt mit der Zeitung ist näher gekommen. Oder du bist näher. Die Schlag
     ],
     tags: ['setup'],
     state_notes: [
-      'Erste Ticket-Verteilung: Truth (beobachten), Escape (ablenken), Guilt (gehen wollen)',
-      'try_leave erhöht conductor_attention (wird später relevant)'
+      'Split Part 2: Fokus auf Gestalt und Kälte',
+      'Drift-Varianten hier integriert'
     ],
     atmosphere: 'somber'
   },
 
   // ============================================================================
-  // c1_s01a_platform_details: Bahnsteig genauer untersuchen
+  // c1_s01a_platform_details: Details (Split Part 1)
   // ============================================================================
   'c1_s01a_platform_details': {
     id: 'c1_s01a_platform_details',
@@ -125,9 +131,42 @@ Die Gestalt mit der Zeitung ist näher gekommen. Oder du bist näher. Die Schlag
 
 Am Rand des Bahnsteigs: Eine gelbe Linie, abgeblättert. Dahinter die Schienen. Sie glänzen nicht. Kein Rost, aber auch kein Metall. Schwarz. Matt. Als wären sie aus etwas anderem gemacht.
 
-Die Uhr tickt nicht. Sie steht still. 23:47.
+Die Uhr tickt nicht. Sie steht still. 23:47.`,
+    choices: [
+      {
+        id: 'look_tracks',
+        label: 'Die Schienen fixieren',
+        effects: [
+          { type: 'inc', target: 'tickets_truth', value: 1 }
+        ],
+        next: 'c1_s01a_platform_details_b'
+      },
+      {
+        id: 'feel_guilty',
+        label: 'Denken: „Ich sollte nicht hier sein"',
+        effects: [
+          { type: 'inc', target: 'tickets_guilt', value: 1 },
+          { type: 'inc', target: 'memory_drift', value: 1 }
+        ],
+        next: 'c1_s01a_platform_details_b'
+      }
+    ],
+    tags: ['drift_seed'],
+    state_notes: [
+      'Split Part 1: Physische Umgebung',
+      'Uhr steht still'
+    ],
+    atmosphere: 'tense'
+  },
 
-Du greifst in deine Tasche. Da ist… etwas. Ein Gerät. Du ziehst es heraus.
+  // ============================================================================
+  // c1_s01a_platform_details_b: Details (Split Part 2)
+  // ============================================================================
+  'c1_s01a_platform_details_b': {
+    id: 'c1_s01a_platform_details_b',
+    chapter: 1,
+    title: 'Das Gerät',
+    narrative: `Du greifst in deine Tasche. Da ist… etwas. Ein Gerät. Du ziehst es heraus.
 
 Ein rechteckiges Ding aus Plastik und Glas. Schwer. Zu schwer für seine Größe. Der Bildschirm ist schwarz. Du drückst darauf, suchst nach einem Knopf, aber… es reagiert nicht. Oder doch? Für einen Moment flackert das Display auf – nicht mit Icons oder Apps, sondern mit statischem Rauschen, wie bei einem alten Fernseher.
 
@@ -152,23 +191,6 @@ Nicht das Rattern von Schienen. Tiefer. Ein Brummen, das du im Brustkorb spürst
         next: 'c1_interlude_01_lights'
       },
       {
-        id: 'look_tracks',
-        label: 'Die Schienen fixieren',
-        effects: [
-          { type: 'inc', target: 'tickets_truth', value: 1 }
-        ],
-        next: 'c1_interlude_01_lights'
-      },
-      {
-        id: 'feel_guilty',
-        label: 'Denken: „Ich sollte nicht hier sein"',
-        effects: [
-          { type: 'inc', target: 'tickets_guilt', value: 1 },
-          { type: 'inc', target: 'memory_drift', value: 1 }
-        ],
-        next: 'c1_interlude_01_lights'
-      },
-      {
         id: 'edge_glance',
         label: 'Zum Rand schauen',
         condition: {
@@ -186,9 +208,8 @@ Nicht das Rattern von Schienen. Tiefer. Ein Brummen, das du im Brustkorb spürst
     ],
     tags: ['drift_seed'],
     state_notes: [
-      'Schienen-Detail: schwarz/matt (erste subtile Anomalie)',
-      'Uhr steht still (Zeit ist kaputt)',
-      'feel_guilty erhöht memory_drift (Unsicherheit manifestiert sich)'
+      'Split Part 2: Das Handy/Gerät',
+      'Anomalie des Geräts'
     ],
     atmosphere: 'tense'
   },

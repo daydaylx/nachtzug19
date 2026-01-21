@@ -19,17 +19,17 @@ describe('NACHTZUG 19 engine integration', () => {
   it('applies choice effects and moves to the next scene', () => {
     const state = createInitialState(bundle.startSceneId);
     const scene = bundle.scenes[state.current_scene_id];
-    const choice = scene.choices.find((entry) => entry.id === 'try_leave');
+    // Changed from 'try_leave' to 'look_around' due to content split in C1
+    const choice = scene.choices.find((entry) => entry.id === 'look_around');
 
     if (!choice || !choice.next) {
-      throw new Error('Expected try_leave choice with next scene');
+      throw new Error('Expected look_around choice with next scene');
     }
 
     transitionToNextScene(state, scene, choice, bundle.scenes);
 
     expect(state.current_scene_id).toBe(choice.next);
-    expect(state.tickets.tickets_guilt).toBe(1);
-    expect(state.pressure.conductor_attention).toBe(1);
+    expect(state.tickets.tickets_truth).toBe(1);
   });
 
   it('hides choices when conditions are not met', () => {
