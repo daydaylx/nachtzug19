@@ -1,5 +1,32 @@
 # Migration Changelog: Content/Domain/UI Separation
 
+## Datum: 2026-01-21 (Mobile Pacing & Final Polish)
+
+### Mobile Pacing Refactor & Release Candidate
+
+**Grund**: Optimierung der Lesbarkeit auf mobilen Geräten (Vermeidung von "Walls of Text") und Behebung letzter Logikfehler vor Release.
+
+#### Änderungen:
+
+**Pacing Refactor (Alle Kapitel)**:
+- **Kapitel 1-7**: Überarbeitung nach "Beat-Regel" (Hook-Detail-Konsequenz).
+- **Scene Splitting**: Kritische Szenen (z.B. `c5_s12_window_void`, `c6_s02_silence`) in mehrere Beats aufgeteilt, um Textblöcke < 220 Wörter zu halten.
+- **Micro-Actions**: Neue Interaktionen eingefügt, um den Lesefluss aufzubrechen.
+
+**Logik & Konsistenz**:
+- **Recorder-Logik (C2/C3)**: Korrektur des `has_recorder` Status. Szenen in C3 berücksichtigen nun korrekt, ob der Spieler den Rekorder besitzt.
+- **Ticket-Logik (C4)**: Neuer Status `has_ticket` eingeführt. `c4_s05` prüft nun korrekt auf Ticket-Besitz.
+- **Typsystem**: `has_ticket` in `domain/types/index.ts` registriert.
+
+**Validierung**:
+- **Graph-Integrität**: 202 Szenen, 0 Fehler, 0 Warnungen.
+- **Pfad-Simulation**: 100% Abdeckung aller Szenen und Endings verifiziert.
+- **Tests**: Regression-Tests für neue Szenen-IDs aktualisiert.
+
+**Status**: ✅ Release Candidate (RC1)
+
+---
+
 ## Datum: 2026-01-18 (Narrative Enhancement Update)
 
 ### Ludonarrative Harmonie und Emotionaler Payoff verstärkt
