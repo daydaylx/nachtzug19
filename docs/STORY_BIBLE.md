@@ -38,55 +38,55 @@ Zusammenfassung der Struktur basierend auf dem `export/story.json` (Single Sourc
 *   **C7: [Titel ausstehend] (29 Szenen)**
     *   Ankunft am Ziel (oder Nicht-Ziel).
     *   Finale Konfrontation mit Conductor/Comp7.
-    *   Endings.
+    *   Enden.
 
-## 2. Canon
+## 2. Kanon (Canon)
 
 ### Figuren (Entities)
 *   **The Conductor (Der Schaffner):** Antagonist/Wächter. Reagiert auf `conductor_attention`.
-*   **Comp7 (Der Reisende in Abteil 7):** Mysteriöse Schlüsselfigur. State: `rel_comp7`.
-*   **The Boy (Kassettenjunge):** Träger von Erinnerungen. State: `rel_boy`.
-*   **The Sleepless (Der Schlaflose):** Warnende Gestalt am Anfang. State: `rel_sleepless`.
+*   **Comp7 (Der Reisende in Abteil 7):** Mysteriöse Schlüsselfigur. Status: `rel_comp7`.
+*   **The Boy (Kassettenjunge):** Träger von Erinnerungen. Status: `rel_boy`.
+*   **The Sleepless (Der Schlaflose):** Warnende Gestalt am Anfang. Status: `rel_sleepless`.
 
-### Key Items (Inventory)
+### Schlüsselgegenstände (Key Items)
 *   **Recorder:** Kassettenrekorder, erlaubt das Abspielen von Erinnerungen. (`has_recorder`)
 *   **Tag19:** Ein Etikett/Hinweis mit der Aufschrift "19". Wichtiges Indiz. (`has_tag19`)
 *   **Photo Anomaly:** Ein Foto, das sich verändert oder etwas Unmögliches zeigt. (`photo_anomaly`)
 
-## 3. State Index
+## 3. Status-Verzeichnis (State Index)
 
 Analyse basierend auf `export/story.json`.
 
-### State Categories
-*   **Tickets (0-5):** Narrative Währung für Endings.
+### Status-Kategorien
+*   **Tickets (0-5):** Narrative Währung für Enden.
     *   `tickets_truth` (Wahrheit suchen)
     *   `tickets_escape` (Flucht/Vermeidung)
     *   `tickets_guilt` (Schuld/Verantwortung)
     *   `tickets_love` (Verbindung)
-*   **Pressure (0-6):** Systemdruck.
+*   **Pressure (Druck/Chaos) (0-6):** Systemdruck.
     *   `conductor_attention` (Gefahr durch Schaffner)
     *   `memory_drift` (Realitätsverlust, steuert Textvarianten)
-*   **Relations (-2 bis +4):** NPC-Beziehungen.
+*   **Relations (Beziehungen) (-2 bis +4):** NPC-Beziehungen.
     *   `rel_comp7`
     *   `rel_boy`
     *   `rel_sleepless`
 
-### Usage Matrix
+### Verwendungs-Matrix (Usage Matrix)
 
-| Variable | Type | Locations (Write) | Locations (Read) |
+| Variable | Typ | Orte (Schreiben) | Orte (Lesen) |
 | :--- | :--- | :--- | :--- |
-| **memory_drift** | Pressure | C1-C7 (div. Choices) | **High Usage** (Narrative Variants, Conditionals) |
-| **conductor_attention** | Pressure | C1-C7 | Medium (Events) |
-| **tickets_truth** | Ticket | High | High (Unlock Truth Paths) |
-| **tickets_escape** | Ticket | High | Medium |
-| **tickets_guilt** | Ticket | High | Low |
-| **tickets_love** | Ticket | High | Low |
-| **rel_comp7** | Relation | C2, C3, C5, C6 | High (Endgame) |
-| **rel_boy** | Relation | C2, C3, C5 | Medium |
-| **rel_sleepless** | Relation | C1, C2, C5 | Low |
+| **memory_drift** | Pressure | C1-C7 (div. Choices) | **Hoch** (Narrative Varianten, Bedingungen) |
+| **conductor_attention** | Pressure | C1-C7 | Mittel (Events) |
+| **tickets_truth** | Ticket | Hoch | Hoch (Schaltet Wahrheits-Pfade frei) |
+| **tickets_escape** | Ticket | Hoch | Mittel |
+| **tickets_guilt** | Ticket | Hoch | Niedrig |
+| **tickets_love** | Ticket | Hoch | Niedrig |
+| **rel_comp7** | Relation | C2, C3, C5, C6 | Hoch (Endgame) |
+| **rel_boy** | Relation | C2, C3, C5 | Mittel |
+| **rel_sleepless** | Relation | C1, C2, C5 | Niedrig |
 | **has_tag19** | Item | C4, C6 | C4, C6, C7 |
 | **has_recorder** | Item | C2 | C3, C4, C6, C7 |
 | **photo_anomaly** | Item | C5 | C7 |
 
-### Anomalies
+### Auffälligkeiten (Anomalies)
 *   **Set-Only Variables:** `chapter_index`, `station_count`. Werden gesetzt, aber im Story-Flow (JSON) nie für Verzweigungen abgefragt. Dienen vermutlich nur der UI/Meta-Logik.
