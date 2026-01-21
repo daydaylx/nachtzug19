@@ -10,7 +10,7 @@
     "export:story": "tsx scripts/export_story_json.ts"
   },
   "devDependencies": {
-    "@types/node": "^25.0.9",
+    "@types/node": "^20.19.30",
     "tsx": "^4.7.0",
     "typescript": "^5.0.2",
     "vite": "^4.3.9",
