@@ -23,3 +23,4 @@
 - **Erledigt**: Inhalte sind implementiert.
 - **Veraltet**: Sollte archiviert/gelöscht werden.
 - **WICHTIG**: Enthält kritische Definitionen für nächste Schritte.
+- [Visual Assets Plan](VISUAL_ASSETS_PLAN.md)
