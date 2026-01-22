@@ -23,7 +23,8 @@ export type PlayerStats = {
 };
 
 /**
- * Tickets (0-5) - Entscheidungsmuster, die Zugang zu Wagen gewähren
+ * Tickets (0-50) - Entscheidungsmuster, die Zugang zu Wagen gewähren
+ * (Limit erhöht, da Story-Progress bis >12 skaliert)
  */
 export type Tickets = {
   tickets_truth: number;   // Wahrheit suchen
