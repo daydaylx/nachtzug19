@@ -59,6 +59,7 @@ export type Items = {
   has_ticket: boolean;      // Ticket in C4 gefunden
   photo_anomaly: boolean;   // Foto mit Anomalie
   played_recorder: boolean; // Ob der Rekorder jemals abgespielt wurde
+  memory_search_active: boolean; // P1: Spieler sucht aktiv nach einer Erinnerung/Person
 };
 
 /**
@@ -133,7 +134,7 @@ export type EffectTarget =
   // Relations
   | 'rel_comp7' | 'rel_boy' | 'rel_sleepless'
   // Items
-  | 'has_recorder' | 'has_tag19' | 'has_ticket' | 'photo_anomaly' | 'played_recorder'
+  | 'has_recorder' | 'has_tag19' | 'has_ticket' | 'photo_anomaly' | 'played_recorder' | 'memory_search_active'
   // Meta
   | 'chapter_index' | 'station_count';
 
@@ -384,7 +385,8 @@ export function createInitialState(start_scene_id: string = 'c1_s01_platform'): 
       has_tag19: false,
       has_ticket: false,
       photo_anomaly: false,
-      played_recorder: false
+      played_recorder: false,
+      memory_search_active: false
     },
 
     // Meta

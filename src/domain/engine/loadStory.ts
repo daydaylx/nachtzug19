@@ -66,10 +66,11 @@ export async function loadNachtzug19Story(): Promise<StoryBundle> {
   const { c5Scenes } = await import('../../content/nachtzug19/scenes/c5');
   const { c6Scenes } = await import('../../content/nachtzug19/scenes/c6');
   const { c7Scenes } = await import('../../content/nachtzug19/scenes/c7');
+  const { endingScenes } = await import('../../content/nachtzug19/scenes/endings');
 
   return loadStory(
     nachtzug19Manifest,
-    [chapter1Scenes, chapter2Scenes, chapter3Scenes, chapter4Scenes, c5Scenes, c6Scenes, c7Scenes],
+    [chapter1Scenes, chapter2Scenes, chapter3Scenes, chapter4Scenes, c5Scenes, c6Scenes, c7Scenes, endingScenes],
     nachtzug19Endings
   );
 }

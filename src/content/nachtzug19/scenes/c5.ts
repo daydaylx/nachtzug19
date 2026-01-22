@@ -975,6 +975,10 @@ Seine Silhouette hebt sich gegen das flackernde Licht ab.
 
 Er sieht dich an.
 
+Aber für einen Moment siehst du etwas anderes in seinem Gesicht. Keine Kälte. Sondern Erschöpfung.
+
+Er greift in seine Tasche, berührt etwas, zieht die Hand aber sofort wieder zurück.
+
 Sagt nichts.
 
 Bewegt sich nicht.
@@ -1303,6 +1307,21 @@ Eine Pause.
         id: 'try_to_answer',
         label: 'Antworten wollen',
         effects: [],
+        next: 'c5_s15_control3_question_b'
+      },
+      {
+        id: 'ask_conductor_purpose',
+        label: '„Bist du auch gefangen?"',
+        condition: {
+          type: 'compare',
+          target: 'tickets_truth',
+          operator: '>=',
+          value: 8
+        },
+        effects: [
+          { type: 'inc', target: 'tickets_truth', value: 2 },
+          { type: 'dec', target: 'conductor_attention', value: 1 }
+        ],
         next: 'c5_s15_control3_question_b'
       },
       {

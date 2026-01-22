@@ -1,15 +1,13 @@
 // ============================================================================
-// NACHTZUG 19 - Kapitel 1: Leerer Bahnsteig
+// NACHTZUG 19 - Kapitel 1: Leerer Bahnsteig (REDUZED / P1 FIX)
 // ============================================================================
-// Szenen (26):
-// Setup: c1_s01_platform, c1_s01_platform_b, c1_s01a_platform_details, c1_s01a_platform_details_b
-// Interludes: c1_interlude_01_lights, c1_interlude_02_silence, c1_interlude_03_window, c1_interlude_04_clock, c1_interlude_05_vibration
+// Szenen (14):
+// Setup: c1_s01_platform, c1_s01_platform_b, c1_s01a_platform_details
 // Train: c1_s02_train_appears, c1_s02a_train_exterior
-// Inside: c1_s03_inside_train, c1_s03a_corridor_walk, c1_s03b_find_seat
-// Sleepless: c1_s04_sleepless_intro, c1_s04a_sleepless_past, c1_s04b_sleepless_warning
-// Anomaly: c1_s05_first_anomaly, c1_s05a_other_passengers, c1_s05b_compartment7_tease, c1_s05c_announcement_repeat, c1_s05d_comp7_listen
-// Corridor: c1_s06_corridor_end, c1_s07_stranger_encounter
-// End: c1_end_platform_look, c1_end_station
+// Inside: c1_s03_inside_train, c1_s03a_find_seat
+// Sleepless: c1_s04_sleepless_intro, c1_s04a_sleepless_past
+// Anomaly: c1_s05_first_anomaly, c1_s05a_other_passengers, c1_s05b_compartment7_tease, c1_s05c_comp7_listen
+// End: c1_end_station
 // ============================================================================
 
 import { ScenesCollection } from '../../../domain/types';
@@ -24,15 +22,15 @@ export const chapter1Scenes: ScenesCollection = {
     title: 'Leerer Bahnsteig',
     narrative: `Der Bahnsteig ist leer. Nicht „spät abends leer", sondern falsch leer.
 
-An der Wand klebt ein einzelnes Plakat. Verblasst. Orange Schrift auf braunem Grund – diese aggressive Typografie aus den Siebzigern, fett und kantig. „REISEN SIE MIT UNS", steht da. Keine Webseite. Keine QR-Codes. Nur eine Telefonnummer mit zu wenigen Ziffern.
+An der Wand klebt ein einzelnes Plakat. Verblasst. Orange Schrift auf braunem Grund – diese aggressive Typografie aus den Siebzigern. „REISEN SIE MIT UNS", steht da. Keine Webseite. Keine QR-Codes. Nur eine Telefonnummer mit zu wenigen Ziffern.
 
 Keine Bänke. Keine Automaten. Nur nackte Wände aus Beton, fleckig von Feuchtigkeit und… Nikotin? Die Wände sind gelb verfärbt, als hätten hier jahrzehntelang Menschen geraucht. Eine Neonröhre flackert über dir. Das Licht ist kalt, blaugrün, wirft harte Schatten auf den Boden.
 
-Die Anzeigetafel – ein mechanisches Klappmodell, kein LED-Display – zeigt: 23:47.
+Die Anzeigetafel – ein mechanisches Klappmodell – zeigt: 23:47.
 
 Kein Text. Kein „Nächster Zug". Nur leere Fächer, die im Takt klacken, ohne etwas anzuzeigen.
 
-Du weißt nicht mehr, warum du hier bist. Die Erinnerung fühlt sich an wie ein Traum, der dir beim Aufwachen durch die Finger rinnt. Es gibt einen Grund – du bist sicher, dass es einen gab – aber er ist weg. Verschluckt.`,
+Du weißt nicht mehr, warum du hier bist. Die Erinnerung fühlt sich an wie ein Traum, der dir beim Aufwachen durch die Finger rinnt.`,
     choices: [
       {
         id: 'look_around',
@@ -58,34 +56,35 @@ Du weißt nicht mehr, warum du hier bist. Die Erinnerung fühlt sich an wie ein 
   },
 
   // ============================================================================
-  // c1_s01_platform_b: Einstieg (Split Part 2)
+  // c1_s01_platform_b: Einstieg (Split Part 2 - AGENCY FIX)
   // ============================================================================
   'c1_s01_platform_b': {
     id: 'c1_s01_platform_b',
     chapter: 1,
     title: 'Atmosphäre',
-    narrative: `Aber du weißt: Du wartest auf etwas.
+    narrative: `Aber du weißt: Du wartest auf etwas. Oder jemanden.
 
-Die Luft riecht nach kaltem Zigarettenrauch und Maschinenöl. Nicht nach frischem Rauch – nach altem. Nach Jahrzehnten. Als hätte jemand die Luft eingefroren, als hier noch geraucht werden durfte. Kalt. Zu kalt für September. Du ziehst die Jacke enger, aber es hilft nicht. Die Kälte kommt von innen.
+Die Luft riecht nach kaltem Zigarettenrauch und Maschinenöl. Nicht nach frischem Rauch – nach altem. Nach Jahrzehnten. Als hätte jemand die Luft eingefroren, als hier noch geraucht werden durfte.
 
-Am Rand – auf einer Bank, die du vorhin nicht gesehen hast – sitzt eine Gestalt. Sie liest eine Zeitung. Du siehst die Schlagzeile, aber das Datum ist verwischt. „ÖLKRISE VERSCHÄRFT SICH", steht da in dieser altmodischen Frakturschrift. Die Gestalt blättert nicht um. Bewegt sich nicht.
+Am Rand – auf einer Bank, die du vorhin nicht gesehen hast – sitzt eine Gestalt. Sie liest eine Zeitung. Du siehst die Schlagzeile, aber das Datum ist verwischt. „ÖLKRISE VERSCHÄRFT SICH", steht da in dieser altmodischen Frakturschrift. Die Gestalt blättert nicht um.
 
-Ein Gefühl von Verlust flackert auf. Ein Name, den du fast greifen kannst, aber der wie Rauch verweht. Du solltest nicht allein hier sein.`,
+Ein Name liegt dir auf der Zunge. Ein Gesicht, das du fast sehen kannst. Es ist wichtig. Lebenswichtig.`,
     narrative_variants: [
       {
         min_drift: 5,
-        narrative: `Die Luft riecht nach kaltem Zigarettenrauch und Maschinenöl. Kalt. Zu kalt für Oktober. Du ziehst die Jacke enger, aber es hilft nicht.
-
-Am Rand sitzt die Gestalt mit der Zeitung. Die Schlagzeile ist jetzt anders: „ENERGIEKRISE—". Der Rest ist verwischt. Die Gestalt blättert nicht um.`
-      },
-      {
-        min_drift: 7,
-        narrative: `Die Luft riecht nach Zigarettenrauch. Alt. Jahrzehnte alt.
-
-Die Gestalt mit der Zeitung ist näher gekommen. Oder du bist näher. Die Schlagzeile: „19. SEPTEMBER—". Das Datum. Heute? Gestern? Die Gestalt sieht auf. Aber wo das Gesicht sein sollte, ist nur Schwärze.`
+        narrative: `Die Luft riecht nach kaltem Zigarettenrauch. Die Gestalt mit der Zeitung sitzt näher. Die Schlagzeile: „ENERGIEKRISE—". Der Rest ist verwischt. Die Gestalt blättert nicht um. Ein Name brennt in deinem Kopf.`
       }
     ],
     choices: [
+      {
+        id: 'search_person',
+        label: 'Den Namen rufen (Suchen)',
+        effects: [
+          { type: 'inc', target: 'tickets_love', value: 1 },
+          { type: 'set', target: 'memory_search_active', value: true }
+        ],
+        next: 'c1_s01a_platform_details'
+      },
       {
         id: 'check_phone',
         label: 'Handy checken',
@@ -102,191 +101,69 @@ Die Gestalt mit der Zeitung ist näher gekommen. Oder du bist näher. Die Schlag
           { type: 'inc', target: 'conductor_attention', value: 1 }
         ],
         next: 'c1_s01a_platform_details'
-      },
-      {
-        id: 'focus_on_smell',
-        label: 'Den Geruch einatmen',
-        effects: [
-          { type: 'inc', target: 'memory_drift', value: 1 }
-        ],
-        next: 'c1_s01a_platform_details'
       }
     ],
     tags: ['setup'],
     state_notes: [
-      'Split Part 2: Fokus auf Gestalt und Kälte',
+      'P1 FIX: Agency durch memory_search_active',
       'Drift-Varianten hier integriert'
     ],
     atmosphere: 'somber'
   },
 
   // ============================================================================
-  // c1_s01a_platform_details: Details (Split Part 1)
+  // c1_s01a_platform_details: Details & Gerät (Merged)
   // ============================================================================
   'c1_s01a_platform_details': {
     id: 'c1_s01a_platform_details',
     chapter: 1,
-    title: 'Details',
-    narrative: `Du setzt dich in Bewegung, unschlüssig ob du suchen oder fliehen willst. Der Beton unter deinen Sohlen klingt hohl. Das Echo verliert sich in der Leere.
-
-Am Rand des Bahnsteigs: Eine gelbe Linie, abgeblättert. Dahinter die Schienen. Sie glänzen nicht. Kein Rost, aber auch kein Metall. Schwarz. Matt. Als wären sie aus etwas anderem gemacht.
-
-Die Uhr tickt nicht. Sie steht still. 23:47.`,
-    choices: [
-      {
-        id: 'look_tracks',
-        label: 'Die Schienen fixieren',
-        effects: [
-          { type: 'inc', target: 'tickets_truth', value: 1 }
-        ],
-        next: 'c1_s01a_platform_details_b'
-      },
-      {
-        id: 'feel_guilty',
-        label: 'Denken: „Ich sollte nicht hier sein"',
-        effects: [
-          { type: 'inc', target: 'tickets_guilt', value: 1 },
-          { type: 'inc', target: 'memory_drift', value: 1 }
-        ],
-        next: 'c1_s01a_platform_details_b'
-      }
-    ],
-    tags: ['drift_seed'],
-    state_notes: [
-      'Split Part 1: Physische Umgebung',
-      'Uhr steht still'
-    ],
-    atmosphere: 'tense'
-  },
-
-  // ============================================================================
-  // c1_s01a_platform_details_b: Details (Split Part 2)
-  // ============================================================================
-  'c1_s01a_platform_details_b': {
-    id: 'c1_s01a_platform_details_b',
-    chapter: 1,
     title: 'Das Gerät',
-    narrative: `Du greifst in deine Tasche. Da ist… etwas. Ein Gerät. Du ziehst es heraus.
+    narrative: `Du setzt dich in Bewegung. Der Beton unter deinen Sohlen klingt hohl. Am Rand des Bahnsteigs: Eine gelbe Linie, abgeblättert. Dahinter die Schienen. Schwarz. Matt. Als wären sie aus etwas anderem als Metall gemacht.
 
-Ein rechteckiges Ding aus Plastik und Glas. Schwer. Zu schwer für seine Größe. Der Bildschirm ist schwarz. Du drückst darauf, suchst nach einem Knopf, aber… es reagiert nicht. Oder doch? Für einen Moment flackert das Display auf – nicht mit Icons oder Apps, sondern mit statischem Rauschen, wie bei einem alten Fernseher.
+Du greifst in deine Tasche. Da ist… etwas. Ein Gerät.
+
+Ein rechteckiges Ding aus Plastik und Glas. Schwer. Der Bildschirm ist schwarz. Du drückst darauf, und für einen Moment flackert das Display auf – nicht mit Icons oder Apps, sondern mit statischem Rauschen, wie bei einem alten Fernseher.
 
 Dann wird es wieder schwarz.
 
-Du starrst darauf. Das Ding fühlt sich fremd an in deiner Hand. Als gehörte es nicht hierher. Nicht in diese… Zeit. Der Gedanke kommt und geht, bevor du ihn greifen kannst.
-
-Du steckst es zurück. Deine Hand zittert.
-
-Du drehst dich um. Am anderen Ende des Bahnsteigs – vielleicht hundert Meter entfernt – flackert eine zweite Neonröhre. Zwischen dir und ihr: Nichts. Keine Schatten. Keine Bewegung. Nur Beton und diese falsche Stille.
-
-Dann, ein Geräusch.
-
-Nicht das Rattern von Schienen. Tiefer. Ein Brummen, das du im Brustkorb spürst. Von unten. Von überall.`,
+Plötzlich flackert die Neonröhre über dir schneller. Ein, aus, ein, aus. Dein Schatten auf dem Boden streckt sich, wird unnatürlich lang. Ein tiefes Brummen erfüllt die Luft, vibriert in deinem Brustkorb.`,
     choices: [
       {
         id: 'step_back',
-        label: 'Einen Schritt zurücktreten',
+        label: 'Zurücktreten',
         effects: [
           { type: 'inc', target: 'tickets_escape', value: 1 }
         ],
-        next: 'c1_interlude_01_lights'
+        next: 'c1_s02_train_appears'
       },
       {
-        id: 'edge_glance',
-        label: 'Zum Rand schauen',
+        id: 'examine_tracks',
+        label: 'Die schwarzen Schienen fixieren',
+        effects: [
+          { type: 'inc', target: 'tickets_truth', value: 1 }
+        ],
+        next: 'c1_s02_train_appears'
+      },
+      {
+        id: 'hold_device',
+        label: 'Das Gerät fest umklammern',
         condition: {
-          type: 'compare',
-          target: 'conductor_attention',
-          operator: '>=',
-          value: 1
+          type: 'bool',
+          target: 'memory_search_active',
+          value: true
         },
         effects: [
-          { type: 'inc', target: 'tickets_escape', value: 1 },
-          { type: 'dec', target: 'conductor_attention', value: 1 }
+          { type: 'inc', target: 'tickets_love', value: 1 }
         ],
-        next: 'c1_interlude_01_lights'
+        next: 'c1_s02_train_appears'
       }
     ],
     tags: ['drift_seed'],
     state_notes: [
-      'Split Part 2: Das Handy/Gerät',
-      'Anomalie des Geräts'
+      'Merged: Details, Device, Lights',
+      'Schnellerer Einstieg zum Zug'
     ],
     atmosphere: 'tense'
-  },
-
-  // ============================================================================
-  // c1_interlude_01_lights: Licht-Interlude
-  // ============================================================================
-  'c1_interlude_01_lights': {
-    id: 'c1_interlude_01_lights',
-    chapter: 1,
-    title: 'Lichtwechsel',
-    narrative: `Die Neonröhre über dir flackert schneller.
-
-Ein, aus, ein, aus.
-
-Im Rhythmus des Brummens. Als wären sie verbunden.
-
-Du siehst deinen Schatten auf dem Boden. Er ist länger geworden. Viel länger. Die Proportionen stimmen nicht.
-
-Dann wird das Licht konstant. Die Röhre hört auf zu flackern. Das Brummen bleibt.`,
-    choices: [
-      {
-        id: 'close_eyes',
-        label: 'Augen schliessen und atmen',
-        effects: [
-          { type: 'inc', target: 'tickets_escape', value: 1 },
-          { type: 'dec', target: 'conductor_attention', value: 1 }
-        ],
-        next: 'c1_s02_train_appears'
-      },
-      {
-        id: 'trace_shadow',
-        label: 'Den Schatten messen',
-        condition: {
-          type: 'compare',
-          target: 'tickets_truth',
-          operator: '>=',
-          value: 2
-        },
-        effects: [
-          { type: 'inc', target: 'tickets_truth', value: 1 },
-          { type: 'inc', target: 'memory_drift', value: 1 }
-        ],
-        next: 'c1_s02_train_appears'
-      },
-      {
-        id: 'avert_eyes',
-        label: 'Den Blick senken',
-        condition: {
-          type: 'compare',
-          target: 'tickets_guilt',
-          operator: '>=',
-          value: 1
-        },
-        effects: [
-          { type: 'inc', target: 'tickets_guilt', value: 1 },
-          { type: 'dec', target: 'conductor_attention', value: 1 }
-        ],
-        next: 'c1_s02_train_appears'
-      },
-      {
-        id: 'continue',
-        label: 'Weiter',
-        effects: [
-          { type: 'inc', target: 'memory_drift', value: 1 }
-        ],
-        next: 'c1_s02_train_appears'
-      }
-    ],
-    tags: ['drift_seed'],
-    state_notes: [
-      'Schatten stimmt nicht (erste visuelle Drift)',
-      'Interlude: kurz, atmosphärisch, kein Plot',
-      'close_eyes senkt attention, wenn bereits aufgebaut',
-      'avert_eyes nur bei tickets_guilt >= 1 (Guilt-Callback)'
-    ],
-    atmosphere: 'mystic'
   },
 
   // ============================================================================
@@ -296,51 +173,19 @@ Dann wird das Licht konstant. Die Röhre hört auf zu flackern. Das Brummen blei
     id: 'c1_s02_train_appears',
     chapter: 1,
     title: 'Der Zug',
-    narrative: `Das Brummen wird lauter. Es kommt nicht näher – es ist einfach da. Überall. In deinen Knochen.
+    narrative: `Das Brummen wird lauter. Dann gleitet der Zug in den Bahnhof. Lautlos.
 
-Dann gleitet der Zug in den Bahnhof. Lautlos.
-
-Er sieht aus wie ein alter Nachtzug. Achtziger Jahre. Abblätternde dunkelrote Farbe, stellenweise schwarz verfärbt. Fenster zu schmal, Rahmen vergilbt. Die Wagen sind lang. Zu lang. Mindestens acht. Vielleicht mehr.
+Er sieht aus wie ein alter Nachtzug. Achtziger Jahre. Abblätternde dunkelrote Farbe, stellenweise schwarz verfärbt. Fenster zu schmal, Rahmen vergilbt. Die Wagen sind lang. Zu lang.
 
 Durch die Scheiben siehst du Silhouetten – Menschen, die reglos auf ihren Plätzen sitzen. Niemand bewegt sich. Als wären sie eingefroren.
 
-Die Türen öffnen sich mit einem Zischen. Warme Luft strömt heraus. Riecht nach altem Polster und etwas Suesslichem, das du nicht benennen kannst. Verbrannter Zucker? Feuchtigkeit? Etwas darunter, das du nicht einordnen willst.
+Die Türen öffnen sich mit einem Zischen. Warme Luft strömt heraus. Riecht nach altem Polster und etwas Süßlichem. Verbrannter Zucker?
 
-Die Stufen glaenzen feucht. Ein duenner Nebel haengt in der Tuer, als haette der Zug seinen eigenen Atem. Du spuerst die Waerme an den Knoecheln, aber der Griff der Tuere ist kalt, Metall, das zu lange im Schatten lag. Am Rahmen klebt etwas Dunkles, ein Streifen wie getrockneter Oelstaub. Als du ihn beruehrst, bleibt ein grauer Abdruck auf deinem Finger.
-
-Niemand steigt aus.`,
+Die Stufen glänzen feucht. Ein dünner Nebel hängt in der Tür. Niemand steigt aus.`,
     narrative_variants: [
       {
         min_drift: 5,
-        narrative: `Das Brummen wird lauter. Es kommt nicht näher – es ist einfach da. Überall. In deinen Knochen.
-
-Dann gleitet der Zug in den Bahnhof. Lautlos.
-
-Er sieht aus wie ein alter Nachtzug. Siebziger Jahre. Abblätternde dunkelrote Farbe, stellenweise schwarz verfärbt. Fenster zu schmal, Rahmen vergilbt. Die Wagen sind lang. Zu lang. Mindestens neun. Vielleicht mehr.
-
-Durch die Scheiben siehst du Silhouetten – Menschen, die reglos auf ihren Plätzen sitzen. Niemand bewegt sich. Als wären sie eingefroren.
-
-Die Türen öffnen sich mit einem Zischen. Warme Luft strömt heraus. Riecht nach altem Polster und etwas Suesslichem, das du nicht benennen kannst. Verbrannter Zucker? Feuchtigkeit? Etwas darunter, das du nicht einordnen willst.
-
-Die Stufen glaenzen feucht. Ein duenner Nebel haengt in der Tuer, als haette der Zug seinen eigenen Atem. Du spuerst die Waerme an den Knoecheln, aber der Griff der Tuere ist kalt, Metall, das zu lange im Schatten lag. Am Rahmen klebt etwas Dunkles, ein Streifen wie getrockneter Oelstaub. Als du ihn beruehrst, bleibt ein schwarzer Abdruck auf deinem Finger.
-
-Niemand steigt aus.`
-      },
-      {
-        min_drift: 7,
-        narrative: `Das Brummen wird lauter. Es kommt nicht näher – es ist einfach da. Überall. In deinen Knochen.
-
-Dann gleitet der Zug in den Bahnhof. Lautlos.
-
-Er sieht aus wie ein alter Nachtzug. Siebziger Jahre. Abblätternde dunkelrote Farbe, stellenweise schwarz verfärbt. Fenster zu schmal, Rahmen vergilbt. Die Wagen sind lang. Zu lang. Mindestens zehn. Vielleicht mehr.
-
-Durch die Scheiben siehst du Silhouetten – Menschen, die reglos auf ihren Plätzen sitzen. Niemand bewegt sich. Als wären sie eingefroren.
-
-Die Türen öffnen sich mit einem Zischen. Kalte Luft strömt heraus. Riecht nach altem Polster und etwas Suesslichem, das du nicht benennen kannst. Verbrannter Zucker? Feuchtigkeit? Etwas darunter, das du nicht einordnen willst.
-
-Die Stufen glaenzen feucht. Ein duenner Nebel haengt in der Tuer, als haette der Zug seinen eigenen Atem. Du spuerst die Kaelte an den Knoecheln, und der Griff der Tuere ist kalt, Metall, das zu lange im Schatten lag. Am Rahmen klebt etwas Dunkles, ein Streifen wie getrockneter Oelstaub. Als du ihn beruehrst, bleibt ein schwarzer Abdruck auf deinem Finger.
-
-Niemand steigt aus.`
+        narrative: `Das Brummen wird lauter. Der Zug gleitet herein. Lautlos. Dunkelrot, fast schwarz. Die Wagen sind endlos. Durch die Scheiben: Eingefrorene Silhouetten. Warme, süßliche Luft strömt heraus. Die Stufen glänzen schwarz. Niemand steigt aus.`
       }
     ],
     choices: [
@@ -361,23 +206,13 @@ Niemand steigt aus.`
         next: 'c1_s02a_train_exterior'
       },
       {
-        id: 'hesitate',
-        label: 'Zögern',
-        effects: [
-          { type: 'inc', target: 'tickets_guilt', value: 1 },
-          { type: 'inc', target: 'memory_drift', value: 1 }
-        ],
-        next: 'c1_s02a_train_exterior'
-      },
-      {
         id: 'call_out',
         label: 'In den Zug rufen',
         condition: {
-          type: 'or',
-          conditions: [
-            { type: 'compare', target: 'tickets_truth', operator: '>=', value: 2 },
-            { type: 'compare', target: 'conductor_attention', operator: '>=', value: 1 }
-          ]
+          type: 'compare',
+          target: 'conductor_attention',
+          operator: '<',
+          value: 2
         },
         effects: [
           { type: 'inc', target: 'tickets_truth', value: 1 },
@@ -388,9 +223,7 @@ Niemand steigt aus.`
     ],
     tags: ['setup'],
     state_notes: [
-      'hesitate erhöht memory_drift, call_out erhöht attention',
-      'Süßlicher Geruch (unbenannt = unheimlich)',
-      'Niemand steigt aus (erste Regelabweichung)'
+      'P1 FIX: call_out blocked if attention >= 2'
     ],
     atmosphere: 'tense'
   },
@@ -402,17 +235,13 @@ Niemand steigt aus.`
     id: 'c1_s02a_train_exterior',
     chapter: 1,
     title: 'Von außen',
-    narrative: `Du stehst vor der offenen Tür. Die Stufen sind schmal, Metall. Kalt, auch durch die warme Luft, die aus dem Zug strömt.
+    narrative: `Du stehst vor der offenen Tür.
 
-An der Seite des Wagens: Ein Schriftzug. Verblichen. Du kannst nur Teile lesen: „—CHTZUG 1—". Der Rest fehlt. Abgekratzt oder nie dagewesen.
+An der Seite des Wagens: Ein Schriftzug. Verblichen. Du kannst nur Teile lesen: „—CHTZUG 1—". Der Rest fehlt. Abgekratzt.
 
-Durch das nächste Fenster siehst du eine Frau. Sie starrt geradeaus. Ihre Augen bewegen sich nicht. Ihre Hände liegen gefaltet im Schoß. Perfekt symmetrisch.
+Durch das nächste Fenster siehst du eine Frau. Sie starrt geradeaus. Ihre Augen bewegen sich nicht. Ihre Hände liegen gefaltet im Schoß. Perfekt symmetrisch. Du wartest darauf, dass sie blinzelt. Sie tut es nicht.
 
-Du wartest darauf, dass sie blinzelt.
-
-Sie tut es nicht.
-
-Hinter dir: Ein Geräusch. Schritte? Nein. Nur das Brummen, das leiser wird. Der Zug wird gleich weiterfahren. Du weißt es. Nicht denken, wissen.`,
+Hinter dir: Das Brummen wird leiser. Der Zug wird gleich weiterfahren. Du weißt es.`,
     choices: [
       {
         id: 'board_now',
@@ -420,7 +249,7 @@ Hinter dir: Ein Geräusch. Schritte? Nein. Nur das Brummen, das leiser wird. Der
         effects: [
           { type: 'inc', target: 'tickets_escape', value: 1 }
         ],
-        next: 'c1_interlude_02_silence'
+        next: 'c1_s03_inside_train'
       },
       {
         id: 'touch_exterior',
@@ -428,142 +257,50 @@ Hinter dir: Ein Geräusch. Schritte? Nein. Nur das Brummen, das leiser wird. Der
         effects: [
           { type: 'inc', target: 'tickets_truth', value: 1 }
         ],
-        next: 'c1_interlude_02_silence'
+        next: 'c1_s03_inside_train'
       },
       {
         id: 'ask_aloud',
         label: '„Ist da jemand?" rufen',
+        condition: {
+           type: 'compare',
+           target: 'conductor_attention',
+           operator: '<',
+           value: 2
+        },
         effects: [
           { type: 'inc', target: 'tickets_love', value: 1 },
           { type: 'inc', target: 'conductor_attention', value: 1 }
         ],
-        next: 'c1_interlude_02_silence'
-      },
-      {
-        id: 'watch_windows',
-        label: 'In die Fenster starren',
-        condition: {
-          type: 'compare',
-          target: 'memory_drift',
-          operator: '>=',
-          value: 1
-        },
-        effects: [
-          { type: 'inc', target: 'tickets_truth', value: 1 },
-          { type: 'inc', target: 'memory_drift', value: 1 }
-        ],
-        next: 'c1_interlude_02_silence'
+        next: 'c1_s03_inside_train'
       }
     ],
     tags: ['reveal'],
     state_notes: [
-      'Schriftzug unvollständig (NACHTZUG 19 versteckt)',
-      'Frau blinzelt nicht (NPC-Anomalie)',
-      'ask_aloud erhöht conductor_attention (Lautstärke wird registriert)'
+      'Shortened narrative',
+      'Direct link to c1_s03_inside_train'
     ],
     atmosphere: 'mystic'
   },
 
   // ============================================================================
-  // c1_interlude_02_silence: Stille-Interlude
-  // ============================================================================
-  'c1_interlude_02_silence': {
-    id: 'c1_interlude_02_silence',
-    chapter: 1,
-    title: 'Stille',
-    narrative: `Du steigst ein. Die Tür schließt sich hinter dir mit einem finalen Klack.
-
-Und dann: Stille.
-
-Nicht die normale Stille, wenn man in einen Zug einsteigt. Eine zu saubere Stille. Als wäre der Raum schalldicht. Als hätte jemand den Ton abgedreht.
-
-Du schluckst. Das Geräusch bleibt aus. Es fühlt sich an, als hätte jemand den Raum mit Watte ausgekleidet. Der Druck auf deinen Ohren wächst, ein dumpfes Pochen, das von innen gegen das Trommelfell drückt, als würdest du tief unter Wasser tauchen.
-
-Du hebst die Hand, klopfst leicht gegen das Metall der Wand. Kein Echo. Nur ein stumpfer Widerstand, der in deine Finger kriecht, eine Vibration, die nirgendwohin geht. Das Metall ist kalt, aber nicht glatt – es fühlt sich porös an, als würde es deine Berührung aufsaugen.
-
-Du öffnest den Mund, um deinen Namen zu sagen. Luft bewegt sich, aber der Ton bleibt hängen, als hätte er keinen Platz in dieser dichten Luft. Deine Zunge fühlt sich schwer an, trocken, wie Sandpapier.
-
-Dein eigener Puls drückt von innen gegen die Schläfen. Ein rhythmisches Pochen, das viel zu laut ist für diesen leeren Raum. Bumm. Bumm. Bumm.
-
-Der Geruch von altem Polster ist plötzlich schärfer, süßlich und staubig, gemischt mit etwas Metallischem – Kupfer oder Blut? Du merkst, wie du flacher atmest, um den Geschmack nicht auf die Zunge zu bekommen.
-
-Du reibst die Fingerspitzen an der Kante des Sitzes, suchst ein Geräusch, ein Zeichen. Nichts. Das Velours ist rau, widerborstig, aber es gibt keinen Laut von sich. Die Stille antwortet nicht, sie bleibt. Sie liegt schwer auf deinen Schultern, wie eine bleierne Decke.
-
-Du hörst, wie der Stoff deiner Jacke an deinem Hals scheuert, ein Geräusch, das nur in dir stattfindet, übertragen durch Knochenleitung. Die Stille drückt gegen die Augen, als wäre sie greifbar, und du blinzelst, nur um etwas zu bewegen. Es hilft nicht. Die Luft bleibt fest, unbewegt.
-
-Kein Rattern. Kein Ventilator. Kein Gemurmel.
-
-Nur das Brummen, leise im Hintergrund. Konstant. Wie ein Herzschlag, der nicht deiner ist.`,
-    choices: [
-      {
-        id: 'stay_quiet',
-        label: 'Ganz still bleiben',
-        condition: {
-          type: 'compare',
-          target: 'conductor_attention',
-          operator: '>=',
-          value: 1
-        },
-        effects: [
-          { type: 'inc', target: 'tickets_escape', value: 1 },
-          { type: 'dec', target: 'conductor_attention', value: 1 }
-        ],
-        next: 'c1_s03_inside_train'
-      },
-      {
-        id: 'test_voice',
-        label: 'Den eigenen Namen fluestern',
-        condition: {
-          type: 'compare',
-          target: 'conductor_attention',
-          operator: '>=',
-          value: 1
-        },
-        effects: [
-          { type: 'inc', target: 'tickets_truth', value: 1 },
-          { type: 'inc', target: 'conductor_attention', value: 1 }
-        ],
-        next: 'c1_s03_inside_train'
-      },
-      {
-        id: 'continue',
-        label: 'Weiter',
-        effects: [
-          { type: 'inc', target: 'memory_drift', value: 1 }
-        ],
-        next: 'c1_s03_inside_train'
-      }
-    ],
-    tags: ['drift_seed'],
-    state_notes: [
-      'Zu saubere Stille (akustische Anomalie)',
-      'Interlude: sensorischer Fokus (Gehör)'
-    ],
-    atmosphere: 'tense'
-  },
-
-  // ============================================================================
-  // c1_s03_inside_train: Im Zug
+  // c1_s03_inside_train: Im Zug (Merged Silence)
   // ============================================================================
   'c1_s03_inside_train': {
     id: 'c1_s03_inside_train',
     chapter: 1,
     title: 'Innen',
-    narrative: `Der Zug setzt sich in Bewegung – sanft, als würde er schweben. Kein Ruck. Keine Beschleunigung. Er gleitet.
+    narrative: `Du steigst ein. Die Tür schließt sich mit einem finalen Klack.
 
-Der Wagen ist ein Gang mit Abteilen. Orange-braune Polstersitze, abgenutzt, mit diesem rauen, kratzigen Stoff, der in den Siebzigern überall war. Die Muster – geometrische Formen, braun auf orange – sind verblasst, an den Armlehnen fast weiß gerieben. Messinglampen mit milchigen Glasschirmen, die flackern. Holzverkleidung in dunklem Furnier, die nach altem Rauch riecht. Zigaretten, aber auch etwas anderes. Süßer. Nach Pfeifentabak vielleicht.
+Stille. Eine zu saubere Stille, als hätte jemand den Ton abgedreht. Der Druck auf deinen Ohren wächst, wie unter Wasser.
 
-Der Boden vibriert kaum merklich, mehr ein Puls als eine Bewegung. Unter deinen Schuhen ist der Teppich dünn, senfgelb mit braunen Streifen, abgelaufen, an den Kanten hart vom Staub. An den Fenstern klebt ein feiner Film aus Kondenswasser, der kühl ist, als du kurz mit dem Finger entlangfährst.
+Der Wagen ist ein Gang mit Abteilen. Orange-braune Polstersitze, abgenutzt, Siebziger-Jahre-Muster. Messinglampen flackern. Es riecht nach altem Rauch und Pfeifentabak.
 
-Aus den Lampen kommt ein leises Summen, das nicht zum Flackern passt. Es hängt in der Luft wie ein Ton, den nur du hörst. Irgendwo knackt Holz, als würde jemand im nächsten Abteil den Sitz verstellen, aber du siehst niemanden sich bewegen.
+Der Zug setzt sich in Bewegung – sanft, schwebend. Kein Ruck.
 
-An der Decke: Aschenbecher. Kleine metallene Klappen, die in die Wand eingelassen sind. In jedem Abteil. Du hast so etwas schon mal gesehen, aber… wann? Das war doch verboten worden. Vor Jahrzehnten.
+Zur Linken: Ein Mann, mittleren Alters, der aus dem Fenster starrt. Seine Augen sind rot umrandet. Er trägt einen braunen Anzug, der aus der Zeit gefallen wirkt.
 
-Niemand starrt auf Bildschirme. Niemand trägt Kopfhörer. Die Stille ist… echt. Ungebrochen.
-
-Zur Linken: Ein Mann, mittleren Alters, der aus dem Fenster starrt. Seine Augen sind rot umrandet. Als hätte er seit Tagen nicht geschlafen. Er trägt einen braunen Anzug mit breitem Revers. Die Krawatte ist zu breit. Alles an ihm wirkt… aus der Zeit gefallen.
-
-Zur Rechten: Ein leeres Abteil mit einem Koffer auf dem Sitz. Leder, verwittert, mit Messingschnallen. Niemand in der Nähe. Das Abteil ist unverschlossen.`,
+Zur Rechten: Ein leeres Abteil.`,
     choices: [
       {
         id: 'talk_to_man',
@@ -575,120 +312,49 @@ Zur Rechten: Ein leeres Abteil mit einem Koffer auf dem Sitz. Leder, verwittert,
         next: 'c1_s04_sleepless_intro'
       },
       {
-        id: 'examine_suitcase',
-        label: 'Den Koffer untersuchen',
-        effects: [
-          { type: 'inc', target: 'tickets_truth', value: 1 }
-        ],
-        next: 'c1_s03a_corridor_walk'
-      },
-      {
         id: 'find_seat',
-        label: 'Einfach einen Platz suchen',
+        label: 'Einen Platz suchen',
         effects: [],
-        next: 'c1_s03a_corridor_walk'
+        next: 'c1_s03a_find_seat'
       },
       {
-        id: 'choose_door_seat',
-        label: 'Einen Platz nahe der Tuer suchen',
+        id: 'test_silence',
+        label: 'Etwas flüstern',
         condition: {
-          type: 'compare',
-          target: 'tickets_escape',
-          operator: '>=',
-          value: 2
+           type: 'compare',
+           target: 'conductor_attention',
+           operator: '<',
+           value: 2
         },
         effects: [
-          { type: 'inc', target: 'tickets_escape', value: 1 }
+          { type: 'inc', target: 'tickets_truth', value: 1 },
+          { type: 'inc', target: 'conductor_attention', value: 1 }
         ],
-        next: 'c1_s03a_corridor_walk'
+        next: 'c1_s03a_find_seat'
       }
     ],
     tags: [],
     state_notes: [
-      'Talk_to_man führt direkt zu Sleepless',
-      'Koffer-Hinweis: optionales Detail'
+      'Merged Silence Interlude here',
+      'Skip Corridor Walk -> Direct to Find Seat or Talk'
     ],
     atmosphere: 'mystic'
   },
 
   // ============================================================================
-  // c1_s03a_corridor_walk: Gang-Wanderung
+  // c1_s03a_find_seat: Platz suchen (Was s03b)
   // ============================================================================
-  'c1_s03a_corridor_walk': {
-    id: 'c1_s03a_corridor_walk',
-    chapter: 1,
-    title: 'Gang',
-    narrative: `Du gehst den Gang entlang. Die Lampen flackern im Rhythmus der Schienen. Aber es gibt kein Schienenrasseln. Nur das Brummen, konstant und tief.
-
-Ein Fenster zur Rechten. Draußen: Schwärze. Keine Lichter. Keine Landschaft. Nur Schwarz, das sich nicht bewegt. Keine Reflexion. Kein Glas zwischen dir und der Schwärze – nur Rahmen.
-
-Im nächsten Abteil sitzt ein Kind. Vielleicht acht Jahre alt. Es malt in ein Heft. Du siehst die Zeichnung: Ein Zug. Viel zu lang. Die Wagen sind verbunden mit Strichen, die nicht gerade sind. Gekrümmt. Als würde der Zug sich biegen.
-
-Das Kind blickt auf. Sieht dich an. Sagt nichts.
-
-Dann zurück zur Zeichnung.`,
-    choices: [
-      {
-        id: 'ask_child',
-        label: '„Was malst du?"',
-        effects: [
-          { type: 'inc', target: 'tickets_love', value: 1 }
-        ],
-        next: 'c1_s03b_find_seat'
-      },
-      {
-        id: 'look_at_drawing',
-        label: 'Die Zeichnung genauer ansehen',
-        effects: [
-          { type: 'inc', target: 'tickets_truth', value: 1 },
-          { type: 'inc', target: 'memory_drift', value: 1 }
-        ],
-        next: 'c1_s03b_find_seat'
-      },
-      {
-        id: 'keep_walking_past',
-        label: 'Weitergehen',
-        effects: [
-          { type: 'inc', target: 'tickets_escape', value: 1 }
-        ],
-        next: 'c1_s03b_find_seat'
-      },
-      {
-        id: 'follow_hum',
-        label: 'Dem Summen folgen',
-        condition: {
-          type: 'compare',
-          target: 'memory_drift',
-          operator: '>=',
-          value: 1
-        },
-        effects: [],
-        next: 'c1_s03b_find_seat'
-      }
-    ],
-    tags: ['drift_seed'],
-    state_notes: [
-      'Kind malt Zug (Meta-Hinweis: Zug ist zu lang und gebogen)',
-      'Schwärze draußen (keine Außenwelt sichtbar)',
-      'look_at_drawing erhöht memory_drift (zu viel Fokus destabilisiert)'
-    ],
-    atmosphere: 'mystic'
-  },
-
-  // ============================================================================
-  // c1_s03b_find_seat: Platz suchen
-  // ============================================================================
-  'c1_s03b_find_seat': {
-    id: 'c1_s03b_find_seat',
+  'c1_s03a_find_seat': {
+    id: 'c1_s03a_find_seat',
     chapter: 1,
     title: 'Sitzplatz',
     narrative: `Du suchst dir ein Abteil. Leer. Du setzt dich ans Fenster.
 
 Die Polster sind weich, aber feucht. Als hätten sie lange in einem kalten Raum gestanden.
 
-Durch das Fenster: Immer noch Schwärze. Aber jetzt siehst du ab und zu einen Lichtpunkt. Weit weg. Dann weg.
+Durch das Fenster: Schwärze. Keine Lichter, keine Landschaft. Aber ab und zu ein Lichtpunkt, der sofort wieder verschwindet.
 
-Du lehnt den Kopf ans Fenster. Das Glas ist warm. Viel zu warm.
+Du lehnst den Kopf ans Fenster. Das Glas ist warm. Viel zu warm.
 
 Dann, eine Stimme hinter dir: „Du auch?"`,
     choices: [
@@ -726,8 +392,7 @@ Dann, eine Stimme hinter dir: „Du auch?"`,
     ],
     tags: [],
     state_notes: [
-      'Warmes Glas (Temperatur-Anomalie)',
-      'Lichtpunkte draußen (erste Außenwelt-Andeutung)'
+      'Shortened path'
     ],
     atmosphere: 'somber'
   },
@@ -739,21 +404,21 @@ Dann, eine Stimme hinter dir: „Du auch?"`,
     id: 'c1_s04_sleepless_intro',
     chapter: 1,
     title: 'Der Schlaflose',
-    narrative: `Der Mann steht im Gang. Seine Augen sind rot umrandet, als hätte er seit Tagen nicht geschlafen. Seine Kleidung ist ordentlich, aber zerknittert.
+    narrative: `Der Mann steht im Gang. Seine Augen sind rot umrandet.
 
-„Du auch?" sagt er. Seine Stimme ist rau. Trocken.
+„Du auch?" sagt er. Seine Stimme ist rau.
 
-Du fragst: „Auch was?"
+„Auch was?"
 
-„Keine Ahnung, wo du eingestiegen bist. Kein Ticket in der Tasche. Keine Erinnerung daran, wie du hier gelandet bist."
+„Keine Ahnung, wo du eingestiegen bist. Kein Ticket in der Tasche. Keine Erinnerung."
 
 Er lächelt müde. „Willkommen im Nachtzug."
 
-Seine Worte treffen wie ein Schlag. Du greifst in deine Tasche. Leer. Kein Ticket. Keine Quittung. Nichts. Nicht mal das Handy, das du vorhin checken wolltest.
+Du greifst in deine Tasche. Leer. Kein Ticket. Dein Handy – oder was es war – ist still.
 
-„Wo ist mein Handy?"
+„Wo sind wir?"
 
-Er zuckt mit den Schultern. „Hattest du eins?"`,
+Er zuckt mit den Schultern. „Unterwegs."`,
     choices: [
       {
         id: 'ask_where',
@@ -781,54 +446,29 @@ Er zuckt mit den Schultern. „Hattest du eins?"`,
           { type: 'dec', target: 'rel_sleepless', value: 1 }
         ],
         next: 'c1_s04a_sleepless_past'
-      },
-      {
-        id: 'stay_silent',
-        label: 'Nichts sagen',
-        condition: {
-          type: 'compare',
-          target: 'tickets_escape',
-          operator: '>=',
-          value: 2
-        },
-        effects: [],
-        next: 'c1_s04a_sleepless_past'
       }
     ],
     tags: ['reveal'],
-    state_notes: [
-      'Sleepless etabliert die Grundregel: Niemand hat ein Ticket',
-      'ask_where/ask_how_long: Unterschied zwischen Truth (Fakten) und Love (Empathie)',
-      'deny: Escape-Pattern, verschlechtert Beziehung',
-      'Handy ist weg (Item-Loss, Isolation)'
-    ],
+    state_notes: [],
     atmosphere: 'tense'
   },
 
   // ============================================================================
-  // c1_s04a_sleepless_past: Tiefere Konversation
+  // c1_s04a_sleepless_past: Tiefere Konversation (Merged Warning)
   // ============================================================================
   'c1_s04a_sleepless_past': {
     id: 'c1_s04a_sleepless_past',
     chapter: 1,
     title: 'Seine Geschichte',
-    narrative: `Der Schlaflose lehnt sich gegen die Wand. „Ich weiß es nicht. Wie lange ich hier bin."
+    narrative: `„Es war Nacht, als ich eingestiegen bin. Es ist immer noch Nacht." Er zeigt auf seine Uhr. Das Zifferblatt ist leer. Keine Zeiger.
 
-Er zeigt auf seine Uhr. Das Zifferblatt ist leer. Keine Zeiger. Nur ein rundes weißes Feld.
+Er sieht dich an. „Hast du jemanden gesucht? Bevor du hier warst?"
 
-„Es war Nacht, als ich eingestiegen bin. Es ist immer noch Nacht. Vielleicht war es immer Nacht."
+Ein Gesicht blitzt auf. Verschwimmt.
 
-Er sieht dich an. Direkt. Seine Augen sind wässrig. „Hast du jemanden gesucht? Bevor du hier warst?"
+„Die meisten von uns suchen jemanden. Oder sie laufen weg. Manchmal beides."
 
-Du denkst nach. Ein Gesicht blitzt auf. Verschwimmt. Weg. Du kannst es nicht festhalten.
-
-„Ich glaube schon," sagst du.
-
-Er nickt. „Die meisten von uns suchen jemanden. Oder sie laufen weg."
-
-Eine Pause.
-
-„Manchmal beides."`,
+Er beugt sich vor, senkt die Stimme. „Hör zu. Wenn der Schaffner kommt… Sag nicht dein Ziel. Er fragt nach dem Warum, nicht nach dem Wo. Verstanden?"`,
     choices: [
       {
         id: 'admit_searching',
@@ -837,7 +477,7 @@ Eine Pause.
           { type: 'inc', target: 'tickets_love', value: 1 },
           { type: 'inc', target: 'rel_sleepless', value: 2 }
         ],
-        next: 'c1_interlude_03_window'
+        next: 'c1_s05_first_anomaly'
       },
       {
         id: 'admit_running',
@@ -846,165 +486,34 @@ Eine Pause.
           { type: 'inc', target: 'tickets_guilt', value: 1 },
           { type: 'inc', target: 'rel_sleepless', value: 1 }
         ],
-        next: 'c1_interlude_03_window'
-      },
-      {
-        id: 'ask_about_watch',
-        label: '„Was ist mit deiner Uhr passiert?"',
-        effects: [
-          { type: 'inc', target: 'tickets_truth', value: 1 },
-          { type: 'inc', target: 'rel_sleepless', value: 1 }
-        ],
-        next: 'c1_interlude_03_window'
-      }
-    ],
-    tags: ['reveal'],
-    state_notes: [
-      'Uhr ohne Zeiger (Zeit existiert nicht)',
-      'Gesicht blitzt auf (Callback: Memory-Glitch)',
-      'admit_searching: Love +1, rel +2 (starke emotionale Öffnung)',
-      'admit_running: Guilt-Pattern (Flucht vor Verantwortung)',
-      '"Manchmal beides" = Comp7-Foreshadowing'
-    ],
-    atmosphere: 'somber'
-  },
-
-  // ============================================================================
-  // c1_interlude_03_window: Fenster-Interlude
-  // ============================================================================
-  'c1_interlude_03_window': {
-    id: 'c1_interlude_03_window',
-    chapter: 1,
-    title: 'Fenster',
-    narrative: `Der Schlaflose geht zurück zu seinem Platz. Seine Schritte sind schwer, schlurfend, als würde er ein Gewicht tragen, das du nicht sehen kannst.
-
-Du bleibst am Fenster stehen.
-
-Draußen: Immer noch Schwärze. Eine dichte, undurchdringliche Masse, die das Licht des Zuges einfach verschluckt, ohne etwas zurückzuwerfen. Keine Sterne. Kein Mond. Keine Lichter von Häusern oder Straßenlaternen. Nur dieses endlose, matte Schwarz.
-
-Aber jetzt, als sich deine Augen an das Dunkel gewöhnen, siehst du Strukturen. Schatten von Bäumen? Verzerrte Äste, die wie Finger nach dem Zug greifen? Häusern ohne Fenster? Oder ist es nur deine eigene Angst, die Formen in die Leere projiziert?
-
-Vielleicht ist es nur deine Reflexion, die sich im Doppelglas bricht und bewegt.
-
-Du hebst die Hand, langsam, fast zögernd. Deine Reflexion im Glas hebt die Hand.
-
-Aber eine Sekunde zu spät.
-
-Der Bruchteil eines Augenblicks, kaum wahrnehmbar, aber dein Gehirn registriert die Verzögerung. Ein Schauer läuft dir über den Rücken. Die Reflexion starrt dich an, die Augen dunkel und leer, als würde sie warten. Als würde sie nur imitieren, was du tust, aber mit einem eigenen Willen dahinter.
-
-Du legst die Fingerspitzen an das Glas. Es ist eiskalt, kälter als die Luft draußen sein dürfte. Die Kälte brennt fast auf der Haut. Dein Atem bildet einen kleinen Nebelfleck auf der Scheibe, der sofort wieder verschwindet, als würde das Glas ihn aufsaugen.
-
-Dahinter, in der Tiefe der Schwärze, bewegt sich etwas. Ein Schatten, der dunkler ist als die Nacht. Er gleitet parallel zum Zug, hält Schritt, ohne Anstrengung.
-
-Du blinzelst, und die Bewegung ist weg. Nur dein verzögertes Spiegelbild starrt zurück.`,
-    choices: [
-      {
-        id: 'touch_glass',
-        label: 'Die Hand ans Glas legen',
-        condition: {
-          type: 'compare',
-          target: 'memory_drift',
-          operator: '>=',
-          value: 1
-        },
-        effects: [
-          { type: 'inc', target: 'tickets_truth', value: 1 },
-          { type: 'inc', target: 'memory_drift', value: 1 }
-        ],
-        next: 'c1_s04b_sleepless_warning'
-      },
-      {
-        id: 'continue',
-        label: 'Weiter',
-        effects: [
-          { type: 'inc', target: 'memory_drift', value: 1 }
-        ],
-        next: 'c1_s04b_sleepless_warning'
-      }
-    ],
-    tags: ['drift_seed'],
-    state_notes: [
-      'Reflexion verzögert (visueller Drift)',
-      'Interlude: subtile Anomalie, kein Plot',
-      'touch_glass nur bei memory_drift >= 1'
-    ],
-    atmosphere: 'mystic'
-  },
-
-  // ============================================================================
-  // c1_s04b_sleepless_warning: Warnung
-  // ============================================================================
-  'c1_s04b_sleepless_warning': {
-    id: 'c1_s04b_sleepless_warning',
-    chapter: 1,
-    title: 'Warnung',
-    narrative: `Der Schlaflose ruft von seinem Platz: „Wenn der Schaffner kommt—"
-
-Er zögert.
-
-„Was?" fragst du.
-
-„Sag nicht dein Ziel. Nicht zuerst. Er fragt nach dem Warum, nicht nach dem Wo."
-
-„Was passiert, wenn ich es doch sage?"
-
-Er sieht dich an. „Dann wird es schwieriger. Für dich. Und für die anderen."
-
-Du willst nachfragen, aber er schüttelt den Kopf. „Du wirst es sehen. Jeder sieht es anders."`,
-    choices: [
-      {
-        id: 'thank_him',
-        label: '„Danke."',
-        effects: [
-          { type: 'inc', target: 'tickets_love', value: 1 },
-          { type: 'inc', target: 'rel_sleepless', value: 1 }
-        ],
         next: 'c1_s05_first_anomaly'
       },
       {
-        id: 'ask_more',
-        label: '„Was meinst du mit anders?"',
+        id: 'ask_about_conductor',
+        label: '„Warum? Was macht der Schaffner?"',
+        condition: {
+           type: 'compare',
+           target: 'conductor_attention',
+           operator: '<',
+           value: 2
+        },
         effects: [
           { type: 'inc', target: 'tickets_truth', value: 1 },
           { type: 'inc', target: 'conductor_attention', value: 1 }
         ],
         next: 'c1_s05_first_anomaly'
-      },
-      {
-        id: 'dismiss',
-        label: '„Ich komme schon klar."',
-        effects: [
-          { type: 'inc', target: 'tickets_escape', value: 1 }
-        ],
-        next: 'c1_s05_first_anomaly'
-      },
-      {
-        id: 'mention_reflection',
-        label: 'Die versetzte Reflexion erwaehnen',
-        condition: {
-          type: 'compare',
-          target: 'memory_drift',
-          operator: '>=',
-          value: 2
-        },
-        effects: [
-          { type: 'inc', target: 'tickets_truth', value: 1 },
-          { type: 'inc', target: 'memory_drift', value: 1 }
-        ],
-        next: 'c1_s05_first_anomaly'
       }
     ],
     tags: ['reveal'],
     state_notes: [
-      'Schaffner-Regel etabliert: "Warum", nicht "Wo"',
-      'ask_more erhöht conductor_attention (zu viele Fragen = Aufmerksamkeit)',
-      '"Jeder sieht es anders" = subjektive Realität'
+      'Merged with warning about conductor',
+      'Shortened path'
     ],
-    atmosphere: 'tense'
+    atmosphere: 'somber'
   },
 
   // ============================================================================
-  // c1_s05_first_anomaly: Erste Anomalie
+  // c1_s05_first_anomaly: Erste Anomalie (Merged Announcement)
   // ============================================================================
   'c1_s05_first_anomaly': {
     id: 'c1_s05_first_anomaly',
@@ -1016,49 +525,36 @@ Du willst nachfragen, aber er schüttelt den Kopf. „Du wirst es sehen. Jeder s
 
 Pause.
 
-Dann, als würde jemand ein Band zurückspulen:
+„—[unverständlich]. Bitte achten Sie auf Ihre persönlichen Gegenstände."
 
-„—erreichen in Kürze [unverständlich]. Bitte achten Sie auf Ihre persönlichen Gegenstände."
+Der Schlaflose zuckt nicht mal. „Der Name der Station. Er fehlt. Seit drei Halten."
 
-Der Schlaflose zuckt nicht mal. Als hätte er das schon hundertmal gehört.
+Die Durchsage wiederholt sich, verzerrt: „—ückf—"
 
-Du fragst: „Was war das?"
+Rückfahrt? Rückkehr?
 
-Er seufzt. „Der Name der Station. Er fehlt. Seit drei Halten. Immer dasselbe."
-
-„Warum?"
-
-Er lächelt müde. „Weil sie noch keinen Namen hat. Oder wir ihn vergessen haben. Oder beides."`,
+„Weil sie noch keinen Namen hat," sagt der Schlaflose. „Oder wir ihn vergessen haben."`,
     choices: [
       {
         id: 'write_it_down',
-        label: 'Versuche, es aufzuschreiben',
+        label: 'Versuchen, es aufzuschreiben',
         effects: [
           { type: 'inc', target: 'tickets_truth', value: 1 },
           { type: 'inc', target: 'conductor_attention', value: 1 }
         ],
-        next: 'c1_interlude_04_clock'
+        next: 'c1_s05a_other_passengers'
       },
       {
         id: 'ignore_anomaly',
-        label: 'Ignorieren und weitergehen',
+        label: 'Ignorieren',
         effects: [
           { type: 'inc', target: 'tickets_escape', value: 1 }
         ],
         next: 'c1_s05a_other_passengers'
       },
       {
-        id: 'ask_sleepless',
-        label: 'Den Schlaflosen fragen',
-        effects: [
-          { type: 'inc', target: 'tickets_love', value: 1 },
-          { type: 'inc', target: 'rel_sleepless', value: 1 }
-        ],
-        next: 'c1_s05a_other_passengers'
-      },
-      {
-        id: 'analyze_announcement',
-        label: 'Die Durchsage aufmerksam analysieren',
+        id: 'analyze_fragment',
+        label: 'Über das Wort "Rückf-" nachdenken',
         condition: {
           type: 'compare',
           target: 'memory_drift',
@@ -1069,187 +565,41 @@ Er lächelt müde. „Weil sie noch keinen Namen hat. Oder wir ihn vergessen hab
           { type: 'inc', target: 'tickets_truth', value: 1 },
           { type: 'inc', target: 'memory_drift', value: 1 }
         ],
-        next: 'c1_interlude_04_clock'
+        next: 'c1_s05a_other_passengers'
       }
     ],
     tags: ['drift_seed'],
     state_notes: [
-      'write_it_down erhöht conductor_attention (Aufmerksamkeit wird registriert)',
-      'Erste Memory-Drift-Manifestation (Stationsname fehlt)',
-      'Durchsage wiederholt sich (Loop-Mechanik)',
-      'CONDITION: analyze_announcement nur bei memory_drift >= 1'
+      'Merged with announcement repeat hint',
+      'Shortened path to Other Passengers'
     ],
     atmosphere: 'mystic'
   },
 
   // ============================================================================
-  // c1_interlude_04_clock: Uhr-Interlude
-  // ============================================================================
-  'c1_interlude_04_clock': {
-    id: 'c1_interlude_04_clock',
-    chapter: 1,
-    title: 'Uhr',
-    narrative: `Du siehst auf dein Handgelenk. Keine Uhr.
-
-Hattest du eine? Du erinnerst dich nicht.
-
-Die Anzeigetafel im Wagen zeigt: 23:47.
-
-Dieselbe Zeit wie am Bahnsteig.
-
-Die Ziffern flimmern, nicht flackernd, eher als würden sie müde atmen.
-
-Du streckst den Finger aus und berührst das Plastik unter der Anzeige. Es ist warm, fast weich, und gibt ein wenig nach.
-
-Du hörst ein leises Klicken irgendwo hinter der Wand, als würde ein Relais versuchen, die Minute zu wechseln.
-
-Du zählst weiter. Bei vierunddreißig hältst du den Atem an, bei fünfzig presst du die Lippen zusammen.
-
-Für einen Moment denkst du daran, die Tafel herunterzureißen. Dein Arm hebt sich schon, dann sinkt er wieder.
-
-Die Luft riecht nach staubigem Metall und kalter Elektrik, und das Brummen im Boden legt sich wie eine zweite Uhr auf deinen Brustkorb.
-
-Du tippst mit dem Fingernagel gegen die Anzeige. Der Ton ist stumpf, als würde er in Stoff landen. Ein dünner Film aus Staub bleibt an deinem Finger kleben.
-
-Du wischst ihn an der Hose ab und siehst kurz eine dunkle Spur.
-
-Du wartest. Zählst die Sekunden. Eins, zwei, drei… bis sechzig.
-
-Die Tafel zeigt immer noch: 23:47.`,
-    narrative_variants: [
-      {
-        min_drift: 3,
-        narrative: `Du siehst auf dein Handgelenk. Keine Uhr.
-
-Hattest du eine? Du erinnerst dich nicht.
-
-Die Anzeigetafel im Wagen zeigt: 23:43.
-
-Dieselbe Zeit wie am Bahnsteig.
-
-Die Ziffern flimmern, nicht flackernd, eher als würden sie müde atmen.
-
-Du streckst den Finger aus und berührst das Plastik unter der Anzeige. Es ist warm, fast weich, und gibt ein wenig nach.
-
-Du hörst ein leises Klicken irgendwo hinter der Wand, als würde ein Relais versuchen, die Minute zu wechseln.
-
-Du zählst weiter. Bei vierunddreißig hältst du den Atem an, bei fünfzig presst du die Lippen zusammen.
-
-Für einen Moment denkst du daran, die Tafel herunterzureißen. Dein Arm hebt sich schon, dann sinkt er wieder.
-
-Die Luft riecht nach staubigem Metall und kalter Elektrik, und das Brummen im Boden legt sich wie eine zweite Uhr auf deinen Brustkorb.
-
-Du tippst mit dem Fingernagel gegen die Anzeige. Der Ton ist stumpf, als würde er in Stoff landen. Ein dünner Film aus Staub bleibt an deinem Finger kleben.
-
-Du wischst ihn an der Hose ab und siehst kurz eine rötliche Spur.
-
-Du wartest. Zählst die Sekunden. Eins, zwei, drei… bis sechzig.
-
-Die Tafel zeigt immer noch: 23:43.`
-      },
-      {
-        min_drift: 5,
-        narrative: `Du siehst auf dein Handgelenk. Keine Uhr.
-
-Hattest du eine? Du erinnerst dich nicht.
-
-Die Anzeigetafel im Wagen zeigt: 00:12.
-
-Dieselbe Zeit wie am Bahnsteig.
-
-Die Ziffern flimmern, nicht flackernd, eher als würden sie müde atmen.
-
-Du streckst den Finger aus und berührst das Plastik unter der Anzeige. Es ist kalt, fast feucht, und gibt ein wenig nach.
-
-Du hörst ein leises Klicken irgendwo hinter der Wand, als würde ein Relais versuchen, die Minute zu wechseln.
-
-Du zählst weiter. Bei vierunddreißig hältst du den Atem an, bei fünfzig presst du die Lippen zusammen.
-
-Für einen Moment denkst du daran, die Tafel herunterzureißen. Dein Arm hebt sich schon, dann sinkt er wieder.
-
-Die Luft riecht nach staubigem Metall und kalter Elektrik, und das Brummen im Boden legt sich wie eine zweite Uhr auf deinen Brustkorb.
-
-Du tippst mit dem Fingernagel gegen die Anzeige. Der Ton ist stumpf, als würde er in Stoff landen. Ein dünner Film aus Staub bleibt an deinem Finger kleben.
-
-Du wischst ihn an der Hose ab und siehst kurz eine rötliche Spur.
-
-Du wartest. Zählst die Sekunden. Eins, zwei, drei… bis sechzig.
-
-Die Tafel zeigt immer noch: 00:12.`
-      }
-    ],
-    choices: [
-      {
-        id: 'note_time',
-        label: 'Die Anzeige mitzaehlen',
-        condition: {
-          type: 'compare',
-          target: 'tickets_truth',
-          operator: '>=',
-          value: 2
-        },
-        effects: [
-          { type: 'inc', target: 'tickets_truth', value: 1 },
-          { type: 'inc', target: 'memory_drift', value: 1 }
-        ],
-        next: 'c1_s05a_other_passengers'
-      },
-      {
-        id: 'continue',
-        label: 'Weiter',
-        effects: [
-          { type: 'inc', target: 'memory_drift', value: 1 }
-        ],
-        next: 'c1_s05a_other_passengers'
-      }
-    ],
-    tags: ['drift_seed'],
-    state_notes: [
-      'Zeit steht still (Meta-Regel: Zeit existiert nicht)',
-      'Condition: Nur sichtbar wenn write_it_down gewählt wurde',
-      'note_time nur bei tickets_truth >= 2'
-    ],
-    atmosphere: 'tense'
-  },
-
-  // ============================================================================
-  // c1_s05a_other_passengers: Andere Passagiere beobachten
+  // c1_s05a_other_passengers: Andere Passagiere
   // ============================================================================
   'c1_s05a_other_passengers': {
     id: 'c1_s05a_other_passengers',
     chapter: 1,
     title: 'Die anderen',
-    narrative: `Du schaust dich um.
+    narrative: `Du schaust dich um. Außer dem Schlaflosen:
 
-Außer dem Schlaflosen und dem Kind: Vier weitere Passagiere. Alle sitzen allein. Alle starren aus dem Fenster in die Schwärze.
-
-Eine Frau, Ende dreißig. Mantel zugeknöpft, obwohl es warm ist. Ihre Hände sind gefaltet, perfekt symmetrisch.
-
-Ein Mann mit Brille. Er hält ein Buch. Die Seiten sind leer. Aber er blättert um, als würde er lesen.
-
-Ein Teenager mit Kopfhörern. Kein Kabel. Die Kopfhörer sind nicht angeschlossen. Aber er nickt im Rhythmus.
-
-Eine alte Frau. Ihre Lippen bewegen sich stumm. Als würde sie beten. Oder rezitieren.
+Eine Frau, Ende dreißig. Mantel zugeknöpft. Ihre Hände gefaltet, perfekt symmetrisch.
+Ein Mann mit Brille. Er hält ein Buch mit leeren Seiten, blättert aber um.
+Ein Teenager mit nicht angeschlossenen Kopfhörern, der im Rhythmus nickt.
 
 Niemand spricht. Niemand bewegt sich. Außer diesen kleinen Gesten.`,
     choices: [
       {
-        id: 'count_passengers',
-        label: 'Die Passagiere zählen',
-        condition: {
-          type: 'compare',
-          target: 'memory_drift',
-          operator: '>=',
-          value: 2
-        },
-        effects: [
-          { type: 'inc', target: 'tickets_truth', value: 1 }
-        ],
-        next: 'c1_s05b_compartment7_tease'
-      },
-      {
         id: 'approach_woman',
         label: 'Die Frau ansprechen',
+        condition: {
+           type: 'compare',
+           target: 'conductor_attention',
+           operator: '<',
+           value: 3
+        },
         effects: [
           { type: 'inc', target: 'tickets_love', value: 1 },
           { type: 'inc', target: 'conductor_attention', value: 1 }
@@ -1265,29 +615,22 @@ Niemand spricht. Niemand bewegt sich. Außer diesen kleinen Gesten.`,
         next: 'c1_s05b_compartment7_tease'
       },
       {
-        id: 'stay_inconspicuous',
-        label: 'Unauffällig bleiben',
+        id: 'count_passengers',
+        label: 'Die Passagiere zählen',
         condition: {
           type: 'compare',
-          target: 'conductor_attention',
+          target: 'memory_drift',
           operator: '>=',
           value: 2
         },
         effects: [
-          { type: 'inc', target: 'tickets_escape', value: 1 },
-          { type: 'dec', target: 'conductor_attention', value: 1 }
+          { type: 'inc', target: 'tickets_truth', value: 1 }
         ],
         next: 'c1_s05b_compartment7_tease'
       }
     ],
     tags: ['setup'],
-    state_notes: [
-      'Leere Buchseiten (Realität löst sich auf)',
-      'Kopfhörer ohne Kabel (Details stimmen nicht)',
-      'approach_woman erhöht conductor_attention (Interaktion = Risiko)',
-      'Frau = Comp7-Foreshadowing',
-      'CONDITION: stay_inconspicuous nur bei conductor_attention >= 2; count_passengers nur bei memory_drift >= 2'
-    ],
+    state_notes: [],
     atmosphere: 'somber'
   },
 
@@ -1298,25 +641,15 @@ Niemand spricht. Niemand bewegt sich. Außer diesen kleinen Gesten.`,
     id: 'c1_s05b_compartment7_tease',
     chapter: 1,
     title: 'Am Ende',
-    narrative: `Du gehst weiter durch den Wagen. Der Gang ist länger als vorhin. Viel länger. Oder bildest du dir das ein?
+    narrative: `Du gehst weiter durch den Wagen. Am Ende: Eine Tür. Massiv. Holz.
 
-Am Ende siehst du eine Tür. Massiv. Holz. Mit einer Zahl darauf, eingraviert:
+Nummer 7.
 
-7
+Ein handgeschriebenes Schild: „Besetzt".
 
-Daneben ein Schild, handgeschrieben auf vergilbtem Papier: „Besetzt".
+Du hörst Geräusche dahinter. Leises Kratzen. Papier auf Papier.
 
-Du hörst Geräusche dahinter. Leises Kratzen. Papier auf Papier. Als würde jemand schreiben. Oder zeichnen.
-
-Der Schlaflose ruft von hinten: „Geh da nicht rein. Noch nicht."
-
-Du drehst dich um. „Warum?"
-
-„Du bist noch nicht bereit."
-
-„Wofür?"
-
-Er antwortet nicht. Starrt dich nur an. Seine Augen sind müde, aber ernst.`,
+Der Schlaflose ruft von hinten: „Geh da nicht rein. Du bist noch nicht bereit."`,
     choices: [
       {
         id: 'knock_on_door',
@@ -1326,7 +659,7 @@ Er antwortet nicht. Starrt dich nur an. Seine Augen sind müde, aber ernst.`,
           { type: 'inc', target: 'conductor_attention', value: 2 },
           { type: 'inc', target: 'rel_comp7', value: 1 }
         ],
-        next: 'c1_s05c_announcement_repeat'
+        next: 'c1_s05c_comp7_listen'
       },
       {
         id: 'listen_to_sleepless',
@@ -1335,7 +668,7 @@ Er antwortet nicht. Starrt dich nur an. Seine Augen sind müde, aber ernst.`,
           { type: 'inc', target: 'tickets_escape', value: 1 },
           { type: 'inc', target: 'rel_sleepless', value: 1 }
         ],
-        next: 'c1_s05c_announcement_repeat'
+        next: 'c1_s05c_comp7_listen'
       },
       {
         id: 'feel_drawn',
@@ -1344,148 +677,42 @@ Er antwortet nicht. Starrt dich nur an. Seine Augen sind müde, aber ernst.`,
           { type: 'inc', target: 'tickets_love', value: 1 },
           { type: 'inc', target: 'rel_comp7', value: 1 }
         ],
-        next: 'c1_s05c_announcement_repeat'
-      },
-      {
-        id: 'examine_door_quietly',
-        label: 'Die Tür untersuchen, ohne zu klopfen',
-        condition: {
-          type: 'or',
-          conditions: [
-            { type: 'compare', target: 'tickets_truth', operator: '>=', value: 2 },
-            { type: 'compare', target: 'rel_comp7', operator: '>=', value: 1 }
-          ]
-        },
-        effects: [
-          { type: 'inc', target: 'tickets_truth', value: 1 },
-          { type: 'inc', target: 'rel_comp7', value: 1 }
-        ],
-        next: 'c1_s05c_announcement_repeat'
+        next: 'c1_s05c_comp7_listen'
       }
     ],
     tags: ['reveal', 'setup'],
-    state_notes: [
-      'Abteil 7 Intro (wird in Kap. 2 wichtig)',
-      'Comp7-Beziehung etabliert',
-      'knock_on_door: Truth + hohe Attention (riskante Neugier)',
-      '"Noch nicht bereit" = Zugangsbedingung für später',
-      'CONDITION: examine_door_quietly nur bei tickets_truth >= 2 ODER rel_comp7 >= 1'
-    ],
+    state_notes: [],
     atmosphere: 'mystic'
   },
 
   // ============================================================================
-  // c1_s05c_announcement_repeat: Durchsage wiederholt sich
+  // c1_s05c_comp7_listen: Vor der Tür horchen (Was s05d)
   // ============================================================================
-  'c1_s05c_announcement_repeat': {
-    id: 'c1_s05c_announcement_repeat',
-    chapter: 1,
-    title: 'Wiederholung',
-    narrative: `Die Durchsage wiederholt sich. Exakt dieselbe:
-
-„Sehr geehrte Fahrgäste, wir erreichen in Kürze—"
-
-Pause.
-
-„—erreichen in Kürze [unverständlich]. Bitte achten Sie auf Ihre persönlichen Gegenstände."
-
-Aber diesmal hörst du etwas. Ganz schwach. Ein Wort, fast verschluckt:
-
-„—ückf—"
-
-Rückfahrt? Rückkehr? Du bist nicht sicher.
-
-Der Lautsprecher kratzt, als wuerde jemand mit einer Nadel ueber Papier fahren. Das Wort klebt am Metall, halb im Rauschen. Du merkst, wie die Luft im Wagen kuehler wird, obwohl die Lampen warm glimmen.
-
-Neben dir bewegt sich niemand, aber die Sitze geben leise Laute von sich, ein trockenes Knacken, als wuerde das Polster atmen. Du hoerst das Ticken der Anzeige nicht, nur dein eigenes Schlucken.
-
-Die Frau im Mantel steht auf. Langsam. Sie greift nach ihrem Koffer. Geht zur Tür. Wartet.
-
-Der Zug hält noch nicht.`,
-    choices: [
-      {
-        id: 'follow_woman',
-        label: 'Der Frau folgen',
-        effects: [
-          { type: 'inc', target: 'tickets_truth', value: 1 }
-        ],
-        next: 'c1_s05d_comp7_listen'
-      },
-      {
-        id: 'repeat_word',
-        label: 'Das Wort leise wiederholen',
-        condition: {
-          type: 'compare',
-          target: 'memory_drift',
-          operator: '>=',
-          value: 2
-        },
-        effects: [],
-        next: 'c1_s05d_comp7_listen'
-      },
-      {
-        id: 'stay_back',
-        label: 'Zurückbleiben',
-        effects: [
-          { type: 'inc', target: 'tickets_escape', value: 1 }
-        ],
-        next: 'c1_s06_corridor_end'
-      },
-      {
-        id: 'name_the_time',
-        label: 'Die Uhrzeit leise nennen',
-        condition: {
-          type: 'compare',
-          target: 'tickets_truth',
-          operator: '>=',
-          value: 2
-        },
-        effects: [],
-        next: 'c1_s05d_comp7_listen'
-      }
-    ],
-    tags: ['drift_seed'],
-    state_notes: [
-      'Teilwort hörbar: "Rückf-" (Hinweis auf "Rückfahrt" aus Konzept)',
-      'Frau bereitet sich vor (Comp7-Setup für Kap. 2)'
-    ],
-    atmosphere: 'mystic'
-  },
-
-  // ============================================================================
-  // c1_s05d_comp7_listen: Vor der Tür horchen
-  // ============================================================================
-  'c1_s05d_comp7_listen': {
-    id: 'c1_s05d_comp7_listen',
+  'c1_s05c_comp7_listen': {
+    id: 'c1_s05c_comp7_listen',
     chapter: 1,
     title: 'Horchen',
-    narrative: `Du gehst zurück zu Abteil 7. Die Frau steht immer noch an der Wagentür, wartet.
-
-Du legst das Ohr an die Tür. Das Holz ist warm.
-
-Von innen: Eine Stimme. Leise. Spricht zu sich selbst.
+    narrative: `Du bleibst kurz stehen. Von innen: Eine Stimme. Leise.
 
 „—muss stimmen. Muss. Wenn ich nur—"
 
-Eine Pause.
-
-„—nicht vergessen. Darf nicht—"
-
 Das Kratzen wird lauter. Hektischer.
 
-Dann, ein Knall. Als würde etwas umfallen. Die Stimme stoppt.
+Dann, ein Knall. Als würde etwas umfallen.
 
-Stille.`,
+Der Boden unter dir vibriert plötzlich. Nicht vom Zug. Von der Tür.
+
+Dann: Stille. Der Zug wird langsamer.`,
     choices: [
       {
         id: 'knock_again',
-        label: 'Klopfen',
+        label: 'Nochmal klopfen',
         effects: [
           { type: 'inc', target: 'tickets_love', value: 1 },
           { type: 'inc', target: 'conductor_attention', value: 1 },
           { type: 'inc', target: 'rel_comp7', value: 1 }
         ],
-        next: 'c1_s06_corridor_end'
+        next: 'c1_end_station'
       },
       {
         id: 'step_away',
@@ -1493,7 +720,7 @@ Stille.`,
         effects: [
           { type: 'inc', target: 'tickets_guilt', value: 1 }
         ],
-        next: 'c1_s06_corridor_end'
+        next: 'c1_end_station'
       },
       {
         id: 'speak_through_door',
@@ -1508,423 +735,40 @@ Stille.`,
           { type: 'inc', target: 'tickets_love', value: 1 },
           { type: 'inc', target: 'rel_comp7', value: 2 }
         ],
-        next: 'c1_s06_corridor_end'
-      },
-      {
-        id: 'hold_position',
-        label: 'Im Gang warten',
-        condition: {
-          type: 'compare',
-          target: 'conductor_attention',
-          operator: '>=',
-          value: 2
-        },
-        effects: [
-          { type: 'inc', target: 'tickets_escape', value: 1 },
-          { type: 'dec', target: 'conductor_attention', value: 1 }
-        ],
-        next: 'c1_s06_corridor_end'
+        next: 'c1_end_station'
       }
     ],
     tags: ['reveal'],
     state_notes: [
-      'Comp7 spricht zu sich selbst ("muss stimmen")',
-      'Knall = emotionaler Moment',
-      'knock_again: Love +1 (Fürsorge), Attention +1 (Risiko)',
-      'CONDITION: speak_through_door nur bei rel_comp7 >= 1'
+      'Skip Corridor End/Stranger -> Direct to Station'
     ],
     atmosphere: 'tense'
   },
 
   // ============================================================================
-  // c1_s06_corridor_end: Ende des Gangs
-  // ============================================================================
-  'c1_s06_corridor_end': {
-    id: 'c1_s06_corridor_end',
-    chapter: 1,
-    title: 'Gangende',
-    narrative: `Du gehst zurück durch den Gang. Er ist kürzer jetzt. Viel kürzer.
-
-Die Lampen flackern nicht mehr. Das Licht ist konstant. Kalt.
-
-Am anderen Ende des Wagens: Eine Tür. Verbindungstür zum nächsten Wagen.
-
-Du gehst hin. Greifst nach dem Griff. Das Metall ist eiskalt.
-
-Du ziehst. Die Tür öffnet sich.
-
-Dahinter: Ein identischer Wagen. Roter Polster. Messinglampen. Holzverkleidung.
-
-Aber leer. Komplett leer. Keine Passagiere.`,
-    choices: [
-      {
-        id: 'enter_next_wagon',
-        label: 'Den nächsten Wagen betreten',
-        effects: [
-          { type: 'inc', target: 'tickets_truth', value: 1 },
-          { type: 'inc', target: 'memory_drift', value: 1 }
-        ],
-        next: 'c1_s07_stranger_encounter'
-      },
-      {
-        id: 'stay_in_wagon',
-        label: 'Im Wagen bleiben',
-        effects: [
-          { type: 'inc', target: 'tickets_escape', value: 1 }
-        ],
-        next: 'c1_interlude_05_vibration'
-      }
-    ],
-    tags: ['drift_seed'],
-    state_notes: [
-      'Gang-Länge ändert sich (Raumanomalie)',
-      'Nächster Wagen leer (Setup für weitere Kapitel)',
-      'enter_next_wagon erhöht memory_drift (Exploration = Destabilisierung)'
-    ],
-    atmosphere: 'tense'
-  },
-
-  // ============================================================================
-  // c1_s07_stranger_encounter: Fremder Passagier
-  // ============================================================================
-  'c1_s07_stranger_encounter': {
-    id: 'c1_s07_stranger_encounter',
-    chapter: 1,
-    title: 'Fremder',
-    narrative: `Du gehst in den leeren Wagen. Deine Schritte hallen.
-
-Dann siehst du: Nicht ganz leer.
-
-Ganz hinten, am Fenster, sitzt jemand. Eine Gestalt. Du siehst nur die Silhouette.
-
-Sie dreht sich nicht um.
-
-Du gehst näher. Das Gefühl, dass du das nicht solltest, wird stärker mit jedem Schritt.
-
-Dann, eine Stimme. Nicht die Gestalt. Von überall:
-
-„Nächster Halt: Endstation."
-
-Das ist nicht die Durchsage. Das ist keine Stimme aus dem Lautsprecher.
-
-Die Gestalt steht auf. Dreht sich um.
-
-Ihr Gesicht—
-
-Du blinzelst.
-
-Die Gestalt ist weg.`,
-    narrative_variants: [
-      {
-        min_drift: 3,
-        narrative: `Du gehst in den leeren Wagen. Deine Schritte hallen.
-
-Dann siehst du: Nicht ganz leer.
-
-Ganz vorne, am Fenster, sitzt jemand. Eine Gestalt. Du siehst nur die Silhouette.
-
-Sie dreht sich nicht um.
-
-Du gehst näher. Das Gefühl, dass du das nicht solltest, wird stärker mit jedem Schritt.
-
-Dann, eine Stimme. Nicht die Gestalt. Von überall:
-
-„Nächster Halt: Rückfahrt."
-
-Das ist nicht die Durchsage. Das ist keine Stimme aus dem Lautsprecher.
-
-Die Gestalt steht auf. Dreht sich um.
-
-Ihr Gesicht—
-
-Du blinzelst.
-
-Die Gestalt ist weg.`
-      },
-      {
-        min_drift: 5,
-        narrative: `Du gehst in den leeren Wagen. Deine Schritte hallen.
-
-Dann siehst du: Nicht ganz leer.
-
-Ganz vorne, am Fenster, stehen zwei Gestalten. Du siehst nur die Silhouetten.
-
-Sie drehen sich nicht um.
-
-Du gehst näher. Das Gefühl, dass du das nicht solltest, wird stärker mit jedem Schritt.
-
-Dann, eine Stimme. Nicht die Gestalten. Von überall:
-
-„Nächster Halt: Rückfahrt."
-
-Das ist nicht die Durchsage. Das ist keine Stimme aus dem Lautsprecher.
-
-Die Gestalten stehen auf. Drehen sich um.
-
-Ihre Gesichter—
-
-Du blinzelst.
-
-Die Gestalten sind weg.`
-      }
-    ],
-    choices: [
-      {
-        id: 'search_wagon',
-        label: 'Den Wagen durchsuchen',
-        effects: [
-          { type: 'inc', target: 'tickets_truth', value: 1 },
-          { type: 'inc', target: 'conductor_attention', value: 1 }
-        ],
-        next: 'c1_interlude_05_vibration'
-      },
-      {
-        id: 'answer_voice',
-        label: 'Der Stimme leise antworten',
-        condition: {
-          type: 'compare',
-          target: 'tickets_truth',
-          operator: '>=',
-          value: 3
-        },
-        effects: [
-          { type: 'inc', target: 'tickets_truth', value: 1 },
-          { type: 'inc', target: 'memory_drift', value: 1 }
-        ],
-        next: 'c1_interlude_05_vibration'
-      },
-      {
-        id: 'go_back',
-        label: 'Zurück in den ersten Wagen',
-        effects: [
-          { type: 'inc', target: 'tickets_escape', value: 1 },
-          { type: 'inc', target: 'memory_drift', value: 1 }
-        ],
-        next: 'c1_interlude_05_vibration'
-      }
-    ],
-    tags: ['reveal', 'drift_variant'],
-    state_notes: [
-      'Condition: Nur sichtbar wenn enter_next_wagon gewählt wurde',
-      'Gestalt verschwindet (Halluzination oder Drift)',
-      '"Endstation" ohne Durchsage (direkte Stimme)',
-      'go_back erhöht memory_drift (Flucht destabilisiert)'
-    ],
-    atmosphere: 'danger'
-  },
-
-  // ============================================================================
-  // c1_interlude_05_vibration: Vibrations-Interlude
-  // ============================================================================
-  'c1_interlude_05_vibration': {
-    id: 'c1_interlude_05_vibration',
-    chapter: 1,
-    title: 'Vibration',
-    narrative: `Der Boden unter dir vibriert. Stärker als vorher.
-
-Das Brummen wird lauter. Nicht im Raum. In deinem Kopf.
-
-Du greifst nach einer Stange. Das Metall pulsiert.
-
-Die Vibration läuft über die Sohlen in die Knie, als würdest du auf einem riesigen Motor stehen.
-
-Deine Zähne klirren leicht, ein feines Zittern, das nicht aufhört.
-
-Du lässt die Stange kurz los, spürst sofort, wie dir der Boden nachgibt, und greifst wieder zu.
-
-Der Geschmack von Metall liegt auf deiner Zunge, als hätte die Luft selbst Leitungen.
-
-Irgendwo im Wagen klappert ein loser Riemen, ein einzelner Ton, der sich im Brummen verliert.
-
-Dein Magen zieht sich zusammen, wie vor einer Bremsung, die noch nicht passiert ist.
-
-Du spürst, wie deine Handgelenke schwer werden, als würde jemand von unten ziehen, und du setzt die Füße breiter, um nicht zu schwanken.
-
-Die Stange fühlt sich an, als würde sie atmen, kurz enger, dann wieder kalt. Du hörst ein Knacken im Holz der Sitze, als würde etwas nachgeben.
-
-Ein metallischer Geschmack legt sich auf deinen Gaumen und bleibt. Du schließt kurz die Augen.
-
-Dann, plötzlich: Stille.
-
-Der Zug hält.`,
-    choices: [
-      {
-        id: 'steady_breath',
-        label: 'Festhalten und zählen',
-        effects: [
-          { type: 'inc', target: 'tickets_escape', value: 1 },
-          { type: 'dec', target: 'conductor_attention', value: 1 }
-        ],
-        next: 'c1_end_platform_look'
-      },
-      {
-        id: 'reflect_on_vibration',
-        label: 'Die Vibration analysieren',
-        condition: {
-          type: 'compare',
-          target: 'tickets_truth',
-          operator: '>=',
-          value: 1
-        },
-        effects: [
-          { type: 'inc', target: 'tickets_truth', value: 1 },
-          { type: 'inc', target: 'memory_drift', value: 1 }
-        ],
-        next: 'c1_end_platform_look'
-      },
-      {
-        id: 'continue',
-        label: 'Weiter',
-        effects: [
-          { type: 'inc', target: 'memory_drift', value: 1 }
-        ],
-        next: 'c1_end_platform_look'
-      },
-      {
-        id: 'echo_tone',
-        label: 'Den Ton nachsprechen',
-        condition: {
-          type: 'compare',
-          target: 'memory_drift',
-          operator: '>=',
-          value: 2
-        },
-        effects: [],
-        next: 'c1_end_platform_look'
-      }
-    ],
-    tags: ['drift_seed'],
-    state_notes: [
-      'Vibration im Kopf (somatische Anomalie)',
-      'Interlude: Übergang zu Station',
-      'steady_breath senkt attention, wenn bereits aufgebaut'
-    ],
-    atmosphere: 'tense'
-  },
-
-  // ============================================================================
-  // c1_end_platform_look: Bahnsteig durch Fenster
-  // ============================================================================
-  'c1_end_platform_look': {
-    id: 'c1_end_platform_look',
-    chapter: 1,
-    title: 'Station',
-    narrative: `Du gehst zurück ans Fenster.
-
-Draußen: Ein Bahnsteig. Leer. Identisch zum ersten. Dieselbe Neonröhre. Dieselbe Uhr.
-
-23:47.
-
-Niemand steigt ein. Niemand steigt aus. Die Türen bleiben geschlossen.
-
-Die Frau im Mantel steht immer noch an der Tür. Wartet. Aber die Tür öffnet sich nicht.
-
-Nach dreißig Sekunden: Der Zug fährt weiter. Die Frau setzt sich wieder hin. Legt den Koffer ab. Als wäre nichts gewesen.`,
-    choices: [
-      {
-        id: 'observe_silently',
-        label: 'Beobachten, nichts sagen',
-        effects: [
-          { type: 'inc', target: 'tickets_truth', value: 1 }
-        ],
-        next: 'c1_end_station'
-      },
-      {
-        id: 'ask_sleepless',
-        label: 'Den Schlaflosen leise fragen',
-        condition: {
-          type: 'compare',
-          target: 'rel_sleepless',
-          operator: '>=',
-          value: 1
-        },
-        effects: [
-          { type: 'inc', target: 'tickets_love', value: 1 },
-          { type: 'inc', target: 'rel_sleepless', value: 1 },
-          { type: 'dec', target: 'conductor_attention', value: 1 }
-        ],
-        next: 'c1_end_station'
-      },
-      {
-        id: 'check_clock_again',
-        label: 'Die Uhr überprüfen',
-        condition: {
-          type: 'compare',
-          target: 'memory_drift',
-          operator: '>=',
-          value: 2
-        },
-        effects: [
-          { type: 'inc', target: 'tickets_truth', value: 1 },
-          { type: 'inc', target: 'memory_drift', value: 1 }
-        ],
-        next: 'c1_end_station'
-      },
-      {
-        id: 'scan_exits',
-        label: 'Nach Ausgängen suchen',
-        condition: {
-          type: 'compare',
-          target: 'tickets_escape',
-          operator: '>=',
-          value: 2
-        },
-        effects: [
-          { type: 'inc', target: 'tickets_escape', value: 1 }
-        ],
-        next: 'c1_end_station'
-      }
-    ],
-    tags: [],
-    state_notes: [
-      'Türen öffnen sich nicht (erste Station-Regel: nicht jeder darf raus)',
-      'ask_sleepless nur bei rel_sleepless >= 1',
-      'CONDITION: check_clock_again nur bei memory_drift >= 2',
-      'CONDITION: scan_exits nur bei tickets_escape >= 2 (Callback für steady_breath)'
-    ],
-    atmosphere: 'somber'
-  },
-
-  // ============================================================================
-  // c1_end_station: Station Ende (R1: Drift)
+  // c1_end_station: Station Ende (Merged Platform Look)
   // ============================================================================
   'c1_end_station': {
     id: 'c1_end_station',
     chapter: 1,
     title: 'Halt',
-    narrative: `Als du dich umdrehst, fällt dir etwas auf:
+    narrative: `Der Zug hält. Du schaust aus dem Fenster.
 
-Der Schlaflose sieht anders aus. Seine Jacke ist jetzt dunkelblau. Vorher war sie grau. Du bist dir sicher. Du hast sie gesehen. Grau.
+Draußen: Ein Bahnsteig. Identisch zum ersten. Dieselbe Neonröhre. Dieselbe Uhr: 23:47. Niemand steigt ein. Niemand steigt aus.
+
+Du drehst dich zum Schlaflosen um. Er sieht anders aus. Seine Jacke ist jetzt dunkelblau. Vorher war sie grau.
 
 Er bemerkt deinen Blick. „Was?"
 
-Du sagst: „Deine Jacke—"
-
-Er sieht runter. „Was ist damit?"
-
-„Sie war grau."
+„Deine Jacke… Sie war grau."
 
 Er lacht trocken. „Sie war immer blau."
 
-Er zeigt auf seinen Sitz. Auf der Armlehne liegt ein Zettel. Handgeschrieben. Er nimmt ihn. Liest.
+Er zerknüllt einen Zettel, den er in der Hand hält. Seine Finger zittern.
 
-Du beugst dich vor, als könntest du die Zeilen aus der Entfernung lesen. Die Tinte schimmert dunkel, noch feucht. Für einen Augenblick spiegelt das Fenster hinter ihm deine Hand, und im Spiegel ist seine Jacke wieder grau. Du blinzelst, der Moment ist weg.
+„Was stand da?"
 
-Der Zettel riecht nach altem Papier, nach Keller, nach Metallstaub. Du willst ihn nehmen, bevor er ihn zerknüllt, aber er legt den Fuß leicht auf den Rand, als würde er dich daran erinnern, dass er schneller ist.
-
-Seine Finger zittern stärker, als er den Zettel knüllt. Das Papier knistert zu laut in der Stille, als hätte der Zug kurz gelauscht. Du hörst dein eigenes Blut rauschen und spürst den Impuls, etwas zu sagen, schluckst ihn aber hinunter.
-
-Sein Blick geht kurz zum Fenster, als würde er dort etwas prüfen. Du folgst ihm, siehst nur dein eigenes Spiegelbild, das eine Sekunde zu langsam nickt.
-
-Die Neonröhre über euch summt, und das Licht legt einen blassen Rand um seine Schultern.
-
-Dann zerknüllt er ihn. Wirft ihn auf den Boden.
-
-„Was stand da?" fragst du.
-
-„Nichts Wichtiges."
-
-Aber seine Hände zittern.`,
+„Nichts Wichtiges."`,
     choices: [
       {
         id: 'continue_to_chapter_2',
@@ -1936,7 +780,7 @@ Aber seine Hände zittern.`,
       },
       {
         id: 'confront_jacket_change',
-        label: 'Die Jackenfarbe direkt ansprechen',
+        label: 'Auf der Farbe beharren',
         condition: {
           type: 'or',
           conditions: [
@@ -1954,7 +798,7 @@ Aber seine Hände zittern.`,
       },
       {
         id: 'nod_to_conductor',
-        label: 'Dem Schaffner zunicken',
+        label: 'Dem Schaffner zunicken (den du ahnst)',
         condition: {
           type: 'compare',
           target: 'conductor_attention',
@@ -1971,10 +815,8 @@ Aber seine Hände zittern.`,
     ],
     tags: ['station_end'],
     state_notes: [
-      'R1: Engine erhoeht memory_drift/station_count automatisch; confront_jacket_change setzt memory_drift +2 (Override)',
-      'Jackenfarbe ändert sich (Drift-Effekt), Sleepless reagiert nicht',
-      'Zettel = Foreshadowing (später relevant)',
-      'CONDITION: confront_jacket_change nur bei tickets_truth >= 3 ODER conductor_attention >= 3'
+      'Merged Platform Look + End Scene',
+      'Preserves Drift Mechanics'
     ],
     atmosphere: 'somber'
   }

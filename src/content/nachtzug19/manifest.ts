@@ -14,17 +14,17 @@ export const nachtzug19Manifest: Manifest = {
     {
       number: 1,
       title: 'Leerer Bahnsteig',
-      scene_count: 24
+      scene_count: 14
     },
     {
       number: 2,
       title: 'Die erste Kontrolle',
-      scene_count: 25
+      scene_count: 15
     },
     {
       number: 3,
       title: 'Wagen 7',
-      scene_count: 27
+      scene_count: 15
     },
     {
       number: 4,
@@ -51,48 +51,33 @@ export const nachtzug19Manifest: Manifest = {
 
 /**
  * Endings für NACHTZUG 19
+ * HINWEIS: Endings sind jetzt interaktive Szenen in scenes/endings.ts
+ * Diese Collection bleibt leer für Backwards-Kompatibilität
  */
 export const nachtzug19Endings: EndingsCollection = {
-  'ending_test': {
-    id: 'ending_test',
-    titel: 'Test-Ende',
-    beschreibung: 'Dies ist ein temporäres Test-Ende für das MVP.\n\nDu hast die ersten beiden Kapitel durchgespielt. Weitere Kapitel folgen in späteren Versionen.',
-    title: 'Test-Ende',
-    narrative: 'Dies ist ein temporäres Test-Ende für das MVP.\n\nDu hast die ersten beiden Kapitel durchgespielt. Weitere Kapitel folgen in späteren Versionen.'
+  'TRUTH': {
+    id: 'TRUTH',
+    titel: 'Wahrheit',
+    beschreibung: 'Du hast die Wahrheit akzeptiert. Den Tod. Das Leben. Dich selbst.'
   },
-  'truth_ending': {
-    id: 'truth_ending',
-    titel: 'Die Wahrheit',
-    title: 'Die Wahrheit',
-    beschreibung: 'Du bist ausgestiegen. Der Bahnsteig liegt vor dir. Die Wahrheit wartet.',
-    narrative: 'Du bist ausgestiegen. Der Bahnsteig liegt vor dir. Die Wahrheit wartet.'
+  'LOVE': {
+    id: 'LOVE',
+    titel: 'Liebe',
+    beschreibung: 'Du hast jemanden gefunden. Oder... sie hat dich gefunden.'
   },
-  'escape_ending': {
-    id: 'escape_ending',
-    titel: 'Ewige Fahrt',
-    title: 'Ewige Fahrt',
-    beschreibung: 'Du bleibst im Zug. Für immer. Die Türen schließen sich. Die Fahrt geht weiter.',
-    narrative: 'Du bleibst im Zug. Für immer. Die Türen schließen sich. Die Fahrt geht weiter.'
+  'GUILT': {
+    id: 'GUILT',
+    titel: 'Schuld',
+    beschreibung: 'Du trägst die Verantwortung für die Toten. Nicht ihre Schuld. Sondern ihre Erinnerung.'
   },
-  'guilt_ending': {
-    id: 'guilt_ending',
-    titel: 'Verantwortung',
-    title: 'Verantwortung',
-    beschreibung: 'Du steigst aus und trägst die Last dessen, was war. Es ist Zeit, sich zu stellen.',
-    narrative: 'Du steigst aus und trägst die Last dessen, was war. Es ist Zeit, sich zu stellen.'
+  'ESCAPE': {
+    id: 'ESCAPE',
+    titel: 'Flucht',
+    beschreibung: 'Du bist geblieben. Im Zug. In der Schleife. In der Sicherheit.'
   },
-  'love_ending': {
-    id: 'love_ending',
-    titel: 'Verbindung',
-    title: 'Verbindung',
-    beschreibung: 'Du folgst jemandem. Jemand, der wichtig war. Wichtig ist. Die Reise geht weiter – aber nicht allein.',
-    narrative: 'Du folgst jemandem. Jemand, der wichtig war. Wichtig ist. Die Reise geht weiter – aber nicht allein.'
-  },
-  'limbo_ending': {
-    id: 'limbo_ending',
-    titel: 'Limbus',
-    title: 'Limbus',
-    beschreibung: 'Du bleibst. Weder hier noch dort. Im Zwischenraum. Die Fahrt endet nie – und beginnt nie neu.',
-    narrative: 'Du bleibst. Weder hier noch dort. Im Zwischenraum. Die Fahrt endet nie – und beginnt nie neu.'
+  'LIMBO': {
+    id: 'LIMBO',
+    titel: 'Limbo',
+    beschreibung: 'Du hast nicht gewählt. Weder Wahrheit noch Flucht. Weder Liebe noch Schuld.'
   }
 };

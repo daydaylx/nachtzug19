@@ -2949,24 +2949,8 @@ Was nimmst du mit… ins Danach?`,
           operator: '>=',
           value: 5
         },
-        effects: [
-          { type: 'set', target: 'chapter_index', value: 8 }
-        ],
-        ending: 'truth_ending'
-      },
-      {
-        id: 'guilt_path',
-        label: 'Die Verantwortung tragen – und weitergehen',
-        condition: {
-          type: 'compare',
-          target: 'tickets_guilt',
-          operator: '>=',
-          value: 5
-        },
-        effects: [
-          { type: 'set', target: 'chapter_index', value: 8 }
-        ],
-        ending: 'guilt_ending'
+        effects: [],
+        next: 'ending_truth_01'
       },
       {
         id: 'love_path',
@@ -2977,25 +2961,46 @@ Was nimmst du mit… ins Danach?`,
           operator: '>=',
           value: 5
         },
-        effects: [
-          { type: 'set', target: 'chapter_index', value: 8 }
-        ],
-        ending: 'love_ending'
+        effects: [],
+        next: 'ending_love_01'
+      },
+      {
+        id: 'guilt_path',
+        label: 'Die Verantwortung tragen – und weitergehen',
+        condition: {
+          type: 'compare',
+          target: 'tickets_guilt',
+          operator: '>=',
+          value: 5
+        },
+        effects: [],
+        next: 'ending_guilt_01'
       },
       {
         id: 'escape_path',
         label: 'Im Zug bleiben – für immer',
-        effects: [
-          { type: 'set', target: 'chapter_index', value: 8 }
-        ],
-        ending: 'escape_ending'
+        condition: {
+          type: 'compare',
+          target: 'tickets_escape',
+          operator: '>=',
+          value: 5
+        },
+        effects: [],
+        next: 'ending_escape_01'
+      },
+      {
+        id: 'limbo_path',
+        label: 'Nicht entscheiden – auf der Schwelle bleiben',
+        effects: [],
+        next: 'ending_limbo_01'
       }
     ],
     tags: ['station_end'],
     state_notes: [
       'Station-End: Finale - Zug verblasst (1973 aufgelöst)',
-      'ENDINGS: Truth, Guilt, Love (Schwellenwerte 5 = max Clamp)',
-      'FALLBACK: Escape Ending (Im Zug bleiben)',
+      'ENDINGS: Truth, Love, Guilt, Escape (Schwellenwerte 5 = max Clamp)',
+      'FALLBACK: Limbo Ending (nicht entscheiden)',
+      'Jedes Ending führt zu 3-4 interaktiven Epilog-Szenen',
       'R1: Engine erhoeht memory_drift/station_count automatisch (keine manuellen station_end-Effects)'
     ],
     atmosphere: 'mystic'

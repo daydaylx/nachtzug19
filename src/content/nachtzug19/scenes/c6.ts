@@ -211,6 +211,10 @@ Eine Pause.
 
 „An der letzten Station. Du hättest gehen können."
 
+„Nein," flüsterst du. „Die Türen waren zu."
+
+Sie sieht dich an. „Die Türen sind immer offen. Aber nur für die, die fertig sind. Wer aus Flucht geht, landet nur im nächsten Wagen."
+
 Sie öffnet die Augen.
 
 „Aber du bist zurückgekommen."

@@ -12,6 +12,7 @@ import { chapter4Scenes } from './c4';
 import { c5Scenes } from './c5';
 import { c6Scenes } from './c6';
 import { c7Scenes } from './c7';
+import { endingScenes } from './endings';
 
 /**
  * Alle Szenen der NACHTZUG 19 Story
@@ -23,5 +24,6 @@ export const nachtzug19Scenes: ScenesCollection = {
   ...chapter4Scenes,
   ...c5Scenes,
   ...c6Scenes,
-  ...c7Scenes
+  ...c7Scenes,
+  ...endingScenes
 };

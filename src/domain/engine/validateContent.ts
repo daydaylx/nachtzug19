@@ -35,7 +35,7 @@ const KNOWN_EFFECT_TARGETS: Set<EffectTarget> = new Set([
   // Relations
   'rel_comp7', 'rel_boy', 'rel_sleepless',
   // Items
-  'has_recorder', 'has_tag19', 'has_ticket', 'photo_anomaly', 'played_recorder',
+  'has_recorder', 'has_tag19', 'has_ticket', 'photo_anomaly', 'played_recorder', 'memory_search_active',
   // Meta
   'chapter_index', 'station_count'
 ]);
@@ -221,11 +221,11 @@ function validateScene(
     return;
   }
 
-  // 2. Szene darf maximal 4 Choices haben
-  if (scene.choices.length > 4) {
+  // 2. Szene darf maximal 5 Choices haben
+  if (scene.choices.length > 5) {
     errors.push({
       type: 'error',
-      message: `Szene '${scene.id}' hat mehr als 4 Choices (${scene.choices.length} gefunden, max. 4 erlaubt)`,
+      message: `Szene '${scene.id}' hat mehr als 5 Choices (${scene.choices.length} gefunden, max. 5 erlaubt)`,
       scene_id: scene.id
     });
   }
