@@ -170,20 +170,20 @@ function autoClamp(state: GameState): void {
   state.stats.wissen = Math.max(0, Math.min(10, state.stats.wissen));
   state.stats.empathie = Math.max(0, Math.min(10, state.stats.empathie));
 
-  // Tickets (0-5)
-  state.tickets.tickets_truth = Math.max(0, Math.min(5, state.tickets.tickets_truth));
-  state.tickets.tickets_escape = Math.max(0, Math.min(5, state.tickets.tickets_escape));
-  state.tickets.tickets_guilt = Math.max(0, Math.min(5, state.tickets.tickets_guilt));
-  state.tickets.tickets_love = Math.max(0, Math.min(5, state.tickets.tickets_love));
+  // Tickets (0-50) - Erhöhtes Limit für Endgame-Skalierung (Story-Requirement bis 12+)
+  state.tickets.tickets_truth = Math.max(0, Math.min(50, state.tickets.tickets_truth));
+  state.tickets.tickets_escape = Math.max(0, Math.min(50, state.tickets.tickets_escape));
+  state.tickets.tickets_guilt = Math.max(0, Math.min(50, state.tickets.tickets_guilt));
+  state.tickets.tickets_love = Math.max(0, Math.min(50, state.tickets.tickets_love));
 
   // Pressure (0-6)
   state.pressure.conductor_attention = Math.max(0, Math.min(6, state.pressure.conductor_attention));
   state.pressure.memory_drift = Math.max(0, Math.min(6, state.pressure.memory_drift));
 
-  // Relations (-2 bis +4)
-  state.relations.rel_comp7 = Math.max(-2, Math.min(4, state.relations.rel_comp7));
-  state.relations.rel_boy = Math.max(-2, Math.min(3, state.relations.rel_boy));
-  state.relations.rel_sleepless = Math.max(-2, Math.min(3, state.relations.rel_sleepless));
+  // Relations (-2 bis +10) - Erhöht für Puffer
+  state.relations.rel_comp7 = Math.max(-2, Math.min(10, state.relations.rel_comp7));
+  state.relations.rel_boy = Math.max(-2, Math.min(10, state.relations.rel_boy));
+  state.relations.rel_sleepless = Math.max(-2, Math.min(10, state.relations.rel_sleepless));
 }
 
 // ============================================================================
