@@ -1264,7 +1264,7 @@ Er besteht aus Tinte und Schatten.`
         effects: [
           { type: 'inc', target: 'conductor_attention', value: 1 }
         ],
-        next: 'c6_s18_offer_approach'
+        next: 'c6_s18_offer'
       },
       {
         id: 'hold_tag19',
@@ -1278,7 +1278,7 @@ Er besteht aus Tinte und Schatten.`
           { type: 'inc', target: 'tickets_truth', value: 1 },
           { type: 'inc', target: 'memory_drift', value: 1 }
         ],
-        next: 'c6_s18_offer_approach'
+        next: 'c6_s18_offer'
       }
     ],
     state_notes: [
@@ -1567,7 +1567,7 @@ Und langsam… erinnerst du dich.`,
           { type: 'inc', target: 'tickets_truth', value: 3 },
           { type: 'inc', target: 'tickets_guilt', value: 2 }
         ],
-        next: 'c6_s23_train_slows'
+        next: 'c6_s23_platform_ahead'
       },
       {
         id: 'remember_partial',
@@ -1575,7 +1575,7 @@ Und langsam… erinnerst du dich.`,
         effects: [
           { type: 'inc', target: 'tickets_truth', value: 2 }
         ],
-        next: 'c6_s23_train_slows'
+        next: 'c6_s23_platform_ahead'
       },
       {
         id: 'resist_memory',
@@ -1583,7 +1583,7 @@ Und langsam… erinnerst du dich.`,
         effects: [
           { type: 'inc', target: 'tickets_escape', value: 1 }
         ],
-        next: 'c6_s23_train_slows'
+        next: 'c6_s23_platform_ahead'
       }
     ],
     state_notes: [
