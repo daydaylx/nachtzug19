@@ -1232,7 +1232,7 @@ Sie lächelt traurig.
           { type: 'inc', target: 'tickets_love', value: 2 },
           { type: 'inc', target: 'rel_comp7', value: 2 }
         ],
-        next: 'c5_s20_decision_approach'
+        next: 'c5_s20_decision'
       },
       {
         id: 'ask_final_question',
@@ -1241,7 +1241,7 @@ Sie lächelt traurig.
           { type: 'inc', target: 'tickets_truth', value: 1 },
           { type: 'inc', target: 'rel_comp7', value: 1 }
         ],
-        next: 'c5_s20_decision_approach'
+        next: 'c5_s20_decision'
       },
       {
         id: 'silent_farewell',
@@ -1249,7 +1249,7 @@ Sie lächelt traurig.
         effects: [
           { type: 'inc', target: 'tickets_escape', value: 1 }
         ],
-        next: 'c5_s20_decision_approach'
+        next: 'c5_s20_decision'
       }
     ],
     state_notes: [
@@ -1265,72 +1265,25 @@ Sie lächelt traurig.
   // SET-PIECE 3: Finale Entscheidung (Teil 1 - Annäherung)
   // ==========================================================================
 
-  'c5_s20_decision_approach': {
-    id: 'c5_s20_decision_approach',
+  'c5_s20_decision': {
+    id: 'c5_s20_decision',
     chapter: 5,
-    title: 'Entscheidung - Annäherung',
+    title: 'Die Entscheidung',
     narrative: `Du spürst es:
 
 Die nächste Station kommt.
 
 Nicht in Stunden. In Minuten.
 
-Der Zug verlangsamt sich.
-
-Ganz langsam. Fast unmerklich.
+Der Zug verlangsamt sich. Ganz langsam. Fast unmerklich.
 
 Aber du spürst es.
 
-Draußen – da ist etwas.
+Draußen – da ist etwas. Kein Licht. Aber… eine Präsenz. Ein Ort.
 
-Kein Licht. Aber… eine Präsenz.
+---
 
-Ein Ort.
-
-Der Zug hält gleich.
-
-Und dann musst du entscheiden:
-
-Aussteigen.
-
-Oder bleiben.
-
-Es gibt kein Zurück mehr.`,
-    choices: [
-      {
-        id: 'prepare_to_decide',
-        label: 'Sich vorbereiten',
-        effects: [
-          { type: 'inc', target: 'tickets_truth', value: 1 }
-        ],
-        next: 'c5_s21_decision_core'
-      },
-      {
-        id: 'resist_arrival',
-        label: 'Der Ankunft widerstehen',
-        effects: [
-          { type: 'inc', target: 'tickets_escape', value: 1 }
-        ],
-        next: 'c5_s21_decision_core'
-      }
-    ],
-    state_notes: [
-      'Set-Piece Teil 1: Vorbereitung auf finale Entscheidung',
-      'Letzte Weichenstellung vor Station'
-    ],
-    tags: ['setup'],
-    atmosphere: 'tense'
-  },
-
-  // ==========================================================================
-  // SET-PIECE 3: Finale Entscheidung (Teil 2 - Kern)
-  // ==========================================================================
-
-  'c5_s21_decision_core': {
-    id: 'c5_s21_decision_core',
-    chapter: 5,
-    title: 'Die Entscheidung',
-    narrative: `Der Zug hält.
+Der Zug hält.
 
 Vollständig.
 
@@ -1342,11 +1295,7 @@ Du siehst hinaus.
 
 Da ist… ein Bahnsteig.
 
-Aber er ist anders als die anderen.
-
-Leerer. Stiller.
-
-Finaler.
+Aber er ist anders als die anderen. Leerer. Stiller. Finaler.
 
 Du spürst:
 
@@ -1408,12 +1357,12 @@ Der Schaffner erscheint hinter dir.
       }
     ],
     state_notes: [
-      'Set-Piece Teil 2: Kern-Entscheidung für Ending',
-      'CONDITION: drift_variant_stay nur bei memory_drift >= 4',
-      'CONDITION: guilt_sacrifice nur bei tickets_guilt >= 3',
-      'Wichtigste Entscheidung des Spiels'
+      'Set-Piece: Finale Entscheidung (merged approach + core)',
+      'Wichtigste Entscheidung des Spiels',
+      'CONDITION: drift_variant_stay (memory_drift >= 4)',
+      'CONDITION: guilt_sacrifice (tickets_guilt >= 3)'
     ],
-    tags: ['reveal'],
+    tags: ['setup', 'reveal'],
     atmosphere: 'tense'
   },
 
