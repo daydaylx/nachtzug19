@@ -108,6 +108,10 @@ Eine Pause.
 
 Ihre Stimme zittert.
 
+„Ich will, dass du gehst," sagt sie. Pause. „Aber ich will nicht allein bleiben."
+
+Sie lacht bitter. „Widersprüchlich, oder?"
+
 „Weißt du, wohin dieser Zug fährt? Oder weißt du nur, dass du nicht zurückkannst?"`,
     choices: [
       {
@@ -217,17 +221,15 @@ Er starrt an die Wand.
 
 „Sie kommen näher. Die Kontrollen. Jedes Mal härter."
 
+Er lacht leise, bitter. „Weißt du, was das Lustige ist? Ich kann immer noch nicht schlafen. Selbst hier nicht."
+
 Seine Hände zittern.
 
-„Ich habe… ich habe alles versucht. Alles gesagt. Aber es reicht nie."
+„Ich habe alles versucht. Alles gesagt. Aber es reicht nie."
 
 Er blickt dich an.
 
-„Was hast du getan? Was hast du ihnen gesagt?"
-
-Seine Stimme bricht.
-
-„Warum bist du noch hier?"`,
+„Was hast du ihnen gesagt? Warum bist du noch hier?"`,
     choices: [
       {
         id: 'comfort_him',

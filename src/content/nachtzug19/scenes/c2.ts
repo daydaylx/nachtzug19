@@ -375,7 +375,15 @@ Aber du hältst den schweren Rekorder in der Hand.`,
 
 Vor ihr ein vollgeschriebenes Notizbuch. Ihr Gesicht ist unscharf – dein Blick rutscht ab.
 
-„Du hast den Rekorder," sagt sie. „Ich bin Comp7. Ich weiß meinen Namen nicht mehr."
+Du öffnest den Mund, um etwas zu sagen.
+
+„Nicht jetzt," schnauzt sie, ohne aufzublicken. Ihre Hand fliegt über das Papier, kritzelt hastig.
+
+Dann stoppt sie. Atmet aus.
+
+„Entschuldigung." Ihre Stimme ist leiser jetzt. „Ich... ich muss das aufschreiben, bevor ich es vergesse."
+
+Sie sieht dich an. „Du hast den Rekorder. Ich bin Comp7. Ich weiß meinen Namen nicht mehr."
 
 Sie deutet auf das Buch. „Ich schreibe alles auf. Damit ich nicht vergesse."`,
     choices: [
@@ -408,7 +416,7 @@ Sie deutet auf das Buch. „Ich schreibe alles auf. Damit ich nicht vergesse."`,
       }
     ],
     tags: [],
-    state_notes: [],
+    state_notes: ['M1.2: Comp7 zeigt Ungeduld/Angst → menschlicher'],
     atmosphere: 'mystic'
   },
 

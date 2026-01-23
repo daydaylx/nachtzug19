@@ -582,9 +582,9 @@ Er blickt auf das Gerät.
 
 Seine Stimme bricht.
 
-„Ich weiß nicht, wo ich hin soll."
+„Ich will nicht vergessen werden," flüstert er. „Wenn ich aussteige... erinnert sich dann noch jemand an mich?"
 
-Er sieht dich an.
+Er sieht dich an. Seine Augen glänzen.
 
 „Du hast auch einen," sagt er und deutet auf deinen Rekorder.
 
@@ -654,17 +654,13 @@ Aber… da ist etwas.
 
 Auf dem Sitz.
 
-Ein Foto.
+Ein Foto. Ein altes Schwarzweißfoto.
 
-Ein altes Schwarzweißfoto.
+Es zeigt… einen Zug. Diesen Zug. Und davor… Menschen. Viele Menschen.
 
-Es zeigt… einen Zug.
+Daneben liegt eine Notiz, hastig gekritzelt:
 
-Diesen Zug.
-
-Und davor… Menschen.
-
-Viele Menschen.
+„Endlich kann ich schlafen. Danke für die Gesellschaft."
 
 Du drehst das Foto um.
 
@@ -672,9 +668,7 @@ Auf der Rückseite steht in verblasster Tinte:
 
 „1973. Letzte Fahrt."
 
-1973.
-
-Das ist… vor über fünfzig Jahren.`,
+1973. Das ist… vor über fünfzig Jahren.`,
     choices: [
       {
         id: 'take_photo',

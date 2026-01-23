@@ -103,7 +103,13 @@ Auf der Seite steht: „Passagier #[UNLESBAR]: Sucht nach [NAME]. Findet Wagen 7
     title: 'Rückkehr',
     narrative: `Der Junge sitzt wieder in seinem Abteil, als wäre er nie weg gewesen. Er hält den Kassettenrekorder.
 
-„Manchmal werden Dinge mehr,“ sagt er mit einer Stimme, die viel zu alt klingt. „Wenn man vergisst, dass man sie schon hat.“`,
+Er summt leise. Eine Melodie, die du kennst. Oder... kanntest.
+
+„Das hast du mir beigebracht," sagt er, ohne aufzublicken. „Als ich klein war. Erinnerst du dich?"
+
+Er sieht dich an. Seine Augen sind älter als sein Gesicht.
+
+„Manchmal werden Dinge mehr," sagt er. „Wenn man vergisst, dass man sie schon hat."`,
     choices: [
       {
         id: 'play_own_recorder',
