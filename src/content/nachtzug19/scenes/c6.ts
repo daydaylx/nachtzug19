@@ -719,47 +719,21 @@ Das ist… vor über fünfzig Jahren.`,
     id: 'c6_s11_announcement',
     chapter: 6,
     title: 'Durchsage',
-    narrative: `Die Lautsprecher erwachen mit einem trockenen Kratzen, wie Sand auf Metall. (Hook)
+    narrative: `Die Lautsprecher erwachen mit einem trockenen Kratzen, wie Sand auf Metall.
 
-Der Staub vibriert auf dem Gitter. Du neigst den Kopf, um die Worte im Rauschen zu finden, während deine Kehle trocken wird. Ein Hauch von Metall legt sich auf deine Zunge. (Detail)
+Der Staub vibriert auf dem Gitter. Du neigst den Kopf, um die Worte im Rauschen zu finden, während deine Kehle trocken wird. Ein Hauch von Metall legt sich auf deine Zunge.
 
-Dann bricht eine Stimme durch, die nicht zum Zug gehört. (Konsequenz)`,
-    choices: [
-      {
-        id: 'listen_closely',
-        label: 'Hinhören',
-        effects: [],
-        next: 'c6_s11_announcement_b'
-      },
-      {
-        id: 'cover_ears',
-        label: 'Ohren zuhalten',
-        effects: [
-          { type: 'inc', target: 'tickets_escape', value: 1 }
-        ],
-        next: 'c6_s11_announcement_b'
-      }
-    ],
-    state_notes: [
-      'Interlude Part 1: Audio-Störung',
-      'Split für Pacing'
-    ],
-    atmosphere: 'danger'
-  },
+Dann bricht eine Stimme durch, die nicht zum Zug gehört.
 
-  // ==========================================================================
-  // INTERLUDE 4: Ansage (Split Part 2)
-  // ==========================================================================
+---
 
-  'c6_s11_announcement_b': {
-    id: 'c6_s11_announcement_b',
-    chapter: 6,
-    title: 'Botschaft',
-    narrative: `„—chster Halt. Endstation. End—" (Hook)
+„—chster Halt. Endstation. End—"
 
-Die Stimme verzerrt sich, wird tiefer, unmenschlich. „—itte alle aussteigen. Alle… die noch können." Dann bricht sie in ein Flüstern: „Es tut mir leid." (Detail)
+Die Stimme verzerrt sich, wird tiefer, unmenschlich. „—itte alle aussteigen. Alle… die noch können."
 
-Das Knistern verstummt abrupt, und der Zug fährt weiter, als wäre nichts geschehen. (Konsequenz)`,
+Dann bricht sie in ein Flüstern: „Es tut mir leid."
+
+Das Knistern verstummt abrupt, und der Zug fährt weiter, als wäre nichts geschehen.`,
     choices: [
       {
         id: 'process_message',
@@ -801,8 +775,10 @@ Das Knistern verstummt abrupt, und der Zug fährt weiter, als wäre nichts gesch
       }
     ],
     state_notes: [
-      'Interlude Part 2: Die Nachricht',
-      'Entschuldigung und Warnung'
+      'Interlude: Durchsage (merged announcement + message)',
+      'Final station announcement with apology',
+      'CONDITION: whisper_year (memory_drift >= 3)',
+      'CONDITION: listen_for_voice (conductor_attention >= 3)'
     ],
     atmosphere: 'danger'
   },
