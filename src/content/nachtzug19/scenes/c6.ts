@@ -81,7 +81,7 @@ Du bist hier. Du bist noch da.`
           { type: 'inc', target: 'tickets_truth', value: 1 },
           { type: 'inc', target: 'memory_drift', value: 1 }
         ],
-        next: 'c6_s02_silence'
+        next: 'c6_s03_comp7_final'
       },
       {
         id: 'close_eyes',
@@ -89,7 +89,7 @@ Du bist hier. Du bist noch da.`
         effects: [
           { type: 'inc', target: 'tickets_escape', value: 1 }
         ],
-        next: 'c6_s02_silence'
+        next: 'c6_s03_comp7_final'
       },
       {
         id: 'walk_corridor',
@@ -97,7 +97,7 @@ Du bist hier. Du bist noch da.`
         effects: [
           { type: 'inc', target: 'tickets_truth', value: 1 }
         ],
-        next: 'c6_s02_silence'
+        next: 'c6_s03_comp7_final'
       }
     ],
     state_notes: [
@@ -106,87 +106,6 @@ Du bist hier. Du bist noch da.`
       'Geruch als sensorischer Anker (steril, falsch)'
     ],
     atmosphere: 'dark'
-  },
-
-  // ==========================================================================
-  // INTERLUDE 1: Stille (Split Part 1)
-  // ==========================================================================
-
-  'c6_s02_silence': {
-    id: 'c6_s02_silence',
-    chapter: 6,
-    title: 'Totenstille',
-    narrative: `Der Gang ist schmaler geworden. (Hook)
-
-Die Wände scheinen zusammengerückt zu sein. Wenn du sie berührst, geben sie nach – weich und warm, wie Fleisch unter Stoff. Du ziehst die Finger zurück, aber das Gefühl eines Pulsschlags bleibt auf deiner Haut. (Detail)
-
-Kein Geräusch. Nicht einmal deine Schritte machen einen Ton, als würdest du über dicken Samt gehen. (Konsequenz)`,
-    choices: [
-      {
-        id: 'move_forward',
-        label: 'Weitergehen',
-        effects: [],
-        next: 'c6_s02_silence_b'
-      },
-      {
-        id: 'touch_fabric',
-        label: 'Den Stoff prüfen',
-        effects: [
-          { type: 'inc', target: 'tickets_truth', value: 1 }
-        ],
-        next: 'c6_s02_silence_b'
-      }
-    ],
-    state_notes: [
-      'Interlude Part 1: Physische Veränderung',
-      'Split für Pacing'
-    ],
-    atmosphere: 'tense'
-  },
-
-  // ==========================================================================
-  // INTERLUDE 1: Stille (Split Part 2)
-  // ==========================================================================
-
-  'c6_s02_silence_b': {
-    id: 'c6_s02_silence_b',
-    chapter: 6,
-    title: 'Isolation',
-    narrative: `Du hältst den Atem an, um etwas zu hören – aber da ist nichts. (Hook)
-
-Nur ein dumpfes Dröhnen, das eher in deinem Schädel sitzt als im Raum. Ein feiner Geruch nach nassem Holz zieht kurz vorbei. Die Wände wirken wie Polster, die dich erdrücken wollen. (Detail)
-
-Die Luft vibriert wie vor einem Gewitter, aber es gibt hier kein Wetter. Nur diese absolute, erstickende Stille. (Konsequenz)`,
-    choices: [
-      {
-        id: 'continue_walking',
-        label: 'Weitergehen',
-        effects: [
-          { type: 'inc', target: 'memory_drift', value: 1 }
-        ],
-        next: 'c6_s03_comp7_final'
-      },
-      {
-        id: 'listen_intently',
-        label: 'Lauschen',
-        condition: {
-          type: 'compare',
-          target: 'tickets_escape',
-          operator: '>=',
-          value: 1
-        },
-        effects: [
-          { type: 'inc', target: 'tickets_escape', value: 1 },
-          { type: 'inc', target: 'memory_drift', value: 1 }
-        ],
-        next: 'c6_s03_comp7_final'
-      }
-    ],
-    state_notes: [
-      'Interlude Part 2: Totale Isolation',
-      'Atmosphäre verdichtet sich'
-    ],
-    atmosphere: 'tense'
   },
 
   // ==========================================================================
