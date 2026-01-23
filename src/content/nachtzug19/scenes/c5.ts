@@ -1257,7 +1257,7 @@ Der Schaffner erscheint hinter dir.
         effects: [
           { type: 'inc', target: 'tickets_escape', value: 3 }
         ],
-        next: 'c5_s22_decision_aftermath'
+        next: 'c5_s22_before_station'
       },
       {
         id: 'guilt_sacrifice',
@@ -1271,7 +1271,7 @@ Der Schaffner erscheint hinter dir.
         effects: [
           { type: 'inc', target: 'tickets_guilt', value: 3 }
         ],
-        next: 'c5_s22_decision_aftermath'
+        next: 'c5_s22_before_station'
       },
       {
         id: 'step_out_truth',
@@ -1279,7 +1279,7 @@ Der Schaffner erscheint hinter dir.
         effects: [
           { type: 'inc', target: 'tickets_truth', value: 2 }
         ],
-        next: 'c5_s22_decision_aftermath'
+        next: 'c5_s22_before_station'
       },
       {
         id: 'stay_in_train',
@@ -1287,7 +1287,7 @@ Der Schaffner erscheint hinter dir.
         effects: [
           { type: 'inc', target: 'tickets_escape', value: 2 }
         ],
-        next: 'c5_s22_decision_aftermath'
+        next: 'c5_s22_before_station'
       }
     ],
     state_notes: [
@@ -1304,115 +1304,35 @@ Der Schaffner erscheint hinter dir.
   // SET-PIECE 3: Finale Entscheidung (Teil 3 - Nachwirkungen)
   // ==========================================================================
 
-  'c5_s22_decision_aftermath': {
-    id: 'c5_s22_decision_aftermath',
-    chapter: 5,
-    title: 'Danach',
-    narrative: `Deine Entscheidung ist gefallen.
-
-Du spürst sie. Im ganzen Körper.
-
-Das Gewicht dessen, was du gewählt hast.
-
-Der Zug… reagiert.
-
-Die Luft verändert sich.
-
-Das Licht.
-
-Alles.
-
-Es ist, als würde der Zug selbst… verstehen.
-
-Als würde er wissen, was du getan hast.
-
-Und akzeptieren.
-
-Die Türen sind noch offen.
-
-Aber nur noch für einen Moment.
-
-Dann schließen sie sich.
-
-Für immer.`,
-    choices: [
-      {
-        id: 'accept_choice',
-        label: 'Die Wahl akzeptieren',
-        effects: [
-          { type: 'inc', target: 'tickets_truth', value: 1 }
-        ],
-        next: 'c5_s23_before_station'
-      },
-      {
-        id: 'doubt_choice',
-        label: 'Zweifeln',
-        effects: [
-          { type: 'inc', target: 'tickets_guilt', value: 1 }
-        ],
-        next: 'c5_s23_before_station'
-      },
-      {
-        id: 'embrace_drift',
-        label: 'Sich dem Vergessen hingeben',
-        condition: {
-          type: 'compare',
-          target: 'memory_drift',
-          operator: '>=',
-          value: 5
-        },
-        effects: [
-          { type: 'inc', target: 'tickets_escape', value: 2 },
-          { type: 'inc', target: 'memory_drift', value: 1 }
-        ],
-        next: 'c5_s23_before_station'
-      }
-    ],
-    state_notes: [
-      'Set-Piece Teil 3: Nachwirkungen der finalen Entscheidung',
-      'Übergang zur letzten Station',
-      'CONDITION: embrace_drift nur bei memory_drift >= 5 (Callback auf s21)'
-    ],
-    atmosphere: 'somber'
-  },
-
-  // ==========================================================================
-  // STANDARD: Vor der Station
-  // ==========================================================================
-
-  'c5_s23_before_station': {
-    id: 'c5_s23_before_station',
+  'c5_s22_before_station': {
+    id: 'c5_s22_before_station',
     chapter: 5,
     title: 'Vor der Station',
-    narrative: `Der Zug fährt langsam an.
+    narrative: `Deine Entscheidung ist gefallen.
 
-Wieder in Bewegung.
+Du spürst sie. Im ganzen Körper. Das Gewicht dessen, was du gewählt hast.
 
-Aber es fühlt sich anders an.
+Der Zug… reagiert. Die Luft verändert sich. Das Licht. Alles.
 
-Finaler.
+Es ist, als würde der Zug selbst… verstehen. Als würde er wissen, was du getan hast. Und akzeptieren.
+
+Die Türen sind noch offen. Aber nur noch für einen Moment.
+
+Dann schließen sie sich. Für immer.
+
+---
+
+Der Zug fährt langsam an. Wieder in Bewegung.
+
+Aber es fühlt sich anders an. Finaler.
 
 Du weißt: Die nächste Station ist die letzte.
 
-Für dich.
+Für dich. Für diesen Zug. Für diese Fahrt.
 
-Für diesen Zug.
+Was auch immer dort wartet – es wird Antworten geben. Oder Fragen. Oder beides. Oder nichts.
 
-Für diese Fahrt.
-
-Was auch immer dort wartet –
-
-Es wird Antworten geben.
-
-Oder Fragen.
-
-Oder beides.
-
-Oder nichts.
-
-Aber du wirst es bald wissen.
-
-Sehr bald.`,
+Aber du wirst es bald wissen. Sehr bald.`,
     choices: [
       {
         id: 'look_forward',
@@ -1429,13 +1349,29 @@ Sehr bald.`,
           { type: 'inc', target: 'tickets_guilt', value: 1 }
         ],
         next: 'c5_s24_platform_arrives'
+      },
+      {
+        id: 'embrace_drift',
+        label: 'Sich dem Vergessen hingeben',
+        condition: {
+          type: 'compare',
+          target: 'memory_drift',
+          operator: '>=',
+          value: 5
+        },
+        effects: [
+          { type: 'inc', target: 'tickets_escape', value: 2 },
+          { type: 'inc', target: 'memory_drift', value: 1 }
+        ],
+        next: 'c5_s24_platform_arrives'
       }
     ],
     state_notes: [
-      'Vorbereitung auf letzte Station',
-      'Emotionale Transition'
+      'Transition: Decision aftermath + approach to final station (merged s22 + s23)',
+      'Train reacts to choice, moves toward final station',
+      'CONDITION: embrace_drift (memory_drift >= 5)'
     ],
-    atmosphere: 'tense'
+    atmosphere: 'somber'
   },
 
   // ==========================================================================
