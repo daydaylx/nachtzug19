@@ -200,11 +200,11 @@ Sie blickt wieder hinaus.
 
 Eine Pause.
 
-„Weißt du, wohin?"
+„Ich war mal Passagier #7," sagt sie plötzlich. „Aber irgendwann... bin ich zum Zug geworden. Ich kann nicht mehr aussteigen. Ich bin Teil davon."
 
-Ihre Stimme ist kaum mehr als ein Flüstern.
+Ihre Stimme zittert.
 
-„Oder weißt du nur, dass du nicht zurückkannst?"`,
+„Weißt du, wohin dieser Zug fährt? Oder weißt du nur, dass du nicht zurückkannst?"`,
     choices: [
       {
         id: 'ask_about_destination',
