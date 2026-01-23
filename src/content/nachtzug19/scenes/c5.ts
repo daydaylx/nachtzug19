@@ -52,7 +52,7 @@ Und du weißt: Die nächste Kontrolle wird die härteste sein.`,
         effects: [
           { type: 'inc', target: 'tickets_truth', value: 1 }
         ],
-        next: 'c5_s02_corridor_silence'
+        next: 'c5_s03_comp7_reflection'
       },
       {
         id: 'rest_prepare',
@@ -60,7 +60,7 @@ Und du weißt: Die nächste Kontrolle wird die härteste sein.`,
         effects: [
           { type: 'inc', target: 'tickets_escape', value: 1 }
         ],
-        next: 'c5_s02_corridor_silence'
+        next: 'c5_s03_comp7_reflection'
       },
       {
         id: 'walk_corridor',
@@ -69,7 +69,7 @@ Und du weißt: Die nächste Kontrolle wird die härteste sein.`,
           { type: 'inc', target: 'tickets_truth', value: 1 },
           { type: 'inc', target: 'conductor_attention', value: 1 }
         ],
-        next: 'c5_s02_corridor_silence'
+        next: 'c5_s03_comp7_reflection'
       }
     ],
     state_notes: [
@@ -78,102 +78,6 @@ Und du weißt: Die nächste Kontrolle wird die härteste sein.`,
       'walk_corridor erhoeht attention; Vorbereitung auf Kontrolle 3'
     ],
     atmosphere: 'somber'
-  },
-
-  // ==========================================================================
-  // INTERLUDE 1: Stille (Split Part 1)
-  // ==========================================================================
-
-  'c5_s02_corridor_silence': {
-    id: 'c5_s02_corridor_silence',
-    chapter: 5,
-    title: 'Stille',
-    narrative: `Der Gang liegt in unnatürlicher Stille vor dir. (Hook)
-
-Kein Schaffner, keine Passagiere. Nur das gedämpfte Notlicht wirft schwankende Schatten, die langsamer tanzen als der Zug selbst. Du ziehst die Finger über die Wandverkleidung; der Lack fühlt sich klebrig an, fast frisch. (Detail)
-
-Ein kalter Luftzug streift deinen Nacken, obwohl alle Fenster geschlossen sind. (Konsequenz)`,
-    choices: [
-      {
-        id: 'investigate_silence',
-        label: 'Der Stille nachgehen',
-        effects: [],
-        next: 'c5_s02_corridor_silence_b'
-      },
-      {
-        id: 'retreat_briefly',
-        label: 'Zögern',
-        effects: [
-          { type: 'inc', target: 'tickets_escape', value: 1 }
-        ],
-        next: 'c5_s02_corridor_silence_b'
-      }
-    ],
-    state_notes: [
-      'Interlude Part 1: Atmosphäre aufbauen',
-      'Split für besseres Pacing'
-    ],
-    atmosphere: 'tense'
-  },
-
-  // ==========================================================================
-  // INTERLUDE 1: Stille (Split Part 2)
-  // ==========================================================================
-
-  'c5_s02_corridor_silence_b': {
-    id: 'c5_s02_corridor_silence_b',
-    chapter: 5,
-    title: 'Schatten',
-    narrative: `Der Geruch von metallischem Reinigungsmittel beißt in der Nase. (Hook)
-
-Die Notbeleuchtung zeichnet deinen Schatten doppelt an die Wand – einer folgt dir, der andere bleibt einen Herzschlag lang stehen, bevor er nachrutscht. Ein Flackern durchzuckt den Gang, als würde die Realität kurz aussetzen. (Detail)
-
-Für einen Moment spürst du eine Präsenz direkt hinter dir, doch als du dich umdrehst, ist der Gang leer. (Konsequenz)`,
-    choices: [
-      {
-        id: 'continue_forward',
-        label: 'Weitergehen',
-        effects: [
-          { type: 'inc', target: 'memory_drift', value: 1 }
-        ],
-        next: 'c5_s03_comp7_reflection'
-      },
-      {
-        id: 'listen_for_patterns',
-        label: 'Nach Mustern lauschen',
-        condition: {
-          type: 'compare',
-          target: 'tickets_truth',
-          operator: '>=',
-          value: 7
-        },
-        effects: [
-          { type: 'inc', target: 'tickets_truth', value: 1 },
-          { type: 'inc', target: 'memory_drift', value: 1 }
-        ],
-        next: 'c5_s03_comp7_reflection'
-      },
-      {
-        id: 'challenge_emptiness',
-        label: 'Rufen',
-        condition: {
-          type: 'compare',
-          target: 'conductor_attention',
-          operator: '>=',
-          value: 4
-        },
-        effects: [
-          { type: 'inc', target: 'conductor_attention', value: 1 },
-          { type: 'inc', target: 'tickets_truth', value: 1 }
-        ],
-        next: 'c5_s03_comp7_reflection'
-      }
-    ],
-    state_notes: [
-      'Interlude Part 2: Schatten-Anomalie',
-      'memory_drift steigt'
-    ],
-    atmosphere: 'tense'
   },
 
   // ==========================================================================
