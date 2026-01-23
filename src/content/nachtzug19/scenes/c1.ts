@@ -33,17 +33,35 @@ Kein Text. Kein „Nächster Zug". Nur leere Fächer, die im Takt klacken, ohne 
 Du weißt nicht mehr, warum du hier bist. Die Erinnerung fühlt sich an wie ein Traum, der dir beim Aufwachen durch die Finger rinnt.`,
     choices: [
       {
+        id: 'wait_hopeful',
+        label: 'Ich warte. Es gibt bestimmt eine Erklärung.',
+        effects: [
+          { type: 'inc', target: 'tickets_love', value: 1 }
+        ],
+        next: 'c1_s01_platform_b'
+      },
+      {
         id: 'look_around',
-        label: 'Umsehen',
+        label: 'Ich sehe mich erst einmal genau um.',
         effects: [
           { type: 'inc', target: 'tickets_truth', value: 1 }
         ],
         next: 'c1_s01_platform_b'
       },
       {
-        id: 'wait_patiently',
-        label: 'Warten',
-        effects: [],
+        id: 'doubting',
+        label: 'Das stimmt hier alles nicht. Wo sind die anderen?',
+        effects: [
+          { type: 'inc', target: 'tickets_truth', value: 1 }
+        ],
+        next: 'c1_s01_platform_b'
+      },
+      {
+        id: 'aggressive_shout',
+        label: 'Hallo? Ist hier irgendjemand verdammt noch mal?',
+        effects: [
+          { type: 'inc', target: 'tickets_guilt', value: 1 }
+        ],
         next: 'c1_s01_platform_b'
       }
     ],
@@ -78,7 +96,7 @@ Ein Name brennt sich in deine Gedanken. Emma. Ein Gesicht, das du fast sehen kan
     choices: [
       {
         id: 'search_person',
-        label: '„Emma?" rufen',
+        label: '„Emma? Bist du das?" (Laut rufen)',
         effects: [
           { type: 'inc', target: 'tickets_love', value: 1 },
           { type: 'set', target: 'memory_search_active', value: true }
@@ -87,15 +105,23 @@ Ein Name brennt sich in deine Gedanken. Emma. Ein Gesicht, das du fast sehen kan
       },
       {
         id: 'check_phone',
-        label: 'Handy checken',
+        label: 'Das Handy prüfen. Irgendein Signal?',
         effects: [
           { type: 'inc', target: 'tickets_escape', value: 1 }
         ],
         next: 'c1_s01a_platform_details'
       },
       {
+        id: 'check_newspaper',
+        label: 'Die Zeitung der Gestalt fixieren. Welches Datum?',
+        effects: [
+          { type: 'inc', target: 'tickets_truth', value: 1 }
+        ],
+        next: 'c1_s01a_platform_details'
+      },
+      {
         id: 'try_leave',
-        label: 'Versuchen zu gehen',
+        label: '„Weg hier." (Zum Ausgang drängen)',
         effects: [
           { type: 'inc', target: 'tickets_guilt', value: 1 },
           { type: 'inc', target: 'conductor_attention', value: 1 }
@@ -129,31 +155,34 @@ Dann wird es wieder schwarz.
 Plötzlich flackert die Neonröhre über dir schneller. Ein, aus, ein, aus. Dein Schatten auf dem Boden streckt sich, wird unnatürlich lang. Ein tiefes Brummen erfüllt die Luft, vibriert in deinem Brustkorb.`,
     choices: [
       {
-        id: 'step_back',
-        label: 'Zurücktreten',
+        id: 'hold_device',
+        label: 'Das Gerät fest an mich drücken.',
         effects: [
-          { type: 'inc', target: 'tickets_escape', value: 1 }
+          { type: 'inc', target: 'tickets_love', value: 1 }
         ],
         next: 'c1_s02_train_appears'
       },
       {
         id: 'examine_tracks',
-        label: 'Die schwarzen Schienen fixieren',
+        label: 'Die schwarzen Schienen untersuchen.',
         effects: [
           { type: 'inc', target: 'tickets_truth', value: 1 }
         ],
         next: 'c1_s02_train_appears'
       },
       {
-        id: 'hold_device',
-        label: 'Das Gerät fest umklammern',
-        condition: {
-          type: 'bool',
-          target: 'memory_search_active',
-          value: true
-        },
+        id: 'inspect_device',
+        label: 'Das Gerät skeptisch mustern. Was ist das?',
         effects: [
-          { type: 'inc', target: 'tickets_love', value: 1 }
+          { type: 'inc', target: 'tickets_truth', value: 1 }
+        ],
+        next: 'c1_s02_train_appears'
+      },
+      {
+        id: 'step_back',
+        label: 'Einen Schritt zurücktreten. Weg von der Kante.',
+        effects: [
+          { type: 'inc', target: 'tickets_escape', value: 1 }
         ],
         next: 'c1_s02_train_appears'
       }
@@ -190,16 +219,16 @@ Die Stufen glänzen feucht. Ein dünner Nebel hängt in der Tür. Niemand steigt
     ],
     choices: [
       {
-        id: 'board_immediately',
-        label: 'Sofort einsteigen',
+        id: 'board_hopeful',
+        label: 'Dem Zug offen entgegentreten. Endlich geht es weiter.',
         effects: [
-          { type: 'inc', target: 'tickets_escape', value: 1 }
+          { type: 'inc', target: 'tickets_love', value: 1 }
         ],
         next: 'c1_s02a_train_exterior'
       },
       {
         id: 'inspect_train',
-        label: 'Den Zug genauer ansehen',
+        label: 'Den Zug genau mustern. Baureihe, Zustand, Details.',
         effects: [
           { type: 'inc', target: 'tickets_truth', value: 1 }
         ],
@@ -207,16 +236,18 @@ Die Stufen glänzen feucht. Ein dünner Nebel hängt in der Tür. Niemand steigt
       },
       {
         id: 'call_out',
-        label: 'In den Zug rufen',
-        condition: {
-          type: 'compare',
-          target: 'conductor_attention',
-          operator: '<',
-          value: 2
-        },
+        label: '„Ist da jemand drin?" (Vorsichtig rufen)',
         effects: [
           { type: 'inc', target: 'tickets_truth', value: 1 },
           { type: 'inc', target: 'conductor_attention', value: 1 }
+        ],
+        next: 'c1_s02a_train_exterior'
+      },
+      {
+        id: 'retreat_scared',
+        label: 'Misstrauisch zurückweichen. Der sieht nicht sicher aus.',
+        effects: [
+          { type: 'inc', target: 'tickets_escape', value: 1 }
         ],
         next: 'c1_s02a_train_exterior'
       }
@@ -245,31 +276,33 @@ Hinter dir: Das Brummen wird leiser. Der Zug wird gleich weiterfahren. Du weißt
     choices: [
       {
         id: 'board_now',
-        label: 'Einsteigen',
+        label: 'Einsteigen. Ich muss Emma finden.',
         effects: [
-          { type: 'inc', target: 'tickets_escape', value: 1 }
+          { type: 'inc', target: 'tickets_love', value: 1 }
         ],
         next: 'c1_s03_inside_train'
       },
       {
         id: 'touch_exterior',
-        label: 'Die Außenwand berühren',
+        label: 'Den Schriftzug „—CHTZUG 1—" analysieren.',
         effects: [
           { type: 'inc', target: 'tickets_truth', value: 1 }
         ],
         next: 'c1_s03_inside_train'
       },
       {
-        id: 'ask_aloud',
-        label: '„Ist da jemand?" rufen',
-        condition: {
-           type: 'compare',
-           target: 'conductor_attention',
-           operator: '<',
-           value: 2
-        },
+        id: 'observe_woman',
+        label: 'Die starrende Frau im Fenster ansehen. Lebt sie?',
         effects: [
-          { type: 'inc', target: 'tickets_love', value: 1 },
+          { type: 'inc', target: 'tickets_truth', value: 1 }
+        ],
+        next: 'c1_s03_inside_train'
+      },
+      {
+        id: 'ask_aloud_aggressive',
+        label: '„Hallo? Reagiert hier auch mal jemand?" (Laut werden)',
+        effects: [
+          { type: 'inc', target: 'tickets_guilt', value: 1 },
           { type: 'inc', target: 'conductor_attention', value: 1 }
         ],
         next: 'c1_s03_inside_train'
@@ -305,8 +338,8 @@ Zur Linken: Ein Mann, mittleren Alters, der aus dem Fenster starrt. Seine Augen 
 Zur Rechten: Ein leeres Abteil.`,
     choices: [
       {
-        id: 'talk_to_man',
-        label: 'Den Mann ansprechen',
+        id: 'greet_man',
+        label: 'Den Mann höflich grüßen. Wir sitzen im selben Boot.',
         effects: [
           { type: 'inc', target: 'tickets_love', value: 1 },
           { type: 'inc', target: 'rel_sleepless', value: 1 }
@@ -314,23 +347,27 @@ Zur Rechten: Ein leeres Abteil.`,
         next: 'c1_s04_sleepless_intro'
       },
       {
-        id: 'find_seat',
-        label: 'Einen Platz suchen',
-        effects: [],
+        id: 'find_seat_quiet',
+        label: 'Still einen freien Platz suchen.',
+        effects: [
+          { type: 'inc', target: 'tickets_escape', value: 1 }
+        ],
         next: 'c1_s03a_find_seat'
       },
       {
-        id: 'test_silence',
-        label: 'Etwas flüstern',
-        condition: {
-           type: 'compare',
-           target: 'conductor_attention',
-           operator: '<',
-           value: 2
-        },
+        id: 'analyze_silence',
+        label: 'Die Umgebung prüfen. Warum ist es hier so still?',
         effects: [
-          { type: 'inc', target: 'tickets_truth', value: 1 },
-          { type: 'inc', target: 'conductor_attention', value: 1 }
+          { type: 'inc', target: 'tickets_truth', value: 1 }
+        ],
+        next: 'c1_s03a_find_seat'
+      },
+      {
+        id: 'break_silence_aggressive',
+        label: 'Das Schweigen brechen. „Was ist das hier für eine Show?"',
+        effects: [
+          { type: 'inc', target: 'conductor_attention', value: 1 },
+          { type: 'inc', target: 'tickets_guilt', value: 1 }
         ],
         next: 'c1_s03a_find_seat'
       }
@@ -361,33 +398,35 @@ Du lehnst den Kopf ans Fenster. Das Glas ist warm. Viel zu warm.
 Dann, eine Stimme hinter dir: „Du auch?"`,
     choices: [
       {
-        id: 'turn_around',
-        label: 'Sich umdrehen',
+        id: 'turn_around_friendly',
+        label: 'Ruhig umdrehen. „Ich auch was?"',
         effects: [
-          { type: 'inc', target: 'tickets_truth', value: 1 }
+          { type: 'inc', target: 'tickets_love', value: 1 }
         ],
         next: 'c1_s04_sleepless_intro'
       },
       {
-        id: 'ignore_voice',
-        label: 'Ignorieren',
+        id: 'turn_around_neutral',
+        label: 'Sich langsam umdrehen, ohne ein Wort.',
         effects: [
-          { type: 'inc', target: 'tickets_escape', value: 1 }
+          { type: 'inc', target: 'tickets_truth', value: 1 }
         ],
         next: 'c1_s04_sleepless_intro'
       },
       {
         id: 'stay_with_window',
-        label: 'Den Blick im Fenster halten',
-        condition: {
-          type: 'compare',
-          target: 'memory_drift',
-          operator: '>=',
-          value: 1
-        },
+        label: 'Den Blick stur auf das Fenster gerichtet lassen.',
         effects: [
-          { type: 'inc', target: 'memory_drift', value: 1 },
-          { type: 'inc', target: 'tickets_truth', value: 1 }
+          { type: 'inc', target: 'tickets_escape', value: 1 },
+          { type: 'inc', target: 'memory_drift', value: 1 }
+        ],
+        next: 'c1_s04_sleepless_intro'
+      },
+      {
+        id: 'turn_around_aggressive',
+        label: '„Schleich dich nicht so an!" (Scharf umdrehen)',
+        effects: [
+          { type: 'inc', target: 'tickets_guilt', value: 1 }
         ],
         next: 'c1_s04_sleepless_intro'
       }
@@ -423,17 +462,8 @@ Du greifst in deine Tasche. Leer. Kein Ticket. Dein Handy – oder was es war �
 Er zuckt mit den Schultern. „Unterwegs."`,
     choices: [
       {
-        id: 'ask_where',
-        label: '„Wo fährt der Zug hin?"',
-        effects: [
-          { type: 'inc', target: 'tickets_truth', value: 1 },
-          { type: 'inc', target: 'rel_sleepless', value: 1 }
-        ],
-        next: 'c1_s04a_sleepless_past'
-      },
-      {
-        id: 'ask_how_long',
-        label: '„Wie lange bist du schon hier?"',
+        id: 'ask_help',
+        label: '„Können Sie mir helfen? Ich verstehe das nicht."',
         effects: [
           { type: 'inc', target: 'tickets_love', value: 1 },
           { type: 'inc', target: 'rel_sleepless', value: 1 }
@@ -441,10 +471,26 @@ Er zuckt mit den Schultern. „Unterwegs."`,
         next: 'c1_s04a_sleepless_past'
       },
       {
-        id: 'deny',
-        label: '„Das kann nicht sein."',
+        id: 'ask_destination',
+        label: '„Wohin fährt dieser Zug genau? Haben Sie einen Plan?"',
         effects: [
-          { type: 'inc', target: 'tickets_escape', value: 1 },
+          { type: 'inc', target: 'tickets_truth', value: 1 }
+        ],
+        next: 'c1_s04a_sleepless_past'
+      },
+      {
+        id: 'question_knowledge',
+        label: '„Woher wollen Sie wissen, dass ich kein Ticket habe?"',
+        effects: [
+          { type: 'inc', target: 'tickets_truth', value: 1 }
+        ],
+        next: 'c1_s04a_sleepless_past'
+      },
+      {
+        id: 'demand_answers',
+        label: '„Das ist doch Unsinn. Ich will eine klare Antwort."',
+        effects: [
+          { type: 'inc', target: 'tickets_guilt', value: 1 },
           { type: 'dec', target: 'rel_sleepless', value: 1 }
         ],
         next: 'c1_s04a_sleepless_past'
@@ -474,7 +520,7 @@ Er beugt sich vor, senkt die Stimme. „Hör zu. Wenn der Schaffner kommt… Sag
     choices: [
       {
         id: 'admit_searching',
-        label: '„Ich suche jemanden. Emma."',
+        label: '„Ich suche jemanden. Emma." (Die Wahrheit sagen)',
         effects: [
           { type: 'inc', target: 'tickets_love', value: 1 },
           { type: 'inc', target: 'rel_sleepless', value: 2 }
@@ -482,26 +528,28 @@ Er beugt sich vor, senkt die Stimme. „Hör zu. Wenn der Schaffner kommt… Sag
         next: 'c1_s05_first_anomaly'
       },
       {
-        id: 'admit_running',
-        label: '„Ich laufe weg."',
+        id: 'ask_counter',
+        label: '„Und was machst du hier? Suchst du auch?" (Gegenfrage)',
         effects: [
-          { type: 'inc', target: 'tickets_guilt', value: 1 },
-          { type: 'inc', target: 'rel_sleepless', value: 1 }
+          { type: 'inc', target: 'tickets_truth', value: 1 }
         ],
         next: 'c1_s05_first_anomaly'
       },
       {
         id: 'ask_about_conductor',
-        label: '„Warum? Was macht der Schaffner?"',
-        condition: {
-           type: 'compare',
-           target: 'conductor_attention',
-           operator: '<',
-           value: 2
-        },
+        label: '„Was hat es mit dem Schaffner auf sich? Warum die Warnung?"',
         effects: [
           { type: 'inc', target: 'tickets_truth', value: 1 },
           { type: 'inc', target: 'conductor_attention', value: 1 }
+        ],
+        next: 'c1_s05_first_anomaly'
+      },
+      {
+        id: 'deny_running',
+        label: '„Ich laufe vor gar nichts weg. Lass mich in Ruhe."',
+        effects: [
+          { type: 'inc', target: 'tickets_escape', value: 1 },
+          { type: 'dec', target: 'rel_sleepless', value: 1 }
         ],
         next: 'c1_s05_first_anomaly'
       }
@@ -538,34 +586,35 @@ Rückfahrt? Rückkehr?
 „Weil sie noch keinen Namen hat," sagt der Schlaflose. „Oder wir ihn vergessen haben."`,
     choices: [
       {
-        id: 'write_it_down',
-        label: 'Versuchen, es aufzuschreiben',
+        id: 'ask_sleepless',
+        label: '„Hörst du das auch? Was bedeutet das?" (Den Schlaflosen fragen)',
         effects: [
-          { type: 'inc', target: 'tickets_truth', value: 1 },
-          { type: 'inc', target: 'conductor_attention', value: 1 }
+          { type: 'inc', target: 'tickets_love', value: 1 }
         ],
         next: 'c1_s05a_other_passengers'
       },
       {
-        id: 'ignore_anomaly',
-        label: 'Ignorieren',
+        id: 'write_it_down',
+        label: 'Versuchen, das Wortfetzen „Rückf-" zu notieren.',
+        effects: [
+          { type: 'inc', target: 'tickets_truth', value: 1 }
+        ],
+        next: 'c1_s05a_other_passengers'
+      },
+      {
+        id: 'dismiss_error',
+        label: 'Das ist doch eine Aufnahme. Ein Fehler im Band.',
         effects: [
           { type: 'inc', target: 'tickets_escape', value: 1 }
         ],
         next: 'c1_s05a_other_passengers'
       },
       {
-        id: 'analyze_fragment',
-        label: 'Über das Wort "Rückf-" nachdenken',
-        condition: {
-          type: 'compare',
-          target: 'memory_drift',
-          operator: '>=',
-          value: 1
-        },
+        id: 'bang_speaker',
+        label: 'Gegen den Lautsprecher klopfen. „Funktioniert hier irgendwas?"',
         effects: [
-          { type: 'inc', target: 'tickets_truth', value: 1 },
-          { type: 'inc', target: 'memory_drift', value: 1 }
+          { type: 'inc', target: 'conductor_attention', value: 1 },
+          { type: 'inc', target: 'tickets_guilt', value: 1 }
         ],
         next: 'c1_s05a_other_passengers'
       }
@@ -594,14 +643,8 @@ Ein Teenager mit nicht angeschlossenen Kopfhörern, der im Rhythmus nickt.
 Niemand spricht. Niemand bewegt sich. Außer diesen kleinen Gesten.`,
     choices: [
       {
-        id: 'approach_woman',
-        label: 'Die Frau ansprechen',
-        condition: {
-           type: 'compare',
-           target: 'conductor_attention',
-           operator: '<',
-           value: 3
-        },
+        id: 'approach_woman_gentle',
+        label: 'Vorsichtig auf die Frau zugehen. „Alles in Ordnung?"',
         effects: [
           { type: 'inc', target: 'tickets_love', value: 1 },
           { type: 'inc', target: 'conductor_attention', value: 1 }
@@ -609,24 +652,27 @@ Niemand spricht. Niemand bewegt sich. Außer diesen kleinen Gesten.`,
         next: 'c1_s05b_compartment7_tease'
       },
       {
-        id: 'leave_them_alone',
-        label: 'Sie in Ruhe lassen',
+        id: 'memorize_scene',
+        label: 'Die Anzahl der Passagiere und ihre Positionen merken.',
         effects: [
-          { type: 'inc', target: 'tickets_escape', value: 1 }
+          { type: 'inc', target: 'tickets_truth', value: 1 }
         ],
         next: 'c1_s05b_compartment7_tease'
       },
       {
-        id: 'count_passengers',
-        label: 'Die Passagiere zählen',
-        condition: {
-          type: 'compare',
-          target: 'memory_drift',
-          operator: '>=',
-          value: 2
-        },
+        id: 'observe_breathing',
+        label: 'Sie genau beobachten. Atmen sie überhaupt?',
         effects: [
-          { type: 'inc', target: 'tickets_truth', value: 1 }
+          { type: 'inc', target: 'tickets_truth', value: 1 },
+          { type: 'inc', target: 'memory_drift', value: 1 }
+        ],
+        next: 'c1_s05b_compartment7_tease'
+      },
+      {
+        id: 'ignore_extras',
+        label: 'Sie ignorieren. Das sind doch nur Statisten.',
+        effects: [
+          { type: 'inc', target: 'tickets_escape', value: 1 }
         ],
         next: 'c1_s05b_compartment7_tease'
       }
@@ -654,18 +700,26 @@ Du hörst Geräusche dahinter. Leises Kratzen. Papier auf Papier.
 Der Schlaflose ruft von hinten: „Geh da nicht rein. Du bist noch nicht bereit."`,
     choices: [
       {
-        id: 'knock_on_door',
-        label: 'An die Tür klopfen',
+        id: 'feel_connection',
+        label: 'Die Hand sanft auf das Holz legen. Eine Verbindung spüren.',
         effects: [
-          { type: 'inc', target: 'tickets_truth', value: 1 },
-          { type: 'inc', target: 'conductor_attention', value: 2 },
+          { type: 'inc', target: 'tickets_love', value: 1 },
           { type: 'inc', target: 'rel_comp7', value: 1 }
         ],
         next: 'c1_s05c_comp7_listen'
       },
       {
+        id: 'ask_sleepless_content',
+        label: 'Den Schlaflosen fragen: „Was ist da drin?"',
+        effects: [
+          { type: 'inc', target: 'tickets_truth', value: 1 },
+          { type: 'inc', target: 'rel_sleepless', value: 1 }
+        ],
+        next: 'c1_s05c_comp7_listen'
+      },
+      {
         id: 'listen_to_sleepless',
-        label: 'Auf den Schlaflosen hören',
+        label: 'Auf den Schlaflosen hören und Abstand halten. Er weiß mehr.',
         effects: [
           { type: 'inc', target: 'tickets_escape', value: 1 },
           { type: 'inc', target: 'rel_sleepless', value: 1 }
@@ -673,10 +727,10 @@ Der Schlaflose ruft von hinten: „Geh da nicht rein. Du bist noch nicht bereit.
         next: 'c1_s05c_comp7_listen'
       },
       {
-        id: 'feel_drawn',
-        label: 'Die Hand auf die Tür legen',
+        id: 'knock_defiant',
+        label: 'Trotzdem klopfen. Ich lasse mir nichts verbieten.',
         effects: [
-          { type: 'inc', target: 'tickets_love', value: 1 },
+          { type: 'inc', target: 'conductor_attention', value: 2 },
           { type: 'inc', target: 'rel_comp7', value: 1 }
         ],
         next: 'c1_s05c_comp7_listen'
@@ -707,35 +761,36 @@ Der Boden unter dir vibriert plötzlich. Nicht vom Zug. Von der Tür.
 Dann: Stille. Der Zug wird langsamer.`,
     choices: [
       {
-        id: 'knock_again',
-        label: 'Nochmal klopfen',
-        effects: [
-          { type: 'inc', target: 'tickets_love', value: 1 },
-          { type: 'inc', target: 'conductor_attention', value: 1 },
-          { type: 'inc', target: 'rel_comp7', value: 1 }
-        ],
-        next: 'c1_end_station'
-      },
-      {
-        id: 'step_away',
-        label: 'Zurücktreten',
-        effects: [
-          { type: 'inc', target: 'tickets_guilt', value: 1 }
-        ],
-        next: 'c1_end_station'
-      },
-      {
-        id: 'speak_through_door',
-        label: 'Leise durch die Tür sprechen',
-        condition: {
-          type: 'compare',
-          target: 'rel_comp7',
-          operator: '>=',
-          value: 1
-        },
+        id: 'whisper_help',
+        label: 'Leise flüstern: „Kann ich helfen?"',
         effects: [
           { type: 'inc', target: 'tickets_love', value: 1 },
           { type: 'inc', target: 'rel_comp7', value: 2 }
+        ],
+        next: 'c1_end_station'
+      },
+      {
+        id: 'analyze_sounds',
+        label: 'Das Gehörte analysieren. War das ein Streit?',
+        effects: [
+          { type: 'inc', target: 'tickets_truth', value: 1 }
+        ],
+        next: 'c1_end_station'
+      },
+      {
+        id: 'step_away_scared',
+        label: 'Erschrocken zurückweichen. Das klang gefährlich.',
+        effects: [
+          { type: 'inc', target: 'tickets_escape', value: 1 }
+        ],
+        next: 'c1_end_station'
+      },
+      {
+        id: 'bang_door',
+        label: '„Hey! Macht auf!" (Gegen die Tür hämmern)',
+        effects: [
+          { type: 'inc', target: 'conductor_attention', value: 2 },
+          { type: 'inc', target: 'tickets_guilt', value: 1 }
         ],
         next: 'c1_end_station'
       }
@@ -773,43 +828,39 @@ Er zerknüllt einen Zettel, den er in der Hand hält. Seine Finger zittern.
 „Nichts Wichtiges."`,
     choices: [
       {
-        id: 'continue_to_chapter_2',
-        label: 'Weiter',
+        id: 'accept_confusion',
+        label: 'Es akzeptieren. „Vielleicht habe ich mich geirrt. Weiter."',
         effects: [
-          { type: 'set', target: 'chapter_index', value: 2 }
+          { type: 'set', target: 'chapter_index', value: 2 },
+          { type: 'inc', target: 'tickets_love', value: 1 }
         ],
         next: 'c2_s01_ticket_search'
       },
       {
-        id: 'confront_jacket_change',
-        label: 'Auf der Farbe beharren',
-        condition: {
-          type: 'or',
-          conditions: [
-            { type: 'compare', target: 'tickets_truth', operator: '>=', value: 3 },
-            { type: 'compare', target: 'conductor_attention', operator: '>=', value: 3 }
-          ]
-        },
+        id: 'register_anomaly',
+        label: 'Nichts sagen, aber die Anomalie registrieren.',
         effects: [
           { type: 'set', target: 'chapter_index', value: 2 },
-          { type: 'inc', target: 'memory_drift', value: 2 },
+          { type: 'inc', target: 'tickets_truth', value: 1 },
+          { type: 'inc', target: 'memory_drift', value: 1 }
+        ],
+        next: 'c2_s01_ticket_search'
+      },
+      {
+        id: 'insist_grey',
+        label: '„Deine Jacke war grau." (Auf der Wahrheit beharren)',
+        effects: [
+          { type: 'set', target: 'chapter_index', value: 2 },
           { type: 'inc', target: 'tickets_truth', value: 1 },
           { type: 'inc', target: 'rel_sleepless', value: 1 }
         ],
         next: 'c2_s01_ticket_search'
       },
       {
-        id: 'nod_to_conductor',
-        label: 'Dem Schaffner zunicken (den du ahnst)',
-        condition: {
-          type: 'compare',
-          target: 'conductor_attention',
-          operator: '>=',
-          value: 2
-        },
+        id: 'leave_games',
+        label: '„Spielchen. Alles nur Spielchen." (Kopfschüttelnd aussteigen)',
         effects: [
           { type: 'set', target: 'chapter_index', value: 2 },
-          { type: 'inc', target: 'conductor_attention', value: 1 },
           { type: 'inc', target: 'tickets_guilt', value: 1 }
         ],
         next: 'c2_s01_ticket_search'
