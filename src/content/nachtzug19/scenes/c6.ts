@@ -524,7 +524,7 @@ Aber du bist nicht mehr derselbe.`,
           { type: 'inc', target: 'tickets_truth', value: 1 },
           { type: 'inc', target: 'tickets_guilt', value: 1 }
         ],
-        next: 'c6_s08_drift_intensifies'
+        next: 'c6_s09_boy_final'
       },
       {
         id: 'forget_quickly',
@@ -533,7 +533,7 @@ Aber du bist nicht mehr derselbe.`,
           { type: 'inc', target: 'tickets_escape', value: 1 },
           { type: 'inc', target: 'memory_drift', value: 1 }
         ],
-        next: 'c6_s08_drift_intensifies'
+        next: 'c6_s09_boy_final'
       },
       {
         id: 'feel_connection',
@@ -548,7 +548,7 @@ Aber du bist nicht mehr derselbe.`,
           { type: 'inc', target: 'tickets_love', value: 1 },
           { type: 'inc', target: 'memory_drift', value: 1 }
         ],
-        next: 'c6_s08_drift_intensifies'
+        next: 'c6_s09_boy_final'
       }
     ],
     state_notes: [
@@ -558,88 +558,6 @@ Aber du bist nicht mehr derselbe.`,
       'CONDITION: feel_connection bei tickets_love >= 2 (Callback für reach_out)'
     ],
     atmosphere: 'somber'
-  },
-
-  // ==========================================================================
-  // INTERLUDE 3: Drift intensiviert sich (Split Part 1)
-  // ==========================================================================
-
-  'c6_s08_drift_intensifies': {
-    id: 'c6_s08_drift_intensifies',
-    chapter: 6,
-    title: 'Zeitbruch',
-    narrative: `Die Uhr an der Wand spielt verrückt. (Hook)
-
-Sie springt von 3:47 auf 9:12, dann auf 2:33. Die Zeiger bewegen sich nicht, sie flackern von einer Position zur nächsten, als würde die Zeit selbst stottern. Das Glas ist beschlagen, und winzige Linien schreiben sich von selbst in den Nebel. (Detail)
-
-Rückwärts, vorwärts, willkürlich – Zeit hat hier keine Bedeutung mehr. (Konsequenz)`,
-    choices: [
-      {
-        id: 'watch_clock',
-        label: 'Uhr fixieren',
-        effects: [],
-        next: 'c6_s08_drift_intensifies_b'
-      },
-      {
-        id: 'look_away_time',
-        label: 'Wegsehen',
-        effects: [
-          { type: 'inc', target: 'tickets_escape', value: 1 }
-        ],
-        next: 'c6_s08_drift_intensifies_b'
-      }
-    ],
-    state_notes: [
-      'Interlude Part 1: Zeit-Anomalie',
-      'Split für Pacing'
-    ],
-    atmosphere: 'dark'
-  },
-
-  // ==========================================================================
-  // INTERLUDE 3: Drift intensiviert sich (Split Part 2)
-  // ==========================================================================
-
-  'c6_s08_drift_intensifies_b': {
-    id: 'c6_s08_drift_intensifies_b',
-    chapter: 6,
-    title: 'Auflösung',
-    narrative: `Du legst die Hand an das Metall unter der Uhr. (Hook)
-
-Es ist erst eiskalt, dann plötzlich brennend heiß. Dein Gleichgewicht schwankt, der Boden kippt minimal nach links. Im Fenster siehst du kurz ein anderes Gesicht – älter, müder – bevor es wieder deins wird. (Detail)
-
-Dein Atem bildet kleine Wolken in der Luft, obwohl du keine Kälte spürst. Es ist einfach… nichts. (Konsequenz)`,
-    choices: [
-      {
-        id: 'observe_changes',
-        label: 'Beobachten',
-        effects: [
-          { type: 'inc', target: 'tickets_truth', value: 1 },
-          { type: 'inc', target: 'memory_drift', value: 1 }
-        ],
-        next: 'c6_s09_boy_final'
-      },
-      {
-        id: 'analyze_time',
-        label: 'Muster suchen',
-        condition: {
-          type: 'compare',
-          target: 'memory_drift',
-          operator: '>=',
-          value: 2
-        },
-        effects: [
-          { type: 'inc', target: 'tickets_truth', value: 1 },
-          { type: 'inc', target: 'memory_drift', value: 1 }
-        ],
-        next: 'c6_s09_boy_final'
-      }
-    ],
-    state_notes: [
-      'Interlude Part 2: Physische Anomalie',
-      'Vorbereitung auf Boy-Finale'
-    ],
-    atmosphere: 'dark'
   },
 
   // ==========================================================================
