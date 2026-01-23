@@ -372,7 +372,7 @@ Was tust du?`,
           type: 'compare',
           target: 'tickets_truth',
           operator: '>=',
-          value: 9
+          value: 4
         },
         effects: [
           { type: 'inc', target: 'tickets_truth', value: 4 },
@@ -449,7 +449,7 @@ Der Zug rattert weiter.`,
           type: 'compare',
           target: 'tickets_truth',
           operator: '>=',
-          value: 10
+          value: 4
         },
         effects: [
           { type: 'inc', target: 'tickets_truth', value: 1 },
@@ -875,7 +875,7 @@ Eine Pause.
           type: 'compare',
           target: 'tickets_truth',
           operator: '>=',
-          value: 12
+          value: 5
         },
         effects: [
           { type: 'inc', target: 'tickets_truth', value: 1 },
