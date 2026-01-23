@@ -986,7 +986,7 @@ Die Luft im Abteil wird dünner, sauerstoffarm. Deine Lungen brennen, während e
   'c5_s16_control3_aftermath': {
     id: 'c5_s16_control3_aftermath',
     chapter: 5,
-    title: 'Kontrolle 3 - Danach',
+    title: 'Nach der Kontrolle',
     narrative: `Der Schaffner steht auf.
 
 Langsam. Bedächtig.
@@ -1009,88 +1009,21 @@ Er blickt zurück.
 
 Dann ist er weg.
 
-Und du sitzt allein in deinem Abteil.
+---
 
-Die Fahrkarte in der Hand.
+Du sitzt allein in deinem Abteil. Die Fahrkarte in der Hand. Noch gültig. Noch.
 
-Noch gültig.
+Du denkst nach. Über die Kontrolle. Über deine Antworten.
 
-Noch.`,
-    choices: [
-      {
-        id: 'examine_ticket',
-        label: 'Die Fahrkarte ansehen',
-        effects: [
-          { type: 'inc', target: 'tickets_truth', value: 1 }
-        ],
-        next: 'c5_s17_aftermath_reflection'
-      },
-      {
-        id: 'rest_after_control',
-        label: 'Ausruhen',
-        effects: [
-          { type: 'inc', target: 'tickets_escape', value: 1 },
-          { type: 'dec', target: 'conductor_attention', value: 1 }
-        ],
-        next: 'c5_s17_aftermath_reflection'
-      },
-      {
-        id: 'ponder_words',
-        label: 'Über die Worte des Schaffners nachgrübeln',
-        condition: {
-          type: 'compare',
-          target: 'conductor_attention',
-          operator: '>=',
-          value: 4
-        },
-        effects: [
-          { type: 'inc', target: 'tickets_truth', value: 1 },
-          { type: 'inc', target: 'memory_drift', value: 1 }
-        ],
-        next: 'c5_s17_aftermath_reflection'
-      }
-    ],
-    state_notes: [
-      'Set-Piece Teil 3: Nachwirkungen Kontrolle 3',
-      'Kontrolle überstanden – nächste Station rückt näher',
-      'CONDITION: ponder_words nur bei conductor_attention >= 4 (Callback auf s15)'
-    ],
-    atmosphere: 'tense'
-  },
+Der Schaffner hat recht: Die Fahrt geht zu Ende.
 
-  // ==========================================================================
-  // STANDARD: Reflexion nach Kontrolle
-  // ==========================================================================
-
-  'c5_s17_aftermath_reflection': {
-    id: 'c5_s17_aftermath_reflection',
-    chapter: 5,
-    title: 'Reflexion',
-    narrative: `Du sitzt da und denkst nach.
-
-Über die Kontrolle. Über deine Antworten.
-
-Über das, was du gesagt – und nicht gesagt hast.
-
-Der Schaffner hat recht:
-
-Die Fahrt geht zu Ende.
-
-Bald wirst du ankommen. Irgendwo.
-
-Oder aussteigen müssen.
+Bald wirst du ankommen. Irgendwo. Oder aussteigen müssen.
 
 Oder…
 
-Es gibt noch eine dritte Möglichkeit.
+Es gibt noch eine dritte Möglichkeit. Eine, über die niemand spricht.
 
-Eine, über die niemand spricht.
-
-Einfach weiterfahren.
-
-Für immer.
-
-Im Zug bleiben.
+Einfach weiterfahren. Für immer. Im Zug bleiben.
 
 Ist das möglich?`,
     choices: [
@@ -1113,8 +1046,9 @@ Ist das möglich?`,
       }
     ],
     state_notes: [
-      'Reflexion über Kontrolle und Zukunft',
-      'consider_staying deutet Escape-Ending an'
+      'Set-Piece: Kontrolle 3 Nachwirkungen (merged aftermath + reflection)',
+      'Conductor leaves, protagonist reflects on journey ending',
+      'Introduces possibility of staying on train forever (Escape ending foreshadowing)'
     ],
     atmosphere: 'somber'
   },
