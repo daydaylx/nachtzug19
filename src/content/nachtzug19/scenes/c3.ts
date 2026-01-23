@@ -306,15 +306,6 @@ Du siehst die Verzweiflung in ihren Augen. „Ich schreibe," sagt sie, ohne dass
         next: 'c3_s03c_notebooks_explore'
       },
       {
-        id: 'ask_why_writing',
-        label: '„Warum schreibst du?"',
-        effects: [
-          { type: 'inc', target: 'tickets_truth', value: 1 },
-          { type: 'inc', target: 'rel_comp7', value: 2 }
-        ],
-        next: 'c3_s03c_notebooks_explore'
-      },
-      {
         id: 'touch_table',
         label: 'Ehrfürchtig den Tisch berühren',
         effects: [

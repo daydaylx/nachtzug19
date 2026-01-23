@@ -1344,7 +1344,7 @@ Eine Pause.
           type: 'compare',
           target: 'tickets_truth',
           operator: '>=',
-          value: 8
+          value: 4
         },
         effects: [
           { type: 'inc', target: 'tickets_truth', value: 2 },
