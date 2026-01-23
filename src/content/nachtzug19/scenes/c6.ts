@@ -1605,140 +1605,55 @@ Und langsam… erinnerst du dich.`,
   // INTERLUDE 6: Zug verlangsamt
   // ==========================================================================
 
-  'c6_s23_train_slows': {
-    id: 'c6_s23_train_slows',
-    chapter: 6,
-    title: 'Verlangsamung',
-    narrative: `Der Zug wird langsamer.
-
-Spürbar langsamer.
-
-Das Rattern wird leiser.
-
-Die Vibration lässt nach.
-
-Dein Körper wird nach vorn gezogen, ein sanfter Druck, als würdest du gegen unsichtbares Wasser gehen. Der Boden klingt tiefer, dumpfer, jeder Schlag weiter auseinander.
-
-In der Scheibe spiegelt sich dein Atem, und die Spiegelung hinkt einen Wimpernschlag hinterher.
-
-Du spürst ein Kribbeln in den Handflächen, als wäre die Luft elektrisch. Für einen Moment glaubst du, dass der Zug gleich ganz stehen bleibt, und du hältst den Atem an.
-
-Das Licht draußen wird heller und kälter zugleich, als käme es durch dünnen Nebel. Du lehnst dich vor, die Stirn fast am Glas, und suchst die Kante des Bahnsteigs.
-
-Deine Knie fühlen sich weich an, aber du bleibst stehen.
-
-Du spürst… etwas.
-
-Eine Veränderung in der Luft.
-
-In der Zeit.
-
-In allem.
-
-Draußen… erscheint etwas.
-
-Nicht Dunkelheit diesmal.
-
-Licht.
-
-Schwach. Aber da.
-
-Ein Bahnsteig.
-
-Der letzte Bahnsteig.
-
-Er kommt näher.
-
-Immer näher.`,
-    choices: [
-      {
-        id: 'observe_platform',
-        label: 'Den Bahnsteig beobachten',
-        effects: [
-          { type: 'inc', target: 'tickets_truth', value: 1 }
-        ],
-        next: 'c6_s24_platform_ahead'
-      },
-      {
-        id: 'close_eyes_and_listen',
-        label: 'Die Augen schließen und lauschen',
-        condition: {
-          type: 'compare',
-          target: 'memory_drift',
-          operator: '>=',
-          value: 3
-        },
-        effects: [
-          { type: 'inc', target: 'memory_drift', value: 1 },
-          { type: 'inc', target: 'tickets_escape', value: 1 }
-        ],
-        next: 'c6_s24_platform_ahead'
-      }
-    ],
-    state_notes: [
-      'Interlude: Zug verlangsamt für letzte Station',
-      'Licht erscheint (Gegensatz zu Dunkelheit)',
-      'Bahnsteig wird sichtbar',
-      'CONDITION: close_eyes_and_listen bei memory_drift >= 3'
-    ],
-    atmosphere: 'tense'
-  },
-
-  // ==========================================================================
-  // STANDARD: Bahnsteig voraus
-  // ==========================================================================
-
-  'c6_s24_platform_ahead': {
-    id: 'c6_s24_platform_ahead',
+  'c6_s23_platform_ahead': {
+    id: 'c6_s23_platform_ahead',
     chapter: 6,
     title: 'Der letzte Bahnsteig',
-    narrative: `Der Bahnsteig ist… real.
+    narrative: `Der Zug wird langsamer. Spürbar langsamer.
 
-Nicht wie die anderen.
+Das Rattern wird leiser. Die Vibration lässt nach.
 
-Nicht verschwommen oder traumhaft.
+Dein Körper wird nach vorn gezogen. Du spürst ein Kribbeln in den Handflächen, als wäre die Luft elektrisch.
 
-Real.
+Das Licht draußen wird heller und kälter zugleich. Du lehnst dich vor, die Stirn fast am Glas.
 
-Fest.
+Du spürst… etwas. Eine Veränderung in der Luft. In der Zeit. In allem.
 
-Da.
+---
 
-Du siehst… Menschen.
+Draußen erscheint ein Bahnsteig. Der letzte Bahnsteig.
 
-Schemen. Gestalten.
+Er ist… real. Nicht wie die anderen. Nicht verschwommen oder traumhaft. Real. Fest. Da.
 
-Sie warten.
+Du siehst… Menschen. Schemen. Gestalten. Sie warten.
 
-Auf dich?
+Auf dich? Auf den Zug?
 
-Auf den Zug?
+Du erkennst niemanden. Aber… da ist ein Gefühl. Von Vertrautheit. Von… Heimkehr.
 
-Du erkennst niemanden.
-
-Aber… da ist ein Gefühl.
-
-Von Vertrautheit.
-
-Von… Heimkehr.
-
-Oder von Ende.
-
-Oder beides.`,
+Oder von Ende. Oder beides.`,
     narrative_variants: [
       {
         condition: { type: 'bool', target: 'has_tag19', value: true },
-        narrative: `Der Bahnsteig ist… real.
+        narrative: `Der Zug wird langsamer. Spürbar langsamer.
 
-Der Schlüsselanhänger in deiner Hand vibriert jetzt mit einer solchen Intensität, dass er fast ein Geräusch macht – eine leise, summende Melodie, die dich an Sonntage in einem sonnendurchfluteten Zimmer erinnert.
+Der Schlüsselanhänger in deiner Hand erwacht. Ein Kribbeln, dann ein Vibrieren, das sich durch deinen ganzen Körper zieht.
 
-Die Schemen und Gestalten auf dem Bahnsteig werden durch den Anhänger schärfer gezeichnet. Sein rhythmisches Pochen wirkt wie ein Herzschlag für die Welt da draußen, die darauf wartet, wieder zum Leben zu erwachen.
+Das Licht draußen wird heller. Du lehnst dich vor, die Stirn fast am Glas.
+
+---
+
+Draußen erscheint ein Bahnsteig. Der letzte Bahnsteig.
+
+Der Anhänger vibriert jetzt mit einer solchen Intensität, dass er fast ein Geräusch macht – eine leise, summende Melodie.
+
+Die Schemen und Gestalten auf dem Bahnsteig werden durch den Anhänger schärfer gezeichnet. Sein rhythmisches Pochen wirkt wie ein Herzschlag für die Welt da draußen.
 
 Es ist nicht nur ein Bahnsteig. Es ist das Ende einer Reise, die viel zu lange gedauert hat.
 
 Du spürst durch das Metall eine tiefe, unerschütterliche Vertrautheit. Ein Gefühl von Heimkehr, so stark, dass es die Tränen in deine Augen treibt.
 
-Der Anhänger hat dich hierher geführt. Er ist ruhig geworden jetzt, eine sanfte, stetige Wärme.
+Der Anhänger ist ruhig geworden jetzt. Eine sanfte, stetige Wärme.
 
 Du bist bereit.`
       }
@@ -1770,9 +1685,9 @@ Du bist bereit.`
       }
     ],
     state_notes: [
-      'Bahnsteig erscheint - real diesmal',
-      'Gestalten warten (unerkennbar)',
-      'Gefühl von Heimkehr oder Ende'
+      'Transition: Train arrival at final station (merged s23 + s24)',
+      'Train slows, platform appears - real this time',
+      'Figures waiting, feeling of homecoming or ending'
     ],
     atmosphere: 'mystic'
   },
