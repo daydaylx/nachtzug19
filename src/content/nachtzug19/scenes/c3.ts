@@ -292,13 +292,24 @@ Du hörst Comp7s Stimme: „Komm rein. Ich weiß, dass du da bist.“`,
 
 Comp7 sitzt an einem massiven Holztisch und schreibt. Ihr Gesicht ist klarer geworden, eine feine Narbe am Kinn.
 
-„Willkommen,“ sagt sie. „Du bist spät. Oder zu früh.“`,
+„Willkommen," sagt sie. „Du bist spät. Oder zu früh."
+
+Du siehst die Verzweiflung in ihren Augen. „Ich schreibe," sagt sie, ohne dass du fragst. „Jeden Tag. Jede Fahrt. Weil ich vergesse. Die Schleife löscht mich. Wenn ich nicht schreibe..." Sie stockt. „Dann bin ich nichts. Ich war mal real. Glaube ich."`,
     choices: [
       {
         id: 'ask_comp7_explain',
         label: '„Was ist das hier?"',
         effects: [
           { type: 'inc', target: 'tickets_love', value: 1 },
+          { type: 'inc', target: 'rel_comp7', value: 2 }
+        ],
+        next: 'c3_s03c_notebooks_explore'
+      },
+      {
+        id: 'ask_why_writing',
+        label: '„Warum schreibst du?"',
+        effects: [
+          { type: 'inc', target: 'tickets_truth', value: 1 },
           { type: 'inc', target: 'rel_comp7', value: 2 }
         ],
         next: 'c3_s03c_notebooks_explore'

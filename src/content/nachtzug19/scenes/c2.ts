@@ -237,13 +237,17 @@ Er hält dir den Rekorder hin. „Behalt ihn. Vielleicht ist deine Stimme noch d
 
 Du drückst Play.
 
-Zuerst nur Rauschen. Dann eine Stimme. Nicht der Schaffner. Eine Stimme, die du kennst.
+Zuerst nur Rauschen. Dann zwei Stimmen. Deine – jünger. Und eine zweite.
 
-„—warte am Bahnsteig. Bitte komm. Ich kann nicht ohne—"
+Emma.
 
-Die Stimme bricht ab. Überschrieben von einem tiefen, mechanischen Brummen: „—NACHTZUG 19. Kein Ausstieg."
+„Warte am Bahnsteig," sagt sie. Ihre Stimme bricht. „Bitte komm zurück. Ich kann nicht ohne—"
 
-Du stoppst das Band. Dein Herz hämmert. Die Stimme… es war [NAME].
+Dann deine Stimme: „Emma, ich verspreche—"
+
+Abbruch. Überschrieben von einem tiefen, mechanischen Brummen: „—NACHTZUG 19. Kein Ausstieg."
+
+Du stoppst das Band. Dein Herz hämmert. Das war... vor dem Unfall.
 
 Als du aufblickst, ist der Junge weg. Das Abteil ist leer.`,
     choices: [

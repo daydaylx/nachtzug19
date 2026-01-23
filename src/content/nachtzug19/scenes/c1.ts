@@ -68,17 +68,17 @@ Die Luft riecht nach kaltem Zigarettenrauch und Maschinenöl. Nicht nach frische
 
 Am Rand – auf einer Bank, die du vorhin nicht gesehen hast – sitzt eine Gestalt. Sie liest eine Zeitung. Du siehst die Schlagzeile, aber das Datum ist verwischt. „ÖLKRISE VERSCHÄRFT SICH", steht da in dieser altmodischen Frakturschrift. Die Gestalt blättert nicht um.
 
-Ein Name liegt dir auf der Zunge. Ein Gesicht, das du fast sehen kannst. Es ist wichtig. Lebenswichtig.`,
+Ein Name brennt sich in deine Gedanken. Emma. Ein Gesicht, das du fast sehen kannst. Braune Augen. Ein Lächeln, das du nie vergessen wolltest. Wo ist sie?`,
     narrative_variants: [
       {
         min_drift: 5,
-        narrative: `Die Luft riecht nach kaltem Zigarettenrauch. Die Gestalt mit der Zeitung sitzt näher. Die Schlagzeile: „ENERGIEKRISE—". Der Rest ist verwischt. Die Gestalt blättert nicht um. Ein Name brennt in deinem Kopf.`
+        narrative: `Die Luft riecht nach kaltem Zigarettenrauch. Die Gestalt mit der Zeitung sitzt näher. Die Schlagzeile: „ENERGIEKRISE—". Der Rest ist verwischt. Die Gestalt blättert nicht um. Emma. Der Name brennt in deinem Kopf. Du musst sie finden.`
       }
     ],
     choices: [
       {
         id: 'search_person',
-        label: 'Den Namen rufen (Suchen)',
+        label: '„Emma?" rufen',
         effects: [
           { type: 'inc', target: 'tickets_love', value: 1 },
           { type: 'set', target: 'memory_search_active', value: true }
@@ -298,6 +298,8 @@ Der Wagen ist ein Gang mit Abteilen. Orange-braune Polstersitze, abgenutzt, Sieb
 
 Der Zug setzt sich in Bewegung – sanft, schwebend. Kein Ruck.
 
+Emma hätte diesen Zug gehasst. Zu alt. Zu kalt. Zu falsch. Aber sie ist nicht hier. Du musst sie finden.
+
 Zur Linken: Ein Mann, mittleren Alters, der aus dem Fenster starrt. Seine Augen sind rot umrandet. Er trägt einen braunen Anzug, der aus der Zeit gefallen wirkt.
 
 Zur Rechten: Ein leeres Abteil.`,
@@ -472,7 +474,7 @@ Er beugt sich vor, senkt die Stimme. „Hör zu. Wenn der Schaffner kommt… Sag
     choices: [
       {
         id: 'admit_searching',
-        label: '„Ich suche jemanden."',
+        label: '„Ich suche jemanden. Emma."',
         effects: [
           { type: 'inc', target: 'tickets_love', value: 1 },
           { type: 'inc', target: 'rel_sleepless', value: 2 }
