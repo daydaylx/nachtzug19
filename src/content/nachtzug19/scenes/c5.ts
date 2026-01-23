@@ -898,63 +898,21 @@ Eine Pause.
     id: 'c5_s15_control3_question',
     chapter: 5,
     title: 'Die Frage',
-    narrative: `Der Schaffner legt die Fahrkarte auf den Tisch – sie knistert nicht, sondern liegt schwer wie Blei. (Hook)
+    narrative: `Der Schaffner legt die Fahrkarte auf den Tisch – sie knistert nicht, sondern liegt schwer wie Blei.
 
-„Letzte Frage," sagt er mit einer Stimme, die direkt in deinem Schädel vibriert. Er beugt sich vor, und der Geruch von Ozon und uraltem Staub schlägt dir entgegen. Die Schatten in seinen Augenhöhlen wirbeln wie Rauch. (Detail)
+„Letzte Frage," sagt er mit einer Stimme, die direkt in deinem Schädel vibriert. Er beugt sich vor, und der Geruch von Ozon und uraltem Staub schlägt dir entgegen. Die Schatten in seinen Augenhöhlen wirbeln wie Rauch.
 
-„Warum kannst du dich nicht erinnern?" (Konsequenz)`,
-    choices: [
-      {
-        id: 'try_to_answer',
-        label: 'Antworten wollen',
-        effects: [],
-        next: 'c5_s15_control3_question_b'
-      },
-      {
-        id: 'ask_conductor_purpose',
-        label: '„Bist du auch gefangen?"',
-        condition: {
-          type: 'compare',
-          target: 'tickets_truth',
-          operator: '>=',
-          value: 4
-        },
-        effects: [
-          { type: 'inc', target: 'tickets_truth', value: 2 },
-          { type: 'dec', target: 'conductor_attention', value: 1 }
-        ],
-        next: 'c5_s15_control3_question_b'
-      },
-      {
-        id: 'stay_silent_pressure',
-        label: 'Dem Druck standhalten',
-        effects: [
-          { type: 'inc', target: 'conductor_attention', value: 1 }
-        ],
-        next: 'c5_s15_control3_question_b'
-      }
-    ],
-    state_notes: [
-      'Set-Piece Teil 2a: Die Frage',
-      'Split für Pacing'
-    ],
-    tags: ['control'],
-    atmosphere: 'danger'
-  },
+„Warum kannst du dich nicht erinnern?"
 
-  // ==========================================================================
-  // SET-PIECE 2: Kontrolle 3 (Teil 2b - Druck)
-  // ==========================================================================
+---
 
-  'c5_s15_control3_question_b': {
-    id: 'c5_s15_control3_question_b',
-    chapter: 5,
-    title: 'Druck',
-    narrative: `„Weil du es vergessen hast? Oder weil du es vergessen wolltest?" (Hook)
+Er wartet nicht auf deine Antwort.
 
-Die Luft im Abteil wird dünner, sauerstoffarm. Deine Lungen brennen, während er mit einem fingerlosen Handschuh auf den Tisch tippt – ein Geräusch wie ein Hammerschlag. (Detail)
+„Weil du es vergessen hast? Oder weil du es vergessen wolltest?"
 
-„Sag mir die Wahrheit," fordert er. „Oder steig aus." (Konsequenz)`,
+Die Luft im Abteil wird dünner, sauerstoffarm. Deine Lungen brennen, während er mit einem fingerlosen Handschuh auf den Tisch tippt – ein Geräusch wie ein Hammerschlag.
+
+„Sag mir die Wahrheit," fordert er. „Oder steig aus."`,
     choices: [
       {
         id: 'admit_truth_high',
@@ -1011,8 +969,11 @@ Die Luft im Abteil wird dünner, sauerstoffarm. Deine Lungen brennen, während e
       }
     ],
     state_notes: [
-      'Set-Piece Teil 2b: Die Entscheidung',
-      'Klimax der Kontrolle'
+      'Set-Piece: Kontrolle 3 Frage (merged 2a + 2b)',
+      'Conductor interrogation - escalating pressure',
+      'CONDITION: admit_truth_high (tickets_truth >= 4)',
+      'CONDITION: ask_comp7_help (rel_comp7 >= 2)',
+      'CONDITION: harsh_response (conductor_attention >= 4)'
     ],
     tags: ['control'],
     atmosphere: 'danger'
