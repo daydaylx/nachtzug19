@@ -643,88 +643,40 @@ Finaler.`,
   },
 
   // ==========================================================================
-  // INTERLUDE 4: Leere außerhalb (Split Part 1)
+  // INTERLUDE 4: Leere außerhalb
   // ==========================================================================
 
   'c5_s12_window_void': {
     id: 'c5_s12_window_void',
     chapter: 5,
     title: 'Das Nichts',
-    narrative: `Du blickst aus dem Fenster, aber da ist keine Dunkelheit mehr. (Hook)
+    narrative: `Du blickst aus dem Fenster.
 
-Nur eine absolute Leere, die das Auge nicht fokussieren kann. Ein blinder Fleck in der Realität, der direkt in deinen Verstand schneidet. Ein Vakuum, das hungrig ist. (Detail)
+Aber da ist keine Dunkelheit mehr. Nur eine absolute Leere, die das Auge nicht fokussieren kann.
 
-Der Zug fährt nicht durch eine Landschaft – er schält sich durch das Gewebe der Existenz. (Konsequenz)`,
-    choices: [
-      {
-        id: 'touch_glass',
-        label: 'Das Glas berühren',
-        effects: [],
-        next: 'c5_s12_window_void_b'
-      },
-      {
-        id: 'look_away_void',
-        label: 'Wegsehen',
-        effects: [
-          { type: 'inc', target: 'tickets_escape', value: 1 }
-        ],
-        next: 'c5_s12_window_void_b'
-      }
-    ],
-    state_notes: [
-      'Interlude Part 1: Visuelle Leere',
-      'Split 1/3'
-    ],
-    atmosphere: 'dark'
-  },
+Ein blinder Fleck in der Realität, der direkt in deinen Verstand schneidet. Ein Vakuum, das hungrig ist.
 
-  // ==========================================================================
-  // INTERLUDE 4: Leere außerhalb (Split Part 2)
-  // ==========================================================================
+Der Zug fährt nicht durch eine Landschaft – er schält sich durch das Gewebe der Existenz.
 
-  'c5_s12_window_void_b': {
-    id: 'c5_s12_window_void_b',
-    chapter: 5,
-    title: 'Kontakt',
-    narrative: `Du legst die Handfläche an das Fenster. (Hook)
+---
 
-Es gibt keinen Widerstand von Kälte, nur eine dumpfe, vibrierende Wärme, die tief in deine Knochen siedet. Deine Finger verschwinden im Spiegelbild, als würde das Glas dich nicht mehr als feste Materie erkennen. (Detail)
+Du legst die Handfläche an das Fenster.
 
-Ein hohes Summen zieht dir über die Zähne, ein Ton an der Grenze des Erträglichen. (Konsequenz)`,
-    choices: [
-      {
-        id: 'press_forehead',
-        label: 'Stirn gegen das Glas lehnen',
-        effects: [],
-        next: 'c5_s12_window_void_c'
-      },
-      {
-        id: 'pull_back',
-        label: 'Zurückziehen',
-        effects: [],
-        next: 'c5_s12_window_void_c'
-      }
-    ],
-    state_notes: [
-      'Interlude Part 2: Sensorische Leere',
-      'Split 2/3'
-    ],
-    atmosphere: 'dark'
-  },
+Es gibt keinen Widerstand von Kälte, nur eine dumpfe, vibrierende Wärme, die tief in deine Knochen siedet.
 
-  // ==========================================================================
-  // INTERLUDE 4: Leere außerhalb (Split Part 3)
-  // ==========================================================================
+Deine Finger verschwinden im Spiegelbild, als würde das Glas dich nicht mehr als feste Materie erkennen.
 
-  'c5_s12_window_void_c': {
-    id: 'c5_s12_window_void_c',
-    chapter: 5,
-    title: 'Auflösung',
-    narrative: `Du fragst dich: Was war vorher da? (Hook)
+Ein hohes Summen zieht dir über die Zähne, ein Ton an der Grenze des Erträglichen.
 
-Gab es je eine Welt mit Farben, Wäldern, Städten? Die Erinnerung daran fühlt sich wie eine Lüge an, ein Traum aus einer anderen Zeit. An etwas anderes erinnerst du dich jetzt – an etwas, das niemals hätte sein dürfen. (Detail)
+---
 
-Die Leere draußen ist die einzige Wahrheit, die noch übrig ist. (Konsequenz)`,
+Du fragst dich: Was war vorher da?
+
+Gab es je eine Welt mit Farben, Wäldern, Städten? Die Erinnerung daran fühlt sich wie eine Lüge an, ein Traum aus einer anderen Zeit.
+
+An etwas anderes erinnerst du dich jetzt – an etwas, das niemals hätte sein dürfen.
+
+Die Leere draußen ist die einzige Wahrheit, die noch übrig ist.`,
     choices: [
       {
         id: 'accept_void',
@@ -752,8 +704,9 @@ Die Leere draußen ist die einzige Wahrheit, die noch übrig ist. (Konsequenz)`,
       }
     ],
     state_notes: [
-      'Interlude Part 3: Kognitive Auflösung',
-      'memory_drift steigt weiter'
+      'Interlude: Leere außerhalb (merged 3 parts)',
+      'Void sequence - visual, sensory, cognitive dissolution',
+      'CONDITION: search_reflection (conductor_attention >= 5)'
     ],
     atmosphere: 'dark'
   },
