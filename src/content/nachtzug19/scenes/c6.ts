@@ -790,135 +790,62 @@ Das Knistern verstummt abrupt, und der Zug fährt weiter, als wäre nichts gesch
   'c6_s12_mirror_self': {
     id: 'c6_s12_mirror_self',
     chapter: 6,
-    title: 'Spiegel - Begegnung',
+    title: 'Spiegel',
     narrative: `Du gehst zurück zu deinem Abteil.
 
-Aber als du die Tür öffnest…
+Aber als du die Tür öffnest… da sitzt jemand.
 
-Da sitzt jemand.
+Du selbst. Ein exaktes Spiegelbild.
 
-Du selbst.
+Die Gestalt sitzt auf deinem Platz. Blickt aus dem Fenster. Dreht sich langsam um. Sieht dich an.
 
-Ein exaktes Spiegelbild.
+Lächelt. Nicht freundlich. Wissend.
 
-Die Gestalt sitzt auf deinem Platz. Blickt aus dem Fenster.
+„Endlich," sagt die Gestalt mit deiner Stimme. „Ich habe gewartet."
 
-Dreht sich langsam um.
-
-Sieht dich an.
-
-Lächelt.
-
-Nicht freundlich.
-
-Wissend.
-
-„Endlich," sagt die Gestalt mit deiner Stimme.
-
-„Ich habe gewartet."
-
-Sie steht auf.
-
-„Weißt du, warum du hier bist?"
+Sie steht auf. „Weißt du, warum du hier bist? Wirklich?"
 
 Die Gestalt kommt näher.
 
-„Wirklich?"`,
+---
+
+Sie lacht leise. „Ich bin du. Der Teil von dir, den du vergessen wolltest. Der Teil, der weiß, warum du wirklich hier bist."
+
+Sie streckt die Hand aus. „Komm. Ich zeige es dir."
+
+„Oder…" Die Gestalt deutet zum Fenster. „Du kannst weglaufen. Wie immer."
+
+„Deine Wahl."
+
+Die Hand bleibt ausgestreckt. Wartend.`,
     narrative_variants: [
       {
         condition: { type: 'bool', target: 'has_tag19', value: true },
         narrative: `Du öffnest die Tür zu deinem Abteil und erstarrst.
 
-Der Schlüsselanhänger, der eben noch glühend heiß war, wird schlagartig eiskalt. Die Kälte beißt sich in deine Haut, ein stechender Schmerz, der dich vor der Gestalt warnt, die auf deinem Platz sitzt.
+Der Schlüsselanhänger wird schlagartig eiskalt. Die Kälte beißt sich in deine Haut – eine Warnung.
 
-Du selbst. Ein exaktes Spiegelbild.
+Du selbst. Ein exaktes Spiegelbild sitzt auf deinem Platz.
 
-Die Gestalt blickt aus dem Fenster in die Leere und dreht sich dann langsam um. Sie lächelt wissend, aber das Lächeln erreicht die Augen nicht.
+Die Gestalt dreht sich langsam um. Sie lächelt wissend, aber das Lächeln erreicht die Augen nicht.
 
 „Endlich," sagt sie mit deiner Stimme. „Ich habe gewartet."
 
-Während sie aufsteht, spürst du durch den Anhänger, dass etwas an dieser Begegnung falsch ist. Er vibriert nicht mehr rhythmisch, sondern stößt kurze, hektische Impulse aus – wie ein Alarm.
+Der Anhänger vibriert nicht mehr rhythmisch, sondern stößt kurze, hektische Impulse aus – wie ein Alarm. Diese Begegnung ist falsch.
 
-„Weißt du, warum du hier bist?"
+„Weißt du, warum du hier bist? Wirklich?"
+
+---
+
+Sie lacht leise. „Ich bin du. Der Teil von dir, den du vergessen wolltest."
+
+Sie streckt die Hand aus. „Komm. Ich zeige es dir. Oder… du kannst weglaufen. Wie immer."
 
 Die Kälte des Metalls in deiner Hand ist der einzige Beweis dafür, dass du noch die Kontrolle hast. Die Gestalt vor dir hat kein solches Gewicht. Sie ist nur ein Schatten.
 
-„Wirklich?"`
+„Deine Wahl."`
       }
     ],
-    choices: [
-      {
-        id: 'confront_drift',
-        label: '„Du bist nicht real."',
-        condition: {
-          type: 'compare',
-          target: 'memory_drift',
-          operator: '>=',
-          value: 4
-        },
-        effects: [
-          { type: 'inc', target: 'tickets_truth', value: 2 },
-          { type: 'inc', target: 'memory_drift', value: 1 }
-        ],
-        next: 'c6_s13_mirror_choice'
-      },
-      {
-        id: 'engage_mirror',
-        label: '„Wer bist du?"',
-        effects: [
-          { type: 'inc', target: 'tickets_truth', value: 1 }
-        ],
-        next: 'c6_s13_mirror_choice'
-      },
-      {
-        id: 'turn_away',
-        label: 'Sich abwenden',
-        effects: [
-          { type: 'inc', target: 'tickets_escape', value: 1 }
-        ],
-        next: 'c6_s13_mirror_choice'
-      }
-    ],
-    state_notes: [
-      'Set-Piece Teil 1: Spiegel-Selbst erscheint',
-      'CONDITION: confront_drift nur bei memory_drift >= 4',
-      'Drift-Manifestation als Doppelgänger'
-    ],
-    tags: ['setup'],
-    atmosphere: 'mystic'
-  },
-
-  // ==========================================================================
-  // SET-PIECE 2: Spiegel (Teil 2 - Entscheidung)
-  // ==========================================================================
-
-  'c6_s13_mirror_choice': {
-    id: 'c6_s13_mirror_choice',
-    chapter: 6,
-    title: 'Spiegel - Wahl',
-    narrative: `Die Gestalt lacht leise.
-
-„Ich bin du. Der Teil von dir, den du vergessen wolltest."
-
-Sie tritt noch näher.
-
-„Der Teil, der weiß, warum du wirklich hier bist."
-
-Sie streckt die Hand aus.
-
-„Komm. Ich zeige es dir."
-
-„Oder…"
-
-Die Gestalt deutet zum Fenster.
-
-„Du kannst weglaufen. Wie immer."
-
-„Deine Wahl."
-
-Die Hand bleibt ausgestreckt.
-
-Wartend.`,
     choices: [
       {
         id: 'take_hand_escape',
@@ -969,13 +896,13 @@ Wartend.`,
       }
     ],
     state_notes: [
-      'Set-Piece Teil 2: Kern-Entscheidung Spiegel',
-      'CONDITION: take_hand_escape nur bei tickets_escape >= 2',
-      'CONDITION: take_hand_guilt nur bei tickets_guilt >= 3',
-      'Wichtige Konfrontation mit verdrängtem Selbst'
+      'Set-Piece: Spiegel-Selbst (merged encounter + choice)',
+      'Confrontation with repressed self, offer to see truth',
+      'CONDITION: take_hand_escape (tickets_escape >= 2)',
+      'CONDITION: take_hand_guilt (tickets_guilt >= 3)'
     ],
-    tags: ['reveal'],
-    atmosphere: 'danger'
+    tags: ['setup', 'reveal'],
+    atmosphere: 'mystic'
   },
 
   // ==========================================================================
