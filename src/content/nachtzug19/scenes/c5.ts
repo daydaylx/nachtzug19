@@ -118,7 +118,7 @@ Sie lacht bitter. „Widersprüchlich, oder?"
         id: 'ask_about_destination',
         label: '„Wohin fährt dieser Zug?"',
         effects: [
-          { type: 'inc', target: 'tickets_truth', value: 1 },
+          { type: 'inc', target: 'tickets_truth', value: 2 },  // Direkte Frage = mehr truth
           { type: 'inc', target: 'rel_comp7', value: 1 }
         ],
         next: 'c5_s04_lights_flicker'
@@ -152,7 +152,8 @@ Sie lacht bitter. „Widersprüchlich, oder?"
         },
         effects: [
           { type: 'inc', target: 'tickets_truth', value: 1 },
-          { type: 'inc', target: 'rel_comp7', value: 1 }
+          { type: 'inc', target: 'rel_comp7', value: 2 },      // Persönliches Teilen = mehr Beziehung
+          { type: 'inc', target: 'memory_drift', value: 1 }    // Awareness von Anomalien führt zu Drift
         ],
         next: 'c5_s04_lights_flicker'
       }
@@ -235,7 +236,7 @@ Er blickt dich an.
         id: 'comfort_him',
         label: '„Wir kommen beide durch."',
         effects: [
-          { type: 'inc', target: 'tickets_love', value: 1 },
+          { type: 'inc', target: 'tickets_love', value: 2 },      // Emotionales Commitment = mehr love
           { type: 'inc', target: 'rel_sleepless', value: 1 }
         ],
         next: 'c5_s06_abteil7'
@@ -269,7 +270,8 @@ Er blickt dich an.
         },
         effects: [
           { type: 'inc', target: 'tickets_love', value: 1 },
-          { type: 'inc', target: 'rel_sleepless', value: 1 }
+          { type: 'inc', target: 'rel_sleepless', value: 2 },    // Schutz-Instinkt = mehr Beziehung
+          { type: 'inc', target: 'tickets_truth', value: 1 }     // Information teilen
         ],
         next: 'c5_s06_abteil7'
       }
