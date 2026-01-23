@@ -54,6 +54,8 @@ function getStateValue(state: GameState, target: EffectTarget): number | boolean
   if (target === 'has_recorder') return state.items.has_recorder;
   if (target === 'has_tag19') return state.items.has_tag19;
   if (target === 'photo_anomaly') return state.items.photo_anomaly;
+  if (target === 'memory_search_active') return state.items.memory_search_active;
+  if (target === 'emma_memory_unlocked') return state.items.emma_memory_unlocked;
 
   // Meta
   if (target === 'chapter_index') return state.chapter_index;
@@ -91,6 +93,8 @@ function setStateValue(state: GameState, target: EffectTarget, value: number | b
   if (target === 'has_recorder') { state.items.has_recorder = value as boolean; return; }
   if (target === 'has_tag19') { state.items.has_tag19 = value as boolean; return; }
   if (target === 'photo_anomaly') { state.items.photo_anomaly = value as boolean; return; }
+  if (target === 'memory_search_active') { state.items.memory_search_active = value as boolean; return; }
+  if (target === 'emma_memory_unlocked') { state.items.emma_memory_unlocked = value as boolean; return; }
 
   // Meta
   if (target === 'chapter_index') { state.chapter_index = value as number; return; }

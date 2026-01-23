@@ -237,29 +237,23 @@ Sie dreht sich nicht um.
 
 Eine Pause.
 
-„Aber du… du kannst."
+„Ich war Passagier #7. Aber irgendwann... bin ich zum Zug geworden. Teil davon. Ich kann nicht mehr aussteigen."
 
-„Du musst."
+Ihre Stimme zittert.
+
+„Wenn du gehst... lösche ich mich mit dem Zug auf. Aber das ist okay. Ich bin müde. Ich will... ruhen."
 
 Sie legt ihre Hand auf die Tür.
 
-„Hinter dieser Tür… ist alles."
+„Hinter dieser Tür… ist alles. Die Wahrheit. Das Ende. Der Anfang."
 
-„Die Wahrheit. Das Ende. Der Anfang."
-
-„Alles, was du vergessen hast."
-
-„Alles, was du warst."
+„Alles, was du vergessen hast. Alles, was du warst."
 
 Endlich dreht sie sich um.
 
-Ihr Gesicht ist… verschwommen.
+Ihr Gesicht ist… verschwommen. Als würde sie bereits… verschwinden.
 
-Als würde sie bereits… verschwinden.
-
-„Danke," flüstert sie.
-
-„Für die Gesellschaft."
+„Danke," flüstert sie. „Für die Gesellschaft. Für die Erinnerung. Dafür, dass ich... für einen Moment... wieder real war."
 
 Dann ist sie weg.`,
     choices: [

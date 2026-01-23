@@ -34,8 +34,9 @@ describe('NACHTZUG 19 engine integration', () => {
 
   it('hides choices when conditions are not met', () => {
     const state = createInitialState(bundle.startSceneId);
-    const scene = bundle.scenes['c1_interlude_02_silence'];
-    const hiddenChoice = scene.choices.find((entry) => entry.id === 'stay_quiet');
+    state.items.has_recorder = false; // Set to false to hide recorder-conditional choice
+    const scene = bundle.scenes['c3_s01b_boy_return'];
+    const hiddenChoice = scene.choices.find((entry) => entry.id === 'play_own_recorder');
     const available = getAvailableChoices(state, scene);
 
     expect(hiddenChoice).toBeTruthy();
@@ -291,15 +292,9 @@ describe('Regression Guard - No Ticket Threshold > Clamp in Story', () => {
   // Known intentional Easter eggs: Choices with impossible thresholds (design decision)
   // These are documented here so new violations will still fail the test
   const ALLOWED_EASTER_EGGS = new Set([
-    'c4_end_station:search_for_self',         // tickets_truth >= 8
-    'c4_end_station:ignore_copies',           // tickets_escape >= 7
-    'c5_s02_corridor_silence_b:listen_for_patterns', // Updated ID
-    'c5_s04_lights_flicker_b:analyze_abteil7_clue',  // Updated ID
-    'c5_s06_abteil7_approach:open_door_for_truth', // tickets_truth >= 9
-    'c5_s08_abteil7_aftermath:write_down_names',   // tickets_truth >= 10
-    'c5_s09_train_shifts:understand_skip',         // tickets_truth >= 11
-    'c5_s09_train_shifts:use_skip_chance',         // tickets_escape >= 8
-    'c5_s14_control3_approach:mention_fragment'    // tickets_truth >= 12
+    'c5_s06_abteil7:open_for_answers',           // tickets_truth >= 9
+    'c5_s08_abteil7_aftermath:write_down_names', // tickets_truth >= 10
+    'c5_s14_control3_approach:mention_fragment'  // tickets_truth >= 12
   ]);
 
   it('no choice condition should require tickets > clamp max (5) except allowed Easter eggs', () => {
@@ -337,9 +332,9 @@ describe('Regression Guard - No Ticket Threshold > Clamp in Story', () => {
     expect(foundEasterEggs.length).toBe(ALLOWED_EASTER_EGGS.size);
   });
 
-  it('should have exactly 9 documented Easter egg choices (impossible thresholds)', () => {
-    // This test documents the design decision: 9 choices are intentionally unreachable
-    expect(ALLOWED_EASTER_EGGS.size).toBe(9);
+  it('should have exactly 3 documented Easter egg choices (impossible thresholds)', () => {
+    // This test documents the design decision: 3 choices are intentionally unreachable
+    expect(ALLOWED_EASTER_EGGS.size).toBe(3);
   });
 
   function checkConditionForViolation(

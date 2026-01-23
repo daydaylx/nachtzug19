@@ -103,7 +103,13 @@ Auf der Seite steht: „Passagier #[UNLESBAR]: Sucht nach [NAME]. Findet Wagen 7
     title: 'Rückkehr',
     narrative: `Der Junge sitzt wieder in seinem Abteil, als wäre er nie weg gewesen. Er hält den Kassettenrekorder.
 
-„Manchmal werden Dinge mehr,“ sagt er mit einer Stimme, die viel zu alt klingt. „Wenn man vergisst, dass man sie schon hat.“`,
+Er summt leise. Eine Melodie, die du kennst. Oder... kanntest.
+
+„Das hast du mir beigebracht," sagt er, ohne aufzublicken. „Als ich klein war. Erinnerst du dich?"
+
+Er sieht dich an. Seine Augen sind älter als sein Gesicht.
+
+„Manchmal werden Dinge mehr," sagt er. „Wenn man vergisst, dass man sie schon hat."`,
     choices: [
       {
         id: 'play_own_recorder',
@@ -292,7 +298,9 @@ Du hörst Comp7s Stimme: „Komm rein. Ich weiß, dass du da bist.“`,
 
 Comp7 sitzt an einem massiven Holztisch und schreibt. Ihr Gesicht ist klarer geworden, eine feine Narbe am Kinn.
 
-„Willkommen,“ sagt sie. „Du bist spät. Oder zu früh.“`,
+„Willkommen," sagt sie. „Du bist spät. Oder zu früh."
+
+Du siehst die Verzweiflung in ihren Augen. „Ich schreibe," sagt sie, ohne dass du fragst. „Jeden Tag. Jede Fahrt. Weil ich vergesse. Die Schleife löscht mich. Wenn ich nicht schreibe..." Sie stockt. „Dann bin ich nichts. Ich war mal real. Glaube ich."`,
     choices: [
       {
         id: 'ask_comp7_explain',

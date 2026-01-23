@@ -237,7 +237,7 @@ Auf dem Bahnsteig. Wartend.
 
 Nicht Comp7. Nicht der Junge. Nicht der Schlaflose.
 
-Sondern... **sie**.
+Sondern... **Emma**.
 
 Das Gesicht aus deinen Träumen. Die Stimme vom Kassettenrekorder.
 
@@ -275,7 +275,7 @@ Hinter dir: Der Zug. Er verblasst. Langsam.
 
 Aber du drehst dich nicht um.
 
-Du siehst nur sie an.`,
+Du siehst nur Emma an.`,
     choices: [
       {
         id: 'continue',

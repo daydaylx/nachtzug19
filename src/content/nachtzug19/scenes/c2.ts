@@ -237,13 +237,17 @@ Er hält dir den Rekorder hin. „Behalt ihn. Vielleicht ist deine Stimme noch d
 
 Du drückst Play.
 
-Zuerst nur Rauschen. Dann eine Stimme. Nicht der Schaffner. Eine Stimme, die du kennst.
+Zuerst nur Rauschen. Dann zwei Stimmen. Deine – jünger. Und eine zweite.
 
-„—warte am Bahnsteig. Bitte komm. Ich kann nicht ohne—"
+Emma.
 
-Die Stimme bricht ab. Überschrieben von einem tiefen, mechanischen Brummen: „—NACHTZUG 19. Kein Ausstieg."
+„Warte am Bahnsteig," sagt sie. Ihre Stimme bricht. „Bitte komm zurück. Ich kann nicht ohne—"
 
-Du stoppst das Band. Dein Herz hämmert. Die Stimme… es war [NAME].
+Dann deine Stimme: „Emma, ich verspreche—"
+
+Abbruch. Überschrieben von einem tiefen, mechanischen Brummen: „—NACHTZUG 19. Kein Ausstieg."
+
+Du stoppst das Band. Dein Herz hämmert. Das war... vor dem Unfall.
 
 Als du aufblickst, ist der Junge weg. Das Abteil ist leer.`,
     choices: [
@@ -371,7 +375,15 @@ Aber du hältst den schweren Rekorder in der Hand.`,
 
 Vor ihr ein vollgeschriebenes Notizbuch. Ihr Gesicht ist unscharf – dein Blick rutscht ab.
 
-„Du hast den Rekorder," sagt sie. „Ich bin Comp7. Ich weiß meinen Namen nicht mehr."
+Du öffnest den Mund, um etwas zu sagen.
+
+„Nicht jetzt," schnauzt sie, ohne aufzublicken. Ihre Hand fliegt über das Papier, kritzelt hastig.
+
+Dann stoppt sie. Atmet aus.
+
+„Entschuldigung." Ihre Stimme ist leiser jetzt. „Ich... ich muss das aufschreiben, bevor ich es vergesse."
+
+Sie sieht dich an. „Du hast den Rekorder. Ich bin Comp7. Ich weiß meinen Namen nicht mehr."
 
 Sie deutet auf das Buch. „Ich schreibe alles auf. Damit ich nicht vergesse."`,
     choices: [
@@ -404,7 +416,7 @@ Sie deutet auf das Buch. „Ich schreibe alles auf. Damit ich nicht vergesse."`,
       }
     ],
     tags: [],
-    state_notes: [],
+    state_notes: ['M1.2: Comp7 zeigt Ungeduld/Angst → menschlicher'],
     atmosphere: 'mystic'
   },
 

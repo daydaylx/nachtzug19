@@ -60,6 +60,7 @@ export type Items = {
   photo_anomaly: boolean;   // Foto mit Anomalie
   played_recorder: boolean; // Ob der Rekorder jemals abgespielt wurde
   memory_search_active: boolean; // P1: Spieler sucht aktiv nach einer Erinnerung/Person
+  emma_memory_unlocked: boolean; // Phase 0: Emma memory fragment unlocked (c4 Tag19)
 };
 
 /**
@@ -134,7 +135,7 @@ export type EffectTarget =
   // Relations
   | 'rel_comp7' | 'rel_boy' | 'rel_sleepless'
   // Items
-  | 'has_recorder' | 'has_tag19' | 'has_ticket' | 'photo_anomaly' | 'played_recorder' | 'memory_search_active'
+  | 'has_recorder' | 'has_tag19' | 'has_ticket' | 'photo_anomaly' | 'played_recorder' | 'memory_search_active' | 'emma_memory_unlocked'
   // Meta
   | 'chapter_index' | 'station_count';
 
@@ -386,7 +387,8 @@ export function createInitialState(start_scene_id: string = 'c1_s01_platform'): 
       has_ticket: false,
       photo_anomaly: false,
       played_recorder: false,
-      memory_search_active: false
+      memory_search_active: false,
+      emma_memory_unlocked: false
     },
 
     // Meta

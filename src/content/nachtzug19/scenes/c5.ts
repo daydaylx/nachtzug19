@@ -52,7 +52,7 @@ Und du weißt: Die nächste Kontrolle wird die härteste sein.`,
         effects: [
           { type: 'inc', target: 'tickets_truth', value: 1 }
         ],
-        next: 'c5_s02_corridor_silence'
+        next: 'c5_s03_comp7_reflection'
       },
       {
         id: 'rest_prepare',
@@ -60,7 +60,7 @@ Und du weißt: Die nächste Kontrolle wird die härteste sein.`,
         effects: [
           { type: 'inc', target: 'tickets_escape', value: 1 }
         ],
-        next: 'c5_s02_corridor_silence'
+        next: 'c5_s03_comp7_reflection'
       },
       {
         id: 'walk_corridor',
@@ -69,7 +69,7 @@ Und du weißt: Die nächste Kontrolle wird die härteste sein.`,
           { type: 'inc', target: 'tickets_truth', value: 1 },
           { type: 'inc', target: 'conductor_attention', value: 1 }
         ],
-        next: 'c5_s02_corridor_silence'
+        next: 'c5_s03_comp7_reflection'
       }
     ],
     state_notes: [
@@ -78,102 +78,6 @@ Und du weißt: Die nächste Kontrolle wird die härteste sein.`,
       'walk_corridor erhoeht attention; Vorbereitung auf Kontrolle 3'
     ],
     atmosphere: 'somber'
-  },
-
-  // ==========================================================================
-  // INTERLUDE 1: Stille (Split Part 1)
-  // ==========================================================================
-
-  'c5_s02_corridor_silence': {
-    id: 'c5_s02_corridor_silence',
-    chapter: 5,
-    title: 'Stille',
-    narrative: `Der Gang liegt in unnatürlicher Stille vor dir. (Hook)
-
-Kein Schaffner, keine Passagiere. Nur das gedämpfte Notlicht wirft schwankende Schatten, die langsamer tanzen als der Zug selbst. Du ziehst die Finger über die Wandverkleidung; der Lack fühlt sich klebrig an, fast frisch. (Detail)
-
-Ein kalter Luftzug streift deinen Nacken, obwohl alle Fenster geschlossen sind. (Konsequenz)`,
-    choices: [
-      {
-        id: 'investigate_silence',
-        label: 'Der Stille nachgehen',
-        effects: [],
-        next: 'c5_s02_corridor_silence_b'
-      },
-      {
-        id: 'retreat_briefly',
-        label: 'Zögern',
-        effects: [
-          { type: 'inc', target: 'tickets_escape', value: 1 }
-        ],
-        next: 'c5_s02_corridor_silence_b'
-      }
-    ],
-    state_notes: [
-      'Interlude Part 1: Atmosphäre aufbauen',
-      'Split für besseres Pacing'
-    ],
-    atmosphere: 'tense'
-  },
-
-  // ==========================================================================
-  // INTERLUDE 1: Stille (Split Part 2)
-  // ==========================================================================
-
-  'c5_s02_corridor_silence_b': {
-    id: 'c5_s02_corridor_silence_b',
-    chapter: 5,
-    title: 'Schatten',
-    narrative: `Der Geruch von metallischem Reinigungsmittel beißt in der Nase. (Hook)
-
-Die Notbeleuchtung zeichnet deinen Schatten doppelt an die Wand – einer folgt dir, der andere bleibt einen Herzschlag lang stehen, bevor er nachrutscht. Ein Flackern durchzuckt den Gang, als würde die Realität kurz aussetzen. (Detail)
-
-Für einen Moment spürst du eine Präsenz direkt hinter dir, doch als du dich umdrehst, ist der Gang leer. (Konsequenz)`,
-    choices: [
-      {
-        id: 'continue_forward',
-        label: 'Weitergehen',
-        effects: [
-          { type: 'inc', target: 'memory_drift', value: 1 }
-        ],
-        next: 'c5_s03_comp7_reflection'
-      },
-      {
-        id: 'listen_for_patterns',
-        label: 'Nach Mustern lauschen',
-        condition: {
-          type: 'compare',
-          target: 'tickets_truth',
-          operator: '>=',
-          value: 7
-        },
-        effects: [
-          { type: 'inc', target: 'tickets_truth', value: 1 },
-          { type: 'inc', target: 'memory_drift', value: 1 }
-        ],
-        next: 'c5_s03_comp7_reflection'
-      },
-      {
-        id: 'challenge_emptiness',
-        label: 'Rufen',
-        condition: {
-          type: 'compare',
-          target: 'conductor_attention',
-          operator: '>=',
-          value: 4
-        },
-        effects: [
-          { type: 'inc', target: 'conductor_attention', value: 1 },
-          { type: 'inc', target: 'tickets_truth', value: 1 }
-        ],
-        next: 'c5_s03_comp7_reflection'
-      }
-    ],
-    state_notes: [
-      'Interlude Part 2: Schatten-Anomalie',
-      'memory_drift steigt'
-    ],
-    atmosphere: 'tense'
   },
 
   // ==========================================================================
@@ -200,11 +104,15 @@ Sie blickt wieder hinaus.
 
 Eine Pause.
 
-„Weißt du, wohin?"
+„Ich war mal Passagier #7," sagt sie plötzlich. „Aber irgendwann... bin ich zum Zug geworden. Ich kann nicht mehr aussteigen. Ich bin Teil davon."
 
-Ihre Stimme ist kaum mehr als ein Flüstern.
+Ihre Stimme zittert.
 
-„Oder weißt du nur, dass du nicht zurückkannst?"`,
+„Ich will, dass du gehst," sagt sie. Pause. „Aber ich will nicht allein bleiben."
+
+Sie lacht bitter. „Widersprüchlich, oder?"
+
+„Weißt du, wohin dieser Zug fährt? Oder weißt du nur, dass du nicht zurückkannst?"`,
     choices: [
       {
         id: 'ask_about_destination',
@@ -275,7 +183,7 @@ Ein kühler Luftzug streicht über deine Stirn, wie eine unsichtbare Hand. (Kons
         id: 'hold_ground',
         label: 'Stehenbleiben',
         effects: [],
-        next: 'c5_s04_lights_flicker_b'
+        next: 'c5_s05_sleepless_final'
       },
       {
         id: 'press_on',
@@ -283,88 +191,12 @@ Ein kühler Luftzug streicht über deine Stirn, wie eine unsichtbare Hand. (Kons
         effects: [
           { type: 'inc', target: 'tickets_escape', value: 1 }
         ],
-        next: 'c5_s04_lights_flicker_b'
+        next: 'c5_s05_sleepless_final'
       }
     ],
     state_notes: [
       'Interlude Part 1: Desorientierung',
       'Split für Pacing'
-    ],
-    atmosphere: 'danger'
-  },
-
-  // ==========================================================================
-  // INTERLUDE 2: Lichter flackern (Split Part 2)
-  // ==========================================================================
-
-  'c5_s04_lights_flicker_b': {
-    id: 'c5_s04_lights_flicker_b',
-    chapter: 5,
-    title: 'Dunkelheit',
-    narrative: `Das Flackern brennt sich als grünes Nachbild in deine Augen. (Hook)
-
-Dunkelheit. Licht. Dunkelheit. In den Momenten der Finsternis hörst du etwas – Schritte, oder das Klicken einer Tür, die nicht da sein sollte. Wenn das Licht zurückkehrt, ist der Gang leer, aber die Atmosphäre hat sich verschoben. (Detail)
-
-Etwas bewegt sich im Zug, das nicht gesehen werden will. (Konsequenz)`,
-    choices: [
-      {
-        id: 'investigate',
-        label: 'Dem Geräusch nachgehen',
-        effects: [
-          { type: 'inc', target: 'tickets_truth', value: 1 },
-          { type: 'inc', target: 'conductor_attention', value: 1 }
-        ],
-        next: 'c5_s05_sleepless_final'
-      },
-      {
-        id: 'confront_comp7_questions',
-        label: 'An Comp7s Worte denken',
-        condition: {
-          type: 'compare',
-          target: 'rel_comp7',
-          operator: '>=',
-          value: 3
-        },
-        effects: [
-          { type: 'inc', target: 'tickets_love', value: 1 },
-          { type: 'inc', target: 'rel_comp7', value: 1 }
-        ],
-        next: 'c5_s05_sleepless_final'
-      },
-      {
-        id: 'analyze_abteil7_clue',
-        label: 'Hinweise deuten',
-        condition: {
-          type: 'compare',
-          target: 'tickets_truth',
-          operator: '>=',
-          value: 8
-        },
-        effects: [
-          { type: 'inc', target: 'tickets_truth', value: 1 },
-          { type: 'inc', target: 'memory_drift', value: 1 }
-        ],
-        next: 'c5_s05_sleepless_final'
-      },
-      {
-        id: 'hide_from_presence',
-        label: 'Verstecken',
-        condition: {
-          type: 'compare',
-          target: 'tickets_escape',
-          operator: '>=',
-          value: 5
-        },
-        effects: [
-          { type: 'inc', target: 'tickets_escape', value: 1 },
-          { type: 'dec', target: 'conductor_attention', value: 1 }
-        ],
-        next: 'c5_s05_sleepless_final'
-      }
-    ],
-    state_notes: [
-      'Interlude Part 2: Die Präsenz',
-      'Vorbereitung auf Abteil 7'
     ],
     atmosphere: 'danger'
   },
@@ -389,17 +221,15 @@ Er starrt an die Wand.
 
 „Sie kommen näher. Die Kontrollen. Jedes Mal härter."
 
+Er lacht leise, bitter. „Weißt du, was das Lustige ist? Ich kann immer noch nicht schlafen. Selbst hier nicht."
+
 Seine Hände zittern.
 
-„Ich habe… ich habe alles versucht. Alles gesagt. Aber es reicht nie."
+„Ich habe alles versucht. Alles gesagt. Aber es reicht nie."
 
 Er blickt dich an.
 
-„Was hast du getan? Was hast du ihnen gesagt?"
-
-Seine Stimme bricht.
-
-„Warum bist du noch hier?"`,
+„Was hast du ihnen gesagt? Warum bist du noch hier?"`,
     choices: [
       {
         id: 'comfort_him',
@@ -408,7 +238,7 @@ Seine Stimme bricht.
           { type: 'inc', target: 'tickets_love', value: 1 },
           { type: 'inc', target: 'rel_sleepless', value: 1 }
         ],
-        next: 'c5_s06_abteil7_approach'
+        next: 'c5_s06_abteil7'
       },
       {
         id: 'tell_truth',
@@ -417,7 +247,7 @@ Seine Stimme bricht.
           { type: 'inc', target: 'tickets_truth', value: 1 },
           { type: 'dec', target: 'rel_sleepless', value: 1 }
         ],
-        next: 'c5_s06_abteil7_approach'
+        next: 'c5_s06_abteil7'
       },
       {
         id: 'leave_quietly',
@@ -426,7 +256,7 @@ Seine Stimme bricht.
           { type: 'inc', target: 'tickets_escape', value: 1 },
           { type: 'dec', target: 'rel_sleepless', value: 2 }
         ],
-        next: 'c5_s06_abteil7_approach'
+        next: 'c5_s06_abteil7'
       },
       {
         id: 'warn_about_presence',
@@ -441,7 +271,7 @@ Seine Stimme bricht.
           { type: 'inc', target: 'tickets_love', value: 1 },
           { type: 'inc', target: 'rel_sleepless', value: 1 }
         ],
-        next: 'c5_s06_abteil7_approach'
+        next: 'c5_s06_abteil7'
       }
     ],
     state_notes: [
@@ -456,10 +286,10 @@ Seine Stimme bricht.
   // SET-PIECE 1: Abteil 7 (Teil 1 - Annäherung)
   // ==========================================================================
 
-  'c5_s06_abteil7_approach': {
-    id: 'c5_s06_abteil7_approach',
+  'c5_s06_abteil7': {
+    id: 'c5_s06_abteil7',
     chapter: 5,
-    title: 'Abteil 7 - Annäherung',
+    title: 'Abteil 7',
     narrative: `Du gehst den Gang entlang.
 
 Und dann siehst du es:
@@ -485,22 +315,13 @@ Du könntest weitergehen.
 Was tust du?`,
     choices: [
       {
-        id: 'open_door',
-        label: 'Die Tür öffnen',
-        effects: [
-          { type: 'inc', target: 'tickets_truth', value: 2 },
-          { type: 'inc', target: 'conductor_attention', value: 2 }
-        ],
-        next: 'c5_s07_abteil7_inside'
-      },
-      {
         id: 'walk_past',
         label: 'Vorbeigehen',
         effects: [
           { type: 'inc', target: 'tickets_escape', value: 1 },
           { type: 'dec', target: 'conductor_attention', value: 1 }
         ],
-        next: 'c5_s08_abteil7_aftermath'
+        next: 'c5_s10_boy_reunion'
       },
       {
         id: 'protect_sleepless',
@@ -515,10 +336,35 @@ Was tust du?`,
           { type: 'inc', target: 'tickets_love', value: 1 },
           { type: 'inc', target: 'rel_sleepless', value: 1 }
         ],
+        next: 'c5_s10_boy_reunion'
+      },
+      {
+        id: 'open_and_examine',
+        label: 'Die Tür öffnen und die Namen ansehen',
+        condition: {
+          type: 'compare',
+          target: 'tickets_truth',
+          operator: '>=',
+          value: 3
+        },
+        effects: [
+          { type: 'inc', target: 'tickets_truth', value: 4 },
+          { type: 'inc', target: 'conductor_attention', value: 2 },
+          { type: 'inc', target: 'memory_drift', value: 2 }
+        ],
         next: 'c5_s08_abteil7_aftermath'
       },
       {
-        id: 'open_door_for_truth',
+        id: 'open_door',
+        label: 'Die Tür öffnen',
+        effects: [
+          { type: 'inc', target: 'tickets_truth', value: 2 },
+          { type: 'inc', target: 'conductor_attention', value: 2 }
+        ],
+        next: 'c5_s08_abteil7_aftermath'
+      },
+      {
+        id: 'open_for_answers',
         label: 'Öffnen – für die Antworten',
         condition: {
           type: 'compare',
@@ -527,98 +373,23 @@ Was tust du?`,
           value: 9
         },
         effects: [
-          { type: 'inc', target: 'tickets_truth', value: 2 },
-          { type: 'inc', target: 'conductor_attention', value: 3 }
-        ],
-        next: 'c5_s07_abteil7_inside'
-      }
-    ],
-    state_notes: [
-      'Set-Piece Teil 1: Abteil 7',
-      'open_door erhöht conductor_attention stark (+2)',
-      'Wichtige Weichenstellung',
-      'CONDITION: protect_sleepless (rel_sleepless >= 2)',
-      'CONDITION: open_door_for_truth (tickets_truth >= 9, hohe attention)'
-    ],
-    tags: ['setup'],
-    atmosphere: 'tense'
-  },
-
-  // ==========================================================================
-  // SET-PIECE 1: Abteil 7 (Teil 2 - Innen)
-  // ==========================================================================
-
-  'c5_s07_abteil7_inside': {
-    id: 'c5_s07_abteil7_inside',
-    chapter: 5,
-    title: 'Abteil 7 - Innen',
-    narrative: `Du öffnest die Tür.
-
-Das Abteil ist… leer.
-
-Kein Passagier. Keine Sitze. Keine Fenster.
-
-Nur vier kahle Wände.
-
-Und eine Uhr.
-
-Eine alte Bahnhofsuhr, an der Wand. Die Zeiger bewegen sich rückwärts.
-
-Du starrst sie an.
-
-Und dann siehst du es:
-
-Auf dem Boden. Eingraviert.
-
-Namen. Dutzende von Namen.
-
-Du erkennst keinen davon.
-
-Aber da ist… Platz.
-
-Platz für mehr.`,
-    choices: [
-      {
-        id: 'read_names_truth',
-        label: 'Die Namen genau ansehen',
-        condition: {
-          type: 'compare',
-          target: 'tickets_truth',
-          operator: '>=',
-          value: 3
-        },
-        effects: [
-          { type: 'inc', target: 'tickets_truth', value: 2 },
+          { type: 'inc', target: 'tickets_truth', value: 4 },
+          { type: 'inc', target: 'conductor_attention', value: 3 },
           { type: 'inc', target: 'memory_drift', value: 2 }
         ],
         next: 'c5_s08_abteil7_aftermath'
-      },
-      {
-        id: 'leave_immediately',
-        label: 'Sofort das Abteil verlassen',
-        effects: [
-          { type: 'inc', target: 'tickets_escape', value: 2 },
-          { type: 'inc', target: 'conductor_attention', value: 1 }
-        ],
-        next: 'c5_s08_abteil7_aftermath'
-      },
-      {
-        id: 'touch_wall',
-        label: 'Die Wand berühren',
-        effects: [
-          { type: 'inc', target: 'tickets_guilt', value: 1 },
-          { type: 'inc', target: 'memory_drift', value: 1 }
-        ],
-        next: 'c5_s08_abteil7_aftermath'
       }
     ],
     state_notes: [
-      'Set-Piece Teil 2: Enthüllung Abteil 7',
-      'CONDITION: read_names_truth nur bei tickets_truth >= 3',
-      'memory_drift steigt (Hinweis auf Natur des Zuges)'
+      'Set-Piece: Abteil 7 (merged approach + inside)',
+      'Entering increases conductor_attention (+2 or +3)',
+      'Skip choices route to c5_s09 (bypass aftermath)',
+      'CONDITION: open_and_examine (tickets_truth >= 3)',
+      'CONDITION: protect_sleepless (rel_sleepless >= 2)',
+      'CONDITION: open_for_answers (tickets_truth >= 9, Easter egg)'
     ],
-    tags: ['reveal'],
-    atmosphere: 'mystic'
+    tags: ['setup', 'reveal'],
+    atmosphere: 'tense'
   },
 
   // ==========================================================================
@@ -658,7 +429,7 @@ Der Zug rattert weiter.`,
           { type: 'inc', target: 'tickets_truth', value: 1 },
           { type: 'inc', target: 'memory_drift', value: 1 }
         ],
-        next: 'c5_s09_train_shifts'
+        next: 'c5_s10_boy_reunion'
       },
       {
         id: 'let_it_go',
@@ -667,7 +438,7 @@ Der Zug rattert weiter.`,
           { type: 'inc', target: 'tickets_escape', value: 1 },
           { type: 'dec', target: 'memory_drift', value: 1 }
         ],
-        next: 'c5_s09_train_shifts'
+        next: 'c5_s10_boy_reunion'
       },
       {
         id: 'write_down_names',
@@ -682,7 +453,7 @@ Der Zug rattert weiter.`,
           { type: 'inc', target: 'tickets_truth', value: 1 },
           { type: 'inc', target: 'tickets_guilt', value: 1 }
         ],
-        next: 'c5_s09_train_shifts'
+        next: 'c5_s10_boy_reunion'
       },
       {
         id: 'ponder_the_wall',
@@ -697,162 +468,13 @@ Der Zug rattert weiter.`,
           { type: 'inc', target: 'tickets_guilt', value: 2 },
           { type: 'inc', target: 'memory_drift', value: 1 }
         ],
-        next: 'c5_s09_train_shifts'
+        next: 'c5_s10_boy_reunion'
       }
     ],
     state_notes: [
       'Set-Piece Teil 3: Nachwirkungen',
       'CONDITION: write_down_names (tickets_truth >= 10)',
       'CONDITION: ponder_the_wall (tickets_guilt >= 1, Callback auf s07)'
-    ],
-    atmosphere: 'tense'
-  },
-
-  // ==========================================================================
-  // INTERLUDE 3: Zug bewegt sich
-  // ==========================================================================
-
-  'c5_s09_train_shifts': {
-    id: 'c5_s09_train_shifts',
-    chapter: 5,
-    title: 'Der Zug bewegt sich',
-    narrative: `Der Zug schwankt.
-
-Nicht wie zuvor. Nicht das gleichmäßige Schaukeln.
-
-Diesmal ruckartig. Als würde er… zögern.
-
-Du greifst nach der Wand, um das Gleichgewicht zu halten.
-
-Draußen – war da gerade… etwas?
-
-Ein Licht? Eine Bewegung?
-
-Du presst dein Gesicht ans Fenster.
-
-Nichts. Nur Dunkelheit.
-
-Aber für einen Moment hattest du das Gefühl, etwas zu sehen.
-
-Eine Station, die ihr nicht angefahren habt.
-
-Ein Ort, den ihr übersprungen haben.
-
-Der Zug beschleunigt wieder.`,
-    narrative_variants: [
-      {
-        min_drift: 3,
-        narrative: `Der Zug schwankt.
-
-Nicht wie zuvor. Nicht das gleichmäßige Schaukeln.
-
-Diesmal ruckartig. Als würde er… bremsen.
-
-Du greifst nach der Wand, um das Gleichgewicht zu halten.
-
-Draußen – war da gerade… etwas?
-
-Ein rotes Licht? Eine Bewegung?
-
-Du presst dein Gesicht ans Fenster.
-
-Nichts. Nur Dunkelheit.
-
-Aber für einen Moment hattest du das Gefühl, etwas zu sehen.
-
-Eine Station, die ihr nicht angefahren habt.
-
-Ein Ort, den ihr ausgelassen habt.
-
-Der Zug beschleunigt wieder.`
-      },
-      {
-        min_drift: 5,
-        narrative: `Der Zug schwankt.
-
-Nicht wie zuvor. Nicht das gleichmäßige Schaukeln.
-
-Diesmal seitlich. Als würde er… kippen.
-
-Du greifst nach der Wand, um das Gleichgewicht zu halten.
-
-Draußen – war da gerade… etwas?
-
-Ein Licht? Eine Bewegung?
-
-Du presst dein Gesicht ans Fenster.
-
-Nichts. Nur Dunkelheit.
-
-Aber für einen Moment hattest du das Gefühl, etwas zu sehen.
-
-Einen Bahnsteig mit offenen Türen.
-
-Ein Ort, an dem ihr nie gehalten habt.
-
-Der Zug beschleunigt wieder.`
-      }
-    ],
-    choices: [
-      {
-        id: 'continue_on',
-        label: 'Weitergehen',
-        effects: [
-          { type: 'inc', target: 'memory_drift', value: 1 }
-        ],
-        next: 'c5_s10_boy_reunion'
-      },
-      {
-        id: 'press_to_window',
-        label: 'Am Fenster bleiben',
-        condition: {
-          type: 'compare',
-          target: 'memory_drift',
-          operator: '>=',
-          value: 2
-        },
-        effects: [
-          { type: 'inc', target: 'tickets_truth', value: 1 },
-          { type: 'inc', target: 'memory_drift', value: 1 }
-        ],
-        next: 'c5_s10_boy_reunion'
-      },
-      {
-        id: 'understand_skip',
-        label: 'Die übersprungene Station verstehen',
-        condition: {
-          type: 'compare',
-          target: 'tickets_truth',
-          operator: '>=',
-          value: 11
-        },
-        effects: [
-          { type: 'inc', target: 'tickets_truth', value: 1 },
-          { type: 'inc', target: 'conductor_attention', value: 1 }
-        ],
-        next: 'c5_s10_boy_reunion'
-      },
-      {
-        id: 'use_skip_chance',
-        label: 'Den Sprung als Chance nutzen',
-        condition: {
-          type: 'compare',
-          target: 'tickets_escape',
-          operator: '>=',
-          value: 8
-        },
-        effects: [
-          { type: 'inc', target: 'tickets_escape', value: 1 },
-          { type: 'dec', target: 'memory_drift', value: 1 }
-        ],
-        next: 'c5_s10_boy_reunion'
-      }
-    ],
-    state_notes: [
-      'Interlude: Zug wird unberechenbarer',
-      'memory_drift steigt (uebersprungene Station fuehlt sich falsch an)',
-      'CONDITION: understand_skip if tickets_truth >= 11 (c5_s08_abteil7_aftermath remembering)',
-      'CONDITION: use_skip_chance if tickets_escape >= 8 (c5_s08_abteil7_aftermath letting go)'
     ],
     atmosphere: 'tense'
   },
@@ -1023,88 +645,40 @@ Finaler.`,
   },
 
   // ==========================================================================
-  // INTERLUDE 4: Leere außerhalb (Split Part 1)
+  // INTERLUDE 4: Leere außerhalb
   // ==========================================================================
 
   'c5_s12_window_void': {
     id: 'c5_s12_window_void',
     chapter: 5,
     title: 'Das Nichts',
-    narrative: `Du blickst aus dem Fenster, aber da ist keine Dunkelheit mehr. (Hook)
+    narrative: `Du blickst aus dem Fenster.
 
-Nur eine absolute Leere, die das Auge nicht fokussieren kann. Ein blinder Fleck in der Realität, der direkt in deinen Verstand schneidet. Ein Vakuum, das hungrig ist. (Detail)
+Aber da ist keine Dunkelheit mehr. Nur eine absolute Leere, die das Auge nicht fokussieren kann.
 
-Der Zug fährt nicht durch eine Landschaft – er schält sich durch das Gewebe der Existenz. (Konsequenz)`,
-    choices: [
-      {
-        id: 'touch_glass',
-        label: 'Das Glas berühren',
-        effects: [],
-        next: 'c5_s12_window_void_b'
-      },
-      {
-        id: 'look_away_void',
-        label: 'Wegsehen',
-        effects: [
-          { type: 'inc', target: 'tickets_escape', value: 1 }
-        ],
-        next: 'c5_s12_window_void_b'
-      }
-    ],
-    state_notes: [
-      'Interlude Part 1: Visuelle Leere',
-      'Split 1/3'
-    ],
-    atmosphere: 'dark'
-  },
+Ein blinder Fleck in der Realität, der direkt in deinen Verstand schneidet. Ein Vakuum, das hungrig ist.
 
-  // ==========================================================================
-  // INTERLUDE 4: Leere außerhalb (Split Part 2)
-  // ==========================================================================
+Der Zug fährt nicht durch eine Landschaft – er schält sich durch das Gewebe der Existenz.
 
-  'c5_s12_window_void_b': {
-    id: 'c5_s12_window_void_b',
-    chapter: 5,
-    title: 'Kontakt',
-    narrative: `Du legst die Handfläche an das Fenster. (Hook)
+---
 
-Es gibt keinen Widerstand von Kälte, nur eine dumpfe, vibrierende Wärme, die tief in deine Knochen siedet. Deine Finger verschwinden im Spiegelbild, als würde das Glas dich nicht mehr als feste Materie erkennen. (Detail)
+Du legst die Handfläche an das Fenster.
 
-Ein hohes Summen zieht dir über die Zähne, ein Ton an der Grenze des Erträglichen. (Konsequenz)`,
-    choices: [
-      {
-        id: 'press_forehead',
-        label: 'Stirn gegen das Glas lehnen',
-        effects: [],
-        next: 'c5_s12_window_void_c'
-      },
-      {
-        id: 'pull_back',
-        label: 'Zurückziehen',
-        effects: [],
-        next: 'c5_s12_window_void_c'
-      }
-    ],
-    state_notes: [
-      'Interlude Part 2: Sensorische Leere',
-      'Split 2/3'
-    ],
-    atmosphere: 'dark'
-  },
+Es gibt keinen Widerstand von Kälte, nur eine dumpfe, vibrierende Wärme, die tief in deine Knochen siedet.
 
-  // ==========================================================================
-  // INTERLUDE 4: Leere außerhalb (Split Part 3)
-  // ==========================================================================
+Deine Finger verschwinden im Spiegelbild, als würde das Glas dich nicht mehr als feste Materie erkennen.
 
-  'c5_s12_window_void_c': {
-    id: 'c5_s12_window_void_c',
-    chapter: 5,
-    title: 'Auflösung',
-    narrative: `Du fragst dich: Was war vorher da? (Hook)
+Ein hohes Summen zieht dir über die Zähne, ein Ton an der Grenze des Erträglichen.
 
-Gab es je eine Welt mit Farben, Wäldern, Städten? Die Erinnerung daran fühlt sich wie eine Lüge an, ein Traum aus einer anderen Zeit. An etwas anderes erinnerst du dich jetzt – an etwas, das niemals hätte sein dürfen. (Detail)
+---
 
-Die Leere draußen ist die einzige Wahrheit, die noch übrig ist. (Konsequenz)`,
+Du fragst dich: Was war vorher da?
+
+Gab es je eine Welt mit Farben, Wäldern, Städten? Die Erinnerung daran fühlt sich wie eine Lüge an, ein Traum aus einer anderen Zeit.
+
+An etwas anderes erinnerst du dich jetzt – an etwas, das niemals hätte sein dürfen.
+
+Die Leere draußen ist die einzige Wahrheit, die noch übrig ist.`,
     choices: [
       {
         id: 'accept_void',
@@ -1132,8 +706,9 @@ Die Leere draußen ist die einzige Wahrheit, die noch übrig ist. (Konsequenz)`,
       }
     ],
     state_notes: [
-      'Interlude Part 3: Kognitive Auflösung',
-      'memory_drift steigt weiter'
+      'Interlude: Leere außerhalb (merged 3 parts)',
+      'Void sequence - visual, sensory, cognitive dissolution',
+      'CONDITION: search_reflection (conductor_attention >= 5)'
     ],
     atmosphere: 'dark'
   },
@@ -1171,6 +746,34 @@ Ein Name. Ein Gesicht.
 Fast greifbar.
 
 Aber nicht ganz.`,
+    narrative_variants: [
+      {
+        condition: { type: 'bool', target: 'emma_memory_unlocked', value: true },
+        narrative: `Plötzlich – eine Erinnerung.
+
+Klar und scharf.
+
+Du bist an einem Bahnhof. Bahnhof Westend. Herbst 1973.
+
+Emma steht vor dir. Braune Augen. Graue Jacke. Sie lächelt, aber ihre Augen sind ängstlich.
+
+„Fahr vorsichtig," sagt sie. „Komm zurück."
+
+Du nimmst ihre Hand. Warm. Real.
+
+„Ich verspreche es."
+
+Dann ein Pfiff. Der Zug – NACHTZUG 19 – fährt ein.
+
+Du steigst ein.
+
+Und dann... nichts.
+
+Die Erinnerung endet. Aber jetzt weißt du: Du hast sie nie wiedergesehen.
+
+Emma. Du warst auf dem Weg zu ihr. Und der Zug... ist nie angekommen.`
+      }
+    ],
     choices: [
       {
         id: 'chase_memory',
@@ -1297,63 +900,21 @@ Eine Pause.
     id: 'c5_s15_control3_question',
     chapter: 5,
     title: 'Die Frage',
-    narrative: `Der Schaffner legt die Fahrkarte auf den Tisch – sie knistert nicht, sondern liegt schwer wie Blei. (Hook)
+    narrative: `Der Schaffner legt die Fahrkarte auf den Tisch – sie knistert nicht, sondern liegt schwer wie Blei.
 
-„Letzte Frage," sagt er mit einer Stimme, die direkt in deinem Schädel vibriert. Er beugt sich vor, und der Geruch von Ozon und uraltem Staub schlägt dir entgegen. Die Schatten in seinen Augenhöhlen wirbeln wie Rauch. (Detail)
+„Letzte Frage," sagt er mit einer Stimme, die direkt in deinem Schädel vibriert. Er beugt sich vor, und der Geruch von Ozon und uraltem Staub schlägt dir entgegen. Die Schatten in seinen Augenhöhlen wirbeln wie Rauch.
 
-„Warum kannst du dich nicht erinnern?" (Konsequenz)`,
-    choices: [
-      {
-        id: 'try_to_answer',
-        label: 'Antworten wollen',
-        effects: [],
-        next: 'c5_s15_control3_question_b'
-      },
-      {
-        id: 'ask_conductor_purpose',
-        label: '„Bist du auch gefangen?"',
-        condition: {
-          type: 'compare',
-          target: 'tickets_truth',
-          operator: '>=',
-          value: 8
-        },
-        effects: [
-          { type: 'inc', target: 'tickets_truth', value: 2 },
-          { type: 'dec', target: 'conductor_attention', value: 1 }
-        ],
-        next: 'c5_s15_control3_question_b'
-      },
-      {
-        id: 'stay_silent_pressure',
-        label: 'Dem Druck standhalten',
-        effects: [
-          { type: 'inc', target: 'conductor_attention', value: 1 }
-        ],
-        next: 'c5_s15_control3_question_b'
-      }
-    ],
-    state_notes: [
-      'Set-Piece Teil 2a: Die Frage',
-      'Split für Pacing'
-    ],
-    tags: ['control'],
-    atmosphere: 'danger'
-  },
+„Warum kannst du dich nicht erinnern?"
 
-  // ==========================================================================
-  // SET-PIECE 2: Kontrolle 3 (Teil 2b - Druck)
-  // ==========================================================================
+---
 
-  'c5_s15_control3_question_b': {
-    id: 'c5_s15_control3_question_b',
-    chapter: 5,
-    title: 'Druck',
-    narrative: `„Weil du es vergessen hast? Oder weil du es vergessen wolltest?" (Hook)
+Er wartet nicht auf deine Antwort.
 
-Die Luft im Abteil wird dünner, sauerstoffarm. Deine Lungen brennen, während er mit einem fingerlosen Handschuh auf den Tisch tippt – ein Geräusch wie ein Hammerschlag. (Detail)
+„Weil du es vergessen hast? Oder weil du es vergessen wolltest?"
 
-„Sag mir die Wahrheit," fordert er. „Oder steig aus." (Konsequenz)`,
+Die Luft im Abteil wird dünner, sauerstoffarm. Deine Lungen brennen, während er mit einem fingerlosen Handschuh auf den Tisch tippt – ein Geräusch wie ein Hammerschlag.
+
+„Sag mir die Wahrheit," fordert er. „Oder steig aus."`,
     choices: [
       {
         id: 'admit_truth_high',
@@ -1410,8 +971,11 @@ Die Luft im Abteil wird dünner, sauerstoffarm. Deine Lungen brennen, während e
       }
     ],
     state_notes: [
-      'Set-Piece Teil 2b: Die Entscheidung',
-      'Klimax der Kontrolle'
+      'Set-Piece: Kontrolle 3 Frage (merged 2a + 2b)',
+      'Conductor interrogation - escalating pressure',
+      'CONDITION: admit_truth_high (tickets_truth >= 4)',
+      'CONDITION: ask_comp7_help (rel_comp7 >= 2)',
+      'CONDITION: harsh_response (conductor_attention >= 4)'
     ],
     tags: ['control'],
     atmosphere: 'danger'
@@ -1424,7 +988,7 @@ Die Luft im Abteil wird dünner, sauerstoffarm. Deine Lungen brennen, während e
   'c5_s16_control3_aftermath': {
     id: 'c5_s16_control3_aftermath',
     chapter: 5,
-    title: 'Kontrolle 3 - Danach',
+    title: 'Nach der Kontrolle',
     narrative: `Der Schaffner steht auf.
 
 Langsam. Bedächtig.
@@ -1447,88 +1011,21 @@ Er blickt zurück.
 
 Dann ist er weg.
 
-Und du sitzt allein in deinem Abteil.
+---
 
-Die Fahrkarte in der Hand.
+Du sitzt allein in deinem Abteil. Die Fahrkarte in der Hand. Noch gültig. Noch.
 
-Noch gültig.
+Du denkst nach. Über die Kontrolle. Über deine Antworten.
 
-Noch.`,
-    choices: [
-      {
-        id: 'examine_ticket',
-        label: 'Die Fahrkarte ansehen',
-        effects: [
-          { type: 'inc', target: 'tickets_truth', value: 1 }
-        ],
-        next: 'c5_s17_aftermath_reflection'
-      },
-      {
-        id: 'rest_after_control',
-        label: 'Ausruhen',
-        effects: [
-          { type: 'inc', target: 'tickets_escape', value: 1 },
-          { type: 'dec', target: 'conductor_attention', value: 1 }
-        ],
-        next: 'c5_s17_aftermath_reflection'
-      },
-      {
-        id: 'ponder_words',
-        label: 'Über die Worte des Schaffners nachgrübeln',
-        condition: {
-          type: 'compare',
-          target: 'conductor_attention',
-          operator: '>=',
-          value: 4
-        },
-        effects: [
-          { type: 'inc', target: 'tickets_truth', value: 1 },
-          { type: 'inc', target: 'memory_drift', value: 1 }
-        ],
-        next: 'c5_s17_aftermath_reflection'
-      }
-    ],
-    state_notes: [
-      'Set-Piece Teil 3: Nachwirkungen Kontrolle 3',
-      'Kontrolle überstanden – nächste Station rückt näher',
-      'CONDITION: ponder_words nur bei conductor_attention >= 4 (Callback auf s15)'
-    ],
-    atmosphere: 'tense'
-  },
+Der Schaffner hat recht: Die Fahrt geht zu Ende.
 
-  // ==========================================================================
-  // STANDARD: Reflexion nach Kontrolle
-  // ==========================================================================
-
-  'c5_s17_aftermath_reflection': {
-    id: 'c5_s17_aftermath_reflection',
-    chapter: 5,
-    title: 'Reflexion',
-    narrative: `Du sitzt da und denkst nach.
-
-Über die Kontrolle. Über deine Antworten.
-
-Über das, was du gesagt – und nicht gesagt hast.
-
-Der Schaffner hat recht:
-
-Die Fahrt geht zu Ende.
-
-Bald wirst du ankommen. Irgendwo.
-
-Oder aussteigen müssen.
+Bald wirst du ankommen. Irgendwo. Oder aussteigen müssen.
 
 Oder…
 
-Es gibt noch eine dritte Möglichkeit.
+Es gibt noch eine dritte Möglichkeit. Eine, über die niemand spricht.
 
-Eine, über die niemand spricht.
-
-Einfach weiterfahren.
-
-Für immer.
-
-Im Zug bleiben.
+Einfach weiterfahren. Für immer. Im Zug bleiben.
 
 Ist das möglich?`,
     choices: [
@@ -1551,8 +1048,9 @@ Ist das möglich?`,
       }
     ],
     state_notes: [
-      'Reflexion über Kontrolle und Zukunft',
-      'consider_staying deutet Escape-Ending an'
+      'Set-Piece: Kontrolle 3 Nachwirkungen (merged aftermath + reflection)',
+      'Conductor leaves, protagonist reflects on journey ending',
+      'Introduces possibility of staying on train forever (Escape ending foreshadowing)'
     ],
     atmosphere: 'somber'
   },
@@ -1670,7 +1168,7 @@ Sie lächelt traurig.
           { type: 'inc', target: 'tickets_love', value: 2 },
           { type: 'inc', target: 'rel_comp7', value: 2 }
         ],
-        next: 'c5_s20_decision_approach'
+        next: 'c5_s20_decision'
       },
       {
         id: 'ask_final_question',
@@ -1679,7 +1177,7 @@ Sie lächelt traurig.
           { type: 'inc', target: 'tickets_truth', value: 1 },
           { type: 'inc', target: 'rel_comp7', value: 1 }
         ],
-        next: 'c5_s20_decision_approach'
+        next: 'c5_s20_decision'
       },
       {
         id: 'silent_farewell',
@@ -1687,7 +1185,7 @@ Sie lächelt traurig.
         effects: [
           { type: 'inc', target: 'tickets_escape', value: 1 }
         ],
-        next: 'c5_s20_decision_approach'
+        next: 'c5_s20_decision'
       }
     ],
     state_notes: [
@@ -1703,72 +1201,25 @@ Sie lächelt traurig.
   // SET-PIECE 3: Finale Entscheidung (Teil 1 - Annäherung)
   // ==========================================================================
 
-  'c5_s20_decision_approach': {
-    id: 'c5_s20_decision_approach',
+  'c5_s20_decision': {
+    id: 'c5_s20_decision',
     chapter: 5,
-    title: 'Entscheidung - Annäherung',
+    title: 'Die Entscheidung',
     narrative: `Du spürst es:
 
 Die nächste Station kommt.
 
 Nicht in Stunden. In Minuten.
 
-Der Zug verlangsamt sich.
-
-Ganz langsam. Fast unmerklich.
+Der Zug verlangsamt sich. Ganz langsam. Fast unmerklich.
 
 Aber du spürst es.
 
-Draußen – da ist etwas.
+Draußen – da ist etwas. Kein Licht. Aber… eine Präsenz. Ein Ort.
 
-Kein Licht. Aber… eine Präsenz.
+---
 
-Ein Ort.
-
-Der Zug hält gleich.
-
-Und dann musst du entscheiden:
-
-Aussteigen.
-
-Oder bleiben.
-
-Es gibt kein Zurück mehr.`,
-    choices: [
-      {
-        id: 'prepare_to_decide',
-        label: 'Sich vorbereiten',
-        effects: [
-          { type: 'inc', target: 'tickets_truth', value: 1 }
-        ],
-        next: 'c5_s21_decision_core'
-      },
-      {
-        id: 'resist_arrival',
-        label: 'Der Ankunft widerstehen',
-        effects: [
-          { type: 'inc', target: 'tickets_escape', value: 1 }
-        ],
-        next: 'c5_s21_decision_core'
-      }
-    ],
-    state_notes: [
-      'Set-Piece Teil 1: Vorbereitung auf finale Entscheidung',
-      'Letzte Weichenstellung vor Station'
-    ],
-    tags: ['setup'],
-    atmosphere: 'tense'
-  },
-
-  // ==========================================================================
-  // SET-PIECE 3: Finale Entscheidung (Teil 2 - Kern)
-  // ==========================================================================
-
-  'c5_s21_decision_core': {
-    id: 'c5_s21_decision_core',
-    chapter: 5,
-    title: 'Die Entscheidung',
-    narrative: `Der Zug hält.
+Der Zug hält.
 
 Vollständig.
 
@@ -1780,11 +1231,7 @@ Du siehst hinaus.
 
 Da ist… ein Bahnsteig.
 
-Aber er ist anders als die anderen.
-
-Leerer. Stiller.
-
-Finaler.
+Aber er ist anders als die anderen. Leerer. Stiller. Finaler.
 
 Du spürst:
 
@@ -1812,7 +1259,7 @@ Der Schaffner erscheint hinter dir.
         effects: [
           { type: 'inc', target: 'tickets_escape', value: 3 }
         ],
-        next: 'c5_s22_decision_aftermath'
+        next: 'c5_s22_before_station'
       },
       {
         id: 'guilt_sacrifice',
@@ -1826,7 +1273,7 @@ Der Schaffner erscheint hinter dir.
         effects: [
           { type: 'inc', target: 'tickets_guilt', value: 3 }
         ],
-        next: 'c5_s22_decision_aftermath'
+        next: 'c5_s22_before_station'
       },
       {
         id: 'step_out_truth',
@@ -1834,7 +1281,7 @@ Der Schaffner erscheint hinter dir.
         effects: [
           { type: 'inc', target: 'tickets_truth', value: 2 }
         ],
-        next: 'c5_s22_decision_aftermath'
+        next: 'c5_s22_before_station'
       },
       {
         id: 'stay_in_train',
@@ -1842,16 +1289,16 @@ Der Schaffner erscheint hinter dir.
         effects: [
           { type: 'inc', target: 'tickets_escape', value: 2 }
         ],
-        next: 'c5_s22_decision_aftermath'
+        next: 'c5_s22_before_station'
       }
     ],
     state_notes: [
-      'Set-Piece Teil 2: Kern-Entscheidung für Ending',
-      'CONDITION: drift_variant_stay nur bei memory_drift >= 4',
-      'CONDITION: guilt_sacrifice nur bei tickets_guilt >= 3',
-      'Wichtigste Entscheidung des Spiels'
+      'Set-Piece: Finale Entscheidung (merged approach + core)',
+      'Wichtigste Entscheidung des Spiels',
+      'CONDITION: drift_variant_stay (memory_drift >= 4)',
+      'CONDITION: guilt_sacrifice (tickets_guilt >= 3)'
     ],
-    tags: ['reveal'],
+    tags: ['setup', 'reveal'],
     atmosphere: 'tense'
   },
 
@@ -1859,115 +1306,35 @@ Der Schaffner erscheint hinter dir.
   // SET-PIECE 3: Finale Entscheidung (Teil 3 - Nachwirkungen)
   // ==========================================================================
 
-  'c5_s22_decision_aftermath': {
-    id: 'c5_s22_decision_aftermath',
-    chapter: 5,
-    title: 'Danach',
-    narrative: `Deine Entscheidung ist gefallen.
-
-Du spürst sie. Im ganzen Körper.
-
-Das Gewicht dessen, was du gewählt hast.
-
-Der Zug… reagiert.
-
-Die Luft verändert sich.
-
-Das Licht.
-
-Alles.
-
-Es ist, als würde der Zug selbst… verstehen.
-
-Als würde er wissen, was du getan hast.
-
-Und akzeptieren.
-
-Die Türen sind noch offen.
-
-Aber nur noch für einen Moment.
-
-Dann schließen sie sich.
-
-Für immer.`,
-    choices: [
-      {
-        id: 'accept_choice',
-        label: 'Die Wahl akzeptieren',
-        effects: [
-          { type: 'inc', target: 'tickets_truth', value: 1 }
-        ],
-        next: 'c5_s23_before_station'
-      },
-      {
-        id: 'doubt_choice',
-        label: 'Zweifeln',
-        effects: [
-          { type: 'inc', target: 'tickets_guilt', value: 1 }
-        ],
-        next: 'c5_s23_before_station'
-      },
-      {
-        id: 'embrace_drift',
-        label: 'Sich dem Vergessen hingeben',
-        condition: {
-          type: 'compare',
-          target: 'memory_drift',
-          operator: '>=',
-          value: 5
-        },
-        effects: [
-          { type: 'inc', target: 'tickets_escape', value: 2 },
-          { type: 'inc', target: 'memory_drift', value: 1 }
-        ],
-        next: 'c5_s23_before_station'
-      }
-    ],
-    state_notes: [
-      'Set-Piece Teil 3: Nachwirkungen der finalen Entscheidung',
-      'Übergang zur letzten Station',
-      'CONDITION: embrace_drift nur bei memory_drift >= 5 (Callback auf s21)'
-    ],
-    atmosphere: 'somber'
-  },
-
-  // ==========================================================================
-  // STANDARD: Vor der Station
-  // ==========================================================================
-
-  'c5_s23_before_station': {
-    id: 'c5_s23_before_station',
+  'c5_s22_before_station': {
+    id: 'c5_s22_before_station',
     chapter: 5,
     title: 'Vor der Station',
-    narrative: `Der Zug fährt langsam an.
+    narrative: `Deine Entscheidung ist gefallen.
 
-Wieder in Bewegung.
+Du spürst sie. Im ganzen Körper. Das Gewicht dessen, was du gewählt hast.
 
-Aber es fühlt sich anders an.
+Der Zug… reagiert. Die Luft verändert sich. Das Licht. Alles.
 
-Finaler.
+Es ist, als würde der Zug selbst… verstehen. Als würde er wissen, was du getan hast. Und akzeptieren.
+
+Die Türen sind noch offen. Aber nur noch für einen Moment.
+
+Dann schließen sie sich. Für immer.
+
+---
+
+Der Zug fährt langsam an. Wieder in Bewegung.
+
+Aber es fühlt sich anders an. Finaler.
 
 Du weißt: Die nächste Station ist die letzte.
 
-Für dich.
+Für dich. Für diesen Zug. Für diese Fahrt.
 
-Für diesen Zug.
+Was auch immer dort wartet – es wird Antworten geben. Oder Fragen. Oder beides. Oder nichts.
 
-Für diese Fahrt.
-
-Was auch immer dort wartet –
-
-Es wird Antworten geben.
-
-Oder Fragen.
-
-Oder beides.
-
-Oder nichts.
-
-Aber du wirst es bald wissen.
-
-Sehr bald.`,
+Aber du wirst es bald wissen. Sehr bald.`,
     choices: [
       {
         id: 'look_forward',
@@ -1984,13 +1351,29 @@ Sehr bald.`,
           { type: 'inc', target: 'tickets_guilt', value: 1 }
         ],
         next: 'c5_s24_platform_arrives'
+      },
+      {
+        id: 'embrace_drift',
+        label: 'Sich dem Vergessen hingeben',
+        condition: {
+          type: 'compare',
+          target: 'memory_drift',
+          operator: '>=',
+          value: 5
+        },
+        effects: [
+          { type: 'inc', target: 'tickets_escape', value: 2 },
+          { type: 'inc', target: 'memory_drift', value: 1 }
+        ],
+        next: 'c5_s24_platform_arrives'
       }
     ],
     state_notes: [
-      'Vorbereitung auf letzte Station',
-      'Emotionale Transition'
+      'Transition: Decision aftermath + approach to final station (merged s22 + s23)',
+      'Train reacts to choice, moves toward final station',
+      'CONDITION: embrace_drift (memory_drift >= 5)'
     ],
-    atmosphere: 'tense'
+    atmosphere: 'somber'
   },
 
   // ==========================================================================

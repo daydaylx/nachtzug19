@@ -81,7 +81,7 @@ Du bist hier. Du bist noch da.`
           { type: 'inc', target: 'tickets_truth', value: 1 },
           { type: 'inc', target: 'memory_drift', value: 1 }
         ],
-        next: 'c6_s02_silence'
+        next: 'c6_s03_comp7_final'
       },
       {
         id: 'close_eyes',
@@ -89,7 +89,7 @@ Du bist hier. Du bist noch da.`
         effects: [
           { type: 'inc', target: 'tickets_escape', value: 1 }
         ],
-        next: 'c6_s02_silence'
+        next: 'c6_s03_comp7_final'
       },
       {
         id: 'walk_corridor',
@@ -97,7 +97,7 @@ Du bist hier. Du bist noch da.`
         effects: [
           { type: 'inc', target: 'tickets_truth', value: 1 }
         ],
-        next: 'c6_s02_silence'
+        next: 'c6_s03_comp7_final'
       }
     ],
     state_notes: [
@@ -106,87 +106,6 @@ Du bist hier. Du bist noch da.`
       'Geruch als sensorischer Anker (steril, falsch)'
     ],
     atmosphere: 'dark'
-  },
-
-  // ==========================================================================
-  // INTERLUDE 1: Stille (Split Part 1)
-  // ==========================================================================
-
-  'c6_s02_silence': {
-    id: 'c6_s02_silence',
-    chapter: 6,
-    title: 'Totenstille',
-    narrative: `Der Gang ist schmaler geworden. (Hook)
-
-Die Wände scheinen zusammengerückt zu sein. Wenn du sie berührst, geben sie nach – weich und warm, wie Fleisch unter Stoff. Du ziehst die Finger zurück, aber das Gefühl eines Pulsschlags bleibt auf deiner Haut. (Detail)
-
-Kein Geräusch. Nicht einmal deine Schritte machen einen Ton, als würdest du über dicken Samt gehen. (Konsequenz)`,
-    choices: [
-      {
-        id: 'move_forward',
-        label: 'Weitergehen',
-        effects: [],
-        next: 'c6_s02_silence_b'
-      },
-      {
-        id: 'touch_fabric',
-        label: 'Den Stoff prüfen',
-        effects: [
-          { type: 'inc', target: 'tickets_truth', value: 1 }
-        ],
-        next: 'c6_s02_silence_b'
-      }
-    ],
-    state_notes: [
-      'Interlude Part 1: Physische Veränderung',
-      'Split für Pacing'
-    ],
-    atmosphere: 'tense'
-  },
-
-  // ==========================================================================
-  // INTERLUDE 1: Stille (Split Part 2)
-  // ==========================================================================
-
-  'c6_s02_silence_b': {
-    id: 'c6_s02_silence_b',
-    chapter: 6,
-    title: 'Isolation',
-    narrative: `Du hältst den Atem an, um etwas zu hören – aber da ist nichts. (Hook)
-
-Nur ein dumpfes Dröhnen, das eher in deinem Schädel sitzt als im Raum. Ein feiner Geruch nach nassem Holz zieht kurz vorbei. Die Wände wirken wie Polster, die dich erdrücken wollen. (Detail)
-
-Die Luft vibriert wie vor einem Gewitter, aber es gibt hier kein Wetter. Nur diese absolute, erstickende Stille. (Konsequenz)`,
-    choices: [
-      {
-        id: 'continue_walking',
-        label: 'Weitergehen',
-        effects: [
-          { type: 'inc', target: 'memory_drift', value: 1 }
-        ],
-        next: 'c6_s03_comp7_final'
-      },
-      {
-        id: 'listen_intently',
-        label: 'Lauschen',
-        condition: {
-          type: 'compare',
-          target: 'tickets_escape',
-          operator: '>=',
-          value: 1
-        },
-        effects: [
-          { type: 'inc', target: 'tickets_escape', value: 1 },
-          { type: 'inc', target: 'memory_drift', value: 1 }
-        ],
-        next: 'c6_s03_comp7_final'
-      }
-    ],
-    state_notes: [
-      'Interlude Part 2: Totale Isolation',
-      'Atmosphäre verdichtet sich'
-    ],
-    atmosphere: 'tense'
   },
 
   // ==========================================================================
@@ -605,7 +524,7 @@ Aber du bist nicht mehr derselbe.`,
           { type: 'inc', target: 'tickets_truth', value: 1 },
           { type: 'inc', target: 'tickets_guilt', value: 1 }
         ],
-        next: 'c6_s08_drift_intensifies'
+        next: 'c6_s09_boy_final'
       },
       {
         id: 'forget_quickly',
@@ -614,7 +533,7 @@ Aber du bist nicht mehr derselbe.`,
           { type: 'inc', target: 'tickets_escape', value: 1 },
           { type: 'inc', target: 'memory_drift', value: 1 }
         ],
-        next: 'c6_s08_drift_intensifies'
+        next: 'c6_s09_boy_final'
       },
       {
         id: 'feel_connection',
@@ -629,7 +548,7 @@ Aber du bist nicht mehr derselbe.`,
           { type: 'inc', target: 'tickets_love', value: 1 },
           { type: 'inc', target: 'memory_drift', value: 1 }
         ],
-        next: 'c6_s08_drift_intensifies'
+        next: 'c6_s09_boy_final'
       }
     ],
     state_notes: [
@@ -639,88 +558,6 @@ Aber du bist nicht mehr derselbe.`,
       'CONDITION: feel_connection bei tickets_love >= 2 (Callback für reach_out)'
     ],
     atmosphere: 'somber'
-  },
-
-  // ==========================================================================
-  // INTERLUDE 3: Drift intensiviert sich (Split Part 1)
-  // ==========================================================================
-
-  'c6_s08_drift_intensifies': {
-    id: 'c6_s08_drift_intensifies',
-    chapter: 6,
-    title: 'Zeitbruch',
-    narrative: `Die Uhr an der Wand spielt verrückt. (Hook)
-
-Sie springt von 3:47 auf 9:12, dann auf 2:33. Die Zeiger bewegen sich nicht, sie flackern von einer Position zur nächsten, als würde die Zeit selbst stottern. Das Glas ist beschlagen, und winzige Linien schreiben sich von selbst in den Nebel. (Detail)
-
-Rückwärts, vorwärts, willkürlich – Zeit hat hier keine Bedeutung mehr. (Konsequenz)`,
-    choices: [
-      {
-        id: 'watch_clock',
-        label: 'Uhr fixieren',
-        effects: [],
-        next: 'c6_s08_drift_intensifies_b'
-      },
-      {
-        id: 'look_away_time',
-        label: 'Wegsehen',
-        effects: [
-          { type: 'inc', target: 'tickets_escape', value: 1 }
-        ],
-        next: 'c6_s08_drift_intensifies_b'
-      }
-    ],
-    state_notes: [
-      'Interlude Part 1: Zeit-Anomalie',
-      'Split für Pacing'
-    ],
-    atmosphere: 'dark'
-  },
-
-  // ==========================================================================
-  // INTERLUDE 3: Drift intensiviert sich (Split Part 2)
-  // ==========================================================================
-
-  'c6_s08_drift_intensifies_b': {
-    id: 'c6_s08_drift_intensifies_b',
-    chapter: 6,
-    title: 'Auflösung',
-    narrative: `Du legst die Hand an das Metall unter der Uhr. (Hook)
-
-Es ist erst eiskalt, dann plötzlich brennend heiß. Dein Gleichgewicht schwankt, der Boden kippt minimal nach links. Im Fenster siehst du kurz ein anderes Gesicht – älter, müder – bevor es wieder deins wird. (Detail)
-
-Dein Atem bildet kleine Wolken in der Luft, obwohl du keine Kälte spürst. Es ist einfach… nichts. (Konsequenz)`,
-    choices: [
-      {
-        id: 'observe_changes',
-        label: 'Beobachten',
-        effects: [
-          { type: 'inc', target: 'tickets_truth', value: 1 },
-          { type: 'inc', target: 'memory_drift', value: 1 }
-        ],
-        next: 'c6_s09_boy_final'
-      },
-      {
-        id: 'analyze_time',
-        label: 'Muster suchen',
-        condition: {
-          type: 'compare',
-          target: 'memory_drift',
-          operator: '>=',
-          value: 2
-        },
-        effects: [
-          { type: 'inc', target: 'tickets_truth', value: 1 },
-          { type: 'inc', target: 'memory_drift', value: 1 }
-        ],
-        next: 'c6_s09_boy_final'
-      }
-    ],
-    state_notes: [
-      'Interlude Part 2: Physische Anomalie',
-      'Vorbereitung auf Boy-Finale'
-    ],
-    atmosphere: 'dark'
   },
 
   // ==========================================================================
@@ -745,9 +582,9 @@ Er blickt auf das Gerät.
 
 Seine Stimme bricht.
 
-„Ich weiß nicht, wo ich hin soll."
+„Ich will nicht vergessen werden," flüstert er. „Wenn ich aussteige... erinnert sich dann noch jemand an mich?"
 
-Er sieht dich an.
+Er sieht dich an. Seine Augen glänzen.
 
 „Du hast auch einen," sagt er und deutet auf deinen Rekorder.
 
@@ -817,17 +654,13 @@ Aber… da ist etwas.
 
 Auf dem Sitz.
 
-Ein Foto.
+Ein Foto. Ein altes Schwarzweißfoto.
 
-Ein altes Schwarzweißfoto.
+Es zeigt… einen Zug. Diesen Zug. Und davor… Menschen. Viele Menschen.
 
-Es zeigt… einen Zug.
+Daneben liegt eine Notiz, hastig gekritzelt:
 
-Diesen Zug.
-
-Und davor… Menschen.
-
-Viele Menschen.
+„Endlich kann ich schlafen. Danke für die Gesellschaft."
 
 Du drehst das Foto um.
 
@@ -835,9 +668,7 @@ Auf der Rückseite steht in verblasster Tinte:
 
 „1973. Letzte Fahrt."
 
-1973.
-
-Das ist… vor über fünfzig Jahren.`,
+1973. Das ist… vor über fünfzig Jahren.`,
     choices: [
       {
         id: 'take_photo',
@@ -882,47 +713,21 @@ Das ist… vor über fünfzig Jahren.`,
     id: 'c6_s11_announcement',
     chapter: 6,
     title: 'Durchsage',
-    narrative: `Die Lautsprecher erwachen mit einem trockenen Kratzen, wie Sand auf Metall. (Hook)
+    narrative: `Die Lautsprecher erwachen mit einem trockenen Kratzen, wie Sand auf Metall.
 
-Der Staub vibriert auf dem Gitter. Du neigst den Kopf, um die Worte im Rauschen zu finden, während deine Kehle trocken wird. Ein Hauch von Metall legt sich auf deine Zunge. (Detail)
+Der Staub vibriert auf dem Gitter. Du neigst den Kopf, um die Worte im Rauschen zu finden, während deine Kehle trocken wird. Ein Hauch von Metall legt sich auf deine Zunge.
 
-Dann bricht eine Stimme durch, die nicht zum Zug gehört. (Konsequenz)`,
-    choices: [
-      {
-        id: 'listen_closely',
-        label: 'Hinhören',
-        effects: [],
-        next: 'c6_s11_announcement_b'
-      },
-      {
-        id: 'cover_ears',
-        label: 'Ohren zuhalten',
-        effects: [
-          { type: 'inc', target: 'tickets_escape', value: 1 }
-        ],
-        next: 'c6_s11_announcement_b'
-      }
-    ],
-    state_notes: [
-      'Interlude Part 1: Audio-Störung',
-      'Split für Pacing'
-    ],
-    atmosphere: 'danger'
-  },
+Dann bricht eine Stimme durch, die nicht zum Zug gehört.
 
-  // ==========================================================================
-  // INTERLUDE 4: Ansage (Split Part 2)
-  // ==========================================================================
+---
 
-  'c6_s11_announcement_b': {
-    id: 'c6_s11_announcement_b',
-    chapter: 6,
-    title: 'Botschaft',
-    narrative: `„—chster Halt. Endstation. End—" (Hook)
+„—chster Halt. Endstation. End—"
 
-Die Stimme verzerrt sich, wird tiefer, unmenschlich. „—itte alle aussteigen. Alle… die noch können." Dann bricht sie in ein Flüstern: „Es tut mir leid." (Detail)
+Die Stimme verzerrt sich, wird tiefer, unmenschlich. „—itte alle aussteigen. Alle… die noch können."
 
-Das Knistern verstummt abrupt, und der Zug fährt weiter, als wäre nichts geschehen. (Konsequenz)`,
+Dann bricht sie in ein Flüstern: „Es tut mir leid."
+
+Das Knistern verstummt abrupt, und der Zug fährt weiter, als wäre nichts geschehen.`,
     choices: [
       {
         id: 'process_message',
@@ -964,8 +769,10 @@ Das Knistern verstummt abrupt, und der Zug fährt weiter, als wäre nichts gesch
       }
     ],
     state_notes: [
-      'Interlude Part 2: Die Nachricht',
-      'Entschuldigung und Warnung'
+      'Interlude: Durchsage (merged announcement + message)',
+      'Final station announcement with apology',
+      'CONDITION: whisper_year (memory_drift >= 3)',
+      'CONDITION: listen_for_voice (conductor_attention >= 3)'
     ],
     atmosphere: 'danger'
   },
@@ -977,135 +784,62 @@ Das Knistern verstummt abrupt, und der Zug fährt weiter, als wäre nichts gesch
   'c6_s12_mirror_self': {
     id: 'c6_s12_mirror_self',
     chapter: 6,
-    title: 'Spiegel - Begegnung',
+    title: 'Spiegel',
     narrative: `Du gehst zurück zu deinem Abteil.
 
-Aber als du die Tür öffnest…
+Aber als du die Tür öffnest… da sitzt jemand.
 
-Da sitzt jemand.
+Du selbst. Ein exaktes Spiegelbild.
 
-Du selbst.
+Die Gestalt sitzt auf deinem Platz. Blickt aus dem Fenster. Dreht sich langsam um. Sieht dich an.
 
-Ein exaktes Spiegelbild.
+Lächelt. Nicht freundlich. Wissend.
 
-Die Gestalt sitzt auf deinem Platz. Blickt aus dem Fenster.
+„Endlich," sagt die Gestalt mit deiner Stimme. „Ich habe gewartet."
 
-Dreht sich langsam um.
-
-Sieht dich an.
-
-Lächelt.
-
-Nicht freundlich.
-
-Wissend.
-
-„Endlich," sagt die Gestalt mit deiner Stimme.
-
-„Ich habe gewartet."
-
-Sie steht auf.
-
-„Weißt du, warum du hier bist?"
+Sie steht auf. „Weißt du, warum du hier bist? Wirklich?"
 
 Die Gestalt kommt näher.
 
-„Wirklich?"`,
+---
+
+Sie lacht leise. „Ich bin du. Der Teil von dir, den du vergessen wolltest. Der Teil, der weiß, warum du wirklich hier bist."
+
+Sie streckt die Hand aus. „Komm. Ich zeige es dir."
+
+„Oder…" Die Gestalt deutet zum Fenster. „Du kannst weglaufen. Wie immer."
+
+„Deine Wahl."
+
+Die Hand bleibt ausgestreckt. Wartend.`,
     narrative_variants: [
       {
         condition: { type: 'bool', target: 'has_tag19', value: true },
         narrative: `Du öffnest die Tür zu deinem Abteil und erstarrst.
 
-Der Schlüsselanhänger, der eben noch glühend heiß war, wird schlagartig eiskalt. Die Kälte beißt sich in deine Haut, ein stechender Schmerz, der dich vor der Gestalt warnt, die auf deinem Platz sitzt.
+Der Schlüsselanhänger wird schlagartig eiskalt. Die Kälte beißt sich in deine Haut – eine Warnung.
 
-Du selbst. Ein exaktes Spiegelbild.
+Du selbst. Ein exaktes Spiegelbild sitzt auf deinem Platz.
 
-Die Gestalt blickt aus dem Fenster in die Leere und dreht sich dann langsam um. Sie lächelt wissend, aber das Lächeln erreicht die Augen nicht.
+Die Gestalt dreht sich langsam um. Sie lächelt wissend, aber das Lächeln erreicht die Augen nicht.
 
 „Endlich," sagt sie mit deiner Stimme. „Ich habe gewartet."
 
-Während sie aufsteht, spürst du durch den Anhänger, dass etwas an dieser Begegnung falsch ist. Er vibriert nicht mehr rhythmisch, sondern stößt kurze, hektische Impulse aus – wie ein Alarm.
+Der Anhänger vibriert nicht mehr rhythmisch, sondern stößt kurze, hektische Impulse aus – wie ein Alarm. Diese Begegnung ist falsch.
 
-„Weißt du, warum du hier bist?"
+„Weißt du, warum du hier bist? Wirklich?"
+
+---
+
+Sie lacht leise. „Ich bin du. Der Teil von dir, den du vergessen wolltest."
+
+Sie streckt die Hand aus. „Komm. Ich zeige es dir. Oder… du kannst weglaufen. Wie immer."
 
 Die Kälte des Metalls in deiner Hand ist der einzige Beweis dafür, dass du noch die Kontrolle hast. Die Gestalt vor dir hat kein solches Gewicht. Sie ist nur ein Schatten.
 
-„Wirklich?"`
+„Deine Wahl."`
       }
     ],
-    choices: [
-      {
-        id: 'confront_drift',
-        label: '„Du bist nicht real."',
-        condition: {
-          type: 'compare',
-          target: 'memory_drift',
-          operator: '>=',
-          value: 4
-        },
-        effects: [
-          { type: 'inc', target: 'tickets_truth', value: 2 },
-          { type: 'inc', target: 'memory_drift', value: 1 }
-        ],
-        next: 'c6_s13_mirror_choice'
-      },
-      {
-        id: 'engage_mirror',
-        label: '„Wer bist du?"',
-        effects: [
-          { type: 'inc', target: 'tickets_truth', value: 1 }
-        ],
-        next: 'c6_s13_mirror_choice'
-      },
-      {
-        id: 'turn_away',
-        label: 'Sich abwenden',
-        effects: [
-          { type: 'inc', target: 'tickets_escape', value: 1 }
-        ],
-        next: 'c6_s13_mirror_choice'
-      }
-    ],
-    state_notes: [
-      'Set-Piece Teil 1: Spiegel-Selbst erscheint',
-      'CONDITION: confront_drift nur bei memory_drift >= 4',
-      'Drift-Manifestation als Doppelgänger'
-    ],
-    tags: ['setup'],
-    atmosphere: 'mystic'
-  },
-
-  // ==========================================================================
-  // SET-PIECE 2: Spiegel (Teil 2 - Entscheidung)
-  // ==========================================================================
-
-  'c6_s13_mirror_choice': {
-    id: 'c6_s13_mirror_choice',
-    chapter: 6,
-    title: 'Spiegel - Wahl',
-    narrative: `Die Gestalt lacht leise.
-
-„Ich bin du. Der Teil von dir, den du vergessen wolltest."
-
-Sie tritt noch näher.
-
-„Der Teil, der weiß, warum du wirklich hier bist."
-
-Sie streckt die Hand aus.
-
-„Komm. Ich zeige es dir."
-
-„Oder…"
-
-Die Gestalt deutet zum Fenster.
-
-„Du kannst weglaufen. Wie immer."
-
-„Deine Wahl."
-
-Die Hand bleibt ausgestreckt.
-
-Wartend.`,
     choices: [
       {
         id: 'take_hand_escape',
@@ -1156,13 +890,13 @@ Wartend.`,
       }
     ],
     state_notes: [
-      'Set-Piece Teil 2: Kern-Entscheidung Spiegel',
-      'CONDITION: take_hand_escape nur bei tickets_escape >= 2',
-      'CONDITION: take_hand_guilt nur bei tickets_guilt >= 3',
-      'Wichtige Konfrontation mit verdrängtem Selbst'
+      'Set-Piece: Spiegel-Selbst (merged encounter + choice)',
+      'Confrontation with repressed self, offer to see truth',
+      'CONDITION: take_hand_escape (tickets_escape >= 2)',
+      'CONDITION: take_hand_guilt (tickets_guilt >= 3)'
     ],
-    tags: ['reveal'],
-    atmosphere: 'danger'
+    tags: ['setup', 'reveal'],
+    atmosphere: 'mystic'
   },
 
   // ==========================================================================
@@ -1560,120 +1294,33 @@ Er besteht aus Tinte und Schatten.`
   // SET-PIECE 3: Angebot (Teil 1 - Annäherung)
   // ==========================================================================
 
-  'c6_s18_offer_approach': {
-    id: 'c6_s18_offer_approach',
+  'c6_s18_offer': {
+    id: 'c6_s18_offer',
     chapter: 6,
-    title: 'Das Angebot - Annäherung',
+    title: 'Das Angebot',
     narrative: `Der Schaffner steht vor dir.
 
-Sein Gesicht ist… anders.
+Sein Gesicht ist… anders. Weicher. Fast… menschlich.
 
-Weicher. Fast… menschlich.
+„Du hast viel gesehen," sagt er leise. „Viel verstanden."
 
-„Du hast viel gesehen," sagt er leise.
+Er setzt sich dir gegenüber. „Ich kann dir… etwas anbieten. Ein Angebot. Nur für dich."
 
-„Viel verstanden."
+Er beugt sich vor. „Du kannst gehen. Jetzt. An der nächsten Station. Mit allen Erinnerungen. Allen Antworten."
 
-Er setzt sich dir gegenüber.
+„Aber…" Seine Augen fixieren dich. „Du kannst niemals zurückkommen."
 
-„Ich kann dir… etwas anbieten."
+---
 
-Eine Pause.
+Der Schaffner lächelt. „Der Preis? Du musst alles dalassen. Alles, was du hier warst. Die Fahrt. Die Menschen. Die Entscheidungen."
 
-„Ein Angebot. Nur für dich."
+„Alles wird… vergessen sein. Für alle anderen."
 
-Er beugt sich vor.
+Er steht auf. „Aber du… du wirst dich erinnern. An alles."
 
-„Du kannst gehen. Jetzt. An der nächsten Station."
+„Die Frage ist:" Er dreht sich zur Tür.
 
-„Mit allen Erinnerungen. Allen Antworten."
-
-„Aber…"
-
-Seine Augen fixieren dich.
-
-„Du kannst niemals zurückkommen."`,
-    choices: [
-      {
-        id: 'ask_about_offer_high_attention',
-        label: '„Was ist der Preis?"',
-        condition: {
-          type: 'compare',
-          target: 'conductor_attention',
-          operator: '>=',
-          value: 3
-        },
-        effects: [
-          { type: 'inc', target: 'tickets_truth', value: 2 }
-        ],
-        next: 'c6_s19_offer_choice'
-      },
-      {
-        id: 'ask_simply',
-        label: '„Warum bietest du mir das an?"',
-        effects: [
-          { type: 'inc', target: 'tickets_truth', value: 1 }
-        ],
-        next: 'c6_s19_offer_choice'
-      },
-      {
-        id: 'refuse_immediately',
-        label: '„Nein."',
-        effects: [
-          { type: 'inc', target: 'tickets_escape', value: 1 }
-        ],
-        next: 'c6_s19_offer_choice'
-      }
-    ],
-    state_notes: [
-      'Set-Piece Teil 1: Angebot - Annäherung',
-      'CONDITION: ask_about_offer_high_attention nur bei conductor_attention >= 3',
-      'Schaffner macht Angebot',
-      'Vorbereitung auf finale Entscheidung'
-    ],
-    tags: ['setup'],
-    atmosphere: 'tense'
-  },
-
-  // ==========================================================================
-  // SET-PIECE 3: Angebot (Teil 2 - Entscheidung)
-  // ==========================================================================
-
-  'c6_s19_offer_choice': {
-    id: 'c6_s19_offer_choice',
-    chapter: 6,
-    title: 'Das Angebot - Entscheidung',
-    narrative: `Der Schaffner lächelt.
-
-„Der Preis?"
-
-Er lehnt sich zurück.
-
-„Du musst alles dalassen. Alles, was du hier warst."
-
-„Die Fahrt. Die Menschen. Die Entscheidungen."
-
-„Alles wird… vergessen sein."
-
-„Für alle anderen."
-
-Er steht auf.
-
-„Aber du… du wirst dich erinnern."
-
-„An alles."
-
-„Die Frage ist:"
-
-Er dreht sich zur Tür.
-
-„Willst du das?"
-
-„Erinnerung und Einsamkeit?"
-
-„Oder…"
-
-„Vergessen und Gemeinschaft?"`,
+„Willst du das? Erinnerung und Einsamkeit? Oder… Vergessen und Gemeinschaft?"`,
     choices: [
       {
         id: 'choose_memory_love',
@@ -1724,14 +1371,13 @@ Er dreht sich zur Tür.
       }
     ],
     state_notes: [
-      'Set-Piece Teil 2: Kern-Entscheidung Angebot',
-      'CONDITION: choose_memory_love nur bei tickets_love >= 2',
-      'CONDITION: choose_forget_escape nur bei tickets_escape >= 3',
-      'Zentrale philosophische Wahl',
-      'Beeinflusst Ending stark'
+      'Set-Piece: Das Angebot (merged approach + choice)',
+      'Conductor offers exit with memory vs staying with forgetting',
+      'CONDITION: choose_memory_love (tickets_love >= 2)',
+      'CONDITION: choose_forget_escape (tickets_escape >= 3)'
     ],
-    tags: ['reveal'],
-    atmosphere: 'danger'
+    tags: ['setup', 'reveal'],
+    atmosphere: 'tense'
   },
 
   // ==========================================================================
@@ -1953,140 +1599,55 @@ Und langsam… erinnerst du dich.`,
   // INTERLUDE 6: Zug verlangsamt
   // ==========================================================================
 
-  'c6_s23_train_slows': {
-    id: 'c6_s23_train_slows',
-    chapter: 6,
-    title: 'Verlangsamung',
-    narrative: `Der Zug wird langsamer.
-
-Spürbar langsamer.
-
-Das Rattern wird leiser.
-
-Die Vibration lässt nach.
-
-Dein Körper wird nach vorn gezogen, ein sanfter Druck, als würdest du gegen unsichtbares Wasser gehen. Der Boden klingt tiefer, dumpfer, jeder Schlag weiter auseinander.
-
-In der Scheibe spiegelt sich dein Atem, und die Spiegelung hinkt einen Wimpernschlag hinterher.
-
-Du spürst ein Kribbeln in den Handflächen, als wäre die Luft elektrisch. Für einen Moment glaubst du, dass der Zug gleich ganz stehen bleibt, und du hältst den Atem an.
-
-Das Licht draußen wird heller und kälter zugleich, als käme es durch dünnen Nebel. Du lehnst dich vor, die Stirn fast am Glas, und suchst die Kante des Bahnsteigs.
-
-Deine Knie fühlen sich weich an, aber du bleibst stehen.
-
-Du spürst… etwas.
-
-Eine Veränderung in der Luft.
-
-In der Zeit.
-
-In allem.
-
-Draußen… erscheint etwas.
-
-Nicht Dunkelheit diesmal.
-
-Licht.
-
-Schwach. Aber da.
-
-Ein Bahnsteig.
-
-Der letzte Bahnsteig.
-
-Er kommt näher.
-
-Immer näher.`,
-    choices: [
-      {
-        id: 'observe_platform',
-        label: 'Den Bahnsteig beobachten',
-        effects: [
-          { type: 'inc', target: 'tickets_truth', value: 1 }
-        ],
-        next: 'c6_s24_platform_ahead'
-      },
-      {
-        id: 'close_eyes_and_listen',
-        label: 'Die Augen schließen und lauschen',
-        condition: {
-          type: 'compare',
-          target: 'memory_drift',
-          operator: '>=',
-          value: 3
-        },
-        effects: [
-          { type: 'inc', target: 'memory_drift', value: 1 },
-          { type: 'inc', target: 'tickets_escape', value: 1 }
-        ],
-        next: 'c6_s24_platform_ahead'
-      }
-    ],
-    state_notes: [
-      'Interlude: Zug verlangsamt für letzte Station',
-      'Licht erscheint (Gegensatz zu Dunkelheit)',
-      'Bahnsteig wird sichtbar',
-      'CONDITION: close_eyes_and_listen bei memory_drift >= 3'
-    ],
-    atmosphere: 'tense'
-  },
-
-  // ==========================================================================
-  // STANDARD: Bahnsteig voraus
-  // ==========================================================================
-
-  'c6_s24_platform_ahead': {
-    id: 'c6_s24_platform_ahead',
+  'c6_s23_platform_ahead': {
+    id: 'c6_s23_platform_ahead',
     chapter: 6,
     title: 'Der letzte Bahnsteig',
-    narrative: `Der Bahnsteig ist… real.
+    narrative: `Der Zug wird langsamer. Spürbar langsamer.
 
-Nicht wie die anderen.
+Das Rattern wird leiser. Die Vibration lässt nach.
 
-Nicht verschwommen oder traumhaft.
+Dein Körper wird nach vorn gezogen. Du spürst ein Kribbeln in den Handflächen, als wäre die Luft elektrisch.
 
-Real.
+Das Licht draußen wird heller und kälter zugleich. Du lehnst dich vor, die Stirn fast am Glas.
 
-Fest.
+Du spürst… etwas. Eine Veränderung in der Luft. In der Zeit. In allem.
 
-Da.
+---
 
-Du siehst… Menschen.
+Draußen erscheint ein Bahnsteig. Der letzte Bahnsteig.
 
-Schemen. Gestalten.
+Er ist… real. Nicht wie die anderen. Nicht verschwommen oder traumhaft. Real. Fest. Da.
 
-Sie warten.
+Du siehst… Menschen. Schemen. Gestalten. Sie warten.
 
-Auf dich?
+Auf dich? Auf den Zug?
 
-Auf den Zug?
+Du erkennst niemanden. Aber… da ist ein Gefühl. Von Vertrautheit. Von… Heimkehr.
 
-Du erkennst niemanden.
-
-Aber… da ist ein Gefühl.
-
-Von Vertrautheit.
-
-Von… Heimkehr.
-
-Oder von Ende.
-
-Oder beides.`,
+Oder von Ende. Oder beides.`,
     narrative_variants: [
       {
         condition: { type: 'bool', target: 'has_tag19', value: true },
-        narrative: `Der Bahnsteig ist… real.
+        narrative: `Der Zug wird langsamer. Spürbar langsamer.
 
-Der Schlüsselanhänger in deiner Hand vibriert jetzt mit einer solchen Intensität, dass er fast ein Geräusch macht – eine leise, summende Melodie, die dich an Sonntage in einem sonnendurchfluteten Zimmer erinnert.
+Der Schlüsselanhänger in deiner Hand erwacht. Ein Kribbeln, dann ein Vibrieren, das sich durch deinen ganzen Körper zieht.
 
-Die Schemen und Gestalten auf dem Bahnsteig werden durch den Anhänger schärfer gezeichnet. Sein rhythmisches Pochen wirkt wie ein Herzschlag für die Welt da draußen, die darauf wartet, wieder zum Leben zu erwachen.
+Das Licht draußen wird heller. Du lehnst dich vor, die Stirn fast am Glas.
+
+---
+
+Draußen erscheint ein Bahnsteig. Der letzte Bahnsteig.
+
+Der Anhänger vibriert jetzt mit einer solchen Intensität, dass er fast ein Geräusch macht – eine leise, summende Melodie.
+
+Die Schemen und Gestalten auf dem Bahnsteig werden durch den Anhänger schärfer gezeichnet. Sein rhythmisches Pochen wirkt wie ein Herzschlag für die Welt da draußen.
 
 Es ist nicht nur ein Bahnsteig. Es ist das Ende einer Reise, die viel zu lange gedauert hat.
 
 Du spürst durch das Metall eine tiefe, unerschütterliche Vertrautheit. Ein Gefühl von Heimkehr, so stark, dass es die Tränen in deine Augen treibt.
 
-Der Anhänger hat dich hierher geführt. Er ist ruhig geworden jetzt, eine sanfte, stetige Wärme.
+Der Anhänger ist ruhig geworden jetzt. Eine sanfte, stetige Wärme.
 
 Du bist bereit.`
       }
@@ -2118,9 +1679,9 @@ Du bist bereit.`
       }
     ],
     state_notes: [
-      'Bahnsteig erscheint - real diesmal',
-      'Gestalten warten (unerkennbar)',
-      'Gefühl von Heimkehr oder Ende'
+      'Transition: Train arrival at final station (merged s23 + s24)',
+      'Train slows, platform appears - real this time',
+      'Figures waiting, feeling of homecoming or ending'
     ],
     atmosphere: 'mystic'
   },
