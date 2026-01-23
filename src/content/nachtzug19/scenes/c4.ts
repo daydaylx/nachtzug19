@@ -382,6 +382,26 @@ Du hast diesen Anhänger schon einmal gefunden. Und verloren. Und wiedergefunden
 Du bist nicht nur ein Passagier. Du bist Teil des Wracks.
 
 „Tag 19," flüsterst du. Und du weißt, dass es wahr ist.`,
+    narrative_variants: [
+      {
+        condition: { type: 'bool', target: 'memory_search_active', value: true },
+        narrative: `Du ziehst es aus dem Schutt.
+
+Ein Schlüsselanhänger. Messing. Schwer.
+
+Die Zahl ist tief eingraviert: **19**.
+
+Als deine Haut das Metall berührt, stoppt der Lärm. Die Welt friert ein.
+
+Ein Bild blitzt auf. Emma. Am Bahnsteig. Sie lächelt. „Fahr vorsichtig," sagt sie. „Komm zurück."
+
+Dann das Datum. 19. September. 1973.
+
+Du hast diesen Anhänger schon einmal gefunden. Und verloren. Und wiedergefunden.
+
+„Tag 19," flüsterst du. Das war... vor dem Unfall.`
+      }
+    ],
     choices: [
       {
         id: 'take_tag',
@@ -389,7 +409,8 @@ Du bist nicht nur ein Passagier. Du bist Teil des Wracks.
         effects: [
           { type: 'set', target: 'has_tag19', value: true },
           { type: 'inc', target: 'tickets_truth', value: 2 },
-          { type: 'inc', target: 'conductor_attention', value: 1 }
+          { type: 'inc', target: 'conductor_attention', value: 1 },
+          { type: 'set', target: 'emma_memory_unlocked', value: true }
         ],
         next: 'c4_s06_name_loss'
       }

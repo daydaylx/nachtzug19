@@ -1171,6 +1171,34 @@ Ein Name. Ein Gesicht.
 Fast greifbar.
 
 Aber nicht ganz.`,
+    narrative_variants: [
+      {
+        condition: { type: 'bool', target: 'emma_memory_unlocked', value: true },
+        narrative: `Plötzlich – eine Erinnerung.
+
+Klar und scharf.
+
+Du bist an einem Bahnhof. Bahnhof Westend. Herbst 1973.
+
+Emma steht vor dir. Braune Augen. Graue Jacke. Sie lächelt, aber ihre Augen sind ängstlich.
+
+„Fahr vorsichtig," sagt sie. „Komm zurück."
+
+Du nimmst ihre Hand. Warm. Real.
+
+„Ich verspreche es."
+
+Dann ein Pfiff. Der Zug – NACHTZUG 19 – fährt ein.
+
+Du steigst ein.
+
+Und dann... nichts.
+
+Die Erinnerung endet. Aber jetzt weißt du: Du hast sie nie wiedergesehen.
+
+Emma. Du warst auf dem Weg zu ihr. Und der Zug... ist nie angekommen.`
+      }
+    ],
     choices: [
       {
         id: 'chase_memory',
