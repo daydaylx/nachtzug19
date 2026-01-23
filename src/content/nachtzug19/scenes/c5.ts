@@ -236,7 +236,7 @@ Seine Stimme bricht.
           { type: 'inc', target: 'tickets_love', value: 1 },
           { type: 'inc', target: 'rel_sleepless', value: 1 }
         ],
-        next: 'c5_s06_abteil7_approach'
+        next: 'c5_s06_abteil7'
       },
       {
         id: 'tell_truth',
@@ -245,7 +245,7 @@ Seine Stimme bricht.
           { type: 'inc', target: 'tickets_truth', value: 1 },
           { type: 'dec', target: 'rel_sleepless', value: 1 }
         ],
-        next: 'c5_s06_abteil7_approach'
+        next: 'c5_s06_abteil7'
       },
       {
         id: 'leave_quietly',
@@ -254,7 +254,7 @@ Seine Stimme bricht.
           { type: 'inc', target: 'tickets_escape', value: 1 },
           { type: 'dec', target: 'rel_sleepless', value: 2 }
         ],
-        next: 'c5_s06_abteil7_approach'
+        next: 'c5_s06_abteil7'
       },
       {
         id: 'warn_about_presence',
@@ -269,7 +269,7 @@ Seine Stimme bricht.
           { type: 'inc', target: 'tickets_love', value: 1 },
           { type: 'inc', target: 'rel_sleepless', value: 1 }
         ],
-        next: 'c5_s06_abteil7_approach'
+        next: 'c5_s06_abteil7'
       }
     ],
     state_notes: [
@@ -284,10 +284,10 @@ Seine Stimme bricht.
   // SET-PIECE 1: Abteil 7 (Teil 1 - Annäherung)
   // ==========================================================================
 
-  'c5_s06_abteil7_approach': {
-    id: 'c5_s06_abteil7_approach',
+  'c5_s06_abteil7': {
+    id: 'c5_s06_abteil7',
     chapter: 5,
-    title: 'Abteil 7 - Annäherung',
+    title: 'Abteil 7',
     narrative: `Du gehst den Gang entlang.
 
 Und dann siehst du es:
@@ -313,22 +313,13 @@ Du könntest weitergehen.
 Was tust du?`,
     choices: [
       {
-        id: 'open_door',
-        label: 'Die Tür öffnen',
-        effects: [
-          { type: 'inc', target: 'tickets_truth', value: 2 },
-          { type: 'inc', target: 'conductor_attention', value: 2 }
-        ],
-        next: 'c5_s07_abteil7_inside'
-      },
-      {
         id: 'walk_past',
         label: 'Vorbeigehen',
         effects: [
           { type: 'inc', target: 'tickets_escape', value: 1 },
           { type: 'dec', target: 'conductor_attention', value: 1 }
         ],
-        next: 'c5_s08_abteil7_aftermath'
+        next: 'c5_s09_train_shifts'
       },
       {
         id: 'protect_sleepless',
@@ -343,10 +334,35 @@ Was tust du?`,
           { type: 'inc', target: 'tickets_love', value: 1 },
           { type: 'inc', target: 'rel_sleepless', value: 1 }
         ],
+        next: 'c5_s09_train_shifts'
+      },
+      {
+        id: 'open_and_examine',
+        label: 'Die Tür öffnen und die Namen ansehen',
+        condition: {
+          type: 'compare',
+          target: 'tickets_truth',
+          operator: '>=',
+          value: 3
+        },
+        effects: [
+          { type: 'inc', target: 'tickets_truth', value: 4 },
+          { type: 'inc', target: 'conductor_attention', value: 2 },
+          { type: 'inc', target: 'memory_drift', value: 2 }
+        ],
         next: 'c5_s08_abteil7_aftermath'
       },
       {
-        id: 'open_door_for_truth',
+        id: 'open_door',
+        label: 'Die Tür öffnen',
+        effects: [
+          { type: 'inc', target: 'tickets_truth', value: 2 },
+          { type: 'inc', target: 'conductor_attention', value: 2 }
+        ],
+        next: 'c5_s08_abteil7_aftermath'
+      },
+      {
+        id: 'open_for_answers',
         label: 'Öffnen – für die Antworten',
         condition: {
           type: 'compare',
@@ -355,98 +371,23 @@ Was tust du?`,
           value: 9
         },
         effects: [
-          { type: 'inc', target: 'tickets_truth', value: 2 },
-          { type: 'inc', target: 'conductor_attention', value: 3 }
-        ],
-        next: 'c5_s07_abteil7_inside'
-      }
-    ],
-    state_notes: [
-      'Set-Piece Teil 1: Abteil 7',
-      'open_door erhöht conductor_attention stark (+2)',
-      'Wichtige Weichenstellung',
-      'CONDITION: protect_sleepless (rel_sleepless >= 2)',
-      'CONDITION: open_door_for_truth (tickets_truth >= 9, hohe attention)'
-    ],
-    tags: ['setup'],
-    atmosphere: 'tense'
-  },
-
-  // ==========================================================================
-  // SET-PIECE 1: Abteil 7 (Teil 2 - Innen)
-  // ==========================================================================
-
-  'c5_s07_abteil7_inside': {
-    id: 'c5_s07_abteil7_inside',
-    chapter: 5,
-    title: 'Abteil 7 - Innen',
-    narrative: `Du öffnest die Tür.
-
-Das Abteil ist… leer.
-
-Kein Passagier. Keine Sitze. Keine Fenster.
-
-Nur vier kahle Wände.
-
-Und eine Uhr.
-
-Eine alte Bahnhofsuhr, an der Wand. Die Zeiger bewegen sich rückwärts.
-
-Du starrst sie an.
-
-Und dann siehst du es:
-
-Auf dem Boden. Eingraviert.
-
-Namen. Dutzende von Namen.
-
-Du erkennst keinen davon.
-
-Aber da ist… Platz.
-
-Platz für mehr.`,
-    choices: [
-      {
-        id: 'read_names_truth',
-        label: 'Die Namen genau ansehen',
-        condition: {
-          type: 'compare',
-          target: 'tickets_truth',
-          operator: '>=',
-          value: 3
-        },
-        effects: [
-          { type: 'inc', target: 'tickets_truth', value: 2 },
+          { type: 'inc', target: 'tickets_truth', value: 4 },
+          { type: 'inc', target: 'conductor_attention', value: 3 },
           { type: 'inc', target: 'memory_drift', value: 2 }
         ],
         next: 'c5_s08_abteil7_aftermath'
-      },
-      {
-        id: 'leave_immediately',
-        label: 'Sofort das Abteil verlassen',
-        effects: [
-          { type: 'inc', target: 'tickets_escape', value: 2 },
-          { type: 'inc', target: 'conductor_attention', value: 1 }
-        ],
-        next: 'c5_s08_abteil7_aftermath'
-      },
-      {
-        id: 'touch_wall',
-        label: 'Die Wand berühren',
-        effects: [
-          { type: 'inc', target: 'tickets_guilt', value: 1 },
-          { type: 'inc', target: 'memory_drift', value: 1 }
-        ],
-        next: 'c5_s08_abteil7_aftermath'
       }
     ],
     state_notes: [
-      'Set-Piece Teil 2: Enthüllung Abteil 7',
-      'CONDITION: read_names_truth nur bei tickets_truth >= 3',
-      'memory_drift steigt (Hinweis auf Natur des Zuges)'
+      'Set-Piece: Abteil 7 (merged approach + inside)',
+      'Entering increases conductor_attention (+2 or +3)',
+      'Skip choices route to c5_s09 (bypass aftermath)',
+      'CONDITION: open_and_examine (tickets_truth >= 3)',
+      'CONDITION: protect_sleepless (rel_sleepless >= 2)',
+      'CONDITION: open_for_answers (tickets_truth >= 9, Easter egg)'
     ],
-    tags: ['reveal'],
-    atmosphere: 'mystic'
+    tags: ['setup', 'reveal'],
+    atmosphere: 'tense'
   },
 
   // ==========================================================================
