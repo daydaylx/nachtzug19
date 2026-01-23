@@ -1300,120 +1300,33 @@ Er besteht aus Tinte und Schatten.`
   // SET-PIECE 3: Angebot (Teil 1 - Annäherung)
   // ==========================================================================
 
-  'c6_s18_offer_approach': {
-    id: 'c6_s18_offer_approach',
+  'c6_s18_offer': {
+    id: 'c6_s18_offer',
     chapter: 6,
-    title: 'Das Angebot - Annäherung',
+    title: 'Das Angebot',
     narrative: `Der Schaffner steht vor dir.
 
-Sein Gesicht ist… anders.
+Sein Gesicht ist… anders. Weicher. Fast… menschlich.
 
-Weicher. Fast… menschlich.
+„Du hast viel gesehen," sagt er leise. „Viel verstanden."
 
-„Du hast viel gesehen," sagt er leise.
+Er setzt sich dir gegenüber. „Ich kann dir… etwas anbieten. Ein Angebot. Nur für dich."
 
-„Viel verstanden."
+Er beugt sich vor. „Du kannst gehen. Jetzt. An der nächsten Station. Mit allen Erinnerungen. Allen Antworten."
 
-Er setzt sich dir gegenüber.
+„Aber…" Seine Augen fixieren dich. „Du kannst niemals zurückkommen."
 
-„Ich kann dir… etwas anbieten."
+---
 
-Eine Pause.
+Der Schaffner lächelt. „Der Preis? Du musst alles dalassen. Alles, was du hier warst. Die Fahrt. Die Menschen. Die Entscheidungen."
 
-„Ein Angebot. Nur für dich."
+„Alles wird… vergessen sein. Für alle anderen."
 
-Er beugt sich vor.
+Er steht auf. „Aber du… du wirst dich erinnern. An alles."
 
-„Du kannst gehen. Jetzt. An der nächsten Station."
+„Die Frage ist:" Er dreht sich zur Tür.
 
-„Mit allen Erinnerungen. Allen Antworten."
-
-„Aber…"
-
-Seine Augen fixieren dich.
-
-„Du kannst niemals zurückkommen."`,
-    choices: [
-      {
-        id: 'ask_about_offer_high_attention',
-        label: '„Was ist der Preis?"',
-        condition: {
-          type: 'compare',
-          target: 'conductor_attention',
-          operator: '>=',
-          value: 3
-        },
-        effects: [
-          { type: 'inc', target: 'tickets_truth', value: 2 }
-        ],
-        next: 'c6_s19_offer_choice'
-      },
-      {
-        id: 'ask_simply',
-        label: '„Warum bietest du mir das an?"',
-        effects: [
-          { type: 'inc', target: 'tickets_truth', value: 1 }
-        ],
-        next: 'c6_s19_offer_choice'
-      },
-      {
-        id: 'refuse_immediately',
-        label: '„Nein."',
-        effects: [
-          { type: 'inc', target: 'tickets_escape', value: 1 }
-        ],
-        next: 'c6_s19_offer_choice'
-      }
-    ],
-    state_notes: [
-      'Set-Piece Teil 1: Angebot - Annäherung',
-      'CONDITION: ask_about_offer_high_attention nur bei conductor_attention >= 3',
-      'Schaffner macht Angebot',
-      'Vorbereitung auf finale Entscheidung'
-    ],
-    tags: ['setup'],
-    atmosphere: 'tense'
-  },
-
-  // ==========================================================================
-  // SET-PIECE 3: Angebot (Teil 2 - Entscheidung)
-  // ==========================================================================
-
-  'c6_s19_offer_choice': {
-    id: 'c6_s19_offer_choice',
-    chapter: 6,
-    title: 'Das Angebot - Entscheidung',
-    narrative: `Der Schaffner lächelt.
-
-„Der Preis?"
-
-Er lehnt sich zurück.
-
-„Du musst alles dalassen. Alles, was du hier warst."
-
-„Die Fahrt. Die Menschen. Die Entscheidungen."
-
-„Alles wird… vergessen sein."
-
-„Für alle anderen."
-
-Er steht auf.
-
-„Aber du… du wirst dich erinnern."
-
-„An alles."
-
-„Die Frage ist:"
-
-Er dreht sich zur Tür.
-
-„Willst du das?"
-
-„Erinnerung und Einsamkeit?"
-
-„Oder…"
-
-„Vergessen und Gemeinschaft?"`,
+„Willst du das? Erinnerung und Einsamkeit? Oder… Vergessen und Gemeinschaft?"`,
     choices: [
       {
         id: 'choose_memory_love',
@@ -1464,14 +1377,13 @@ Er dreht sich zur Tür.
       }
     ],
     state_notes: [
-      'Set-Piece Teil 2: Kern-Entscheidung Angebot',
-      'CONDITION: choose_memory_love nur bei tickets_love >= 2',
-      'CONDITION: choose_forget_escape nur bei tickets_escape >= 3',
-      'Zentrale philosophische Wahl',
-      'Beeinflusst Ending stark'
+      'Set-Piece: Das Angebot (merged approach + choice)',
+      'Conductor offers exit with memory vs staying with forgetting',
+      'CONDITION: choose_memory_love (tickets_love >= 2)',
+      'CONDITION: choose_forget_escape (tickets_escape >= 3)'
     ],
-    tags: ['reveal'],
-    atmosphere: 'danger'
+    tags: ['setup', 'reveal'],
+    atmosphere: 'tense'
   },
 
   // ==========================================================================
