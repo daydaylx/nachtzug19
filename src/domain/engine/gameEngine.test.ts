@@ -294,8 +294,6 @@ describe('Regression Guard - No Ticket Threshold > Clamp in Story', () => {
   const ALLOWED_EASTER_EGGS = new Set([
     'c5_s06_abteil7:open_for_answers',           // tickets_truth >= 9
     'c5_s08_abteil7_aftermath:write_down_names', // tickets_truth >= 10
-    'c5_s09_train_shifts:understand_skip',       // tickets_truth >= 11
-    'c5_s09_train_shifts:use_skip_chance',       // tickets_escape >= 8
     'c5_s14_control3_approach:mention_fragment'  // tickets_truth >= 12
   ]);
 
@@ -334,9 +332,9 @@ describe('Regression Guard - No Ticket Threshold > Clamp in Story', () => {
     expect(foundEasterEggs.length).toBe(ALLOWED_EASTER_EGGS.size);
   });
 
-  it('should have exactly 5 documented Easter egg choices (impossible thresholds)', () => {
-    // This test documents the design decision: 5 choices are intentionally unreachable
-    expect(ALLOWED_EASTER_EGGS.size).toBe(5);
+  it('should have exactly 3 documented Easter egg choices (impossible thresholds)', () => {
+    // This test documents the design decision: 3 choices are intentionally unreachable
+    expect(ALLOWED_EASTER_EGGS.size).toBe(3);
   });
 
   function checkConditionForViolation(

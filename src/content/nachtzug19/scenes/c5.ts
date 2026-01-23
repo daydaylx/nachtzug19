@@ -319,7 +319,7 @@ Was tust du?`,
           { type: 'inc', target: 'tickets_escape', value: 1 },
           { type: 'dec', target: 'conductor_attention', value: 1 }
         ],
-        next: 'c5_s09_train_shifts'
+        next: 'c5_s10_boy_reunion'
       },
       {
         id: 'protect_sleepless',
@@ -334,7 +334,7 @@ Was tust du?`,
           { type: 'inc', target: 'tickets_love', value: 1 },
           { type: 'inc', target: 'rel_sleepless', value: 1 }
         ],
-        next: 'c5_s09_train_shifts'
+        next: 'c5_s10_boy_reunion'
       },
       {
         id: 'open_and_examine',
@@ -427,7 +427,7 @@ Der Zug rattert weiter.`,
           { type: 'inc', target: 'tickets_truth', value: 1 },
           { type: 'inc', target: 'memory_drift', value: 1 }
         ],
-        next: 'c5_s09_train_shifts'
+        next: 'c5_s10_boy_reunion'
       },
       {
         id: 'let_it_go',
@@ -436,7 +436,7 @@ Der Zug rattert weiter.`,
           { type: 'inc', target: 'tickets_escape', value: 1 },
           { type: 'dec', target: 'memory_drift', value: 1 }
         ],
-        next: 'c5_s09_train_shifts'
+        next: 'c5_s10_boy_reunion'
       },
       {
         id: 'write_down_names',
@@ -451,7 +451,7 @@ Der Zug rattert weiter.`,
           { type: 'inc', target: 'tickets_truth', value: 1 },
           { type: 'inc', target: 'tickets_guilt', value: 1 }
         ],
-        next: 'c5_s09_train_shifts'
+        next: 'c5_s10_boy_reunion'
       },
       {
         id: 'ponder_the_wall',
@@ -466,162 +466,13 @@ Der Zug rattert weiter.`,
           { type: 'inc', target: 'tickets_guilt', value: 2 },
           { type: 'inc', target: 'memory_drift', value: 1 }
         ],
-        next: 'c5_s09_train_shifts'
+        next: 'c5_s10_boy_reunion'
       }
     ],
     state_notes: [
       'Set-Piece Teil 3: Nachwirkungen',
       'CONDITION: write_down_names (tickets_truth >= 10)',
       'CONDITION: ponder_the_wall (tickets_guilt >= 1, Callback auf s07)'
-    ],
-    atmosphere: 'tense'
-  },
-
-  // ==========================================================================
-  // INTERLUDE 3: Zug bewegt sich
-  // ==========================================================================
-
-  'c5_s09_train_shifts': {
-    id: 'c5_s09_train_shifts',
-    chapter: 5,
-    title: 'Der Zug bewegt sich',
-    narrative: `Der Zug schwankt.
-
-Nicht wie zuvor. Nicht das gleichmäßige Schaukeln.
-
-Diesmal ruckartig. Als würde er… zögern.
-
-Du greifst nach der Wand, um das Gleichgewicht zu halten.
-
-Draußen – war da gerade… etwas?
-
-Ein Licht? Eine Bewegung?
-
-Du presst dein Gesicht ans Fenster.
-
-Nichts. Nur Dunkelheit.
-
-Aber für einen Moment hattest du das Gefühl, etwas zu sehen.
-
-Eine Station, die ihr nicht angefahren habt.
-
-Ein Ort, den ihr übersprungen haben.
-
-Der Zug beschleunigt wieder.`,
-    narrative_variants: [
-      {
-        min_drift: 3,
-        narrative: `Der Zug schwankt.
-
-Nicht wie zuvor. Nicht das gleichmäßige Schaukeln.
-
-Diesmal ruckartig. Als würde er… bremsen.
-
-Du greifst nach der Wand, um das Gleichgewicht zu halten.
-
-Draußen – war da gerade… etwas?
-
-Ein rotes Licht? Eine Bewegung?
-
-Du presst dein Gesicht ans Fenster.
-
-Nichts. Nur Dunkelheit.
-
-Aber für einen Moment hattest du das Gefühl, etwas zu sehen.
-
-Eine Station, die ihr nicht angefahren habt.
-
-Ein Ort, den ihr ausgelassen habt.
-
-Der Zug beschleunigt wieder.`
-      },
-      {
-        min_drift: 5,
-        narrative: `Der Zug schwankt.
-
-Nicht wie zuvor. Nicht das gleichmäßige Schaukeln.
-
-Diesmal seitlich. Als würde er… kippen.
-
-Du greifst nach der Wand, um das Gleichgewicht zu halten.
-
-Draußen – war da gerade… etwas?
-
-Ein Licht? Eine Bewegung?
-
-Du presst dein Gesicht ans Fenster.
-
-Nichts. Nur Dunkelheit.
-
-Aber für einen Moment hattest du das Gefühl, etwas zu sehen.
-
-Einen Bahnsteig mit offenen Türen.
-
-Ein Ort, an dem ihr nie gehalten habt.
-
-Der Zug beschleunigt wieder.`
-      }
-    ],
-    choices: [
-      {
-        id: 'continue_on',
-        label: 'Weitergehen',
-        effects: [
-          { type: 'inc', target: 'memory_drift', value: 1 }
-        ],
-        next: 'c5_s10_boy_reunion'
-      },
-      {
-        id: 'press_to_window',
-        label: 'Am Fenster bleiben',
-        condition: {
-          type: 'compare',
-          target: 'memory_drift',
-          operator: '>=',
-          value: 2
-        },
-        effects: [
-          { type: 'inc', target: 'tickets_truth', value: 1 },
-          { type: 'inc', target: 'memory_drift', value: 1 }
-        ],
-        next: 'c5_s10_boy_reunion'
-      },
-      {
-        id: 'understand_skip',
-        label: 'Die übersprungene Station verstehen',
-        condition: {
-          type: 'compare',
-          target: 'tickets_truth',
-          operator: '>=',
-          value: 11
-        },
-        effects: [
-          { type: 'inc', target: 'tickets_truth', value: 1 },
-          { type: 'inc', target: 'conductor_attention', value: 1 }
-        ],
-        next: 'c5_s10_boy_reunion'
-      },
-      {
-        id: 'use_skip_chance',
-        label: 'Den Sprung als Chance nutzen',
-        condition: {
-          type: 'compare',
-          target: 'tickets_escape',
-          operator: '>=',
-          value: 8
-        },
-        effects: [
-          { type: 'inc', target: 'tickets_escape', value: 1 },
-          { type: 'dec', target: 'memory_drift', value: 1 }
-        ],
-        next: 'c5_s10_boy_reunion'
-      }
-    ],
-    state_notes: [
-      'Interlude: Zug wird unberechenbarer',
-      'memory_drift steigt (uebersprungene Station fuehlt sich falsch an)',
-      'CONDITION: understand_skip if tickets_truth >= 11 (c5_s08_abteil7_aftermath remembering)',
-      'CONDITION: use_skip_chance if tickets_escape >= 8 (c5_s08_abteil7_aftermath letting go)'
     ],
     atmosphere: 'tense'
   },
