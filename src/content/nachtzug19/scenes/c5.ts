@@ -179,7 +179,7 @@ Ein kühler Luftzug streicht über deine Stirn, wie eine unsichtbare Hand. (Kons
         id: 'hold_ground',
         label: 'Stehenbleiben',
         effects: [],
-        next: 'c5_s04_lights_flicker_b'
+        next: 'c5_s05_sleepless_final'
       },
       {
         id: 'press_on',
@@ -187,88 +187,12 @@ Ein kühler Luftzug streicht über deine Stirn, wie eine unsichtbare Hand. (Kons
         effects: [
           { type: 'inc', target: 'tickets_escape', value: 1 }
         ],
-        next: 'c5_s04_lights_flicker_b'
+        next: 'c5_s05_sleepless_final'
       }
     ],
     state_notes: [
       'Interlude Part 1: Desorientierung',
       'Split für Pacing'
-    ],
-    atmosphere: 'danger'
-  },
-
-  // ==========================================================================
-  // INTERLUDE 2: Lichter flackern (Split Part 2)
-  // ==========================================================================
-
-  'c5_s04_lights_flicker_b': {
-    id: 'c5_s04_lights_flicker_b',
-    chapter: 5,
-    title: 'Dunkelheit',
-    narrative: `Das Flackern brennt sich als grünes Nachbild in deine Augen. (Hook)
-
-Dunkelheit. Licht. Dunkelheit. In den Momenten der Finsternis hörst du etwas – Schritte, oder das Klicken einer Tür, die nicht da sein sollte. Wenn das Licht zurückkehrt, ist der Gang leer, aber die Atmosphäre hat sich verschoben. (Detail)
-
-Etwas bewegt sich im Zug, das nicht gesehen werden will. (Konsequenz)`,
-    choices: [
-      {
-        id: 'investigate',
-        label: 'Dem Geräusch nachgehen',
-        effects: [
-          { type: 'inc', target: 'tickets_truth', value: 1 },
-          { type: 'inc', target: 'conductor_attention', value: 1 }
-        ],
-        next: 'c5_s05_sleepless_final'
-      },
-      {
-        id: 'confront_comp7_questions',
-        label: 'An Comp7s Worte denken',
-        condition: {
-          type: 'compare',
-          target: 'rel_comp7',
-          operator: '>=',
-          value: 3
-        },
-        effects: [
-          { type: 'inc', target: 'tickets_love', value: 1 },
-          { type: 'inc', target: 'rel_comp7', value: 1 }
-        ],
-        next: 'c5_s05_sleepless_final'
-      },
-      {
-        id: 'analyze_abteil7_clue',
-        label: 'Hinweise deuten',
-        condition: {
-          type: 'compare',
-          target: 'tickets_truth',
-          operator: '>=',
-          value: 8
-        },
-        effects: [
-          { type: 'inc', target: 'tickets_truth', value: 1 },
-          { type: 'inc', target: 'memory_drift', value: 1 }
-        ],
-        next: 'c5_s05_sleepless_final'
-      },
-      {
-        id: 'hide_from_presence',
-        label: 'Verstecken',
-        condition: {
-          type: 'compare',
-          target: 'tickets_escape',
-          operator: '>=',
-          value: 5
-        },
-        effects: [
-          { type: 'inc', target: 'tickets_escape', value: 1 },
-          { type: 'dec', target: 'conductor_attention', value: 1 }
-        ],
-        next: 'c5_s05_sleepless_final'
-      }
-    ],
-    state_notes: [
-      'Interlude Part 2: Die Präsenz',
-      'Vorbereitung auf Abteil 7'
     ],
     atmosphere: 'danger'
   },
