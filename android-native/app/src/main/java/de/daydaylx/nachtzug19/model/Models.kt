@@ -55,7 +55,11 @@ enum class EffectTarget {
   @SerialName("rel_sleepless") RelSleepless,
   @SerialName("has_recorder") HasRecorder,
   @SerialName("has_tag19") HasTag19,
+  @SerialName("has_ticket") HasTicket,
   @SerialName("photo_anomaly") PhotoAnomaly,
+  @SerialName("played_recorder") PlayedRecorder,
+  @SerialName("memory_search_active") MemorySearchActive,
+  @SerialName("emma_memory_unlocked") EmmaMemoryUnlocked,
   @SerialName("chapter_index") ChapterIndex,
   @SerialName("station_count") StationCount
 }
@@ -104,7 +108,11 @@ data class Relations(
 data class Items(
   val has_recorder: Boolean,
   val has_tag19: Boolean,
-  val photo_anomaly: Boolean
+  val has_ticket: Boolean,
+  val photo_anomaly: Boolean,
+  val played_recorder: Boolean,
+  val memory_search_active: Boolean,
+  val emma_memory_unlocked: Boolean
 )
 
 @Serializable
@@ -306,7 +314,15 @@ fun createInitialState(startSceneId: String): GameState {
     tickets = Tickets(tickets_truth = 0, tickets_escape = 0, tickets_guilt = 0, tickets_love = 0),
     pressure = Pressure(conductor_attention = 0, memory_drift = 0),
     relations = Relations(rel_comp7 = 0, rel_boy = 0, rel_sleepless = 0),
-    items = Items(has_recorder = false, has_tag19 = false, photo_anomaly = false),
+    items = Items(
+      has_recorder = false,
+      has_tag19 = false,
+      has_ticket = false,
+      photo_anomaly = false,
+      played_recorder = false,
+      memory_search_active = false,
+      emma_memory_unlocked = false
+    ),
     current_scene_id = startSceneId,
     visited_scene_ids = emptyList(),
     chapter_index = 1,

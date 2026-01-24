@@ -35,7 +35,7 @@ const KNOWN_EFFECT_TARGETS: Set<EffectTarget> = new Set([
   // Relations
   'rel_comp7', 'rel_boy', 'rel_sleepless',
   // Items
-  'has_recorder', 'has_tag19', 'has_ticket', 'photo_anomaly', 'played_recorder', 'memory_search_active',
+  'has_recorder', 'has_tag19', 'has_ticket', 'photo_anomaly', 'played_recorder', 'memory_search_active', 'emma_memory_unlocked',
   // Meta
   'chapter_index', 'station_count'
 ]);

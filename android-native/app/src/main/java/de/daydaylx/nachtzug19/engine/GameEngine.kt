@@ -51,19 +51,19 @@ private fun autoClamp(state: GameState): GameState {
       empathie = state.stats.empathie.coerceIn(0, 10)
     ),
     tickets = state.tickets.copy(
-      tickets_truth = state.tickets.tickets_truth.coerceIn(0, 5),
-      tickets_escape = state.tickets.tickets_escape.coerceIn(0, 5),
-      tickets_guilt = state.tickets.tickets_guilt.coerceIn(0, 5),
-      tickets_love = state.tickets.tickets_love.coerceIn(0, 5)
+      tickets_truth = state.tickets.tickets_truth.coerceIn(0, 50),
+      tickets_escape = state.tickets.tickets_escape.coerceIn(0, 50),
+      tickets_guilt = state.tickets.tickets_guilt.coerceIn(0, 50),
+      tickets_love = state.tickets.tickets_love.coerceIn(0, 50)
     ),
     pressure = state.pressure.copy(
       conductor_attention = state.pressure.conductor_attention.coerceIn(0, 6),
       memory_drift = state.pressure.memory_drift.coerceIn(0, 6)
     ),
     relations = state.relations.copy(
-      rel_comp7 = state.relations.rel_comp7.coerceIn(-2, 4),
-      rel_boy = state.relations.rel_boy.coerceIn(-2, 3),
-      rel_sleepless = state.relations.rel_sleepless.coerceIn(-2, 3)
+      rel_comp7 = state.relations.rel_comp7.coerceIn(-2, 10),
+      rel_boy = state.relations.rel_boy.coerceIn(-2, 10),
+      rel_sleepless = state.relations.rel_sleepless.coerceIn(-2, 10)
     )
   )
 }
@@ -233,7 +233,11 @@ private fun getStateValue(state: GameState, target: EffectTarget): Any {
     EffectTarget.RelSleepless -> state.relations.rel_sleepless
     EffectTarget.HasRecorder -> state.items.has_recorder
     EffectTarget.HasTag19 -> state.items.has_tag19
+    EffectTarget.HasTicket -> state.items.has_ticket
     EffectTarget.PhotoAnomaly -> state.items.photo_anomaly
+    EffectTarget.PlayedRecorder -> state.items.played_recorder
+    EffectTarget.MemorySearchActive -> state.items.memory_search_active
+    EffectTarget.EmmaMemoryUnlocked -> state.items.emma_memory_unlocked
     EffectTarget.ChapterIndex -> state.chapter_index
     EffectTarget.StationCount -> state.station_count
   }
@@ -255,7 +259,11 @@ private fun setStateValue(state: GameState, target: EffectTarget, value: Any): G
     EffectTarget.RelSleepless -> state.copy(relations = state.relations.copy(rel_sleepless = value as Int))
     EffectTarget.HasRecorder -> state.copy(items = state.items.copy(has_recorder = value as Boolean))
     EffectTarget.HasTag19 -> state.copy(items = state.items.copy(has_tag19 = value as Boolean))
+    EffectTarget.HasTicket -> state.copy(items = state.items.copy(has_ticket = value as Boolean))
     EffectTarget.PhotoAnomaly -> state.copy(items = state.items.copy(photo_anomaly = value as Boolean))
+    EffectTarget.PlayedRecorder -> state.copy(items = state.items.copy(played_recorder = value as Boolean))
+    EffectTarget.MemorySearchActive -> state.copy(items = state.items.copy(memory_search_active = value as Boolean))
+    EffectTarget.EmmaMemoryUnlocked -> state.copy(items = state.items.copy(emma_memory_unlocked = value as Boolean))
     EffectTarget.ChapterIndex -> state.copy(chapter_index = value as Int)
     EffectTarget.StationCount -> state.copy(station_count = value as Int)
   }
