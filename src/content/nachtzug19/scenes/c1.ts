@@ -542,7 +542,7 @@ Rückfahrt? Rückkehr?
       },
       {
         id: 'ignore_anomaly',
-        label: 'Ignorieren',
+        label: 'Das Rauschen überhören',
         effects: [
           { type: 'inc', target: 'tickets_escape', value: 1 }
         ],
@@ -756,7 +756,7 @@ Er zerknüllt einen Zettel, den er in der Hand hält. Seine Finger zittern.
     choices: [
       {
         id: 'continue_to_chapter_2',
-        label: 'Weiter',
+        label: 'Weiterfahren',
         effects: [
           { type: 'set', target: 'chapter_index', value: 2 }
         ],

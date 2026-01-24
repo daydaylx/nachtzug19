@@ -59,7 +59,7 @@ Von weiter vorn kommt ein Metallklackern. Rhythmisch. Näher kommend. Kontrolle.
       'Jacke des Schlaflosen wechselt (blau -> schwarz)',
       'Druck aufgebaut: Kontrolle kommt'
     ],
-    atmosphere: 'normal'
+    atmosphere: 'tense'
   },
 
   // ============================================================================
@@ -731,7 +731,7 @@ Du drehst dich um. Der Wagen hat sich verändert. Der Junge ist weg. Comp7 schre
     choices: [
       {
         id: 'continue_chapter_3',
-        label: 'Weiter',
+        label: 'Der Veränderung folgen',
         effects: [
           { type: 'set', target: 'chapter_index', value: 3 }
         ],

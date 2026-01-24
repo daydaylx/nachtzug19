@@ -281,7 +281,7 @@ Er blickt dich an.
       'rel_sleepless beeinflusst spätere Szenen',
       'CONDITION: warn_about_presence nur bei conductor_attention >= 4 (Callback auf s04)'
     ],
-    atmosphere: 'somber'
+    atmosphere: 'tense'
   },
 
   // ==========================================================================
@@ -386,9 +386,7 @@ Was tust du?`,
       'Set-Piece: Abteil 7 (merged approach + inside)',
       'Entering increases conductor_attention (+2 or +3)',
       'Skip choices route to c5_s09 (bypass aftermath)',
-      'CONDITION: open_and_examine (tickets_truth >= 3)',
-      'CONDITION: protect_sleepless (rel_sleepless >= 2)',
-      'CONDITION: open_for_answers (tickets_truth >= 4, high-truth path)'
+      'CONDITION thresholds: open_and_examine (truth>=3), protect_sleepless (rel>=2), open_for_answers (truth>=4)'
     ],
     tags: ['setup', 'reveal'],
     atmosphere: 'tense'

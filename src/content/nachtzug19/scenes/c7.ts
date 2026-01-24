@@ -593,7 +593,7 @@ Du bist dir nicht mehr sicher, welches „Du“ das echte ist. (Konsequenz)`,
       'Doppelgänger-Begegnung'
     ],
     tags: ['interlude'],
-    atmosphere: 'mystic'
+    atmosphere: 'dark'
   },
 
   // ==========================================================================
@@ -1152,6 +1152,15 @@ Alles.`,
         effects: [
           { type: 'inc', target: 'tickets_truth', value: 2 },
           { type: 'inc', target: 'memory_drift', value: 1 }
+        ],
+        next: 'c7_s12_seven_offer'
+      },
+      {
+        id: 'resist',
+        label: 'Zurückweigern',
+        effects: [
+          { type: 'inc', target: 'tickets_escape', value: 2 },
+          { type: 'inc', target: 'tickets_guilt', value: 1 }
         ],
         next: 'c7_s12_seven_offer'
       }
