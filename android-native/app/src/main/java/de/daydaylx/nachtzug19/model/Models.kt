@@ -15,7 +15,10 @@ enum class Atmosphere {
   @SerialName("dream") Dream,
   @SerialName("tense") Tense,
   @SerialName("somber") Somber,
-  @SerialName("dark") Dark
+  @SerialName("dark") Dark,
+  @SerialName("hopeful") Hopeful,
+  @SerialName("peaceful") Peaceful,
+  @SerialName("bittersweet") Bittersweet
 }
 
 @Serializable
@@ -28,7 +31,9 @@ enum class SceneTag {
   @SerialName("interlude") Interlude,
   @SerialName("secret") Secret,
   @SerialName("setup") Setup,
-  @SerialName("announcement") Announcement
+  @SerialName("announcement") Announcement,
+  @SerialName("ending") Ending,
+  @SerialName("terminal") Terminal
 }
 
 @Serializable
