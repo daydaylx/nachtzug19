@@ -540,7 +540,7 @@ Kapitel 4 beendet.`,
     choices: [
       {
         id: 'continue_to_c5',
-        label: 'Weiter',
+        label: 'Die 19 betrachten',
         effects: [
           { type: 'set', target: 'chapter_index', value: 5 }
         ],

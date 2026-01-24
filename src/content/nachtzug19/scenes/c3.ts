@@ -592,7 +592,7 @@ Die Tür öffnet sich und die Gestalt steigt ein. Sie geht wortlos an dir vorbei
     choices: [
       {
         id: 'continue_to_chapter_4',
-        label: 'Weiter',
+        label: 'Die Aufnahme akzeptieren',
         effects: [
           { type: 'set', target: 'chapter_index', value: 4 }
         ],

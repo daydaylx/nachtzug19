@@ -281,7 +281,7 @@ Er blickt dich an.
       'rel_sleepless beeinflusst spätere Szenen',
       'CONDITION: warn_about_presence nur bei conductor_attention >= 4 (Callback auf s04)'
     ],
-    atmosphere: 'somber'
+    atmosphere: 'tense'
   },
 
   // ==========================================================================

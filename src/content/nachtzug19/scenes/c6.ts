@@ -957,7 +957,7 @@ Vor dem, was kommt.`,
       'Erinnerungsfragmente tauchen auf',
       'Emotionale Vorbereitung auf Ende'
     ],
-    atmosphere: 'somber'
+    atmosphere: 'bittersweet'
   },
 
   // ==========================================================================

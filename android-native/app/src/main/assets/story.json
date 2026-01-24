@@ -22,22 +22,22 @@
       {
         "number": 4,
         "title": "Spiegelungen",
-        "scene_count": 26
+        "scene_count": 12
       },
       {
         "number": 5,
         "title": "Die letzte Kontrolle",
-        "scene_count": 25
+        "scene_count": 19
       },
       {
         "number": 6,
         "title": "Ende der Linie",
-        "scene_count": 26
+        "scene_count": 21
       },
       {
         "number": 7,
         "title": "Entscheidung",
-        "scene_count": 26
+        "scene_count": 31
       }
     ]
   },
@@ -50,7 +50,7 @@
       "choices": [
         {
           "id": "continue_to_chapter_2",
-          "label": "Weiter",
+          "label": "Weiterfahren",
           "effects": [
             {
               "type": "set",
@@ -525,12 +525,6 @@
         {
           "id": "stay_with_window",
           "label": "Den Blick im Fenster halten",
-          "condition": {
-            "type": "compare",
-            "target": "memory_drift",
-            "operator": ">=",
-            "value": 1
-          },
           "effects": [
             {
               "type": "inc",
@@ -714,7 +708,7 @@
         },
         {
           "id": "ignore_anomaly",
-          "label": "Ignorieren",
+          "label": "Das Rauschen überhören",
           "effects": [
             {
               "type": "inc",
@@ -727,12 +721,6 @@
         {
           "id": "analyze_fragment",
           "label": "Über das Wort \"Rückf-\" nachdenken",
-          "condition": {
-            "type": "compare",
-            "target": "memory_drift",
-            "operator": ">=",
-            "value": 1
-          },
           "effects": [
             {
               "type": "inc",
@@ -801,12 +789,6 @@
         {
           "id": "count_passengers",
           "label": "Die Passagiere zählen",
-          "condition": {
-            "type": "compare",
-            "target": "memory_drift",
-            "operator": ">=",
-            "value": 2
-          },
           "effects": [
             {
               "type": "inc",
@@ -1154,7 +1136,7 @@
       "choices": [
         {
           "id": "continue_chapter_3",
-          "label": "Weiter",
+          "label": "Der Veränderung folgen",
           "effects": [
             {
               "type": "set",
@@ -1248,7 +1230,7 @@
         "Jacke des Schlaflosen wechselt (blau -> schwarz)",
         "Druck aufgebaut: Kontrolle kommt"
       ],
-      "atmosphere": "normal"
+      "atmosphere": "tense"
     },
     {
       "id": "c2_s01a_passenger_examination",
@@ -2002,7 +1984,7 @@
       "choices": [
         {
           "id": "continue_to_chapter_4",
-          "label": "Weiter",
+          "label": "Die Aufnahme akzeptieren",
           "effects": [
             {
               "type": "set",
@@ -2618,7 +2600,7 @@
       "choices": [
         {
           "id": "continue_to_c5",
-          "label": "Weiter",
+          "label": "Die 19 betrachten",
           "effects": [
             {
               "type": "set",
@@ -3468,7 +3450,7 @@
         "rel_sleepless beeinflusst spätere Szenen",
         "CONDITION: warn_about_presence nur bei conductor_attention >= 4 (Callback auf s04)"
       ],
-      "atmosphere": "somber"
+      "atmosphere": "tense"
     },
     {
       "id": "c5_s06_abteil7",
@@ -3568,7 +3550,7 @@
             "type": "compare",
             "target": "tickets_truth",
             "operator": ">=",
-            "value": 9
+            "value": 4
           },
           "effects": [
             {
@@ -3596,7 +3578,7 @@
         "Skip choices route to c5_s09 (bypass aftermath)",
         "CONDITION: open_and_examine (tickets_truth >= 3)",
         "CONDITION: protect_sleepless (rel_sleepless >= 2)",
-        "CONDITION: open_for_answers (tickets_truth >= 9, Easter egg)"
+        "CONDITION: open_for_answers (tickets_truth >= 4, high-truth path)"
       ],
       "tags": [
         "setup",
@@ -3651,7 +3633,7 @@
             "type": "compare",
             "target": "tickets_truth",
             "operator": ">=",
-            "value": 10
+            "value": 4
           },
           "effects": [
             {
@@ -4022,7 +4004,7 @@
             "type": "compare",
             "target": "tickets_truth",
             "operator": ">=",
-            "value": 12
+            "value": 5
           },
           "effects": [
             {
@@ -5298,7 +5280,7 @@
         "Erinnerungsfragmente tauchen auf",
         "Emotionale Vorbereitung auf Ende"
       ],
-      "atmosphere": "somber"
+      "atmosphere": "bittersweet"
     },
     {
       "id": "c6_s15_recorder_playback",
@@ -6125,40 +6107,6 @@
           "next": "c7_s04_boy_recognized"
         },
         {
-          "id": "say_goodbye_high_rel",
-          "label": "„Danke. Für alles.\"",
-          "condition": {
-            "type": "and",
-            "conditions": [
-              {
-                "type": "compare",
-                "target": "rel_comp7",
-                "operator": ">=",
-                "value": 2
-              },
-              {
-                "type": "compare",
-                "target": "tickets_truth",
-                "operator": "<",
-                "value": 4
-              }
-            ]
-          },
-          "effects": [
-            {
-              "type": "inc",
-              "target": "tickets_love",
-              "value": 2
-            },
-            {
-              "type": "inc",
-              "target": "tickets_truth",
-              "value": 1
-            }
-          ],
-          "next": "c7_s04_boy_transformation"
-        },
-        {
           "id": "open_door_recognized",
           "label": "Die Tür öffnen",
           "condition": {
@@ -6175,24 +6123,6 @@
             }
           ],
           "next": "c7_s04_boy_recognized"
-        },
-        {
-          "id": "open_door",
-          "label": "Die Tür öffnen",
-          "condition": {
-            "type": "compare",
-            "target": "tickets_truth",
-            "operator": "<",
-            "value": 4
-          },
-          "effects": [
-            {
-              "type": "inc",
-              "target": "tickets_truth",
-              "value": 1
-            }
-          ],
-          "next": "c7_s04_boy_transformation"
         }
       ],
       "state_notes": [
@@ -6370,6 +6300,9 @@
         "Kassette läuft rückwärts",
         "Zeit ist gebrochen"
       ],
+      "tags": [
+        "secret"
+      ],
       "atmosphere": "mystic"
     },
     {
@@ -6455,7 +6388,7 @@
       "tags": [
         "interlude"
       ],
-      "atmosphere": "mystic"
+      "atmosphere": "dark"
     },
     {
       "id": "c7_s06_announcement_distorted",
@@ -6799,6 +6732,23 @@
             }
           ],
           "next": "c7_s12_seven_offer"
+        },
+        {
+          "id": "resist",
+          "label": "Zurückweigern",
+          "effects": [
+            {
+              "type": "inc",
+              "target": "tickets_escape",
+              "value": 2
+            },
+            {
+              "type": "inc",
+              "target": "tickets_guilt",
+              "value": 1
+            }
+          ],
+          "next": "c7_s12_seven_offer"
         }
       ],
       "state_notes": [
@@ -6859,24 +6809,6 @@
           "next": "c7_s13_comp7_recognized"
         },
         {
-          "id": "enter_seven",
-          "label": "Abteil 7 betreten",
-          "condition": {
-            "type": "compare",
-            "target": "tickets_truth",
-            "operator": "<",
-            "value": 5
-          },
-          "effects": [
-            {
-              "type": "inc",
-              "target": "tickets_truth",
-              "value": 3
-            }
-          ],
-          "next": "c7_s13_seven_price"
-        },
-        {
           "id": "hesitate_at_door_recognized",
           "label": "An der Tür zögern",
           "condition": {
@@ -6893,24 +6825,6 @@
             }
           ],
           "next": "c7_s13_comp7_recognized"
-        },
-        {
-          "id": "hesitate_at_door",
-          "label": "An der Tür zögern",
-          "condition": {
-            "type": "compare",
-            "target": "tickets_truth",
-            "operator": "<",
-            "value": 4
-          },
-          "effects": [
-            {
-              "type": "inc",
-              "target": "tickets_guilt",
-              "value": 1
-            }
-          ],
-          "next": "c7_s13_seven_price"
         }
       ],
       "state_notes": [
@@ -7119,7 +7033,8 @@
         "Schatten-Selbst Konfrontation"
       ],
       "tags": [
-        "reveal"
+        "reveal",
+        "secret"
       ],
       "atmosphere": "danger"
     },
