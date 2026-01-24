@@ -372,7 +372,7 @@ Was tust du?`,
           type: 'compare',
           target: 'tickets_truth',
           operator: '>=',
-          value: 9
+          value: 4
         },
         effects: [
           { type: 'inc', target: 'tickets_truth', value: 4 },
@@ -388,7 +388,7 @@ Was tust du?`,
       'Skip choices route to c5_s09 (bypass aftermath)',
       'CONDITION: open_and_examine (tickets_truth >= 3)',
       'CONDITION: protect_sleepless (rel_sleepless >= 2)',
-      'CONDITION: open_for_answers (tickets_truth >= 9, Easter egg)'
+      'CONDITION: open_for_answers (tickets_truth >= 4, high-truth path)'
     ],
     tags: ['setup', 'reveal'],
     atmosphere: 'tense'
@@ -449,7 +449,7 @@ Der Zug rattert weiter.`,
           type: 'compare',
           target: 'tickets_truth',
           operator: '>=',
-          value: 10
+          value: 4
         },
         effects: [
           { type: 'inc', target: 'tickets_truth', value: 1 },
@@ -875,7 +875,7 @@ Eine Pause.
           type: 'compare',
           target: 'tickets_truth',
           operator: '>=',
-          value: 12
+          value: 5
         },
         effects: [
           { type: 'inc', target: 'tickets_truth', value: 1 },
