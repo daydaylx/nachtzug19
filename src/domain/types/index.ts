@@ -207,7 +207,7 @@ export type Condition = SimpleCondition | BooleanCondition | AndCondition | OrCo
 /**
  * Scene Tags - Markierungen für spezielle Szenen
  */
-export type SceneTag = 'station_end' | 'control' | 'reveal' | 'drift_variant' | 'drift_seed' | 'interlude' | 'secret' | 'setup' | 'announcement';
+export type SceneTag = 'station_end' | 'control' | 'reveal' | 'drift_variant' | 'drift_seed' | 'interlude' | 'secret' | 'setup' | 'announcement' | 'ending' | 'terminal';
 
 /**
  * Choice - Eine Entscheidungsmöglichkeit
@@ -247,7 +247,7 @@ export type NarrativeVariant = {
 export type Scene = {
   id: string;                    // Eindeutige ID (z.B. "c1_s01_platform")
   choices: Choice[];             // 1-4 Choices
-  atmosphere?: 'normal' | 'danger' | 'mystic' | 'dream' | 'tense' | 'somber' | 'dark';
+  atmosphere?: 'normal' | 'danger' | 'mystic' | 'dream' | 'tense' | 'somber' | 'dark' | 'hopeful' | 'peaceful' | 'bittersweet';
 
   // Neue Felder (NACHTZUG 19) - optional für Legacy
   chapter?: number;              // Kapitel 1-7

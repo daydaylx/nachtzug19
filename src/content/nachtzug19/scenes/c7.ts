@@ -274,22 +274,6 @@ Dann ist sie weg.`,
         next: 'c7_s04_boy_recognized'
       },
       {
-        id: 'say_goodbye_high_rel',
-        label: '„Danke. Für alles."',
-        condition: {
-          type: 'and',
-          conditions: [
-            { type: 'compare', target: 'rel_comp7', operator: '>=', value: 2 },
-            { type: 'compare', target: 'tickets_truth', operator: '<', value: 4 }
-          ]
-        },
-        effects: [
-          { type: 'inc', target: 'tickets_love', value: 2 },
-          { type: 'inc', target: 'tickets_truth', value: 1 }
-        ],
-        next: 'c7_s04_boy_transformation'
-      },
-      {
         id: 'open_door_recognized',
         label: 'Die Tür öffnen',
         condition: {
@@ -303,20 +287,6 @@ Dann ist sie weg.`,
         ],
         next: 'c7_s04_boy_recognized'
       },
-      {
-        id: 'open_door',
-        label: 'Die Tür öffnen',
-        condition: {
-          type: 'compare',
-          target: 'tickets_truth',
-          operator: '<',
-          value: 4
-        },
-        effects: [
-          { type: 'inc', target: 'tickets_truth', value: 1 }
-        ],
-        next: 'c7_s04_boy_transformation'
-      }
     ],
     state_notes: [
       'Comp7 Abschied',
@@ -412,6 +382,7 @@ Er lacht. Oder weint. Beides gleichzeitig.
       'Kassette läuft rückwärts',
       'Zeit ist gebrochen'
     ],
+    tags: ['secret'],
     atmosphere: 'mystic'
   },
 
@@ -1279,20 +1250,6 @@ Du trittst über die Schwelle.`
         next: 'c7_s13_comp7_recognized'
       },
       {
-        id: 'enter_seven',
-        label: 'Abteil 7 betreten',
-        condition: {
-          type: 'compare',
-          target: 'tickets_truth',
-          operator: '<',
-          value: 5
-        },
-        effects: [
-          { type: 'inc', target: 'tickets_truth', value: 3 }
-        ],
-        next: 'c7_s13_seven_price'
-      },
-      {
         id: 'hesitate_at_door_recognized',
         label: 'An der Tür zögern',
         condition: {
@@ -1306,20 +1263,6 @@ Du trittst über die Schwelle.`
         ],
         next: 'c7_s13_comp7_recognized'
       },
-      {
-        id: 'hesitate_at_door',
-        label: 'An der Tür zögern',
-        condition: {
-          type: 'compare',
-          target: 'tickets_truth',
-          operator: '<',
-          value: 4
-        },
-        effects: [
-          { type: 'inc', target: 'tickets_guilt', value: 1 }
-        ],
-        next: 'c7_s13_seven_price'
-      }
     ],
     state_notes: [
       'Set-Piece Teil 1: Abteil 7 Finale',
@@ -1447,7 +1390,7 @@ Die Gestalt steht auf.
       'CONDITION: stay_together nur bei tickets_escape >= 4',
       'Schatten-Selbst Konfrontation'
     ],
-    tags: ['reveal'],
+    tags: ['reveal', 'secret'],
     atmosphere: 'danger'
   },
 

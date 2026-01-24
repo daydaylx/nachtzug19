@@ -9,7 +9,7 @@
 // - Empfiehlt Threshold-Anpassungen
 // ============================================================================
 
-import type { GameState, Scene, Choice, Condition, Effect, ScenesCollection } from '../src/domain/types';
+import type { GameState, Scene, Condition, Effect } from '../src/domain/types';
 
 // ============================================================================
 // Types
@@ -36,7 +36,7 @@ function createInitialState(startSceneId: string): GameState {
   return {
     current_scene_id: startSceneId,
     stats: { mut: 0, wissen: 0, empathie: 0 },
-    tickets: { truth: 0, escape: 0, guilt: 0, love: 0 },
+    tickets: { tickets_truth: 0, tickets_escape: 0, tickets_guilt: 0, tickets_love: 0 },
     pressure: { conductor_attention: 0, memory_drift: 0 },
     relations: { rel_comp7: 0, rel_boy: 0, rel_sleepless: 0 },
     items: {
@@ -48,12 +48,12 @@ function createInitialState(startSceneId: string): GameState {
       memory_search_active: false,
       emma_memory_unlocked: false
     },
-    metadata: {
-      chapter_index: 1,
-      station_count: 0,
-      choices_made: 0,
-      scenes_visited: 0
-    }
+    chapter_index: 1,
+    station_count: 0,
+    visited_scene_ids: [],
+    history: [],
+    isGameOver: false,
+    save_version: 1
   };
 }
 
@@ -61,10 +61,10 @@ function applyEffect(state: GameState, effect: Effect): void {
   const { type, target, value } = effect;
 
   const stateMap: Record<string, { obj: any; key: string }> = {
-    tickets_truth: { obj: state.tickets, key: 'truth' },
-    tickets_love: { obj: state.tickets, key: 'love' },
-    tickets_guilt: { obj: state.tickets, key: 'guilt' },
-    tickets_escape: { obj: state.tickets, key: 'escape' },
+    tickets_truth: { obj: state.tickets, key: 'tickets_truth' },
+    tickets_love: { obj: state.tickets, key: 'tickets_love' },
+    tickets_guilt: { obj: state.tickets, key: 'tickets_guilt' },
+    tickets_escape: { obj: state.tickets, key: 'tickets_escape' },
     conductor_attention: { obj: state.pressure, key: 'conductor_attention' },
     memory_drift: { obj: state.pressure, key: 'memory_drift' },
     rel_comp7: { obj: state.relations, key: 'rel_comp7' },
@@ -77,8 +77,8 @@ function applyEffect(state: GameState, effect: Effect): void {
     played_recorder: { obj: state.items, key: 'played_recorder' },
     memory_search_active: { obj: state.items, key: 'memory_search_active' },
     emma_memory_unlocked: { obj: state.items, key: 'emma_memory_unlocked' },
-    chapter_index: { obj: state.metadata, key: 'chapter_index' },
-    station_count: { obj: state.metadata, key: 'station_count' },
+    chapter_index: { obj: state, key: 'chapter_index' },
+    station_count: { obj: state, key: 'station_count' },
     mut: { obj: state.stats, key: 'mut' },
     wissen: { obj: state.stats, key: 'wissen' },
     empathie: { obj: state.stats, key: 'empathie' }
@@ -90,9 +90,9 @@ function applyEffect(state: GameState, effect: Effect): void {
   const currentValue = mapping.obj[mapping.key];
 
   if (type === 'inc') {
-    mapping.obj[mapping.key] = currentValue + (value || 1);
+    mapping.obj[mapping.key] = currentValue + ((value as number) || 1);
   } else if (type === 'dec') {
-    mapping.obj[mapping.key] = currentValue - (value || 1);
+    mapping.obj[mapping.key] = currentValue - ((value as number) || 1);
   } else if (type === 'set') {
     mapping.obj[mapping.key] = value;
   } else if (type === 'clamp') {
@@ -101,10 +101,10 @@ function applyEffect(state: GameState, effect: Effect): void {
     mapping.obj[mapping.key] = Math.max(min, Math.min(max, currentValue));
   }
 
-  // Clamp tickets to 0-5
+  // Clamp tickets to 0-50
   if (target.startsWith('tickets_')) {
-    const ticketKey = target.replace('tickets_', '') as 'truth' | 'love' | 'guilt' | 'escape';
-    state.tickets[ticketKey] = Math.max(0, Math.min(5, state.tickets[ticketKey]));
+    const ticketKey = target as 'tickets_truth' | 'tickets_love' | 'tickets_guilt' | 'tickets_escape';
+    state.tickets[ticketKey] = Math.max(0, Math.min(50, state.tickets[ticketKey]));
   }
 
   // Clamp conductor_attention to 0-6
@@ -120,7 +120,7 @@ function evaluateCondition(state: GameState, condition: Condition): boolean {
     let currentValue: number | boolean = 0;
 
     if (target.startsWith('tickets_')) {
-      const ticketKey = target.replace('tickets_', '') as 'truth' | 'love' | 'guilt' | 'escape';
+      const ticketKey = target as 'tickets_truth' | 'tickets_love' | 'tickets_guilt' | 'tickets_escape';
       currentValue = state.tickets[ticketKey];
     } else if (target === 'conductor_attention') {
       currentValue = state.pressure.conductor_attention;
@@ -134,10 +134,10 @@ function evaluateCondition(state: GameState, condition: Condition): boolean {
     }
 
     switch (operator) {
-      case '>=': return currentValue >= value;
-      case '>': return currentValue > value;
-      case '<=': return currentValue <= value;
-      case '<': return currentValue < value;
+      case '>=': return (currentValue as number) >= (value as number);
+      case '>': return (currentValue as number) > (value as number);
+      case '<=': return (currentValue as number) <= (value as number);
+      case '<': return (currentValue as number) < (value as number);
       case '==': return currentValue === value;
       case '!=': return currentValue !== value;
       default: return false;
@@ -295,9 +295,9 @@ async function main() {
         const choiceKey = `${scene.id}::${choice.id || choice.label}`;
         coverageMap.set(choiceKey, {
           scene_id: scene.id,
-          scene_title: scene.title,
+          scene_title: scene.title || scene.id,
           choice_id: choice.id || '',
-          choice_label: choice.label,
+          choice_label: choice.label || '',
           condition: choice.condition,
           condition_str: conditionToString(choice.condition),
           times_available: 0,

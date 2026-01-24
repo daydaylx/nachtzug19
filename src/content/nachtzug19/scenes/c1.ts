@@ -379,12 +379,6 @@ Dann, eine Stimme hinter dir: „Du auch?"`,
       {
         id: 'stay_with_window',
         label: 'Den Blick im Fenster halten',
-        condition: {
-          type: 'compare',
-          target: 'memory_drift',
-          operator: '>=',
-          value: 1
-        },
         effects: [
           { type: 'inc', target: 'memory_drift', value: 1 },
           { type: 'inc', target: 'tickets_truth', value: 1 }
@@ -557,12 +551,6 @@ Rückfahrt? Rückkehr?
       {
         id: 'analyze_fragment',
         label: 'Über das Wort "Rückf-" nachdenken',
-        condition: {
-          type: 'compare',
-          target: 'memory_drift',
-          operator: '>=',
-          value: 1
-        },
         effects: [
           { type: 'inc', target: 'tickets_truth', value: 1 },
           { type: 'inc', target: 'memory_drift', value: 1 }
@@ -619,12 +607,6 @@ Niemand spricht. Niemand bewegt sich. Außer diesen kleinen Gesten.`,
       {
         id: 'count_passengers',
         label: 'Die Passagiere zählen',
-        condition: {
-          type: 'compare',
-          target: 'memory_drift',
-          operator: '>=',
-          value: 2
-        },
         effects: [
           { type: 'inc', target: 'tickets_truth', value: 1 }
         ],

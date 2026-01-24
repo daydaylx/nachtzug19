@@ -9,7 +9,7 @@
 // - Tippfehler und Formatierungsprobleme
 // ============================================================================
 
-import type { Scene, ScenesCollection } from '../src/domain/types';
+import type { Scene } from '../src/domain/types';
 
 // ============================================================================
 // Types
@@ -97,7 +97,7 @@ function checkItemReferences(scene: Scene): ConsistencyIssue[] {
           severity: 'WARNING',
           category: 'ITEM',
           scene_id: scene.id,
-          scene_title: scene.title,
+          scene_title: scene.title || scene.id,
           location: 'narrative',
           issue: `References "${itemKey}" but no choice checks for has_${itemKey}`,
           suggestion: `Add condition check for has_${itemKey} if player needs to possess it`
@@ -173,7 +173,7 @@ function checkStateNotes(scene: Scene): ConsistencyIssue[] {
         severity: 'INFO',
         category: 'STATE',
         scene_id: scene.id,
-        scene_title: scene.title,
+        scene_title: scene.title || scene.id,
         location: 'state_notes',
         issue: `Scene has ${totalEffects.length} effects but no state_notes`,
         suggestion: 'Add state_notes to document state changes'
@@ -222,9 +222,9 @@ async function main() {
   Object.values(allScenes).forEach(scene => {
     // Check narrative
     if (scene.narrative) {
-      allIssues.push(...checkNameConsistency(scene.narrative, scene.id, scene.title));
-      allIssues.push(...checkOldSceneReferences(scene.narrative, scene.id, scene.title));
-      allIssues.push(...checkTypos(scene.narrative, scene.id, scene.title));
+      allIssues.push(...checkNameConsistency(scene.narrative, scene.id, scene.title || scene.id));
+      allIssues.push(...checkOldSceneReferences(scene.narrative, scene.id, scene.title || scene.id));
+      allIssues.push(...checkTypos(scene.narrative, scene.id, scene.title || scene.id));
     }
 
     // Check item references
@@ -236,7 +236,7 @@ async function main() {
     // Check choice labels
     scene.choices.forEach(choice => {
       if (choice.label) {
-        allIssues.push(...checkOldSceneReferences(choice.label, scene.id, scene.title));
+        allIssues.push(...checkOldSceneReferences(choice.label, scene.id, scene.title || scene.id));
       }
     });
   });

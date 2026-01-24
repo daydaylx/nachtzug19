@@ -8,9 +8,8 @@
 // - Gibt es unerreichbare Ticket-Kombinationen?
 // ============================================================================
 
-import { loadStory } from '../src/domain/engine/loadStory';
-import { nachtzug19Manifest, nachtzug19Endings } from '../src/content/nachtzug19/manifest';
-import type { GameState, Scene, Choice, Effect, Condition } from '../src/domain/types';
+import { nachtzug19Manifest } from '../src/content/nachtzug19/manifest';
+import type { GameState, Scene, Effect, Condition } from '../src/domain/types';
 
 // ============================================================================
 // Types
@@ -60,7 +59,7 @@ function createInitialState(): GameState {
   return {
     current_scene_id: nachtzug19Manifest.start_scene_id,
     stats: { mut: 0, wissen: 0, empathie: 0 },
-    tickets: { truth: 0, escape: 0, guilt: 0, love: 0 },
+    tickets: { tickets_truth: 0, tickets_escape: 0, tickets_guilt: 0, tickets_love: 0 },
     pressure: { conductor_attention: 0, memory_drift: 0 },
     relations: { rel_comp7: 0, rel_boy: 0, rel_sleepless: 0 },
     items: {
@@ -72,12 +71,12 @@ function createInitialState(): GameState {
       memory_search_active: false,
       emma_memory_unlocked: false
     },
-    metadata: {
-      chapter_index: 1,
-      station_count: 0,
-      choices_made: 0,
-      scenes_visited: 0
-    }
+    chapter_index: 1,
+    station_count: 0,
+    visited_scene_ids: [],
+    history: [],
+    isGameOver: false,
+    save_version: 1
   };
 }
 
@@ -91,10 +90,10 @@ function applyEffect(state: GameState, effect: Effect): void {
   // Map effect targets to state paths
   const stateMap: Record<string, { obj: any; key: string }> = {
     // Tickets
-    tickets_truth: { obj: state.tickets, key: 'truth' },
-    tickets_love: { obj: state.tickets, key: 'love' },
-    tickets_guilt: { obj: state.tickets, key: 'guilt' },
-    tickets_escape: { obj: state.tickets, key: 'escape' },
+    tickets_truth: { obj: state.tickets, key: 'tickets_truth' },
+    tickets_love: { obj: state.tickets, key: 'tickets_love' },
+    tickets_guilt: { obj: state.tickets, key: 'tickets_guilt' },
+    tickets_escape: { obj: state.tickets, key: 'tickets_escape' },
     // Pressure
     conductor_attention: { obj: state.pressure, key: 'conductor_attention' },
     memory_drift: { obj: state.pressure, key: 'memory_drift' },
@@ -110,9 +109,9 @@ function applyEffect(state: GameState, effect: Effect): void {
     played_recorder: { obj: state.items, key: 'played_recorder' },
     memory_search_active: { obj: state.items, key: 'memory_search_active' },
     emma_memory_unlocked: { obj: state.items, key: 'emma_memory_unlocked' },
-    // Metadata
-    chapter_index: { obj: state.metadata, key: 'chapter_index' },
-    station_count: { obj: state.metadata, key: 'station_count' },
+    // Meta (directly on state, not state.metadata)
+    chapter_index: { obj: state, key: 'chapter_index' },
+    station_count: { obj: state, key: 'station_count' },
     // Legacy stats
     mut: { obj: state.stats, key: 'mut' },
     wissen: { obj: state.stats, key: 'wissen' },
@@ -128,9 +127,9 @@ function applyEffect(state: GameState, effect: Effect): void {
   const currentValue = mapping.obj[mapping.key];
 
   if (type === 'inc') {
-    mapping.obj[mapping.key] = currentValue + (value || 1);
+    mapping.obj[mapping.key] = currentValue + ((value as number) || 1);
   } else if (type === 'dec') {
-    mapping.obj[mapping.key] = currentValue - (value || 1);
+    mapping.obj[mapping.key] = currentValue - ((value as number) || 1);
   } else if (type === 'set') {
     mapping.obj[mapping.key] = value;
   } else if (type === 'clamp') {
@@ -139,10 +138,10 @@ function applyEffect(state: GameState, effect: Effect): void {
     mapping.obj[mapping.key] = Math.max(min, Math.min(max, currentValue));
   }
 
-  // Clamp tickets to 0-5 (game rule)
+  // Clamp tickets to 0-50 (game rule)
   if (target.startsWith('tickets_')) {
-    const ticketKey = target.replace('tickets_', '') as 'truth' | 'love' | 'guilt' | 'escape';
-    state.tickets[ticketKey] = Math.max(0, Math.min(5, state.tickets[ticketKey]));
+    const ticketKey = target as 'tickets_truth' | 'tickets_love' | 'tickets_guilt' | 'tickets_escape';
+    state.tickets[ticketKey] = Math.max(0, Math.min(50, state.tickets[ticketKey]));
   }
 
   // Clamp conductor_attention to 0-6
@@ -163,7 +162,7 @@ function evaluateCondition(state: GameState, condition: Condition): boolean {
     let currentValue: number | boolean = 0;
 
     if (target.startsWith('tickets_')) {
-      const ticketKey = target.replace('tickets_', '') as 'truth' | 'love' | 'guilt' | 'escape';
+      const ticketKey = target as 'tickets_truth' | 'tickets_love' | 'tickets_guilt' | 'tickets_escape';
       currentValue = state.tickets[ticketKey];
     } else if (target === 'conductor_attention') {
       currentValue = state.pressure.conductor_attention;
@@ -180,13 +179,13 @@ function evaluateCondition(state: GameState, condition: Condition): boolean {
     // Evaluate operator
     switch (operator) {
       case '>=':
-        return currentValue >= value;
+        return (currentValue as number) >= (value as number);
       case '>':
-        return currentValue > value;
+        return (currentValue as number) > (value as number);
       case '<=':
-        return currentValue <= value;
+        return (currentValue as number) <= (value as number);
       case '<':
-        return currentValue < value;
+        return (currentValue as number) < (value as number);
       case '==':
         return currentValue === value;
       case '!=':
@@ -212,13 +211,13 @@ function evaluateCondition(state: GameState, condition: Condition): boolean {
 // ============================================================================
 
 function determineEnding(state: GameState): { id: string; type: 'TRUTH' | 'LOVE' | 'GUILT' | 'ESCAPE' | 'LIMBO' } {
-  const { truth, love, guilt, escape } = state.tickets;
+  const { tickets_truth, tickets_love, tickets_guilt, tickets_escape } = state.tickets;
 
   // Priority: First ticket to reach 5
-  if (truth >= 5) return { id: 'ending_truth_01', type: 'TRUTH' };
-  if (love >= 5) return { id: 'ending_love_01', type: 'LOVE' };
-  if (guilt >= 5) return { id: 'ending_guilt_01', type: 'GUILT' };
-  if (escape >= 5) return { id: 'ending_escape_01', type: 'ESCAPE' };
+  if (tickets_truth >= 5) return { id: 'ending_truth_01', type: 'TRUTH' };
+  if (tickets_love >= 5) return { id: 'ending_love_01', type: 'LOVE' };
+  if (tickets_guilt >= 5) return { id: 'ending_guilt_01', type: 'GUILT' };
+  if (tickets_escape >= 5) return { id: 'ending_escape_01', type: 'ESCAPE' };
 
   // Fallback: LIMBO
   return { id: 'ending_limbo_01', type: 'LIMBO' };
@@ -277,8 +276,6 @@ function simulatePlaythrough(
     pathSummary.push(`${scene.id}→${selectedChoice.id || selectedChoice.label}`);
 
     choicesMade++;
-    state.metadata.choices_made = choicesMade;
-    state.metadata.scenes_visited = scenesVisited;
 
     // Apply exit effects
     if (scene.exit_effects) {
@@ -302,10 +299,10 @@ function simulatePlaythrough(
         ending_id: nextId,
         ending_type: endingType,
         final_state: {
-          tickets_truth: state.tickets.truth,
-          tickets_love: state.tickets.love,
-          tickets_guilt: state.tickets.guilt,
-          tickets_escape: state.tickets.escape,
+          tickets_truth: state.tickets.tickets_truth,
+          tickets_love: state.tickets.tickets_love,
+          tickets_guilt: state.tickets.tickets_guilt,
+          tickets_escape: state.tickets.tickets_escape,
           memory_drift: state.pressure.memory_drift,
           conductor_attention: state.pressure.conductor_attention
         },
@@ -328,10 +325,10 @@ function simulatePlaythrough(
     ending_id: ending.id,
     ending_type: ending.type,
     final_state: {
-      tickets_truth: state.tickets.truth,
-      tickets_love: state.tickets.love,
-      tickets_guilt: state.tickets.guilt,
-      tickets_escape: state.tickets.escape,
+      tickets_truth: state.tickets.tickets_truth,
+      tickets_love: state.tickets.tickets_love,
+      tickets_guilt: state.tickets.tickets_guilt,
+      tickets_escape: state.tickets.tickets_escape,
       memory_drift: state.pressure.memory_drift,
       conductor_attention: state.pressure.conductor_attention
     },

@@ -8,7 +8,7 @@ import { nachtzug19Scenes } from '../src/content/nachtzug19/scenes/index';
 import { endingScenes } from '../src/content/nachtzug19/scenes/endings';
 import { nachtzug19Endings } from '../src/content/nachtzug19/manifest';
 import { validateContent } from '../src/domain/engine/validateContent';
-import type { Scene, Choice, Effect, Condition, ScenesCollection } from '../src/domain/types';
+import type { Scene, Choice, Effect, Condition } from '../src/domain/types';
 
 // ============================================================================
 // AUDIT DATA STRUCTURES

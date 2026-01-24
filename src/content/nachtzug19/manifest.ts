@@ -29,22 +29,22 @@ export const nachtzug19Manifest: Manifest = {
     {
       number: 4,
       title: 'Spiegelungen',
-      scene_count: 26
+      scene_count: 12
     },
     {
       number: 5,
       title: 'Die letzte Kontrolle',
-      scene_count: 25
+      scene_count: 19
     },
     {
       number: 6,
       title: 'Ende der Linie',
-      scene_count: 26
+      scene_count: 21
     },
     {
       number: 7,
       title: 'Entscheidung',
-      scene_count: 26
+      scene_count: 31
     }
   ]
 };
