@@ -1,281 +1,450 @@
-# NACHTZUG 19 – Projektregeln, Struktur & Grundskelett (v1)
+# NACHTZUG 19 - Content Rules & Specifications
 
-> Ziel: Eine **sauber trennbare**, **deterministische** und **testbare** Interactive-Fiction-Basis, die sich später problemlos mit Content füttern lässt (auch per KI), ohne dass dir bei jeder Änderung alles auseinanderfällt.
-
----
-
-## 1) Zielbild
-
-Du baust kein „Text mit Buttons", sondern ein **deterministisches, testbares Interactive-Fiction-System**:
-
-- **Content** ist Daten (Szenen/Choices/Effects), nicht React-Komponenten.
-- **Domain/Engine** wertet Conditions aus, wendet Effects an, navigiert im Graph.
-- **UI** zeigt Zustand und Texte an, ohne Story-Logik zu besitzen.
-
-Wenn du diese Trennung nicht einhältst, wirst du später:
-- Bugs nicht reproduzieren können,
-- Story-Branches verlieren,
-- und „kleine Änderungen" werden dir alles zerlegen.
+**Version**: 2.0 (Konsolidiert)
+**Last Updated**: 2026-01-25
+**Zusammenführung von**: NACHTZUG_19_RULES.md (v1) + DECISION_SYSTEM.md + MOBILE_PACING_RULES.md + NACHTZUG_19_LENGTH_IMMERSION_SPEC.md
 
 ---
 
-## 2) Harte Spielregeln (Canon Rules)
+## 1. Canon Rules (R1-R4)
 
-Diese Regeln sind nicht „nice to have", sondern **Systemgesetze**.
+Diese Regeln sind **nicht verhandelbar** und definieren die Kern-Mechaniken der Story.
 
-### R1: Stationen verursachen Drift
-Nach jedem Kapitelabschluss (Station):
-- entweder `memory_drift += 1`
-- oder es passiert eine definierte „Korrektur" (z.B. Detail kippt, Beziehung verschiebt sich), die im State als Event markiert wird.
+### R1: Drift After Stations
+**Regel**: Jedes Kapitel-Ende erhöht `memory_drift` automatisch.
 
-**Niemals:** Station ohne Konsequenz.
+**Implementation**:
+- Szenen mit Tag `station_end` triggern `memory_drift +1`
+- Dies simuliert die zunehmende Realitäts-Auflösung mit jedem "Loop"
 
-### R2: Kontrollen sind feste Gatepoints
-Kontrollen passieren immer in:
-- Kapitel 2 (Kontrolle 1)
-- Kapitel 3 (Kontrolle 2)
-- Kapitel 5 (Kontrolle 3 final)
-
-Kontrollen müssen mindestens eine dieser Größen verändern:
-- `tickets_*`
-- `conductor_attention`
-- eine Beziehung
-
-### R3: Entscheidungen brauchen sichtbare Rückwirkung
-Jede Choice muss:
-1. mindestens **eine** State-Änderung haben (Effect),
-2. und diese Änderung muss später sichtbar zurückkommen (Callback), z.B.:
-   - Dialogzeile,
-   - Zugang zu Szene/Wagen,
-   - härtere/leichtere Kontrolle,
-   - Textvariante bei Drift.
-
-Wenn du das nicht durchziehst: Spiel fühlt sich fake an.
-
-### R4: Der Zug lügt nicht direkt
-Texte dürfen widersprüchlich wirken, aber nicht plump falsch. Statt „Der Zug sagt X, aber es ist Y" gilt:
-- Bedeutungsverschiebung,
-- Auslassungen,
-- falsche Betonung,
-- falscher Kontext.
+**Warum**: Drift ist kein zufälliges Event, sondern strukturell an den Loop gebunden.
 
 ---
 
-## 3) Projektstruktur (Ordner-Skelett)
+### R2: Controls at Chapters 2, 3, 5
+**Regel**: Feste Kontrollpunkte (Schaffner) in Kapiteln 2, 3, 5.
 
-Nach der Umstrukturierung sollte es so aussehen:
+**Implementation**:
+- Mindestens eine Szene mit Tag `control` pro Kapitel (2, 3, 5)
+- Diese Gates erhöhen `conductor_attention` und können State abfragen
 
-### `src/domain/`
-Alles, was Spielzustand und Regeln betrifft.
-
-- `types/`
-  - State (Stats, Flags, Beziehungen)
-  - Scene/Choice Datentypen
-  - Effect/Condition Typen
-- `engine/`
-  - `evaluateCondition`
-  - `applyEffects`
-  - `getAvailableChoices`
-  - `transitionToNextScene`
-  - `validateContentGraph` (Domain-Validation, nicht UI)
-- optional: `reducers/` oder `stateMachine/` (je nach Architektur)
-
-### `src/content/`
-Nur Daten.
-
-- `legacy/` (alte Story unverändert als Referenz)
-- `nightzug19/`
-  - `manifest` (Kapitelübersicht + Einstiegsszene)
-  - `scenes/` (Einzelszenen oder Kapiteldateien)
-  - `text_variants/` (Drift-Varianten optional)
-
-### `src/ui/`
-Nur Darstellung.
-
-- `components/` (Chat, Choice Buttons, Status Pills)
-- `layout/` (Screens, Shell)
-
-**Wichtig:** keinerlei Story-Conditions, keinerlei Effect-Logik.
-
-### `docs/`
-- `CONCEPT_NACHTZUG_19.md`
-- `ARCHITECTURE.md` (warum die Struktur so ist)
-- `CONTENT_FORMAT.md` (Regeln + Format, damit niemand improvisiert)
+**Warum**: Narrative Pressure Points. Der Schaffner ist der Antagonist/Judge.
 
 ---
 
-## 4) Content-Format (Grundschema)
+### R3: Every Choice Has Callback
+**Regel**: Keine Choice ohne sichtbare Konsequenz später.
 
-Das ist der wichtigste Teil. Hier gewinnt oder verliert das ganze Projekt.
+**Implementation**:
+- Jede Choice mit `effects` MUSS ein Echo in späteren Kapiteln haben
+  - Entweder via `narrative_variants` (conditional text)
+  - Oder via Choice-Gating (conditional choices)
+  - Oder via Ending-Gating
+- **Ausnahme**: Tone Choices (siehe Abschnitt 2)
 
-### 4.1 Scene (Pflichtfelder)
-Jede Szene besteht aus:
+**Warum**: Vermeidet "Fake Choices". Spieler muss spüren, dass Entscheidungen Gewicht haben.
 
-- `id` (string, eindeutig)
-- `chapter` (1–7)
-- `title` (kurz)
-- `narrative` (Text, 3–12 Absätze)
-- `choices[]` (mind. 1, max. 4)
-- `tags[]` (z.B. `station_end`, `control`, `reveal`, `drift_variant`)
-- `state_notes[]` (max 3 Callback-Hinweise, damit man später nichts vergisst)
-
-Optional:
-- `entry_effects[]` (Effects beim Betreten)
-- `exit_effects[]` (Effects beim Verlassen, z.B. Station -> Drift)
-
-### 4.2 Choice (Pflichtfelder)
-Jede Choice:
-
-- `id` (lokal eindeutig in Szene)
-- `label` (Buttontext)
-- `condition` (optional; wenn nicht erfüllt, Choice verstecken oder disabled)
-- `effects[]` (mind. 1)
-- `next` (id der nächsten Szene) **oder** `ending` (A/B/C)
-
-Optional:
-- `check` (Statcheck wie Mut/Wissen/Empathie)
-  - `stat`
-  - `min`
-  - `on_fail_next` (oder Fail-Effects)
-
-**Regel:** Es gibt keine „Choice ohne Konsequenz".
+**Validierung**:
+- State-Änderungen tracken
+- Callbacks dokumentieren in `state_notes`
 
 ---
 
-## 5) State-Modell (einheitlich, keine wilden Flags)
+### R4: Train Never Lies Directly
+**Regel**: Der Zug (NPCs, Durchsagen, Hinweise) lügt nicht plump, sondern **verschiebt Bedeutung**.
 
-### 5.1 Stats (numerisch)
-- `mut` (0–10)
-- `wissen` (0–10)
-- `empathie` (0–10)
+**Implementation**:
+- Keine Falschaussagen (z.B. "Der Zug fährt nach Berlin" → tut er dann auch)
+- Aber: Ambiguität erlaubt (z.B. "Du erreichst dein Ziel" → welches Ziel?)
+- Keine Gaslighting-Mechanik (z.B. NPC sagt "Das hast du nie gesagt", obwohl Spieler es gesagt hat)
 
-### 5.2 Tickets (0–5)
+**Warum**: Mystery funktioniert durch Mehrdeutigkeit, nicht durch Lügen. Der Spieler soll dem Text vertrauen können.
+
+---
+
+## 2. Choice System (Weighted vs. Tone)
+
+Das System unterscheidet strikt zwischen Entscheidungen, die den Spielzustand (State) verändern, und solchen, die nur die narrative Färbung (Flavor/Atmosphäre) beeinflussen.
+
+### 2.1 GEWICHTETE Entscheidungen (Weighted)
+
+Diese Entscheidungen haben mechanische Konsequenzen. Sie verändern den Status oder den Pfad.
+
+#### Kriterien (ODER)
+1.  **Effekte**: Die Choice hat mindestens einen Eintrag im `effects`-Array (z.B. `tickets_truth +1`)
+2.  **Verzweigung**: Die Choice führt zu einer *anderen* `next`-Szene als die Alternativen
+3.  **Ende**: Die Choice führt direkt zu einem Ending
+
+#### Unter-Typen
+*   **Ticket-Choice**: Erhöht einen Ticket-Wert (Wahrheit/Flucht/Schuld/Liebe)
+    *   *Beispiel*: `c1_s01_platform` → `look_around` (Gibt `tickets_truth +1`)
+*   **Druck-Choice (Pressure)**: Verändert `conductor_attention` oder `memory_drift`
+    *   *Beispiel*: `c1_interlude_05_vibration` → `steady_breath` (Senkt `conductor_attention`)
+*   **Weichen-Choice (Gate)**: Bestimmt den weiteren Pfad (Next Scene), ohne zwingend Stats zu ändern
+
+---
+
+### 2.2 STIMMUNGS-Entscheidungen (Tone)
+
+Diese Entscheidungen dienen dem Rollenspiel und der Immersion. Sie erlauben dem Spieler, die *Haltung* des Protagonisten auszudrücken, ohne die *Handlung* zu ändern.
+
+#### Kriterien (UND)
+1.  **Keine Effekte**: Das `effects`-Array ist leer
+2.  **Keine Verzweigung**: Führt zur selben `next`-Szene wie die Alternativen
+3.  **Lokales Flair**: Der Unterschied liegt nur im Button-Text oder in einer kurzen Text-Reaktion
+
+#### Aktueller Status
+*   **Ist-Zustand**: Aktuell gibt es **wenige** reine Tone Choices. Fast jede Choice vergibt Punkte
+*   **Soll-Zustand**: Flavor-Entscheidungen sollen von mechanischem Ballast befreit werden
+
+**Erlaubt**: Tone Choices (leeres `effects`-Array), wenn sie der Haltung dienen
+
+---
+
+### 2.3 FAKE-Entscheidungen (Antipattern)
+
+Entscheidungen, die suggerieren, unterschiedlich zu sein, aber technisch identisch sind.
+
+#### Erkennungsmerkmal
+*   Identische `next`-Szene
+*   Identische `effects` (oder beide keine)
+*   Einziger Unterschied: `label`
+
+#### Lösung
+- Entweder zu **Tone** machen (entferne Stats)
+- Oder zu **Weighted** machen (unterschiedliche Konsequenzen)
+
+---
+
+## 3. Mobile Pacing Rules
+
+> **Oberste Prämisse**: Interaktion schlägt Text. Der Spieler ist kein Leser, er ist ein Teilnehmer.
+
+### 3.1 Die Beat-Regel (Das Gesetz)
+
+**Eine Szene = ein Beat = 1 Gefühl + 1 konkrete Aktion**
+
+#### Definition "Beat"
+Ein Beat ist die kleinste spielbare Einheit, die sich abgeschlossen anfühlt.
+*   **Gefühl**: Spannung / Neugier / Unsicherheit / Erleichterung / Schuld / Nähe
+*   **Aktion**: Du entscheidest **jetzt** etwas (Choice/Micro-Action), nicht "später"
+
+#### Die Beat-Formel (Immer gleich)
+1.  **Hook (1 Satz)**: "Was stimmt hier gerade nicht?" / Auslöser
+2.  **Detail (1–3 Sätze)**: Ein Sinnesdetail (Ton/Licht/Geruch/Blick)
+3.  **Konsequenz-Andeutung (1 Satz)**: Was steht auf dem Spiel?
+4.  **Aktion (Choice)**: 2–4 Optionen, sofort klickbar
+
+---
+
+### 3.2 Harte Limits (Anti-Roman)
+
+*   **Max 6–10 Sätze pro Beat.** Danach MUSS eine Aktion kommen
+*   **Kein Scrollen**: Der Beat muss auf einen Bildschirm passen
+*   **Info nur mit Aktion**: Wenn du erklärst, musst du gleichzeitig entscheiden lassen
+
+---
+
+### 3.3 Choice-Design
+
+**Handlung vs. Reaktion**:
+*   Mindestens eine Option muss "Handlung" sein (z.B. hingehen, fragen, verstecken)
+*   Mindestens eine Option muss "Reaktion" sein (z.B. schweigen, bluffen, nachgeben)
+
+**Callback**: Wenn eine Choice Effekte hat, ist ein späterer Callback verpflichtend
+
+**Tone Choices**: Erlaubt (leeres `effects`-Array), wenn sie der Haltung dienen
+
+---
+
+### 3.4 Micro-Actions (Gameplay Feel)
+
+Statt langer Szenenübergänge nutze Micro-Actions:
+*   "Horchen" → kurze Mini-Szene → neue Choice
+*   "Ticket prüfen" → Mini-Reveal → neue Choice
+*   "Augenkontakt halten" → Beziehungston → neue Choice
+
+---
+
+### 3.5 Beispiele
+
+#### ❌ SCHLECHT (E-Book Mode)
+> Der Schaffner nähert sich. Er sieht bedrohlich aus. Du hast kein Ticket und erinnerst dich nicht, wo es ist. Du überlegst, was du tun sollst, während er näher kommt. [Weiter]
+
+#### ✅ GUT (Game Mode)
+> Schritte. Schwer. Rhythmisch. (Hook)
+>
+> Der Schaffner schiebt sich in dein Sichtfeld. Seine Uniform wirkt wie eine zweite Haut, zu perfekt. Er starrt dich an. (Detail)
+>
+> Du hast kein Ticket. Und er weiß es. (Konsequenz)
+>
+> *[CHOICE: Blick standhalten]* (Reaktion)
+> *[CHOICE: In die Taschen greifen]* (Handlung)
+
+---
+
+## 4. Length & Immersion Specifications
+
+### 4.1 Zielwerte: Spielzeit pro Kapitel
+
+#### Mindestziel
+- **≥ 20 Minuten pro Kapitel** (unter 20 min gilt als **Fehler**)
+
+#### Idealziel
+- **30–35 Minuten pro Kapitel** (Sweet Spot)
+
+#### Was "Spielzeit" bedeutet
+Spielzeit = **Lesen + Entscheidungen treffen + kurzer mentaler Nachhall**
+
+---
+
+### 4.2 Messmodell
+
+#### Annahmen
+- Durchschnittliche Lesegeschwindigkeit (mobil): **160–220 Wörter/Minute**
+- Entscheidung (Choice) inkl. Nachdenken: **6–12 Sekunden**
+- Mini-Interaktion (Hotspot/Overlay) zählt wie Choice
+
+#### Runtime-Formel (Schätzung)
+**Kapitel-Minuten ≈ (Wörter / 190) + (Choices_total × 0.15)**
+
+- 190 Wörter/Minute = realistischer Mittelwert für mobilen, atmosphärischen Text
+- 0.15 Minuten pro Choice = 9 Sekunden pro Entscheidung
+
+#### Ziel-Bereich als Zahlen
+Für **30–35 Minuten** brauchst du grob:
+- **Wörter pro Kapitel**: ~ **5.000–6.500**
+- **Choices pro Kapitel**: ~ **30–45**
+
+---
+
+### 4.3 Kapitel-Blueprint (wie du Länge erzeugst)
+
+#### Szenenanzahl pro Kapitel
+- Minimum: **18 Szenen**
+- Ziel: **22–28 Szenen**
+- Maximal (nur wenn sauber): **32 Szenen**
+
+> Wenn ein Kapitel nur 10–14 Szenen hat, ist "17 Minuten" praktisch garantiert.
+
+#### Szene-Typen (Mischung)
+Jedes Kapitel soll enthalten:
+1. **3–5 Atmosphere/Interlude Szenen**
+   - Kurz, dicht, wenig Plot, viel Gefühl (Gang, Geräusche, Durchsage, Lichtwechsel)
+2. **10–16 Standard Szenen**
+   - Dialog + Entscheidung + Konsequenz
+3. **2–4 "Set-Piece"-Szenen**
+   - Länger, zentral (Kontrolle, Abteil 7 Moment, Drift/Spiegel)
+
+#### Plot-Tempo-Regel (Anti-Express)
+- Pro Kapitel wird **maximal 1 großer Reveal** geliefert
+- "Erklären" ist verboten: Max. **3 erklärende Sätze am Stück**
+- Mystery bleibt Mystery. Der Zug lügt nicht plump, er **verschiebt Bedeutung**
+
+---
+
+### 4.4 Szenen-Spezifikation (für Immersion)
+
+#### Mindestanforderungen pro Szene
+- **narrative**: 5–10 Absätze (bei Interludes: 3–6)
+- **Mindestens 1 sensorischer Anker**:
+  - Geräusch / Licht / Geruch / Temperatur / Material / Vibration
+- **Mindestens 1 "Moment"** (siehe unten)
+- **choices**: 1–4, jede Choice hat Effects + next/ending
+- **state_notes**: max 3, aber mindestens 1 Callback-Hinweis
+
+#### Der "Moment"-Katalog (jede Szene muss ≥ 1 haben)
+- Mini-Konflikt (Blickkontakt, Unterbrechung, leise Drohung, Unsicherheit)
+- Mini-Entscheidung (nicht nur Plot, auch Verhalten/Ton)
+- Nachhall (ein Satz/Detail, das später wiederkommt)
+- Drift-Symptom (klein, subtil, nicht übertrieben)
+- Beziehungssignal (`rel_*` bewegt sich spürbar in Dialog/Reaktion)
+
+---
+
+### 4.5 Entscheidungen (damit Spielzeit echt ist)
+
+#### Jede Choice muss spürbar sein
+- Jede Choice:
+  - **Mindestens 1 Effect**
+  - Und ein **sichtbares Echo später** (Callback)
+
+Wenn eine Choice "nur Text variiert", ist das Fake-Interaktivität und zählt nicht als Spielzeit.
+
+#### Choice-Dichte
+- Ziel: **1 Choice pro Szene** mindestens
+- In Set-Pieces: gerne **2 Choices** (Interaktions-Sandwich)
+
+#### Interaktions-Sandwich (für große Szenen)
+Für zentrale Szenen:
+1. Einstieg (kurz)
+2. Choice 1
+3. Konsequenz sichtbar
+4. Choice 2
+5. Ausklang / Hook
+
+Ergebnis: mehr Spielzeit **und** mehr Immersion, ohne Fülltext.
+
+---
+
+### 4.6 Drift & Kontrolle (Canonical Timing)
+
+- **station_end** pro Kapitel: Pflicht
+- **Kontrolle**: Kapitel **2, 3, 5** (mindestens eine `control` Szene)
+- Drift soll nicht "random weird" sein:
+  - Pro Kapitel 1–2 klare Drift-Symptome
+  - Steigerung über Kapitel hinweg
+
+---
+
+### 4.7 "Keine Füllwörter"-Regeln
+
+#### Verbotene Füllmuster
+- "Du spürst ein seltsames Gefühl" ohne konkreten Sinneseindruck
+- "Alles wirkt anders" ohne konkretes Detail
+- "Plötzlich erinnerst du dich" ohne Trigger / Konsequenz
+
+#### Stattdessen
+**Konkrete Dinge**: Metallkälte am Griff, fluoreszierendes Flackern, Ozongeruch, Schienenstoß, zu saubere Stille, falscher Name in Durchsage.
+
+---
+
+## 5. State Model (Unified)
+
+Alle Variablen existieren von Anfang an mit Defaults. Keine plötzlich auftauchenden Flags.
+
+### 5.1 Legacy Stats (numerisch 0-10)
+- `mut` (Mut)
+- `wissen`
+- `empathie`
+
+### 5.2 Tickets (0-5)
 - `tickets_truth`
 - `tickets_escape`
 - `tickets_guilt`
 - `tickets_love`
 
-### 5.3 Druck/Chaos (0–6)
+### 5.3 Pressure (0-6)
 - `conductor_attention`
 - `memory_drift`
 
-### 5.4 Beziehungen
-- `rel_comp7` (-2..+4)
-- `rel_boy` (-2..+3)
-- `rel_sleepless` (-2..+3)
+### 5.4 Beziehungen (-2 to +4)
+- `rel_comp7`
+- `rel_boy`
+- `rel_sleepless`
 
-### 5.5 Items / Hinweise (bool)
+### 5.5 Items / Hinweise (boolean)
 - `has_recorder`
 - `has_tag19`
 - `photo_anomaly`
+- `has_ticket`
+- `played_recorder`
+- `examined_suitcase`
 
 ### 5.6 Meta
 - `current_scene_id`
-- `visited_scene_ids[]` (Debug/Anti-Loops)
-- `chapter_index` / `station_count`
-- `history[]` (log: scene_id + choice_id + delta)
+- `visited_scene_ids[]`
+- `chapter_index`
+- `history[]`
 
-**Regel:** Alle Variablen existieren von Anfang an (mit Default). Kein „plötzlich taucht flag_x auf".
+**Regel**: Engine clamp't alle Werte auf erlaubte Ranges automatisch.
 
 ---
 
-## 6) Conditions & Effects (Mini-Sprache, damit KI nichts erfindet)
+## 6. Conditions & Effects (Mini-Sprache)
 
-Du brauchst eine kleine, klare Grammatik, damit Content validierbar wird.
+### 6.1 Conditions
+- Vergleiche: `compare` (target, operator, value)
+- Boolean: `bool` (target, value)
+- Kombinationen: `and` / `or` (max 2 Ebenen verschachtelt)
 
-### 6.1 Conditions (Beispiele als Regeln)
-- Vergleiche: `state.wissen >= 3`
-- Bool: `state.has_tag19 == true`
-- Kombi: `AND/OR` (max 2 Ebenen verschachteln)
+**Regel**: Keine freien Text-Conditions.
 
-**Regel:** Keine freien Text-Conditions wie „wenn Spieler nett war".
-
-### 6.2 Effects (nur diese Operationen)
+### 6.2 Effects
 - `inc` / `dec` (z.B. `memory_drift +1`)
-- `set` (bool oder feste Zahl)
-- `clamp` (Werte in Range halten)
-- optional: `note` (Log-Eintrag)
+- `set` (boolean oder feste Zahl)
 
-**Regel:** Engine clamp't alles auf erlaubte Ranges.
+**Regel**: Engine clamp't alles auf erlaubte Ranges.
 
 ---
 
-## 7) Graph-Invarianten (damit dein Content nicht kaputt ist)
+## 7. Graph-Invarianten (Content Validation)
 
-Dein Validator muss prüfen:
+Der Validator muss prüfen:
 
-1. Jede `next`-Referenz existiert.
-2. Jede Szene ist vom Start aus erreichbar (oder bewusst als `secret` markiert).
-3. Keine Dead-Ends ohne `ending`.
-4. Keine Choice ohne `effects`.
-5. Keine unbekannten Variablen in Conditions/Effects.
-6. Station-Ende-Regel erfüllt: Wenn `tags` enthält `station_end`, dann muss Drift/Korrektur passieren.
-7. Kontrollen-Regel erfüllt: Kapitel 2/3/5 enthalten mindestens eine Scene mit Tag `control`.
+1. Jede `next`-Referenz existiert
+2. Jede Szene ist vom Start erreichbar (oder als `secret` markiert)
+3. Keine Dead-Ends ohne `ending`
+4. Keine Choice ohne `effects`
+5. Keine unbekannten Variablen in Conditions/Effects
+6. Station-Ende-Regel: `station_end` → Drift/Korrektur
+7. Kontrollen-Regel: Kapitel 2/3/5 enthalten `control`
 
-Wenn auch nur einer davon bricht, ist das keine „kreative Freiheit", sondern ein Bug.
-
----
-
-## 8) Grundskelett des Contents (Minimal-MVP)
-
-Damit du nicht sofort wieder in „alles auf einmal" abrutschst:
-
-### MVP Ziel
-Kapitel 1–2 komplett spielbar mit:
-- Einstiegsszene
-- 10–14 Szenen insgesamt
-- Kontrolle 1 (Kapitel 2)
-- Station-Ende 1 (Drift)
-- mindestens 2 sichtbare Callbacks (z.B. falscher Name in Durchsage + Rekorder-Fund)
-
-### Kapitel 1 (Szenen grob)
-- `c1_s01_platform`
-- `c1_s02_train_appears`
-- `c1_s03_entry_or_run`
-- `c1_s04_sleepless_intro`
-- `c1_end_station_tagged`
-
-### Kapitel 2
-- `c2_s01_ticket_found`
-- `c2_s02_boy_recorder`
-- `c2_s03_announcement`
-- `c2_control_01`
-- `c2_end_station_tagged`
-
-**Wichtig:** Erst wenn das „spielt" und sich gut anfühlt, kommt Kapitel 3.
+Wenn einer davon bricht, ist das ein **Bug**, keine "kreative Freiheit".
 
 ---
 
-## 9) Schreib-Workflow mit KI (damit's nicht generisch wird)
+## 8. Definition of Done pro Kapitel
 
-Du verwendest KI nicht als „Autor", sondern als Textarbeiter unter Zwangsjacke:
+Ein Kapitel gilt als **fertig**, wenn:
 
-1. Du gibst Szene-Ziel + State-Startwerte + erlaubte Choices + Canon Rules.
-2. KI liefert Szene im festen Format (Scene + Choices + Effects).
-3. Linter/QA (zweite KI oder Validator) prüft:
-   - unbekannte Flags,
-   - fehlende Effects,
-   - Rule breaks (Drift/Kontrolle/Callbacks).
-4. Du editierst 10–20%: Rhythmus, Details, Dialogschärfe.
-
-Wenn du Schritt 2 ohne Schritt 3 machst, kannst du dir das Debugging gleich als Hobby zulegen.
+1. **Runtime-Schätzung** nach Formel:
+   - ≥ 20 Minuten (Fehler, wenn nicht)
+   - Ziel: 30–35 Minuten
+2. **Szenenanzahl** im Zielbereich (22–28 empfohlen)
+3. **Choice-Integrität**:
+   - Keine Choice ohne Effect
+   - Keine next-Links ins Nichts
+4. **Callbacks vorhanden**:
+   - Mind. 60% der State-ändernden Choices haben ein späteres Echo
+5. **Canon-Regeln** eingehalten:
+   - station_end vorhanden
+   - control in Kap. 2/3/5
+6. **Validator + Tests grün**
 
 ---
 
-## 10) Do / Don't Kurzliste
+## 9. Agenten-Aufgabenstellung (Kurzform)
+
+Wenn ein Agent ein Kapitel schreibt/erweitert:
+- Erhöhe Szenenanzahl auf Zielbereich
+- Erhöhe Choice-Dichte
+- Erzeuge Immersion über sensorische Anker + Momente
+- Halte Canon Rules ein
+- Keine neuen State-Keys, keine Engine/UI-Änderungen
+- Danach QA/Validator-Lauf
+
+---
+
+## 10. Do / Don't Kurzliste
 
 ### Do
-- Wenige Figuren, starke Funktion.
-- Konkrete Details pro Absatz.
-- Foreshadowing statt Twist-Orgie.
-- Jede Choice hat spürbaren Preis.
+- Wenige Figuren, starke Funktion
+- Konkrete Details pro Absatz
+- Foreshadowing statt Twist-Orgie
+- Jede Choice hat spürbaren Preis
 
 ### Don't
-- „Mystery" als Ausrede für fehlende Logik.
-- Choices, die nur den Text variieren.
-- Neue Variablen erfinden, weil es gerade passt.
-- 7 Kapitel schreiben, bevor Kapitel 1–2 überhaupt Spaß machen.
+- "Mystery" als Ausrede für fehlende Logik
+- Choices, die nur den Text variieren
+- Neue Variablen erfinden, weil es gerade passt
+- 7 Kapitel schreiben, bevor Kapitel 1–2 Spaß machen
 
 ---
 
-Wenn du dich an dieses Skelett hältst, bekommst du ein System, das KI gut befüllen kann und das trotzdem nicht wie AI-Einheitsbrei wirkt, weil Regeln und Konsequenzen das Ganze zwingen, Sinn zu ergeben.
+## Referenzen
+
+- **Story Concept**: [NACHTZUG_19_CONCEPT.md](./NACHTZUG_19_CONCEPT.md)
+- **State Model Details**: [CLAUDE.md](../CLAUDE.md#state-model-nachtzug-19)
+- **Android Implementation**: [ANDROID_GUIDE.md](./ANDROID_GUIDE.md)
+- **Architecture**: [ARCHITECTURE.md](./ARCHITECTURE.md)
+
+---
+
+**Version 2.0** | Konsolidiert: 2026-01-25
+
+**Ersetzt**:
+- NACHTZUG_19_RULES.md (v1)
+- DECISION_SYSTEM.md
+- MOBILE_PACING_RULES.md
+- NACHTZUG_19_LENGTH_IMMERSION_SPEC.md
