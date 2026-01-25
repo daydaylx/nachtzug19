@@ -457,7 +457,8 @@ Für Szenen mit `memory_drift >= 3`, subtile visuelle Distortion via CSS transfo
 ## Referenzen
 
 - **Detaillierte Scene-to-Background Mapping**: Siehe [assets/BACKGROUND_ASSETS_SPEC.md](./assets/BACKGROUND_ASSETS_SPEC.md)
-- **UI Konzept**: Siehe [NACHTZUG_19_READER_NOIR_UI_CONCEPT.md](./NACHTZUG_19_READER_NOIR_UI_CONCEPT.md)
+- **Android UI/UX Guide**: Siehe [ANDROID_GUIDE.md](./ANDROID_GUIDE.md)
+- **Architecture**: Siehe [ARCHITECTURE.md](./ARCHITECTURE.md)
 
 ---
 

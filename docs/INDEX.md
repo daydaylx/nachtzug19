@@ -22,6 +22,7 @@
 | [ARCHITECTURE.md](./ARCHITECTURE.md) | System-Architektur (TS/Kotlin Hybrid) | Dev |
 | [NACHTZUG_19_RULES.md](./NACHTZUG_19_RULES.md) | Canon Rules, Choice System, Pacing | Writer + Dev |
 | [NACHTZUG_19_CONCEPT.md](./NACHTZUG_19_CONCEPT.md) | Story Concept & Figuren-Referenz | Writer + Dev |
+| [STORY_BIBLE.md](./STORY_BIBLE.md) | Kapitel-Übersicht, Figuren, State-Index | Writer |
 | [ANDROID_GUIDE.md](./ANDROID_GUIDE.md) | Android Build & UI Guide | Dev |
 | [VISUAL_ASSETS.md](./VISUAL_ASSETS.md) | Asset Specifications & Prompts | Design + Dev |
 | [CHANGELOG.md](./CHANGELOG.md) | Änderungshistorie | Dev + User |
@@ -95,7 +96,7 @@ Archivierte Dokumente werden nicht mehr aktualisiert und dienen nur als historis
 → [README.md](../README.md) + [ARCHITECTURE.md](./ARCHITECTURE.md)
 
 **...eine Android-App bauen**
-→ [ANDROID_GUIDE.md](./ANDROID_GUIDE.md)
+→ [ANDROID_GUIDE.md](./ANDROID_GUIDE.md) (Build, UI/UX, Troubleshooting)
 
 **...Story-Content schreiben**
 → [NACHTZUG_19_RULES.md](./NACHTZUG_19_RULES.md) + [NACHTZUG_19_CONCEPT.md](./NACHTZUG_19_CONCEPT.md)
