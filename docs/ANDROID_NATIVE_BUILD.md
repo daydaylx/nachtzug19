@@ -1,59 +1,59 @@
 # Android Native Build
 
-## Prerequisites
-- Android Studio (Hedgehog or newer)
+## Voraussetzungen
+- Android Studio (Hedgehog oder neuer)
 - JDK 17
 - Node.js 18+
 
-## Story Export (story.json)
-From the repo root:
+## Story-Export (story.json)
+Vom Repository-Root aus:
 
 ```bash
 npm run export:story
 ```
 
-This writes `export/story.json` and, when available, copies it to:
+Dies schreibt `export/story.json` und kopiert es, falls verfügbar, nach:
 `android-native/app/src/main/assets/story.json`.
 
-If you want to manually sync after changes:
+Wenn du nach Änderungen manuell synchronisieren möchtest:
 
 ```bash
 cd android-native
 ./gradlew :app:syncStoryAssets
 ```
 
-## Open Project
-1. Open `android-native/` in Android Studio.
-2. Let Gradle sync.
-3. Run the `app` configuration on a device or emulator.
+## Projekt öffnen
+1. Öffne `android-native/` in Android Studio.
+2. Lasse Gradle synchronisieren.
+3. Starte die `app`-Konfiguration auf einem Gerät oder Emulator.
 
-## Debug Build (CLI)
+## Debug-Build (CLI)
 ```bash
 cd android-native
 ./gradlew :app:assembleDebug
 ```
 
-APK output:
+APK-Ausgabe:
 `android-native/app/build/outputs/apk/debug/app-debug.apk`
 
-## Release Build
+## Release-Build
 ```bash
 cd android-native
 ./gradlew :app:assembleRelease
 ```
 
-Signing:
-- Configure signing in `android-native/app/build.gradle.kts` or
+Signierung:
+- Konfiguriere Signierung in `android-native/app/build.gradle.kts` oder
   `android-native/gradle.properties`.
 - Android Studio: Build > Generate Signed Bundle / APK.
 
-## Unit Tests
+## Unit-Tests
 ```bash
 cd android-native
 ./gradlew :app:testDebugUnitTest
 ```
 
-## Troubleshooting
-- **story.json missing**: run `npm run export:story` and re-sync assets.
-- **JSON parse error**: ensure `export/story.json` is valid and includes endings.
-- **Gradle/JDK mismatch**: verify JDK 17 is selected in Android Studio.
+## Fehlerbehandlung
+- **story.json fehlt**: Führe `npm run export:story` aus und synchronisiere die Assets erneut.
+- **JSON-Parse-Fehler**: Stelle sicher, dass `export/story.json` gültig ist und Enden enthält.
+- **Gradle/JDK-Konflikt**: Verifiziere, dass JDK 17 in Android Studio ausgewählt ist.

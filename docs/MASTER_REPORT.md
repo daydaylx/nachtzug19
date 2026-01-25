@@ -6,13 +6,13 @@
 
 ---
 
-## Executive Summary
+## Zusammenfassung
 
 Das Projekt wurde erfolgreich einem **Mobile Pacing Audit** unterzogen und für Kapitel 1 (Onboarding) vollständig refactored.
 Das **Tone Choice Rebalancing** ist abgeschlossen.
 Die Engine und der Content sind stabil und validiert.
 
-**Health Check:**
+**Zustandsprüfung:**
 - **Tests:** ✅ 22/22 Passed
 - **Validation:** ✅ 0 Errors, 0 Warnings (Graph Integrität 100%)
 - **Type Check:** ✅ 0 Errors

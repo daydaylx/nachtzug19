@@ -1,85 +1,85 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+Diese Datei bietet Anleitung für Claude Code (claude.ai/code) bei der Arbeit mit Code in diesem Repository.
 
-## Project Overview
+## Projektübersicht
 
-**NACHTZUG 19** is an immersive psychological mystery adventure built as a **Native Android App (Kotlin)**.
-The project uses a hybrid architecture:
-- **TypeScript**: Defines the story content, game logic, and validation rules (`src/`).
-- **Kotlin**: Renders the game on Android devices (`android-native/`).
+**NACHTZUG 19** ist ein immersives psychologisches Mystery-Adventure als **Native Android App (Kotlin)**.
+Das Projekt nutzt eine hybride Architektur:
+- **TypeScript**: Definiert den Story-Content, die Spiellogik und Validierungsregeln (`src/`).
+- **Kotlin**: Rendert das Spiel auf Android-Geräten (`android-native/`).
 
-## Development Commands
+## Entwicklungsbefehle
 
 ```bash
-# Validate content integrity
+# Validiere Content-Integrität
 npm test
 
-# Export content to JSON for Android
+# Exportiere Content als JSON für Android
 npm run export:story
 
-# Build Android APK (Debug)
+# Erstelle Android APK (Debug)
 cd android-native && ./gradlew assembleDebug
 ```
 
-## Architecture: Hybrid
+## Architektur: Hybrid
 
-### 1. Content Source (`src/`)
-- **Purpose**: Single source of truth for the story graph.
-- **Language**: TypeScript.
-- **Key Files**:
-  - `src/content/nachtzug19/scenes/*.ts`: The actual story scenes.
-  - `src/domain/engine/gameEngine.ts`: Logic for validating and processing content.
-  - `scripts/export_story_json.ts`: Compiles TS content into a JSON file for Android.
+### 1. Content-Quelle (`src/`)
+- **Zweck**: Single Source of Truth für den Story-Graphen.
+- **Sprache**: TypeScript.
+- **Wichtige Dateien**:
+  - `src/content/nachtzug19/scenes/*.ts`: Die eigentlichen Story-Szenen.
+  - `src/domain/engine/gameEngine.ts`: Logik zur Validierung und Verarbeitung von Content.
+  - `scripts/export_story_json.ts`: Kompiliert TS-Content in eine JSON-Datei für Android.
 
-### 2. Android Runtime (`android-native/`)
-- **Purpose**: Runs the game on the device.
-- **Language**: Kotlin.
-- **Key Files**:
-  - `app/src/main/assets/story.json`: The compiled story (do not edit manually).
-  - `app/src/main/java/de/daydaylx/nachtzug19/engine/GameEngine.kt`: The runtime engine (mirrors TS logic).
+### 2. Android-Laufzeitumgebung (`android-native/`)
+- **Zweck**: Führt das Spiel auf dem Gerät aus.
+- **Sprache**: Kotlin.
+- **Wichtige Dateien**:
+  - `app/src/main/assets/story.json`: Die kompilierte Story (nicht manuell bearbeiten).
+  - `app/src/main/java/de/daydaylx/nachtzug19/engine/GameEngine.kt`: Die Laufzeit-Engine (spiegelt TS-Logik).
   - `app/src/main/java/de/daydaylx/nachtzug19/ui/*`: Jetpack Compose UI.
 
-## State Model (NACHTZUG 19)
+## State-Modell (NACHTZUG 19)
 
-Defined in `src/domain/types/index.ts` and mirrored in `Models.kt`:
+Definiert in `src/domain/types/index.ts` und gespiegelt in `Models.kt`:
 
 ```typescript
 GameState {
   stats: { mut, wissen, empathie }           // Legacy (0-10)
-  tickets: { truth, escape, guilt, love }    // Decision patterns (0-5)
+  tickets: { truth, escape, guilt, love }    // Entscheidungsmuster (0-5)
   pressure: { conductor_attention, memory_drift }  // (0-6)
-  relations: { rel_comp7, rel_boy, rel_sleepless } // (-2 to +4)
+  relations: { rel_comp7, rel_boy, rel_sleepless } // (-2 bis +4)
   items: { has_recorder, has_tag19, photo_anomaly } // boolean
 }
 ```
 
-## Content Format (Canon Rules)
+## Content-Format (Kanonische Regeln)
 
-All story content must follow `docs/NACHTZUG_19_RULES.md`.
+Alle Story-Inhalte müssen `docs/NACHTZUG_19_RULES.md` befolgen.
 
-### Mandatory Canon Rules
-**R1: Drift After Stations** - Every chapter end increases `memory_drift`.
-**R2: Controls at Chapters 2, 3, 5** - Fixed gatepoints that modify state.
-**R3: Every Choice Has Callback** - No choice without visible consequence later.
-**R4: Train Never Lies Directly** - Meaning shifts, not false statements.
+### Obligatorische kanonische Regeln
+**R1: Drift nach Stationen** - Jedes Kapitelende erhöht `memory_drift`.
+**R2: Kontrollen bei Kapiteln 2, 3, 5** - Feste Gatepoints, die den State verändern.
+**R3: Jede Wahl hat Konsequenz** - Keine Wahl ohne sichtbare Konsequenz später.
+**R4: Der Zug lügt nie direkt** - Bedeutungsverschiebungen, keine falschen Aussagen.
 
-## Workflow for Content Updates
+## Arbeitsablauf für Content-Updates
 
-1. **Edit TypeScript**: Modify scenes in `src/content/nachtzug19/scenes/`.
-2. **Validate**: Run `npm test` to check graph integrity and logic.
-3. **Export**: Run `npm run export:story` to update `story.json`.
-4. **Build**: Build the Android app to see changes on device/emulator.
+1. **Bearbeite TypeScript**: Modifiziere Szenen in `src/content/nachtzug19/scenes/`.
+2. **Validiere**: Führe `npm test` aus, um Graph-Integrität und Logik zu überprüfen.
+3. **Exportiere**: Führe `npm run export:story` aus, um `story.json` zu aktualisieren.
+4. **Erstelle**: Baue die Android-App, um Änderungen auf Gerät/Emulator zu sehen.
 
-## Common Pitfalls to Avoid
+## Häufige Fehler zum Vermeiden
 
-1. **Engine Divergence**: If you change `gameEngine.ts` (TS), you MUST update `GameEngine.kt` (Kotlin) to match.
-2. **Missing Export**: Changes in `src/content` are NOT visible in Android until you run `npm run export:story`.
-3. **New State Variables**: Do not add state variables without updating `domain/types/index.ts` AND `Models.kt`.
+1. **Engine-Divergenz**: Wenn du `gameEngine.ts` (TS) änderst, MUSST du `GameEngine.kt` (Kotlin) anpassen.
+2. **Fehlender Export**: Änderungen in `src/content` sind in Android NICHT sichtbar, bis du `npm run export:story` ausführst.
+3. **Neue State-Variablen**: Füge keine State-Variablen ohne Update von `domain/types/index.ts` UND `Models.kt` hinzu.
 
-## Current Status
+## Aktueller Status
 
-- ✅ Content: Chapters 1-7 complete & validated.
-- ✅ Android Engine: Fully implemented and patched for new features (conditional variants).
-- ✅ Tests: 100% path coverage via simulation.
-- ✅ CI: GitHub Actions for Android build active.
+- ✅ Content: Kapitel 1-7 vollständig & validiert.
+- ✅ Android Engine: Vollständig implementiert und gepatcht für neue Features (bedingte Varianten).
+- ✅ Tests: 100% Pfad-Abdeckung via Simulation.
+- ✅ CI: GitHub Actions für Android-Build aktiv.
