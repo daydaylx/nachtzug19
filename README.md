@@ -1,4 +1,4 @@
-# 🚂 NACHTZUG 19 (Android Edition)
+# 🚂 NACHTZUG 19 (Android-Edition)
 
 **Ein immersives psychologisches Mystery-Adventure als Native Android App.**
 
@@ -7,11 +7,11 @@
 Dieses Projekt ist eine **deterministische Interactive Fiction (IF) Engine**.
 Die Architektur ist hybrid:
 - **Content & Logik-Prototyping**: TypeScript (`src/content`, `src/domain`).
-- **Runtime & UI**: Native Android (Kotlin) in `android-native/`.
+- **Laufzeitumgebung & UI**: Native Android (Kotlin) in `android-native/`.
 
 ---
 
-## ✨ Features
+## ✨ Funktionen
 
 ### Story: NACHTZUG 19
 - **Psychologisches Mystery**: Ein Zug, der offiziell nicht existiert. Stationen ohne Namen. Erinnerungen, die sich verändern.
@@ -22,20 +22,20 @@ Die Architektur ist hybrid:
 
 ### Architektur
 - **Single Source of Truth**: Story-Content wird in TypeScript definiert (`src/content`).
-- **JSON Pipeline**: Ein Build-Skript exportiert den Content in eine optimierte `story.json`.
+- **JSON-Pipeline**: Ein Build-Skript exportiert den Content in eine optimierte `story.json`.
 - **Native Performance**: Die Android-App parst das JSON und rendert es nativ (keine WebView).
-- **Automated Validation**: TypeScript-Tests stellen sicher, dass der Content konsistent ist, bevor er in die App gelangt.
+- **Automatische Validierung**: TypeScript-Tests stellen sicher, dass der Content konsistent ist, bevor er in die App gelangt.
 
 ---
 
-## 🚀 Entwicklung & Build
+## 🚀 Entwicklung & Erstellung
 
 ### Voraussetzungen
 - Node.js 18+
 - JDK 17
 - Android Studio (oder Gradle CLI)
 
-### 1. Content Generieren
+### 1. Content generieren
 Der Content muss zuerst aus den TypeScript-Dateien in ein JSON-Format kompiliert werden, das die Android-App versteht.
 
 ```bash
@@ -48,16 +48,16 @@ npm run export:story
 
 Dies erstellt `export/story.json` und kopiert es automatisch nach `android-native/app/src/main/assets/story.json`.
 
-### 2. Android App bauen
+### 2. Android App erstellen
 
-**Via Kommandozeile:**
+**Über die Kommandozeile:**
 ```bash
 cd android-native
 ./gradlew assembleDebug
 ```
 Die APK liegt dann unter `android-native/app/build/outputs/apk/debug/app-debug.apk`.
 
-**Via Android Studio:**
+**Über Android Studio:**
 1. Öffne den Ordner `android-native` in Android Studio.
 2. Führe "Sync Gradle" aus.
 3. Starte die App auf einem Emulator oder Gerät.
@@ -68,16 +68,16 @@ Die APK liegt dann unter `android-native/app/build/outputs/apk/debug/app-debug.a
 
 ```
 .
-├── src/                    # TypeScript Source (Content & Logic Validation)
+├── src/                    # TypeScript-Quellen (Content & Logik-Validierung)
 │   ├── content/            # Die eigentliche Story (Kapitel 1-7)
 │   └── domain/             # Typ-Definitionen und Validierungs-Logik
 │
 ├── android-native/         # Native Android App (Kotlin)
-│   ├── app/src/main/java/  # Kotlin Source Code (Engine, UI, Models)
+│   ├── app/src/main/java/  # Kotlin-Quellcode (Engine, UI, Modelle)
 │   └── app/src/main/assets # Hier landet die story.json
 │
-├── scripts/                # Build-Tools
-│   ├── export_story_json.ts # Kompiliert TS -> JSON
+├── scripts/                # Build-Werkzeuge
+│   ├── export_story_json.ts # Kompiliert TS → JSON
 │   └── validate.ts          # Prüft Content-Integrität
 │
 └── reports/                # QA & Status-Berichte
@@ -85,7 +85,7 @@ Die APK liegt dann unter `android-native/app/build/outputs/apk/debug/app-debug.a
 
 ---
 
-## 🧪 Testing
+## 🧪 Tests
 
 ### Content & Logik (TypeScript)
 Bevor die App gebaut wird, sollte der Content geprüft werden.
@@ -102,5 +102,5 @@ Android-Tests befinden sich in `android-native/app/src/test`.
 
 ## 📝 Lizenz
 
-**Code**: MIT License.
+**Code**: MIT-Lizenz.
 **Story & Inhalt**: Copyright beim Autor.

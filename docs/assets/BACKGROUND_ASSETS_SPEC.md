@@ -1,105 +1,105 @@
-# NACHTZUG 19 – Background Assets Specification
+# NACHTZUG 19 – Spezifikation für Hintergrund-Grafiken
 
 **Version:** 1.0
-**Last Updated:** 2026-01-25
-**Purpose:** Complete specification for UI background images, naming conventions, and image generation prompts.
+**Zuletzt aktualisiert:** 2026-01-25
+**Zweck:** Vollständige Spezifikation für UI-Hintergrundbilder, Benennungskonventionen und Prompts zur Bildgenerierung.
 
 ---
 
-## A) Goal & Principles
+## A) Ziel & Prinzipien
 
-### Design Philosophy
+### Design-Philosophie
 
-NACHTZUG 19 uses background imagery to create **atmosphere**, not gameplay interaction. The game follows a **"Reader Noir"** aesthetic:
+NACHTZUG 19 nutzt Hintergrundgrafiken zur Schaffung von **Atmosphäre**, nicht für Gameplay-Interaktion. Das Spiel folgt einer **"Reader Noir"**-Ästhetik:
 
-- **Mobile-First:** Optimized for vertical portrait screens (9:16 aspect ratio)
-- **Minimalist:** Backgrounds support readability, never compete with text
-- **Cinematic:** 2D digital painting style with film noir influences
-- **Atmospheric:** Midnight palette with warm amber highlights, subtle grain
-- **Non-Intrusive:** Text always remains legible against backgrounds
+- **Mobile-First:** Optimiert für vertikale Hochformat-Bildschirme (9:16 Seitenverhältnis)
+- **Minimalistisch:** Hintergründe unterstützen Lesbarkeit, konkurrieren nie mit Text
+- **Kinematisch:** 2D-Digital-Malerei-Stil mit Film-Noir-Einflüssen
+- **Atmosphärisch:** Mitternachtspalette mit warmgoldenen Highlights, feines Körnig
+- **Nicht aufdringlich:** Text bleibt immer vor Hintergründen lesbar
 
-### Key Visual Themes
+### Wichtige visuelle Themen
 
-1. **Liminal Spaces:** Train corridors, platforms, transitional areas
-2. **Temporal Distortion:** Subtle visual cues for memory drift (blur, grain, color shift)
-3. **Noir Atmosphere:** Low-key lighting, strong contrast, warm/cool color interplay
-4. **Psychological Mystery:** Ambiguous spaces that feel both familiar and unsettling
+1. **Liminal Spaces:** Zugskorridore, Bahnsteige, Übergangsbereiche
+2. **Zeitliche Verrzerrung:** Subtile visuelle Hinweise für Memory Drift (Unschärfe, Körnung, Farbversatz)
+3. **Noir-Atmosphäre:** Low-Key-Beleuchtung, starker Kontrast, Warm/Kalt-Farbspiel
+4. **Psychologisches Mystery:** Mehrdeutige Räume, die gleichzeitig vertraut und verstörend wirken
 
 ---
 
-## B) Technical Specifications
+## B) Technische Spezifikationen
 
-### Image Format & Dimensions
+### Bildformat & Abmessungen
 
-| **Property**          | **Value**                          | **Notes**                                    |
+| **Eigenschaft**          | **Wert**                          | **Anmerkungen**                                    |
 |-----------------------|------------------------------------|----------------------------------------------|
-| **Primary Format**    | PNG (lossless)                     | WebP optional for web export                 |
-| **Aspect Ratio**      | 9:16 (Portrait)                    | Mobile-optimized                             |
-| **Base Resolution**   | 1440 × 2560 px                     | High-DPI baseline                            |
-| **Export Variants**   | @1x (720×1280), @2x (1440×2560)    | For performance optimization                 |
-| **Color Space**       | sRGB                               | Standard web/mobile color space              |
-| **Max File Size**     | 500 KB per image (PNG)             | For fast loading on mobile                   |
+| **Hauptformat**    | PNG (verlustfrei)                     | WebP optional für Web-Export                 |
+| **Seitenverhältnis**      | 9:16 (Hochformat)                    | Mobile-optimiert                             |
+| **Basisauflösung**   | 1440 × 2560 Pixel                     | High-DPI Basis                            |
+| **Exportvarianten**   | @1x (720×1280), @2x (1440×2560)    | Zur Leistungsoptimierung                 |
+| **Farbraum**       | sRGB                               | Standard Web/Mobile Farbraum              |
+| **Max. Dateigröße**     | 500 KB pro Bild (PNG)             | Für schnelles Mobile-Laden                   |
 
-### Safe Areas
+### Sichere Bereiche
 
-To ensure text overlays remain readable:
+Um sicherzustellen, dass Text-Overlays lesbar bleiben:
 
-| **Area**              | **Position**     | **Height** | **Purpose**                    |
+| **Bereich**              | **Position**     | **Höhe** | **Zweck**                    |
 |-----------------------|------------------|------------|--------------------------------|
-| **Top Safe Zone**     | Top 12%          | ~307 px    | Status bar / chapter indicator |
-| **Bottom Safe Zone**  | Bottom 18%       | ~460 px    | Choice tray / action buttons   |
-| **Reading Zone**      | Center 70%       | ~1793 px   | Main narrative text display    |
+| **Oberer sicherer Bereich**     | Oben 12%          | ~307 Pixel    | Statusleiste / Kapitel-Anzeige |
+| **Unterer sicherer Bereich**  | Unten 18%       | ~460 Pixel    | Auswahl-Tablett / Aktionsschaltflächen   |
+| **Lesezone**      | Mitte 70%       | ~1793 Pixel   | Haupttext-Anzeige der Erzählung    |
 
-**Design Guideline:** Keep visual focus and high-contrast elements **outside** safe zones. Use subtle gradients or vignettes to ensure text legibility.
+**Designrichtlinie:** Halten Sie visuellen Fokus und Hochkontrast-Elemente **außerhalb** der sicheren Bereiche. Nutzen Sie subtile Gradienten oder Vignetten für Textlesbarkeit.
 
 ---
 
-## C) Naming Schema
+## C) Benennungsschema
 
-### 1. Location Backdrops (Reusable)
+### 1. Ort-Hintergründe (Wiederverwendbar)
 
 **Format:** `bg_loc_<location>__v<version>.png`
 
-**Examples:**
+**Beispiele:**
 - `bg_loc_platform__v1.png`
 - `bg_loc_corridor__v1.png`
 - `bg_loc_compartment__v1.png`
 - `bg_loc_window__v1.png`
 - `bg_loc_comp7__v1.png`
 
-**Location:** `src/assets/backgrounds/locations/`
+**Ort:** `src/assets/backgrounds/locations/`
 
-**Purpose:** Reusable backgrounds for common train locations. Most scenes use these.
+**Zweck:** Wiederverwendbare Hintergründe für häufige Zugstandorte. Die meisten Szenen verwenden diese.
 
 ---
 
-### 2. Scene-Specific Backdrops (Unique Moments)
+### 2. Szenen-spezifische Hintergründe (Einzigartige Momente)
 
 **Format:** `bg_scene_<sceneId>__v<version>.png`
 
-**Examples:**
-- `bg_scene_c2_control_01__v1.png` (Conductor control scene)
-- `bg_scene_c4_mirror_intro__v1.png` (First mirror encounter)
-- `bg_scene_c7_s06_announcement__v1.png` (Final announcement)
+**Beispiele:**
+- `bg_scene_c2_control_01__v1.png` (Schaffner-Kontrolle-Szene)
+- `bg_scene_c4_mirror_intro__v1.png` (Erste Spiegel-Begegnung)
+- `bg_scene_c7_s06_announcement__v1.png` (Letzte Durchsage)
 
-**Location:** `src/assets/backgrounds/scenes/`
+**Ort:** `src/assets/backgrounds/scenes/`
 
-**Purpose:** Unique backgrounds for special narrative moments (controls, mirrors, revelations).
+**Zweck:** Einzigartige Hintergründe für spezielle Erzähl-Momente (Kontrollen, Spiegel, Enthüllungen).
 
 ---
 
-### 3. Overlays (Optional Decorative Layers)
+### 3. Overlays (Optionale dekorative Ebenen)
 
 **Format:** `ov_<type>__v<version>.png`
 
-**Examples:**
-- `ov_station_banner__v1.png` (Station name overlay)
-- `ov_announcement__v1.png` (Speaker icon overlay)
-- `ov_drift_grain__v1.png` (Memory drift texture overlay)
+**Beispiele:**
+- `ov_station_banner__v1.png` (Bahnhofs-Namen-Overlay)
+- `ov_announcement__v1.png` (Lautsprecher-Symbol-Overlay)
+- `ov_drift_grain__v1.png` (Memory Drift Textur-Overlay)
 
-**Location:** `src/assets/backgrounds/overlays/`
+**Ort:** `src/assets/backgrounds/overlays/`
 
-**Purpose:** Optional compositing layers for dynamic effects (e.g., station names, drift distortion).
+**Zweck:** Optionale Compositing-Ebenen für dynamische Effekte (z.B. Bahnhofs-Namen, Drift-Vernebelung).
 
 ---
 
@@ -113,11 +113,11 @@ To ensure text overlays remain readable:
 
 ---
 
-## D) Scene-to-Background Mapping Table
+## D) Szenen-zu-Hintergrund-Zuordnungstabelle
 
-This table maps **every scene** in NACHTZUG 19 to its recommended background asset.
+Diese Tabelle ordnet **jede Szene** in NACHTZUG 19 zu ihrem empfohlenen Hintergrund-Asset.
 
-### Chapter 1: Einstieg (14 scenes)
+### Kapitel 1: Einstieg (14 Szenen)
 
 | **Scene ID**                  | **Chapter** | **Tags**       | **Background Asset**             | **Prompt ID**       |
 |-------------------------------|-------------|----------------|----------------------------------|---------------------|
@@ -138,7 +138,7 @@ This table maps **every scene** in NACHTZUG 19 to its recommended background ass
 
 ---
 
-### Chapter 2: Wiederholung (15 scenes)
+### Kapitel 2: Wiederholung (15 Szenen)
 
 | **Scene ID**                  | **Chapter** | **Tags**       | **Background Asset**             | **Prompt ID**       |
 |-------------------------------|-------------|----------------|----------------------------------|---------------------|
@@ -160,7 +160,7 @@ This table maps **every scene** in NACHTZUG 19 to its recommended background ass
 
 ---
 
-### Chapter 3: Bindung (15 scenes)
+### Kapitel 3: Bindung (15 Szenen)
 
 | **Scene ID**                  | **Chapter** | **Tags**       | **Background Asset**             | **Prompt ID**       |
 |-------------------------------|-------------|----------------|----------------------------------|---------------------|
@@ -182,7 +182,7 @@ This table maps **every scene** in NACHTZUG 19 to its recommended background ass
 
 ---
 
-### Chapter 4: Spiegelung (12 scenes)
+### Kapitel 4: Spiegelung (12 Szenen)
 
 | **Scene ID**                       | **Chapter** | **Tags**       | **Background Asset**             | **Prompt ID**       |
 |------------------------------------|-------------|----------------|----------------------------------|---------------------|
@@ -201,7 +201,7 @@ This table maps **every scene** in NACHTZUG 19 to its recommended background ass
 
 ---
 
-### Chapter 5: Eskalation (25 scenes)
+### Kapitel 5: Eskalation (25 Szenen)
 
 | **Scene ID**                       | **Chapter** | **Tags**       | **Background Asset**             | **Prompt ID**       |
 |------------------------------------|-------------|----------------|----------------------------------|---------------------|
@@ -266,7 +266,7 @@ This table maps **every scene** in NACHTZUG 19 to its recommended background ass
 
 ---
 
-### Chapter 7: Entscheidung (31 scenes + Endings)
+### Kapitel 7: Entscheidung (31 Szenen + Enden)
 
 | **Scene ID**                       | **Chapter** | **Tags**       | **Background Asset**             | **Prompt ID**       |
 |------------------------------------|-------------|----------------|----------------------------------|---------------------|
@@ -304,7 +304,7 @@ This table maps **every scene** in NACHTZUG 19 to its recommended background ass
 
 ---
 
-### Endings (14 scenes)
+### Enden (14 Szenen)
 
 | **Scene ID**                       | **Chapter** | **Tags**       | **Background Asset**             | **Prompt ID**       |
 |------------------------------------|-------------|----------------|----------------------------------|---------------------|
@@ -325,22 +325,22 @@ This table maps **every scene** in NACHTZUG 19 to its recommended background ass
 
 ---
 
-## E) Rendering & UI Integration Notes
+## E) Rendering & UI-Integrations-Hinweise
 
-### CSS / Rendering Properties
+### CSS / Rendering-Eigenschaften
 
 ```css
 .scene-background {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  image-rendering: -webkit-optimize-contrast; /* Sharpen on mobile */
+  image-rendering: -webkit-optimize-contrast; /* Auf Mobile schärfen */
 }
 ```
 
-### Vignette & Grain (Optional Post-Processing)
+### Vignette & Körnung (Optionale Nachbearbeitung)
 
-**Recommendation:** Apply subtle effects via CSS/shader rather than baking into assets.
+**Empfehlung:** Wende subtile Effekte via CSS/Shader an statt sie in Assets einzubrennen.
 
 ```css
 .scene-background::after {
@@ -353,11 +353,11 @@ This table maps **every scene** in NACHTZUG 19 to its recommended background ass
 }
 ```
 
-**Grain Texture:** Use a separate `ov_grain__v1.png` overlay with low opacity (~5-10%) for film texture.
+**Körnung-Textur:** Nutze ein separates `ov_grain__v1.png` Overlay mit niedriger Deckkraft (~5-10%) für Film-Textur.
 
-### Memory Drift Effects (Dynamic)
+### Memory Drift Effekte (Dynamisch)
 
-For scenes with `memory_drift >= 3`, apply subtle visual distortion via CSS transforms:
+Für Szenen mit `memory_drift >= 3`, wende subtile visuelle Verzerrung via CSS Transformationen an:
 
 ```css
 .scene-background--drift-high {
@@ -371,13 +371,13 @@ For scenes with `memory_drift >= 3`, apply subtle visual distortion via CSS tran
 }
 ```
 
-**Important:** Keep text overlays sharp and unaffected by drift effects.
+**Wichtig:** Halte Text-Overlays scharf und unbeeinflusst von Drift-Effekten.
 
 ---
 
-## F) Prompt Library for Image Generation
+## F) Prompt-Bibliothek für Bildgenerierung
 
-### Global Style Prompt (Apply to All Images)
+### Globaler Stil-Prompt (Auf alle Bilder anwenden)
 
 ```
 **Style:** 2D cinematic digital painting, realistic render with painterly touches, inspired by film noir and liminal space photography.
@@ -400,9 +400,9 @@ For scenes with `memory_drift >= 3`, apply subtle visual distortion via CSS tran
 
 ---
 
-### Location Prompts (Reusable Backdrops)
+### Ort-Prompts (Wiederverwendbare Hintergründe)
 
-#### `LOC_PLATFORM` (Platform / Bahnsteig)
+#### `LOC_PLATFORM` (Bahnsteig)
 
 ```
 **Scene:** Empty train platform at night, long and narrow, vanishing into darkness at both ends.
@@ -420,7 +420,7 @@ For scenes with `memory_drift >= 3`, apply subtle visual distortion via CSS tran
 
 ---
 
-#### `LOC_CORRIDOR` (Train Corridor / Gang)
+#### `LOC_CORRIDOR` (Zugkorridor)
 
 ```
 **Scene:** Narrow train corridor, wood-paneled walls, dimly lit by warm overhead lights, stretching forward into soft focus.
@@ -438,7 +438,7 @@ For scenes with `memory_drift >= 3`, apply subtle visual distortion via CSS tran
 
 ---
 
-#### `LOC_COMPARTMENT` (Train Compartment / Abteil)
+#### `LOC_COMPARTMENT` (Zugabteil)
 
 ```
 **Scene:** Small train compartment interior, facing seats upholstered in worn burgundy fabric, small table between them, window showing darkness outside.
@@ -456,7 +456,7 @@ For scenes with `memory_drift >= 3`, apply subtle visual distortion via CSS tran
 
 ---
 
-#### `LOC_WINDOW` (Window View)
+#### `LOC_WINDOW` (Fensteraussicht)
 
 ```
 **Scene:** View through train window, close-up perspective, showing the window frame and the void beyond.
@@ -474,7 +474,7 @@ For scenes with `memory_drift >= 3`, apply subtle visual distortion via CSS tran
 
 ---
 
-#### `LOC_COMP7` (Compartment 7 / Wagen 7)
+#### `LOC_COMP7` (Abteil 7)
 
 ```
 **Scene:** Same as LOC_COMPARTMENT, but subtly "off." Everything is slightly too perfect, slightly too still.
@@ -494,7 +494,7 @@ For scenes with `memory_drift >= 3`, apply subtle visual distortion via CSS tran
 
 ---
 
-#### `LOC_TRANSITION` (Threshold / Doorway)
+#### `LOC_TRANSITION` (Schwelle / Tür)
 
 ```
 **Scene:** Open train door, half inside the train (dark interior), half outside (blinding white/gold light), perfectly centered composition.
@@ -512,9 +512,9 @@ For scenes with `memory_drift >= 3`, apply subtle visual distortion via CSS tran
 
 ---
 
-### Scene-Specific Prompts (Unique Moments)
+### Szenen-spezifische Prompts (Einzigartige Momente)
 
-#### `SCENE_CONTROL` (Conductor Control Scenes)
+#### `SCENE_CONTROL` (Schaffner-Kontroll-Szenen)
 
 ```
 **Scene:** Train control checkpoint area, small alcove with folding table, harsh overhead light creating dramatic shadows, conductor's silhouette looming.
@@ -532,7 +532,7 @@ For scenes with `memory_drift >= 3`, apply subtle visual distortion via CSS tran
 
 ---
 
-#### `SCENE_MIRROR` (Mirror Encounter Scenes)
+#### `SCENE_MIRROR` (Spiegel-Begegnungs-Szenen)
 
 ```
 **Scene:** Train washroom, small and cramped, centered on a mirror above the sink, reflection shows protagonist's face (blurred, indistinct).
@@ -550,7 +550,7 @@ For scenes with `memory_drift >= 3`, apply subtle visual distortion via CSS tran
 
 ---
 
-#### `SCENE_ANNOUNCEMENT` (Final Announcement Scene c7_s06/s07)
+#### `SCENE_ANNOUNCEMENT` (Letzte Durchsage-Szene c7_s06/s07)
 
 ```
 **Scene:** Corridor view looking up at a vintage loudspeaker mounted on the ceiling, distorted sound waves visualized as subtle ripples in the air.
@@ -568,7 +568,7 @@ For scenes with `memory_drift >= 3`, apply subtle visual distortion via CSS tran
 
 ---
 
-#### `SCENE_DISSOLVE` (Corridor Dissolve c7_s09)
+#### `SCENE_DISSOLVE` (Korridor-Auflösung c7_s09)
 
 ```
 **Scene:** Train corridor, but walls are becoming transparent, revealing overlapping layers of other corridors, other times.
@@ -586,7 +586,7 @@ For scenes with `memory_drift >= 3`, apply subtle visual distortion via CSS tran
 
 ---
 
-#### `SCENE_VOID` (Window Void c5_s12, c6_s17)
+#### `SCENE_VOID` (Fenster-Leere c5_s12, c6_s17)
 
 ```
 **Scene:** Extreme close-up of train window, the void outside is no longer black—it's a churning, non-Euclidean space.
@@ -604,9 +604,9 @@ For scenes with `memory_drift >= 3`, apply subtle visual distortion via CSS tran
 
 ---
 
-### Ending-Specific Prompts
+### Enden-spezifische Prompts
 
-#### `ENDING_CITY` (Truth Ending - Modern City)
+#### `ENDING_CITY` (Wahrheits-Ende - Moderne Stadt)
 
 ```
 **Scene:** Modern city street at dawn, normal and alive, people walking, cars passing, sunlight breaking over buildings.
@@ -622,7 +622,7 @@ For scenes with `memory_drift >= 3`, apply subtle visual distortion via CSS tran
 
 ---
 
-#### `ENDING_REUNION` (Love Ending - Train Platform Reunion)
+#### `ENDING_REUNION` (Liebes-Ende - Bahnsteig-Wiedersehen)
 
 ```
 **Scene:** Train platform bench, two figures sitting close together, warm afternoon light.
@@ -638,7 +638,7 @@ For scenes with `memory_drift >= 3`, apply subtle visual distortion via CSS tran
 
 ---
 
-#### `ENDING_HOME` (Love Ending - Domestic Interior)
+#### `ENDING_HOME` (Liebes-Ende - Häusliches Interieur)
 
 ```
 **Scene:** Small, cozy living room, warm light from lamps, photos on walls, domestic comfort.
@@ -654,7 +654,7 @@ For scenes with `memory_drift >= 3`, apply subtle visual distortion via CSS tran
 
 ---
 
-#### `ENDING_LIBRARY` (Guilt Ending - Research Library)
+#### `ENDING_LIBRARY` (Schuld-Ende - Forschungs-Bibliothek)
 
 ```
 **Scene:** Library desk, papers spread out, old newspaper articles, protagonist's hands writing.
@@ -670,9 +670,9 @@ For scenes with `memory_drift >= 3`, apply subtle visual distortion via CSS tran
 
 ---
 
-## G) Asset Checklist Summary
+## G) Checkliste für Asset-Zusammenfassung
 
-### Location Backdrops (9 assets)
+### Ort-Hintergründe (6 Assets)
 
 - [ ] `bg_loc_platform__v1.png`
 - [ ] `bg_loc_corridor__v1.png`
@@ -681,7 +681,7 @@ For scenes with `memory_drift >= 3`, apply subtle visual distortion via CSS tran
 - [ ] `bg_loc_comp7__v1.png`
 - [ ] `bg_loc_transition__v1.png`
 
-### Scene-Specific Backdrops (9 assets)
+### Szenen-spezifische Hintergründe (9 Assets)
 
 - [ ] `bg_scene_c2_control_01__v1.png`
 - [ ] `bg_scene_c3_control_02__v1.png`
@@ -693,32 +693,32 @@ For scenes with `memory_drift >= 3`, apply subtle visual distortion via CSS tran
 - [ ] `bg_scene_c7_announcement__v1.png`
 - [ ] `bg_scene_c7_dissolve__v1.png`
 
-### Ending Backdrops (4 assets)
+### Enden-Hintergründe (4 Assets)
 
 - [ ] `bg_ending_city__v1.png`
 - [ ] `bg_ending_reunion__v1.png`
 - [ ] `bg_ending_home__v1.png`
 - [ ] `bg_ending_library__v1.png`
 
-### Optional Overlays (3 assets)
+### Optionale Overlays (3 Assets)
 
 - [ ] `ov_grain__v1.png`
 - [ ] `ov_station_banner__v1.png`
 - [ ] `ov_drift_distortion__v1.png`
 
-**Total Core Assets:** 22 images (covers 100% of scenes via reuse strategy)
+**Gesamt-Core-Assets:** 22 Bilder (deckt 100% der Szenen via Wiederverwendungs-Strategie ab)
 
 ---
 
-## H) Implementation Workflow
+## H) Implementierungs-Arbeitsablauf
 
-1. **Generate Core Locations First** (6 assets): Platform, Corridor, Compartment, Window, Comp7, Transition
-2. **Test Integration:** Import into Android app, verify safe zones, test text readability
-3. **Generate Scene-Specific Backdrops** (9 assets): Controls, mirrors, void, announcement, dissolve
-4. **Generate Ending Backdrops** (4 assets): City, reunion, home, library
-5. **Polish & Optimize:** Compress PNGs, create @1x/@2x variants, add optional overlays
-6. **Update Asset Manifest:** Document final file paths in `android-native/app/src/main/assets/`
+1. **Generiere zuerst Kern-Orte** (6 Assets): Bahnsteig, Korridor, Abteil, Fenster, Abteil 7, Schwelle
+2. **Teste Integration:** Importiere in Android-App, verifiziere sichere Bereiche, teste Textlesbarkeit
+3. **Generiere Szenen-spezifische Hintergründe** (9 Assets): Kontrollen, Spiegel, Leere, Durchsage, Auflösung
+4. **Generiere Enden-Hintergründe** (4 Assets): Stadt, Wiedersehen, Zuhause, Bibliothek
+5. **Poliere & Optimiere:** Komprimiere PNGs, erstelle @1x/@2x Varianten, füge optionale Overlays hinzu
+6. **Aktualisiere Asset-Manifest:** Dokumentiere endgültige Dateipfade in `android-native/app/src/main/assets/`
 
 ---
 
-**End of Specification**
+**Ende der Spezifikation**
