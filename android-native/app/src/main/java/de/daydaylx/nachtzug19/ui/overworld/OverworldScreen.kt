@@ -45,6 +45,8 @@ import de.daydaylx.nachtzug19.ui.theme.NachtzugColors
 import kotlinx.coroutines.delay
 import kotlin.math.abs
 import kotlin.math.min
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Settings
 
 @Composable
 fun OverworldScreen(
@@ -556,5 +558,3 @@ private fun CenteredMessage(text: String) {
     }
   }
 }
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Settings
