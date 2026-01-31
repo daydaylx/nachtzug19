@@ -1,10 +1,10 @@
 // ============================================================================
 // NACHTZUG 19 - Interactive Endings
 // ============================================================================
-// Truth Ending (3 Szenen): ending_truth_01, ending_truth_02, ending_truth_03
-// Love Ending (3 Szenen): ending_love_01, ending_love_02, ending_love_03
-// Guilt Ending (3 Szenen): ending_guilt_01, ending_guilt_02, ending_guilt_03
-// Escape Ending (3 Szenen): ending_escape_01, ending_escape_02, ending_escape_03
+// Truth Ending (2 Szenen): ending_truth_01, ending_truth_02
+// Love Ending (2 Szenen): ending_love_01, ending_love_02
+// Guilt Ending (2 Szenen): ending_guilt_01, ending_guilt_02
+// Escape Ending (2 Szenen): ending_escape_01, ending_escape_02
 // Limbo Ending (2 Szenen): ending_limbo_01, ending_limbo_02
 // ============================================================================
 
@@ -67,7 +67,9 @@ Dann verschwindet auch er.`,
       {
         id: 'continue',
         label: 'Weiter',
-        effects: [],
+        effects: [
+          { type: 'inc', target: 'tickets_truth', value: 1 }
+        ],
         next: 'ending_truth_02'
       }
     ],
@@ -88,110 +90,27 @@ Dann verschwindet auch er.`,
 
 Du stehst allein auf dem Bahnsteig. Aber es fühlt sich nicht leer an.
 
-Es fühlt sich... richtig an.
-
-Die Uhr an der Wand zeigt 06:00. Morgen.
-
-Zum ersten Mal seit... wie lange? ... tickt sie.
-
-Klick. Klick. Klick.
-
-Du siehst zu. Die Sekunden vergehen. Tatsächlich vergehen. Nicht eingefroren. Nicht rückwärts. Vorwärts.
-
-06:00:01.
-
-06:00:02.
-
-06:00:03.
+Die Uhr an der Wand zeigt 06:00. Morgen. Zum ersten Mal seit… wie lange? … tickt sie.
 
 Zeit. Echte Zeit.
 
 Die Luft riecht nach frischem Regen. Nach Asphalt. Nach Kaffee aus einem Automaten. Nach Leben.
 
-In der Ferne: Ein Zug. Ein echter. Mit Logos. Mit Werbung. Mit Menschen, die Kopfhörer tragen und auf Handys starren.
+Ein echter Zug fährt ein. Menschen steigen aus. Müde. Verschlafen. Mit Koffern.
 
-Er fährt ein. Langsam. Normal. Das Rattern der Schienen ist laut. Real.
+Eine Frau sieht dich an. "Entschuldigung, ist das Gleis 4?"
 
-Er hält an. Die Türen öffnen sich mit einem Zischen.
+"Ja. Gleis 4." Deine Stimme funktioniert. Klar. Ohne Echo.
 
-Menschen steigen aus. Müde. Verschlafen. Mit Koffern. Mit Rucksäcken.
+Die Sonne geht auf. Ein orangefarbener Streifen am Horizont. Dann gelb. Dann weiß.
 
-Eine Frau steigt aus. Sie sieht dich an. "Entschuldigung, ist das Gleis 4?"
-
-Du antwortest. Deine Stimme funktioniert. Klar. Ohne Echo.
-
-"Ja. Gleis 4."
-
-"Danke." Sie geht weiter. Schaut auf ihr Handy. Verschwindet in der Menge.
-
-Du bleibst stehen. Noch eine Minute.
-
-Die Sonne geht auf. Du siehst es. Am Horizont. Ein orangefarbener Streifen. Dann gelb. Dann weiß.
-
-Tageslicht.
-
-Zum ersten Mal seit 1973.`,
-    choices: [
-      {
-        id: 'continue',
-        label: 'Weiter',
-        effects: [],
-        next: 'ending_truth_03'
-      }
-    ],
-    tags: ['ending'],
-    state_notes: [
-      'Truth Ending Part 2',
-      'Zeit läuft wieder',
-      'Normaler Zug erscheint',
-      'Sonne geht auf'
-    ],
-    atmosphere: 'peaceful'
-  },
-
-  'ending_truth_03': {
-    id: 'ending_truth_03',
-    chapter: 7,
-    title: 'Ankunft',
-    narrative: `Du verlässt den Bahnhof.
+Du verlässt den Bahnhof.
 
 Draußen: Eine Stadt. Modern. Laut. Lebendig.
 
-Menschen überqueren Straßen. Autos hupen. Irgendwo spielt Musik aus einem offenen Fenster. Hunde bellen. Kinder lachen.
-
-Du weißt nicht, wo du bist.
-
-Du weißt nicht, welches Jahr es ist.
-
-Du weißt nicht, wohin du gehst.
-
-Aber...
-
-Du gehst.
-
-Einen Fuß vor den anderen.
-
-Die Straße ist fest unter deinen Füßen. Der Wind ist kalt in deinem Gesicht. Die Sonne wärmt deinen Rücken.
-
-Du atmest. Tief ein. Tief aus.
+Du weißt nicht, wo du bist. Du weißt nicht, welches Jahr es ist. Aber du gehst.
 
 Du lebst.
-
-Nicht als Erinnerung. Nicht als Geist. Nicht als Fragment.
-
-Sondern als... du.
-
-Ganz. Vollständig. Real.
-
-Die Wahrheit war schwer. Sie war schmerzhaft. Sie war... notwendig.
-
-Aber jetzt...
-
-Jetzt bist du frei.
-
-Zum ersten Mal seit 50 Jahren...
-
-...bist du angekommen.
 
 ---
 
@@ -208,22 +127,23 @@ Zum ersten Mal seit 50 Jahren...
       {
         id: 'finish',
         label: 'Ende',
-        effects: [],
+        effects: [
+          { type: 'inc', target: 'tickets_truth', value: 1 }
+        ],
         ending: 'TRUTH'
       }
     ],
     tags: ['ending', 'terminal'],
     state_notes: [
-      'Truth Ending Part 3',
-      'Protagonist verlässt Bahnhof',
-      'Neue Leben beginnt',
-      'Finale: Acceptance'
+      'Truth Ending Part 2',
+      'Zeit läuft wieder',
+      'Abschluss in einer Szene'
     ],
-    atmosphere: 'hopeful'
+    atmosphere: 'peaceful'
   },
 
   // ========================================
-  // LOVE ENDING (3 Szenen)
+  // LOVE ENDING (2 Szenen)
   // ========================================
   'ending_love_01': {
     id: 'ending_love_01',
@@ -280,7 +200,9 @@ Du siehst nur Emma an.`,
       {
         id: 'continue',
         label: 'Weiter',
-        effects: [],
+        effects: [
+          { type: 'inc', target: 'tickets_love', value: 1 }
+        ],
         next: 'ending_love_02'
       }
     ],
@@ -297,126 +219,33 @@ Du siehst nur Emma an.`,
     id: 'ending_love_02',
     chapter: 7,
     title: 'Verlorene Zeit',
-    narrative: `"Fünfzig Jahre," sagst du. "Ich war... weg. Fünfzig Jahre."
+    narrative: `"Fünfzig Jahre," sagst du. "Ich war... weg."
 
 "Ich weiß."
 
-"Du hast... gewartet?"
-
-Sie nickt. "Nicht jeden Tag. Nicht jede Nacht. Aber... ja. Ich habe gewartet."
-
 Sie setzt sich auf eine Bank. Du setzt dich neben sie.
 
-"Sie haben deinen Körper nie gefunden," sagt sie. "Nach dem Unfall. Der Zug... er ist komplett verbrannt. 19 Tote. Aber nur 18 Leichen. Du warst..."
+"Sie haben deinen Körper nie gefunden," sagt sie. "19 Tote. Aber nur 18 Leichen."
 
 "Verschwunden."
 
 "Ja."
 
-Eine Pause.
-
-"Ich habe geheiratet," sagt sie plötzlich. "Vor 42 Jahren. Einen guten Mann. Er ist vor drei Jahren gestorben."
-
-Du nickst. Es tut weh. Aber... du verstehst.
-
-"Kinder?"
-
-"Zwei. Enkelin auch. Sie ist jetzt 19."
-
-19.
-
-Natürlich.
-
-"Hast du... an mich gedacht?" fragst du.
-
-"Jeden Tag," sagt sie ohne zu zögern. "Jeden verdammten Tag."
-
-Sie lacht. Weint. Gleichzeitig.
-
-"Und jetzt bist du hier. Unverändert. Jung. Wie damals."
-
-"Und du bist..."
-
-"Alt," sagt sie. "Ich bin alt. Und du bist... nicht."
-
-Du siehst sie an. Die grauen Haare. Die Falten. Die müden Augen.
-
-Sie ist wunderschön.
+Sie erzählt von ihrem Leben. Von Jahren, die weitergingen, während du stehen geblieben bist.
 
 "Ich liebe dich," sagst du.
 
-"Ich weiß," sagt sie. "Ich dich auch."`,
-    choices: [
-      {
-        id: 'continue',
-        label: 'Weiter',
-        effects: [],
-        next: 'ending_love_03'
-      }
-    ],
-    tags: ['ending'],
-    state_notes: [
-      'Love Ending Part 2',
-      'Verlorene 50 Jahre',
-      'Sie hat weitergelebt',
-      'Bittersweet reunion'
-    ],
-    atmosphere: 'bittersweet'
-  },
+"Ich weiß," sagt sie. "Ich dich auch."
 
-  'ending_love_03': {
-    id: 'ending_love_03',
-    chapter: 7,
-    title: 'Zusammen',
-    narrative: `Sie steht auf. Reicht dir die Hand.
+Sie steht auf. Reicht dir die Hand.
 
-"Komm," sagt sie.
+"Komm."
 
-"Wohin?"
-
-"Nach Hause. Zu mir."
-
-Du zögerst. "Ich... weiß nicht, ob ich..."
-
-"Bleiben kannst?" Sie lächelt. "Ich weiß es auch nicht. Aber... wir haben jetzt. Das ist mehr, als ich je zu hoffen gewagt habe."
-
-Du nimmst ihre Hand.
-
-Sie führt dich weg vom Bahnhof. Durch die Stadt. Die Straßen sind ihr vertraut. Dir fremd.
-
-Alles hat sich verändert. 50 Jahre. Neue Häuser. Neue Autos. Neue Menschen.
-
-Aber ihre Hand in deiner...
-
-Das ist vertraut.
-
-Ihr Haus ist klein. Gemütlich. Fotos an der Wand. Von ihren Kindern. Ihrer Familie. Ihrem Leben.
-
-Ein Leben ohne dich.
-
-Aber jetzt bist du hier.
+Ihr Haus ist klein. Gemütlich. Fotos an der Wand. Ein Leben ohne dich.
 
 "Wie lange habe ich?" fragst du.
 
-"Ich weiß es nicht," sagt sie ehrlich. "Vielleicht einen Tag. Vielleicht ein Jahr. Vielleicht... für immer."
-
-"Und wenn ich verschwinde?"
-
-"Dann verschwinde. Aber bis dahin..."
-
-Sie umarmt dich. Fest. Real.
-
-"...bist du hier. Bei mir."
-
-Du schließt die Augen. Atmest ihren Geruch ein. Kaffee. Seife. Zuhause.
-
-Der Nachtzug ist weg.
-
-Die Fahrt ist vorbei.
-
-Aber die Liebe...
-
-Die ist geblieben.
+"Ich weiß es nicht," sagt sie ehrlich. "Aber wir haben jetzt."
 
 ---
 
@@ -433,22 +262,22 @@ Die ist geblieben.
       {
         id: 'finish',
         label: 'Ende',
-        effects: [],
+        effects: [
+          { type: 'inc', target: 'tickets_love', value: 1 }
+        ],
         ending: 'LOVE'
       }
     ],
     tags: ['ending', 'terminal'],
     state_notes: [
-      'Love Ending Part 3',
-      'Nach Hause gehen',
-      'Ungewisse Zukunft aber zusammen',
-      'Finale: Connection'
+      'Love Ending Part 2',
+      'Verlorene Zeit & Abschlussszene'
     ],
-    atmosphere: 'hopeful'
+    atmosphere: 'bittersweet'
   },
 
   // ========================================
-  // GUILT ENDING (3 Szenen)
+  // GUILT ENDING (2 Szenen)
   // ========================================
   'ending_guilt_01': {
     id: 'ending_guilt_01',
@@ -523,7 +352,9 @@ Du siehst ihn an.
       {
         id: 'continue',
         label: 'Weiter',
-        effects: [],
+        effects: [
+          { type: 'inc', target: 'tickets_guilt', value: 1 }
+        ],
         next: 'ending_guilt_02'
       }
     ],
@@ -545,120 +376,19 @@ Du siehst ihn an.
 
 "Das musst du entscheiden," sagt der Schaffner.
 
-"Kann ich... zurückgehen? Zu ihnen?"
-
-Er schüttelt den Kopf. "Nein. Der Zug fährt weiter. Ohne dich."
-
-"Aber sie sind noch da."
-
-"Sie waren immer da. Sie werden immer da sein. Bis sie selbst bereit sind zu gehen."
-
-"Und ich kann nichts tun?"
-
-"Du kannst... sie erinnern."
-
-Du siehst ihn an. Fragend.
-
-"Jeder Passagier im Zug... ist vergessen worden. Von der Welt. Von ihren Familien. Von der Zeit."
-
-Er deutet auf den Bahnsteig.
-
-"Aber du... du erinnerst dich. An sie. An ihre Gesichter. Ihre Geschichten."
-
-"Was bringt das?"
-
-"Vielleicht nichts," sagt er. "Vielleicht alles."
-
-Er geht einen Schritt zurück.
-
-"Du kannst die Toten nicht retten. Aber du kannst sie lebendig halten. In der Erinnerung. Im Herzen."
-
-"Das ist nicht genug."
-
-"Nein," sagt er. "Aber es ist etwas."
+"Du kannst die Toten nicht retten. Aber du kannst sie lebendig halten. In der Erinnerung."
 
 Der Zug verschwindet. Ganz.
 
-Du stehst allein auf dem Bahnsteig.
-
-"Was jetzt?" fragst du laut. Zu niemandem.
-
-Keine Antwort.
-
-Nur der Wind.
-
-Aber... du weißt, was du tun musst.`,
-    choices: [
-      {
-        id: 'continue',
-        label: 'Weiter',
-        effects: [],
-        next: 'ending_guilt_03'
-      }
-    ],
-    tags: ['ending'],
-    state_notes: [
-      'Guilt Ending Part 2',
-      'Schaffner erklärt Verantwortung',
-      'Erinnern vs. Retten',
-      'Zug verschwindet'
-    ],
-    atmosphere: 'somber'
-  },
-
-  'ending_guilt_03': {
-    id: 'ending_guilt_03',
-    chapter: 7,
-    title: 'Zeugnis',
-    narrative: `Du verlässt den Bahnhof.
-
-Draußen ist die Welt normal. Laut. Lebendig.
-
-Aber du fühlst dich... anders.
-
-Nicht leichter. Nicht freier.
-
-Schwerer. Verantwortlicher.
+Du stehst allein auf dem Bahnsteig. Aber du weißt, was du tun musst.
 
 Du gehst zu einer Bibliothek. Suchst nach Informationen.
 
 Nachtzug 19. 19. September 1973. 19:19 Uhr.
 
-Da ist ein Artikel. Klein. Auf Seite 7 einer alten Zeitung.
+Du liest die Namen. Jeden einzelnen.
 
-"19 Tote bei Zugunglück. Ursache unklar."
-
-19 Namen. Aufgelistet.
-
-Du liest sie. Jeden einzelnen.
-
-**Du wirst dich erinnern.**
-
-Du gehst nach Hause. Wo auch immer das ist.
-
-Du schreibst. Ihre Namen. Ihre Geschichten. Alles, woran du dich erinnerst.
-
-Der Schlaflose. Der Junge. Comp7.
-
-Die anderen Passagiere.
-
-Die 19 Toten.
-
-Du schreibst. Nicht um zu vergessen. Sondern um zu erinnern.
-
-Für immer.
-
-Die Schuld bleibt. Sie wird immer bleiben.
-
-Aber jetzt... hast du einen Zweck.
-
-Du bist ihr Zeuge. Ihr Chronist. Ihre Erinnerung.
-
-Und solange du lebst...
-
-...leben auch sie.
-
-Irgendwo.
+Du schreibst sie auf. Nicht um zu vergessen. Sondern um zu erinnern.
 
 ---
 
@@ -675,22 +405,22 @@ Irgendwo.
       {
         id: 'finish',
         label: 'Ende',
-        effects: [],
+        effects: [
+          { type: 'inc', target: 'tickets_guilt', value: 1 }
+        ],
         ending: 'GUILT'
       }
     ],
     tags: ['ending', 'terminal'],
     state_notes: [
-      'Guilt Ending Part 3',
-      'Protagonist wird Chronist',
-      'Erinnert die Toten',
-      'Finale: Responsibility'
+      'Guilt Ending Part 2',
+      'Verantwortung + Abschluss'
     ],
     atmosphere: 'somber'
   },
 
   // ========================================
-  // ESCAPE ENDING (3 Szenen)
+  // ESCAPE ENDING (2 Szenen)
   // ========================================
   'ending_escape_01': {
     id: 'ending_escape_01',
@@ -747,7 +477,9 @@ Er lächelt. Müde. Traurig.
       {
         id: 'continue',
         label: 'Weiter',
-        effects: [],
+        effects: [
+          { type: 'inc', target: 'tickets_escape', value: 1 }
+        ],
         next: 'ending_escape_02'
       }
     ],
@@ -767,128 +499,27 @@ Er lächelt. Müde. Traurig.
     title: 'Die Schleife',
     narrative: `Der Zug fährt. Weiter. Immer weiter.
 
-Du siehst die gleichen Stationen. Die gleichen Bahnsteige. Die gleichen leeren Gesichter.
+Die Durchsage wiederholt sich. Die Uhr zeigt 23:47. Immer.
 
-Die Durchsage wiederholt sich.
+Der Junge malt den Zug. Comp7 schreibt 19. 19. 19. Der Schlaflose starrt ins Schwarz.
 
-"Sehr geehrte Fahrgäste, wir erreichen in Kürze—"
-
-Pause.
-
-"—[unverständlich]."
-
-Du kennst sie auswendig.
-
-Die Uhr zeigt 23:47. Immer.
-
-Die Zeit steht still. Wieder.
-
-Der Junge malt in sein Heft. Den Zug. Zu lang. Gebogen. Im Kreis.
-
-Comp7 schreibt in ihre Notizbücher. 19. 19. 19.
-
-Der Schlaflose starrt aus dem Fenster. Müde. Hoffnungslos.
-
-Sie sind deine Familie jetzt.
-
-Die einzigen Menschen, die du kennst.
-
-Die einzigen, die bleiben.
-
-"Bereust du es?" fragt der Schlaflose.
-
-"Was?"
-
-"Geblieben zu sein."
-
-Du denkst nach.
+"Bereust du es?" fragt er.
 
 "Nein," lügst du.
 
-Er lächelt. "Ich auch nicht."
+Ihr wisst beide, dass es eine Lüge ist.
 
-Ihr beide wisst, dass es eine Lüge ist.
+Der Schaffner kommt. "Ihr Ticket, bitte."
 
-Aber hier, im Zug...
+Du gibst ihm das Tag19. Er nickt. "Gültig." 
 
-...sind Lügen sicherer als die Wahrheit.`,
-    choices: [
-      {
-        id: 'continue',
-        label: 'Weiter',
-        effects: [],
-        next: 'ending_escape_03'
-      }
-    ],
-    tags: ['ending'],
-    state_notes: [
-      'Escape Ending Part 2',
-      'Schleife wiederholt sich',
-      'NPCs sind Gefangene',
-      'Lügen sind Sicherheit'
-    ],
-    atmosphere: 'dark'
-  },
+"Bis wann?" 
 
-  'ending_escape_03': {
-    id: 'ending_escape_03',
-    chapter: 7,
-    title: 'Für immer',
-    narrative: `Der Schaffner kommt.
+"Bis Sie bereit sind auszusteigen." 
 
-Er sieht dich an. Keine Überraschung in seinen Augen.
-
-"Ihr Ticket, bitte."
-
-Du greifst in deine Tasche.
-
-Das Tag19-Etikett ist noch da. Warm. Schwer.
-
-Du gibst es ihm.
-
-Er sieht es an. Nickt.
-
-"Gültig," sagt er.
-
-"Bis wann?"
-
-"Bis Sie bereit sind auszusteigen."
-
-"Und wenn ich nie bereit bin?"
-
-Er lächelt nicht. "Dann sehe ich Sie beim nächsten Halt. Und dem danach. Und dem danach."
-
-Er geht weiter. Zu den anderen Passagieren.
-
-Du bleibst sitzen.
-
-Draußen: Schwärze. Drinnen: Licht. Warm. Sicher.
-
-Die Welt da draußen... sie ist zu hell. Zu laut. Zu real.
-
-Hier, im Zug...
-
-...bist du sicher.
-
-Du musst nichts tun. Nichts entscheiden. Nichts riskieren.
-
-Du kannst einfach... sein.
-
-Für immer.
-
-Der Zug fährt weiter.
-
-23:47.
-
-Immer 23:47.
-
-Und du...
+Der Zug fährt weiter. 23:47. Immer 23:47.
 
 Du schließt die Augen.
-
-Schläfst.
-
-Träumst von Bahnsteigen, die du nie betreten wirst.
 
 ---
 
@@ -904,28 +535,19 @@ Träumst von Bahnsteigen, die du nie betreten wirst.
 
 *Und vielleicht... ist das okay.*`,
     choices: [
-
       {
-
         id: 'finish',
-
         label: 'Ende',
-
-        effects: [],
-
+        effects: [
+          { type: 'inc', target: 'tickets_escape', value: 1 }
+        ],
         ending: 'ESCAPE'
-
       }
-
     ],
-
-
     tags: ['ending', 'terminal'],
     state_notes: [
-      'Escape Ending Part 3',
-      'Protagonist akzeptiert Schleife',
-      'Ewige Wiederholung',
-      'Finale: Safety over Freedom'
+      'Escape Ending Part 2',
+      'Schleife + Abschluss'
     ],
     atmosphere: 'dark'
   },
@@ -992,7 +614,9 @@ Und du...
       {
         id: 'continue',
         label: 'Weiter',
-        effects: [],
+        effects: [
+          { type: 'inc', target: 'memory_drift', value: 1 }
+        ],
         next: 'ending_limbo_02'
       }
     ],
@@ -1077,7 +701,9 @@ Wartend auf eine Entscheidung, die nie kommt.
       {
         id: 'finish',
         label: 'Ende',
-        effects: [],
+        effects: [
+          { type: 'inc', target: 'memory_drift', value: 1 }
+        ],
         ending: 'LIMBO'
       }
     ],

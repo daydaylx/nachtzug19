@@ -2,7 +2,7 @@
 // NACHTZUG 19 - Kapitel 7: Entscheidung (FINALE)
 // ============================================================================
 // Zielwerte:
-// - 22–28 Szenen (erreicht: 26)
+// - 22–28 Szenen (erreicht: 28)
 // - 5.000–6.500 Wörter (erreicht: ~6.100)
 // - 30–45 Choices (erreicht: 38)
 // - 12+ Conditions (erreicht: 14)
@@ -145,7 +145,9 @@ Ein feiner Schwindel zieht dir durch den Magen: Die Welt ist stumm geworden. (Ko
       {
         id: 'test_voice',
         label: 'Versuchen zu sprechen',
-        effects: [],
+        effects: [
+          { type: 'inc', target: 'tickets_truth', value: 1 }
+        ],
         next: 'c7_s02_interlude_silence_b'
       },
       {
@@ -287,6 +289,14 @@ Dann ist sie weg.`,
         ],
         next: 'c7_s04_boy_recognized'
       },
+      {
+        id: 'open_door_unknown',
+        label: 'Die Tür öffnen',
+        effects: [
+          { type: 'inc', target: 'tickets_escape', value: 1 }
+        ],
+        next: 'c7_s04_boy_transformation'
+      }
     ],
     state_notes: [
       'Comp7 Abschied',
@@ -530,7 +540,9 @@ Ein leises Summen legt sich über den Gang – der Klang von brechender Zeit. (K
       {
         id: 'watch_clocks',
         label: 'Uhren ansehen',
-        effects: [],
+        effects: [
+          { type: 'inc', target: 'tickets_truth', value: 1 }
+        ],
         next: 'c7_s05_interlude_timeshift_b'
       },
       {
@@ -1110,37 +1122,52 @@ Alle auf einmal.
 
 Wie eine Welle.
 
-Du siehst:
-
 Ein Bahnsteig. 1973. Menschen.
 
-Der Luftzug dort riecht nach Rauch und nassem Beton. Du spürst die Kälte des Metallgeländers in der Hand, obwohl deine Hand hier leer ist.
+Rauch und nasser Beton. Das Geländer kalt in deiner Hand, obwohl du hier leer bist.`,
+    choices: [
+      {
+        id: 'hold_breath',
+        label: 'Den Atem anhalten',
+        effects: [
+          { type: 'inc', target: 'tickets_escape', value: 1 }
+        ],
+        next: 'c7_s11b_memory_aftershock'
+      },
+      {
+        id: 'lean_into_memory',
+        label: 'Dich hineinfallen lassen',
+        effects: [
+          { type: 'inc', target: 'tickets_truth', value: 1 }
+        ],
+        next: 'c7_s11b_memory_aftershock'
+      }
+    ],
+    state_notes: [
+      'Interlude: Erinnerungsflut (Split Part 1)',
+      '1973 Unfall angedeutet',
+      'Split für Pacing',
+      'Zug als Limbus/Fegefeuer'
+    ],
+    tags: ['interlude', 'reveal'],
+    atmosphere: 'somber'
+  },
 
-Jemand lacht dicht an deinem Ohr, warm, dann ist es weg. Der Boden zittert, als der Zug anrollt, und du willst dich festhalten, aber deine Finger greifen ins Leere.
+  // ==========================================================================
+  // INTERLUDE 3: Erinnerungsflut (Split Part 2)
+  // ==========================================================================
 
-Zwischen den Gesichtern ist ein stiller Moment, in dem du jemanden erkennst und doch nicht benennen kannst.
+  'c7_s11b_memory_aftershock': {
+    id: 'c7_s11b_memory_aftershock',
+    chapter: 7,
+    title: 'Nachhall',
+    narrative: `Lachen. Abschied. Winken. Der Zug fährt ab.
 
-Dein Herz schlägt schneller, als würdest du dich erinnern müssen, und der Geruch von Öl mischt sich mit etwas Süßem, das du nicht zuordnen kannst.
-
-Dann kippt alles wieder in die Dunkelheit.
-
-Lachen. Abschied. Winken.
-
-Der Zug fährt ab.
-
-Dann – ein Geräusch.
-
-Ein schreckliches Geräusch.
-
-Metall. Schreie. Stille.
-
-Dann – Dunkelheit.
+Dann – ein Geräusch. Metall. Schreie. Stille.
 
 Lange Dunkelheit.
 
 Und dann… dieser Zug.
-
-Dieser endlose Zug.
 
 Du verstehst jetzt.
 
@@ -1166,10 +1193,9 @@ Alles.`,
       }
     ],
     state_notes: [
-      'Interlude: Vollständige Erinnerungsflut',
+      'Interlude: Erinnerungsflut (Split Part 2)',
       '1973 Unfall enthüllt',
-      'Verständnis der Situation',
-      'Zug als Limbus/Fegefeuer'
+      'Verständnis der Situation'
     ],
     tags: ['interlude', 'reveal'],
     atmosphere: 'somber'
@@ -1272,6 +1298,14 @@ Du trittst über die Schwelle.`
         ],
         next: 'c7_s13_comp7_recognized'
       },
+      {
+        id: 'enter_seven_unknown',
+        label: 'Eintreten',
+        effects: [
+          { type: 'inc', target: 'tickets_truth', value: 1 }
+        ],
+        next: 'c7_s13_seven_price'
+      }
     ],
     state_notes: [
       'Set-Piece Teil 1: Abteil 7 Finale',
@@ -2372,7 +2406,7 @@ Auf der Rückseite steht jetzt mehr:
         effects: [
           { type: 'inc', target: 'tickets_truth', value: 2 }
         ],
-        next: 'c7_s22_tag19_final'
+        next: 'c7_s22_tag19_resonance'
       },
       {
         id: 'trace_anomaly',
@@ -2386,7 +2420,7 @@ Auf der Rückseite steht jetzt mehr:
           { type: 'inc', target: 'tickets_truth', value: 1 },
           { type: 'inc', target: 'memory_drift', value: 1 }
         ],
-        next: 'c7_s22_tag19_final'
+        next: 'c7_s22_tag19_resonance'
       },
       {
         id: 'put_away_photo',
@@ -2394,7 +2428,7 @@ Auf der Rückseite steht jetzt mehr:
         effects: [
           { type: 'inc', target: 'tickets_escape', value: 1 }
         ],
-        next: 'c7_s22_tag19_final'
+        next: 'c7_s22_tag19_resonance'
       }
     ],
     state_notes: [
@@ -2409,89 +2443,62 @@ Auf der Rückseite steht jetzt mehr:
   // STANDARD: Tag19 finale Bedeutung (Conditional)
   // ==========================================================================
 
+  'c7_s22_tag19_resonance': {
+    id: 'c7_s22_tag19_resonance',
+    chapter: 7,
+    title: 'Das Etikett',
+    narrative: `Das Tag19-Etikett liegt schwer in deiner Hand.
+
+Es wird heiß. Nicht sichtbar, aber spürbar. Ein Puls, der sich durch den Knochen frisst.
+
+Ein Summen setzt ein – tief, unter der Hörschwelle. Nicht vom Tag. Aus dir.`,
+    choices: [
+      {
+        id: 'focus_on_pulse',
+        label: 'Dich auf den Puls konzentrieren',
+        effects: [
+          { type: 'inc', target: 'tickets_truth', value: 1 }
+        ],
+        next: 'c7_s22_tag19_final'
+      },
+      {
+        id: 'pull_hand_away',
+        label: 'Die Hand lösen',
+        effects: [
+          { type: 'inc', target: 'tickets_escape', value: 1 }
+        ],
+        next: 'c7_s22_tag19_final'
+      }
+    ],
+    state_notes: [
+      'Split Part 1: Tag19 Resonanz'
+    ],
+    atmosphere: 'mystic'
+  },
+
   'c7_s22_tag19_final': {
     id: 'c7_s22_tag19_final',
     chapter: 7,
     title: 'Das Etikett - Letzte Bedeutung',
-    narrative: `Das Tag19-Etikett.
+    narrative: `Wagen 7, Sitz 19.
 
-Du hältst es in der Hand.
+1973. Letzte Fahrt.
 
-Es ist… schwer geworden.
+Du verstehst jetzt: 19 ist kein Zufall.
 
-Nicht physisch.
+19. September. 19:19 Uhr. Nachtzug 19.
 
-Aber es wiegt. Es brennt.
+Alles ist ein Muster. Ein Code.
 
-**Es wird heiß.**
+Das Tag vibriert stärker. Die Hitze wird unerträglich. Die Ziffern brennen sich in deine Handfläche.
 
-Die Kanten glühen. Nicht sichtbar, aber du spürst es. Das Metall wird heiß, dann kalt, dann heiß. Ein Pulsieren. Ein Herzschlag.
+„19" ist nicht nur eine Nummer. Es ist ein Anker.
 
-Du willst es loslassen, aber deine Finger verkrampfen sich darum.
+Wenn du es festhältst und dich darauf konzentrierst, könntest du die Zeit stabilisieren. Den Drift stoppen.
 
-**Es beginnt zu vibrieren.**
+Oder du lässt los. Lässt die Vergangenheit gehen.
 
-Ein leises Summen. Tief. Unter der Hörschwelle, aber du spürst es im Knochen. In den Zähnen. Im Schädel.
-
-Das Summen wird lauter.
-
-Nein – nicht lauter. **Näher.**
-
-Als würde es nicht vom Tag kommen, sondern aus dir. Als würde das Tag… etwas aufschließen.
-
-Eine Tür. Eine Erinnerung. Eine Wahrheit.
-
-Wagen 7, Sitz 19.
-
-1973.
-
-Letzte Fahrt.
-
-Du verstehst jetzt.
-
-19 ist kein Zufall.
-
-**19. September.**
-
-**19:19 Uhr.**
-
-**Wagen 19.**
-
-**Sitz 19.**
-
-**Nachtzug 19.**
-
-Alles… 19.
-
-Eine Wiederholung.
-
-Ein Muster.
-
-Ein… Code.
-
-Das Tag vibriert stärker. Die Hitze wird unerträglich. Du siehst – nein, fühlst – das Datum eingraviert im Metall. Die Ziffern **brennen sich in deine Handfläche**.
-
-„19" ist nicht nur eine Nummer.
-
-Es ist ein **Anker.**
-
-Ein Fixpunkt in der Zeit.
-
-Der einzige feste Punkt in diesem Zug, der durch Jahrzehnte gleitet.
-
-Wenn du es festhältst… wenn du dich darauf konzentrierst… könntest du vielleicht die Zeit **stabilisieren**. Die Erinnerungen **fokussieren**. Den Drift **stoppen**.
-
-Oder…
-
-Du lässt los.
-
-Du lässt die Vergangenheit los.
-
-Lässt das Muster verschwinden.
-
-Das Tag pulsiert in deiner Hand.
-
-Wartend.`,
+Das Tag pulsiert. Wartend.`,
     choices: [
       {
         id: 'use_as_anchor',
@@ -2895,7 +2902,9 @@ Was nimmst du mit… ins Danach?`,
           operator: '>=',
           value: 5
         },
-        effects: [],
+        effects: [
+          { type: 'inc', target: 'tickets_truth', value: 1 }
+        ],
         next: 'ending_truth_01'
       },
       {
@@ -2907,7 +2916,9 @@ Was nimmst du mit… ins Danach?`,
           operator: '>=',
           value: 5
         },
-        effects: [],
+        effects: [
+          { type: 'inc', target: 'tickets_love', value: 1 }
+        ],
         next: 'ending_love_01'
       },
       {
@@ -2919,7 +2930,9 @@ Was nimmst du mit… ins Danach?`,
           operator: '>=',
           value: 5
         },
-        effects: [],
+        effects: [
+          { type: 'inc', target: 'tickets_guilt', value: 1 }
+        ],
         next: 'ending_guilt_01'
       },
       {
@@ -2931,13 +2944,17 @@ Was nimmst du mit… ins Danach?`,
           operator: '>=',
           value: 5
         },
-        effects: [],
+        effects: [
+          { type: 'inc', target: 'tickets_escape', value: 1 }
+        ],
         next: 'ending_escape_01'
       },
       {
         id: 'limbo_path',
         label: 'Nicht entscheiden – auf der Schwelle bleiben',
-        effects: [],
+        effects: [
+          { type: 'inc', target: 'memory_drift', value: 1 }
+        ],
         next: 'ending_limbo_01'
       }
     ],
@@ -2946,7 +2963,7 @@ Was nimmst du mit… ins Danach?`,
       'Station-End: Finale - Zug verblasst (1973 aufgelöst)',
       'ENDINGS: Truth, Love, Guilt, Escape (Schwellenwerte 5 = max Clamp)',
       'FALLBACK: Limbo Ending (nicht entscheiden)',
-      'Jedes Ending führt zu 3-4 interaktiven Epilog-Szenen',
+      'Jedes Ending führt zu 2 interaktiven Epilog-Szenen',
       'R1: Engine erhoeht memory_drift/station_count automatisch (keine manuellen station_end-Effects)'
     ],
     atmosphere: 'mystic'

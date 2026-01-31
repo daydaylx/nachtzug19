@@ -1,11 +1,11 @@
 // ============================================================================
 // NACHTZUG 19 - Kapitel 2: Die erste Kontrolle (REDUCED / P1 FIX)
 // ============================================================================
-// Szenen (15):
-// Setup: c2_s01_ticket_search, c2_s01a_passenger_examination (Merged with b), c2_s01b_ticket_pocket
-// Boy: c2_s02_boy_recorder, c2_s02a_recorder_listening, c2_s02b_corridor_anomaly (Merged), c2_s02c_boy_vanish
-// Comp7: c2_s03_comp7_intro, c2_s03a_comp7_notebook (Merged warning)
-// Control: c2_s04_announcement (Merged prep), c2_s04a_conductor_approach (Merged lights), c2_control_01_approach
+// Szenen (18):
+// Setup: c2_s01_ticket_search, c2_s01a_passenger_examination, c2_s01b_ticket_pocket, c2_s01c_corridor_chill
+// Boy: c2_s02_boy_recorder, c2_s02a_recorder_listening, c2_s02b_corridor_anomaly, c2_s02c_boy_vanish, c2_s02b1_door_numbers
+// Comp7: c2_s03_comp7_intro, c2_s03a_comp7_notebook
+// Control: c2_s04_announcement, c2_s04b_breath_control, c2_s04a_conductor_approach, c2_control_01_approach
 // Control Interaction: c2_control_01_question, c2_control_01_aftermath
 // End: c2_end_station
 // ============================================================================
@@ -82,7 +82,7 @@ Er bemerkt dich nicht. Oder tut so. Du hörst das leise Surren des Rekorders.`,
           { type: 'inc', target: 'tickets_love', value: 1 },
           { type: 'inc', target: 'rel_boy', value: 1 }
         ],
-        next: 'c2_s02_boy_recorder'
+        next: 'c2_s01c_corridor_chill'
       },
       {
         id: 'examine_passengers',
@@ -105,7 +105,7 @@ Er bemerkt dich nicht. Oder tut so. Du hörst das leise Surren des Rekorders.`,
         effects: [
           { type: 'inc', target: 'tickets_escape', value: 1 }
         ],
-        next: 'c2_s02_boy_recorder'
+        next: 'c2_s01c_corridor_chill'
       }
     ],
     tags: ['drift_seed'],
@@ -139,7 +139,7 @@ Darauf steht in deiner Handschrift: „Du hattest nie ein Ticket."`,
           { type: 'inc', target: 'tickets_truth', value: 1 },
           { type: 'inc', target: 'memory_drift', value: 1 }
         ],
-        next: 'c2_s02_boy_recorder'
+        next: 'c2_s01c_corridor_chill'
       },
       {
         id: 'throw_away',
@@ -147,12 +147,49 @@ Darauf steht in deiner Handschrift: „Du hattest nie ein Ticket."`,
         effects: [
           { type: 'inc', target: 'tickets_escape', value: 1 }
         ],
-        next: 'c2_s02_boy_recorder'
+        next: 'c2_s01c_corridor_chill'
       }
     ],
     tags: ['drift_seed'],
     state_notes: [
       'Memory-Glitch manifestiert sich physisch'
+    ],
+    atmosphere: 'tense'
+  },
+
+  // ==========================================================================
+  // c2_s01c_corridor_chill: Kälte im Gang (Interlude)
+  // ==========================================================================
+  'c2_s01c_corridor_chill': {
+    id: 'c2_s01c_corridor_chill',
+    chapter: 2,
+    title: 'Kältezug',
+    narrative: `Du gehst in den Gang. Das Metall unter deinen Schuhen wirkt kälter als zuvor.
+
+Ein Zugwind streicht an dir vorbei, obwohl keine Tür offen ist. Die Fenster spiegeln dich nur halb – als wäre der Rest deines Gesichts noch unterwegs.
+
+Aus der Ferne hörst du das Surren des Kassettenrekorders wieder.`,
+    choices: [
+      {
+        id: 'follow_sound',
+        label: 'Dem Surren folgen',
+        effects: [
+          { type: 'inc', target: 'tickets_truth', value: 1 }
+        ],
+        next: 'c2_s02_boy_recorder'
+      },
+      {
+        id: 'steady_breath',
+        label: 'Tief durchatmen',
+        effects: [
+          { type: 'inc', target: 'tickets_love', value: 1 }
+        ],
+        next: 'c2_s02_boy_recorder'
+      }
+    ],
+    tags: ['interlude'],
+    state_notes: [
+      'Interlude: Kälte & Spiegelbild-Anomalie'
     ],
     atmosphere: 'tense'
   },
@@ -305,7 +342,7 @@ Am Ende des schier endlosen Gangs brennt Licht in einem Abteil. Die Tür steht h
           { type: 'inc', target: 'tickets_truth', value: 1 },
           { type: 'inc', target: 'memory_drift', value: 1 }
         ],
-        next: 'c2_s03_comp7_intro'
+        next: 'c2_s02b1_door_numbers'
       },
       {
         id: 'approach_lit_compartment',
@@ -313,7 +350,7 @@ Am Ende des schier endlosen Gangs brennt Licht in einem Abteil. Die Tür steht h
         effects: [
           { type: 'inc', target: 'tickets_love', value: 1 }
         ],
-        next: 'c2_s03_comp7_intro'
+        next: 'c2_s02b1_door_numbers'
       }
     ],
     tags: ['drift_variant'],
@@ -334,7 +371,7 @@ Am Ende des schier endlosen Gangs brennt Licht in einem Abteil. Die Tür steht h
 
 Nicht nur „er ist kurz weg". Sondern „nie benutzt". Kein Kopfhörer. Kein Abdruck auf dem Sitz. Makellos sauber.
 
-Die Frau mit der Zeitung schüttelt den Kopf. „Hier war nie ein Junge."
+Die Frau mit der Zeitung schüttelt den Kopf. „Hier *sollte* keiner gewesen sein."
 
 Aber du hältst den schweren Rekorder in der Hand.`,
     choices: [
@@ -345,7 +382,7 @@ Aber du hältst den schweren Rekorder in der Hand.`,
           { type: 'inc', target: 'tickets_truth', value: 1 },
           { type: 'inc', target: 'conductor_attention', value: 1 }
         ],
-        next: 'c2_s03_comp7_intro'
+        next: 'c2_s02b1_door_numbers'
       },
       {
         id: 'doubt_self',
@@ -354,7 +391,7 @@ Aber du hältst den schweren Rekorder in der Hand.`,
           { type: 'inc', target: 'tickets_guilt', value: 1 },
           { type: 'inc', target: 'memory_drift', value: 2 }
         ],
-        next: 'c2_s03_comp7_intro'
+        next: 'c2_s02b1_door_numbers'
       }
     ],
     tags: ['drift_variant'],
@@ -362,6 +399,41 @@ Aber du hältst den schweren Rekorder in der Hand.`,
       'Realitätsverlust: Beweis (Rekorder) vs Umgebung'
     ],
     atmosphere: 'danger'
+  },
+
+  // ==========================================================================
+  // c2_s02b1_door_numbers: Nummern rutschen (Interlude)
+  // ==========================================================================
+  'c2_s02b1_door_numbers': {
+    id: 'c2_s02b1_door_numbers',
+    chapter: 2,
+    title: 'Verrutscht',
+    narrative: `Die Wagennummern stimmen nicht mehr. Aus einer 3 wird eine 8, aus einer 6 eine 9.
+
+Die Zahlen klirren leise, als wären sie aus Glas. Du blinzelst – und sie sitzen wieder fest.`,
+    choices: [
+      {
+        id: 'trace_numbers',
+        label: 'Mit dem Finger nachzeichnen',
+        effects: [
+          { type: 'inc', target: 'memory_drift', value: 1 }
+        ],
+        next: 'c2_s03_comp7_intro'
+      },
+      {
+        id: 'ignore_shift',
+        label: 'Ignorieren und weitergehen',
+        effects: [
+          { type: 'inc', target: 'tickets_escape', value: 1 }
+        ],
+        next: 'c2_s03_comp7_intro'
+      }
+    ],
+    tags: ['interlude'],
+    state_notes: [
+      'Drift-Symptom: Nummern verschieben sich'
+    ],
+    atmosphere: 'mystic'
   },
 
   // ============================================================================
@@ -484,7 +556,7 @@ Du musst dich entscheiden. Jetzt. Was sagst du ihm?`,
         effects: [
           { type: 'inc', target: 'tickets_truth', value: 1 }
         ],
-        next: 'c2_s04a_conductor_approach'
+        next: 'c2_s04b_breath_control'
       },
       {
         id: 'prepare_lie',
@@ -493,7 +565,7 @@ Du musst dich entscheiden. Jetzt. Was sagst du ihm?`,
           { type: 'inc', target: 'tickets_escape', value: 1 },
           { type: 'inc', target: 'conductor_attention', value: 1 }
         ],
-        next: 'c2_s04a_conductor_approach'
+        next: 'c2_s04b_breath_control'
       },
       {
         id: 'prepare_hide',
@@ -508,12 +580,47 @@ Du musst dich entscheiden. Jetzt. Was sagst du ihm?`,
           { type: 'inc', target: 'tickets_guilt', value: 1 },
           { type: 'inc', target: 'conductor_attention', value: 2 }
         ],
-        next: 'c2_s04a_conductor_approach'
+        next: 'c2_s04b_breath_control'
       }
     ],
     tags: [],
     state_notes: [
       'Fixed attention check for hiding'
+    ],
+    atmosphere: 'tense'
+  },
+
+  // ==========================================================================
+  // c2_s04b_breath_control: Zwischen Moment (Interlude)
+  // ==========================================================================
+  'c2_s04b_breath_control': {
+    id: 'c2_s04b_breath_control',
+    chapter: 2,
+    title: 'Ein Atemzug',
+    narrative: `Der Gang scheint enger zu werden. Du hörst das Klacken der Kelle – näher, näher.
+
+Dein Atem beschlägt die Luft vor dir. Für einen Moment siehst du den Abdruck deiner Lippen darin.`,
+    choices: [
+      {
+        id: 'steady_posture',
+        label: 'Haltung annehmen',
+        effects: [
+          { type: 'inc', target: 'tickets_truth', value: 1 }
+        ],
+        next: 'c2_s04a_conductor_approach'
+      },
+      {
+        id: 'shrink_back',
+        label: 'Einen Schritt zurück',
+        effects: [
+          { type: 'inc', target: 'tickets_escape', value: 1 }
+        ],
+        next: 'c2_s04a_conductor_approach'
+      }
+    ],
+    tags: ['interlude'],
+    state_notes: [
+      'Micro-Beat vor Kontrolle 1'
     ],
     atmosphere: 'tense'
   },
@@ -548,7 +655,9 @@ Riesig. Uniform ohne Falten. Gesicht eine Wachsmaske.
       {
         id: 'look_down',
         label: 'Blick senken',
-        effects: [],
+        effects: [
+          { type: 'inc', target: 'tickets_guilt', value: 1 }
+        ],
         next: 'c2_control_01_approach'
       }
     ],

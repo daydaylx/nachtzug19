@@ -54,6 +54,7 @@ function getStateValue(state: GameState, target: EffectTarget): number | boolean
   if (target === 'has_recorder') return state.items.has_recorder;
   if (target === 'has_tag19') return state.items.has_tag19;
   if (target === 'photo_anomaly') return state.items.photo_anomaly;
+  if (target === 'played_recorder') return state.items.played_recorder;
   if (target === 'memory_search_active') return state.items.memory_search_active;
   if (target === 'emma_memory_unlocked') return state.items.emma_memory_unlocked;
 
@@ -93,6 +94,7 @@ function setStateValue(state: GameState, target: EffectTarget, value: number | b
   if (target === 'has_recorder') { state.items.has_recorder = value as boolean; return; }
   if (target === 'has_tag19') { state.items.has_tag19 = value as boolean; return; }
   if (target === 'photo_anomaly') { state.items.photo_anomaly = value as boolean; return; }
+  if (target === 'played_recorder') { state.items.played_recorder = value as boolean; return; }
   if (target === 'memory_search_active') { state.items.memory_search_active = value as boolean; return; }
   if (target === 'emma_memory_unlocked') { state.items.emma_memory_unlocked = value as boolean; return; }
 
@@ -521,6 +523,7 @@ export class GameEngine {
    * Speichert den aktuellen Spielstand
    */
   saveGame(slot: string = 'auto'): void {
+    if (typeof localStorage === 'undefined') return;
     try {
       const key = this.STORAGE_KEY_PREFIX + slot;
       const payload = {
@@ -540,6 +543,7 @@ export class GameEngine {
    * Lädt einen Spielstand
    */
   loadGame(slot: string = 'auto'): boolean {
+    if (typeof localStorage === 'undefined') return false;
     try {
       const key = this.STORAGE_KEY_PREFIX + slot;
       const saved = localStorage.getItem(key);

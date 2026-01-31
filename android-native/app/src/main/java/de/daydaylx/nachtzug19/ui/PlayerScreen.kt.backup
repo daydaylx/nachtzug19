@@ -54,10 +54,6 @@ import de.daydaylx.nachtzug19.model.Choice
 import de.daydaylx.nachtzug19.model.ReaderSettings
 import de.daydaylx.nachtzug19.model.SceneTag
 import de.daydaylx.nachtzug19.ui.components.*
-import de.daydaylx.nachtzug19.ui.components.getBackgroundForTags
-import de.daydaylx.nachtzug19.ui.components.AnimatedBackground
-import de.daydaylx.nachtzug19.ui.components.SafeZoneOverlay
-import de.daydaylx.nachtzug19.ui.components.ReaderCard
 
 import androidx.activity.compose.BackHandler
 import androidx.compose.material3.AlertDialog
@@ -135,23 +131,8 @@ fun PlayerScreen(
         .fillMaxSize()
         .padding(padding)
     ) {
-      // Background Layers - Phase 1: Visual Assets Integration
-      // Determine background from scene tags
-      val currentBackground = uiState.currentScene?.let { 
-          getBackgroundForTags(it.tags)
-      } ?: BackgroundAsset.Default
-      
-      // Animated background with drift tinting
-      AnimatedBackground(
-          currentBackground = currentBackground,
-          driftLevel = uiState.state?.pressure?.memory_drift ?: 0,
-          enabled = animationsEnabled && uiState.state != null
-      )
-      
-      // Safe zone overlay for text readability
-      SafeZoneOverlay(enabled = true)
-      
-      // Existing layers
+      // Background Layers
+      BackgroundBase()
       if (animationsEnabled && uiState.state != null) {
         BackgroundDrift(
           driftLevel = uiState.state.pressure.memory_drift,
@@ -252,16 +233,43 @@ private fun StoryReader(
       )
     }
 
-    ReaderCard(
-      title = title,
-      narrative = narrative,
-      textSizeSp = settings.textSizeSp,
-      driftLevel = driftLevel,
+    Card(
       modifier = Modifier
         .fillMaxWidth()
         .weight(1f)
         .padding(top = 12.dp)
-    )
+        .shadow(
+          elevation = cardElevation,
+          shape = RoundedCornerShape(16.dp),
+          spotColor = cardShadowColor
+        ),
+      shape = RoundedCornerShape(16.dp),
+      colors = androidx.compose.material3.CardDefaults.cardColors(
+        containerColor = MaterialTheme.colorScheme.surface
+      )
+    ) {
+      Column(
+        modifier = Modifier
+          .fillMaxSize()
+          .padding(20.dp)
+          .verticalScroll(rememberScrollState())
+      ) {
+        if (!title.isNullOrBlank()) {
+          Text(
+            text = title,
+            style = MaterialTheme.typography.titleMedium,
+            color = MaterialTheme.colorScheme.onSurface
+          )
+          Spacer(modifier = Modifier.height(12.dp))
+        }
+
+        TypewriterText(
+          text = narrative,
+          textSizeSp = settings.textSizeSp,
+          enabled = !settings.reduceMotion && settings.immersionFx
+        )
+      }
+    }
 
     Spacer(modifier = Modifier.height(16.dp))
 
@@ -330,6 +338,63 @@ private fun StationOverlayCard() {
         color = MaterialTheme.colorScheme.primary,
         style = MaterialTheme.typography.labelLarge
       )
+    }
+  }
+}
+
+@Composable
+private fun StatusSheet(uiState: UiState) {
+  val state = uiState.state ?: return
+  Column(
+    modifier = Modifier.padding(20.dp),
+    verticalArrangement = Arrangement.spacedBy(16.dp)
+  ) {
+    Text("Status", style = MaterialTheme.typography.titleMedium)
+
+    // Tickets as stamps
+    Row(
+      modifier = Modifier.fillMaxWidth(),
+      horizontalArrangement = Arrangement.SpaceEvenly
+    ) {
+      TicketStamp("Wahrheit", state.tickets.tickets_truth)
+      TicketStamp("Flucht", state.tickets.tickets_escape)
+    }
+    Row(
+      modifier = Modifier.fillMaxWidth(),
+      horizontalArrangement = Arrangement.SpaceEvenly
+    ) {
+      TicketStamp("Schuld", state.tickets.tickets_guilt)
+      TicketStamp("Liebe", state.tickets.tickets_love)
+    }
+
+    // Pressure bars
+    PressureBar(
+      label = "Attention",
+      value = state.pressure.conductor_attention,
+      color = Color(0xFFE07856)
+    )
+    PressureBar(
+      label = "Drift",
+      value = state.pressure.memory_drift,
+      color = Color(0xFF9BC1BC)
+    )
+
+    // Items
+    Column(verticalArrangement = Arrangement.spacedBy(6.dp)) {
+      Text("Items", style = MaterialTheme.typography.labelMedium)
+      ItemIcon("Kassettenrekorder", state.items.has_recorder)
+      ItemIcon("Tag19-Etikett", state.items.has_tag19)
+      ItemIcon("Foto-Anomalie", state.items.photo_anomaly)
+    }
+
+    if (uiState.settings.showRelations) {
+      Column(verticalArrangement = Arrangement.spacedBy(6.dp)) {
+        Text("Beziehungen", style = MaterialTheme.typography.labelMedium)
+        Text(
+          "Comp7: ${state.relations.rel_comp7} · Boy: ${state.relations.rel_boy} · Sleepless: ${state.relations.rel_sleepless}",
+          style = MaterialTheme.typography.bodySmall
+        )
+      }
     }
   }
 }

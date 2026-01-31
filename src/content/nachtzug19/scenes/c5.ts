@@ -2,7 +2,7 @@
 // NACHTZUG 19 - Kapitel 5: Finale Kontrolle
 // ============================================================================
 // Zielwerte:
-// - 22–28 Szenen (erreicht: 25)
+// - 22–28 Szenen (erreicht: 27)
 // - 5.000–6.500 Wörter (erreicht: ~5.800)
 // - 30–45 Choices (erreicht: 42)
 // - 8+ Conditions (erreicht: 9)
@@ -183,7 +183,9 @@ Ein kühler Luftzug streicht über deine Stirn, wie eine unsichtbare Hand. (Kons
       {
         id: 'hold_ground',
         label: 'Stehenbleiben',
-        effects: [],
+        effects: [
+          { type: 'inc', target: 'tickets_truth', value: 1 }
+        ],
         next: 'c5_s05_sleepless_final'
       },
       {
@@ -654,31 +656,48 @@ Finaler.`,
     title: 'Das Nichts',
     narrative: `Du blickst aus dem Fenster.
 
-Aber da ist keine Dunkelheit mehr. Nur eine absolute Leere, die das Auge nicht fokussieren kann.
+Aber da ist keine Dunkelheit mehr. Nur eine Leere, die das Auge nicht fokussieren kann.
 
-Ein blinder Fleck in der Realität, der direkt in deinen Verstand schneidet. Ein Vakuum, das hungrig ist.
+Ein blinder Fleck in der Realität, der direkt in deinen Verstand schneidet.
 
-Der Zug fährt nicht durch eine Landschaft – er schält sich durch das Gewebe der Existenz.
+Der Zug fährt nicht durch eine Landschaft – er schält sich durch das Gewebe der Existenz.`,
+    choices: [
+      {
+        id: 'touch_glass',
+        label: 'Die Hand ans Glas legen',
+        effects: [
+          { type: 'inc', target: 'memory_drift', value: 1 }
+        ],
+        next: 'c5_s12b_void_touch'
+      },
+      {
+        id: 'step_back_void',
+        label: 'Einen Schritt zurück',
+        effects: [
+          { type: 'inc', target: 'tickets_escape', value: 1 }
+        ],
+        next: 'c5_s12b_void_touch'
+      }
+    ],
+    state_notes: [
+      'Interlude: Leere außerhalb (Split Part 1)',
+      'Void sequence - visual, sensory'
+    ],
+    atmosphere: 'dark'
+  },
 
----
-
-Du legst die Handfläche an das Fenster.
-
-Es gibt keinen Widerstand von Kälte, nur eine dumpfe, vibrierende Wärme, die tief in deine Knochen siedet.
+  // ==========================================================================
+  // INTERLUDE 4: Leere außerhalb (Split Part 2)
+  // ==========================================================================
+  'c5_s12b_void_touch': {
+    id: 'c5_s12b_void_touch',
+    chapter: 5,
+    title: 'Das Summen',
+    narrative: `Die Handfläche am Glas – keine Kälte. Nur eine dumpfe, vibrierende Wärme, die tief in deine Knochen siedet.
 
 Deine Finger verschwinden im Spiegelbild, als würde das Glas dich nicht mehr als feste Materie erkennen.
 
-Ein hohes Summen zieht dir über die Zähne, ein Ton an der Grenze des Erträglichen.
-
----
-
-Du fragst dich: Was war vorher da?
-
-Gab es je eine Welt mit Farben, Wäldern, Städten? Die Erinnerung daran fühlt sich wie eine Lüge an, ein Traum aus einer anderen Zeit.
-
-An etwas anderes erinnerst du dich jetzt – an etwas, das niemals hätte sein dürfen.
-
-Die Leere draußen ist die einzige Wahrheit, die noch übrig ist.`,
+Ein hoher Ton zieht dir über die Zähne. Genau an der Grenze des Erträglichen.`,
     choices: [
       {
         id: 'accept_void',
@@ -706,8 +725,7 @@ Die Leere draußen ist die einzige Wahrheit, die noch übrig ist.`,
       }
     ],
     state_notes: [
-      'Interlude: Leere außerhalb (merged 3 parts)',
-      'Void sequence - visual, sensory, cognitive dissolution',
+      'Interlude: Leere außerhalb (Split Part 2)',
       'CONDITION: search_reflection (conductor_attention >= 5)'
     ],
     atmosphere: 'dark'
@@ -1424,7 +1442,7 @@ Dann ist die Fahrt vorbei.`,
         effects: [
           { type: 'inc', target: 'memory_drift', value: 1 }
         ],
-        next: 'c5_end_station'
+        next: 'c5_end_station_a'
       }
     ],
     state_notes: [
@@ -1435,6 +1453,37 @@ Dann ist die Fahrt vorbei.`,
   },
 
   // ==========================================================================
+  // ENDING: Fünfte Station (Split Part 1)
+  // ==========================================================================
+
+  'c5_end_station_a': {
+    id: 'c5_end_station_a',
+    chapter: 5,
+    title: 'Fünfte Station',
+    narrative: `Der Zug hält.
+
+Die Türen öffnen sich.
+
+Du stehst auf und trittst hinaus auf den Bahnsteig.
+
+Die Luft ist kühler, klarer. Sie schmeckt nach Regen und altem Stein.`,
+    choices: [
+      {
+        id: 'take_in_platform',
+        label: 'Einen Moment stehen bleiben',
+        effects: [
+          { type: 'inc', target: 'tickets_truth', value: 1 }
+        ],
+        next: 'c5_end_station'
+      }
+    ],
+    state_notes: [
+      'Split Part 1: Ankunft auf dem Bahnsteig'
+    ],
+    atmosphere: 'mystic'
+  },
+
+  // ==========================================================================
   // ENDING: Fünfte Station
   // ==========================================================================
 
@@ -1442,57 +1491,17 @@ Dann ist die Fahrt vorbei.`,
     id: 'c5_end_station',
     chapter: 5,
     title: 'Fünfte Station',
-    narrative: `Der Zug hält.
+    narrative: `Das Schild am Bahnsteig flackert, als würde es sich erst entscheiden.
 
-Die Türen öffnen sich.
+Dann kannst du es lesen.
 
-Du stehst auf.
+Was dort steht, verändert alles.
 
-Trittst hinaus auf den Bahnsteig.
+Hinter dir eine Stimme: „Noch nicht fertig."
 
-Die Luft ist… anders.
+Comp7 steht im Türrahmen des Zuges.
 
-Kühler. Klarer.
-
-Sie schmeckt nach Regen, nach altem Stein. Der Bahnsteig ist feucht, eine dünne Schicht, die unter deinen Schuhen schmatzt. Du hörst ein fernes Tropfen, gleichmäßig, wie eine zweite Uhr.
-
-Ein Windzug streicht durch die offenen Türen und zieht an deinem Ärmel. Du drehst den Kopf, suchst eine Ansage, findest nur das Summen der Neonröhre. Für einen Augenblick willst du den Zug nicht loslassen, deine Hand bleibt am Türrahmen hängen.
-
-Die kalte Luft macht deine Haut sofort wach, und du spürst jeden Atemzug. Als du den Blick über das Schild führst, flackern die Buchstaben kurz, als würden sie sich erst entscheiden, wie sie aussehen wollen.
-
-Du spürst kleine Körner unter der Sohle, als wäre der Bahnsteig mit Sand bestreut. Für einen Moment willst du die Augen schließen und einfach nur stehen bleiben, aber das Summen hinter dir zieht dich zurück.
-
-Deine Schultern werden leicht, als hätte der Zug dich losgelassen. Doch die offene Tür bleibt in deinem Blick.
-
-Du drehst dich um.
-
-Der Zug steht noch da. Die Türen offen.
-
-Als würde er warten.
-
-Als würdest du noch einmal einsteigen können.
-
-Aber du weißt: Das ist nicht wahr.
-
-Das Schild am Bahnsteig –
-
-Jetzt kannst du es lesen.
-
-Und was darauf steht, verändert alles.
-
-Du stehst einen Moment da.
-
-Dann hörst du eine Stimme hinter dir.
-
-„Noch nicht fertig."
-
-Du drehst dich um.
-
-Comp7 steht dort. Im Türrahmen des Zuges.
-
-„Noch eine Station," sagt sie leise.
-
-„Nur noch eine."`,
+„Noch eine Station," sagt sie leise. „Nur noch eine."`,
     choices: [
       {
         id: 'enter_wagon_12',

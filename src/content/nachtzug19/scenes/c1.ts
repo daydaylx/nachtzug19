@@ -1,12 +1,12 @@
 // ============================================================================
 // NACHTZUG 19 - Kapitel 1: Leerer Bahnsteig (REDUZED / P1 FIX)
 // ============================================================================
-// Szenen (14):
+// Szenen (18):
 // Setup: c1_s01_platform, c1_s01_platform_b, c1_s01a_platform_details
-// Train: c1_s02_train_appears, c1_s02a_train_exterior
-// Inside: c1_s03_inside_train, c1_s03a_find_seat
-// Sleepless: c1_s04_sleepless_intro, c1_s04a_sleepless_past
-// Anomaly: c1_s05_first_anomaly, c1_s05a_other_passengers, c1_s05b_compartment7_tease, c1_s05c_comp7_listen
+// Train: c1_s02_train_appears, c1_s02a_train_exterior, c1_s02b_threshold
+// Inside: c1_s03_inside_train, c1_s03a_find_seat, c1_s03b_window_vibration
+// Sleepless: c1_s04_sleepless_intro, c1_s04a_sleepless_past, c1_s04b_corridor_breath
+// Anomaly: c1_s05_first_anomaly, c1_s05a_other_passengers, c1_s05a2_passenger_rhythm, c1_s05b_compartment7_tease, c1_s05c_comp7_listen
 // End: c1_end_station
 // ============================================================================
 
@@ -43,7 +43,9 @@ Du weißt nicht mehr, warum du hier bist. Die Erinnerung fühlt sich an wie ein 
       {
         id: 'wait_patiently',
         label: 'Warten',
-        effects: [],
+        effects: [
+          { type: 'inc', target: 'tickets_escape', value: 1 }
+        ],
         next: 'c1_s01_platform_b'
       }
     ],
@@ -249,7 +251,7 @@ Hinter dir: Das Brummen wird leiser. Der Zug wird gleich weiterfahren. Du weißt
         effects: [
           { type: 'inc', target: 'tickets_escape', value: 1 }
         ],
-        next: 'c1_s03_inside_train'
+        next: 'c1_s02b_threshold'
       },
       {
         id: 'touch_exterior',
@@ -257,7 +259,7 @@ Hinter dir: Das Brummen wird leiser. Der Zug wird gleich weiterfahren. Du weißt
         effects: [
           { type: 'inc', target: 'tickets_truth', value: 1 }
         ],
-        next: 'c1_s03_inside_train'
+        next: 'c1_s02b_threshold'
       },
       {
         id: 'ask_aloud',
@@ -272,7 +274,7 @@ Hinter dir: Das Brummen wird leiser. Der Zug wird gleich weiterfahren. Du weißt
           { type: 'inc', target: 'tickets_love', value: 1 },
           { type: 'inc', target: 'conductor_attention', value: 1 }
         ],
-        next: 'c1_s03_inside_train'
+        next: 'c1_s02b_threshold'
       }
     ],
     tags: ['reveal'],
@@ -281,6 +283,43 @@ Hinter dir: Das Brummen wird leiser. Der Zug wird gleich weiterfahren. Du weißt
       'Direct link to c1_s03_inside_train'
     ],
     atmosphere: 'mystic'
+  },
+
+  // ==========================================================================
+  // c1_s02b_threshold: Schwelle zum Zug (Interlude)
+  // ==========================================================================
+  'c1_s02b_threshold': {
+    id: 'c1_s02b_threshold',
+    chapter: 1,
+    title: 'Schwelle',
+    narrative: `Du stellst einen Fuß auf die Stufe.
+
+Das Metall ist feucht, fast glitschig. Ein kurzer Geruch von warmem Staub schlägt dir entgegen, als würde der Zug ausatmen.
+
+Hinter dir klackt die Anzeigetafel einmal, ohne zu wechseln.`,
+    choices: [
+      {
+        id: 'step_in',
+        label: 'Einsteigen',
+        effects: [
+          { type: 'inc', target: 'tickets_truth', value: 1 }
+        ],
+        next: 'c1_s03_inside_train'
+      },
+      {
+        id: 'hesitate_step',
+        label: 'Kurz zögern',
+        effects: [
+          { type: 'inc', target: 'tickets_escape', value: 1 }
+        ],
+        next: 'c1_s03_inside_train'
+      }
+    ],
+    tags: ['interlude'],
+    state_notes: [
+      'Interlude: Schwelle zum Zug'
+    ],
+    atmosphere: 'tense'
   },
 
   // ============================================================================
@@ -316,7 +355,9 @@ Zur Rechten: Ein leeres Abteil.`,
       {
         id: 'find_seat',
         label: 'Einen Platz suchen',
-        effects: [],
+        effects: [
+          { type: 'inc', target: 'tickets_escape', value: 1 }
+        ],
         next: 'c1_s03a_find_seat'
       },
       {
@@ -366,7 +407,7 @@ Dann, eine Stimme hinter dir: „Du auch?"`,
         effects: [
           { type: 'inc', target: 'tickets_truth', value: 1 }
         ],
-        next: 'c1_s04_sleepless_intro'
+        next: 'c1_s03b_window_vibration'
       },
       {
         id: 'ignore_voice',
@@ -374,7 +415,7 @@ Dann, eine Stimme hinter dir: „Du auch?"`,
         effects: [
           { type: 'inc', target: 'tickets_escape', value: 1 }
         ],
-        next: 'c1_s04_sleepless_intro'
+        next: 'c1_s03b_window_vibration'
       },
       {
         id: 'stay_with_window',
@@ -383,7 +424,7 @@ Dann, eine Stimme hinter dir: „Du auch?"`,
           { type: 'inc', target: 'memory_drift', value: 1 },
           { type: 'inc', target: 'tickets_truth', value: 1 }
         ],
-        next: 'c1_s04_sleepless_intro'
+        next: 'c1_s03b_window_vibration'
       }
     ],
     tags: [],
@@ -391,6 +432,43 @@ Dann, eine Stimme hinter dir: „Du auch?"`,
       'Shortened path'
     ],
     atmosphere: 'somber'
+  },
+
+  // ==========================================================================
+  // c1_s03b_window_vibration: Fensterpuls (Interlude)
+  // ==========================================================================
+  'c1_s03b_window_vibration': {
+    id: 'c1_s03b_window_vibration',
+    chapter: 1,
+    title: 'Fensterpuls',
+    narrative: `Das Glas vibriert kurz. Ein Puls, der durch deine Schläfe fährt.
+
+Für einen Augenblick siehst du nicht die Dunkelheit draußen, sondern Bahnsteige, die sich überlagern – wie Bilder, die nicht richtig übereinanderliegen.
+
+Dann ist alles wieder still.`,
+    choices: [
+      {
+        id: 'call_back',
+        label: 'Auf die Stimme reagieren',
+        effects: [
+          { type: 'inc', target: 'tickets_love', value: 1 }
+        ],
+        next: 'c1_s04_sleepless_intro'
+      },
+      {
+        id: 'steady_self',
+        label: 'Sich sammeln',
+        effects: [
+          { type: 'inc', target: 'tickets_truth', value: 1 }
+        ],
+        next: 'c1_s04_sleepless_intro'
+      }
+    ],
+    tags: ['interlude'],
+    state_notes: [
+      'Micro-Beat zwischen Sitzplatz und Gespräch'
+    ],
+    atmosphere: 'mystic'
   },
 
   // ============================================================================
@@ -473,7 +551,7 @@ Er beugt sich vor, senkt die Stimme. „Hör zu. Wenn der Schaffner kommt… Sag
           { type: 'inc', target: 'tickets_love', value: 1 },
           { type: 'inc', target: 'rel_sleepless', value: 2 }
         ],
-        next: 'c1_s05_first_anomaly'
+        next: 'c1_s04b_corridor_breath'
       },
       {
         id: 'admit_running',
@@ -482,7 +560,7 @@ Er beugt sich vor, senkt die Stimme. „Hör zu. Wenn der Schaffner kommt… Sag
           { type: 'inc', target: 'tickets_guilt', value: 1 },
           { type: 'inc', target: 'rel_sleepless', value: 1 }
         ],
-        next: 'c1_s05_first_anomaly'
+        next: 'c1_s04b_corridor_breath'
       },
       {
         id: 'ask_about_conductor',
@@ -497,7 +575,7 @@ Er beugt sich vor, senkt die Stimme. „Hör zu. Wenn der Schaffner kommt… Sag
           { type: 'inc', target: 'tickets_truth', value: 1 },
           { type: 'inc', target: 'conductor_attention', value: 1 }
         ],
-        next: 'c1_s05_first_anomaly'
+        next: 'c1_s04b_corridor_breath'
       }
     ],
     tags: ['reveal'],
@@ -506,6 +584,43 @@ Er beugt sich vor, senkt die Stimme. „Hör zu. Wenn der Schaffner kommt… Sag
       'Shortened path'
     ],
     atmosphere: 'somber'
+  },
+
+  // ==========================================================================
+  // c1_s04b_corridor_breath: Gang-Atem (Interlude)
+  // ==========================================================================
+  'c1_s04b_corridor_breath': {
+    id: 'c1_s04b_corridor_breath',
+    chapter: 1,
+    title: 'Der Atem des Zuges',
+    narrative: `Ihr steht im Gang. Einen Moment lang scheint der Zug den Atem anzuhalten.
+
+Dann ein leises Ausströmen, wie ein Ventil. Die Lampen flackern, und im Glas der Tür siehst du dein Gesicht für einen Wimpernschlag älter.
+
+Der Schlaflose tippt mit dem Finger gegen die Wand. „Hörst du das?"`,
+    choices: [
+      {
+        id: 'listen_closer',
+        label: 'Genauer hinhören',
+        effects: [
+          { type: 'inc', target: 'tickets_truth', value: 1 }
+        ],
+        next: 'c1_s05_first_anomaly'
+      },
+      {
+        id: 'avoid_topic',
+        label: 'Das Thema wechseln',
+        effects: [
+          { type: 'inc', target: 'tickets_escape', value: 1 }
+        ],
+        next: 'c1_s05_first_anomaly'
+      }
+    ],
+    tags: ['interlude'],
+    state_notes: [
+      'Micro-Beat vor der Durchsage'
+    ],
+    atmosphere: 'tense'
   },
 
   // ============================================================================
@@ -594,7 +709,7 @@ Niemand spricht. Niemand bewegt sich. Außer diesen kleinen Gesten.`,
           { type: 'inc', target: 'tickets_love', value: 1 },
           { type: 'inc', target: 'conductor_attention', value: 1 }
         ],
-        next: 'c1_s05b_compartment7_tease'
+        next: 'c1_s05a2_passenger_rhythm'
       },
       {
         id: 'leave_them_alone',
@@ -602,7 +717,7 @@ Niemand spricht. Niemand bewegt sich. Außer diesen kleinen Gesten.`,
         effects: [
           { type: 'inc', target: 'tickets_escape', value: 1 }
         ],
-        next: 'c1_s05b_compartment7_tease'
+        next: 'c1_s05a2_passenger_rhythm'
       },
       {
         id: 'count_passengers',
@@ -610,11 +725,46 @@ Niemand spricht. Niemand bewegt sich. Außer diesen kleinen Gesten.`,
         effects: [
           { type: 'inc', target: 'tickets_truth', value: 1 }
         ],
-        next: 'c1_s05b_compartment7_tease'
+        next: 'c1_s05a2_passenger_rhythm'
       }
     ],
     tags: ['setup'],
     state_notes: [],
+    atmosphere: 'somber'
+  },
+
+  // ==========================================================================
+  // c1_s05a2_passenger_rhythm: Rhythmus der Fahrt (Interlude)
+  // ==========================================================================
+  'c1_s05a2_passenger_rhythm': {
+    id: 'c1_s05a2_passenger_rhythm',
+    chapter: 1,
+    title: 'Rhythmus',
+    narrative: `Der Zug rattert. Nicht laut, aber präzise, wie ein Metronom.
+
+Der Teenager mit den Kopfhörern nickt im Takt – ein winziger Widerhaken im Muster. Für einen Moment glaubst du, dass jemand deinen Namen flüstert.`,
+    choices: [
+      {
+        id: 'follow_rhythm',
+        label: 'Dem Rhythmus folgen',
+        effects: [
+          { type: 'inc', target: 'tickets_truth', value: 1 }
+        ],
+        next: 'c1_s05b_compartment7_tease'
+      },
+      {
+        id: 'break_pattern',
+        label: 'Dich bewusst abwenden',
+        effects: [
+          { type: 'inc', target: 'tickets_escape', value: 1 }
+        ],
+        next: 'c1_s05b_compartment7_tease'
+      }
+    ],
+    tags: ['interlude'],
+    state_notes: [
+      'Micro-Beat vor Abteil 7'
+    ],
     atmosphere: 'somber'
   },
 

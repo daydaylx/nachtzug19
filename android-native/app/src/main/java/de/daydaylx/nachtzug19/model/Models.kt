@@ -261,10 +261,10 @@ data class Scene(
 @Serializable
 data class Ending(
   val id: String,
-  val titel: String,
-  val beschreibung: String,
-  val title: String? = null,
-  val narrative: String? = null
+  val title: String,
+  val narrative: String,
+  val titel: String? = null,
+  val beschreibung: String? = null
 )
 
 @Serializable

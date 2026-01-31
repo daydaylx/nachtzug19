@@ -1,13 +1,13 @@
 {
-  "generated_at": "2026-01-20",
+  "generated_at": "2026-01-28",
   "source_file": "android-native/app/src/main/assets/story.json",
   "command": "node scripts/graph_dump.mjs",
   "graph_stats": {
-    "total_scenes": 183,
-    "total_endings": 6,
-    "total_choices": 549,
-    "total_edges": 227,
-    "reachable_scenes": 183,
+    "total_scenes": 141,
+    "total_endings": 5,
+    "total_choices": 354,
+    "total_edges": 157,
+    "reachable_scenes": 141,
     "unreachable_scenes": 0,
     "unreachable_list": [],
     "dead_ends": 0,
@@ -20,38 +20,38 @@
   "chapter_breakdown": [
     {
       "chapter": 1,
-      "scenes": 24,
+      "scenes": 14,
       "endings_in_chapter": 0
     },
     {
       "chapter": 2,
-      "scenes": 25,
+      "scenes": 15,
       "endings_in_chapter": 0
     },
     {
       "chapter": 3,
-      "scenes": 27,
+      "scenes": 15,
       "endings_in_chapter": 0
     },
     {
       "chapter": 4,
-      "scenes": 27,
+      "scenes": 12,
       "endings_in_chapter": 0
     },
     {
       "chapter": 5,
-      "scenes": 25,
+      "scenes": 19,
       "endings_in_chapter": 0
     },
     {
       "chapter": 6,
-      "scenes": 26,
+      "scenes": 21,
       "endings_in_chapter": 0
     },
     {
       "chapter": 7,
-      "scenes": 29,
-      "endings_in_chapter": 4
+      "scenes": 45,
+      "endings_in_chapter": 5
     }
   ],
   "definitions": {

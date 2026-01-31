@@ -1,14 +1,14 @@
 // ============================================================================
 // NACHTZUG 19 - Kapitel 4: Spiegelungen (REDUCED / P2 FIX)
 // ============================================================================
-// Szenen (13):
+// Szenen (18):
 // Entry: c4_s01_mirror_intro
 // Reflection: c4_s02_double_reflection, c4_s02a_reflection_speaks
-// Interlude: c4_interlude_01_corridor_mirror
-// Recorder: c4_s03_recorder_loop_discovery
-// Comp7: c4_s04_comp7_mirror_truth, c4_s04a_comp7_identity
-// Artifact: c4_s05_reality_fracture, c4_s05a_tag19_found
-// Identity: c4_s06_name_loss
+// Interludes: c4_interlude_01_corridor_mirror, c4_interlude_01b_mirror_whisper
+// Recorder: c4_s03_recorder_loop_discovery, c4_s03b_tape_silence
+// Comp7: c4_s04_comp7_mirror_truth, c4_s04b_anchor_hint, c4_s04a_comp7_identity
+// Artifact: c4_s05_reality_fracture, c4_s05b_ash_heat, c4_s05a_tag19_found
+// Identity: c4_s06_name_loss, c4_s06b_name_echo
 // End: c4_end_platform_copies, c4_end_station
 // ============================================================================
 
@@ -167,7 +167,7 @@ Sie drehen sich alle nach dir um, als du vorbeigehst.`,
           { type: 'inc', target: 'tickets_escape', value: 1 },
           { type: 'inc', target: 'conductor_attention', value: 1 }
         ],
-        next: 'c4_s03_recorder_loop_discovery'
+        next: 'c4_interlude_01b_mirror_whisper'
       },
       {
         id: 'walk_slowly',
@@ -176,12 +176,47 @@ Sie drehen sich alle nach dir um, als du vorbeigehst.`,
           { type: 'inc', target: 'tickets_truth', value: 1 },
           { type: 'inc', target: 'memory_drift', value: 1 }
         ],
-        next: 'c4_s03_recorder_loop_discovery'
+        next: 'c4_interlude_01b_mirror_whisper'
       }
     ],
     tags: ['drift_variant'],
     state_notes: ['Identity Drift visualisiert'],
     atmosphere: 'danger'
+  },
+
+  // ==========================================================================
+  // c4_interlude_01b_mirror_whisper: Flüstern im Glas
+  // ==========================================================================
+  'c4_interlude_01b_mirror_whisper': {
+    id: 'c4_interlude_01b_mirror_whisper',
+    chapter: 4,
+    title: 'Flüstern',
+    narrative: `Du hörst Stimmen, aber sie kommen nicht von den Türen.
+
+Sie kommen aus den Spiegeln. Wie Atem auf Glas. Ein Wort wiederholt sich: „Neunzehn.“`,
+    choices: [
+      {
+        id: 'answer_whisper',
+        label: 'Antworten',
+        effects: [
+          { type: 'inc', target: 'tickets_truth', value: 1 }
+        ],
+        next: 'c4_s03_recorder_loop_discovery'
+      },
+      {
+        id: 'cover_ears',
+        label: 'Ohren zuhalten',
+        effects: [
+          { type: 'inc', target: 'tickets_escape', value: 1 }
+        ],
+        next: 'c4_s03_recorder_loop_discovery'
+      }
+    ],
+    tags: ['interlude'],
+    state_notes: [
+      'Micro-Beat vor Recorder-Loop'
+    ],
+    atmosphere: 'mystic'
   },
 
   // ============================================================================
@@ -225,7 +260,7 @@ Die Stimme bricht ab. Dann schreit sie.`
         effects: [
           { type: 'inc', target: 'tickets_escape', value: 1 }
         ],
-        next: 'c4_s04_comp7_mirror_truth'
+        next: 'c4_s03b_tape_silence'
       },
       {
         id: 'listen_loop',
@@ -234,12 +269,49 @@ Die Stimme bricht ab. Dann schreit sie.`
           { type: 'inc', target: 'tickets_truth', value: 2 },
           { type: 'inc', target: 'memory_drift', value: 1 }
         ],
-        next: 'c4_s04_comp7_mirror_truth'
+        next: 'c4_s03b_tape_silence'
       }
     ],
     tags: ['reveal'],
     state_notes: ['Loop-Bestätigung durch Audio'],
     atmosphere: 'danger'
+  },
+
+  // ==========================================================================
+  // c4_s03b_tape_silence: Band-Stille (Interlude)
+  // ==========================================================================
+  'c4_s03b_tape_silence': {
+    id: 'c4_s03b_tape_silence',
+    chapter: 4,
+    title: 'Nachhall',
+    narrative: `Das Band läuft noch einen Moment nach.
+
+Dann Stille. So sauber, dass du dein Blut in den Ohren hörst.
+
+Im Spiegel hinter dir erscheint eine Silhouette. Comp7.`,
+    choices: [
+      {
+        id: 'turn_to_comp7',
+        label: 'Zu ihr drehen',
+        effects: [
+          { type: 'inc', target: 'tickets_truth', value: 1 }
+        ],
+        next: 'c4_s04_comp7_mirror_truth'
+      },
+      {
+        id: 'stay_facing_tape',
+        label: 'Den Blick auf dem Rekorder halten',
+        effects: [
+          { type: 'inc', target: 'tickets_guilt', value: 1 }
+        ],
+        next: 'c4_s04_comp7_mirror_truth'
+      }
+    ],
+    tags: ['interlude'],
+    state_notes: [
+      'Micro-Beat vor Comp7 Erklärung'
+    ],
+    atmosphere: 'tense'
   },
 
   // ============================================================================
@@ -266,7 +338,7 @@ Sie beugt sich vor. „Wir müssen etwas finden. Etwas Festes. Sonst löst du di
           { type: 'inc', target: 'tickets_truth', value: 1 },
           { type: 'inc', target: 'rel_comp7', value: 1 }
         ],
-        next: 'c4_s04a_comp7_identity'
+        next: 'c4_s04b_anchor_hint'
       },
       {
         id: 'panic_identity',
@@ -275,11 +347,46 @@ Sie beugt sich vor. „Wir müssen etwas finden. Etwas Festes. Sonst löst du di
           { type: 'inc', target: 'tickets_escape', value: 1 },
           { type: 'inc', target: 'memory_drift', value: 1 }
         ],
-        next: 'c4_s04a_comp7_identity'
+        next: 'c4_s04b_anchor_hint'
       }
     ],
     tags: ['reveal'],
     state_notes: ['Comp7 erklärt Drift-Gefahr'],
+    atmosphere: 'somber'
+  },
+
+  // ==========================================================================
+  // c4_s04b_anchor_hint: Anker-Hinweis (Interlude)
+  // ==========================================================================
+  'c4_s04b_anchor_hint': {
+    id: 'c4_s04b_anchor_hint',
+    chapter: 4,
+    title: 'Hinweis',
+    narrative: `Comp7 tippt mit dem Finger auf den Tisch, als würde sie eine Zahl markieren.
+
+„Nicht dein Name hält dich hier,“ sagt sie. „Etwas anderes. Etwas, das immer gleich bleibt.“`,
+    choices: [
+      {
+        id: 'press_for_number',
+        label: '„Welche Zahl?"',
+        effects: [
+          { type: 'inc', target: 'tickets_truth', value: 1 }
+        ],
+        next: 'c4_s04a_comp7_identity'
+      },
+      {
+        id: 'accept_hint',
+        label: 'Nicken',
+        effects: [
+          { type: 'inc', target: 'tickets_love', value: 1 }
+        ],
+        next: 'c4_s04a_comp7_identity'
+      }
+    ],
+    tags: ['interlude'],
+    state_notes: [
+      'Micro-Beat: Zahl als Anker'
+    ],
     atmosphere: 'somber'
   },
 
@@ -344,7 +451,7 @@ Zwischen der Asche glänzt etwas.`,
           { type: 'inc', target: 'tickets_truth', value: 1 },
           { type: 'inc', target: 'memory_drift', value: 1 }
         ],
-        next: 'c4_s05a_tag19_found'
+        next: 'c4_s05b_ash_heat'
       },
       {
         id: 'look_for_comp7',
@@ -352,12 +459,47 @@ Zwischen der Asche glänzt etwas.`,
         effects: [
           { type: 'inc', target: 'tickets_love', value: 1 }
         ],
-        next: 'c4_s05a_tag19_found'
+        next: 'c4_s05b_ash_heat'
       }
     ],
     tags: ['drift_variant'],
     state_notes: ['Reality Fracture Event'],
     atmosphere: 'dark'
+  },
+
+  // ==========================================================================
+  // c4_s05b_ash_heat: Glut im Schutt (Interlude)
+  // ==========================================================================
+  'c4_s05b_ash_heat': {
+    id: 'c4_s05b_ash_heat',
+    chapter: 4,
+    title: 'Glut',
+    narrative: `Zwischen der Asche glimmt etwas wie ein langsamer Puls.
+
+Die Luft schmeckt nach Eisen. Deine Finger werden warm, obwohl um dich alles kalt ist.`,
+    choices: [
+      {
+        id: 'reach_in',
+        label: 'Hineingreifen',
+        effects: [
+          { type: 'inc', target: 'tickets_truth', value: 1 }
+        ],
+        next: 'c4_s05a_tag19_found'
+      },
+      {
+        id: 'call_for_comp7',
+        label: 'Nochmal nach Comp7 rufen',
+        effects: [
+          { type: 'inc', target: 'tickets_love', value: 1 }
+        ],
+        next: 'c4_s05a_tag19_found'
+      }
+    ],
+    tags: ['interlude'],
+    state_notes: [
+      'Micro-Beat vor Tag19 Fund'
+    ],
+    atmosphere: 'mystic'
   },
 
   // ============================================================================
@@ -452,7 +594,7 @@ Der Zug bremst.`,
         effects: [
           { type: 'inc', target: 'memory_drift', value: 2 }
         ],
-        next: 'c4_end_platform_copies'
+        next: 'c4_s06b_name_echo'
       },
       {
         id: 'fight_for_name',
@@ -461,11 +603,46 @@ Der Zug bremst.`,
           { type: 'inc', target: 'tickets_escape', value: 1 },
           { type: 'inc', target: 'conductor_attention', value: 1 }
         ],
-        next: 'c4_end_platform_copies'
+        next: 'c4_s06b_name_echo'
       }
     ],
     tags: ['reveal'],
     state_notes: ['Identitätsverlust als Preis für Wahrheit'],
+    atmosphere: 'somber'
+  },
+
+  // ==========================================================================
+  // c4_s06b_name_echo: Nachhall des Namens (Interlude)
+  // ==========================================================================
+  'c4_s06b_name_echo': {
+    id: 'c4_s06b_name_echo',
+    chapter: 4,
+    title: 'Nachhall',
+    narrative: `Du hörst deinen Namen nicht, aber du spürst seine Form – wie eine Narbe ohne Schmerz.
+
+Das Tag19 liegt schwer in deiner Hand. Ein Gewicht, das dich nach vorne zieht.`,
+    choices: [
+      {
+        id: 'hold_tag_tight',
+        label: 'Das Tag19 festhalten',
+        effects: [
+          { type: 'inc', target: 'tickets_truth', value: 1 }
+        ],
+        next: 'c4_end_platform_copies'
+      },
+      {
+        id: 'exhale_name',
+        label: 'Den Namen ausatmen',
+        effects: [
+          { type: 'inc', target: 'tickets_guilt', value: 1 }
+        ],
+        next: 'c4_end_platform_copies'
+      }
+    ],
+    tags: ['interlude'],
+    state_notes: [
+      'Micro-Beat vor Bahnsteig-Kopien'
+    ],
     atmosphere: 'somber'
   },
 

@@ -14,27 +14,27 @@ export const nachtzug19Manifest: Manifest = {
     {
       number: 1,
       title: 'Leerer Bahnsteig',
-      scene_count: 14
+      scene_count: 18
     },
     {
       number: 2,
       title: 'Die erste Kontrolle',
-      scene_count: 15
+      scene_count: 18
     },
     {
       number: 3,
       title: 'Wagen 7',
-      scene_count: 15
+      scene_count: 18
     },
     {
       number: 4,
       title: 'Spiegelungen',
-      scene_count: 12
+      scene_count: 18
     },
     {
       number: 5,
       title: 'Die letzte Kontrolle',
-      scene_count: 19
+      scene_count: 27
     },
     {
       number: 6,
@@ -44,7 +44,7 @@ export const nachtzug19Manifest: Manifest = {
     {
       number: 7,
       title: 'Entscheidung',
-      scene_count: 31
+      scene_count: 38
     }
   ]
 };
@@ -57,27 +57,27 @@ export const nachtzug19Manifest: Manifest = {
 export const nachtzug19Endings: EndingsCollection = {
   'TRUTH': {
     id: 'TRUTH',
-    titel: 'Wahrheit',
-    beschreibung: 'Du hast die Wahrheit akzeptiert. Den Tod. Das Leben. Dich selbst.'
+    title: 'Wahrheit',
+    narrative: 'Du hast die Wahrheit akzeptiert. Den Tod. Das Leben. Dich selbst.'
   },
   'LOVE': {
     id: 'LOVE',
-    titel: 'Liebe',
-    beschreibung: 'Du hast jemanden gefunden. Oder... sie hat dich gefunden.'
+    title: 'Liebe',
+    narrative: 'Du hast jemanden gefunden. Oder... sie hat dich gefunden.'
   },
   'GUILT': {
     id: 'GUILT',
-    titel: 'Schuld',
-    beschreibung: 'Du trägst die Verantwortung für die Toten. Nicht ihre Schuld. Sondern ihre Erinnerung.'
+    title: 'Schuld',
+    narrative: 'Du trägst die Verantwortung für die Toten. Nicht ihre Schuld. Sondern ihre Erinnerung.'
   },
   'ESCAPE': {
     id: 'ESCAPE',
-    titel: 'Flucht',
-    beschreibung: 'Du bist geblieben. Im Zug. In der Schleife. In der Sicherheit.'
+    title: 'Flucht',
+    narrative: 'Du bist geblieben. Im Zug. In der Schleife. In der Sicherheit.'
   },
   'LIMBO': {
     id: 'LIMBO',
-    titel: 'Limbo',
-    beschreibung: 'Du hast nicht gewählt. Weder Wahrheit noch Flucht. Weder Liebe noch Schuld.'
+    title: 'Limbo',
+    narrative: 'Du hast nicht gewählt. Weder Wahrheit noch Flucht. Weder Liebe noch Schuld.'
   }
 };

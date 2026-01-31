@@ -277,10 +277,10 @@ export type Scene = {
  */
 export type Ending = {
   id: string;                    // z.B. "A", "B", "C"
-  titel: string;                 // Kurztitel
-  beschreibung: string;          // End-Text
-  title?: string;                // Alias für titel
-  narrative?: string;            // Alias für beschreibung
+  title: string;                 // Kurztitel
+  narrative: string;             // End-Text
+  titel?: string;                // Alias für titel (Legacy)
+  beschreibung?: string;         // Alias für beschreibung (Legacy)
 };
 
 // ============================================================================

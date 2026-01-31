@@ -1,15 +1,15 @@
 // ============================================================================
 // NACHTZUG 19 - Kapitel 3: Wagen 7 (REDUCED / P1 FIX)
 // ============================================================================
-// Szenen (15):
-// Entry: c3_s01_wagen7_locked (Merged), c3_s01a_after_station, c3_s01b_boy_return
+// Szenen (18):
+// Entry: c3_s01_wagen7_locked, c3_s01c_door_pulse, c3_s01a_after_station, c3_s01b_boy_return
 // Recorder: c3_s02_recorder_anomaly, c3_s02a_recorder_listening
-// Drift: c3_s02b_corridor_shift (Merged Sleepless)
-// Wagen 7: c3_s03_wagen7_approach (Merged door), c3_s03b_inside_comp7 (Merged with B), c3_s03c_notebooks_explore
-// Truth: c3_s04_comp7_truth (Merged with B & Paradox)
-// Pre-Control: c3_s04b_third_announcement, c3_control_02_approach
-// Control: c3_control_02_question (Merged), c3_control_02_aftermath
-// End: c3_end_station (Merged)
+// Drift: c3_s02b_corridor_shift, c3_s02c_door_shadow
+// Wagen 7: c3_s03_wagen7_approach, c3_s03b_inside_comp7, c3_s03c_notebooks_explore
+// Truth: c3_s04_comp7_truth
+// Pre-Control: c3_s04b_third_announcement, c3_s04c_lights_cut, c3_control_02_approach
+// Control: c3_control_02_question, c3_control_02_aftermath
+// End: c3_end_station
 // ============================================================================
 
 import { ScenesCollection } from '../../../domain/types';
@@ -35,7 +35,7 @@ Du lehnst die Stirn gegen das Holz; der Lack riecht süßlich. Als du dich umdre
           { type: 'inc', target: 'tickets_truth', value: 1 },
           { type: 'inc', target: 'conductor_attention', value: 1 }
         ],
-        next: 'c3_s01a_after_station'
+        next: 'c3_s01c_door_pulse'
       },
       {
         id: 'knock_on_door',
@@ -44,18 +44,57 @@ Du lehnst die Stirn gegen das Holz; der Lack riecht süßlich. Als du dich umdre
           { type: 'inc', target: 'tickets_love', value: 1 },
           { type: 'inc', target: 'memory_drift', value: 1 }
         ],
-        next: 'c3_s01a_after_station'
+        next: 'c3_s01c_door_pulse'
       },
       {
         id: 'turn_around',
         label: 'Sich umsehen',
-        effects: [],
-        next: 'c3_s01a_after_station'
+        effects: [
+          { type: 'inc', target: 'tickets_truth', value: 1 }
+        ],
+        next: 'c3_s01c_door_pulse'
       }
     ],
     tags: ['setup'],
     state_notes: ['Wagen 7 Barriere eingeführt'],
     atmosphere: 'mystic'
+  },
+
+  // ==========================================================================
+  // c3_s01c_door_pulse: Puls hinter der Tür (Interlude)
+  // ==========================================================================
+  'c3_s01c_door_pulse': {
+    id: 'c3_s01c_door_pulse',
+    chapter: 3,
+    title: 'Puls',
+    narrative: `Das Holz unter deiner Hand lebt. Ein leises Pochen, das nicht vom Zug stammt.
+
+Aus dem Spalt der Tür weht Papiergeruch. Nicht frisch, eher wie alte Bücher nach Regen.
+
+Dein Name liegt dir auf der Zunge, aber du schluckst ihn herunter.`,
+    choices: [
+      {
+        id: 'keep_hand',
+        label: 'Die Hand nicht wegziehen',
+        effects: [
+          { type: 'inc', target: 'tickets_love', value: 1 }
+        ],
+        next: 'c3_s01a_after_station'
+      },
+      {
+        id: 'step_back_door',
+        label: 'Einen Schritt zurück',
+        effects: [
+          { type: 'inc', target: 'tickets_escape', value: 1 }
+        ],
+        next: 'c3_s01a_after_station'
+      }
+    ],
+    tags: ['interlude'],
+    state_notes: [
+      'Micro-Beat vor dem Gang'
+    ],
+    atmosphere: 'tense'
   },
 
   // ============================================================================
@@ -236,7 +275,7 @@ Der Schlaflose steht im Gang. Er wirkt blass.
         effects: [
           { type: 'inc', target: 'tickets_guilt', value: 1 }
         ],
-        next: 'c3_s03_wagen7_approach'
+        next: 'c3_s02c_door_shadow'
       },
       {
         id: 'ignore_warning',
@@ -244,12 +283,49 @@ Der Schlaflose steht im Gang. Er wirkt blass.
         effects: [
           { type: 'inc', target: 'tickets_escape', value: 1 }
         ],
-        next: 'c3_s03_wagen7_approach'
+        next: 'c3_s02c_door_shadow'
       }
     ],
     tags: ['drift_variant'],
     state_notes: ['Raum-Reorganisation'],
     atmosphere: 'tense'
+  },
+
+  // ==========================================================================
+  // c3_s02c_door_shadow: Schatten vor Wagen 7 (Interlude)
+  // ==========================================================================
+  'c3_s02c_door_shadow': {
+    id: 'c3_s02c_door_shadow',
+    chapter: 3,
+    title: 'Schatten',
+    narrative: `Vor der Tür mit der 7 liegt ein Schatten, der sich gegen das Licht bewegt.
+
+Du hörst einen Bleistift über Papier kratzen. Dann Stille.
+
+Der Zug wankt leicht, als würde er sich entscheiden.`,
+    choices: [
+      {
+        id: 'knock_softly',
+        label: 'Leise anklopfen',
+        effects: [
+          { type: 'inc', target: 'tickets_love', value: 1 }
+        ],
+        next: 'c3_s03_wagen7_approach'
+      },
+      {
+        id: 'wait_shadow',
+        label: 'Warten',
+        effects: [
+          { type: 'inc', target: 'tickets_truth', value: 1 }
+        ],
+        next: 'c3_s03_wagen7_approach'
+      }
+    ],
+    tags: ['interlude'],
+    state_notes: [
+      'Micro-Beat vor Wagen 7'
+    ],
+    atmosphere: 'mystic'
   },
 
   // ============================================================================
@@ -432,7 +508,7 @@ Schwere Schritte.`,
         effects: [
           { type: 'inc', target: 'tickets_truth', value: 1 }
         ],
-        next: 'c3_control_02_approach'
+        next: 'c3_s04c_lights_cut'
       },
       {
         id: 'hide_in_comp7',
@@ -443,12 +519,49 @@ Schwere Schritte.`,
           { type: 'inc', target: 'rel_comp7', value: 1 },
           { type: 'inc', target: 'conductor_attention', value: 1 }
         ],
-        next: 'c3_control_02_approach'
+        next: 'c3_s04c_lights_cut'
       }
     ],
     tags: [],
     state_notes: ['Kontrolle 2 Vorbereitung'],
     atmosphere: 'danger'
+  },
+
+  // ==========================================================================
+  // c3_s04c_lights_cut: Lichtausfall (Interlude)
+  // ==========================================================================
+  'c3_s04c_lights_cut': {
+    id: 'c3_s04c_lights_cut',
+    chapter: 3,
+    title: 'Aus',
+    narrative: `Das Licht geht aus. Komplett.
+
+Du hörst Schritte, aber du kannst nicht sagen, aus welcher Richtung.
+
+Als das Licht zurückkommt, steht die Tür von Abteil 7 einen Spalt weiter offen.`,
+    choices: [
+      {
+        id: 'step_forward_light',
+        label: 'Einen Schritt nach vorn',
+        effects: [
+          { type: 'inc', target: 'tickets_truth', value: 1 }
+        ],
+        next: 'c3_control_02_approach'
+      },
+      {
+        id: 'hold_position',
+        label: 'Nicht bewegen',
+        effects: [
+          { type: 'inc', target: 'tickets_escape', value: 1 }
+        ],
+        next: 'c3_control_02_approach'
+      }
+    ],
+    tags: ['interlude'],
+    state_notes: [
+      'Micro-Beat vor Kontrolle 2'
+    ],
+    atmosphere: 'tense'
   },
 
   // ============================================================================

@@ -31,6 +31,7 @@ data class UiState(
   val story: StoryContent? = null,
   val state: GameState? = null,
   val currentScene: Scene? = null,
+  val isOverlayOpen: Boolean = false,
   val availableChoices: List<Choice> = emptyList(),
   val resolvedNarrative: String = "",
   val ending: Ending? = null,
@@ -44,6 +45,54 @@ class GameViewModel(
   private val engine = GameEngine()
   private val _uiState = MutableStateFlow(UiState())
   val uiState: StateFlow<UiState> = _uiState.asStateFlow()
+
+  private data class HotspotSceneMapping(
+    val defaultSceneId: String,
+    val fallbackSceneId: String,
+    val isActive: (GameState) -> Boolean
+  )
+
+  private val hotspotToScene: Map<String, HotspotSceneMapping> = mapOf(
+    "npc_boy" to HotspotSceneMapping(
+      defaultSceneId = "c2_s02_boy_recorder",
+      fallbackSceneId = "c2_s02c_boy_vanish",
+      isActive = { state -> !state.items.has_recorder }
+    ),
+    "npc_conductor" to HotspotSceneMapping(
+      defaultSceneId = "c2_control_01_approach",
+      fallbackSceneId = "c2_control_01_aftermath",
+      isActive = { state -> state.pressure.conductor_attention < 2 }
+    ),
+    "obj_recorder" to HotspotSceneMapping(
+      defaultSceneId = "c2_s02_boy_recorder",
+      fallbackSceneId = "c2_s02a_recorder_listening",
+      isActive = { state -> !state.items.has_recorder }
+    ),
+    "door_wagon7" to HotspotSceneMapping(
+      defaultSceneId = "c3_s03_wagen7_approach",
+      fallbackSceneId = "c3_s01_wagen7_locked",
+      isActive = { state ->
+        state.chapter_index >= 3 ||
+          state.relations.rel_comp7 >= 1 ||
+          state.tickets.tickets_truth >= 2
+      }
+    ),
+    "obj_window" to HotspotSceneMapping(
+      defaultSceneId = "c1_s03a_find_seat",
+      fallbackSceneId = "c1_s01_platform",
+      isActive = { state -> state.pressure.memory_drift >= 1 }
+    ),
+    "npc_comp7" to HotspotSceneMapping(
+      defaultSceneId = "c3_s03b_inside_comp7",
+      fallbackSceneId = "c2_s03_comp7_intro",
+      isActive = { state -> state.chapter_index >= 3 }
+    ),
+    "npc_sleepless" to HotspotSceneMapping(
+      defaultSceneId = "c2_control_01_aftermath",
+      fallbackSceneId = "c1_s04_sleepless_intro",
+      isActive = { state -> state.chapter_index >= 2 }
+    )
+  )
 
   init {
     viewModelScope.launch {
@@ -112,6 +161,25 @@ class GameViewModel(
     saveCurrentState()
   }
 
+  fun openSceneForHotspot(hotspotId: String) {
+    val story = _uiState.value.story ?: return
+    val current = engine.state
+    val mapping = hotspotToScene[hotspotId] ?: return
+    val sceneId = if (mapping.isActive(current)) {
+      mapping.defaultSceneId
+    } else {
+      mapping.fallbackSceneId
+    }
+    val next = current.copy(current_scene_id = sceneId)
+    engine.setState(next)
+    updateUi(story)
+    _uiState.value = _uiState.value.copy(isOverlayOpen = true)
+  }
+
+  fun closeSceneOverlay() {
+    _uiState.value = _uiState.value.copy(isOverlayOpen = false)
+  }
+
   fun resetGame() {
     val story = _uiState.value.story ?: return
     engine.reset(story.manifest.start_scene_id)
@@ -138,6 +206,7 @@ class GameViewModel(
       story = story,
       state = state,
       currentScene = scene,
+      isOverlayOpen = _uiState.value.isOverlayOpen,
       availableChoices = choices,
       resolvedNarrative = narrative,
       ending = ending
