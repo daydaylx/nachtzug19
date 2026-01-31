@@ -1273,11 +1273,10 @@ Du trittst über die Schwelle.`
         id: 'enter_seven_recognized',
         label: 'Abteil 7 betreten',
         condition: {
-          type: 'and',
-          conditions: [
-            { type: 'compare', target: 'tickets_truth', operator: '>=', value: 5 },
-            { type: 'compare', target: 'tickets_truth', operator: '>=', value: 4 }
-          ]
+          type: 'compare',
+          target: 'tickets_truth',
+          operator: '>=',
+          value: 5
         },
         effects: [
           { type: 'inc', target: 'tickets_truth', value: 3 }
