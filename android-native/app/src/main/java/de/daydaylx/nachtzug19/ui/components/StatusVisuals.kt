@@ -55,10 +55,10 @@ private fun DrawScope.drawTicketSegments(value: Int, maxValue: Int) {
     val x = index * segmentWidth
     val filled = index < value
     
-    // W�rmere Farbe bei hohen Werten (Attention), sonst standard
+    // Wärmere Farbe bei hohen Werten (Attention), sonst standard
     val baseColor = if (filled) NachtzugColors.TicketFilled else NachtzugColors.TicketEmpty
-    
-    // Leichte Variation f�r abgenutztes Aussehen
+
+    // Leichte Variation für abgenutztes Aussehen
     val variation = if (filled) {
       when (index % 3) {
         0 -> baseColor

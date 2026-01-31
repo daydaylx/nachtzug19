@@ -50,25 +50,4 @@ fun LoadingScreen(modifier: Modifier = Modifier) {
   }
 }
 
-@Composable
-fun AnnouncementBanner(
-  text: String,
-  visible: Boolean,
-  modifier: Modifier = Modifier
-) {
-  if (!visible) return
-
-  Box(
-    modifier = modifier
-      .fillMaxWidth()
-      .padding(horizontal = 20.dp, vertical = 8.dp)
-  ) {
-    Text(
-      text = text,
-      style = MaterialTheme.typography.labelMedium.copy(fontSize = 11.sp),
-      color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.8f),
-      textAlign = TextAlign.Center,
-      modifier = Modifier.fillMaxWidth()
-    )
-  }
-}
+// Note: AnnouncementBanner is defined in AnnouncementBanner.kt
