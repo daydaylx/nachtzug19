@@ -38,3 +38,4 @@ sqlite_mcp_server.db
 
 # Export/generated content
 export/
+coverage/
