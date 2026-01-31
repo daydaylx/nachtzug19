@@ -275,46 +275,150 @@ private fun tileToPosition(tile: TilePosition, context: RenderContext): Offset {
   )
 }
 
+/**
+ * GBA-Pokémon-inspiriertes Room-Rendering
+ * Zeichnet Holzboden mit Teppichläufer, Wände mit Paneelen, Fenster-Details
+ */
 private fun DrawScope.drawRoom(
   room: RoomDefinition,
   context: RenderContext,
   palette: WorldPalette
 ) {
   val ambience = OverworldData.ambienceTint(room.ambienceTag)
-  val shadeA = Color(
-    red = (palette.floor.red * 0.85f + ambience.red * 0.15f),
-    green = (palette.floor.green * 0.85f + ambience.green * 0.15f),
-    blue = (palette.floor.blue * 0.85f + ambience.blue * 0.15f),
+
+  // Holzboden-Farben mit Ambience-Tint
+  val floorLight = Color(
+    red = (palette.floor.red * 0.9f + ambience.red * 0.1f),
+    green = (palette.floor.green * 0.9f + ambience.green * 0.1f),
+    blue = (palette.floor.blue * 0.9f + ambience.blue * 0.1f),
     alpha = 1f
   )
-  val shadeB = Color(
-    red = (palette.floor.red * 0.7f + ambience.red * 0.3f),
-    green = (palette.floor.green * 0.7f + ambience.green * 0.3f),
-    blue = (palette.floor.blue * 0.7f + ambience.blue * 0.3f),
+  val floorDark = Color(
+    red = (palette.floor.red * 0.75f + ambience.red * 0.1f),
+    green = (palette.floor.green * 0.75f + ambience.green * 0.1f),
+    blue = (palette.floor.blue * 0.75f + ambience.blue * 0.1f),
     alpha = 1f
   )
+
+  // Wand-Farben (dunkler, mit Paneelen-Effekt)
+  val wallBase = palette.wall
+  val wallHighlight = Color(
+    red = (palette.wall.red * 1.2f).coerceAtMost(1f),
+    green = (palette.wall.green * 1.2f).coerceAtMost(1f),
+    blue = (palette.wall.blue * 1.2f).coerceAtMost(1f),
+    alpha = 1f
+  )
+
+  // Teppich-Mittelstreifen (typisch für Zugkorridore)
+  val carpetY = room.height / 2
 
   for (y in 0 until room.height) {
     for (x in 0 until room.width) {
       val tile = TilePosition(x, y)
       val isWall = room.collision.contains(tile)
-      val baseFloor = if ((x + y) % 2 == 0) shadeA else shadeB
-      val color = if (isWall) palette.wall else baseFloor
       val topLeft = Offset(
         context.origin.x + x * context.tileSizePx,
         context.origin.y + y * context.tileSizePx
       )
-      drawRect(color = color, topLeft = topLeft, size = androidx.compose.ui.geometry.Size(context.tileSizePx, context.tileSizePx))
+      val tileSize = androidx.compose.ui.geometry.Size(context.tileSizePx, context.tileSizePx)
 
-      if (!isWall) {
+      if (isWall) {
+        // Wand mit Paneelen-Effekt (GBA-Stil)
+        drawRect(color = wallBase, topLeft = topLeft, size = tileSize)
+
+        // Horizontale Paneel-Linie
+        if (y == 0 || y == room.height - 1) {
+          drawLine(
+            color = wallHighlight,
+            start = Offset(topLeft.x, topLeft.y + context.tileSizePx * 0.3f),
+            end = Offset(topLeft.x + context.tileSizePx, topLeft.y + context.tileSizePx * 0.3f),
+            strokeWidth = context.tileSizePx * 0.08f
+          )
+        }
+
+        // Fenster an oberer Wand (jedes 3. Tile)
+        if (y == 0 && x % 3 == 1 && x > 0 && x < room.width - 1) {
+          val windowSize = context.tileSizePx * 0.6f
+          val windowOffset = (context.tileSizePx - windowSize) / 2
+          drawRect(
+            color = palette.window,
+            topLeft = Offset(topLeft.x + windowOffset, topLeft.y + context.tileSizePx * 0.4f),
+            size = androidx.compose.ui.geometry.Size(windowSize, windowSize * 0.7f)
+          )
+          // Fensterrahmen
+          drawRect(
+            color = palette.metal,
+            topLeft = Offset(topLeft.x + windowOffset, topLeft.y + context.tileSizePx * 0.4f),
+            size = androidx.compose.ui.geometry.Size(windowSize, windowSize * 0.7f),
+            style = Stroke(width = context.tileSizePx * 0.06f)
+          )
+        }
+      } else {
+        // Holzboden mit Schachbrett-Muster
+        val floorColor = if ((x + y) % 2 == 0) floorLight else floorDark
+        drawRect(color = floorColor, topLeft = topLeft, size = tileSize)
+
+        // Holzmaserung (subtile Linien)
+        drawLine(
+          color = palette.shadow.copy(alpha = 0.15f),
+          start = Offset(topLeft.x + context.tileSizePx * 0.2f, topLeft.y),
+          end = Offset(topLeft.x + context.tileSizePx * 0.2f, topLeft.y + context.tileSizePx),
+          strokeWidth = context.tileSizePx * 0.02f
+        )
+        drawLine(
+          color = palette.shadow.copy(alpha = 0.1f),
+          start = Offset(topLeft.x + context.tileSizePx * 0.7f, topLeft.y),
+          end = Offset(topLeft.x + context.tileSizePx * 0.7f, topLeft.y + context.tileSizePx),
+          strokeWidth = context.tileSizePx * 0.02f
+        )
+
+        // Teppichläufer in der Mitte (typisch für Zugkorridore)
+        if (y == carpetY || y == carpetY - 1 || y == carpetY + 1) {
+          val carpetColor = if (y == carpetY) palette.carpet else palette.carpet.copy(alpha = 0.7f)
+          drawRect(
+            color = carpetColor,
+            topLeft = Offset(topLeft.x + context.tileSizePx * 0.1f, topLeft.y + context.tileSizePx * 0.1f),
+            size = androidx.compose.ui.geometry.Size(context.tileSizePx * 0.8f, context.tileSizePx * 0.8f)
+          )
+          // Teppich-Muster
+          if (x % 2 == 0) {
+            drawRect(
+              color = palette.carpet.copy(alpha = 0.3f),
+              topLeft = Offset(topLeft.x + context.tileSizePx * 0.3f, topLeft.y + context.tileSizePx * 0.3f),
+              size = androidx.compose.ui.geometry.Size(context.tileSizePx * 0.4f, context.tileSizePx * 0.4f)
+            )
+          }
+        }
+
+        // Subtile Tile-Umrandung
         drawRect(
-          color = Color.White.copy(alpha = 0.035f),
+          color = Color.White.copy(alpha = 0.02f),
           topLeft = topLeft,
-          size = androidx.compose.ui.geometry.Size(context.tileSizePx, context.tileSizePx),
-          style = Stroke(width = context.tileSizePx * 0.03f)
+          size = tileSize,
+          style = Stroke(width = context.tileSizePx * 0.02f)
         )
       }
     }
+  }
+
+  // Lampen an der Decke (warme Lichtpunkte)
+  for (x in 2 until room.width - 2 step 4) {
+    val lampPos = Offset(
+      context.origin.x + x * context.tileSizePx + context.tileSizePx / 2,
+      context.origin.y + context.tileSizePx * 0.3f
+    )
+    // Lichtschein
+    drawCircle(
+      color = palette.lamp.copy(alpha = 0.15f),
+      radius = context.tileSizePx * 0.8f,
+      center = lampPos
+    )
+    // Lampe selbst
+    drawCircle(
+      color = palette.lamp,
+      radius = context.tileSizePx * 0.12f,
+      center = lampPos
+    )
   }
 }
 
@@ -352,15 +456,67 @@ private fun DrawScope.drawHotspots(
   }
 }
 
+/**
+ * GBA-Pokémon-inspirierter Spieler-Sprite
+ * Einfache aber erkennbare Figur im 16-Bit-Stil
+ */
 private fun DrawScope.drawPlayer(center: Offset, tileSize: Float, color: Color) {
-  val bodyRadius = tileSize * 0.18f
-  drawCircle(color = color, radius = bodyRadius, center = center)
-  drawLine(
-    color = Color.Black.copy(alpha = 0.25f),
-    start = Offset(center.x - bodyRadius * 0.4f, center.y + bodyRadius * 0.6f),
-    end = Offset(center.x + bodyRadius * 0.4f, center.y + bodyRadius * 0.6f),
-    strokeWidth = tileSize * 0.05f,
-    cap = StrokeCap.Round
+  val unit = tileSize * 0.06f  // Basis-Einheit für Pixel-Look
+
+  // Schatten unter dem Spieler
+  drawOval(
+    color = Color.Black.copy(alpha = 0.3f),
+    topLeft = Offset(center.x - unit * 3, center.y + unit * 2),
+    size = androidx.compose.ui.geometry.Size(unit * 6, unit * 2)
+  )
+
+  // Körper (Oberteil - dunkler)
+  val bodyColor = Color(
+    red = (color.red * 0.7f),
+    green = (color.green * 0.7f),
+    blue = (color.blue * 0.8f),
+    alpha = 1f
+  )
+  drawRect(
+    color = bodyColor,
+    topLeft = Offset(center.x - unit * 2.5f, center.y - unit * 1),
+    size = androidx.compose.ui.geometry.Size(unit * 5, unit * 4)
+  )
+
+  // Kopf (heller)
+  drawOval(
+    color = color,
+    topLeft = Offset(center.x - unit * 2, center.y - unit * 4),
+    size = androidx.compose.ui.geometry.Size(unit * 4, unit * 3.5f)
+  )
+
+  // Haare (dunkel)
+  drawArc(
+    color = Color(0xFF3D3229),
+    startAngle = 180f,
+    sweepAngle = 180f,
+    useCenter = true,
+    topLeft = Offset(center.x - unit * 2.2f, center.y - unit * 4.5f),
+    size = androidx.compose.ui.geometry.Size(unit * 4.4f, unit * 2.5f)
+  )
+
+  // Augen (zwei kleine Punkte)
+  drawCircle(
+    color = Color.Black,
+    radius = unit * 0.4f,
+    center = Offset(center.x - unit * 0.8f, center.y - unit * 2.2f)
+  )
+  drawCircle(
+    color = Color.Black,
+    radius = unit * 0.4f,
+    center = Offset(center.x + unit * 0.8f, center.y - unit * 2.2f)
+  )
+
+  // Highlight auf Kopf (GBA-typischer Glanz)
+  drawCircle(
+    color = Color.White.copy(alpha = 0.3f),
+    radius = unit * 0.6f,
+    center = Offset(center.x - unit * 0.5f, center.y - unit * 3.5f)
   )
 }
 
@@ -396,18 +552,58 @@ private fun isDoorUnlocked(state: GameState?): Boolean {
     snapshot.tickets.tickets_truth >= 2
 }
 
+/**
+ * GBA-Pokémon-inspirierter NPC-Sprite
+ */
 private fun DrawScope.drawNpcHotspot(
   pos: Offset,
   context: RenderContext,
   palette: WorldPalette
 ) {
-  drawCircle(color = palette.hotspot.copy(alpha = 0.85f), radius = context.tileSizePx * 0.22f, center = pos)
-  drawCircle(color = palette.npc, radius = context.tileSizePx * 0.14f, center = pos)
+  val unit = context.tileSizePx * 0.06f
+
+  // Schatten
+  drawOval(
+    color = Color.Black.copy(alpha = 0.25f),
+    topLeft = Offset(pos.x - unit * 3, pos.y + unit * 2),
+    size = androidx.compose.ui.geometry.Size(unit * 6, unit * 2)
+  )
+
+  // Körper (NPC-Farbe)
+  drawRect(
+    color = palette.npc,
+    topLeft = Offset(pos.x - unit * 2.5f, pos.y - unit * 1),
+    size = androidx.compose.ui.geometry.Size(unit * 5, unit * 4)
+  )
+
+  // Kopf
+  val skinColor = Color(0xFFDEB887)  // Hautfarbe
+  drawOval(
+    color = skinColor,
+    topLeft = Offset(pos.x - unit * 2, pos.y - unit * 4),
+    size = androidx.compose.ui.geometry.Size(unit * 4, unit * 3.5f)
+  )
+
+  // Haare (variiert je nach NPC, hier dunkel)
+  drawArc(
+    color = Color(0xFF4A3728),
+    startAngle = 180f,
+    sweepAngle = 180f,
+    useCenter = true,
+    topLeft = Offset(pos.x - unit * 2.2f, pos.y - unit * 4.5f),
+    size = androidx.compose.ui.geometry.Size(unit * 4.4f, unit * 2.5f)
+  )
+
+  // Augen
+  drawCircle(color = Color.Black, radius = unit * 0.4f, center = Offset(pos.x - unit * 0.8f, pos.y - unit * 2.2f))
+  drawCircle(color = Color.Black, radius = unit * 0.4f, center = Offset(pos.x + unit * 0.8f, pos.y - unit * 2.2f))
+
+  // Interaktions-Indikator (pulsierender Ring)
   drawCircle(
-    color = Color.Black.copy(alpha = 0.2f),
-    radius = context.tileSizePx * 0.26f,
+    color = palette.hotspot.copy(alpha = 0.4f),
+    radius = context.tileSizePx * 0.35f,
     center = pos,
-    style = Stroke(width = context.tileSizePx * 0.05f)
+    style = Stroke(width = context.tileSizePx * 0.04f)
   )
 }
 
