@@ -48,6 +48,20 @@ import kotlin.math.min
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Settings
 
+/**
+ * @deprecated GBA-Pixel-Overworld wurde zugunsten von Reader Noir (PlayerScreen) deprecated.
+ * Diese Komponente wird in zukünftigen Versionen entfernt.
+ * Verwende stattdessen PlayerScreen für Story-Darstellung.
+ *
+ * Grund: Reader Noir passt besser zum psychologischen Mystery-Genre von NACHTZUG 19.
+ * Overworld war ein Experiment mit GBA-Pokémon-Ästhetik, wurde aber nicht weiter verfolgt.
+ *
+ * @see de.daydaylx.nachtzug19.ui.PlayerScreen
+ */
+@Deprecated(
+    message = "Use PlayerScreen instead. Overworld does not match the narrative-focused genre.",
+    replaceWith = ReplaceWith("PlayerScreen", "de.daydaylx.nachtzug19.ui.PlayerScreen")
+)
 @Composable
 fun OverworldScreen(
   uiState: UiState,

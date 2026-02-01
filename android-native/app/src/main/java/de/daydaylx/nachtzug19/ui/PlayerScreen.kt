@@ -100,9 +100,23 @@ fun PlayerScreen(
         .padding(padding)
         .systemBarsPadding()
     ) {
-      // Background Layers - Phase 1: Visual Assets Integration
-      // Determine background from scene tags
-      val currentBackground = uiState.currentScene?.let { 
+      // TODO: Background Assets fehlen noch - Phase 1 Visual Assets Integration
+      // Siehe docs/assets/BACKGROUND_ASSETS_SPEC.md für Prompts
+      // Generierte Bilder in android-native/app/src/main/res/drawable-nodpi/ ablegen
+      //
+      // Benötigte Assets (22 total, je ~300KB):
+      // - bg_loc_platform__v1.png, bg_loc_corridor__v1.png, bg_loc_compartment__v1.png
+      // - bg_loc_window__v1.png, bg_loc_comp7__v1.png, bg_loc_transition__v1.png
+      // - bg_scene_control__v1.png, bg_scene_mirror__v1.png, bg_scene_void__v1.png
+      // - bg_scene_announcement__v1.png, bg_scene_dissolve__v1.png
+      // - bg_ending_city__v1.png, bg_ending_reunion__v1.png, bg_ending_home__v1.png
+      // - bg_ending_library__v1.png
+      //
+      // Aktuell: Placeholder colors werden verwendet
+      // Ziel: Echte Background-Bilder mit 300ms Crossfade
+
+      // Background Layers - Determine background from scene tags
+      val currentBackground = uiState.currentScene?.let {
           getBackgroundForTags(it.tags)
       } ?: BackgroundAsset.Default
       

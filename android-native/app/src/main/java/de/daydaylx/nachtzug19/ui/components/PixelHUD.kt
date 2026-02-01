@@ -24,6 +24,13 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import de.daydaylx.nachtzug19.ui.theme.PixelTypography
 
+/**
+ * Pixel-Art HUD (Top Bar) für NACHTZUG 19 (Reader Noir UI).
+ *
+ * HINWEIS: Aktuell in Verwendung in PlayerScreen.
+ * Für zukünftige Entwicklung sollte ein Reader Noir-spezifisches HUD entwickelt werden
+ * das besser zur Papier/Noir-Ästhetik passt.
+ */
 @Composable
 fun PixelHUD(
   title: String,

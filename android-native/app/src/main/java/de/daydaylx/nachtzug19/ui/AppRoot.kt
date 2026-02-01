@@ -7,7 +7,6 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import de.daydaylx.nachtzug19.ui.overworld.OverworldScreen
 import de.daydaylx.nachtzug19.ui.theme.NachtzugTheme
 
 private const val ROUTE_PLAYER = "player"
@@ -22,13 +21,12 @@ fun AppRoot(
 
   NavHost(navController = navController, startDestination = ROUTE_PLAYER) {
     composable(ROUTE_PLAYER) {
-      OverworldScreen(
+      PlayerScreen(
         uiState = uiState,
-        settingsReduceMotion = uiState.settings.reduceMotion,
+        onChoice = { viewModel.makeChoice(it) },
+        onReset = { viewModel.resetGame() },
         onOpenSettings = { navController.navigate(ROUTE_SETTINGS) },
-        onTriggerScene = { viewModel.openSceneForHotspot(it) },
-        onMoveSceneChoice = { viewModel.makeChoice(it) },
-        onReset = { viewModel.resetGame() }
+        onExit = { /* Optional: Activity finish */ }
       )
     }
     composable(ROUTE_SETTINGS) {

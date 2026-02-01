@@ -1,11 +1,16 @@
 package de.daydaylx.nachtzug19.ui.overworld
 
 /**
+ * @deprecated GBA-Pixel-Overworld System deprecated. Use Reader Noir (PlayerScreen) instead.
+ * Tile Map wird nicht mehr benötigt für die story-fokussierte UI.
+ */
+/**
  * Tile Map
- * 
+ *
  * Represents a 2D grid of tile IDs for a room
  * Uses a flattened IntArray for efficient storage
  */
+@Deprecated("Overworld tile system is no longer used. Use PlayerScreen for story rendering.")
 data class TileMap(
     val width: Int,
     val height: Int,

@@ -1,14 +1,15 @@
-# NACHTZUG 19 - UI Target Alignment Plan
+# NACHTZUG 19 - UI Target Alignment Plan (AKTIV - Reader Noir Fokus)
 
-**Date**: 2026-01-31  
+**Date**: 2026-01-31 (Updated: 2026-02-01)
 **Purpose**: Systematischer Umbau der UI-Implementierung auf das Zielbild aus den Docs
+**Status**: Reader Noir ist die primäre UI-Richtung. GBA-Pixel-Overworld ist deprecated.
 
 ---
 
 ## Leitprinzipien (aus /docs)
 
-1. **Interaktion schlägt Text** - Der Spieler ist ein Teilnehmer, kein Leser
-2. **Reader Noir Ästhetik** - Nachtfahrt im Zug, ruhige Spannung, keine Horror-Effekte
+1. **Reader Noir Ästhetik** - Nachtfahrt im Zug, ruhige Spannung, keine Horror-Effekte (AKTIV)
+2. **Interaktion schlägt Text** - Der Spieler ist ein Teilnehmer, kein Leser
 3. **Mobile-First** - Safe Areas, Tap Targets, keine Overflows
 4. **Accessibility First** - Screen Reader, Focus States, Reduce Motion
 5. **Trennung von UI und Domain** - UI rendert nur, Engine entscheidet
@@ -17,6 +18,8 @@
 8. **Keine Fake Choices** - Jede Entscheidung hat spürbare Konsequenz
 9. **Minimalismus** - Max 3 Animationen, Clean Code
 10. **Performance** - Unnötige Re-renders vermeiden
+
+**Hinweis**: GBA-Pixel-Overworld wurde als Experiment entwickelt, ist aber nicht die Zielrichtung. PlayerScreen mit Reader Noir Komponenten ist die aktive UI.
 
 ---
 

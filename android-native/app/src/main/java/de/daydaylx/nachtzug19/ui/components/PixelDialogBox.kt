@@ -19,6 +19,17 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import de.daydaylx.nachtzug19.ui.theme.PixelTypography
 
+/**
+ * Pixel-Art Dialog Box für NACHTZUG 19 (Reader Noir UI).
+ *
+ * HINWEIS: Langfristig soll diese Komponente durch ReaderCard.kt ersetzt werden.
+ * ReaderCard bietet Papier-Textur und Drift-Shake-Effekte die besser zur Reader Noir Ästhetik passen.
+ *
+ * Aktuell noch in Verwendung in PlayerScreen, aber für zukünftige Entwicklung
+ * sollte ReaderCard bevorzugt werden.
+ *
+ * @see ReaderCard für die Reader Noir Alternative
+ */
 @Composable
 fun PixelDialogBox(
   title: String?,

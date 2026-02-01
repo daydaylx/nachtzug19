@@ -4,10 +4,10 @@
 
 > "Der Zug hält an Stationen, die es nicht gibt. Nach jedem Halt verändert sich ein Detail deiner Erinnerung."
 
-Dieses Projekt ist eine **deterministische Interactive Fiction (IF) Engine**.
+Dieses Projekt ist eine **deterministische Interactive Fiction (IF) Engine** mit **Reader Noir Ästhetik**.
 Die Architektur ist hybrid:
 - **Content & Logik-Prototyping**: TypeScript (`src/content`, `src/domain`).
-- **Laufzeitumgebung & UI**: Native Android (Kotlin) in `android-native/`.
+- **Laufzeitumgebung & UI**: Native Android (Kotlin) in `android-native/` mit Reader Noir UI-System.
 
 ---
 
@@ -24,6 +24,7 @@ Die Architektur ist hybrid:
 - **Single Source of Truth**: Story-Content wird in TypeScript definiert (`src/content`).
 - **JSON-Pipeline**: Ein Build-Skript exportiert den Content in eine optimierte `story.json`.
 - **Native Performance**: Die Android-App parst das JSON und rendert es nativ (keine WebView).
+- **Reader Noir UI**: Text-fokussierte Ästhetik mit Drift-Effekten, Papier-Textur und subtilen Animationen.
 - **Automatische Validierung**: TypeScript-Tests stellen sicher, dass der Content konsistent ist, bevor er in die App gelangt.
 - **MCP-Server**: Fortgeschrittene Analyse-Tools für Content-Validierung, Pacing-Analyse und Callback-Tracking.
 

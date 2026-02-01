@@ -1,11 +1,11 @@
 package de.daydaylx.nachtzug19.ui.components
 
 import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.animation.expandVertically
-import androidx.compose.animation.shrinkVertically
 import androidx.compose.animation.core.*
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
+import androidx.compose.animation.slideInVertically
+import androidx.compose.animation.slideOutVertically
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -29,8 +29,14 @@ fun StationOverlay(
     if (animationsEnabled) {
         AnimatedVisibility(
             visible = visible,
-            enter = fadeIn() + expandVertically(animationSpec = tween(300, easing = EaseOutExpo)),
-            exit = fadeOut() + shrinkVertically(animationSpec = tween(300, easing = EaseInExpo))
+            enter = fadeIn(animationSpec = tween(200)) + slideInVertically(
+                animationSpec = tween(200),
+                initialOffsetY = { -it }  // Von oben
+            ),
+            exit = fadeOut(animationSpec = tween(200)) + slideOutVertically(
+                animationSpec = tween(200),
+                targetOffsetY = { -it }  // Nach oben
+            )
         ) {
             StationOverlayCard(stationCount)
         }

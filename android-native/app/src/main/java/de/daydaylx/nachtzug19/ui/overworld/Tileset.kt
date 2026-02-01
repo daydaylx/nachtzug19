@@ -3,10 +3,15 @@ package de.daydaylx.nachtzug19.ui.overworld
 import androidx.compose.ui.graphics.Color
 
 /**
+ * @deprecated GBA-Pixel-Overworld System deprecated. Use Reader Noir (PlayerScreen) instead.
+ * Tileset wird nicht mehr benötigt für die story-fokussierte UI.
+ */
+/**
  * Tile Type Enumeration
- * 
+ *
  * Defines different types of tiles for the game world
  */
+@Deprecated("Overworld tileset is no longer used. Use PlayerScreen for story rendering.")
 enum class TileType {
     FLOOR_A,
     FLOOR_B,

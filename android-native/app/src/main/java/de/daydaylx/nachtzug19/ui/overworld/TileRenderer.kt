@@ -11,11 +11,16 @@ import androidx.compose.ui.graphics.nativeCanvas
 import android.graphics.Paint
 
 /**
+ * @deprecated GBA-Pixel-Overworld System deprecated. Use Reader Noir (PlayerScreen) instead.
+ * Tile Renderer wird nicht mehr benötigt für die story-fokussierte UI.
+ */
+/**
  * Tile Renderer
- * 
+ *
  * Renders tiles from a tileset onto the canvas
  * Supports procedural tiles as fallback for prototype
  */
+@Deprecated("Overworld tile rendering is no longer used. Use PlayerScreen for story rendering.")
 object TileRenderer {
     private val bitmapPaint = Paint().apply {
         isFilterBitmap = false
