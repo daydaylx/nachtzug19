@@ -10,7 +10,20 @@
     "build": "tsc",
     "validate": "tsx scripts/validate.ts",
     "export:story": "tsx scripts/export_story_json.ts",
-    "graph:dump": "node scripts/graph_dump.mjs"
+    "graph:dump": "node scripts/graph_dump.mjs",
+    "mcp": "tsx scripts/mcp_cli.ts",
+    "mcp:list": "tsx scripts/mcp_cli.ts list",
+    "mcp:validate": "tsx scripts/mcp_cli.ts validate",
+    "mcp:validate-chapter": "tsx scripts/mcp_cli.ts validate-chapter",
+    "mcp:analyze-state": "tsx scripts/mcp_cli.ts analyze-state",
+    "mcp:check-callbacks": "tsx scripts/mcp_cli.ts check-callbacks",
+    "mcp:analyze-pacing": "tsx scripts/mcp_cli.ts analyze-pacing",
+    "mcp:check-length": "tsx scripts/mcp_cli.ts check-length",
+    "mcp:detect-fake-choices": "tsx scripts/mcp_cli.ts detect-fake-choices",
+    "mcp:check-callback-integrity": "tsx scripts/mcp_cli.ts check-callback-integrity",
+    "mcp:analyze-choices": "tsx scripts/mcp_cli.ts analyze-choices",
+    "mcp:report": "tsx scripts/mcp_cli.ts report",
+    "mcp:smoke-test": "tsx scripts/mcp_smoke_test.ts"
   },
   "devDependencies": {
     "@types/node": "^25.0.9",

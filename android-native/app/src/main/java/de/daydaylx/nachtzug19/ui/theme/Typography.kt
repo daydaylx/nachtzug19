@@ -4,58 +4,92 @@ import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.googlefonts.Font
+import androidx.compose.ui.text.googlefonts.GoogleFont
 import androidx.compose.ui.unit.sp
+import de.daydaylx.nachtzug19.R
+
+// Google Fonts Provider Setup
+val provider = GoogleFont.Provider(
+    providerAuthority = "com.google.android.gms.fonts",
+    providerPackage = "com.google.android.gms",
+    certificates = R.array.com_google_android_gms_fonts_certs
+)
+
+val LoraFont = FontFamily(
+    Font(googleFont = GoogleFont("Lora"), fontProvider = provider)
+)
+
+val JetBrainsMonoFont = FontFamily(
+    Font(googleFont = GoogleFont("JetBrains Mono"), fontProvider = provider)
+)
+
+val PixelFont = FontFamily(
+    Font(googleFont = GoogleFont("Press Start 2P"), fontProvider = provider)
+)
+
+object PixelTypography {
+    val title = TextStyle(
+        fontFamily = PixelFont,
+        fontWeight = FontWeight.Normal,
+        fontSize = 12.sp,
+        lineHeight = 16.sp
+    )
+    val body = TextStyle(
+        fontFamily = PixelFont,
+        fontWeight = FontWeight.Normal,
+        fontSize = 10.sp,
+        lineHeight = 14.sp
+    )
+}
 
 /**
  * Typography System for NACHTZUG 19
  * 
- * Phase 2: Typography with Reader Noir aesthetic
- * 
- * Note: Using system fonts (Serif, Monospace) for now.
- * Lora and JetBrains Mono will be added when font files are available.
+ * Phase 8: Typography with Google Fonts (Lora, JetBrains Mono)
  */
 val NachtzugTypography = Typography(
-    // Narrative text (Reader mode) - Serif font
+    // Narrative text (Reader mode) - Serif font (Lora)
     displayLarge = TextStyle(
-        fontFamily = FontFamily.Serif,
+        fontFamily = LoraFont,
         fontWeight = FontWeight.Medium,
         fontSize = 24.sp,
         lineHeight = 38.sp
     ),
     displayMedium = TextStyle(
-        fontFamily = FontFamily.Serif,
+        fontFamily = LoraFont,
         fontWeight = FontWeight.Medium,
         fontSize = 20.sp,
         lineHeight = 32.sp
     ),
     bodyLarge = TextStyle(
-        fontFamily = FontFamily.Serif,
+        fontFamily = LoraFont,
         fontWeight = FontWeight.Normal,
         fontSize = 16.sp,
         lineHeight = 28.sp
     ),
     bodyMedium = TextStyle(
-        fontFamily = FontFamily.Serif,
+        fontFamily = LoraFont,
         fontWeight = FontWeight.Normal,
         fontSize = 14.sp,
         lineHeight = 24.sp
     ),
     
-    // UI labels - Monospace font
+    // UI labels - Monospace font (JetBrains Mono)
     labelLarge = TextStyle(
-        fontFamily = FontFamily.Monospace,
+        fontFamily = JetBrainsMonoFont,
         fontWeight = FontWeight.Medium,
         fontSize = 14.sp,
         lineHeight = 20.sp
     ),
     labelMedium = TextStyle(
-        fontFamily = FontFamily.Monospace,
+        fontFamily = JetBrainsMonoFont,
         fontWeight = FontWeight.Medium,
         fontSize = 12.sp,
         lineHeight = 18.sp
     ),
     labelSmall = TextStyle(
-        fontFamily = FontFamily.Monospace,
+        fontFamily = JetBrainsMonoFont,
         fontWeight = FontWeight.Normal,
         fontSize = 10.sp,
         lineHeight = 16.sp
@@ -63,7 +97,7 @@ val NachtzugTypography = Typography(
     
     // Title for scenes
     titleMedium = TextStyle(
-        fontFamily = FontFamily.Monospace,
+        fontFamily = JetBrainsMonoFont,
         fontWeight = FontWeight.Medium,
         fontSize = 16.sp,
         lineHeight = 24.sp
@@ -71,7 +105,7 @@ val NachtzugTypography = Typography(
     
     // Title for larger text
     titleLarge = TextStyle(
-        fontFamily = FontFamily.Serif,
+        fontFamily = LoraFont,
         fontWeight = FontWeight.Bold,
         fontSize = 28.sp,
         lineHeight = 36.sp

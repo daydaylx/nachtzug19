@@ -1,0 +1,615 @@
+Plan: Grafische Spieloberfläche im Stil von Pokemon Gold/Silber und Ruby/Saphir
+
+Ausgangslage
+
+
+
+
+
+Overworld: Bereits „Zelda 1 / Pokémon Gen 1“-Konzept (UI_VISUAL_OVERWORLD_Z1.md), aber technisch: reine Procedural-Tiles (drawRect für Boden/Wand), ASCII-artige Sprites in PixelAssets.kt, keine echten Tile-Sets oder Sprite-Sheets.
+
+
+
+Reader/UI: „Reader Noir“ – ColorPalette, ReaderCard (weiche Schatten, abgerundet), Typography (Lora, JetBrains Mono). Kein fester „Game“-Viewport, keine Pixel-Ästhetik.
+
+
+
+PlayerScreen vs. Overworld: PlayerScreen.kt ist reiner Text+Choices; OverworldScreen.kt hat Overworld + SceneOverlay mit ReaderCard + TicketChoice.
+
+Ziel: Optik näher an Pokemon Gold/Silber (GBC: 160×144, 4 Graustufen/Palette, klare Dialograhmen, Tile-Maps) und Ruby/Saphir (GBA: 240×160, 15-Bit-Farben, unten platzierte Dialogbox, Menü-Frames). Bibliotheken und Hilfsmittel sind ausdrücklich erlaubt.
+
+
+
+1. Feste Spielauflösung und Integer-Skalierung
+
+Vorbild: GBC 160×144 / GBA 240×160 – alles wird in einer festen Low-Res gerendert und dann skaliert (integer scale), damit Pixel sauber und knackscharf bleiben.
+
+
+
+
+
+Entscheidung Auflösung: Eine interne „Game Resolution“ einführen, z. B. 240×160 (GBA-Nähe, gut für 16×16 Tiles) oder 320×180 (wie in Z1 spezifiziert). Auf 9:16 Mobile: Letterbox (schwarze Ränder) oder „safe area“ mit UI außerhalb.
+
+
+
+Umsetzung Android:  
+
+
+
+
+
+Einen festen Game-Viewport (z. B. 240×160 dp-unabhängig als Pixel) in Compose fassen (z. B. Box mit festem width/height in px oder als Vielfaches einer Tile-Größe).  
+
+
+
+Mit scale() so skaliert, dass scale = min(screenWidth/240, screenHeight/160) integer ist (abgerundet); Restfläche mit Hintergrundfarbe füllen (Letterbox).  
+
+
+
+Overworld-Rendering (Canvas) läuft in diesem Viewport; Touch-Koordinaten von Screen in Viewport-Koordinaten umrechnen.
+
+
+
+Dokumentation: In UI_VISUAL_OVERWORLD_Z1.md oder neuer Spec „Game Resolution“ festhalten: 240×160, 16×16 Tiles, Integer-Scale-Regel.
+
+Damit wirkt das Spiel wie ein klassisches Handheld-Spiel und nicht wie eine beliebig skalierte moderne UI.
+
+
+
+2. Echte Tile-Maps statt proceduraler Rechtecke
+
+Vorbild: Pokemon Overworld: Tilesets (8×8 oder 16×16), Karten aus Tile-IDs.
+
+
+
+
+
+Tileset-Assets:  
+
+
+
+
+
+PNG-Sprite-Sheet(s) für Boden, Wände, Türen, Fenster, Bahnsteig (z. B. 16×16 pro Tile, mehrere Tiles in einer Datei).  
+
+
+
+Stil: Pixel-Art, begrenzte Palette (z. B. Nachtzug-Palette aus OverworldData / NachtzugColors).
+
+
+
+Datenformat:  
+
+
+
+
+
+Pro Raum: 2D-Array (oder einfache Liste) von Tile-IDs, die auf das Tileset mappen.  
+
+
+
+Optional: Tiled (.tmx + .tsx) nutzen und in Android parsen (z. B. Bibliothek wie libktx oder einfacher TMX-Parser); oder erstmal nur eigenes Format (z. B. CSV/JSON) + eine Tileset-PNG.
+
+
+
+Rendering:  
+
+
+
+
+
+Tileset-PNG als ImageBitmap laden (z. B. Coil oder BitmapFactory + ImageBitmap).  
+
+
+
+Im Canvas: pro Tile drawRect mit BitmapShader oder drawImageRect mit Quell-Rechteck (Tile-Index → x,y im Sheet).  
+
+
+
+Keine weiche Skalierung: bei Skalierung des Viewports bleibt Integer-Scale; innerhalb des Viewports 1 Pixel = 1 Pixel, also keine zusätzliche Glättung.
+
+
+
+Schritte:  
+
+
+
+
+
+Tileset(s) erstellen (Aseprite oder ähnlich), in `res/drawable` oder `assets` ablegen.  
+
+
+
+In [OverworldData.kt](android-native/app/src/main/java/de/daydaylx/nachtzug19/ui/overworld/OverworldData.kt) (oder neues Modul) pro Raum Tile-Map (Tile-IDs) hinterlegen.  
+
+
+
+In [OverworldScreen.kt](android-native/app/src/main/java/de/daydaylx/nachtzug19/ui/overworld/OverworldScreen.kt) `drawRoom` von proceduralen `drawRect` auf Tile-Zeichenlogik umstellen.
+
+So wirkt die Welt wie in Pokemon/Ruby/Saphir: wiedererkennbare Tiles statt einfarbiger Flächen.
+
+
+
+3. Sprite-Sheets und Laufanimationen
+
+Vorbild: 16×16 (oder 32×32) Charaktere mit 2–4 Frames pro Richtung (oben/unten/links/rechts).
+
+
+
+
+
+Assets:  
+
+
+
+
+
+PNG-Sprite-Sheets: z. B. eine Zeile pro Richtung, 2–4 Frames (idle + Lauf).  
+
+
+
+Protagonist, Schaffner, Junge, Schlafloser, ggf. Tür/Fenster-Objekt – Stil konsistent mit Tileset (Pixel-Art, gleiche Palette).
+
+
+
+Laden & Zeichnen:  
+
+
+
+
+
+Sprites als ImageBitmap laden; pro Frame Quell-Rechteck (x, y, w, h) aus dem Sheet.  
+
+
+
+Im Canvas mit drawImageRect (oder Äquivalent) zeichnen, ohne Glättung (nearest-neighbor).  
+
+
+
+In Compose: GraphicsLayer mit filterBitmap = false oder Skalierung so setzen, dass keine Bilinear-Interpolation greift.
+
+
+
+Animation:  
+
+
+
+
+
+Laufrichtung aus stepTowards ableiten (delta x/y).  
+
+
+
+Frame-Index aus Zeit oder Schrittzähler (z. B. alle 4–8 Frames wechseln).  
+
+
+
+In OverworldScreen.kt und PixelAssets.kt: PixelSprite durch „SpriteSheet + Frame-Index + Direction“ ersetzen; Zeichencode auf Bitmap-Ausschnitt umstellen.
+
+
+
+Optional:  
+
+
+
+
+
+Kurze „Idle“-Animation (z. B. 2 Frames) für NPCs; bei Drift ggf. leichtes Farb-Shift (Palette Swap) statt neuer Artworks.
+
+Ergebnis: Bewegung wirkt wie in Gold/Silber oder Ruby/Saphir, nicht wie ein statisches Icon.
+
+
+
+4. Pokemon-artige Dialogbox und Menüs
+
+Vorbild: Unten platzierte Box mit kräftigem Rahmen (2–3 Pixel), klare Ecken, Menüeinträge mit Cursor/Highlight.
+
+
+
+
+
+Dialogbox (Reader-Äquivalent):  
+
+
+
+
+
+Position: Am unteren Bildschirmrand (oder unterer Bereich des Game-Viewports), feste Höhe, volle Breite mit Abstand.  
+
+
+
+Rahmen: 2–3 px dick, dunkler Rand + hellerer Innenrand (oder umgekehrt), abgerundete Ecken im Pixel-Stil (z. B. 4–8 px Radius).  
+
+
+
+Innen: Textbereich für Narrativ; Hintergrund leicht abgesetzt (z. B. dunkles Grau/Anthrazit wie NachtzugColors).  
+
+
+
+Implementierung: ReaderCard in ReaderCard.kt oder eine neue Komponente PixelDialogBox mit festem Rahmen (z. B. drawRect/drawLine für Rahmen oder 9-Patch aus Pixel-Assets). Wenn die Spieloberfläche der „Game-Viewport“ ist, kann die Dialogbox als Overlay darüber liegen (Compose) und in gleicher Pixel-Ästhetik gehalten werden.
+
+
+
+Choices/Menü:  
+
+
+
+
+
+Statt großer „Ticket Cards“: kompakte Menüzeilen (wie Pokemon: „Ja / Nein“ oder 2–4 Optionen untereinander).  
+
+
+
+Cursor: Kleines Dreieck oder Pfeil links neben der ausgewählten Option; Highlight-Zeile (andere Hintergrundfarbe).  
+
+
+
+Tap = Auswahl; optional D-Pad/Keyboard für Cursor (später).  
+
+
+
+Komponente: z. B. TicketChoice / TicketChoiceEnhanced durch eine „PixelMenu“ mit Cursor ersetzen oder erweitern.
+
+
+
+Einheitlichkeit:  
+
+
+
+
+
+Sowohl Overworld-SceneOverlay (OverworldScreen.kt – SceneOverlay) als auch PlayerScreen.kt (nur Text+Choices) sollten dieselbe Dialogbox- und Menü-Optik nutzen, damit ein konsistentes „Pokemon-UI“-Gefühl entsteht.
+
+
+
+5. Pixel-Typografie und HUD
+
+Vorbild: Klare, lesbare Pixel-Schrift in Menüs und ggf. Dialog.
+
+
+
+
+
+Schrift:  
+
+
+
+
+
+Eine Pixel-Font (8×8 oder 16 px Höhe) für: Dialog-Text, Menü-Labels, Top-Bar (Kapitel, Stationsname).  
+
+
+
+Quelle: z. B. Open-Source-Pixel-Fonts (itch.io, Google Fonts „Press Start 2P“, oder eigene Bitmap-Font-Datei).  
+
+
+
+In Android: als TTF in res/font oder über Typography.kt einbinden; für strikten Pixel-Look: nur bestimmte Größen (z. B. 16sp) und keine Glättung (falls API unterstützt).
+
+
+
+HUD / Top-Bar:  
+
+
+
+
+
+Statt Material TopAppBar: schmaler Streifen oben im Game-Stil (Rahmen, Hintergrund).  
+
+
+
+Inhalt: „NACHTZUG 19“, Kapitel/Kürzel (z. B. K3), Stationsname; optional kleine Icons (Tickets, Drift, Attention) wie in Microbar.  
+
+
+
+Optik: Pixel-Rahmen, Pixel-Schrift, begrenzte Farben – dann wirkt das Gesamtbild wie Gold/Silber oder Ruby/Saphir.
+
+Optional: Narrativ-Text weiter mit Lora für bessere Lesbarkeit; nur UI (Titel, Buttons, HUD) in Pixel – oder alles auf Pixel umstellen für maximalen Retro-Effekt (mit klarer Größenwahl für Lesbarkeit).
+
+
+
+6. Palette und optionaler Retro-Effekt
+
+
+
+
+
+Palette:  
+
+
+
+
+
+Eine feste Spiel-Palette (z. B. 16–32 Farben) definieren und in Spec dokumentieren.  
+
+
+
+Angelehnt an NachtzugColors und OverworldData.palette: Nachtblau/Anthrazit, Amber, Teal, Orange – so bleibt die Nachtzug-Atmosphäre, aber mit klaren Grenzen wie bei GBC/GBA.  
+
+
+
+Tiles und Sprites in dieser Palette zeichnen (oder Asset-Erstellung darauf ausrichten).
+
+
+
+Memory Drift:  
+
+
+
+
+
+Wie bereits geplant: leichter Farb-Shift oder Palette-Swap (andere 4–5 Graustufen) im World-Layer bei memory_drift >= 3, ohne neue Assets.
+
+
+
+Optional – Retro-Filter:  
+
+
+
+
+
+Scanlines oder leichtes CRT-Overlay (halbtransparente Linien, Vignette) als Einstellung „Retro“ in den Settings; standardmäßig aus.
+
+
+
+7. Bibliotheken und Hilfsmittel
+
+
+
+
+
+
+
+Zweck
+
+
+
+Empfehlung
+
+
+
+
+
+Tiles & Sprites laden
+
+
+
+Coil (ImageBitmap) oder BitmapFactory + ImageBitmap; kein zusätzliches Game-Framework nötig.
+
+
+
+
+
+Tile-Maps editieren
+
+
+
+Tiled (Editor): .tmx/.tsx exportieren; in Android parsen (z. B. manueller Parser oder lib wie ktx/Tiled-bindings, falls gewünscht). Alternativ: einfaches JSON/CSV + eine Tileset-PNG.
+
+
+
+
+
+Pixel-Art erstellen
+
+
+
+Aseprite (Tiles, Sprites, Animationen); Export als PNG-Sheets.
+
+
+
+
+
+Pixel-Fonts
+
+
+
+„Press Start 2P“, „Silkscreen“, oder Bitmap-Font aus Aseprite/Littera; TTF in res/font.
+
+
+
+
+
+Rendering
+
+
+
+Compose Canvas reicht; für Tile-Zeichen: drawIntoCanvas + Canvas.drawImageRect mit Paint ohne Filter. Integer-Skalierung über Modifier.scale() oder eigenes Layout.
+
+
+
+
+
+Optional – 2D-Engine
+
+
+
+Falls ihr später mehr Gameplay (Kollisionen, viele Objekte) wollt: LibGDX mit Android-Backend – dann OrthographicCamera, SpriteBatch, TileMapRenderer. Für jetzigen Scope (Overworld + Dialog) nicht zwingend.
+
+Keine Änderung an Story-Engine oder GameState nötig; nur View-Schicht (Compose UI, Canvas, Assets).
+
+
+
+8. Reihenfolge und Abhängigkeiten
+
+flowchart LR
+  A[1. Game Resolution + Integer Scale] --> B[2. Tileset + Tile-Maps]
+  A --> C[3. Sprite-Sheets + Walk]
+  B --> D[4. Dialogbox + Menü]
+  C --> D
+  D --> E[5. Pixel Font + HUD]
+  E --> F[6. Palette + optional Retro]
+
+
+
+
+
+Phase 1: Feste Auflösung (z. B. 240×160) + Integer-Skalierung im Overworld und ggf. PlayerScreen-Container; Touch-Mapping anpassen.
+
+
+
+Phase 2: Ein Tileset (eine PNG) + eine Raum-Map (z. B. Korridor) als Daten; drawRoom auf Tileset-Rendering umstellen.
+
+
+
+Phase 3: Sprite-Sheet für Protagonisten + Laufrichtung/-animation; NPCs auf Sheets umstellen; PixelAssets schrittweise durch Bitmap-basierte Sprites ersetzen.
+
+
+
+Phase 4: Dialogbox (Rahmen, unten) + Menü mit Cursor; ReaderCard und TicketChoice in beiden Screens (Overworld + Player) durch neue Komponenten ergänzen oder ersetzen.
+
+
+
+Phase 5: Pixel-Font einbinden; HUD (Top-Bar) im Pixel-Stil.
+
+
+
+Phase 6: Palette dokumentieren und optional Scanline/CRT-Toggle.
+
+
+
+9. Konflikte mit bestehender Spec
+
+
+
+
+
+Reader Noir: Konzept bleibt (Nacht, Zug, ruhige Spannung); Optik wird „mehr Spiel“ (Pixel, Dialogbox, feste Auflösung). Sichere Bereiche aus BACKGROUND_ASSETS_SPEC.md können weiter gelten, wenn ihr Hintergrundbilder unter dem Game-Viewport nutzt; ansonsten entfällt Bedarf für „top 12% / bottom 18%“ im Viewport selbst, wenn Dialogbox fest positioniert ist.
+
+
+
+Z1 (320×180): Kann auf 240×160 geändert werden für stärkere GBA-Assoziation; 16×16 Tiles passen zu beiden. In UI_VISUAL_OVERWORLD_Z1.md und ggf. OVERWORLD_CONCEPT.md anpassen.
+
+
+
+10. Kurzfassung
+
+
+
+
+
+
+
+Bereich
+
+
+
+Heute
+
+
+
+Ziel (Pokemon-Vorbild)
+
+
+
+
+
+Auflösung
+
+
+
+Dynamisch, keine feste Game-Res
+
+
+
+240×160 (oder 320×180), Integer-Scale, Letterbox
+
+
+
+
+
+Karte
+
+
+
+Procedural (drawRect)
+
+
+
+Tileset-PNG + Tile-Map pro Raum
+
+
+
+
+
+Figuren
+
+
+
+ASCII PixelSprite
+
+
+
+PNG Sprite-Sheets, 2–4 Frames, Laufrichtung
+
+
+
+
+
+Dialog
+
+
+
+ReaderCard (weich, rund)
+
+
+
+Unten platzierte Box mit 2–3 px Rahmen
+
+
+
+
+
+Choices
+
+
+
+Ticket-Cards
+
+
+
+Menüzeilen + Cursor/Highlight
+
+
+
+
+
+Schrift
+
+
+
+Lora / JetBrains Mono
+
+
+
+Pixel-Font für UI (und ggf. Dialog)
+
+
+
+
+
+HUD
+
+
+
+Material TopAppBar
+
+
+
+Pixel-Rahmen, Pixel-Text, kleine Icons
+
+
+
+
+
+Tools
+
+
+
+–
+
+
+
+Tiled (Maps), Aseprite (Tiles/Sprites), Coil/Bitmap (Laden), optional LibGDX später
+
+Damit kommt die Spieloberfläche optisch deutlich näher an Pokemon Gold/Silber und Ruby/Saphir, ohne die bestehende Story- oder Overworld-Logik zu verändern.

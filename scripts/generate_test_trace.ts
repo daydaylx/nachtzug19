@@ -3,7 +3,7 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import { loadNachtzug19Story } from '../src/domain/engine/loadStory';
 import { GameEngine } from '../src/domain/engine/gameEngine';
-import { GameState, Choice } from '../src/domain/types';
+import { GameState } from '../src/domain/types';
 
 import { fileURLToPath } from 'node:url';
 

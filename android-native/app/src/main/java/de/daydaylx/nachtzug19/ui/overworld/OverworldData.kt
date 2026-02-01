@@ -2,6 +2,7 @@ package de.daydaylx.nachtzug19.ui.overworld
 
 import androidx.compose.ui.graphics.Color
 import de.daydaylx.nachtzug19.ui.theme.NachtzugColors
+import de.daydaylx.nachtzug19.ui.overworld.TileMap
 
 object OverworldData {
   const val ROOM_CORRIDOR_MAIN = "room_corridor_main"
@@ -9,6 +10,22 @@ object OverworldData {
   const val ROOM_TRANSITION = "room_transition"
   const val ROOM_WAGON7 = "room_wagon7"
   const val ROOM_PLATFORM = "room_platform_station"
+
+  private const val TILE_FLOOR_A = 0
+  private const val TILE_FLOOR_B = 1
+  private const val TILE_WALL_TOP = 2
+  private const val TILE_WALL_BOTTOM = 3
+  private const val TILE_WALL_LEFT = 4
+  private const val TILE_WALL_RIGHT = 5
+  private const val TILE_CORNER_TL = 6
+  private const val TILE_CORNER_TR = 7
+  private const val TILE_CORNER_BL = 8
+  private const val TILE_CORNER_BR = 9
+  private const val TILE_DOOR = 10
+  private const val TILE_DOOR_LOCKED = 11
+  private const val TILE_WINDOW = 12
+  private const val TILE_SEAT = 13
+  private const val TILE_SPECIAL = 14
 
   /**
    * GBA-Pokémon-inspirierte Farbpalette für Nachtzug-Atmosphäre
@@ -108,11 +125,101 @@ object OverworldData {
     return blocked
   }
 
+  private fun buildTileMap(width: Int, height: Int, builder: (x: Int, y: Int) -> Int): TileMap {
+    val tiles = IntArray(width * height)
+    for (y in 0 until height) {
+      for (x in 0 until width) {
+        tiles[y * width + x] = builder(x, y)
+      }
+    }
+    return TileMap(width, height, tiles)
+  }
+
+  private val corridorTileMap = buildTileMap(20, 9) { x, y ->
+    when {
+      x == 0 && y == 0 -> TILE_CORNER_TL
+      x == 19 && y == 0 -> TILE_CORNER_TR
+      x == 0 && y == 8 -> TILE_CORNER_BL
+      x == 19 && y == 8 -> TILE_CORNER_BR
+      y == 0 -> TILE_WALL_TOP
+      y == 8 -> TILE_WALL_BOTTOM
+      x == 0 -> TILE_WALL_LEFT
+      x == 19 -> TILE_WALL_RIGHT
+      (x + y) % 2 == 0 -> TILE_FLOOR_A
+      else -> TILE_FLOOR_B
+    }
+  }
+
+  private val compartmentTileMap = buildTileMap(16, 9) { x, y ->
+    when {
+      x == 0 && y == 0 -> TILE_CORNER_TL
+      x == 15 && y == 0 -> TILE_CORNER_TR
+      x == 0 && y == 8 -> TILE_CORNER_BL
+      x == 15 && y == 8 -> TILE_CORNER_BR
+      y == 0 -> TILE_WALL_TOP
+      y == 8 -> TILE_WALL_BOTTOM
+      x == 0 -> TILE_WALL_LEFT
+      x == 15 -> TILE_WALL_RIGHT
+      x == 7 && y == 4 -> TILE_SEAT
+      (x + y) % 2 == 0 -> TILE_FLOOR_A
+      else -> TILE_FLOOR_B
+    }
+  }
+
+  private val transitionTileMap = buildTileMap(14, 9) { x, y ->
+    when {
+      x == 0 && y == 0 -> TILE_CORNER_TL
+      x == 13 && y == 0 -> TILE_CORNER_TR
+      x == 0 && y == 8 -> TILE_CORNER_BL
+      x == 13 && y == 8 -> TILE_CORNER_BR
+      y == 0 -> TILE_WALL_TOP
+      y == 8 -> TILE_WALL_BOTTOM
+      x == 0 -> TILE_WALL_LEFT
+      x == 13 -> TILE_WALL_RIGHT
+      x == 12 && y == 4 -> TILE_DOOR
+      (x + y) % 2 == 0 -> TILE_FLOOR_A
+      else -> TILE_FLOOR_B
+    }
+  }
+
+  private val wagon7TileMap = buildTileMap(14, 9) { x, y ->
+    when {
+      x == 0 && y == 0 -> TILE_CORNER_TL
+      x == 13 && y == 0 -> TILE_CORNER_TR
+      x == 0 && y == 8 -> TILE_CORNER_BL
+      x == 13 && y == 8 -> TILE_CORNER_BR
+      y == 0 -> TILE_WALL_TOP
+      y == 8 -> TILE_WALL_BOTTOM
+      x == 0 -> TILE_WALL_LEFT
+      x == 13 -> TILE_WALL_RIGHT
+      x == 6 && y == 3 -> TILE_SEAT
+      (x + y) % 2 == 0 -> TILE_FLOOR_A
+      else -> TILE_FLOOR_B
+    }
+  }
+
+  private val platformTileMap = buildTileMap(18, 9) { x, y ->
+    when {
+      x == 0 && y == 0 -> TILE_CORNER_TL
+      x == 17 && y == 0 -> TILE_CORNER_TR
+      x == 0 && y == 8 -> TILE_CORNER_BL
+      x == 17 && y == 8 -> TILE_CORNER_BR
+      y == 0 -> TILE_WALL_TOP
+      y == 8 -> TILE_WALL_BOTTOM
+      x == 0 -> TILE_WALL_LEFT
+      x == 17 -> TILE_WALL_RIGHT
+      y == 4 && x % 4 == 0 -> TILE_SPECIAL
+      (x + y) % 2 == 0 -> TILE_FLOOR_A
+      else -> TILE_FLOOR_B
+    }
+  }
+
   val rooms = listOf(
     RoomDefinition(
       id = ROOM_CORRIDOR_MAIN,
       width = 20,
       height = 9,
+      tileMap = corridorTileMap,
       collision = corridorCollision(),
       exits = listOf(
         RoomExit(
@@ -139,6 +246,7 @@ object OverworldData {
       id = ROOM_COMPARTMENT,
       width = 16,
       height = 9,
+      tileMap = compartmentTileMap,
       collision = compartmentCollision(),
       exits = listOf(
         RoomExit(
@@ -158,6 +266,7 @@ object OverworldData {
       id = ROOM_TRANSITION,
       width = 14,
       height = 9,
+      tileMap = transitionTileMap,
       collision = transitionCollision(),
       exits = listOf(
         RoomExit(
@@ -182,6 +291,7 @@ object OverworldData {
       id = ROOM_WAGON7,
       width = 14,
       height = 9,
+      tileMap = wagon7TileMap,
       collision = wagon7Collision(),
       exits = listOf(
         RoomExit(
@@ -200,6 +310,7 @@ object OverworldData {
       id = ROOM_PLATFORM,
       width = 18,
       height = 9,
+      tileMap = platformTileMap,
       collision = platformCollision(),
       exits = listOf(
         RoomExit(

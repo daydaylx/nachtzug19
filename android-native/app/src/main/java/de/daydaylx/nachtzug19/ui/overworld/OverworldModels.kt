@@ -22,6 +22,7 @@ data class RoomDefinition(
   val id: String,
   val width: Int,
   val height: Int,
+  val tileMap: TileMap,
   val collision: Set<TilePosition>,
   val exits: List<RoomExit>,
   val hotspots: List<HotspotDefinition>,
@@ -31,6 +32,8 @@ data class RoomDefinition(
 data class OverworldState(
   val currentRoomId: String,
   val playerTile: TilePosition,
+  val facing: Direction = Direction.DOWN,
+  val animationFrame: Int = 0,
   val targetTile: TilePosition? = null,
   val isMoving: Boolean = false,
   val lastHotspotId: String? = null

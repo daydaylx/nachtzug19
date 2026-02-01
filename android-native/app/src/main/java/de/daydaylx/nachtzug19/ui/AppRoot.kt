@@ -15,8 +15,7 @@ private const val ROUTE_SETTINGS = "settings"
 
 @Composable
 fun AppRoot(
-  viewModel: GameViewModel, 
-  onExit: () -> Unit,
+  viewModel: GameViewModel,
   navController: NavHostController = rememberNavController()
 ) {
   val uiState by viewModel.uiState.collectAsState()
@@ -29,7 +28,6 @@ fun AppRoot(
         onOpenSettings = { navController.navigate(ROUTE_SETTINGS) },
         onTriggerScene = { viewModel.openSceneForHotspot(it) },
         onMoveSceneChoice = { viewModel.makeChoice(it) },
-        onCloseScene = { viewModel.closeSceneOverlay() },
         onReset = { viewModel.resetGame() }
       )
     }
