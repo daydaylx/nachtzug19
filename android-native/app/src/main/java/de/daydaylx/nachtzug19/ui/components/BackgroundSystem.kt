@@ -55,27 +55,30 @@ sealed class BackgroundAsset(@DrawableRes val resourceId: Int?) {
 /**
  * Maps scene tags to appropriate background assets
  *
- * @param tags Scene tags from story content
+ * @param tags Scene tags from story content (nullable list)
  * @return BackgroundAsset matching the scene atmosphere
  */
-fun getBackgroundForTags(tags: Set<SceneTag>): BackgroundAsset {
-    // Priority order: Specific location > Scene type > Default
+fun getBackgroundForTags(tags: List<SceneTag>?): BackgroundAsset {
+    if (tags == null || tags.isEmpty()) return BackgroundAsset.NightGeneral
 
-    // Location-specific backgrounds
-    if (tags.contains(SceneTag.LOCATION_PLATFORM)) return BackgroundAsset.Platform
-    if (tags.contains(SceneTag.LOCATION_CORRIDOR)) return BackgroundAsset.Corridor
-    if (tags.contains(SceneTag.LOCATION_COMPARTMENT)) return BackgroundAsset.NightGeneral // Fallback
-    if (tags.contains(SceneTag.LOCATION_WAGON7)) return BackgroundAsset.Corridor // Reuse corridor
-    if (tags.contains(SceneTag.LOCATION_WINDOW)) return BackgroundAsset.Window
+    // Priority order: Specific scene type > General
 
-    // Scene-specific backgrounds
-    if (tags.contains(SceneTag.STATION_END)) return BackgroundAsset.Platform
-    if (tags.contains(SceneTag.SCENE_TRANSITION)) return BackgroundAsset.Transition
-    if (tags.contains(SceneTag.SCENE_ANNOUNCEMENT)) return BackgroundAsset.NightGeneral
+    // Station scenes
+    if (tags.contains(SceneTag.StationEnd)) return BackgroundAsset.Platform
 
-    // Control/Memory scenes
-    if (tags.contains(SceneTag.MEMORY_CONTROL)) return BackgroundAsset.NightGeneral
-    if (tags.contains(SceneTag.MEMORY_CHECK)) return BackgroundAsset.Corridor
+    // Control/Important scenes
+    if (tags.contains(SceneTag.Control)) return BackgroundAsset.Corridor
+
+    // Announcement scenes
+    if (tags.contains(SceneTag.Announcement)) return BackgroundAsset.Platform
+
+    // Ending scenes
+    if (tags.contains(SceneTag.Ending)) return BackgroundAsset.Window
+    if (tags.contains(SceneTag.Terminal)) return BackgroundAsset.Platform
+
+    // Reveal/Secret scenes
+    if (tags.contains(SceneTag.Reveal)) return BackgroundAsset.Corridor
+    if (tags.contains(SceneTag.Secret)) return BackgroundAsset.Window
 
     // Default: Night general atmosphere
     return BackgroundAsset.NightGeneral

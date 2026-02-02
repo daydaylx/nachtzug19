@@ -18,6 +18,7 @@ import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.IntSize
+import kotlin.math.roundToInt
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.toIntRect
 import kotlin.math.min
@@ -58,10 +59,10 @@ fun GameViewport(
                 val rawScale = min(scaleX, scaleY)
                 
                 // Clamp scale to reasonable bounds
-                scale = rawScale.coerceIn(
+                scale = rawScale.toInt().coerceIn(
                     GameResolution.MIN_SCALE,
                     GameResolution.MAX_SCALE
-                ).roundToInt()
+                )
                 
                 // Calculate viewport size after scaling
                 viewportSize = IntSize(
