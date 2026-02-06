@@ -27,19 +27,21 @@ export const c5Scenes: ScenesCollection = {
 
 Aber etwas hat sich verändert.
 
-Die Luft ist dichter geworden. Schwerer. Als würde der Zug selbst atmen.
+Die Luft ist dichter geworden. Schwerer. Als würde der Zug selbst atmen – ein langsames, bewusstes Ein und Aus, das sich mit dem Rattern der Räder synchronisiert.
 
-Draußen zieht die Dunkelheit vorbei. Keine Lichter mehr. Keine Andeutung von Zivilisation.
+Draußen zieht die Dunkelheit vorbei. Keine Lichter mehr. Keine Andeutung von Zivilisation. Nicht einmal Sterne.
 
-Nur die endlose Nacht und das rhythmische Rattern der Räder.
+Nur die endlose Nacht und das rhythmische Rattern der Räder. Ein Takt, der sich in deine Schläfen bohrt.
 
-Du denkst an die Station, die du gerade verlassen hast. An die Entscheidungen, die du getroffen hast.
+Die Polster unter dir fühlen sich wärmer an als zuvor. Fast fiebrig. Die Metallgriffe sind kalt, aber nicht mehr metallisch – wie alte Knochen.
+
+Du denkst an die Station, die du gerade verlassen hast. An die Entscheidungen, die du getroffen hast. An die Gesichter, die du gesehen hast – oder warst du allein?
 
 An das, was noch kommt.
 
-Der Zug fährt weiter. Immer weiter.
+Der Zug fährt weiter. Immer weiter. Durch eine Nacht ohne Ende.
 
-Und du weißt: Die nächste Kontrolle wird die härteste sein.`,
+Und du weißt: Die nächste Kontrolle wird die härteste sein. Die letzte.`,
     choices: [
       {
         id: 'check_recorder',
@@ -88,27 +90,27 @@ Und du weißt: Die nächste Kontrolle wird die härteste sein.`,
     id: 'c5_s03_comp7_reflection',
     chapter: 5,
     title: 'Begegnung mit Comp7',
-    narrative: `Du findest Comp7 am Ende des Ganges. Sie steht am Fenster und blickt hinaus in die Dunkelheit.
+    narrative: `Du findest Comp7 am Ende des Ganges. Sie steht am Fenster und blickt hinaus in die Dunkelheit – reglos, wie eine Statue aus Rauch und Schatten.
 
-Als du näher kommst, dreht sie sich um.
+Als du näher kommst, dreht sie sich um. Ihre Bewegung ist zu glatt, zu fließend. Als würde sie nicht gehen, sondern sich durch den Raum verschieben.
 
-„Du bist noch hier," sagt sie leise.
+„Du bist noch hier," sagt sie leise. Ihre Stimme klingt hohl, als würde sie aus einem tiefen Schacht kommen.
 
-Es klingt nicht überrascht. Eher… traurig.
+Es klingt nicht überrascht. Eher… traurig. Oder ist es Erleichterung?
 
-„Die meisten sind schon ausgestiegen. An einer der Stationen."
+„Die meisten sind schon ausgestiegen. An einer der Stationen." Sie zählt leise an ihren Fingern ab. „Der Mann mit der Zeitung. Die Frau im blauen Mantel. Der Junge mit dem roten Schal."
 
-Sie blickt wieder hinaus.
+Kanntest du die? Du versuchst, dich zu erinnern. Nichts.
 
-„Aber du nicht. Du fährst weiter."
+Sie blickt wieder hinaus. „Aber du nicht. Du fährst weiter."
 
-Eine Pause.
+Eine Pause. Das Rattern der Räder wird lauter, eindringlicher.
 
-„Ich war mal Passagier #7," sagt sie plötzlich. „Aber irgendwann... bin ich zum Zug geworden. Ich kann nicht mehr aussteigen. Ich bin Teil davon."
+„Ich war mal Passagier #7," sagt sie plötzlich. Ihre Stimme bricht. „Aber irgendwann... bin ich zum Zug geworden. Ich kann nicht mehr aussteigen. Ich bin Teil davon. Die Türen öffnen sich nicht mehr für mich."
 
-Ihre Stimme zittert.
+Ihre Hände zittern. Du siehst, wie ihre Finger am Fensterrahmen entlanggleiten – und für einen Moment verschwimmen sie, als wären sie aus demselben Material wie das Glas.
 
-„Ich will, dass du gehst," sagt sie. Pause. „Aber ich will nicht allein bleiben."
+„Ich will, dass du gehst," sagt sie. Pause. Ihre Augen glänzen feucht. „Aber ich will nicht allein bleiben."
 
 Sie lacht bitter. „Widersprüchlich, oder?"
 
@@ -176,9 +178,13 @@ Sie lacht bitter. „Widersprüchlich, oder?"
     title: 'Flackern',
     narrative: `Die Lichter beginnen zu sterben. (Hook)
 
-Mit jedem Flackern verlierst du kurz die Orientierung. In der Dunkelheit hörst du dein eigenes, raues Atmen, und wenn das Licht zurückkehrt, scheint dein Schatten an der Wand einen Schritt näher gerückt zu sein als du selbst. (Detail)
+    Mit jedem Flackern verlierst du kurz die Orientierung. In der Dunkelheit hörst du dein eigenes, raues Atmen, und wenn das Licht zurückkehrt, scheint dein Schatten an der Wand einen Schritt näher gerückt zu sein als du selbst. (Detail)
 
-Ein kühler Luftzug streicht über deine Stirn, wie eine unsichtbare Hand. (Konsequenz)`,
+    Du presst die Hand gegen die Wand. Der Kunststoff fühlt sich rauer an als sonst, als hätte sich die Oberfläche über Nacht verändert. Die Kälte ist nicht die des Zuges, sondern die eines Raums, in dem schon lange niemand mehr gewesen ist.
+
+    Ein Flackern länger als alle anderen. Für einen Atemzug ist alles schwarz. Du spürst den Zug ruckeln, hörst das Schaben der Räder wie Nägel auf Stein. Und als das Licht wieder an ist, steht der Schatten nicht mehr hinter dir, sondern halb neben dir.
+
+    Ein kühler Luftzug streicht über deine Stirn, wie eine unsichtbare Hand. (Konsequenz)`,
     choices: [
       {
         id: 'hold_ground',
@@ -212,27 +218,23 @@ Ein kühler Luftzug streicht über deine Stirn, wie eine unsichtbare Hand. (Kons
     id: 'c5_s05_sleepless_final',
     chapter: 5,
     title: 'Der Schlaflose',
-    narrative: `Du findest den schlaflosen Mann in seinem Abteil.
+    narrative: `Du findest den schlaflosen Mann in seinem Abteil. Die Tür steht offen, wie eine Einladung – oder eine Warnung.
 
-Er sieht noch blasser aus als zuvor. Die Augen tief eingesunken.
+Er sieht noch blasser aus als zuvor. Die Augen tief eingesunken, umrandet von violetten Schatten. Seine Haut hat einen wächsernen Glanz, als würde er langsam durchscheinend werden.
 
-„Du… du bist noch da," murmelt er.
+„Du… du bist noch da," murmelt er. Seine Stimme ist nur noch ein Flüstern. „Ich dachte, du wärst schon… weg."
 
-„Ich dachte, du wärst schon… weg."
+Er starrt an die Wand. Dort sind Kratzer. Feine Linien. Als hätte jemand versucht, etwas zu zählen. Tage? Stationen? Stunden?
 
-Er starrt an die Wand.
+„Sie kommen näher. Die Kontrollen. Jedes Mal härter." Er reibt sich die Schläfen. „Jedes Mal fragen sie mehr. Wollen mehr wissen. Mehr Antworten."
 
-„Sie kommen näher. Die Kontrollen. Jedes Mal härter."
+Er lacht leise, bitter. Ein Geräusch wie brechendes Glas. „Weißt du, was das Lustige ist? Ich kann immer noch nicht schlafen. Selbst hier nicht. Selbst nach… wie lange sind wir schon unterwegs?"
 
-Er lacht leise, bitter. „Weißt du, was das Lustige ist? Ich kann immer noch nicht schlafen. Selbst hier nicht."
+Du öffnest den Mund, um zu antworten. Aber du weißt es nicht.
 
-Seine Hände zittern.
+Seine Hände zittern. Die Fingernägel sind abgekaut, blutig. „Ich habe alles versucht. Alles gesagt. Aber es reicht nie. Es reicht nie."
 
-„Ich habe alles versucht. Alles gesagt. Aber es reicht nie."
-
-Er blickt dich an.
-
-„Was hast du ihnen gesagt? Warum bist du noch hier?"`,
+Er blickt dich an. Direkt. Durchdringend. „Was hast du ihnen gesagt? Warum bist du noch hier? Was macht dich… anders?"`,
     choices: [
       {
         id: 'comfort_him',
@@ -294,27 +296,31 @@ Er blickt dich an.
     id: 'c5_s06_abteil7',
     chapter: 5,
     title: 'Abteil 7',
-    narrative: `Du gehst den Gang entlang.
+    narrative: `Du gehst den Gang entlang. Deine Schritte hallen wider, zu laut in der Stille.
 
 Und dann siehst du es:
 
 Abteil 7.
 
-Die Tür ist geschlossen. Kein Licht dringt heraus.
+Die Tür ist geschlossen. Kein Licht dringt heraus. Kein Geräusch. Nur eine absolute, undurchdringliche Schwärze hinter dem matten Glas.
 
 Aber da ist… etwas.
 
-Ein Gefühl. Eine Präsenz.
+Ein Gefühl. Eine Präsenz. Ein Druck gegen deine Brust, als würde die Luft selbst dich warnen. Zurückstoßen.
 
-Du erinnerst dich an die Warnung. An die Andeutungen.
+Die Metallplatte mit der Nummer ist kälter als alles andere im Zug. Du spürst es, ohne sie zu berühren – eine eisige Aura, die von ihr ausgeht.
+
+Du erinnerst dich an die Warnung. An die Andeutungen. An die Blicke der anderen Passagiere, wenn sie an dieser Tür vorbeigingen. Schnell. Ohne hinzusehen.
 
 „Geh nicht nach Abteil 7."
 
-Aber niemand hat dir gesagt, warum.
+Aber niemand hat dir gesagt, warum. Niemand hat erklärt, was dahinter ist. Oder wer.
 
-Die Tür ist unverschlossen. Du könntest sie öffnen.
+Die Tür ist unverschlossen. Du könntest die Klinke drücken. Du könntest eintreten.
 
-Du könntest weitergehen.
+Du könntest auch weitergehen. Weitergehen, als wäre diese Tür nie dagewesen.
+
+Aber dann wüsstest du nie, was sich dahinter verbirgt.
 
 Was tust du?`,
     choices: [
@@ -475,7 +481,7 @@ Der Zug rattert weiter.`,
     ],
     state_notes: [
       'Set-Piece Teil 3: Nachwirkungen',
-      'CONDITION: write_down_names (tickets_truth >= 10)',
+      'CONDITION: write_down_names (tickets_truth >= 4)',
       'CONDITION: ponder_the_wall (tickets_guilt >= 1, Callback auf s07)'
     ],
     atmosphere: 'tense'
@@ -587,25 +593,29 @@ Seine Stimme zittert leicht.
     id: 'c5_s11_corridor_encounter',
     chapter: 5,
     title: 'Begegnung',
-    narrative: `Du gehst zurück in den Gang.
+    narrative: `Du gehst zurück in den Gang. Das Licht flackert. Ein. Aus. Ein. Aus.
 
 Und dann siehst du ihn:
 
 Den Schaffner.
 
-Er steht am anderen Ende. Reglos.
+Er steht am anderen Ende. Reglos. Wie ein Schatten, der beschlossen hat, Form anzunehmen.
 
-Seine Silhouette hebt sich gegen das flackernde Licht ab.
+Seine Silhouette hebt sich gegen das flackernde Licht ab. Zu scharf. Zu definiert. Als würde er aus anderem Material bestehen als der Rest der Welt.
 
-Er sieht dich an.
+Er sieht dich an. Direkt. Ohne zu blinzeln.
 
-Aber für einen Moment siehst du etwas anderes in seinem Gesicht. Keine Kälte. Sondern Erschöpfung.
+Aber für einen Moment – nur einen kurzen, flüchtigen Augenblick – siehst du etwas anderes in seinem Gesicht. Keine Kälte. Sondern Erschöpfung. Eine tiefe, endlose Müdigkeit. Als trüge er eine Last, die nie enden wird.
 
-Er greift in seine Tasche, berührt etwas, zieht die Hand aber sofort wieder zurück.
+Er greift in seine Tasche. Seine Finger schließen sich um etwas. Etwas Kleines. Metallisches. Du hörst ein leises Klicken.
+
+Dann zieht er die Hand sofort wieder zurück. Leer.
 
 Sagt nichts.
 
 Bewegt sich nicht.
+
+Nur der Zug rattert weiter. Unaufhaltsam. Gnadenlos.
 
 Aber du weißt:
 
@@ -613,11 +623,13 @@ Die nächste Kontrolle kommt bald.
 
 Sehr bald.
 
-Und diesmal wird es anders sein.
+Und diesmal wird es anders sein. Diesmal gibt es keine Ausweichmöglichkeit. Keine zweite Chance.
 
 Härter.
 
-Finaler.`,
+Finaler.
+
+Die letzte Prüfung.`,
     choices: [
       {
         id: 'approach_conductor',
@@ -654,13 +666,19 @@ Finaler.`,
     id: 'c5_s12_window_void',
     chapter: 5,
     title: 'Das Nichts',
-    narrative: `Du blickst aus dem Fenster.
+    narrative: `Du blickst aus dem Fenster. (Hook)
 
-Aber da ist keine Dunkelheit mehr. Nur eine Leere, die das Auge nicht fokussieren kann.
+    Aber da ist keine Dunkelheit mehr. Nicht einmal Schwarz. Nur eine Leere, die das Auge nicht fokussieren kann – ein Nicht-Raum, der sich weigert, wahrgenommen zu werden.
 
-Ein blinder Fleck in der Realität, der direkt in deinen Verstand schneidet.
+    Ein blinder Fleck in der Realität, der direkt in deinen Verstand schneidet. Schmerzhaft. Wie eine Nadel hinter den Augen.
 
-Der Zug fährt nicht durch eine Landschaft – er schält sich durch das Gewebe der Existenz.`,
+    Deine Pupillen zucken. Suchen nach etwas, an dem sie sich festhalten können. Aber da ist nichts. Kein Oben. Kein Unten. Keine Entfernung. Ein Summen setzt ein, nicht hörbar, sondern spürbar: in den Zähnen, hinter der Stirn.
+
+    Die Scheibe spiegelt dich nicht richtig. Dein Gesicht scheint zu spät zu blinzeln. Für den Bruchteil einer Sekunde bist du zwei Personen, leicht versetzt, wie ein schlechtes Foto.
+
+    Der Zug fährt nicht durch eine Landschaft – er schält sich durch das Gewebe der Existenz. Durch eine Lücke zwischen den Welten. (Konsequenz)
+
+    Und du fragst dich: Was passiert, wenn das Gewebe reißt?`,
     choices: [
       {
         id: 'touch_glass',
@@ -695,9 +713,11 @@ Der Zug fährt nicht durch eine Landschaft – er schält sich durch das Gewebe 
     title: 'Das Summen',
     narrative: `Die Handfläche am Glas – keine Kälte. Nur eine dumpfe, vibrierende Wärme, die tief in deine Knochen siedet.
 
-Deine Finger verschwinden im Spiegelbild, als würde das Glas dich nicht mehr als feste Materie erkennen.
+    Deine Finger verschwinden im Spiegelbild, als würde das Glas dich nicht mehr als feste Materie erkennen. Du siehst die Kontur deiner Hand zwar, aber sie gehört dir nicht mehr ganz.
 
-Ein hoher Ton zieht dir über die Zähne. Genau an der Grenze des Erträglichen.`,
+    Ein hoher Ton zieht dir über die Zähne. Genau an der Grenze des Erträglichen. Er schwillt an, bis dir der Atem stockt, und ebbt dann so schnell wieder ab, dass dir kurz schwindlig wird.
+
+    Das Glas gibt minimal nach, fast unmerklich. Als würdest du nicht gegen eine Scheibe drücken, sondern gegen eine Haut, die atmet.`,
     choices: [
       {
         id: 'accept_void',
@@ -839,33 +859,35 @@ Emma. Du warst auf dem Weg zu ihr. Und der Zug... ist nie angekommen.`
     title: 'Kontrolle 3 - Annäherung',
     narrative: `Der Schaffner erscheint in deinem Abteil.
 
-Nicht durch die Tür.
+    Nicht durch die Tür.
 
-Er ist einfach… da.
+    Er ist einfach… da.
 
-Als wäre er schon immer dagewesen.
+    Als wäre er schon immer dagewesen.
 
-„Dritte Kontrolle," sagt er.
+    Die Luft wird dicht. Der Geruch von Metall und nassem Stein legt sich auf deine Zunge. Seine Uniform wirkt dunkler als der Rest des Abteils, als würde sie das Licht schlucken.
 
-Seine Stimme ist leiser als zuvor. Kälter.
+    „Dritte Kontrolle," sagt er.
 
-„Fahrkarte."
+    Seine Stimme ist leiser als zuvor. Kälter.
 
-Du reichst sie ihm.
+    „Fahrkarte."
 
-Er betrachtet sie lange. Sehr lange.
+    Du reichst sie ihm. Sie fühlt sich schwer an, als wäre sie aus Blei gegossen. Als er sie nimmt, verschwindet für einen Moment das Zittern aus deiner Hand.
 
-„Interessant," murmelt er schließlich.
+    Er betrachtet sie lange. Sehr lange. Du hörst das leise Kratzen seines Handschuhs auf dem Papier, ein Geräusch wie ein Messer über Glas.
 
-Er blickt auf.
+    „Interessant," murmelt er schließlich.
 
-Direkt in deine Augen.
+    Er blickt auf.
 
-„Sie haben viel gesehen. Viel getan."
+    Direkt in deine Augen.
 
-Eine Pause.
+    „Sie haben viel gesehen. Viel getan."
 
-„Aber reicht es?"`,
+    Eine Pause.
+
+    „Aber reicht es?"`,
     choices: [
       {
         id: 'show_confidence',
@@ -904,7 +926,7 @@ Eine Pause.
       'Set-Piece Teil 1: Kontrolle 3 Beginn',
       'Letzte und härteste Kontrolle',
       'conductor_attention beeinflusst nächste Szene',
-      'CONDITION: mention_fragment nur bei tickets_truth >= 12 (Callback auf s13)'
+      'CONDITION: mention_fragment nur bei tickets_truth >= 5 (Callback auf s13)'
     ],
     tags: ['control', 'setup'],
     atmosphere: 'danger'
@@ -1083,31 +1105,33 @@ Ist das möglich?`,
     title: 'Ausbreitung',
     narrative: `Die Dunkelheit ist jetzt überall.
 
-Nicht nur draußen.
+    Nicht nur draußen.
 
-Auch im Zug.
+    Auch im Zug.
 
-Die Lichter werden schwächer. Flackern öfter.
+    Die Lichter werden schwächer. Flackern öfter.
 
-Ganze Abschnitte liegen im Dunkeln.
+    Ganze Abschnitte liegen im Dunkeln.
 
-Du gehst durch den Gang.
+    Du gehst durch den Gang.
 
-Und merkst:
+    Und merkst:
 
-Es gibt weniger Abteile als vorher.
+    Es gibt weniger Abteile als vorher.
 
-Oder… erinnerst du dich falsch?
+    Oder… erinnerst du dich falsch?
 
-War Abteil 4 nicht hier?
+    War Abteil 4 nicht hier?
 
-Oder war es nie da?
+    Oder war es nie da?
 
-Der Zug wird kleiner.
+    Du bleibst stehen und zählst die Türen. Eins. Zwei. Drei. Dann eine Lücke, wo keine sein sollte. Dein Finger streift die Wand: Der Lack ist wärmer als er sein dürfte, und unter der glatten Oberfläche spürst du feine Vibrationen, als würde der Zug atmen.
 
-Enger.
+    Der Zug wird kleiner.
 
-Als würde er sich um dich herum zusammenziehen.`,
+    Enger.
+
+    Als würde er sich um dich herum zusammenziehen.`,
     choices: [
       {
         id: 'keep_walking',
