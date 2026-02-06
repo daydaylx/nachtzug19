@@ -37,9 +37,9 @@ fun PixelDialogBox(
   modifier: Modifier = Modifier,
   contentPadding: Dp = 12.dp
 ) {
-  val borderOuter = Color(0xFF0B0F14)
-  val borderInner = Color(0xFF2E3540)
-  val background = Color(0xFF141A22)
+  val borderOuter = Color(0x990B0F14)  // 60% opaque - very transparent border
+  val borderInner = Color(0x882E3540)  // 53% opaque - very transparent inner border
+  val background = Color(0xAA141A22)   // 67% opaque - much more transparent background
   val borderSize = 3.dp
   val innerBorderSize = 1.dp
 

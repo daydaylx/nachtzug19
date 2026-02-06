@@ -117,9 +117,13 @@ fun PlayerScreen(
       // Aktuell: Placeholder colors werden verwendet
       // Ziel: Echte Background-Bilder mit 300ms Crossfade
 
-      // Background Layers - Determine background from scene tags
-      val currentBackground = uiState.currentScene?.let {
-          getBackgroundForTags(it.tags)
+      // Background Layers - Determine background from scene tags, ID, and chapter
+      val currentBackground = uiState.currentScene?.let { scene ->
+          getBackgroundForTags(
+              tags = scene.tags,
+              sceneId = scene.id,
+              chapter = scene.chapter
+          )
       } ?: BackgroundAsset.Default
       
       // Animated background with drift tinting

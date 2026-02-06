@@ -20,17 +20,17 @@ export const chapter1Scenes: ScenesCollection = {
     id: 'c1_s01_platform',
     chapter: 1,
     title: 'Leerer Bahnsteig',
-    narrative: `Der Bahnsteig ist leer. Nicht „spät abends leer", sondern falsch leer.
+    narrative: `Der Bahnsteig ist leer. Nicht „spät abends leer", sondern falsch leer. Eine Leere, die sich anfühlt wie ein vergessenes Wort auf der Zungenspitze.
 
-An der Wand klebt ein einzelnes Plakat. Verblasst. Orange Schrift auf braunem Grund – diese aggressive Typografie aus den Siebzigern. „REISEN SIE MIT UNS", steht da. Keine Webseite. Keine QR-Codes. Nur eine Telefonnummer mit zu wenigen Ziffern.
+An der Wand klebt ein einzelnes Plakat. Verblasst. Orange Schrift auf braunem Grund – diese aggressive Typografie aus den Siebzigern, die schmerzt, wenn man zu lange hinschaut. „REISEN SIE MIT UNS", steht da in versetzten Großbuchstaben. Keine Webseite. Keine QR-Codes. Nur eine Telefonnummer mit zu wenigen Ziffern. Das Papier ist an den Ecken eingerissen, als hätte jemand versucht, es abzureißen, und aufgegeben.
 
-Keine Bänke. Keine Automaten. Nur nackte Wände aus Beton, fleckig von Feuchtigkeit und… Nikotin? Die Wände sind gelb verfärbt, als hätten hier jahrzehntelang Menschen geraucht. Eine Neonröhre flackert über dir. Das Licht ist kalt, blaugrün, wirft harte Schatten auf den Boden.
+Keine Bänke. Keine Automaten. Keine Hinweisschilder. Nur nackte Wände aus Beton, fleckig von Feuchtigkeit und… Nikotin? Die Wände sind gelb verfärbt, als hätten hier jahrzehntelang Menschen geraucht, obwohl die Luft kalt und steril ist. Eine Neonröhre flackert über dir mit einem leisen, nagenden Surren. Das Licht ist kalt, blaugrün, wirft harte Schatten auf den Boden. Deine Schatten sind zwei, drei – zu viele für eine Lichtquelle.
 
-Die Anzeigetafel – ein mechanisches Klappmodell – zeigt: 23:47.
+Die Anzeigetafel – ein mechanisches Klappmodell aus einer Zeit vor LED-Displays – zeigt: 23:47. Die Ziffern sind groß, altmodisch, haben Serifen.
 
-Kein Text. Kein „Nächster Zug". Nur leere Fächer, die im Takt klacken, ohne etwas anzuzeigen.
+Kein Text. Kein „Nächster Zug". Kein „Verspätung". Nur leere Fächer, die im Takt klacken, ohne etwas anzuzeigen. Klack. Klack. Klack. Ein Rhythmus wie ein langsamer Herzschlag.
 
-Du weißt nicht mehr, warum du hier bist. Die Erinnerung fühlt sich an wie ein Traum, der dir beim Aufwachen durch die Finger rinnt.`,
+Du weißt nicht mehr, warum du hier bist. Die Erinnerung fühlt sich an wie ein Traum, der dir beim Aufwachen durch die Finger rinnt. Warst du verabredet? Solltest du jemanden treffen? Der Gedanke zerrinnt, bevor du ihn fassen kannst.`,
     choices: [
       {
         id: 'look_around',
@@ -64,13 +64,17 @@ Du weißt nicht mehr, warum du hier bist. Die Erinnerung fühlt sich an wie ein 
     id: 'c1_s01_platform_b',
     chapter: 1,
     title: 'Atmosphäre',
-    narrative: `Aber du weißt: Du wartest auf etwas. Oder jemanden.
+    narrative: `Aber du weißt: Du wartest auf etwas. Oder jemanden. Die Gewissheit sitzt in deinem Brustkorb wie ein Stein.
 
-Die Luft riecht nach kaltem Zigarettenrauch und Maschinenöl. Nicht nach frischem Rauch – nach altem. Nach Jahrzehnten. Als hätte jemand die Luft eingefroren, als hier noch geraucht werden durfte.
+Die Luft riecht nach kaltem Zigarettenrauch und Maschinenöl. Nicht nach frischem Rauch – nach altem. Nach Jahrzehnten. Als hätte jemand die Luft eingefroren, als hier noch geraucht werden durfte, und sie nie wieder aufgetaut. Der Geruch ist so dicht, dass du ihn auf der Zunge schmeckst. Bitter. Metallisch.
 
-Am Rand – auf einer Bank, die du vorhin nicht gesehen hast – sitzt eine Gestalt. Sie liest eine Zeitung. Du siehst die Schlagzeile, aber das Datum ist verwischt. „ÖLKRISE VERSCHÄRFT SICH", steht da in dieser altmodischen Frakturschrift. Die Gestalt blättert nicht um.
+Am Rand – auf einer Bank, die du vorhin nicht gesehen hast, schwörst du es – sitzt eine Gestalt. Sie liest eine Zeitung. Die Seiten rascheln nicht. Sie hält sie vollkommen still. Du siehst die Schlagzeile, aber das Datum ist verwischt, verschmiert, als hätte jemand darüber gewischt, bevor die Tinte trocken war. „ÖLKRISE VERSCHÄRFT SICH", steht da in dieser altmodischen Frakturschrift, die an Grabsteine erinnert. Die Gestalt blättert nicht um. Nicht einmal, als der Wind durch den Bahnsteig fegt.
 
-Ein Name brennt sich in deine Gedanken. Emma. Ein Gesicht, das du fast sehen kannst. Braune Augen. Ein Lächeln, das du nie vergessen wolltest. Wo ist sie?`,
+Welcher Wind? Es gibt keine Fenster hier.
+
+Ein Name brennt sich in deine Gedanken. Emma. Nicht wie eine Erinnerung – wie eine Narbe. Ein Gesicht, das du fast sehen kannst. Braune Augen. Sommerspr ossen auf der Nase. Ein Lächeln, das du nie vergessen wolltest. Aber die Details verschwimmen, je mehr du versuchst, sie festzuhalten.
+
+Wo ist sie? Warum ist sie nicht hier? Oder… war sie hier? Warst du zu spät?`,
     narrative_variants: [
       {
         min_drift: 5,
@@ -175,15 +179,15 @@ Plötzlich flackert die Neonröhre über dir schneller. Ein, aus, ein, aus. Dein
     id: 'c1_s02_train_appears',
     chapter: 1,
     title: 'Der Zug',
-    narrative: `Das Brummen wird lauter. Dann gleitet der Zug in den Bahnhof. Lautlos.
+    narrative: `Das Brummen wird lauter. Tiefer. Ein Beben, das du nicht hörst, sondern spürst – in den Knochen, in den Zähnen. Dann gleitet der Zug in den Bahnhof. Lautlos. Keine Quietschenden Bremsen. Kein Rattern. Nur das Brummen, das langsam verstummt.
 
-Er sieht aus wie ein alter Nachtzug. Achtziger Jahre. Abblätternde dunkelrote Farbe, stellenweise schwarz verfärbt. Fenster zu schmal, Rahmen vergilbt. Die Wagen sind lang. Zu lang.
+Er sieht aus wie ein alter Nachtzug. Achtziger Jahre. Vielleicht noch früher. Abblätternde dunkelrote Farbe, stellenweise schwarz verfärbt – oder ist es Ruß? Fenster zu schmal, die Rahmen vergilbt wie alte Zähne. Die Wagen sind lang. Zu lang. Du zählst: Fünf. Sechs. Sieben. Acht. Sie verschwimmen am Ende in der Dunkelheit.
 
-Durch die Scheiben siehst du Silhouetten – Menschen, die reglos auf ihren Plätzen sitzen. Niemand bewegt sich. Als wären sie eingefroren.
+Durch die Scheiben siehst du Silhouetten – Menschen, die reglos auf ihren Plätzen sitzen. Niemand bewegt sich. Niemand schaut auf. Niemand schaut hinaus. Als wären sie eingefroren. Oder gemalt. Flache Figuren auf Glas.
 
-Die Türen öffnen sich mit einem Zischen. Warme Luft strömt heraus. Riecht nach altem Polster und etwas Süßlichem. Verbrannter Zucker?
+Die Türen öffnen sich mit einem Zischen. Nicht mechanisch. Organisch. Wie ein Ausatmen. Warme Luft strömt heraus – zu warm für einen Nachtzug, zu feucht. Riecht nach altem Polster und etwas Süßlichem. Verbrannter Zucker? Oder... verbranntes Plastik? Nein. Etwas anderes. Etwas, das du nicht benennen kannst.
 
-Die Stufen glänzen feucht. Ein dünner Nebel hängt in der Tür. Niemand steigt aus.`,
+Die Stufen glänzen feucht, schwarz wie nasses Holz. Ein dünner Nebel hängt in der Tür, rollt sich über die Kante, kriecht auf den Bahnsteig. Niemand steigt aus. Niemand ruft. Nur die offene Tür. Wartend.`,
     narrative_variants: [
       {
         min_drift: 5,
@@ -292,11 +296,13 @@ Hinter dir: Das Brummen wird leiser. Der Zug wird gleich weiterfahren. Du weißt
     id: 'c1_s02b_threshold',
     chapter: 1,
     title: 'Schwelle',
-    narrative: `Du stellst einen Fuß auf die Stufe.
+    narrative: `Du stellst einen Fuß auf die Stufe. (Hook)
 
-Das Metall ist feucht, fast glitschig. Ein kurzer Geruch von warmem Staub schlägt dir entgegen, als würde der Zug ausatmen.
+Das Metall ist feucht, fast glitschig. Nicht nass – aber auch nicht trocken. Eine Feuchtigkeit, die sich anfühlt wie kalter Schweiß. Ein kurzer Geruch von warmem Staub schlägt dir entgegen, süßlich und alt, als würde der Zug ausatmen – einen langsamen, tiefen Atemzug aus seiner Tiefe.
 
-Hinter dir klackt die Anzeigetafel einmal, ohne zu wechseln.`,
+Hinter dir klackt die Anzeigetafel einmal, laut und final. Du drehst dich um. Die Ziffern haben gewechselt. 23:48. Eine Minute ist vergangen. Oder sind es zwei? Warst du länger auf dem Bahnsteig, als du dachtest?
+
+Der Nebel kriecht näher. Die Gestalt mit der Zeitung ist verschwunden. War sie jemals da? (Konsequenz)`,
     choices: [
       {
         id: 'step_in',
@@ -441,11 +447,11 @@ Dann, eine Stimme hinter dir: „Du auch?"`,
     id: 'c1_s03b_window_vibration',
     chapter: 1,
     title: 'Fensterpuls',
-    narrative: `Das Glas vibriert kurz. Ein Puls, der durch deine Schläfe fährt.
+    narrative: `Das Glas vibriert kurz. Ein Puls, der durch deine Schläfe fährt, schmerzhaft und präzise.
 
-Für einen Augenblick siehst du nicht die Dunkelheit draußen, sondern Bahnsteige, die sich überlagern – wie Bilder, die nicht richtig übereinanderliegen.
+Für einen Augenblick siehst du nicht die Dunkelheit draußen, sondern Bahnsteige, die sich überlagern – wie Doppelbelichtungen, wie Bilder, die nicht richtig übereinanderliegen. Drei, vier, fünf Bahnsteige gleichzeitig, alle leer.
 
-Dann ist alles wieder still.`,
+Dann ist alles wieder still. Dein Herzschlag zu laut.`,
     choices: [
       {
         id: 'call_back',
@@ -478,21 +484,25 @@ Dann ist alles wieder still.`,
     id: 'c1_s04_sleepless_intro',
     chapter: 1,
     title: 'Der Schlaflose',
-    narrative: `Der Mann steht im Gang. Seine Augen sind rot umrandet.
+    narrative: `Der Mann steht im Gang. Er lehnt gegen die Wand, aber nicht entspannt – eher, als würde er zusammenbrechen, wenn er sich nicht festhält. Seine Augen sind rot umrandet. Tief eingesunken. Die Haut darunter ist violett verfärbt, als hätte er seit Wochen nicht geschlafen.
 
-„Du auch?" sagt er. Seine Stimme ist rau.
+„Du auch?" sagt er. Seine Stimme ist rau. Brüchig. Wie Schmirgelpapier auf Glas.
 
 „Auch was?"
 
-„Keine Ahnung, wo du eingestiegen bist. Kein Ticket in der Tasche. Keine Erinnerung."
+„Keine Ahnung, wo du eingestiegen bist. Kein Ticket in der Tasche. Keine Erinnerung, warum du hier bist." Er wischt sich über die Augen. „Keine Ahnung, wie lange du schon fährst."
 
-Er lächelt müde. „Willkommen im Nachtzug."
+Er lächelt müde. Kein echtes Lächeln. Nur ein Zucken der Mundwinkel. „Willkommen im Nachtzug."
 
-Du greifst in deine Tasche. Leer. Kein Ticket. Dein Handy – oder was es war – ist still.
+Du greifst in deine Tasche. Leer. Kein Ticket. Kein Ausweis. Dein Handy – oder was es war – ist still, schwer, nutzlos. Nur ein schwarzes Rechteck aus Glas und Plastik.
 
-„Wo sind wir?"
+„Wo sind wir?" Deine Stimme klingt fremd. Zu laut in der Stille des Zuges.
 
-Er zuckt mit den Schultern. „Unterwegs."`,
+Er zuckt mit den Schultern. „Unterwegs." Eine Pause. „Immer unterwegs. Von Station zu Station. Aber niemand steigt aus. Niemand kommt an."
+
+Er blickt dich an. „Wie lange fährst du schon mit?"
+
+Du öffnest den Mund, um zu antworten. Aber du weißt es nicht. Eine Stunde? Einen Tag? Länger?`,
     choices: [
       {
         id: 'ask_where',
@@ -630,21 +640,25 @@ Der Schlaflose tippt mit dem Finger gegen die Wand. „Hörst du das?"`,
     id: 'c1_s05_first_anomaly',
     chapter: 1,
     title: 'Durchsage',
-    narrative: `Eine Lautsprecherdurchsage knistert durch den Wagen:
+    narrative: `Eine Lautsprecherdurchsage knistert durch den Wagen. Nicht aus den Lautsprechern – aus den Wänden selbst. Überall gleichzeitig.
 
 „Sehr geehrte Fahrgäste, wir erreichen in Kürze—"
 
-Pause.
+Pause. Zu lang. Unnatürlich. Als hätte der Sprecher vergessen, was er sagen wollte.
 
 „—[unverständlich]. Bitte achten Sie auf Ihre persönlichen Gegenstände."
 
-Der Schlaflose zuckt nicht mal. „Der Name der Station. Er fehlt. Seit drei Halten."
+Die Stimme ist glatt, emotionslos. Eine Stimme aus einer anderen Zeit. Du versuchst, dich zu konzentrieren, aber das, was zwischen den Worten war, ist schon verblasst. Ein Loch im Satz. Eine Lücke, wo ein Name sein sollte.
 
-Die Durchsage wiederholt sich, verzerrt: „—ückf—"
+Der Schlaflose zuckt nicht mal. Er starrt nur an die Decke. „Der Name der Station. Er fehlt. Seit drei Halten. Immer die gleiche Durchsage. Immer die gleiche Lücke."
+
+Die Durchsage wiederholt sich, verzerrt, als würde das Band rückwärtslaufen: „—ückf—" Knistern. „—kehr—"
 
 Rückfahrt? Rückkehr?
 
-„Weil sie noch keinen Namen hat," sagt der Schlaflose. „Oder wir ihn vergessen haben."`,
+Du versuchst, die Silben festzuhalten, aber sie rutschen dir weg wie Eis.
+
+„Weil sie noch keinen Namen hat," sagt der Schlaflose leise. „Oder wir ihn vergessen haben. Sobald wir anhalten." Er sieht dich an. „Du wirst es merken. Nach der ersten Station. Etwas... fällt weg."`,
     choices: [
       {
         id: 'write_it_down',
@@ -688,13 +702,17 @@ Rückfahrt? Rückkehr?
     id: 'c1_s05a_other_passengers',
     chapter: 1,
     title: 'Die anderen',
-    narrative: `Du schaust dich um. Außer dem Schlaflosen:
+    narrative: `Du schaust dich um. Der Wagen ist nicht leer. Außer dem Schlaflosen sind da:
 
-Eine Frau, Ende dreißig. Mantel zugeknöpft. Ihre Hände gefaltet, perfekt symmetrisch.
-Ein Mann mit Brille. Er hält ein Buch mit leeren Seiten, blättert aber um.
-Ein Teenager mit nicht angeschlossenen Kopfhörern, der im Rhythmus nickt.
+Eine Frau, Ende dreißig, vielleicht älter. Ihr Mantel ist zugeknöpft bis zum Kinn, obwohl es warm ist hier drin. Ihre Hände liegen gefaltet im Schoß, perfekt symmetrisch. Sie starrt geradeaus. Ihr Blick ist starr, fokussiert auf einen Punkt an der Wand, der nicht da ist.
 
-Niemand spricht. Niemand bewegt sich. Außer diesen kleinen Gesten.`,
+Ein Mann mit Brille. Anzug. Er hält ein Buch, dick, ledergebunden. Aber als du näher kommst, siehst du: Die Seiten sind leer. Nur weiße Flächen. Kein Wort. Keine Zeile. Trotzdem blättert er um, als würde er lesen. Sein Finger gleitet über das Papier, als folgte er einem Text.
+
+Ein Teenager mit Kopfhörern. Die Kopfhörer sind nicht angeschlossen – das Kabel hängt lose herunter. Aber er nickt im Rhythmus, wippt mit dem Kopf, bewegt lautlos die Lippen. Als würde er einen Song hören, den nur er kennt.
+
+Niemand spricht. Niemand sieht dich an. Niemand bewegt sich – außer diesen kleinen, mechanischen Gesten. Umblättern. Nicken. Starren.
+
+Als wären sie alle in einer Schleife gefangen. Als würden sie dieselbe Bewegung wiederholen, immer wieder, für immer.`,
     choices: [
       {
         id: 'approach_woman',
@@ -775,15 +793,23 @@ Der Teenager mit den Kopfhörern nickt im Takt – ein winziger Widerhaken im Mu
     id: 'c1_s05b_compartment7_tease',
     chapter: 1,
     title: 'Am Ende',
-    narrative: `Du gehst weiter durch den Wagen. Am Ende: Eine Tür. Massiv. Holz.
+    narrative: `Du gehst weiter durch den Wagen, an den eingefrorenen Passagieren vorbei. Der Gang ist schmal, die Wände zu nah. Am Ende: Eine Tür. Massiv. Holz. Dunkler als der Rest.
 
 Nummer 7.
 
-Ein handgeschriebenes Schild: „Besetzt".
+Die Metallplatte ist angelaufen, grünlich. Als wäre sie sehr alt. Oder als hätte sie lange unter Wasser gelegen.
 
-Du hörst Geräusche dahinter. Leises Kratzen. Papier auf Papier.
+Ein handgeschriebenes Schild, auf vergilbtem Papier, mit Klebeband befestigt: „Besetzt". Die Handschrift ist altmodisch, mit Füller geschrieben. Die Tinte ist verwischt.
 
-Der Schlaflose ruft von hinten: „Geh da nicht rein. Du bist noch nicht bereit."`,
+Du hörst Geräusche dahinter. Leises Kratzen. Papier auf Papier. Oder... Stift auf Papier? Jemand schreibt. Schnell. Hektisch. Ohne Pause.
+
+Der Schlaflose ruft von hinten, seine Stimme angespannt: „Geh da nicht rein. Nicht jetzt. Du bist noch nicht bereit." Er kommt näher, greift nach deinem Arm, zieht dich weg. „Glaub mir. Wart bis nach der ersten Station. Sonst..."
+
+Er verstummt. Schüttelt den Kopf.
+
+„Sonst was?"
+
+„Sonst verlierst du dich."`,
     choices: [
       {
         id: 'knock_on_door',
@@ -886,23 +912,31 @@ Dann: Stille. Der Zug wird langsamer.`,
     id: 'c1_end_station',
     chapter: 1,
     title: 'Halt',
-    narrative: `Der Zug hält. Du schaust aus dem Fenster.
+    narrative: `Der Zug hält. Sanft. Ohne Ruck. Als würde er nicht bremsen, sondern einfach… aufhören zu existieren.
 
-Draußen: Ein Bahnsteig. Identisch zum ersten. Dieselbe Neonröhre. Dieselbe Uhr: 23:47. Niemand steigt ein. Niemand steigt aus.
+Du schaust aus dem Fenster. Draußen: Ein Bahnsteig. Identisch zum ersten. Nicht ähnlich – identisch. Dieselbe Neonröhre. Dieselbe Anzeigetafel. Dieselbe Uhr: 23:47. Als hätte sich die Zeit nicht bewegt. Als wärt ihr nie losgefahren.
 
-Du drehst dich zum Schlaflosen um. Er sieht anders aus. Seine Jacke ist jetzt dunkelblau. Vorher war sie grau.
+Niemand steigt ein. Niemand steigt aus. Die Türen öffnen sich – ein Zischen, ein Ausatmen. Aber der Bahnsteig bleibt leer. Kalt. Wartend.
+
+Du drehst dich zum Schlaflosen um. Er steht am Fenster, starrt hinaus. Aber irgendetwas ist anders. Seine Haltung? Seine Kleidung?
+
+Seine Jacke ist jetzt dunkelblau. Vorher war sie grau. Du bist sicher. Grau. Ein verwaschenes Grau.
 
 Er bemerkt deinen Blick. „Was?"
 
-„Deine Jacke… Sie war grau."
+„Deine Jacke…" Du zögerst. „Sie war grau."
 
-Er lacht trocken. „Sie war immer blau."
+Er lacht trocken. Ein Geräusch ohne Humor. „Sie war immer blau." Er sagt es, als wäre es die offensichtlichste Sache der Welt. Als wärst du verrückt, es anzuzweifeln.
 
-Er zerknüllt einen Zettel, den er in der Hand hält. Seine Finger zittern.
+Er zerknüllt einen Zettel, den er in der Hand hält. Du hast ihn vorher nicht gesehen. Wo kam er her? Seine Finger zittern, als er ihn zu einem harten Ball presst.
 
 „Was stand da?"
 
-„Nichts Wichtiges."`,
+„Nichts Wichtiges." Er wirft den Zettel weg. Er landet im Gang, rollt unter einen Sitz. „Nur... ein Name. Aber ich weiß nicht mehr, wessen."
+
+Er reibt sich die Augen. „Das ist das erste Zeichen. Wenn die Details anfangen zu rutschen. Farben. Namen. Gesichter." Er blickt dich an. „Bei mir hat es drei Stationen gedauert. Bei dir ist es schon nach einer angefangen."
+
+Die Türen schließen sich. Der Zug fährt an. Du spürst es – etwas fehlt. Etwas Kleines. Aber du kannst nicht sagen, was.`,
     choices: [
       {
         id: 'continue_to_chapter_2',

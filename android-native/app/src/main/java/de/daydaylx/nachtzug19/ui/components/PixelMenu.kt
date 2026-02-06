@@ -67,7 +67,7 @@ private fun PixelMenuRow(
   selected: Boolean,
   onClick: () -> Unit
 ) {
-  val background = if (selected) Color(0xFF1B2330) else Color(0xFF10151D)
+  val background = if (selected) Color(0xAA1B2330) else Color(0x9910151D)  // 67% / 60% opaque - more transparent
   val cursorColor = if (selected) Color(0xFFFFD369) else Color(0xFFE8E8E8)
 
   // Focus State Support for Accessibility

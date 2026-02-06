@@ -34,19 +34,22 @@ sealed class BackgroundAsset(@DrawableRes val resourceId: Int?) {
     // General scenes
     data object NightGeneral : BackgroundAsset(R.drawable.bg_scene_night_general_v1)
 
-    // TODO: Add remaining backgrounds when assets available
-    // data object Compartment : BackgroundAsset(R.drawable.bg_loc_compartment_v1)
-    // data object Comp7 : BackgroundAsset(R.drawable.bg_loc_comp7_v1)
-    // data object Control : BackgroundAsset(R.drawable.bg_scene_control_v1)
-    // data object Mirror : BackgroundAsset(R.drawable.bg_scene_mirror_v1)
-    // data object Void : BackgroundAsset(R.drawable.bg_scene_void_v1)
-    // data object Announcement : BackgroundAsset(R.drawable.bg_scene_announcement_v1)
-    // data object Dissolve : BackgroundAsset(R.drawable.bg_scene_dissolve_v1)
+    // Compartments
+    data object Compartment : BackgroundAsset(R.drawable.bg_loc_compartment_v1)
+    data object Comp7 : BackgroundAsset(R.drawable.bg_loc_comp7_v1)
+
+    // Special scenes
+    data object Control : BackgroundAsset(R.drawable.bg_scene_control_v1)
+    data object Mirror : BackgroundAsset(R.drawable.bg_scene_mirror_v1)
+    data object Void : BackgroundAsset(R.drawable.bg_scene_void_v1)
+    data object Announcement : BackgroundAsset(R.drawable.bg_scene_announcement_v1)
+    data object Dissolve : BackgroundAsset(R.drawable.bg_scene_dissolve_v1)
+
     // Endings
-    // data object EndingCity : BackgroundAsset(R.drawable.bg_ending_city_v1)
-    // data object EndingReunion : BackgroundAsset(R.drawable.bg_ending_reunion_v1)
-    // data object EndingHome : BackgroundAsset(R.drawable.bg_ending_home_v1)
-    // data object EndingLibrary : BackgroundAsset(R.drawable.bg_ending_library_v1)
+    data object EndingCity : BackgroundAsset(R.drawable.bg_ending_city_v1)
+    data object EndingReunion : BackgroundAsset(R.drawable.bg_ending_reunion_v1)
+    data object EndingHome : BackgroundAsset(R.drawable.bg_ending_home_v1)
+    data object EndingLibrary : BackgroundAsset(R.drawable.bg_ending_library_v1)
 
     // Default fallback (dark gradient)
     data object Default : BackgroundAsset(null)
@@ -56,29 +59,62 @@ sealed class BackgroundAsset(@DrawableRes val resourceId: Int?) {
  * Maps scene tags to appropriate background assets
  *
  * @param tags Scene tags from story content (nullable list)
+ * @param sceneId Optional scene ID for specific scene matching
+ * @param chapter Optional chapter number for chapter-specific backgrounds
  * @return BackgroundAsset matching the scene atmosphere
  */
-fun getBackgroundForTags(tags: List<SceneTag>?): BackgroundAsset {
+fun getBackgroundForTags(
+    tags: List<SceneTag>?,
+    sceneId: String? = null,
+    chapter: Int? = null
+): BackgroundAsset {
     if (tags == null || tags.isEmpty()) return BackgroundAsset.NightGeneral
 
-    // Priority order: Specific scene type > General
+    // Priority order: Ending > Terminal > Control > Announcement > Reveal > Secret > Station > Setup > General
+
+    // Ending scenes (highest priority - specific atmosphere)
+    if (tags.contains(SceneTag.Ending)) {
+        // Scene-ID based ending backgrounds
+        return when {
+            sceneId?.contains("city") == true -> BackgroundAsset.EndingCity
+            sceneId?.contains("reunion") == true -> BackgroundAsset.EndingReunion
+            sceneId?.contains("home") == true -> BackgroundAsset.EndingHome
+            sceneId?.contains("library") == true -> BackgroundAsset.EndingLibrary
+            else -> BackgroundAsset.Window
+        }
+    }
+
+    // Terminal scenes (final destination)
+    if (tags.contains(SceneTag.Terminal)) return BackgroundAsset.Platform
+
+    // Control scenes (authority, checkpoints)
+    if (tags.contains(SceneTag.Control)) return BackgroundAsset.Control
+
+    // Announcement scenes (public, impersonal)
+    if (tags.contains(SceneTag.Announcement)) return BackgroundAsset.Announcement
+
+    // Reveal scenes (truth, reflection)
+    if (tags.contains(SceneTag.Reveal)) return BackgroundAsset.Mirror
+
+    // Secret scenes (hidden, mysterious)
+    if (tags.contains(SceneTag.Secret)) return BackgroundAsset.Compartment
 
     // Station scenes
     if (tags.contains(SceneTag.StationEnd)) return BackgroundAsset.Platform
 
-    // Control/Important scenes
-    if (tags.contains(SceneTag.Control)) return BackgroundAsset.Corridor
+    // Setup scenes - context-aware mapping
+    if (tags.contains(SceneTag.Setup)) {
+        return when (chapter) {
+            1 -> BackgroundAsset.Platform  // Chapter 1: Leerer Bahnsteig
+            2 -> BackgroundAsset.Corridor  // Chapter 2: First control
+            3 -> BackgroundAsset.Comp7     // Chapter 3: Wagen 7
+            4 -> BackgroundAsset.Mirror    // Chapter 4: Spiegelungen
+            else -> BackgroundAsset.NightGeneral
+        }
+    }
 
-    // Announcement scenes
-    if (tags.contains(SceneTag.Announcement)) return BackgroundAsset.Platform
-
-    // Ending scenes
-    if (tags.contains(SceneTag.Ending)) return BackgroundAsset.Window
-    if (tags.contains(SceneTag.Terminal)) return BackgroundAsset.Platform
-
-    // Reveal/Secret scenes
-    if (tags.contains(SceneTag.Reveal)) return BackgroundAsset.Corridor
-    if (tags.contains(SceneTag.Secret)) return BackgroundAsset.Window
+    // Interlude scenes (transition)
+    if (tags.contains(SceneTag.Interlude)) return BackgroundAsset.Transition
 
     // Default: Night general atmosphere
     return BackgroundAsset.NightGeneral
@@ -161,11 +197,11 @@ fun SafeZoneOverlay(
             .background(
                 Brush.verticalGradient(
                     colors = listOf(
-                        Color.Black.copy(alpha = 0.3f), // Top dark
-                        Color.Transparent,              // Middle transparent
+                        Color.Black.copy(alpha = 0.15f), // Top - much lighter
+                        Color.Transparent,                // Middle transparent
                         Color.Transparent,
                         Color.Transparent,
-                        Color.Black.copy(alpha = 0.4f)  // Bottom darker
+                        Color.Black.copy(alpha = 0.2f)    // Bottom - much lighter
                     ),
                     startY = 0f,
                     endY = Float.POSITIVE_INFINITY
