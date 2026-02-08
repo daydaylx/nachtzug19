@@ -1,6 +1,7 @@
 package de.daydaylx.nachtzug19.ui
 
 import androidx.activity.compose.BackHandler
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -8,6 +9,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
@@ -26,6 +28,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import de.daydaylx.nachtzug19.model.Choice
@@ -98,21 +101,6 @@ fun PlayerScreen(
         .fillMaxSize()
         .padding(padding)
     ) {
-      // TODO: Background Assets fehlen noch - Phase 1 Visual Assets Integration
-      // Siehe docs/assets/BACKGROUND_ASSETS_SPEC.md für Prompts
-      // Generierte Bilder in android-native/app/src/main/res/drawable-nodpi/ ablegen
-      //
-      // Benötigte Assets (22 total, je ~300KB):
-      // - bg_loc_platform__v1.png, bg_loc_corridor__v1.png, bg_loc_compartment__v1.png
-      // - bg_loc_window__v1.png, bg_loc_comp7__v1.png, bg_loc_transition__v1.png
-      // - bg_scene_control__v1.png, bg_scene_mirror__v1.png, bg_scene_void__v1.png
-      // - bg_scene_announcement__v1.png, bg_scene_dissolve__v1.png
-      // - bg_ending_city__v1.png, bg_ending_reunion__v1.png, bg_ending_home__v1.png
-      // - bg_ending_library__v1.png
-      //
-      // Aktuell: Placeholder colors werden verwendet
-      // Ziel: Echte Background-Bilder mit 300ms Crossfade
-
       // Background Layers - Determine background from scene tags, ID, and chapter
       val currentBackground = uiState.currentScene?.let { scene ->
           getBackgroundForTags(
@@ -178,7 +166,12 @@ fun PlayerScreen(
       }
 
       if (settings.showStatus && showStatus && uiState.state != null) {
-        ModalBottomSheet(onDismissRequest = { showStatus = false }) {
+        ModalBottomSheet(
+          onDismissRequest = { showStatus = false },
+          containerColor = Color(0xFF141A22),
+          contentColor = Color(0xFFE8E8E8),
+          scrimColor = Color.Black.copy(alpha = 0.55f)
+        ) {
           StatusSheet(uiState)
         }
       }
@@ -208,8 +201,16 @@ private fun StoryReader(
   onShowStatus: () -> Unit
 ) {
   val state = uiState.state
-  val driftLevel = state?.pressure?.memory_drift ?: 0
-  // selectedIndex state removed as TicketChoice handles its own click interaction
+  val narrativeScrollState = rememberScrollState()
+  val sceneKey = uiState.currentScene?.id ?: narrative
+
+  LaunchedEffect(sceneKey, settings.reduceMotion) {
+    if (settings.reduceMotion) {
+      narrativeScrollState.scrollTo(0)
+    } else {
+      narrativeScrollState.animateScrollTo(0)
+    }
+  }
 
   Column(
     modifier = Modifier
@@ -242,6 +243,10 @@ private fun StoryReader(
     PixelDialogBox(
       title = title,
       narrative = narrative,
+      scrollState = narrativeScrollState,
+      showScrollIndicators = !settings.reduceMotion,
+      textSizeSp = settings.textSizeSp,
+      enableTypewriter = !settings.reduceMotion,
       modifier = Modifier
         .fillMaxWidth()
         .weight(1f)
@@ -253,7 +258,10 @@ private fun StoryReader(
     // Choices Area (Ticket Style)
     Column(
         verticalArrangement = Arrangement.spacedBy(12.dp),
-        modifier = Modifier.padding(bottom = 24.dp)
+        modifier = Modifier
+          .fillMaxWidth()
+          .navigationBarsPadding()
+          .padding(bottom = 12.dp)
     ) {
         choices.forEach { choice ->
             TicketChoice(

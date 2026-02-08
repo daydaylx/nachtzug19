@@ -9,8 +9,6 @@ import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.interaction.collectIsFocusedAsState
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -22,12 +20,10 @@ import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Outline
 import androidx.compose.ui.graphics.Path
-import androidx.compose.ui.graphics.PathOperation
-import androidx.compose.ui.graphics.PathEffect
-import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.disabled
 import androidx.compose.ui.semantics.role
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.Density
@@ -39,6 +35,7 @@ import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import de.daydaylx.nachtzug19.ui.theme.NachtzugColors
@@ -53,8 +50,8 @@ data class TicketChoiceStyle(
 )
 
 private class TicketShape(
-    private val cornerRadius: Float,
-    private val holeRadius: Float,
+    private val cornerRadius: Dp,
+    private val holeRadius: Dp,
     private val holeCount: Int = 7
 ) : Shape {
     override fun createOutline(
@@ -62,6 +59,9 @@ private class TicketShape(
         layoutDirection: LayoutDirection,
         density: Density
     ): Outline {
+        val cornerRadiusPx = with(density) { cornerRadius.toPx() }
+        val holeRadiusPx = with(density) { holeRadius.toPx() }
+
         val path = Path().apply {
             addRoundRect(
                 RoundRect(
@@ -69,7 +69,7 @@ private class TicketShape(
                     top = 0f,
                     right = size.width,
                     bottom = size.height,
-                    cornerRadius = CornerRadius(cornerRadius)
+                    cornerRadius = CornerRadius(cornerRadiusPx)
                 )
             )
             
@@ -79,10 +79,10 @@ private class TicketShape(
             for (i in 1..holeCount) {
                 val holeY = holeSpacing * i
                 val holeRect = Rect(
-                    left = holeX - holeRadius,
-                    top = holeY - holeRadius,
-                    right = holeX + holeRadius,
-                    bottom = holeY + holeRadius
+                    left = holeX - holeRadiusPx,
+                    top = holeY - holeRadiusPx,
+                    right = holeX + holeRadiusPx,
+                    bottom = holeY + holeRadiusPx
                 )
                 addOval(holeRect)
             }
@@ -100,6 +100,8 @@ fun TicketChoice(
     modifier: Modifier = Modifier
 ) {
     var isPressed by remember { mutableStateOf(false) }
+    val enabled = !isProcessing
+    val shape = remember { TicketShape(cornerRadius = 12.dp, holeRadius = 4.dp) }
     
     // Accessibility & Focus Handling
     val interactionSource = remember { MutableInteractionSource() }
@@ -117,26 +119,28 @@ fun TicketChoice(
             .scale(scale)
             .shadow(
                 elevation = if (isFocused) 8.dp else 4.dp,
-                TicketShape(12.dp.value * 3f, 4.dp.value * 3f),
+                shape = shape,
                 spotColor = if (isFocused) NachtzugColors.StationNeon.copy(alpha = 0.5f) else Color.Black.copy(alpha = 0.3f)
             )
             .clickable(
                 interactionSource = interactionSource,
                 indication = null,
-                enabled = !isProcessing
+                enabled = enabled
             ) {
                 isPressed = true
                 onClick()
             }
-            .semantics {
+            .semantics(mergeDescendants = true) {
                 role = Role.Button
                 contentDescription = label
+                if (!enabled) disabled()
             },
-        shape = TicketShape(12.dp.value * 3f, 4.dp.value * 3f),
-        color = NachtzugColors.TicketEmpty,
+        shape = shape,
+        color = if (enabled) NachtzugColors.TicketEmpty else NachtzugColors.TicketEmpty.copy(alpha = 0.55f),
         border = BorderStroke(
             width = if (isFocused) 2.dp else 1.dp,
             color = when {
+                !enabled -> NachtzugColors.ReaderBorder.copy(alpha = 0.2f)
                 isFocused -> NachtzugColors.StationNeon
                 isPressed -> NachtzugColors.StationNeon.copy(alpha = 0.5f)
                 else -> NachtzugColors.ReaderBorder.copy(alpha = 0.3f)
@@ -155,7 +159,11 @@ fun TicketChoice(
                 style = MaterialTheme.typography.bodyLarge.copy(
                     fontSize = 16.sp,
                     fontFamily = FontFamily.SansSerif,
-                    color = if (isPressed || isFocused) NachtzugColors.StationNeon else MaterialTheme.colorScheme.onSurface,
+                    color = when {
+                        !enabled -> MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f)
+                        isPressed || isFocused -> NachtzugColors.StationNeon
+                        else -> MaterialTheme.colorScheme.onSurface
+                    },
                     lineHeight = 22.sp
                 ),
                 textAlign = TextAlign.Start,
@@ -166,19 +174,22 @@ fun TicketChoice(
                 overflow = TextOverflow.Ellipsis
             )
             
-            TicketStampArea(style = style)
+            TicketStampArea(
+                style = style,
+                enabled = enabled
+            )
         }
     }
     
-    LaunchedEffect(isProcessing) {
-        if (isProcessing) {
+    LaunchedEffect(enabled) {
+        if (!enabled) {
             isPressed = false
         }
     }
 }
 
 @Composable
-private fun TicketStampArea(style: TicketChoiceStyle) {
+private fun TicketStampArea(style: TicketChoiceStyle, enabled: Boolean) {
     Box(
         modifier = Modifier.size(32.dp),
         contentAlignment = Alignment.Center
@@ -187,7 +198,7 @@ private fun TicketStampArea(style: TicketChoiceStyle) {
             modifier = Modifier
                 .size(28.dp)
                 .background(
-                    color = NachtzugColors.TicketFilled.copy(alpha = 0.1f),
+                    color = NachtzugColors.TicketFilled.copy(alpha = if (enabled) 0.1f else 0.05f),
                     shape = CircleShape
                 ),
             contentAlignment = Alignment.Center
@@ -196,7 +207,7 @@ private fun TicketStampArea(style: TicketChoiceStyle) {
                 text = if (style.tone != null) "★" else "19",
                 style = MaterialTheme.typography.labelSmall.copy(
                     fontSize = if (style.tone != null) 14.sp else 10.sp,
-                    color = NachtzugColors.TicketFilled.copy(alpha = 0.5f)
+                    color = NachtzugColors.TicketFilled.copy(alpha = if (enabled) 0.5f else 0.25f)
                 )
             )
         }

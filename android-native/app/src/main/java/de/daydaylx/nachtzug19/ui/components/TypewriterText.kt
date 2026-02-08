@@ -12,6 +12,7 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.TextUnit
 import kotlinx.coroutines.delay
+import kotlin.math.max
 
 @Composable
 fun TypewriterText(
@@ -20,25 +21,44 @@ fun TypewriterText(
   enabled: Boolean,
   modifier: Modifier = Modifier,
   style: TextStyle = MaterialTheme.typography.bodyLarge,
-  delayMillis: Long = 10L
+  delayMillis: Long = 10L,
+  speedMultiplier: Float = 1f,
+  skip: Boolean = false,
+  onAnimationFinished: (() -> Unit)? = null
 ) {
   var visibleChars by remember(text) { mutableIntStateOf(if (enabled) 0 else text.length) }
+  val safeSpeedMultiplier = speedMultiplier.coerceAtLeast(0.25f)
 
-  LaunchedEffect(text, enabled) {
-    if (enabled && visibleChars < text.length) {
-      // Reset if text changed
-      visibleChars = 0
-      
-      // Animate character reveal
-      // Chunking improves performance for long texts
-      val chunkSize = 3
-      for (i in 0 until text.length step chunkSize) {
-        visibleChars = (i + chunkSize).coerceAtMost(text.length)
-        delay(delayMillis)
+  LaunchedEffect(enabled, skip, text) {
+    if (!enabled || skip) {
+      visibleChars = text.length
+      onAnimationFinished?.invoke()
+    } else if (text.isEmpty()) {
+      visibleChars = text.length
+      onAnimationFinished?.invoke()
+    }
+  }
+
+  LaunchedEffect(text, enabled, skip, safeSpeedMultiplier) {
+    if (!enabled || skip || visibleChars >= text.length) {
+      if (visibleChars >= text.length) {
+        onAnimationFinished?.invoke()
       }
-      visibleChars = text.length
-    } else if (!enabled) {
-      visibleChars = text.length
+      return@LaunchedEffect
+    }
+
+    // Chunking improves performance for long texts.
+    val chunkSize = 3
+    while (visibleChars < text.length && enabled && !skip) {
+      visibleChars = (visibleChars + chunkSize).coerceAtMost(text.length)
+      if (visibleChars < text.length) {
+        val effectiveDelay = max(1, (delayMillis / safeSpeedMultiplier).toInt()).toLong()
+        delay(effectiveDelay)
+      }
+    }
+
+    if (visibleChars >= text.length) {
+      onAnimationFinished?.invoke()
     }
   }
 

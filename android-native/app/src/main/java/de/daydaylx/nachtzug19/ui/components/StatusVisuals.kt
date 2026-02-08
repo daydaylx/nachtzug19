@@ -40,15 +40,16 @@ fun TicketStamp(
         onDismissRequest = onToggleTooltip
       ) {
         Surface(
-          color = MaterialTheme.colorScheme.surface,
+          color = Color(0xFF141A22),
           shape = MaterialTheme.shapes.small,
-          border = androidx.compose.foundation.BorderStroke(1.dp, MaterialTheme.colorScheme.onSurface.copy(alpha = 0.2f)),
+          border = androidx.compose.foundation.BorderStroke(1.dp, Color(0x553E4753)),
           shadowElevation = 4.dp,
           modifier = Modifier.padding(bottom = 8.dp).width(180.dp)
         ) {
           Text(
             text = description,
             style = MaterialTheme.typography.bodySmall,
+            color = Color(0xFFE8E8E8),
             modifier = Modifier.padding(8.dp)
           )
         }
@@ -63,7 +64,7 @@ fun TicketStamp(
       Text(
         text = label,
         style = MaterialTheme.typography.labelSmall.copy(fontSize = 10.sp),
-        color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f)
+        color = Color(0x99E8E8E8)
       )
 
       Canvas(modifier = Modifier.size(60.dp, 16.dp)) {
@@ -73,7 +74,7 @@ fun TicketStamp(
       Text(
         text = "$value/$maxValue",
         style = MaterialTheme.typography.labelSmall.copy(fontSize = 9.sp),
-        color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.4f)
+        color = Color(0x77E8E8E8)
       )
     }
   }

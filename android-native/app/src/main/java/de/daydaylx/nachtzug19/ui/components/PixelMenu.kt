@@ -28,15 +28,9 @@ import androidx.compose.ui.unit.dp
 import de.daydaylx.nachtzug19.ui.theme.PixelTypography
 
 /**
- * Pixel-Art Menu für NACHTZUG 19 (Reader Noir UI).
+ * Legacy-Menü für ältere Choice-Layouts.
  *
- * HINWEIS: Langfristig soll diese Komponente durch TicketChoice.kt ersetzt werden.
- * TicketChoice bietet Hole-Punch Ästhetik die besser zur Reader Noir Ästhetik passt.
- *
- * Aktuell noch in Verwendung in PlayerScreen, aber für zukünftige Entwicklung
- * sollte TicketChoice bevorzugt werden.
- *
- * @see TicketChoice für die Reader Noir Alternative
+ * Neue Auswahl-UI sollte `TicketChoice` verwenden.
  */
 @Deprecated("Use TicketChoice instead for Reader Noir UI consistency")
 @Composable
