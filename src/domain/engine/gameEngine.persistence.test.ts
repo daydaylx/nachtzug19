@@ -26,7 +26,7 @@ const endings: EndingsCollection = {
   }
 };
 
-const globalAny = globalThis as typeof globalThis & { localStorage?: Storage };
+const globalAny = globalThis as unknown as { localStorage?: Storage };
 const originalLocalStorage = globalAny.localStorage;
 
 afterEach(() => {
@@ -91,4 +91,3 @@ describe('GameEngine persistence', () => {
     expect(engine.getState().endingId).toBeUndefined();
   });
 });
-

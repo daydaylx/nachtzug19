@@ -5,12 +5,10 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -85,7 +83,6 @@ fun PlayerScreen(
   }
 
   Scaffold(
-    contentWindowInsets = WindowInsets(0.dp),
     topBar = {
       val chapterLabel = uiState.state?.chapter_index?.let { "K$it" } ?: "K?"
       PixelHUD(
@@ -100,7 +97,6 @@ fun PlayerScreen(
       modifier = Modifier
         .fillMaxSize()
         .padding(padding)
-        .systemBarsPadding()
     ) {
       // TODO: Background Assets fehlen noch - Phase 1 Visual Assets Integration
       // Siehe docs/assets/BACKGROUND_ASSETS_SPEC.md für Prompts
@@ -162,7 +158,7 @@ fun PlayerScreen(
         }
         else -> {
           StoryReader(
-            title = uiState.currentScene?.title ?: uiState.currentScene?.titel,
+            title = uiState.currentScene?.title,
             narrative = uiState.resolvedNarrative,
             choices = uiState.availableChoices,
             settings = settings,
@@ -175,7 +171,8 @@ fun PlayerScreen(
             onChoice = { choice ->
               isProcessing = true
               onChoice(choice)
-            }
+            },
+            onShowStatus = { showStatus = true }
           )
         }
       }
@@ -207,11 +204,12 @@ private fun StoryReader(
   announcementText: String,
   animationsEnabled: Boolean,
   isProcessing: Boolean,
-  onChoice: (Choice) -> Unit
+  onChoice: (Choice) -> Unit,
+  onShowStatus: () -> Unit
 ) {
   val state = uiState.state
   val driftLevel = state?.pressure?.memory_drift ?: 0
-  var selectedIndex by remember(title, choices.size) { mutableStateOf(0) }
+  // selectedIndex state removed as TicketChoice handles its own click interaction
 
   Column(
     modifier = Modifier
@@ -237,7 +235,7 @@ private fun StoryReader(
         tickets = state.tickets,
         drift = state.pressure.memory_drift,
         attention = state.pressure.conductor_attention,
-        onClick = { /* Opens status drawer - handled in parent */ }
+        onClick = onShowStatus
       )
     }
 
@@ -252,14 +250,19 @@ private fun StoryReader(
 
     Spacer(modifier = Modifier.height(16.dp))
 
-    PixelMenu(
-      options = choices.map { it.label ?: it.text ?: "Weiter" },
-      selectedIndex = selectedIndex,
-      onSelect = { index ->
-        selectedIndex = index
-        choices.getOrNull(index)?.let(onChoice)
-      }
-    )
+    // Choices Area (Ticket Style)
+    Column(
+        verticalArrangement = Arrangement.spacedBy(12.dp),
+        modifier = Modifier.padding(bottom = 24.dp)
+    ) {
+        choices.forEach { choice ->
+            TicketChoice(
+                label = choice.label ?: "Weiter",
+                onClick = { onChoice(choice) },
+                isProcessing = isProcessing
+            )
+        }
+    }
     Spacer(modifier = Modifier.height(12.dp))
   }
 }

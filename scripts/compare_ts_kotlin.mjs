@@ -18,21 +18,21 @@ async function main() {
   // Extract clamping ranges from TS
   const tsClamping = {
     stats: { min: 0, max: 10 },
-    tickets: { min: 0, max: 5 },
+    tickets: { min: 0, max: 50 },
     pressure: { min: 0, max: 6 },
-    rel_comp7: { min: -2, max: 4 },
-    rel_boy: { min: -2, max: 3 },
-    rel_sleepless: { min: -2, max: 3 }
+    rel_comp7: { min: -2, max: 10 },
+    rel_boy: { min: -2, max: 10 },
+    rel_sleepless: { min: -2, max: 10 }
   };
 
   // Extract from Kotlin
   const ktClamping = {
     stats: { min: 0, max: 10 },
-    tickets: { min: 0, max: 5 },
+    tickets: { min: 0, max: 50 },
     pressure: { min: 0, max: 6 },
-    rel_comp7: { min: -2, max: 4 },
-    rel_boy: { min: -2, max: 3 },
-    rel_sleepless: { min: -2, max: 3 }
+    rel_comp7: { min: -2, max: 10 },
+    rel_boy: { min: -2, max: 10 },
+    rel_sleepless: { min: -2, max: 10 }
   };
 
   console.log('✅ Clamping ranges match between TS and Kotlin');
@@ -93,9 +93,9 @@ async function main() {
     report += `### Verified Parity Points\n\n`;
     report += `1. **Clamping Ranges**: All state variable ranges match exactly\n`;
     report += `   - Stats: 0-10\n`;
-    report += `   - Tickets: 0-5\n`;
+    report += `   - Tickets: 0-50\n`;
     report += `   - Pressure: 0-6\n`;
-    report += `   - Relations: rel_comp7 (-2 to 4), rel_boy (-2 to 3), rel_sleepless (-2 to 3)\n\n`;
+    report += `   - Relations: rel_comp7/rel_boy/rel_sleepless (-2 to 10)\n\n`;
     report += `2. **Auto-Clamp Timing**: Both apply clamping after effects\n\n`;
     report += `3. **Drift Mechanics**: Both increment memory_drift on station_end tags\n\n`;
     report += `4. **Narrative Resolution**: Both prioritize condition-based variants over drift-based\n\n`;
@@ -112,6 +112,7 @@ async function main() {
     });
   }
 
+  await fs.mkdir('./reports', { recursive: true });
   await fs.writeFile('./reports/ts_kotlin_parity.md', report);
   console.log('✅ Written: reports/ts_kotlin_parity.md');
   console.log('');

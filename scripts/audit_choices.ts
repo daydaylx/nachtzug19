@@ -141,7 +141,7 @@ function detectUnreachableChoices(scene: Scene, sceneId: string): ChoiceAuditEnt
           sceneId,
           chapter: scene.chapter || 0,
           choiceId: choice.id || 'unknown',
-          choiceLabel: choice.label || choice.text || 'unknown',
+          choiceLabel: choice.label || 'unknown',
           next: choice.next,
           ending: choice.ending,
           condition: formatCondition(cond),
@@ -161,7 +161,7 @@ function detectUnreachableChoices(scene: Scene, sceneId: string): ChoiceAuditEnt
           sceneId,
           chapter: scene.chapter || 0,
           choiceId: choice.id || 'unknown',
-          choiceLabel: choice.label || choice.text || 'unknown',
+          choiceLabel: choice.label || 'unknown',
           next: choice.next,
           ending: choice.ending,
           condition: formatCondition(cond),
@@ -186,7 +186,7 @@ function detectUnreachableChoices(scene: Scene, sceneId: string): ChoiceAuditEnt
 
 function checkChoiceQuality(scene: Scene, choice: Choice): AuditIssue[] {
   const issues: AuditIssue[] = [];
-  const label = choice.label || choice.text || '';
+  const label = choice.label || '';
 
   // 1. Empty label
   if (!label || label.trim().length === 0) {
@@ -315,7 +315,7 @@ function auditAllChoices(): {
           sceneId: scene.id,
           chapter: scene.chapter || 0,
           choiceId: choice.id || 'unknown',
-          choiceLabel: choice.label || choice.text || 'unknown',
+          choiceLabel: choice.label || 'unknown',
           next: choice.next,
           ending: choice.ending,
           condition: formatCondition(choice.condition),

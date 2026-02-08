@@ -7,7 +7,7 @@ import {
   transitionToNextScene
 } from './gameEngine';
 import { createInitialState } from '../types';
-import type { Choice, GameState, Scene, ScenesCollection } from '../types';
+import type { Scene, ScenesCollection } from '../types';
 import { createTestState } from '../../../tests/helpers/testUtils';
 
 describe('applyEffects', () => {
@@ -29,6 +29,17 @@ describe('applyEffects', () => {
     const state = createInitialState('start');
     applyEffects(state, [{ type: 'set', target: 'has_recorder', value: true }]);
     expect(state.items.has_recorder).toBe(true);
+  });
+
+  it('supports has_ticket in effects and conditions', () => {
+    const state = createInitialState('start');
+
+    applyEffects(state, [{ type: 'set', target: 'has_ticket', value: true }]);
+
+    expect(state.items.has_ticket).toBe(true);
+    expect(
+      evaluateCondition(state, { type: 'bool', target: 'has_ticket', value: true })
+    ).toBe(true);
   });
 
   it('applies clamp effect with bounds', () => {
@@ -299,4 +310,3 @@ describe('transitionToNextScene', () => {
     );
   });
 });
-

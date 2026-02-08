@@ -5,6 +5,8 @@ import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.interaction.collectIsFocusedAsState
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Card
@@ -24,6 +26,10 @@ import androidx.compose.ui.graphics.PathOperation
 import androidx.compose.ui.graphics.PathEffect
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.graphics.Shape
+import androidx.compose.ui.semantics.Role
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.role
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.geometry.Rect
@@ -32,6 +38,7 @@ import androidx.compose.ui.geometry.CornerRadius
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import de.daydaylx.nachtzug19.ui.theme.NachtzugColors
@@ -94,6 +101,10 @@ fun TicketChoice(
 ) {
     var isPressed by remember { mutableStateOf(false) }
     
+    // Accessibility & Focus Handling
+    val interactionSource = remember { MutableInteractionSource() }
+    val isFocused by interactionSource.collectIsFocusedAsState()
+    
     val scale by animateFloatAsState(
         targetValue = if (isPressed) 0.98f else 1f,
         label = "ticketScale",
@@ -105,22 +116,31 @@ fun TicketChoice(
             .fillMaxWidth()
             .scale(scale)
             .shadow(
-                elevation = 4.dp,
+                elevation = if (isFocused) 8.dp else 4.dp,
                 TicketShape(12.dp.value * 3f, 4.dp.value * 3f),
-                spotColor = Color.Black.copy(alpha = 0.3f)
+                spotColor = if (isFocused) NachtzugColors.StationNeon.copy(alpha = 0.5f) else Color.Black.copy(alpha = 0.3f)
             )
             .clickable(
+                interactionSource = interactionSource,
+                indication = null,
                 enabled = !isProcessing
             ) {
                 isPressed = true
                 onClick()
+            }
+            .semantics {
+                role = Role.Button
+                contentDescription = label
             },
         shape = TicketShape(12.dp.value * 3f, 4.dp.value * 3f),
         color = NachtzugColors.TicketEmpty,
         border = BorderStroke(
-            width = 1.dp,
-            color = if (isPressed) NachtzugColors.StationNeon.copy(alpha = 0.5f)
-                    else NachtzugColors.ReaderBorder.copy(alpha = 0.3f)
+            width = if (isFocused) 2.dp else 1.dp,
+            color = when {
+                isFocused -> NachtzugColors.StationNeon
+                isPressed -> NachtzugColors.StationNeon.copy(alpha = 0.5f)
+                else -> NachtzugColors.ReaderBorder.copy(alpha = 0.3f)
+            }
         )
     ) {
         Row(
@@ -135,14 +155,15 @@ fun TicketChoice(
                 style = MaterialTheme.typography.bodyLarge.copy(
                     fontSize = 16.sp,
                     fontFamily = FontFamily.SansSerif,
-                    color = if (isPressed) NachtzugColors.StationNeon else MaterialTheme.colorScheme.onSurface,
+                    color = if (isPressed || isFocused) NachtzugColors.StationNeon else MaterialTheme.colorScheme.onSurface,
                     lineHeight = 22.sp
                 ),
                 textAlign = TextAlign.Start,
                 modifier = Modifier
                     .weight(1f)
                     .padding(end = 16.dp),
-                maxLines = 2
+                maxLines = 4,
+                overflow = TextOverflow.Ellipsis
             )
             
             TicketStampArea(style = style)

@@ -206,65 +206,36 @@ data class NarrativeVariant(
 )
 
 @Serializable
-data class LegacyStatsDelta(
-  val mut: Int? = null,
-  val wissen: Int? = null,
-  val empathie: Int? = null
-)
-
-@Serializable
-data class LegacyEntryEffects(
-  val mut: Int? = null,
-  val wissen: Int? = null,
-  val empathie: Int? = null,
-  val flagsAenderung: Map<String, Boolean>? = null,
-  val itemBelohnung: String? = null
-)
-
-@Serializable
 data class Choice(
   val id: String? = null,
   val label: String? = null,
   val condition: Condition? = null,
   val effects: List<Effect>? = null,
   val next: String? = null,
-  val ending: String? = null,
-  val text: String? = null,
-  val beschreibungFolge: String? = null,
-  val werteAenderung: LegacyStatsDelta? = null,
-  val flagsAenderung: Map<String, Boolean>? = null,
-  val itemBelohnung: String? = null,
-  val itemVerlust: String? = null,
-  val naechsteSzeneId: String? = null
+  val ending: String? = null
 )
 
 @Serializable
 data class Scene(
   val id: String,
+  val chapter: Int,
+  val title: String,
+  val narrative: String,
   val choices: List<Choice>,
   val atmosphere: Atmosphere? = null,
-  val chapter: Int? = null,
-  val title: String? = null,
-  val narrative: String? = null,
   val narrative_variants: List<NarrativeVariant>? = null,
   val tags: List<SceneTag>? = null,
   val state_notes: List<String>? = null,
   val entry_effects: List<Effect>? = null,
   val exit_effects: List<Effect>? = null,
-  val announcement: String? = null,
-  val kapitel: String? = null,
-  val titel: String? = null,
-  val beschreibung: String? = null,
-  val effekteBeimBetreten: LegacyEntryEffects? = null
+  val announcement: String? = null
 )
 
 @Serializable
 data class Ending(
   val id: String,
   val title: String,
-  val narrative: String,
-  val titel: String? = null,
-  val beschreibung: String? = null
+  val narrative: String
 )
 
 @Serializable

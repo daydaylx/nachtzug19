@@ -53,6 +53,7 @@ function getStateValue(state: GameState, target: EffectTarget): number | boolean
   // Items
   if (target === 'has_recorder') return state.items.has_recorder;
   if (target === 'has_tag19') return state.items.has_tag19;
+  if (target === 'has_ticket') return state.items.has_ticket;
   if (target === 'photo_anomaly') return state.items.photo_anomaly;
   if (target === 'played_recorder') return state.items.played_recorder;
   if (target === 'memory_search_active') return state.items.memory_search_active;
@@ -93,6 +94,7 @@ function setStateValue(state: GameState, target: EffectTarget, value: number | b
   // Items
   if (target === 'has_recorder') { state.items.has_recorder = value as boolean; return; }
   if (target === 'has_tag19') { state.items.has_tag19 = value as boolean; return; }
+  if (target === 'has_ticket') { state.items.has_ticket = value as boolean; return; }
   if (target === 'photo_anomaly') { state.items.photo_anomaly = value as boolean; return; }
   if (target === 'played_recorder') { state.items.played_recorder = value as boolean; return; }
   if (target === 'memory_search_active') { state.items.memory_search_active = value as boolean; return; }
@@ -297,13 +299,13 @@ export function getAvailableChoices(state: GameState, scene: Scene): Choice[] {
  * @returns Die passende Narrative als String
  */
 export function resolveSceneNarrative(scene: Scene, state: GameState): string {
-  // Fallback: Keine Narrative vorhanden
-  if (!scene.narrative && !scene.beschreibung) {
+  // Fallback: Leere Narrative
+  if (!scene.narrative) {
     return '';
   }
 
   // Basis-Narrative (ohne Drift-Varianten)
-  const baseNarrative = scene.narrative || scene.beschreibung || '';
+  const baseNarrative = scene.narrative;
 
   // Keine Varianten vorhanden -> Basis zurückgeben
   if (!scene.narrative_variants || scene.narrative_variants.length === 0) {
@@ -392,7 +394,7 @@ export function transitionToNextScene(
   // 4. History aktualisieren
   state.history.push({
     scene_id: state.current_scene_id,
-    choice_id: choice.id || choice.text || 'unknown',
+    choice_id: choice.id || choice.label || 'unknown',
     timestamp: Date.now()
   });
 

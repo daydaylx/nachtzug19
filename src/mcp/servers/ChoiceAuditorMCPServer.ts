@@ -219,10 +219,8 @@ export class ChoiceAuditorMCPServer extends MCPServerBase {
 
         // Prüfe 1: Gleiche next und gleiche/no Effects = potenziell Fake
         const hasEffects = choice.effects && choice.effects.length > 0;
-        const hasLegacyEffects = choice.werteAenderung || choice.flagsAenderung ||
-                                choice.itemBelohnung || choice.itemVerlust;
 
-        if (choice.next && !choice.ending && !hasEffects && !hasLegacyEffects) {
+        if (choice.next && !choice.ending && !hasEffects) {
           // Prüfe ob andere Choices zur selben Szene führen
           const sameNextChoices = scene.choices.filter(c =>
             c.next === choice.next && c.id !== choice.id
@@ -232,7 +230,7 @@ export class ChoiceAuditorMCPServer extends MCPServerBase {
             issues.push({
               severity: 'warning',
               sceneId,
-              choiceId: choice.id || choice.text,
+              choiceId: choice.id || choice.label,
               type: 'potential_fake_choice',
               description: `Choice führt zur selben Szene '${choice.next}' wie andere Choices und hat keine Effekte. Consider Tone Choice or add consequences.`
             });
@@ -240,23 +238,21 @@ export class ChoiceAuditorMCPServer extends MCPServerBase {
         }
 
         // Prüfe 2: Label nur anders, alles gleich
-        const choiceLabel = choice.label || choice.text;
+        const choiceLabel = choice.label;
         if (choiceLabel && choice.next) {
           const identicalChoices = scene.choices.filter(c =>
             c.id !== choice.id &&
             c.next === choice.next &&
             c.ending === choice.ending &&
-            JSON.stringify(c.effects) === JSON.stringify(choice.effects) &&
-            JSON.stringify(c.werteAenderung) === JSON.stringify(choice.werteAenderung) &&
-            JSON.stringify(c.flagsAenderung) === JSON.stringify(choice.flagsAenderung)
+            JSON.stringify(c.effects) === JSON.stringify(choice.effects)
           );
 
           if (identicalChoices.length > 0) {
-            const otherLabel = identicalChoices[0].label || identicalChoices[0].text;
+            const otherLabel = identicalChoices[0].label;
             issues.push({
               severity: 'warning',
               sceneId,
-              choiceId: choice.id || choice.text,
+              choiceId: choice.id || choice.label,
               type: 'identical_choices',
               description: `Choice ist identisch mit "${otherLabel}" (gleicher next/ending/effects).`
             });
@@ -320,10 +316,8 @@ export class ChoiceAuditorMCPServer extends MCPServerBase {
     Object.entries(scenesToCheck).forEach(([sceneId, scene]) => {
       scene.choices.forEach(choice => {
         const hasEffects = choice.effects && choice.effects.length > 0;
-        const hasLegacyEffects = choice.werteAenderung || choice.flagsAenderung ||
-                                choice.itemBelohnung || choice.itemVerlust;
 
-        if (hasEffects || hasLegacyEffects) {
+        if (hasEffects) {
           choicesWithEffects++;
 
           // Prüfe auf state_notes (Callback-Hinweis)
@@ -338,7 +332,7 @@ export class ChoiceAuditorMCPServer extends MCPServerBase {
             issues.push({
               severity: 'warning',
               sceneId,
-              choiceId: choice.id || choice.text,
+              choiceId: choice.id || choice.label,
               type: 'missing_callback_documentation',
               description: `Choice hat starke Effects aber kein state_notes Callback-Hinweis.`
             });
@@ -513,20 +507,20 @@ export class ChoiceAuditorMCPServer extends MCPServerBase {
           issues.push({
             severity: 'error',
             sceneId,
-            choiceId: choice.id || choice.text,
+            choiceId: choice.id || choice.label,
             type: 'missing_next_or_ending',
             description: 'Choice hat weder "next" noch "ending"'
           });
         }
 
         // Prüfe 2: Choice muss ein Label haben
-        if (!choice.label && !choice.text) {
+        if (!choice.label) {
           issues.push({
             severity: 'error',
             sceneId,
             choiceId: choice.id,
             type: 'missing_label',
-            description: 'Choice hat weder "label" noch "text"'
+            description: 'Choice hat kein "label"'
           });
         }
 
@@ -535,7 +529,7 @@ export class ChoiceAuditorMCPServer extends MCPServerBase {
           issues.push({
             severity: 'error',
             sceneId,
-            choiceId: choice.id || choice.text,
+            choiceId: choice.id || choice.label,
             type: 'invalid_next',
             description: `Choice verweist auf nicht-existente Szene "${choice.next}"`
           });
@@ -546,7 +540,7 @@ export class ChoiceAuditorMCPServer extends MCPServerBase {
           issues.push({
             severity: 'error',
             sceneId,
-            choiceId: choice.id || choice.text,
+            choiceId: choice.id || choice.label,
             type: 'invalid_ending',
             description: `Choice verweist auf nicht-existentes Ending "${choice.ending}"`
           });

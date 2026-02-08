@@ -693,7 +693,7 @@ private fun StoryOverlay(
         .fillMaxSize()
         .padding(16.dp)
     ) {
-      val title = scene.title ?: scene.titel ?: ""
+      val title = scene.title
       val narrative = uiState.resolvedNarrative
       Column(
         modifier = Modifier.fillMaxSize(),
@@ -724,7 +724,7 @@ private fun StoryOverlay(
                 .fillMaxWidth()
             ) {
               Text(
-                text = choice.label ?: choice.text ?: "Weiter",
+                text = choice.label ?: "Weiter",
                 textAlign = TextAlign.Center
               )
             }

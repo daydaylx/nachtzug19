@@ -213,22 +213,13 @@ export type SceneTag = 'station_end' | 'control' | 'reveal' | 'drift_variant' | 
  * Choice - Eine Entscheidungsmöglichkeit
  */
 export type Choice = {
-  // Neue Felder (NACHTZUG 19)
+  // Kanonische Felder (NACHTZUG 19)
   id?: string;                   // Lokal eindeutig in Szene
   label?: string;                // Button-Text
   condition?: Condition | ((stats: PlayerStats, flags: Record<string, boolean | undefined>, inventory: string[]) => boolean);  // Condition-Object oder Legacy-Funktion
-  effects?: Effect[];            // Mindestens 1 Effect (R3: Callback-Regel) - optional für Legacy
+  effects?: Effect[];            // R3: Tone Choices ohne Effects sind erlaubt
   next?: string;                 // Nächste Szene-ID
   ending?: string;               // Oder: Ending-ID (A/B/C)
-
-  // Legacy-Felder (für Rückwärtskompatibilität)
-  text?: string;
-  beschreibungFolge?: string;
-  werteAenderung?: Partial<PlayerStats>;
-  flagsAenderung?: Record<string, boolean>;
-  itemBelohnung?: string;
-  itemVerlust?: string;
-  naechsteSzeneId?: string;
 };
 
 /**
@@ -246,30 +237,16 @@ export type NarrativeVariant = {
  */
 export type Scene = {
   id: string;                    // Eindeutige ID (z.B. "c1_s01_platform")
-  choices: Choice[];             // 1-4 Choices
-  atmosphere?: 'normal' | 'danger' | 'mystic' | 'dream' | 'tense' | 'somber' | 'dark' | 'hopeful' | 'peaceful' | 'bittersweet';
-
-  // Neue Felder (NACHTZUG 19) - optional für Legacy
   chapter?: number;              // Kapitel 1-7
   title?: string;                // Kurztitel
   narrative?: string;            // Haupt-Text (3-12 Absätze)
+  choices: Choice[];             // 1-4 Choices
+  atmosphere?: 'normal' | 'danger' | 'mystic' | 'dream' | 'tense' | 'somber' | 'dark' | 'hopeful' | 'peaceful' | 'bittersweet';
   narrative_variants?: NarrativeVariant[];  // Drift-basierte Textvarianten
   tags?: SceneTag[];             // Optional: station_end, control, reveal, etc.
   state_notes?: string[];        // Max 3 Callback-Hinweise
   entry_effects?: Effect[];      // Effects beim Betreten
   exit_effects?: Effect[];       // Effects beim Verlassen
-
-  // Legacy-Felder (für Rückwärtskompatibilität)
-  kapitel?: string;
-  titel?: string;
-  beschreibung?: string;
-  effekteBeimBetreten?: {
-    mut?: number;
-    wissen?: number;
-    empathie?: number;
-    flagsAenderung?: Record<string, boolean>;
-    itemBelohnung?: string;
-  };
 };
 
 /**
@@ -279,8 +256,6 @@ export type Ending = {
   id: string;                    // z.B. "A", "B", "C"
   title: string;                 // Kurztitel
   narrative: string;             // End-Text
-  titel?: string;                // Alias für titel (Legacy)
-  beschreibung?: string;         // Alias für beschreibung (Legacy)
 };
 
 // ============================================================================

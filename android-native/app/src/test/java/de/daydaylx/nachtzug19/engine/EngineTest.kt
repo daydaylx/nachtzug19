@@ -16,8 +16,10 @@ class EngineTest {
   fun resolveNarrativeSelectsHighestMatchingDrift() {
     val scene = Scene(
       id = "scene",
-      choices = emptyList(),
+      chapter = 1,
+      title = "Scene",
       narrative = "base",
+      choices = emptyList(),
       narrative_variants = listOf(
         NarrativeVariant(min_drift = 3, narrative = "drift-3"),
         NarrativeVariant(min_drift = 5, narrative = "drift-5")

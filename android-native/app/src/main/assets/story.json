@@ -133,14 +133,14 @@
           "next": "c2_s01_ticket_search"
         }
       ],
+      "atmosphere": "somber",
       "tags": [
         "station_end"
       ],
       "state_notes": [
         "Merged Platform Look + End Scene",
         "Preserves Drift Mechanics"
-      ],
-      "atmosphere": "somber"
+      ]
     },
     {
       "id": "c1_s01_platform",
@@ -173,26 +173,20 @@
           "next": "c1_s01_platform_b"
         }
       ],
+      "atmosphere": "somber",
       "tags": [
         "setup"
       ],
       "state_notes": [
         "Split Part 1: Fokus auf Umgebung",
         "Erste Orientierung"
-      ],
-      "atmosphere": "somber"
+      ]
     },
     {
       "id": "c1_s01_platform_b",
       "chapter": 1,
       "title": "Atmosphäre",
       "narrative": "Aber du weißt: Du wartest auf etwas. Oder jemanden. Die Gewissheit sitzt in deinem Brustkorb wie ein Stein.\n\nDie Luft riecht nach kaltem Zigarettenrauch und Maschinenöl. Nicht nach frischem Rauch – nach altem. Nach Jahrzehnten. Als hätte jemand die Luft eingefroren, als hier noch geraucht werden durfte, und sie nie wieder aufgetaut. Der Geruch ist so dicht, dass du ihn auf der Zunge schmeckst. Bitter. Metallisch.\n\nAm Rand – auf einer Bank, die du vorhin nicht gesehen hast, schwörst du es – sitzt eine Gestalt. Sie liest eine Zeitung. Die Seiten rascheln nicht. Sie hält sie vollkommen still. Du siehst die Schlagzeile, aber das Datum ist verwischt, verschmiert, als hätte jemand darüber gewischt, bevor die Tinte trocken war. „ÖLKRISE VERSCHÄRFT SICH\", steht da in dieser altmodischen Frakturschrift, die an Grabsteine erinnert. Die Gestalt blättert nicht um. Nicht einmal, als der Wind durch den Bahnsteig fegt.\n\nWelcher Wind? Es gibt keine Fenster hier.\n\nEin Name brennt sich in deine Gedanken. Emma. Nicht wie eine Erinnerung – wie eine Narbe. Ein Gesicht, das du fast sehen kannst. Braune Augen. Sommerspr ossen auf der Nase. Ein Lächeln, das du nie vergessen wolltest. Aber die Details verschwimmen, je mehr du versuchst, sie festzuhalten.\n\nWo ist sie? Warum ist sie nicht hier? Oder… war sie hier? Warst du zu spät?",
-      "narrative_variants": [
-        {
-          "min_drift": 5,
-          "narrative": "Die Luft riecht nach kaltem Zigarettenrauch. Die Gestalt mit der Zeitung sitzt näher. Die Schlagzeile: „ENERGIEKRISE—\". Der Rest ist verwischt. Die Gestalt blättert nicht um. Emma. Der Name brennt in deinem Kopf. Du musst sie finden."
-        }
-      ],
       "choices": [
         {
           "id": "search_person",
@@ -241,14 +235,20 @@
           "next": "c1_s01a_platform_details"
         }
       ],
+      "atmosphere": "somber",
+      "narrative_variants": [
+        {
+          "min_drift": 5,
+          "narrative": "Die Luft riecht nach kaltem Zigarettenrauch. Die Gestalt mit der Zeitung sitzt näher. Die Schlagzeile: „ENERGIEKRISE—\". Der Rest ist verwischt. Die Gestalt blättert nicht um. Emma. Der Name brennt in deinem Kopf. Du musst sie finden."
+        }
+      ],
       "tags": [
         "setup"
       ],
       "state_notes": [
         "P1 FIX: Agency durch memory_search_active",
         "Drift-Varianten hier integriert"
-      ],
-      "atmosphere": "somber"
+      ]
     },
     {
       "id": "c1_s01a_platform_details",
@@ -298,26 +298,20 @@
           "next": "c1_s02_train_appears"
         }
       ],
+      "atmosphere": "tense",
       "tags": [
         "drift_seed"
       ],
       "state_notes": [
         "Merged: Details, Device, Lights",
         "Schnellerer Einstieg zum Zug"
-      ],
-      "atmosphere": "tense"
+      ]
     },
     {
       "id": "c1_s02_train_appears",
       "chapter": 1,
       "title": "Der Zug",
       "narrative": "Das Brummen wird lauter. Tiefer. Ein Beben, das du nicht hörst, sondern spürst – in den Knochen, in den Zähnen. Dann gleitet der Zug in den Bahnhof. Lautlos. Keine Quietschenden Bremsen. Kein Rattern. Nur das Brummen, das langsam verstummt.\n\nEr sieht aus wie ein alter Nachtzug. Achtziger Jahre. Vielleicht noch früher. Abblätternde dunkelrote Farbe, stellenweise schwarz verfärbt – oder ist es Ruß? Fenster zu schmal, die Rahmen vergilbt wie alte Zähne. Die Wagen sind lang. Zu lang. Du zählst: Fünf. Sechs. Sieben. Acht. Sie verschwimmen am Ende in der Dunkelheit.\n\nDurch die Scheiben siehst du Silhouetten – Menschen, die reglos auf ihren Plätzen sitzen. Niemand bewegt sich. Niemand schaut auf. Niemand schaut hinaus. Als wären sie eingefroren. Oder gemalt. Flache Figuren auf Glas.\n\nDie Türen öffnen sich mit einem Zischen. Nicht mechanisch. Organisch. Wie ein Ausatmen. Warme Luft strömt heraus – zu warm für einen Nachtzug, zu feucht. Riecht nach altem Polster und etwas Süßlichem. Verbrannter Zucker? Oder... verbranntes Plastik? Nein. Etwas anderes. Etwas, das du nicht benennen kannst.\n\nDie Stufen glänzen feucht, schwarz wie nasses Holz. Ein dünner Nebel hängt in der Tür, rollt sich über die Kante, kriecht auf den Bahnsteig. Niemand steigt aus. Niemand ruft. Nur die offene Tür. Wartend.",
-      "narrative_variants": [
-        {
-          "min_drift": 5,
-          "narrative": "Das Brummen wird lauter. Der Zug gleitet herein. Lautlos. Dunkelrot, fast schwarz. Die Wagen sind endlos. Durch die Scheiben: Eingefrorene Silhouetten. Warme, süßliche Luft strömt heraus. Die Stufen glänzen schwarz. Niemand steigt aus."
-        }
-      ],
       "choices": [
         {
           "id": "board_immediately",
@@ -367,13 +361,19 @@
           "next": "c1_s02a_train_exterior"
         }
       ],
+      "atmosphere": "tense",
+      "narrative_variants": [
+        {
+          "min_drift": 5,
+          "narrative": "Das Brummen wird lauter. Der Zug gleitet herein. Lautlos. Dunkelrot, fast schwarz. Die Wagen sind endlos. Durch die Scheiben: Eingefrorene Silhouetten. Warme, süßliche Luft strömt heraus. Die Stufen glänzen schwarz. Niemand steigt aus."
+        }
+      ],
       "tags": [
         "setup"
       ],
       "state_notes": [
         "P1 FIX: call_out blocked if attention >= 2"
-      ],
-      "atmosphere": "tense"
+      ]
     },
     {
       "id": "c1_s02a_train_exterior",
@@ -429,14 +429,14 @@
           "next": "c1_s02b_threshold"
         }
       ],
+      "atmosphere": "mystic",
       "tags": [
         "reveal"
       ],
       "state_notes": [
         "Shortened narrative",
         "Direct link to c1_s03_inside_train"
-      ],
-      "atmosphere": "mystic"
+      ]
     },
     {
       "id": "c1_s02b_threshold",
@@ -469,13 +469,13 @@
           "next": "c1_s03_inside_train"
         }
       ],
+      "atmosphere": "tense",
       "tags": [
         "interlude"
       ],
       "state_notes": [
         "Interlude: Schwelle zum Zug"
-      ],
-      "atmosphere": "tense"
+      ]
     },
     {
       "id": "c1_s03_inside_train",
@@ -536,12 +536,12 @@
           "next": "c1_s03a_find_seat"
         }
       ],
+      "atmosphere": "mystic",
       "tags": [],
       "state_notes": [
         "Merged Silence Interlude here",
         "Skip Corridor Walk -> Direct to Find Seat or Talk"
-      ],
-      "atmosphere": "mystic"
+      ]
     },
     {
       "id": "c1_s03a_find_seat",
@@ -591,11 +591,11 @@
           "next": "c1_s03b_window_vibration"
         }
       ],
+      "atmosphere": "somber",
       "tags": [],
       "state_notes": [
         "Shortened path"
-      ],
-      "atmosphere": "somber"
+      ]
     },
     {
       "id": "c1_s03b_window_vibration",
@@ -628,13 +628,13 @@
           "next": "c1_s04_sleepless_intro"
         }
       ],
+      "atmosphere": "mystic",
       "tags": [
         "interlude"
       ],
       "state_notes": [
         "Micro-Beat zwischen Sitzplatz und Gespräch"
-      ],
-      "atmosphere": "mystic"
+      ]
     },
     {
       "id": "c1_s04_sleepless_intro",
@@ -694,11 +694,11 @@
           "next": "c1_s04a_sleepless_past"
         }
       ],
+      "atmosphere": "tense",
       "tags": [
         "reveal"
       ],
-      "state_notes": [],
-      "atmosphere": "tense"
+      "state_notes": []
     },
     {
       "id": "c1_s04a_sleepless_past",
@@ -764,14 +764,14 @@
           "next": "c1_s04b_corridor_breath"
         }
       ],
+      "atmosphere": "somber",
       "tags": [
         "reveal"
       ],
       "state_notes": [
         "Merged with warning about conductor",
         "Shortened path"
-      ],
-      "atmosphere": "somber"
+      ]
     },
     {
       "id": "c1_s04b_corridor_breath",
@@ -804,13 +804,13 @@
           "next": "c1_s05_first_anomaly"
         }
       ],
+      "atmosphere": "tense",
       "tags": [
         "interlude"
       ],
       "state_notes": [
         "Micro-Beat vor der Durchsage"
-      ],
-      "atmosphere": "tense"
+      ]
     },
     {
       "id": "c1_s05_first_anomaly",
@@ -865,14 +865,14 @@
           "next": "c1_s05a_other_passengers"
         }
       ],
+      "atmosphere": "mystic",
       "tags": [
         "drift_seed"
       ],
       "state_notes": [
         "Merged with announcement repeat hint",
         "Shortened path to Other Passengers"
-      ],
-      "atmosphere": "mystic"
+      ]
     },
     {
       "id": "c1_s05a_other_passengers",
@@ -928,11 +928,11 @@
           "next": "c1_s05a2_passenger_rhythm"
         }
       ],
+      "atmosphere": "somber",
       "tags": [
         "setup"
       ],
-      "state_notes": [],
-      "atmosphere": "somber"
+      "state_notes": []
     },
     {
       "id": "c1_s05a2_passenger_rhythm",
@@ -965,13 +965,13 @@
           "next": "c1_s05b_compartment7_tease"
         }
       ],
+      "atmosphere": "somber",
       "tags": [
         "interlude"
       ],
       "state_notes": [
         "Micro-Beat vor Abteil 7"
-      ],
-      "atmosphere": "somber"
+      ]
     },
     {
       "id": "c1_s05b_compartment7_tease",
@@ -1036,12 +1036,12 @@
           "next": "c1_s05c_comp7_listen"
         }
       ],
+      "atmosphere": "mystic",
       "tags": [
         "reveal",
         "setup"
       ],
-      "state_notes": [],
-      "atmosphere": "mystic"
+      "state_notes": []
     },
     {
       "id": "c1_s05c_comp7_listen",
@@ -1107,13 +1107,13 @@
           "next": "c1_end_station"
         }
       ],
+      "atmosphere": "tense",
       "tags": [
         "reveal"
       ],
       "state_notes": [
         "Skip Corridor End/Stranger -> Direct to Station"
-      ],
-      "atmosphere": "tense"
+      ]
     },
     {
       "id": "c2_control_01_aftermath",
@@ -1156,13 +1156,13 @@
           "next": "c2_end_station"
         }
       ],
+      "atmosphere": "somber",
       "tags": [
         "reveal"
       ],
       "state_notes": [
         "Merged Aftermath with Sleepless Talk"
-      ],
-      "atmosphere": "somber"
+      ]
     },
     {
       "id": "c2_control_01_approach",
@@ -1195,11 +1195,11 @@
           "next": "c2_control_01_question"
         }
       ],
+      "atmosphere": "danger",
       "tags": [
         "control"
       ],
-      "state_notes": [],
-      "atmosphere": "danger"
+      "state_notes": []
     },
     {
       "id": "c2_control_01_question",
@@ -1287,14 +1287,14 @@
           "next": "c2_control_01_aftermath"
         }
       ],
+      "atmosphere": "danger",
       "tags": [
         "control"
       ],
       "state_notes": [
         "Agency Fix: \"Suche [NAME]\" option added",
         "Attention Fix: Lie blocked if attention >= 2"
-      ],
-      "atmosphere": "danger"
+      ]
     },
     {
       "id": "c2_end_station",
@@ -1337,13 +1337,13 @@
           "next": "c3_s01_wagen7_locked"
         }
       ],
+      "atmosphere": "somber",
       "tags": [
         "station_end"
       ],
       "state_notes": [
         "Kapitelende"
-      ],
-      "atmosphere": "somber"
+      ]
     },
     {
       "id": "c2_s01_ticket_search",
@@ -1393,12 +1393,12 @@
           "next": "c2_s01a_passenger_examination"
         }
       ],
+      "atmosphere": "tense",
       "tags": [],
       "state_notes": [
         "Jacke des Schlaflosen wechselt (blau -> schwarz)",
         "Druck aufgebaut: Kontrolle kommt"
-      ],
-      "atmosphere": "tense"
+      ]
     },
     {
       "id": "c2_s01a_passenger_examination",
@@ -1459,13 +1459,13 @@
           "next": "c2_s01c_corridor_chill"
         }
       ],
+      "atmosphere": "mystic",
       "tags": [
         "drift_seed"
       ],
       "state_notes": [
         "Merged passenger exam with boy intro"
-      ],
-      "atmosphere": "mystic"
+      ]
     },
     {
       "id": "c2_s01b_ticket_pocket",
@@ -1503,13 +1503,13 @@
           "next": "c2_s01c_corridor_chill"
         }
       ],
+      "atmosphere": "tense",
       "tags": [
         "drift_seed"
       ],
       "state_notes": [
         "Memory-Glitch manifestiert sich physisch"
-      ],
-      "atmosphere": "tense"
+      ]
     },
     {
       "id": "c2_s01c_corridor_chill",
@@ -1542,13 +1542,13 @@
           "next": "c2_s02_boy_recorder"
         }
       ],
+      "atmosphere": "tense",
       "tags": [
         "interlude"
       ],
       "state_notes": [
         "Interlude: Kälte & Spiegelbild-Anomalie"
-      ],
-      "atmosphere": "tense"
+      ]
     },
     {
       "id": "c2_s02_boy_recorder",
@@ -1645,24 +1645,17 @@
           "next": "c2_s02a_recorder_listening"
         }
       ],
+      "atmosphere": "mystic",
       "tags": [],
       "state_notes": [
         "Rekorder erhalten (Key Item)",
         "Hinweis auf fehlende Stationen"
-      ],
-      "atmosphere": "mystic"
+      ]
     },
     {
       "id": "c2_s02a_recorder_listening",
       "chapter": 2,
       "title": "Die Stimme",
-      "entry_effects": [
-        {
-          "type": "set",
-          "target": "played_recorder",
-          "value": true
-        }
-      ],
       "narrative": "Du nimmst das Gerät. Es ist schwer, kaltes Metall.\n\nDu drückst Play.\n\nZuerst nur Rauschen. Dann zwei Stimmen. Deine – jünger. Und eine zweite.\n\nEmma.\n\n„Warte am Bahnsteig,\" sagt sie. Ihre Stimme bricht. „Bitte komm zurück. Ich kann nicht ohne—\"\n\nDann deine Stimme: „Emma, ich verspreche—\"\n\nAbbruch. Überschrieben von einem tiefen, mechanischen Brummen: „—NACHTZUG 19. Kein Ausstieg.\"\n\nDu stoppst das Band. Dein Herz hämmert. Das war... vor dem Unfall.\n\nAls du aufblickst, ist der Junge weg. Das Abteil ist leer.",
       "choices": [
         {
@@ -1707,6 +1700,7 @@
           "next": "c2_s02c_boy_vanish"
         }
       ],
+      "atmosphere": "danger",
       "tags": [
         "reveal"
       ],
@@ -1714,7 +1708,13 @@
         "FIX: Stimme des Verlorenen statt nur System-Audio",
         "Junge verschwindet plötzlich"
       ],
-      "atmosphere": "danger"
+      "entry_effects": [
+        {
+          "type": "set",
+          "target": "played_recorder",
+          "value": true
+        }
+      ]
     },
     {
       "id": "c2_s02b_corridor_anomaly",
@@ -1752,13 +1752,13 @@
           "next": "c2_s02b1_door_numbers"
         }
       ],
+      "atmosphere": "tense",
       "tags": [
         "drift_variant"
       ],
       "state_notes": [
         "Merged corridor length and jacket color anomaly"
-      ],
-      "atmosphere": "tense"
+      ]
     },
     {
       "id": "c2_s02b1_door_numbers",
@@ -1791,13 +1791,13 @@
           "next": "c2_s03_comp7_intro"
         }
       ],
+      "atmosphere": "mystic",
       "tags": [
         "interlude"
       ],
       "state_notes": [
         "Drift-Symptom: Nummern verschieben sich"
-      ],
-      "atmosphere": "mystic"
+      ]
     },
     {
       "id": "c2_s02c_boy_vanish",
@@ -1840,13 +1840,13 @@
           "next": "c2_s02b1_door_numbers"
         }
       ],
+      "atmosphere": "danger",
       "tags": [
         "drift_variant"
       ],
       "state_notes": [
         "Realitätsverlust: Beweis (Rekorder) vs Umgebung"
-      ],
-      "atmosphere": "danger"
+      ]
     },
     {
       "id": "c2_s03_comp7_intro",
@@ -1906,11 +1906,11 @@
           "next": "c2_s03a_comp7_notebook"
         }
       ],
+      "atmosphere": "mystic",
       "tags": [],
       "state_notes": [
         "M1.2: Comp7 zeigt Ungeduld/Angst → menschlicher"
-      ],
-      "atmosphere": "mystic"
+      ]
     },
     {
       "id": "c2_s03a_comp7_notebook",
@@ -1948,13 +1948,13 @@
           "next": "c2_s04_announcement"
         }
       ],
+      "atmosphere": "tense",
       "tags": [
         "reveal"
       ],
       "state_notes": [
         "Merged intro with warning"
-      ],
-      "atmosphere": "tense"
+      ]
     },
     {
       "id": "c2_s04_announcement",
@@ -2015,11 +2015,11 @@
           "next": "c2_s04b_breath_control"
         }
       ],
+      "atmosphere": "tense",
       "tags": [],
       "state_notes": [
         "Fixed attention check for hiding"
-      ],
-      "atmosphere": "tense"
+      ]
     },
     {
       "id": "c2_s04a_conductor_approach",
@@ -2052,11 +2052,11 @@
           "next": "c2_control_01_approach"
         }
       ],
+      "atmosphere": "danger",
       "tags": [],
       "state_notes": [
         "Direct approach"
-      ],
-      "atmosphere": "danger"
+      ]
     },
     {
       "id": "c2_s04b_breath_control",
@@ -2089,13 +2089,13 @@
           "next": "c2_s04a_conductor_approach"
         }
       ],
+      "atmosphere": "tense",
       "tags": [
         "interlude"
       ],
       "state_notes": [
         "Micro-Beat vor Kontrolle 1"
-      ],
-      "atmosphere": "tense"
+      ]
     },
     {
       "id": "c3_control_02_aftermath",
@@ -2138,13 +2138,13 @@
           "next": "c3_end_station"
         }
       ],
+      "atmosphere": "somber",
       "tags": [
         "reveal"
       ],
       "state_notes": [
         "Kontrolle 2 überstanden"
-      ],
-      "atmosphere": "somber"
+      ]
     },
     {
       "id": "c3_control_02_approach",
@@ -2182,13 +2182,13 @@
           "next": "c3_control_02_question"
         }
       ],
+      "atmosphere": "danger",
       "tags": [
         "control"
       ],
       "state_notes": [
         "Schaffner Präsenz"
-      ],
-      "atmosphere": "danger"
+      ]
     },
     {
       "id": "c3_control_02_question",
@@ -2258,14 +2258,14 @@
           "next": "c3_control_02_aftermath"
         }
       ],
+      "atmosphere": "danger",
       "tags": [
         "control"
       ],
       "state_notes": [
         "Opfer-Wahl",
         "Added Agency \"Search\""
-      ],
-      "atmosphere": "danger"
+      ]
     },
     {
       "id": "c3_end_station",
@@ -2286,13 +2286,13 @@
           "next": "c4_s01_mirror_intro"
         }
       ],
+      "atmosphere": "dark",
       "tags": [
         "station_end"
       ],
       "state_notes": [
         "Identity Drift: Doppelgänger"
-      ],
-      "atmosphere": "dark"
+      ]
     },
     {
       "id": "c3_s01_wagen7_locked",
@@ -2347,13 +2347,13 @@
           "next": "c3_s01c_door_pulse"
         }
       ],
+      "atmosphere": "mystic",
       "tags": [
         "setup"
       ],
       "state_notes": [
         "Wagen 7 Barriere eingeführt"
-      ],
-      "atmosphere": "mystic"
+      ]
     },
     {
       "id": "c3_s01a_after_station",
@@ -2391,13 +2391,13 @@
           "next": "c3_s01b_boy_return"
         }
       ],
+      "atmosphere": "mystic",
       "tags": [
         "drift_seed"
       ],
       "state_notes": [
         "Notizbuch Vorhersage"
-      ],
-      "atmosphere": "mystic"
+      ]
     },
     {
       "id": "c3_s01b_boy_return",
@@ -2457,13 +2457,13 @@
           "next": "c3_s02_recorder_anomaly"
         }
       ],
+      "atmosphere": "mystic",
       "tags": [
         "reveal"
       ],
       "state_notes": [
         "Duplizierung von Gegenständen"
-      ],
-      "atmosphere": "mystic"
+      ]
     },
     {
       "id": "c3_s01c_door_pulse",
@@ -2496,13 +2496,13 @@
           "next": "c3_s01a_after_station"
         }
       ],
+      "atmosphere": "tense",
       "tags": [
         "interlude"
       ],
       "state_notes": [
         "Micro-Beat vor dem Gang"
-      ],
-      "atmosphere": "tense"
+      ]
     },
     {
       "id": "c3_s02_recorder_anomaly",
@@ -2540,13 +2540,13 @@
           "next": "c3_s02b_corridor_shift"
         }
       ],
+      "atmosphere": "danger",
       "tags": [
         "reveal"
       ],
       "state_notes": [
         "Kassette ist Meta-Log"
-      ],
-      "atmosphere": "danger"
+      ]
     },
     {
       "id": "c3_s02a_recorder_listening",
@@ -2589,13 +2589,13 @@
           "next": "c3_s02b_corridor_shift"
         }
       ],
+      "atmosphere": "danger",
       "tags": [
         "reveal"
       ],
       "state_notes": [
         "Prophezeiung der Opferung"
-      ],
-      "atmosphere": "danger"
+      ]
     },
     {
       "id": "c3_s02b_corridor_shift",
@@ -2628,13 +2628,13 @@
           "next": "c3_s02c_door_shadow"
         }
       ],
+      "atmosphere": "tense",
       "tags": [
         "drift_variant"
       ],
       "state_notes": [
         "Raum-Reorganisation"
-      ],
-      "atmosphere": "tense"
+      ]
     },
     {
       "id": "c3_s02c_door_shadow",
@@ -2667,13 +2667,13 @@
           "next": "c3_s03_wagen7_approach"
         }
       ],
+      "atmosphere": "mystic",
       "tags": [
         "interlude"
       ],
       "state_notes": [
         "Micro-Beat vor Wagen 7"
-      ],
-      "atmosphere": "mystic"
+      ]
     },
     {
       "id": "c3_s03_wagen7_approach",
@@ -2706,13 +2706,13 @@
           "next": "c3_s03b_inside_comp7"
         }
       ],
+      "atmosphere": "mystic",
       "tags": [
         "setup"
       ],
       "state_notes": [
         "Wagen 7 Eintritt"
-      ],
-      "atmosphere": "mystic"
+      ]
     },
     {
       "id": "c3_s03b_inside_comp7",
@@ -2762,13 +2762,13 @@
           "next": "c3_s03c_notebooks_explore"
         }
       ],
+      "atmosphere": "mystic",
       "tags": [
         "reveal"
       ],
       "state_notes": [
         "Raum-Eindruck & Dialog"
-      ],
-      "atmosphere": "mystic"
+      ]
     },
     {
       "id": "c3_s03c_notebooks_explore",
@@ -2806,13 +2806,13 @@
           "next": "c3_s04_comp7_truth"
         }
       ],
+      "atmosphere": "danger",
       "tags": [
         "reveal"
       ],
       "state_notes": [
         "Loop Beweis"
-      ],
-      "atmosphere": "danger"
+      ]
     },
     {
       "id": "c3_s04_comp7_truth",
@@ -2862,13 +2862,13 @@
           "next": "c3_s04b_third_announcement"
         }
       ],
+      "atmosphere": "mystic",
       "tags": [
         "reveal"
       ],
       "state_notes": [
         "Schleifen-Enthüllung & Paradox"
-      ],
-      "atmosphere": "mystic"
+      ]
     },
     {
       "id": "c3_s04b_third_announcement",
@@ -2917,11 +2917,11 @@
           "next": "c3_s04c_lights_cut"
         }
       ],
+      "atmosphere": "danger",
       "tags": [],
       "state_notes": [
         "Kontrolle 2 Vorbereitung"
-      ],
-      "atmosphere": "danger"
+      ]
     },
     {
       "id": "c3_s04c_lights_cut",
@@ -2954,13 +2954,13 @@
           "next": "c3_control_02_approach"
         }
       ],
+      "atmosphere": "tense",
       "tags": [
         "interlude"
       ],
       "state_notes": [
         "Micro-Beat vor Kontrolle 2"
-      ],
-      "atmosphere": "tense"
+      ]
     },
     {
       "id": "c4_end_platform_copies",
@@ -2998,13 +2998,13 @@
           "next": "c4_end_station"
         }
       ],
+      "atmosphere": "danger",
       "tags": [
         "drift_variant"
       ],
       "state_notes": [
         "Visueller Höhepunkt Identity Drift"
-      ],
-      "atmosphere": "danger"
+      ]
     },
     {
       "id": "c4_end_station",
@@ -3025,13 +3025,13 @@
           "next": "c5_s01_final_preparation"
         }
       ],
+      "atmosphere": "dark",
       "tags": [
         "station_end"
       ],
       "state_notes": [
         "Übergang zu Kapitel 5"
-      ],
-      "atmosphere": "dark"
+      ]
     },
     {
       "id": "c4_interlude_01_corridor_mirror",
@@ -3074,13 +3074,13 @@
           "next": "c4_interlude_01b_mirror_whisper"
         }
       ],
+      "atmosphere": "danger",
       "tags": [
         "drift_variant"
       ],
       "state_notes": [
         "Identity Drift visualisiert"
-      ],
-      "atmosphere": "danger"
+      ]
     },
     {
       "id": "c4_interlude_01b_mirror_whisper",
@@ -3113,13 +3113,13 @@
           "next": "c4_s03_recorder_loop_discovery"
         }
       ],
+      "atmosphere": "mystic",
       "tags": [
         "interlude"
       ],
       "state_notes": [
         "Micro-Beat vor Recorder-Loop"
-      ],
-      "atmosphere": "mystic"
+      ]
     },
     {
       "id": "c4_s01_mirror_intro",
@@ -3174,14 +3174,14 @@
           "next": "c4_interlude_01_corridor_mirror"
         }
       ],
+      "atmosphere": "mystic",
       "tags": [
         "drift_variant",
         "reveal"
       ],
       "state_notes": [
         "Spiegelbild autonom"
-      ],
-      "atmosphere": "mystic"
+      ]
     },
     {
       "id": "c4_s02_double_reflection",
@@ -3219,13 +3219,13 @@
           "next": "c4_interlude_01_corridor_mirror"
         }
       ],
+      "atmosphere": "mystic",
       "tags": [
         "reveal"
       ],
       "state_notes": [
         "Begegnung mit anderem Self"
-      ],
-      "atmosphere": "mystic"
+      ]
     },
     {
       "id": "c4_s02a_reflection_speaks",
@@ -3263,29 +3263,19 @@
           "next": "c4_interlude_01_corridor_mirror"
         }
       ],
+      "atmosphere": "somber",
       "tags": [
         "reveal"
       ],
       "state_notes": [
         "Loop-Andeutung"
-      ],
-      "atmosphere": "somber"
+      ]
     },
     {
       "id": "c4_s03_recorder_loop_discovery",
       "chapter": 4,
       "title": "Die Aufnahme",
       "narrative": "Du findest dich in deinem Abteil wieder. Der Rekorder liegt auf dem Tisch. Er läuft.\n\nDu hast ihn nicht eingeschaltet.\n\nDie Kassette dreht sich langsam. Ein hypnotisches Klicken.\n\nAus dem Lautsprecher kommt deine eigene Stimme:\n\n„—Kapitel 4. Wieder hier. Ich weiß jetzt, was der Spiegel ist. Er zeigt nicht mich. Er zeigt die, die es nicht geschafft haben.—\"\n\nDie Stimme bricht ab. Dann schreit sie.",
-      "narrative_variants": [
-        {
-          "condition": {
-            "type": "bool",
-            "target": "has_recorder",
-            "value": false
-          },
-          "narrative": "Du findest dich in deinem Abteil wieder. Auf dem Tisch liegt ein Rekorder.\n\nDu besitzt keinen Rekorder. Aber dieser hier… er sieht aus, als hätte er im Feuer gelegen.\n\nEr läuft.\n\nAus dem Lautsprecher kommt deine eigene Stimme:\n\n„—Kapitel 4. Wieder hier. Ich weiß jetzt, was der Spiegel ist. Er zeigt nicht mich. Er zeigt die, die es nicht geschafft haben.—\"\n\nDie Stimme bricht ab. Dann schreit sie."
-        }
-      ],
       "choices": [
         {
           "id": "stop_tape",
@@ -3317,13 +3307,23 @@
           "next": "c4_s03b_tape_silence"
         }
       ],
+      "atmosphere": "danger",
+      "narrative_variants": [
+        {
+          "condition": {
+            "type": "bool",
+            "target": "has_recorder",
+            "value": false
+          },
+          "narrative": "Du findest dich in deinem Abteil wieder. Auf dem Tisch liegt ein Rekorder.\n\nDu besitzt keinen Rekorder. Aber dieser hier… er sieht aus, als hätte er im Feuer gelegen.\n\nEr läuft.\n\nAus dem Lautsprecher kommt deine eigene Stimme:\n\n„—Kapitel 4. Wieder hier. Ich weiß jetzt, was der Spiegel ist. Er zeigt nicht mich. Er zeigt die, die es nicht geschafft haben.—\"\n\nDie Stimme bricht ab. Dann schreit sie."
+        }
+      ],
       "tags": [
         "reveal"
       ],
       "state_notes": [
         "Loop-Bestätigung durch Audio"
-      ],
-      "atmosphere": "danger"
+      ]
     },
     {
       "id": "c4_s03b_tape_silence",
@@ -3356,13 +3356,13 @@
           "next": "c4_s04_comp7_mirror_truth"
         }
       ],
+      "atmosphere": "tense",
       "tags": [
         "interlude"
       ],
       "state_notes": [
         "Micro-Beat vor Comp7 Erklärung"
-      ],
-      "atmosphere": "tense"
+      ]
     },
     {
       "id": "c4_s04_comp7_mirror_truth",
@@ -3405,13 +3405,13 @@
           "next": "c4_s04b_anchor_hint"
         }
       ],
+      "atmosphere": "somber",
       "tags": [
         "reveal"
       ],
       "state_notes": [
         "Comp7 erklärt Drift-Gefahr"
-      ],
-      "atmosphere": "somber"
+      ]
     },
     {
       "id": "c4_s04a_comp7_identity",
@@ -3432,13 +3432,13 @@
           "next": "c4_s05_reality_fracture"
         }
       ],
+      "atmosphere": "danger",
       "tags": [
         "setup"
       ],
       "state_notes": [
         "Vorbereitung auf Reality Fracture"
-      ],
-      "atmosphere": "danger"
+      ]
     },
     {
       "id": "c4_s04b_anchor_hint",
@@ -3471,13 +3471,13 @@
           "next": "c4_s04a_comp7_identity"
         }
       ],
+      "atmosphere": "somber",
       "tags": [
         "interlude"
       ],
       "state_notes": [
         "Micro-Beat: Zahl als Anker"
-      ],
-      "atmosphere": "somber"
+      ]
     },
     {
       "id": "c4_s05_reality_fracture",
@@ -3515,29 +3515,19 @@
           "next": "c4_s05b_ash_heat"
         }
       ],
+      "atmosphere": "dark",
       "tags": [
         "drift_variant"
       ],
       "state_notes": [
         "Reality Fracture Event"
-      ],
-      "atmosphere": "dark"
+      ]
     },
     {
       "id": "c4_s05a_tag19_found",
       "chapter": 4,
       "title": "Fundstück",
       "narrative": "Du ziehst es aus dem Schutt.\n\nEin Schlüsselanhänger. Messing. Schwer.\n\nDie Zahl ist tief eingraviert: **19**.\n\nAls deine Haut das Metall berührt, stoppt der Lärm. Die Welt friert ein.\n\nEine einzige Erinnerung schießt durch deinen Kopf. Klar. Scharf.\n\nDu hast diesen Anhänger schon einmal gefunden. Und verloren. Und wiedergefunden.\n\nDu bist nicht nur ein Passagier. Du bist Teil des Wracks.\n\n„Tag 19,\" flüsterst du. Und du weißt, dass es wahr ist.",
-      "narrative_variants": [
-        {
-          "condition": {
-            "type": "bool",
-            "target": "memory_search_active",
-            "value": true
-          },
-          "narrative": "Du ziehst es aus dem Schutt.\n\nEin Schlüsselanhänger. Messing. Schwer.\n\nDie Zahl ist tief eingraviert: **19**.\n\nAls deine Haut das Metall berührt, stoppt der Lärm. Die Welt friert ein.\n\nEin Bild blitzt auf. Emma. Am Bahnsteig. Sie lächelt. „Fahr vorsichtig,\" sagt sie. „Komm zurück.\"\n\nDann das Datum. 19. September. 1973.\n\nDu hast diesen Anhänger schon einmal gefunden. Und verloren. Und wiedergefunden.\n\n„Tag 19,\" flüsterst du. Das war... vor dem Unfall."
-        }
-      ],
       "choices": [
         {
           "id": "take_tag",
@@ -3567,6 +3557,17 @@
           "next": "c4_s06_name_loss"
         }
       ],
+      "atmosphere": "mystic",
+      "narrative_variants": [
+        {
+          "condition": {
+            "type": "bool",
+            "target": "memory_search_active",
+            "value": true
+          },
+          "narrative": "Du ziehst es aus dem Schutt.\n\nEin Schlüsselanhänger. Messing. Schwer.\n\nDie Zahl ist tief eingraviert: **19**.\n\nAls deine Haut das Metall berührt, stoppt der Lärm. Die Welt friert ein.\n\nEin Bild blitzt auf. Emma. Am Bahnsteig. Sie lächelt. „Fahr vorsichtig,\" sagt sie. „Komm zurück.\"\n\nDann das Datum. 19. September. 1973.\n\nDu hast diesen Anhänger schon einmal gefunden. Und verloren. Und wiedergefunden.\n\n„Tag 19,\" flüsterst du. Das war... vor dem Unfall."
+        }
+      ],
       "tags": [
         "reveal",
         "secret"
@@ -3574,8 +3575,7 @@
       "state_notes": [
         "KEY ITEM: has_tag19 = true",
         "Mid-Story Point of No Return"
-      ],
-      "atmosphere": "mystic"
+      ]
     },
     {
       "id": "c4_s05b_ash_heat",
@@ -3608,13 +3608,13 @@
           "next": "c4_s05a_tag19_found"
         }
       ],
+      "atmosphere": "mystic",
       "tags": [
         "interlude"
       ],
       "state_notes": [
         "Micro-Beat vor Tag19 Fund"
-      ],
-      "atmosphere": "mystic"
+      ]
     },
     {
       "id": "c4_s06_name_loss",
@@ -3652,13 +3652,13 @@
           "next": "c4_s06b_name_echo"
         }
       ],
+      "atmosphere": "somber",
       "tags": [
         "reveal"
       ],
       "state_notes": [
         "Identitätsverlust als Preis für Wahrheit"
-      ],
-      "atmosphere": "somber"
+      ]
     },
     {
       "id": "c4_s06b_name_echo",
@@ -3691,13 +3691,13 @@
           "next": "c4_end_platform_copies"
         }
       ],
+      "atmosphere": "somber",
       "tags": [
         "interlude"
       ],
       "state_notes": [
         "Micro-Beat vor Bahnsteig-Kopien"
-      ],
-      "atmosphere": "somber"
+      ]
     },
     {
       "id": "c5_end_station",
@@ -3774,6 +3774,7 @@
           "next": "c6_s01_awakening"
         }
       ],
+      "atmosphere": "mystic",
       "tags": [
         "station_end"
       ],
@@ -3781,8 +3782,7 @@
         "R1: Engine erhoeht memory_drift/station_count automatisch (keine manuellen station_end-Effects)",
         "Station-End: Übergang zu Kapitel 6",
         "CONDITION: acknowledge_guilt nur bei tickets_guilt >= 4 (Callback auf s08)"
-      ],
-      "atmosphere": "mystic"
+      ]
     },
     {
       "id": "c5_end_station_a",
@@ -3803,10 +3803,10 @@
           "next": "c5_end_station"
         }
       ],
+      "atmosphere": "mystic",
       "state_notes": [
         "Split Part 1: Ankunft auf dem Bahnsteig"
-      ],
-      "atmosphere": "mystic"
+      ]
     },
     {
       "id": "c5_s01_final_preparation",
@@ -3861,12 +3861,12 @@
           "next": "c5_s03_comp7_reflection"
         }
       ],
+      "atmosphere": "somber",
       "state_notes": [
         "Eröffnungsszene Kapitel 5",
         "CONDITION: check_recorder nur bei has_recorder",
         "walk_corridor erhoeht attention; Vorbereitung auf Kontrolle 3"
-      ],
-      "atmosphere": "somber"
+      ]
     },
     {
       "id": "c5_s03_comp7_reflection",
@@ -3954,18 +3954,18 @@
           "next": "c5_s04_lights_flicker"
         }
       ],
+      "atmosphere": "mystic",
       "state_notes": [
         "Comp7 gibt Hinweise auf Endgame",
         "ask_about_compartment7 erhöht conductor_attention (gefährliche Frage)",
         "CONDITION: discuss_silence nur bei conductor_attention >= 3 (Callback auf s02)"
-      ],
-      "atmosphere": "mystic"
+      ]
     },
     {
       "id": "c5_s04_lights_flicker",
       "chapter": 5,
       "title": "Flackern",
-      "narrative": "Die Lichter beginnen zu sterben. (Hook)\n\nMit jedem Flackern verlierst du kurz die Orientierung. In der Dunkelheit hörst du dein eigenes, raues Atmen, und wenn das Licht zurückkehrt, scheint dein Schatten an der Wand einen Schritt näher gerückt zu sein als du selbst. (Detail)\n\nEin kühler Luftzug streicht über deine Stirn, wie eine unsichtbare Hand. (Konsequenz)",
+      "narrative": "Die Lichter beginnen zu sterben. (Hook)\n\n    Mit jedem Flackern verlierst du kurz die Orientierung. In der Dunkelheit hörst du dein eigenes, raues Atmen, und wenn das Licht zurückkehrt, scheint dein Schatten an der Wand einen Schritt näher gerückt zu sein als du selbst. (Detail)\n\n    Du presst die Hand gegen die Wand. Der Kunststoff fühlt sich rauer an als sonst, als hätte sich die Oberfläche über Nacht verändert. Die Kälte ist nicht die des Zuges, sondern die eines Raums, in dem schon lange niemand mehr gewesen ist.\n\n    Ein Flackern länger als alle anderen. Für einen Atemzug ist alles schwarz. Du spürst den Zug ruckeln, hörst das Schaben der Räder wie Nägel auf Stein. Und als das Licht wieder an ist, steht der Schatten nicht mehr hinter dir, sondern halb neben dir.\n\n    Ein kühler Luftzug streicht über deine Stirn, wie eine unsichtbare Hand. (Konsequenz)",
       "choices": [
         {
           "id": "hold_ground",
@@ -3992,11 +3992,11 @@
           "next": "c5_s05_sleepless_final"
         }
       ],
+      "atmosphere": "danger",
       "state_notes": [
         "Interlude Part 1: Desorientierung",
         "Split für Pacing"
-      ],
-      "atmosphere": "danger"
+      ]
     },
     {
       "id": "c5_s05_sleepless_final",
@@ -4084,12 +4084,12 @@
           "next": "c5_s06_abteil7"
         }
       ],
+      "atmosphere": "tense",
       "state_notes": [
         "Letztes Gespräch mit Schlaflosem",
         "rel_sleepless beeinflusst spätere Szenen",
         "CONDITION: warn_about_presence nur bei conductor_attention >= 4 (Callback auf s04)"
-      ],
-      "atmosphere": "tense"
+      ]
     },
     {
       "id": "c5_s06_abteil7",
@@ -4211,17 +4211,17 @@
           "next": "c5_s08_abteil7_aftermath"
         }
       ],
+      "atmosphere": "tense",
+      "tags": [
+        "setup",
+        "reveal"
+      ],
       "state_notes": [
         "Set-Piece: Abteil 7 (merged approach + inside)",
         "Entering increases conductor_attention (+2 or +3)",
         "Skip choices route to c5_s09 (bypass aftermath)",
         "CONDITION thresholds: open_and_examine (truth>=3), protect_sleepless (rel>=2), open_for_answers (truth>=4)"
-      ],
-      "tags": [
-        "setup",
-        "reveal"
-      ],
-      "atmosphere": "tense"
+      ]
     },
     {
       "id": "c5_s08_abteil7_aftermath",
@@ -4310,12 +4310,12 @@
           "next": "c5_s10_boy_reunion"
         }
       ],
+      "atmosphere": "tense",
       "state_notes": [
         "Set-Piece Teil 3: Nachwirkungen",
-        "CONDITION: write_down_names (tickets_truth >= 10)",
+        "CONDITION: write_down_names (tickets_truth >= 4)",
         "CONDITION: ponder_the_wall (tickets_guilt >= 1, Callback auf s07)"
-      ],
-      "atmosphere": "tense"
+      ]
     },
     {
       "id": "c5_s10_boy_reunion",
@@ -4413,14 +4413,14 @@
           "next": "c5_s11_corridor_encounter"
         }
       ],
+      "atmosphere": "somber",
       "state_notes": [
         "Recorder/Tag19 Items sind hier relevant",
         "CONDITION: show_recorder_connection nur bei has_recorder",
         "CONDITION: show_tag19 nur bei has_tag19",
         "CONDITION: reassure_boy nur bei rel_boy >= 2",
         "Callback zu Items aus früheren Kapiteln"
-      ],
-      "atmosphere": "somber"
+      ]
     },
     {
       "id": "c5_s11_corridor_encounter",
@@ -4463,18 +4463,18 @@
           "next": "c5_s12_window_void"
         }
       ],
+      "atmosphere": "danger",
       "state_notes": [
         "Vorbereitung auf Kontrolle 3",
         "conductor_attention beeinflusst Härte der Kontrolle",
         "approach_conductor erhöht Attention stark (+2)"
-      ],
-      "atmosphere": "danger"
+      ]
     },
     {
       "id": "c5_s12_window_void",
       "chapter": 5,
       "title": "Das Nichts",
-      "narrative": "Du blickst aus dem Fenster. (Hook)\n\nAber da ist keine Dunkelheit mehr. Nicht einmal Schwarz. Nur eine Leere, die das Auge nicht fokussieren kann – ein Nicht-Raum, der sich weigert, wahrgenommen zu werden.\n\nEin blinder Fleck in der Realität, der direkt in deinen Verstand schneidet. Schmerzhaft. Wie eine Nadel hinter den Augen.\n\nDeine Pupillen zucken. Suchen nach etwas, an dem sie sich festhalten können. Aber da ist nichts. Kein Oben. Kein Unten. Keine Entfernung.\n\nDer Zug fährt nicht durch eine Landschaft – er schält sich durch das Gewebe der Existenz. Durch eine Lücke zwischen den Welten. (Konsequenz)\n\nUnd du fragst dich: Was passiert, wenn das Gewebe reißt?",
+      "narrative": "Du blickst aus dem Fenster. (Hook)\n\n    Aber da ist keine Dunkelheit mehr. Nicht einmal Schwarz. Nur eine Leere, die das Auge nicht fokussieren kann – ein Nicht-Raum, der sich weigert, wahrgenommen zu werden.\n\n    Ein blinder Fleck in der Realität, der direkt in deinen Verstand schneidet. Schmerzhaft. Wie eine Nadel hinter den Augen.\n\n    Deine Pupillen zucken. Suchen nach etwas, an dem sie sich festhalten können. Aber da ist nichts. Kein Oben. Kein Unten. Keine Entfernung. Ein Summen setzt ein, nicht hörbar, sondern spürbar: in den Zähnen, hinter der Stirn.\n\n    Die Scheibe spiegelt dich nicht richtig. Dein Gesicht scheint zu spät zu blinzeln. Für den Bruchteil einer Sekunde bist du zwei Personen, leicht versetzt, wie ein schlechtes Foto.\n\n    Der Zug fährt nicht durch eine Landschaft – er schält sich durch das Gewebe der Existenz. Durch eine Lücke zwischen den Welten. (Konsequenz)\n\n    Und du fragst dich: Was passiert, wenn das Gewebe reißt?",
       "choices": [
         {
           "id": "touch_glass",
@@ -4501,17 +4501,17 @@
           "next": "c5_s12b_void_touch"
         }
       ],
+      "atmosphere": "dark",
       "state_notes": [
         "Interlude: Leere außerhalb (Split Part 1)",
         "Void sequence - visual, sensory"
-      ],
-      "atmosphere": "dark"
+      ]
     },
     {
       "id": "c5_s12b_void_touch",
       "chapter": 5,
       "title": "Das Summen",
-      "narrative": "Die Handfläche am Glas – keine Kälte. Nur eine dumpfe, vibrierende Wärme, die tief in deine Knochen siedet.\n\nDeine Finger verschwinden im Spiegelbild, als würde das Glas dich nicht mehr als feste Materie erkennen.\n\nEin hoher Ton zieht dir über die Zähne. Genau an der Grenze des Erträglichen.",
+      "narrative": "Die Handfläche am Glas – keine Kälte. Nur eine dumpfe, vibrierende Wärme, die tief in deine Knochen siedet.\n\n    Deine Finger verschwinden im Spiegelbild, als würde das Glas dich nicht mehr als feste Materie erkennen. Du siehst die Kontur deiner Hand zwar, aber sie gehört dir nicht mehr ganz.\n\n    Ein hoher Ton zieht dir über die Zähne. Genau an der Grenze des Erträglichen. Er schwillt an, bis dir der Atem stockt, und ebbt dann so schnell wieder ab, dass dir kurz schwindlig wird.\n\n    Das Glas gibt minimal nach, fast unmerklich. Als würdest du nicht gegen eine Scheibe drücken, sondern gegen eine Haut, die atmet.",
       "choices": [
         {
           "id": "accept_void",
@@ -4554,27 +4554,17 @@
           "next": "c5_s13_memory_fragment"
         }
       ],
+      "atmosphere": "dark",
       "state_notes": [
         "Interlude: Leere außerhalb (Split Part 2)",
         "CONDITION: search_reflection (conductor_attention >= 5)"
-      ],
-      "atmosphere": "dark"
+      ]
     },
     {
       "id": "c5_s13_memory_fragment",
       "chapter": 5,
       "title": "Fragment",
       "narrative": "Plötzlich – eine Erinnerung.\n\nKlar und scharf.\n\nDu bist an einem Bahnhof. Ein normaler Bahnhof.\n\nMenschen um dich herum. Züge, die kommen und gehen.\n\nDu wartest auf jemanden.\n\nWer?\n\nDas Bild verschwimmt.\n\nDu greifst danach, versuchst es festzuhalten.\n\nAber es zerrinnt.\n\nUnd was bleibt, ist nur:\n\nEin Name. Ein Gesicht.\n\nFast greifbar.\n\nAber nicht ganz.",
-      "narrative_variants": [
-        {
-          "condition": {
-            "type": "bool",
-            "target": "emma_memory_unlocked",
-            "value": true
-          },
-          "narrative": "Plötzlich – eine Erinnerung.\n\nKlar und scharf.\n\nDu bist an einem Bahnhof. Bahnhof Westend. Herbst 1973.\n\nEmma steht vor dir. Braune Augen. Graue Jacke. Sie lächelt, aber ihre Augen sind ängstlich.\n\n„Fahr vorsichtig,\" sagt sie. „Komm zurück.\"\n\nDu nimmst ihre Hand. Warm. Real.\n\n„Ich verspreche es.\"\n\nDann ein Pfiff. Der Zug – NACHTZUG 19 – fährt ein.\n\nDu steigst ein.\n\nUnd dann... nichts.\n\nDie Erinnerung endet. Aber jetzt weißt du: Du hast sie nie wiedergesehen.\n\nEmma. Du warst auf dem Weg zu ihr. Und der Zug... ist nie angekommen."
-        }
-      ],
       "choices": [
         {
           "id": "chase_memory",
@@ -4628,18 +4618,28 @@
           "next": "c5_s14_control3_approach"
         }
       ],
+      "atmosphere": "mystic",
+      "narrative_variants": [
+        {
+          "condition": {
+            "type": "bool",
+            "target": "emma_memory_unlocked",
+            "value": true
+          },
+          "narrative": "Plötzlich – eine Erinnerung.\n\nKlar und scharf.\n\nDu bist an einem Bahnhof. Bahnhof Westend. Herbst 1973.\n\nEmma steht vor dir. Braune Augen. Graue Jacke. Sie lächelt, aber ihre Augen sind ängstlich.\n\n„Fahr vorsichtig,\" sagt sie. „Komm zurück.\"\n\nDu nimmst ihre Hand. Warm. Real.\n\n„Ich verspreche es.\"\n\nDann ein Pfiff. Der Zug – NACHTZUG 19 – fährt ein.\n\nDu steigst ein.\n\nUnd dann... nichts.\n\nDie Erinnerung endet. Aber jetzt weißt du: Du hast sie nie wiedergesehen.\n\nEmma. Du warst auf dem Weg zu ihr. Und der Zug... ist nie angekommen."
+        }
+      ],
       "state_notes": [
         "Erinnerungsfragment (wichtig für Ending)",
         "memory_drift beeinflusst Klarheit der Erinnerungen",
         "Vorbereitung auf emotionale Kontrolle"
-      ],
-      "atmosphere": "mystic"
+      ]
     },
     {
       "id": "c5_s14_control3_approach",
       "chapter": 5,
       "title": "Kontrolle 3 - Annäherung",
-      "narrative": "Der Schaffner erscheint in deinem Abteil.\n\nNicht durch die Tür.\n\nEr ist einfach… da.\n\nAls wäre er schon immer dagewesen.\n\n„Dritte Kontrolle,\" sagt er.\n\nSeine Stimme ist leiser als zuvor. Kälter.\n\n„Fahrkarte.\"\n\nDu reichst sie ihm.\n\nEr betrachtet sie lange. Sehr lange.\n\n„Interessant,\" murmelt er schließlich.\n\nEr blickt auf.\n\nDirekt in deine Augen.\n\n„Sie haben viel gesehen. Viel getan.\"\n\nEine Pause.\n\n„Aber reicht es?\"",
+      "narrative": "Der Schaffner erscheint in deinem Abteil.\n\n    Nicht durch die Tür.\n\n    Er ist einfach… da.\n\n    Als wäre er schon immer dagewesen.\n\n    Die Luft wird dicht. Der Geruch von Metall und nassem Stein legt sich auf deine Zunge. Seine Uniform wirkt dunkler als der Rest des Abteils, als würde sie das Licht schlucken.\n\n    „Dritte Kontrolle,\" sagt er.\n\n    Seine Stimme ist leiser als zuvor. Kälter.\n\n    „Fahrkarte.\"\n\n    Du reichst sie ihm. Sie fühlt sich schwer an, als wäre sie aus Blei gegossen. Als er sie nimmt, verschwindet für einen Moment das Zittern aus deiner Hand.\n\n    Er betrachtet sie lange. Sehr lange. Du hörst das leise Kratzen seines Handschuhs auf dem Papier, ein Geräusch wie ein Messer über Glas.\n\n    „Interessant,\" murmelt er schließlich.\n\n    Er blickt auf.\n\n    Direkt in deine Augen.\n\n    „Sie haben viel gesehen. Viel getan.\"\n\n    Eine Pause.\n\n    „Aber reicht es?\"",
       "choices": [
         {
           "id": "show_confidence",
@@ -4694,17 +4694,17 @@
           "next": "c5_s15_control3_question"
         }
       ],
-      "state_notes": [
-        "Set-Piece Teil 1: Kontrolle 3 Beginn",
-        "Letzte und härteste Kontrolle",
-        "conductor_attention beeinflusst nächste Szene",
-        "CONDITION: mention_fragment nur bei tickets_truth >= 12 (Callback auf s13)"
-      ],
+      "atmosphere": "danger",
       "tags": [
         "control",
         "setup"
       ],
-      "atmosphere": "danger"
+      "state_notes": [
+        "Set-Piece Teil 1: Kontrolle 3 Beginn",
+        "Letzte und härteste Kontrolle",
+        "conductor_attention beeinflusst nächste Szene",
+        "CONDITION: mention_fragment nur bei tickets_truth >= 5 (Callback auf s13)"
+      ]
     },
     {
       "id": "c5_s15_control3_question",
@@ -4794,17 +4794,17 @@
           "next": "c5_s16_control3_aftermath"
         }
       ],
+      "atmosphere": "danger",
+      "tags": [
+        "control"
+      ],
       "state_notes": [
         "Set-Piece: Kontrolle 3 Frage (merged 2a + 2b)",
         "Conductor interrogation - escalating pressure",
         "CONDITION: admit_truth_high (tickets_truth >= 4)",
         "CONDITION: ask_comp7_help (rel_comp7 >= 2)",
         "CONDITION: harsh_response (conductor_attention >= 4)"
-      ],
-      "tags": [
-        "control"
-      ],
-      "atmosphere": "danger"
+      ]
     },
     {
       "id": "c5_s16_control3_aftermath",
@@ -4842,18 +4842,18 @@
           "next": "c5_s18_darkness_spreads"
         }
       ],
+      "atmosphere": "somber",
       "state_notes": [
         "Set-Piece: Kontrolle 3 Nachwirkungen (merged aftermath + reflection)",
         "Conductor leaves, protagonist reflects on journey ending",
         "Introduces possibility of staying on train forever (Escape ending foreshadowing)"
-      ],
-      "atmosphere": "somber"
+      ]
     },
     {
       "id": "c5_s18_darkness_spreads",
       "chapter": 5,
       "title": "Ausbreitung",
-      "narrative": "Die Dunkelheit ist jetzt überall.\n\nNicht nur draußen.\n\nAuch im Zug.\n\nDie Lichter werden schwächer. Flackern öfter.\n\nGanze Abschnitte liegen im Dunkeln.\n\nDu gehst durch den Gang.\n\nUnd merkst:\n\nEs gibt weniger Abteile als vorher.\n\nOder… erinnerst du dich falsch?\n\nWar Abteil 4 nicht hier?\n\nOder war es nie da?\n\nDer Zug wird kleiner.\n\nEnger.\n\nAls würde er sich um dich herum zusammenziehen.",
+      "narrative": "Die Dunkelheit ist jetzt überall.\n\n    Nicht nur draußen.\n\n    Auch im Zug.\n\n    Die Lichter werden schwächer. Flackern öfter.\n\n    Ganze Abschnitte liegen im Dunkeln.\n\n    Du gehst durch den Gang.\n\n    Und merkst:\n\n    Es gibt weniger Abteile als vorher.\n\n    Oder… erinnerst du dich falsch?\n\n    War Abteil 4 nicht hier?\n\n    Oder war es nie da?\n\n    Du bleibst stehen und zählst die Türen. Eins. Zwei. Drei. Dann eine Lücke, wo keine sein sollte. Dein Finger streift die Wand: Der Lack ist wärmer als er sein dürfte, und unter der glatten Oberfläche spürst du feine Vibrationen, als würde der Zug atmen.\n\n    Der Zug wird kleiner.\n\n    Enger.\n\n    Als würde er sich um dich herum zusammenziehen.",
       "choices": [
         {
           "id": "keep_walking",
@@ -4891,12 +4891,12 @@
           "next": "c5_s19_final_conversation"
         }
       ],
+      "atmosphere": "dark",
       "state_notes": [
         "Interlude: Zug verändert sich fundamental",
         "Vorbereitung auf Endgame",
         "CONDITION: search_for_door nur bei tickets_escape >= 6 (Callback auf s17)"
-      ],
-      "atmosphere": "dark"
+      ]
     },
     {
       "id": "c5_s19_final_conversation",
@@ -4957,13 +4957,13 @@
           "next": "c5_s20_decision"
         }
       ],
+      "atmosphere": "somber",
       "state_notes": [
         "Letzte Unterhaltung mit Comp7",
         "CONDITION: love_farewell nur bei tickets_love >= 3",
         "Callback zu Beziehung mit Comp7",
         "Vorbereitung auf finale Entscheidung"
-      ],
-      "atmosphere": "somber"
+      ]
     },
     {
       "id": "c5_s20_decision",
@@ -5032,17 +5032,17 @@
           "next": "c5_s22_before_station"
         }
       ],
+      "atmosphere": "tense",
+      "tags": [
+        "setup",
+        "reveal"
+      ],
       "state_notes": [
         "Set-Piece: Finale Entscheidung (merged approach + core)",
         "Wichtigste Entscheidung des Spiels",
         "CONDITION: drift_variant_stay (memory_drift >= 4)",
         "CONDITION: guilt_sacrifice (tickets_guilt >= 3)"
-      ],
-      "tags": [
-        "setup",
-        "reveal"
-      ],
-      "atmosphere": "tense"
+      ]
     },
     {
       "id": "c5_s22_before_station",
@@ -5098,12 +5098,12 @@
           "next": "c5_s24_platform_arrives"
         }
       ],
+      "atmosphere": "somber",
       "state_notes": [
         "Transition: Decision aftermath + approach to final station (merged s22 + s23)",
         "Train reacts to choice, moves toward final station",
         "CONDITION: embrace_drift (memory_drift >= 5)"
-      ],
-      "atmosphere": "somber"
+      ]
     },
     {
       "id": "c5_s24_platform_arrives",
@@ -5124,11 +5124,11 @@
           "next": "c5_end_station_a"
         }
       ],
+      "atmosphere": "tense",
       "state_notes": [
         "Letzte Szene vor Station-End",
         "Aufbau maximaler Spannung"
-      ],
-      "atmosphere": "tense"
+      ]
     },
     {
       "id": "c6_end_station",
@@ -5149,6 +5149,7 @@
           "next": "c7_s01_final_approach"
         }
       ],
+      "atmosphere": "mystic",
       "tags": [
         "station_end"
       ],
@@ -5158,24 +5159,13 @@
         "Name auf Schild (Selbsterkenntnis)",
         "Versionen des Selbst erscheinen",
         "Noch eine letzte Station"
-      ],
-      "atmosphere": "mystic"
+      ]
     },
     {
       "id": "c6_s01_awakening",
       "chapter": 6,
       "title": "Erwachen",
       "narrative": "Du sitzt wieder im Abteil.\n\nWann bist du wieder eingestiegen?\n\nDu erinnerst dich an die Station. An Comp7 im Türrahmen.\n\n„Noch eine Station.\"\n\nAber… war das real?\n\nOder träumst du schon?\n\nDer Zug fährt. Das Rattern ist leiser geworden. Fast unhörbar.\n\nAls würde der Zug selbst… verschwinden.\n\nDu blickst aus dem Fenster.\n\nDraußen ist nichts. Nicht einmal Dunkelheit.\n\nNur Abwesenheit.\n\nDer Geruch im Abteil ist seltsam. Zu sauber. Wie Desinfektionsmittel in einem leeren Krankenhaus.\n\nKalt. Steril.\n\nFalsch.",
-      "narrative_variants": [
-        {
-          "condition": {
-            "type": "bool",
-            "target": "has_tag19",
-            "value": true
-          },
-          "narrative": "Du sitzt wieder im Abteil.\n\nEin rhythmisches Pochen in deiner Tasche weckt dich. Der Schlüsselanhänger ist heiß geworden, eine pulsierende Wärme, die durch den Stoff deiner Hose bis auf die Haut dringt.\n\nWann bist du wieder eingestiegen? Du erinnerst dich an die Station, an Comp7 im Türrahmen.\n\n„Noch eine Station.\"\n\nDer Anhänger vibriert leise, ein tiefer Ton, den du eher im Kiefer spürst als hörst. Er gibt dir ein Gefühl von Gewicht, von Festigkeit in einer Welt, die sich aufzulösen scheint.\n\nDraußen ist nichts. Nur Abwesenheit.\n\nAber das Metall in deiner Hand – oder in deiner Tasche – ist real. Es ist ein Anker. Ein Versprechen, dass es ein Ende gibt.\n\nDer sterile Geruch im Abteil wird von einer Note nach altem Messing und warmem Öl überlagert.\n\nDu bist hier. Du bist noch da."
-        }
-      ],
       "choices": [
         {
           "id": "check_surroundings",
@@ -5219,24 +5209,28 @@
           "next": "c6_s03_comp7_final"
         }
       ],
+      "atmosphere": "dark",
+      "narrative_variants": [
+        {
+          "condition": {
+            "type": "bool",
+            "target": "has_tag19",
+            "value": true
+          },
+          "narrative": "Du sitzt wieder im Abteil.\n\nEin rhythmisches Pochen in deiner Tasche weckt dich. Der Schlüsselanhänger ist heiß geworden, eine pulsierende Wärme, die durch den Stoff deiner Hose bis auf die Haut dringt.\n\nWann bist du wieder eingestiegen? Du erinnerst dich an die Station, an Comp7 im Türrahmen.\n\n„Noch eine Station.\"\n\nDer Anhänger vibriert leise, ein tiefer Ton, den du eher im Kiefer spürst als hörst. Er gibt dir ein Gefühl von Gewicht, von Festigkeit in einer Welt, die sich aufzulösen scheint.\n\nDraußen ist nichts. Nur Abwesenheit.\n\nAber das Metall in deiner Hand – oder in deiner Tasche – ist real. Es ist ein Anker. Ein Versprechen, dass es ein Ende gibt.\n\nDer sterile Geruch im Abteil wird von einer Note nach altem Messing und warmem Öl überlagert.\n\nDu bist hier. Du bist noch da."
+        }
+      ],
       "state_notes": [
         "Eröffnungsszene Kapitel 6",
         "Erwachen nach Station 5 - surreale Atmosphäre",
         "Geruch als sensorischer Anker (steril, falsch)"
-      ],
-      "atmosphere": "dark"
+      ]
     },
     {
       "id": "c6_s03_comp7_final",
       "chapter": 6,
       "title": "Comp7 - Letzte Worte",
       "narrative": "Du findest Comp7 in ihrem Abteil.\n\nSie sitzt auf der Bank. Bewegungslos.\n\nIhre Augen sind geschlossen.\n\n„Du bist noch hier,\" sagt sie, ohne die Augen zu öffnen.\n\n„Ich habe gehofft, du wärst gegangen.\"\n\nEine Pause.\n\n„An der letzten Station. Du hättest gehen können.\"\n\n„Nein,\" flüsterst du. „Die Türen waren zu.\"\n\nSie sieht dich an. „Die Türen sind immer offen. Aber nur für die, die fertig sind. Wer aus Flucht geht, landet nur im nächsten Wagen.\"\n\nSie öffnet die Augen.\n\n„Aber du bist zurückgekommen.\"\n\nIhr Blick ist… traurig. Aber auch… etwas anderes.\n\nAngst? Mitgefühl? Schuld?\n\n„Weißt du, was in Abteil 7 ist?\" fragt sie leise.",
-      "narrative_variants": [
-        {
-          "min_drift": 4,
-          "narrative": "Du findest Comp7... oder war ihr Name Comp8? In ihrem Abteil.\n\nSie sitzt auf der Bank. Bewegungslos.\n\nIhr Gesicht flackert wie eine schlechte Aufnahme. Mal alt, mal jung. Die Narbe an ihrem Kinn wandert von links nach rechts und wieder zurück.\n\nIhre Augen sind geschlossen.\n\n„Du bist noch hier,\" sagt sie. Ihre Stimme klingt doppelt, als würde jemand zeitversetzt mitsprechen.\n\n„Ich habe gehofft, du wärst gegangen.\"\n\nEine Pause. Das Licht im Abteil wird dunkler.\n\n„An der letzten Station. Du hättest gehen können.\"\n\nSie öffnet die Augen. Ihre Pupillen sind nicht rund. Sie sind eckig. Wie Pixel.\n\n„Aber du bist zurückgekommen.\"\n\nIhr Blick ist… schwer.\n\n„Weißt du, was in Abteil 7 ist?\" fragst du dich selbst, aber es ist ihre Stimme, die es ausspricht.\n\n„Wirklich?\""
-        }
-      ],
       "choices": [
         {
           "id": "ask_directly_high_rel",
@@ -5291,12 +5285,18 @@
           "next": "c6_s04_corridor_changes"
         }
       ],
+      "atmosphere": "somber",
+      "narrative_variants": [
+        {
+          "min_drift": 4,
+          "narrative": "Du findest Comp7... oder war ihr Name Comp8? In ihrem Abteil.\n\nSie sitzt auf der Bank. Bewegungslos.\n\nIhr Gesicht flackert wie eine schlechte Aufnahme. Mal alt, mal jung. Die Narbe an ihrem Kinn wandert von links nach rechts und wieder zurück.\n\nIhre Augen sind geschlossen.\n\n„Du bist noch hier,\" sagt sie. Ihre Stimme klingt doppelt, als würde jemand zeitversetzt mitsprechen.\n\n„Ich habe gehofft, du wärst gegangen.\"\n\nEine Pause. Das Licht im Abteil wird dunkler.\n\n„An der letzten Station. Du hättest gehen können.\"\n\nSie öffnet die Augen. Ihre Pupillen sind nicht rund. Sie sind eckig. Wie Pixel.\n\n„Aber du bist zurückgekommen.\"\n\nIhr Blick ist… schwer.\n\n„Weißt du, was in Abteil 7 ist?\" fragst du dich selbst, aber es ist ihre Stimme, die es ausspricht.\n\n„Wirklich?\""
+        }
+      ],
       "state_notes": [
         "Finales Gespräch mit Comp7 vor Abteil 7",
         "CONDITION: ask_directly_high_rel nur bei rel_comp7 >= 1",
         "Vorbereitung auf Abteil 7 Set-Piece"
-      ],
-      "atmosphere": "somber"
+      ]
     },
     {
       "id": "c6_s04_corridor_changes",
@@ -5340,29 +5340,19 @@
           "next": "c6_s05_door_seven"
         }
       ],
+      "atmosphere": "mystic",
       "state_notes": [
         "Interlude: Gang verwandelt sich",
         "Wände warm (körperwarm) - sensorischer Anker",
         "Abteil 7 Tür erscheint",
         "CONDITION: examine_details bei tickets_truth >= 1"
-      ],
-      "atmosphere": "mystic"
+      ]
     },
     {
       "id": "c6_s05_door_seven",
       "chapter": 6,
       "title": "Abteil 7 - Die Tür",
       "narrative": "Du stehst vor der Tür.\n\nDie Nummer ist eingraviert. Tief. Als wäre sie seit Jahrhunderten da.\n\n7.\n\nDeine Hand zittert, als du sie zum Türknauf ausstreckst.\n\nWarm. Der Knauf ist warm.\n\nWie eine Hand.\n\nDu spürst… etwas. Durch die Tür.\n\nEine Präsenz.\n\nEtwas Vertrautes.\n\nEtwas, das du verloren hast.\n\nOder… nie hattest.\n\nOder… vergessen wolltest.\n\nÖffnest du die Tür?",
-      "narrative_variants": [
-        {
-          "condition": {
-            "type": "bool",
-            "target": "has_tag19",
-            "value": true
-          },
-          "narrative": "Du stehst vor der Tür.\n\nDer Schlüsselanhänger in deiner Hand beginnt im Takt deines Herzschlags zu glühen. Ein tiefes, goldenes Licht scheint durch deine geschlossenen Finger.\n\nDie Nummer 7 auf der Tür leuchtet im gleichen Rhythmus auf. Es ist kein Zufall mehr. Es ist eine Resonanz.\n\nDeine Hand zittert nicht mehr, als du sie zum Knauf ausstreckst. Die Hitze des Metalls und die Wärme des Anhängers verschmelzen zu einer einzigen Empfindung.\n\nDu spürst die Präsenz hinter der Tür nicht nur – du hörst sie als einen klaren, reinen Ton, der aus dem Anhänger aufsteigt.\n\nEtwas Vertrautes. Etwas, das dir gehört.\n\nDas Tag 19 ist der Schlüssel. Nicht für ein Schloss, sondern für die Wahrheit.\n\nÖffnest du die Tür?"
-        }
-      ],
       "choices": [
         {
           "id": "open_door_truth",
@@ -5412,16 +5402,26 @@
           "next": "c6_s07_seven_aftermath"
         }
       ],
+      "atmosphere": "tense",
+      "narrative_variants": [
+        {
+          "condition": {
+            "type": "bool",
+            "target": "has_tag19",
+            "value": true
+          },
+          "narrative": "Du stehst vor der Tür.\n\nDer Schlüsselanhänger in deiner Hand beginnt im Takt deines Herzschlags zu glühen. Ein tiefes, goldenes Licht scheint durch deine geschlossenen Finger.\n\nDie Nummer 7 auf der Tür leuchtet im gleichen Rhythmus auf. Es ist kein Zufall mehr. Es ist eine Resonanz.\n\nDeine Hand zittert nicht mehr, als du sie zum Knauf ausstreckst. Die Hitze des Metalls und die Wärme des Anhängers verschmelzen zu einer einzigen Empfindung.\n\nDu spürst die Präsenz hinter der Tür nicht nur – du hörst sie als einen klaren, reinen Ton, der aus dem Anhänger aufsteigt.\n\nEtwas Vertrautes. Etwas, das dir gehört.\n\nDas Tag 19 ist der Schlüssel. Nicht für ein Schloss, sondern für die Wahrheit.\n\nÖffnest du die Tür?"
+        }
+      ],
+      "tags": [
+        "setup"
+      ],
       "state_notes": [
         "Set-Piece Teil 1: Annäherung Abteil 7",
         "CONDITION: open_door_truth nur bei tickets_truth >= 2",
         "Türknauf warm wie Hand - sensorischer Anker",
         "Wichtige Entscheidung: öffnen oder nicht"
-      ],
-      "tags": [
-        "setup"
-      ],
-      "atmosphere": "tense"
+      ]
     },
     {
       "id": "c6_s06_inside_seven",
@@ -5515,17 +5515,17 @@
           "next": "c6_s07_seven_aftermath"
         }
       ],
+      "atmosphere": "mystic",
+      "tags": [
+        "reveal"
+      ],
       "state_notes": [
         "Set-Piece Teil 2: Kern Abteil 7",
         "CONDITION: speak_high_drift nur bei memory_drift >= 3",
         "CONDITION: remember_hard nur bei tickets_truth >= 3",
         "Begegnung mit verschwommener Gestalt (Erinnerung?)",
         "Wichtigste emotionale Szene des Kapitels"
-      ],
-      "tags": [
-        "reveal"
-      ],
-      "atmosphere": "mystic"
+      ]
     },
     {
       "id": "c6_s07_seven_aftermath",
@@ -5591,13 +5591,13 @@
           "next": "c6_s09_boy_final"
         }
       ],
+      "atmosphere": "somber",
       "state_notes": [
         "Set-Piece Teil 3: Nachwirkungen Abteil 7",
         "Tür verschwindet (Drift-Effekt)",
         "Emotionale Transformation",
         "CONDITION: feel_connection bei tickets_love >= 2 (Callback für reach_out)"
-      ],
-      "atmosphere": "somber"
+      ]
     },
     {
       "id": "c6_s09_boy_final",
@@ -5662,13 +5662,13 @@
           "next": "c6_s10_sleepless_gone"
         }
       ],
+      "atmosphere": "somber",
       "state_notes": [
         "Letztes Gespräch mit Junge",
         "CONDITION: share_recorder_experience nur bei has_recorder",
         "Callback zu Recorder aus früheren Kapiteln",
         "Emotionale Verabschiedung"
-      ],
-      "atmosphere": "somber"
+      ]
     },
     {
       "id": "c6_s10_sleepless_gone",
@@ -5723,12 +5723,12 @@
           "next": "c6_s11_announcement"
         }
       ],
+      "atmosphere": "tense",
       "state_notes": [
         "Schlafloser ist verschwunden",
         "Foto-Hinweis auf 1973 \"Letzte Fahrt\"",
         "Mystery-Element: Zeitsprung"
-      ],
-      "atmosphere": "tense"
+      ]
     },
     {
       "id": "c6_s11_announcement",
@@ -5795,29 +5795,19 @@
           "next": "c6_s12_mirror_self"
         }
       ],
+      "atmosphere": "danger",
       "state_notes": [
         "Interlude: Durchsage (merged announcement + message)",
         "Final station announcement with apology",
         "CONDITION: whisper_year (memory_drift >= 3)",
         "CONDITION: listen_for_voice (conductor_attention >= 3)"
-      ],
-      "atmosphere": "danger"
+      ]
     },
     {
       "id": "c6_s12_mirror_self",
       "chapter": 6,
       "title": "Spiegel",
       "narrative": "Du gehst zurück zu deinem Abteil.\n\nAber als du die Tür öffnest… da sitzt jemand.\n\nDu selbst. Ein exaktes Spiegelbild.\n\nDie Gestalt sitzt auf deinem Platz. Blickt aus dem Fenster. Dreht sich langsam um. Sieht dich an.\n\nLächelt. Nicht freundlich. Wissend.\n\n„Endlich,\" sagt die Gestalt mit deiner Stimme. „Ich habe gewartet.\"\n\nSie steht auf. „Weißt du, warum du hier bist? Wirklich?\"\n\nDie Gestalt kommt näher.\n\n---\n\nSie lacht leise. „Ich bin du. Der Teil von dir, den du vergessen wolltest. Der Teil, der weiß, warum du wirklich hier bist.\"\n\nSie streckt die Hand aus. „Komm. Ich zeige es dir.\"\n\n„Oder…\" Die Gestalt deutet zum Fenster. „Du kannst weglaufen. Wie immer.\"\n\n„Deine Wahl.\"\n\nDie Hand bleibt ausgestreckt. Wartend.",
-      "narrative_variants": [
-        {
-          "condition": {
-            "type": "bool",
-            "target": "has_tag19",
-            "value": true
-          },
-          "narrative": "Du öffnest die Tür zu deinem Abteil und erstarrst.\n\nDer Schlüsselanhänger wird schlagartig eiskalt. Die Kälte beißt sich in deine Haut – eine Warnung.\n\nDu selbst. Ein exaktes Spiegelbild sitzt auf deinem Platz.\n\nDie Gestalt dreht sich langsam um. Sie lächelt wissend, aber das Lächeln erreicht die Augen nicht.\n\n„Endlich,\" sagt sie mit deiner Stimme. „Ich habe gewartet.\"\n\nDer Anhänger vibriert nicht mehr rhythmisch, sondern stößt kurze, hektische Impulse aus – wie ein Alarm. Diese Begegnung ist falsch.\n\n„Weißt du, warum du hier bist? Wirklich?\"\n\n---\n\nSie lacht leise. „Ich bin du. Der Teil von dir, den du vergessen wolltest.\"\n\nSie streckt die Hand aus. „Komm. Ich zeige es dir. Oder… du kannst weglaufen. Wie immer.\"\n\nDie Kälte des Metalls in deiner Hand ist der einzige Beweis dafür, dass du noch die Kontrolle hast. Die Gestalt vor dir hat kein solches Gewicht. Sie ist nur ein Schatten.\n\n„Deine Wahl.\""
-        }
-      ],
       "choices": [
         {
           "id": "take_hand_escape",
@@ -5895,17 +5885,27 @@
           "next": "c6_s14_mirror_aftermath"
         }
       ],
-      "state_notes": [
-        "Set-Piece: Spiegel-Selbst (merged encounter + choice)",
-        "Confrontation with repressed self, offer to see truth",
-        "CONDITION: take_hand_escape (tickets_escape >= 2)",
-        "CONDITION: take_hand_guilt (tickets_guilt >= 3)"
+      "atmosphere": "mystic",
+      "narrative_variants": [
+        {
+          "condition": {
+            "type": "bool",
+            "target": "has_tag19",
+            "value": true
+          },
+          "narrative": "Du öffnest die Tür zu deinem Abteil und erstarrst.\n\nDer Schlüsselanhänger wird schlagartig eiskalt. Die Kälte beißt sich in deine Haut – eine Warnung.\n\nDu selbst. Ein exaktes Spiegelbild sitzt auf deinem Platz.\n\nDie Gestalt dreht sich langsam um. Sie lächelt wissend, aber das Lächeln erreicht die Augen nicht.\n\n„Endlich,\" sagt sie mit deiner Stimme. „Ich habe gewartet.\"\n\nDer Anhänger vibriert nicht mehr rhythmisch, sondern stößt kurze, hektische Impulse aus – wie ein Alarm. Diese Begegnung ist falsch.\n\n„Weißt du, warum du hier bist? Wirklich?\"\n\n---\n\nSie lacht leise. „Ich bin du. Der Teil von dir, den du vergessen wolltest.\"\n\nSie streckt die Hand aus. „Komm. Ich zeige es dir. Oder… du kannst weglaufen. Wie immer.\"\n\nDie Kälte des Metalls in deiner Hand ist der einzige Beweis dafür, dass du noch die Kontrolle hast. Die Gestalt vor dir hat kein solches Gewicht. Sie ist nur ein Schatten.\n\n„Deine Wahl.\""
+        }
       ],
       "tags": [
         "setup",
         "reveal"
       ],
-      "atmosphere": "mystic"
+      "state_notes": [
+        "Set-Piece: Spiegel-Selbst (merged encounter + choice)",
+        "Confrontation with repressed self, offer to see truth",
+        "CONDITION: take_hand_escape (tickets_escape >= 2)",
+        "CONDITION: take_hand_guilt (tickets_guilt >= 3)"
+      ]
     },
     {
       "id": "c6_s14_mirror_aftermath",
@@ -5948,28 +5948,18 @@
           "next": "c6_s15_recorder_playback"
         }
       ],
+      "atmosphere": "bittersweet",
       "state_notes": [
         "Set-Piece Teil 3: Nachwirkungen Spiegel",
         "Erinnerungsfragmente tauchen auf",
         "Emotionale Vorbereitung auf Ende"
-      ],
-      "atmosphere": "bittersweet"
+      ]
     },
     {
       "id": "c6_s15_recorder_playback",
       "chapter": 6,
       "title": "Die Kassette",
       "narrative": "Du sitzt da und blickst auf den Kassettenrekorder.\n\nDen Rekorder, den du seit… wann eigentlich?\n\nDu erinnerst dich nicht, ihn bekommen zu haben.\n\nEr war einfach… da.\n\nDeine Finger bewegen sich zum Play-Knopf.\n\nDu hast ihn noch nie gedrückt.\n\nNoch nie die Kassette abgespielt.\n\nWarum?\n\nAngst?\n\nOder… weißt du bereits, was darauf ist?\n\nDer Knopf wartet.\n\nDrückst du ihn?",
-      "narrative_variants": [
-        {
-          "condition": {
-            "type": "bool",
-            "target": "played_recorder",
-            "value": true
-          },
-          "narrative": "Du sitzt da und blickst auf den Kassettenrekorder.\n\nDen Rekorder, den du schon einmal benutzt hast.\n\nDu erinnerst dich an das Klicken. Das Rauschen. Die Stimmen.\n\nAber das fühlt sich an wie ein anderes Leben. Eine andere Schleife.\n\nDeine Finger bewegen sich zum Play-Knopf.\n\nDu zögerst, ihn wieder zu drücken.\n\nWeil du weißt, dass es diesmal anders sein wird.\n\nEndgültiger.\n\nDer Knopf wartet.\n\nDrückst du ihn wieder?"
-        }
-      ],
       "choices": [
         {
           "id": "play_recorder",
@@ -6011,25 +6001,29 @@
           "next": "c6_s16_tag19_discovery"
         }
       ],
+      "atmosphere": "tense",
+      "narrative_variants": [
+        {
+          "condition": {
+            "type": "bool",
+            "target": "played_recorder",
+            "value": true
+          },
+          "narrative": "Du sitzt da und blickst auf den Kassettenrekorder.\n\nDen Rekorder, den du schon einmal benutzt hast.\n\nDu erinnerst dich an das Klicken. Das Rauschen. Die Stimmen.\n\nAber das fühlt sich an wie ein anderes Leben. Eine andere Schleife.\n\nDeine Finger bewegen sich zum Play-Knopf.\n\nDu zögerst, ihn wieder zu drücken.\n\nWeil du weißt, dass es diesmal anders sein wird.\n\nEndgültiger.\n\nDer Knopf wartet.\n\nDrückst du ihn wieder?"
+        }
+      ],
       "state_notes": [
         "Recorder-Szene (nur wenn has_recorder)",
         "CONDITION: play_recorder nur bei has_recorder",
         "Wichtiger Enthüllungsmoment",
         "Callback zu Recorder aus Kapitel 2"
-      ],
-      "atmosphere": "tense"
+      ]
     },
     {
       "id": "c6_s16_tag19_discovery",
       "chapter": 6,
       "title": "Das Etikett",
       "narrative": "Du findest das Tag19-Etikett in deiner Tasche.\n\nDas kleine, gelbe Etikett.\n\nDu hast es… wann gefunden?\n\nKapitel 2? 3?\n\nDie Erinnerung ist verschwommen.\n\nAber jetzt… jetzt siehst du es klarer.\n\nDie Zahl. 19.\n\nUnd darunter, in winziger Schrift:\n\n„Wagen 7, Sitz 19\"\n\n„1973\"\n\n„Letzte Fahrt\"\n\nDein Herz schlägt schneller.\n\nDas ist… dein Platz.\n\nDein Sitz.\n\nAber… 1973?",
-      "narrative_variants": [
-        {
-          "min_drift": 5,
-          "narrative": "Du findest das Etikett.\n\nAber es ist nicht aus Metall. Es ist aus Knochen.\n\nDie Zahl 19 ist eingebrannt. Sie raucht noch leicht.\n\nDarunter steht dein Name. Aber die Buchstaben sind falsch angeordnet.\n\n„Wagen 7, Sitz 19\"\n\n„1973\"\n\n„Letzte Fahrt\"\n\nDu willst es fallen lassen, aber es klebt an deiner Haut.\n\nDein Herz schlägt gegen deine Rippen wie ein Vogel im Käfig.\n\nDas ist… dein Platz.\n\nDein Sitz.\n\n„Komm nach Hause,\" flüstert der Knochen."
-        }
-      ],
       "choices": [
         {
           "id": "understand_tag",
@@ -6083,29 +6077,25 @@
           "next": "c6_s17_lights_failing"
         }
       ],
+      "atmosphere": "mystic",
+      "narrative_variants": [
+        {
+          "min_drift": 5,
+          "narrative": "Du findest das Etikett.\n\nAber es ist nicht aus Metall. Es ist aus Knochen.\n\nDie Zahl 19 ist eingebrannt. Sie raucht noch leicht.\n\nDarunter steht dein Name. Aber die Buchstaben sind falsch angeordnet.\n\n„Wagen 7, Sitz 19\"\n\n„1973\"\n\n„Letzte Fahrt\"\n\nDu willst es fallen lassen, aber es klebt an deiner Haut.\n\nDein Herz schlägt gegen deine Rippen wie ein Vogel im Käfig.\n\nDas ist… dein Platz.\n\nDein Sitz.\n\n„Komm nach Hause,\" flüstert der Knochen."
+        }
+      ],
       "state_notes": [
         "Tag19-Szene (nur wenn has_tag19)",
         "CONDITION: understand_tag nur bei has_tag19",
         "Enthüllung: Sitz 19, 1973, \"Letzte Fahrt\"",
         "Callback zu Tag19 aus Kapitel 2/3"
-      ],
-      "atmosphere": "mystic"
+      ]
     },
     {
       "id": "c6_s17_lights_failing",
       "chapter": 6,
       "title": "Dunkelheit",
       "narrative": "Die Lichter flackern.\n\nDann – aus.\n\nVollständige Dunkelheit.\n\nDu kannst deine Hand vor Augen nicht sehen.\n\nNichts.\n\nNur das Rattern der Räder.\n\nImmer leiser.\n\nImmer… ferner.\n\nAls würde der Zug… aufhören zu existieren.\n\nDann – ein Licht.\n\nSchwach. In der Ferne.\n\nEin Gang-Licht.\n\nEs bewegt sich.\n\nKommt näher.\n\nDer Schaffner.\n\nEr kommt.",
-      "narrative_variants": [
-        {
-          "min_drift": 3,
-          "narrative": "Die Lichter flackern.\n\nDann – aus.\n\nAber es ist keine normale Dunkelheit.\n\nEs ist, als hätte jemand den Raum ausgeschaltet.\n\nDu tastest nach den Wänden. Nichts.\n\nNur unendlicher Raum.\n\nDas Rattern der Räder klingt wie ein Herzschlag.\n\nSehr langsam.\n\nBumm.\n\nBumm.\n\nDann – ein Licht.\n\nEin Riss in der Dunkelheit.\n\nDahinter: Jemand.\n\nDer Schaffner.\n\nEr tritt durch den Riss."
-        },
-        {
-          "min_drift": 5,
-          "narrative": "Die Lichter flackern.\n\nUnd bleiben an.\n\nAber alles andere ist weg.\n\nKeine Wände. Kein Boden. Keine Decke.\n\nDu schwebst im weißen Nichts.\n\nDer Zug ist eine Zeichnung auf Papier.\n\nUnd jemand radiert sie gerade aus.\n\nDu siehst deine Hände verblassen.\n\n„Noch nicht,\" sagt eine Stimme.\n\nEin Strich wird gezogen. Schwarz auf Weiß.\n\nEr wird zu einer Tür.\n\nDer Schaffner tritt hindurch.\n\nEr besteht aus Tinte und Schatten."
-        }
-      ],
       "choices": [
         {
           "id": "wait_for_conductor",
@@ -6142,13 +6132,23 @@
           "next": "c6_s18_offer"
         }
       ],
+      "atmosphere": "dark",
+      "narrative_variants": [
+        {
+          "min_drift": 3,
+          "narrative": "Die Lichter flackern.\n\nDann – aus.\n\nAber es ist keine normale Dunkelheit.\n\nEs ist, als hätte jemand den Raum ausgeschaltet.\n\nDu tastest nach den Wänden. Nichts.\n\nNur unendlicher Raum.\n\nDas Rattern der Räder klingt wie ein Herzschlag.\n\nSehr langsam.\n\nBumm.\n\nBumm.\n\nDann – ein Licht.\n\nEin Riss in der Dunkelheit.\n\nDahinter: Jemand.\n\nDer Schaffner.\n\nEr tritt durch den Riss."
+        },
+        {
+          "min_drift": 5,
+          "narrative": "Die Lichter flackern.\n\nUnd bleiben an.\n\nAber alles andere ist weg.\n\nKeine Wände. Kein Boden. Keine Decke.\n\nDu schwebst im weißen Nichts.\n\nDer Zug ist eine Zeichnung auf Papier.\n\nUnd jemand radiert sie gerade aus.\n\nDu siehst deine Hände verblassen.\n\n„Noch nicht,\" sagt eine Stimme.\n\nEin Strich wird gezogen. Schwarz auf Weiß.\n\nEr wird zu einer Tür.\n\nDer Schaffner tritt hindurch.\n\nEr besteht aus Tinte und Schatten."
+        }
+      ],
       "state_notes": [
         "Interlude: Totale Dunkelheit",
         "Schaffner nähert sich (Licht)",
         "Vorbereitung auf Angebot",
         "CONDITION: hold_tag19 nur bei has_tag19"
-      ],
-      "atmosphere": "dark"
+      ]
     },
     {
       "id": "c6_s18_offer",
@@ -6232,17 +6232,17 @@
           "next": "c6_s20_offer_aftermath"
         }
       ],
+      "atmosphere": "tense",
+      "tags": [
+        "setup",
+        "reveal"
+      ],
       "state_notes": [
         "Set-Piece: Das Angebot (merged approach + choice)",
         "Conductor offers exit with memory vs staying with forgetting",
         "CONDITION: choose_memory_love (tickets_love >= 2)",
         "CONDITION: choose_forget_escape (tickets_escape >= 3)"
-      ],
-      "tags": [
-        "setup",
-        "reveal"
-      ],
-      "atmosphere": "tense"
+      ]
     },
     {
       "id": "c6_s20_offer_aftermath",
@@ -6275,12 +6275,12 @@
           "next": "c6_s21_final_reflection"
         }
       ],
+      "atmosphere": "somber",
       "state_notes": [
         "Set-Piece Teil 3: Nachwirkungen Angebot",
         "Warnung: Letzte Station kommt",
         "Emotionale Vorbereitung"
-      ],
-      "atmosphere": "somber"
+      ]
     },
     {
       "id": "c6_s21_final_reflection",
@@ -6325,12 +6325,12 @@
           "next": "c6_s22_conductor_last"
         }
       ],
+      "atmosphere": "somber",
       "state_notes": [
         "Finale Reflexion über die gesamte Reise",
         "Emotionale Vorbereitung auf Ending",
         "Callback zu allen wichtigen Momenten"
-      ],
-      "atmosphere": "somber"
+      ]
     },
     {
       "id": "c6_s22_conductor_last",
@@ -6386,29 +6386,19 @@
           "next": "c6_s23_platform_ahead"
         }
       ],
+      "atmosphere": "mystic",
       "state_notes": [
         "Letzter Schaffner-Moment",
         "CONDITION: remember_high_attention nur bei conductor_attention >= 4",
         "Fahrkarte als Erinnerungs-Trigger",
         "Wichtige Enthüllung"
-      ],
-      "atmosphere": "mystic"
+      ]
     },
     {
       "id": "c6_s23_platform_ahead",
       "chapter": 6,
       "title": "Der letzte Bahnsteig",
       "narrative": "Der Zug wird langsamer. Spürbar langsamer.\n\nDas Rattern wird leiser. Die Vibration lässt nach.\n\nDein Körper wird nach vorn gezogen. Du spürst ein Kribbeln in den Handflächen, als wäre die Luft elektrisch.\n\nDas Licht draußen wird heller und kälter zugleich. Du lehnst dich vor, die Stirn fast am Glas.\n\nDu spürst… etwas. Eine Veränderung in der Luft. In der Zeit. In allem.\n\n---\n\nDraußen erscheint ein Bahnsteig. Der letzte Bahnsteig.\n\nEr ist… real. Nicht wie die anderen. Nicht verschwommen oder traumhaft. Real. Fest. Da.\n\nDu siehst… Menschen. Schemen. Gestalten. Sie warten.\n\nAuf dich? Auf den Zug?\n\nDu erkennst niemanden. Aber… da ist ein Gefühl. Von Vertrautheit. Von… Heimkehr.\n\nOder von Ende. Oder beides.",
-      "narrative_variants": [
-        {
-          "condition": {
-            "type": "bool",
-            "target": "has_tag19",
-            "value": true
-          },
-          "narrative": "Der Zug wird langsamer. Spürbar langsamer.\n\nDer Schlüsselanhänger in deiner Hand erwacht. Ein Kribbeln, dann ein Vibrieren, das sich durch deinen ganzen Körper zieht.\n\nDas Licht draußen wird heller. Du lehnst dich vor, die Stirn fast am Glas.\n\n---\n\nDraußen erscheint ein Bahnsteig. Der letzte Bahnsteig.\n\nDer Anhänger vibriert jetzt mit einer solchen Intensität, dass er fast ein Geräusch macht – eine leise, summende Melodie.\n\nDie Schemen und Gestalten auf dem Bahnsteig werden durch den Anhänger schärfer gezeichnet. Sein rhythmisches Pochen wirkt wie ein Herzschlag für die Welt da draußen.\n\nEs ist nicht nur ein Bahnsteig. Es ist das Ende einer Reise, die viel zu lange gedauert hat.\n\nDu spürst durch das Metall eine tiefe, unerschütterliche Vertrautheit. Ein Gefühl von Heimkehr, so stark, dass es die Tränen in deine Augen treibt.\n\nDer Anhänger ist ruhig geworden jetzt. Eine sanfte, stetige Wärme.\n\nDu bist bereit."
-        }
-      ],
       "choices": [
         {
           "id": "feel_hope",
@@ -6447,12 +6437,22 @@
           "next": "c6_s25_final_moment"
         }
       ],
+      "atmosphere": "mystic",
+      "narrative_variants": [
+        {
+          "condition": {
+            "type": "bool",
+            "target": "has_tag19",
+            "value": true
+          },
+          "narrative": "Der Zug wird langsamer. Spürbar langsamer.\n\nDer Schlüsselanhänger in deiner Hand erwacht. Ein Kribbeln, dann ein Vibrieren, das sich durch deinen ganzen Körper zieht.\n\nDas Licht draußen wird heller. Du lehnst dich vor, die Stirn fast am Glas.\n\n---\n\nDraußen erscheint ein Bahnsteig. Der letzte Bahnsteig.\n\nDer Anhänger vibriert jetzt mit einer solchen Intensität, dass er fast ein Geräusch macht – eine leise, summende Melodie.\n\nDie Schemen und Gestalten auf dem Bahnsteig werden durch den Anhänger schärfer gezeichnet. Sein rhythmisches Pochen wirkt wie ein Herzschlag für die Welt da draußen.\n\nEs ist nicht nur ein Bahnsteig. Es ist das Ende einer Reise, die viel zu lange gedauert hat.\n\nDu spürst durch das Metall eine tiefe, unerschütterliche Vertrautheit. Ein Gefühl von Heimkehr, so stark, dass es die Tränen in deine Augen treibt.\n\nDer Anhänger ist ruhig geworden jetzt. Eine sanfte, stetige Wärme.\n\nDu bist bereit."
+        }
+      ],
       "state_notes": [
         "Transition: Train arrival at final station (merged s23 + s24)",
         "Train slows, platform appears - real this time",
         "Figures waiting, feeling of homecoming or ending"
-      ],
-      "atmosphere": "mystic"
+      ]
     },
     {
       "id": "c6_s25_final_moment",
@@ -6496,13 +6496,13 @@
           "next": "c6_end_station"
         }
       ],
+      "atmosphere": "tense",
       "state_notes": [
         "Letzter Moment vor dem Ende",
         "Emotionale Klimax",
         "Übergang zu Endstation",
         "CONDITION: hesitate_moment bei tickets_guilt >= 3"
-      ],
-      "atmosphere": "tense"
+      ]
     },
     {
       "id": "c7_end_station",
@@ -6595,6 +6595,7 @@
           "next": "ending_limbo_01"
         }
       ],
+      "atmosphere": "mystic",
       "tags": [
         "station_end"
       ],
@@ -6604,24 +6605,13 @@
         "FALLBACK: Limbo Ending (nicht entscheiden)",
         "Jedes Ending führt zu 2 interaktiven Epilog-Szenen",
         "R1: Engine erhoeht memory_drift/station_count automatisch (keine manuellen station_end-Effects)"
-      ],
-      "atmosphere": "mystic"
+      ]
     },
     {
       "id": "c7_s01_final_approach",
       "chapter": 7,
       "title": "Die letzte Annäherung",
       "narrative": "Du steigst wieder ein.\n\nZum letzten Mal.\n\nDie Türen schließen sich hinter dir.\n\nEndgültig.\n\nDer Zug setzt sich in Bewegung.\n\nAber es fühlt sich anders an.\n\nSchwerer. Langsamer.\n\nAls würde der Zug selbst… zögern.\n\nDie Luft ist dick. Schwer zu atmen.\n\nNicht stickig. Einfach… dicht.\n\nAls wäre sie aus etwas anderem gemacht.\n\nAus Zeit vielleicht.\n\nOder aus Erinnerungen.\n\nDu gehst den Gang entlang.\n\nDie Wände sind jetzt durchsichtig.\n\nNicht ganz. Aber du kannst… hindurchsehen.\n\nSchemen. Bewegungen.\n\nAndere Versionen dieses Gangs.\n\nAndere Zeiten.\n\nAndere Fahrgäste.\n\nAber alle… verschwinden.\n\nLangsam.\n\nWie Rauch.",
-      "narrative_variants": [
-        {
-          "condition": {
-            "type": "bool",
-            "target": "has_tag19",
-            "value": true
-          },
-          "narrative": "Du steigst wieder ein. Zum letzten Mal.\n\nDie Türen schließen sich mit einem Geräusch, das der Schlüsselanhänger in deiner Hand als tiefes, metallisches Echo wiedergibt. Er ist schwerer geworden, ein bleiernes Gewicht, das dich nach unten zieht, tiefer in den Kern des Zuges.\n\nDer Zug setzt sich in Bewegung, und durch das Tag 19 spürst du den Widerstand der Zeit selbst. Die Luft ist nicht nur dicht – sie schmeckt nach Messing und Elektrizität.\n\nDie Wände sind durchsichtig, und wo andere nur Schemen sehen, erkennst du durch den Anhänger klare Fragmente deiner eigenen Geschichte. Du siehst nicht nur Rauch, sondern die Gesichter derer, die du verloren hast, eingefroren in Momenten, die nie endeten.\n\nDer Anhänger vibriert mit einer Frequenz, die die durchsichtigen Wände zum Zittern bringt. Es ist keine passive Beobachtung mehr. Es ist eine Resonanz.\n\nDu bist kein Passagier mehr. Du bist der Anker."
-        }
-      ],
       "choices": [
         {
           "id": "observe_walls",
@@ -6676,13 +6666,23 @@
           "next": "c7_s02_interlude_silence"
         }
       ],
+      "atmosphere": "dark",
+      "narrative_variants": [
+        {
+          "condition": {
+            "type": "bool",
+            "target": "has_tag19",
+            "value": true
+          },
+          "narrative": "Du steigst wieder ein. Zum letzten Mal.\n\nDie Türen schließen sich mit einem Geräusch, das der Schlüsselanhänger in deiner Hand als tiefes, metallisches Echo wiedergibt. Er ist schwerer geworden, ein bleiernes Gewicht, das dich nach unten zieht, tiefer in den Kern des Zuges.\n\nDer Zug setzt sich in Bewegung, und durch das Tag 19 spürst du den Widerstand der Zeit selbst. Die Luft ist nicht nur dicht – sie schmeckt nach Messing und Elektrizität.\n\nDie Wände sind durchsichtig, und wo andere nur Schemen sehen, erkennst du durch den Anhänger klare Fragmente deiner eigenen Geschichte. Du siehst nicht nur Rauch, sondern die Gesichter derer, die du verloren hast, eingefroren in Momenten, die nie endeten.\n\nDer Anhänger vibriert mit einer Frequenz, die die durchsichtigen Wände zum Zittern bringt. Es ist keine passive Beobachtung mehr. Es ist eine Resonanz.\n\nDu bist kein Passagier mehr. Du bist der Anker."
+        }
+      ],
       "state_notes": [
         "Eröffnungsszene Kapitel 7 (Finale)",
         "Zug verändert sich drastisch",
         "Wände durchsichtig (Zeitschichten sichtbar)",
         "CONDITION: touch_walls_memories bei memory_drift >= 2"
-      ],
-      "atmosphere": "dark"
+      ]
     },
     {
       "id": "c7_s02_interlude_silence",
@@ -6715,14 +6715,14 @@
           "next": "c7_s02_interlude_silence_b"
         }
       ],
-      "state_notes": [
-        "Interlude Part 1: Akustisches Vakuum",
-        "Split für Pacing"
-      ],
+      "atmosphere": "tense",
       "tags": [
         "interlude"
       ],
-      "atmosphere": "tense"
+      "state_notes": [
+        "Interlude Part 1: Akustisches Vakuum",
+        "Split für Pacing"
+      ]
     },
     {
       "id": "c7_s02_interlude_silence_b",
@@ -6766,14 +6766,14 @@
           "next": "c7_s03_comp7_goodbye"
         }
       ],
-      "state_notes": [
-        "Interlude Part 2: Physische Isolation",
-        "Vorbereitung auf Comp7 Abschied"
-      ],
+      "atmosphere": "tense",
       "tags": [
         "interlude"
       ],
-      "atmosphere": "tense"
+      "state_notes": [
+        "Interlude Part 2: Physische Isolation",
+        "Vorbereitung auf Comp7 Abschied"
+      ]
     },
     {
       "id": "c7_s03_comp7_goodbye",
@@ -6846,13 +6846,13 @@
           "next": "c7_s04_boy_transformation"
         }
       ],
+      "atmosphere": "somber",
       "state_notes": [
         "Comp7 Abschied",
         "CONDITION: say_goodbye_high_rel nur bei rel_comp7 >= 2",
         "Comp7 verschwindet",
         "Tür zur Wahrheit"
-      ],
-      "atmosphere": "somber"
+      ]
     },
     {
       "id": "c7_s04_boy_recognized",
@@ -6945,16 +6945,16 @@
           "next": "c7_s05_interlude_timeshift"
         }
       ],
+      "atmosphere": "somber",
+      "tags": [
+        "reveal"
+      ],
       "state_notes": [
         "TRUTH >= 4: Protagonist erkennt den Jungen als verlorene Unschuld",
         "REVEAL: Der Junge ist das Selbst vor 1973",
         "CONDITION: embrace_child nur bei rel_boy >= 1",
         "Integration oder Akzeptanz möglich"
-      ],
-      "tags": [
-        "reveal"
-      ],
-      "atmosphere": "somber"
+      ]
     },
     {
       "id": "c7_s04_boy_transformation",
@@ -7015,16 +7015,16 @@
           "next": "c7_s05_interlude_timeshift"
         }
       ],
+      "atmosphere": "mystic",
+      "tags": [
+        "secret"
+      ],
       "state_notes": [
         "Junge transformiert (Alter flackert)",
         "CONDITION: comfort_boy_high_rel nur bei rel_boy >= 1",
         "Kassette läuft rückwärts",
         "Zeit ist gebrochen"
-      ],
-      "tags": [
-        "secret"
-      ],
-      "atmosphere": "mystic"
+      ]
     },
     {
       "id": "c7_s05_interlude_timeshift",
@@ -7057,14 +7057,14 @@
           "next": "c7_s05_interlude_timeshift_b"
         }
       ],
-      "state_notes": [
-        "Interlude Part 1: Zeit-Anomalie",
-        "Split für Pacing"
-      ],
+      "atmosphere": "mystic",
       "tags": [
         "interlude"
       ],
-      "atmosphere": "mystic"
+      "state_notes": [
+        "Interlude Part 1: Zeit-Anomalie",
+        "Split für Pacing"
+      ]
     },
     {
       "id": "c7_s05_interlude_timeshift_b",
@@ -7108,38 +7108,20 @@
           "next": "c7_s06_announcement_distorted"
         }
       ],
-      "state_notes": [
-        "Interlude Part 2: Raum-Faltung",
-        "Doppelgänger-Begegnung"
-      ],
+      "atmosphere": "dark",
       "tags": [
         "interlude"
       ],
-      "atmosphere": "dark"
+      "state_notes": [
+        "Interlude Part 2: Raum-Faltung",
+        "Doppelgänger-Begegnung"
+      ]
     },
     {
       "id": "c7_s06_announcement_distorted",
       "chapter": 7,
       "title": "Die letzte Ansage",
       "narrative": "Die Lautsprecher knistern.\n\nLauter als je zuvor.\n\nDann – eine Stimme.\n\n„Nächster Halt. Endstation.\"\n\nAber die Stimme… ist falsch.\n\nZu tief. Zu verzerrt.\n\n„Bitte alle… aussteigen.\"\n\nKnistern.\n\n„Alle… außer…\"\n\nDie Stimme stoppt.\n\nDann:\n\n„Alle außer… den Passagieren von Wagen 7, Sitz 19.\"\n\nDein Sitz.\n\n„Ankunft… 19:19 Uhr.\"\n\n„Am 19. September.\"\n\n„1973.\"\n\nDie Lautsprecher kreischen.\n\nDann – Stille.",
-      "narrative_variants": [
-        {
-          "condition": {
-            "type": "bool",
-            "target": "has_tag19",
-            "value": true
-          },
-          "narrative": "Die Lautsprecher knistern, aber der Lärm erreicht dich nicht direkt. Der Schlüsselanhänger in deiner Hand fungiert wie ein Filter, er wandelt das schrille Kreischen in ein rhythmisches Pulsieren um.\n\nDann – eine Stimme. Klarer als je zuvor. Deine eigene Stimme, aufgenommen auf einem Band, das nie existieren sollte.\n\n„Nächster Halt. Endstation.\"\n\nWährend die Stimme von Wagen 7 und Sitz 19 spricht, brennt sich die Zahl 19 auf dem Anhänger in deine Wahrnehmung ein. Sie glüht weißheiß, ein gleißendes Licht, das die Dunkelheit im Gang für einen Moment vertreibt.\n\n„Ankunft… vor fünfzig Jahren.\"\n\nDu spürst durch das Metall das Beben des Aufpralls, den Moment, in dem die Zeit für dich stehen blieb. Es ist kein fernes Ereignis mehr. Es ist jetzt.\n\nDer Anhänger vibriert so stark, dass deine ganze Hand taub wird. Die Stille, die folgt, ist nicht leer. Sie ist gefüllt mit dem Wissen, das du endlich zugelassen hast.\n\nWagen 7. Sitz 19. 19. September 1973.\n\nAlles fällt an seinen Platz."
-        },
-        {
-          "min_drift": 3,
-          "narrative": "Die Lautsprecher knistern.\n\nLeise. Dann laut. Wie ein Schrei.\n\nDann – eine Stimme.\n\n„Nächster Halt. Endstation.\"\n\nDie Stimme ist… deine eigene.\n\n„Bitte alle… aussteigen.\"\n\nKnistern.\n\n„Alle… die überlebt haben.\"\n\nDie Stimme stoppt.\n\nDann:\n\n„Passagier in Wagen 7, Sitz 19.\"\n\nDu.\n\n„Ankunft… vor 50 Jahren.\"\n\n„Am 19. September 1973.\"\n\nDie Lautsprecher bluten. Schwarze Tropfen fallen herab.\n\nDann – Stille."
-        },
-        {
-          "min_drift": 5,
-          "narrative": "Die Lautsprecher explodieren nicht. Sie flüstern.\n\nDirekt in deinem Kopf.\n\n„Endstation.\"\n\n„Du bist schon da.\"\n\n„Seit immer.\"\n\nKnistern.\n\n„Wagen 7, Sitz 19.\"\n\n„Todesursache: Aufprall.\"\n\n„Zeitpunkt: 19:19 Uhr.\"\n\n„Status: Verweigert.\"\n\nDie Stimme lacht.\n\n„Willkommen zuhause."
-        }
-      ],
       "choices": [
         {
           "id": "realize_truth_high_drift",
@@ -7189,17 +7171,35 @@
           "next": "c7_s07_announcement_name"
         }
       ],
-      "state_notes": [
-        "Set-Piece Teil 1: Ansage mit falschen Details",
-        "CONDITION: realize_truth_high_drift nur bei memory_drift >= 3",
-        "Wagen 7, Sitz 19 genannt",
-        "1973 enthüllt"
+      "atmosphere": "danger",
+      "narrative_variants": [
+        {
+          "condition": {
+            "type": "bool",
+            "target": "has_tag19",
+            "value": true
+          },
+          "narrative": "Die Lautsprecher knistern, aber der Lärm erreicht dich nicht direkt. Der Schlüsselanhänger in deiner Hand fungiert wie ein Filter, er wandelt das schrille Kreischen in ein rhythmisches Pulsieren um.\n\nDann – eine Stimme. Klarer als je zuvor. Deine eigene Stimme, aufgenommen auf einem Band, das nie existieren sollte.\n\n„Nächster Halt. Endstation.\"\n\nWährend die Stimme von Wagen 7 und Sitz 19 spricht, brennt sich die Zahl 19 auf dem Anhänger in deine Wahrnehmung ein. Sie glüht weißheiß, ein gleißendes Licht, das die Dunkelheit im Gang für einen Moment vertreibt.\n\n„Ankunft… vor fünfzig Jahren.\"\n\nDu spürst durch das Metall das Beben des Aufpralls, den Moment, in dem die Zeit für dich stehen blieb. Es ist kein fernes Ereignis mehr. Es ist jetzt.\n\nDer Anhänger vibriert so stark, dass deine ganze Hand taub wird. Die Stille, die folgt, ist nicht leer. Sie ist gefüllt mit dem Wissen, das du endlich zugelassen hast.\n\nWagen 7. Sitz 19. 19. September 1973.\n\nAlles fällt an seinen Platz."
+        },
+        {
+          "min_drift": 3,
+          "narrative": "Die Lautsprecher knistern.\n\nLeise. Dann laut. Wie ein Schrei.\n\nDann – eine Stimme.\n\n„Nächster Halt. Endstation.\"\n\nDie Stimme ist… deine eigene.\n\n„Bitte alle… aussteigen.\"\n\nKnistern.\n\n„Alle… die überlebt haben.\"\n\nDie Stimme stoppt.\n\nDann:\n\n„Passagier in Wagen 7, Sitz 19.\"\n\nDu.\n\n„Ankunft… vor 50 Jahren.\"\n\n„Am 19. September 1973.\"\n\nDie Lautsprecher bluten. Schwarze Tropfen fallen herab.\n\nDann – Stille."
+        },
+        {
+          "min_drift": 5,
+          "narrative": "Die Lautsprecher explodieren nicht. Sie flüstern.\n\nDirekt in deinem Kopf.\n\n„Endstation.\"\n\n„Du bist schon da.\"\n\n„Seit immer.\"\n\nKnistern.\n\n„Wagen 7, Sitz 19.\"\n\n„Todesursache: Aufprall.\"\n\n„Zeitpunkt: 19:19 Uhr.\"\n\n„Status: Verweigert.\"\n\nDie Stimme lacht.\n\n„Willkommen zuhause."
+        }
       ],
       "tags": [
         "setup",
         "reveal"
       ],
-      "atmosphere": "danger"
+      "state_notes": [
+        "Set-Piece Teil 1: Ansage mit falschen Details",
+        "CONDITION: realize_truth_high_drift nur bei memory_drift >= 3",
+        "Wagen 7, Sitz 19 genannt",
+        "1973 enthüllt"
+      ]
     },
     {
       "id": "c7_s07_announcement_name",
@@ -7288,16 +7288,16 @@
           "next": "c7_s08_announcement_aftermath"
         }
       ],
+      "atmosphere": "somber",
+      "tags": [
+        "reveal"
+      ],
       "state_notes": [
         "Set-Piece Teil 2: Name wird genannt",
         "CONDITION: accept_memory_truth nur bei tickets_truth >= 4",
         "Vollständige Erinnerung möglich",
         "\"Vergebung\" Schlüsselwort"
-      ],
-      "tags": [
-        "reveal"
-      ],
-      "atmosphere": "somber"
+      ]
     },
     {
       "id": "c7_s08_announcement_aftermath",
@@ -7330,13 +7330,13 @@
           "next": "c7_s09_corridor_dissolve"
         }
       ],
+      "atmosphere": "dark",
       "state_notes": [
         "Set-Piece Teil 3: Nachwirkungen Ansage",
         "Erinnerungsflut",
         "Schuld/Unschuld verschwimmt",
         "Wand warm (Zeit brennt)"
-      ],
-      "atmosphere": "dark"
+      ]
     },
     {
       "id": "c7_s09_corridor_dissolve",
@@ -7374,13 +7374,13 @@
           "next": "c7_s10_passengers_vanish"
         }
       ],
+      "atmosphere": "mystic",
       "state_notes": [
         "Gang löst sich auf",
         "Andere Züge sichtbar (Zeitschichten)",
         "Abteile leer (Schatten zurück)",
         "Liminalität"
-      ],
-      "atmosphere": "mystic"
+      ]
     },
     {
       "id": "c7_s10_passengers_vanish",
@@ -7430,12 +7430,12 @@
           "next": "c7_s11_interlude_memory_flood"
         }
       ],
+      "atmosphere": "dark",
       "state_notes": [
         "Alle Passagiere verschwinden",
         "Spieler allein",
         "Isolation komplett"
-      ],
-      "atmosphere": "dark"
+      ]
     },
     {
       "id": "c7_s11_interlude_memory_flood",
@@ -7468,17 +7468,17 @@
           "next": "c7_s11b_memory_aftershock"
         }
       ],
+      "atmosphere": "somber",
+      "tags": [
+        "interlude",
+        "reveal"
+      ],
       "state_notes": [
         "Interlude: Erinnerungsflut (Split Part 1)",
         "1973 Unfall angedeutet",
         "Split für Pacing",
         "Zug als Limbus/Fegefeuer"
-      ],
-      "tags": [
-        "interlude",
-        "reveal"
-      ],
-      "atmosphere": "somber"
+      ]
     },
     {
       "id": "c7_s11b_memory_aftershock",
@@ -7521,32 +7521,22 @@
           "next": "c7_s12_seven_offer"
         }
       ],
-      "state_notes": [
-        "Interlude: Erinnerungsflut (Split Part 2)",
-        "1973 Unfall enthüllt",
-        "Verständnis der Situation"
-      ],
+      "atmosphere": "somber",
       "tags": [
         "interlude",
         "reveal"
       ],
-      "atmosphere": "somber"
+      "state_notes": [
+        "Interlude: Erinnerungsflut (Split Part 2)",
+        "1973 Unfall enthüllt",
+        "Verständnis der Situation"
+      ]
     },
     {
       "id": "c7_s12_seven_offer",
       "chapter": 7,
       "title": "Abteil 7 - Das letzte Angebot",
       "narrative": "Du stehst wieder vor Abteil 7.\n\nDie Tür ist da.\n\nWar sie nicht verschwunden?\n\nAber jetzt ist sie wieder da.\n\nUnd sie ist… offen.\n\nEinen Spaltbreit.\n\nLicht scheint heraus.\n\nWarmes, goldenes Licht.\n\nEine Stimme ruft von innen:\n\n„Komm herein.\"\n\nEs ist… deine Stimme.\n\nAber auch… nicht.\n\n„Ich habe auf dich gewartet.\"\n\n„Fünfzig Jahre.\"\n\n„Oder fünfzig Minuten.\"\n\n„Zeit ist hier… anders.\"\n\n„Komm. Wir können es beenden.\"\n\n„Gemeinsam.\"\n\nDie Tür öffnet sich weiter.\n\nDas Licht wird heller.\n\nBlendend.",
-      "narrative_variants": [
-        {
-          "condition": {
-            "type": "bool",
-            "target": "has_tag19",
-            "value": true
-          },
-          "narrative": "Du stehst wieder vor Abteil 7. Die Tür ist da, massiv und realer als alles andere im Zug.\n\nSie ist offen. Ein Spaltbreit goldenes Licht dringt heraus, aber es blendet dich nicht. Der Schlüsselanhänger in deiner Hand erzeugt ein schützendes Feld, eine kühle Brise, die das Feuer des Lichts abmildert.\n\nEine Stimme ruft von innen – es ist deine eigene, aber sie klingt geheilt, vollständig. „Komm herein. Ich habe auf dich gewartet. Fünfzig Jahre… oder nur diesen einen Moment.\"\n\nDer Anhänger vibriert sanft, ein beständiges, beruhigendes Brummen, das dir den Weg weist. Er zieht dich förmlich zur Tür hin, ein sanfter magnetischer Sog, dem du vertrauen kannst.\n\n„Komm. Wir können es beenden. Gemeinsam.\"\n\nDie Tür öffnet sich weit. Das Licht flutet den Gang, doch durch das Tag 19 siehst du die Strukturen dahinter – den Weg nach Hause.\n\nDu trittst über die Schwelle."
-        }
-      ],
       "choices": [
         {
           "id": "enter_seven_recognized",
@@ -7597,16 +7587,26 @@
           "next": "c7_s13_seven_price"
         }
       ],
+      "atmosphere": "mystic",
+      "narrative_variants": [
+        {
+          "condition": {
+            "type": "bool",
+            "target": "has_tag19",
+            "value": true
+          },
+          "narrative": "Du stehst wieder vor Abteil 7. Die Tür ist da, massiv und realer als alles andere im Zug.\n\nSie ist offen. Ein Spaltbreit goldenes Licht dringt heraus, aber es blendet dich nicht. Der Schlüsselanhänger in deiner Hand erzeugt ein schützendes Feld, eine kühle Brise, die das Feuer des Lichts abmildert.\n\nEine Stimme ruft von innen – es ist deine eigene, aber sie klingt geheilt, vollständig. „Komm herein. Ich habe auf dich gewartet. Fünfzig Jahre… oder nur diesen einen Moment.\"\n\nDer Anhänger vibriert sanft, ein beständiges, beruhigendes Brummen, das dir den Weg weist. Er zieht dich förmlich zur Tür hin, ein sanfter magnetischer Sog, dem du vertrauen kannst.\n\n„Komm. Wir können es beenden. Gemeinsam.\"\n\nDie Tür öffnet sich weit. Das Licht flutet den Gang, doch durch das Tag 19 siehst du die Strukturen dahinter – den Weg nach Hause.\n\nDu trittst über die Schwelle."
+        }
+      ],
+      "tags": [
+        "setup"
+      ],
       "state_notes": [
         "Set-Piece Teil 1: Abteil 7 Finale",
         "CONDITION: enter_seven nur bei tickets_truth >= 5",
         "Eigene Stimme ruft",
         "Letztes Angebot"
-      ],
-      "tags": [
-        "setup"
-      ],
-      "atmosphere": "mystic"
+      ]
     },
     {
       "id": "c7_s13_comp7_recognized",
@@ -7699,18 +7699,18 @@
           "next": "c7_s14_seven_decision"
         }
       ],
+      "atmosphere": "somber",
+      "tags": [
+        "reveal",
+        "secret"
+      ],
       "state_notes": [
         "TRUTH >= 4: Protagonist erkennt Comp7 als Liebe/Bindung-Teil",
         "REVEAL: Comp7 ist der Teil, der nicht loslassen konnte",
         "CONDITION: release_attachment nur bei tickets_guilt >= 3",
         "Integration oder Loslassen möglich",
         "Emotionaler Höhepunkt"
-      ],
-      "tags": [
-        "reveal",
-        "secret"
-      ],
-      "atmosphere": "somber"
+      ]
     },
     {
       "id": "c7_s13_seven_price",
@@ -7795,18 +7795,18 @@
           "next": "c7_s14_seven_decision"
         }
       ],
+      "atmosphere": "danger",
+      "tags": [
+        "reveal",
+        "secret"
+      ],
       "state_notes": [
         "Set-Piece Teil 2: Preis enthüllt",
         "CONDITION: leave_shadow nur bei tickets_guilt >= 3",
         "CONDITION: embrace_shadow nur bei tickets_love >= 3",
         "CONDITION: stay_together nur bei tickets_escape >= 4",
         "Schatten-Selbst Konfrontation"
-      ],
-      "tags": [
-        "reveal",
-        "secret"
-      ],
-      "atmosphere": "danger"
+      ]
     },
     {
       "id": "c7_s14_seven_decision",
@@ -7839,12 +7839,12 @@
           "next": "c7_s15_recorder_trigger"
         }
       ],
+      "atmosphere": "mystic",
       "state_notes": [
         "Set-Piece Teil 3: Entscheidung/Verschmelzung",
         "Selbst-Integration",
         "Transformation"
-      ],
-      "atmosphere": "mystic"
+      ]
     },
     {
       "id": "c7_s15_recorder_trigger",
@@ -7904,13 +7904,13 @@
           "next": "c7_s19_interlude_train_stops"
         }
       ],
+      "atmosphere": "tense",
       "state_notes": [
         "Recorder Trigger (nur wenn has_recorder)",
         "CONDITION: play_recorder_final nur bei has_recorder",
         "CONDITION: destroy_recorder nur bei has_recorder",
         "Verzweigung: mit/ohne Recorder-Szenen"
-      ],
-      "atmosphere": "tense"
+      ]
     },
     {
       "id": "c7_s16_recorder_playback",
@@ -7948,16 +7948,16 @@
           "next": "c7_s18_recorder_aftermath"
         }
       ],
+      "atmosphere": "danger",
+      "tags": [
+        "reveal"
+      ],
       "state_notes": [
         "Set-Piece Teil 1: Recorder Playback (conditional)",
         "Nur erreichbar wenn has_recorder",
         "Eigene Stimme von 1973",
         "Unfall-Moment aufgezeichnet"
-      ],
-      "tags": [
-        "reveal"
-      ],
-      "atmosphere": "danger"
+      ]
     },
     {
       "id": "c7_s17_recorder_truth",
@@ -8018,17 +8018,17 @@
           "next": "c7_s18_recorder_aftermath"
         }
       ],
+      "atmosphere": "somber",
+      "tags": [
+        "reveal"
+      ],
       "state_notes": [
         "Set-Piece Teil 2: Vollständige Wahrheit (conditional)",
         "CONDITION: accept_death nur bei tickets_truth >= 6",
         "Tod bestätigt",
         "Zug als Limbus/Fegefeuer bestätigt",
         "Comp7 Stimme"
-      ],
-      "tags": [
-        "reveal"
-      ],
-      "atmosphere": "somber"
+      ]
     },
     {
       "id": "c7_s18_recorder_aftermath",
@@ -8061,28 +8061,18 @@
           "next": "c7_s19_interlude_train_stops"
         }
       ],
+      "atmosphere": "somber",
       "state_notes": [
         "Set-Piece Teil 3: Nachwirkungen Recorder (conditional)",
         "Klarheit über Situation",
         "Vorbereitung auf finale Wahl"
-      ],
-      "atmosphere": "somber"
+      ]
     },
     {
       "id": "c7_s19_interlude_train_stops",
       "chapter": 7,
       "title": "Stillstand",
       "narrative": "Der Zug… hält.\n\nNicht langsam.\n\nPlötzlich.\n\nVollständig.\n\nAber sanft.\n\nWie ein Seufzer.\n\nDie Bewegung, die so lange da war…\n\nIst weg.\n\nErsetzt durch absolute Stille.\n\nAbsolute Ruhe.\n\nDu spürst es.\n\nDas Ende.\n\nEs ist hier.\n\nDie Türen… werden sich öffnen.\n\nJeden Moment.\n\nUnd dann…\n\nDann ist es vorbei.",
-      "narrative_variants": [
-        {
-          "min_drift": 3,
-          "narrative": "Der Zug… hält.\n\nNicht langsam.\n\nWie gebremst.\n\nVollständig.\n\nAber sanft.\n\nWie ein Atemzug.\n\nDie Bewegung, die so lange da war…\n\nIst weg.\n\nErsetzt durch absolute Stille.\n\nAbsolute Ruhe.\n\nDu spürst es.\n\nDas Ende.\n\nEs ist hier.\n\nDie Türen… könnten sich öffnen.\n\nJeden Moment.\n\nUnd dann…\n\nDann ist es vorbei."
-        },
-        {
-          "min_drift": 5,
-          "narrative": "Der Zug… hält.\n\nNicht langsam.\n\nSondern als würde er hängen bleiben.\n\nVollständig.\n\nAber sanft.\n\nWie ein Einrasten.\n\nDie Bewegung, die so lange da war…\n\nIst weg.\n\nErsetzt durch ein dünnes Pfeifen.\n\nAbsolute Ruhe.\n\nDu spürst es.\n\nDas Ende.\n\nEs ist hier.\n\nDie Türen… stehen bereits offen.\n\nJeden Moment.\n\nUnd dann…\n\nDann ist es vorbei."
-        }
-      ],
       "choices": [
         {
           "id": "prepare",
@@ -8120,16 +8110,26 @@
           "next": "c7_s20_conductor_finale"
         }
       ],
+      "atmosphere": "tense",
+      "narrative_variants": [
+        {
+          "min_drift": 3,
+          "narrative": "Der Zug… hält.\n\nNicht langsam.\n\nWie gebremst.\n\nVollständig.\n\nAber sanft.\n\nWie ein Atemzug.\n\nDie Bewegung, die so lange da war…\n\nIst weg.\n\nErsetzt durch absolute Stille.\n\nAbsolute Ruhe.\n\nDu spürst es.\n\nDas Ende.\n\nEs ist hier.\n\nDie Türen… könnten sich öffnen.\n\nJeden Moment.\n\nUnd dann…\n\nDann ist es vorbei."
+        },
+        {
+          "min_drift": 5,
+          "narrative": "Der Zug… hält.\n\nNicht langsam.\n\nSondern als würde er hängen bleiben.\n\nVollständig.\n\nAber sanft.\n\nWie ein Einrasten.\n\nDie Bewegung, die so lange da war…\n\nIst weg.\n\nErsetzt durch ein dünnes Pfeifen.\n\nAbsolute Ruhe.\n\nDu spürst es.\n\nDas Ende.\n\nEs ist hier.\n\nDie Türen… stehen bereits offen.\n\nJeden Moment.\n\nUnd dann…\n\nDann ist es vorbei."
+        }
+      ],
+      "tags": [
+        "interlude"
+      ],
       "state_notes": [
         "Interlude: Zug hält endgültig",
         "Stille/Ruhe",
         "Ende nahe",
         "CONDITION: resist_end bei tickets_escape >= 3"
-      ],
-      "tags": [
-        "interlude"
-      ],
-      "atmosphere": "tense"
+      ]
     },
     {
       "id": "c7_s20_conductor_finale",
@@ -8197,14 +8197,14 @@
           "next": "c7_s20b_last_sacrifice"
         }
       ],
+      "atmosphere": "somber",
       "state_notes": [
         "CONDITION: thank_conductor_high_attention nur bei conductor_attention >= 4",
         "NEW: last_sacrifice Choice führt zu Last-Minute Boost Subszene",
         "Ermöglicht +2 auf beliebiges Ticket (Preis: +5 memory_drift gesamt)",
         "Fahrkarte vollständig",
         "Abschied"
-      ],
-      "atmosphere": "somber"
+      ]
     },
     {
       "id": "c7_s20b_last_sacrifice",
@@ -8281,13 +8281,13 @@
           "next": "c7_s21_photo_revelation"
         }
       ],
+      "atmosphere": "danger",
       "state_notes": [
         "NEW: Last-Minute Boost Subszene",
         "Spieler kann +2 auf gewähltes Ticket bekommen",
         "Preis: +2-3 memory_drift (insgesamt)",
         "Ermöglicht Erreichen von Ending-Schwellenwerten"
-      ],
-      "atmosphere": "danger"
+      ]
     },
     {
       "id": "c7_s21_photo_revelation",
@@ -8342,12 +8342,12 @@
           "next": "c7_s22_tag19_resonance"
         }
       ],
+      "atmosphere": "mystic",
       "state_notes": [
         "Foto Enthuellung: Spieler auf Foto sichtbar (1973)",
         "Rueckseite: \"Letzte Fahrt... Alle angekommen\" - mehrdeutig",
         "CONDITION: trace_anomaly nur bei photo_anomaly"
-      ],
-      "atmosphere": "mystic"
+      ]
     },
     {
       "id": "c7_s22_tag19_final",
@@ -8440,14 +8440,14 @@
           "next": "c7_s23_interlude_doors_open"
         }
       ],
+      "atmosphere": "mystic",
       "state_notes": [
         "SYNÄSTHESIE: Tag wird heiß, vibriert, summt",
         "CONDITION: use_as_anchor nur bei has_tag19 UND tickets_truth >= 5",
         "use_as_anchor: MASSIVER BONUS (+4 Truth, memory_drift auf 0 gesetzt)",
         "CONDITION: let_go_tag nur bei has_tag19",
         "CONDITION: keep_tag nur bei has_tag19 (jetzt negativ: +guilt, +drift)"
-      ],
-      "atmosphere": "mystic"
+      ]
     },
     {
       "id": "c7_s22_tag19_resonance",
@@ -8480,10 +8480,10 @@
           "next": "c7_s22_tag19_final"
         }
       ],
+      "atmosphere": "mystic",
       "state_notes": [
         "Split Part 1: Tag19 Resonanz"
-      ],
-      "atmosphere": "mystic"
+      ]
     },
     {
       "id": "c7_s23_interlude_doors_open",
@@ -8504,16 +8504,16 @@
           "next": "c7_s24_platform_real"
         }
       ],
+      "atmosphere": "mystic",
+      "tags": [
+        "interlude"
+      ],
       "state_notes": [
         "Interlude: Türen öffnen sich",
         "Echtes Licht/echte Luft",
         "Real vs. Traum",
         "Schwelle"
-      ],
-      "tags": [
-        "interlude"
-      ],
-      "atmosphere": "mystic"
+      ]
     },
     {
       "id": "c7_s24_platform_real",
@@ -8558,13 +8558,13 @@
           "next": "c7_s25_final_choice"
         }
       ],
+      "atmosphere": "tense",
       "state_notes": [
         "Realer Bahnsteig",
         "Schild lesbar aber individuell",
         "Jeder sieht sein eigenes Ziel",
         "Letzte Chance zurückzugehen"
-      ],
-      "atmosphere": "tense"
+      ]
     },
     {
       "id": "c7_s25_final_choice",
@@ -8608,14 +8608,14 @@
           "next": "c7_end_station"
         }
       ],
+      "atmosphere": "somber",
       "state_notes": [
         "Letzte Reflexion",
         "Vorbereitung auf Ending",
         "Identitätsfrage",
         "Übergang zu Endstation",
         "CONDITION: look_back_one_last_time bei tickets_truth >= 3"
-      ],
-      "atmosphere": "somber"
+      ]
     },
     {
       "id": "ending_escape_01",
@@ -8636,6 +8636,7 @@
           "next": "ending_escape_02"
         }
       ],
+      "atmosphere": "somber",
       "tags": [
         "ending"
       ],
@@ -8644,8 +8645,7 @@
         "Protagonist bleibt im Zug",
         "Türen schließen sich",
         "Zurück in die Schleife"
-      ],
-      "atmosphere": "somber"
+      ]
     },
     {
       "id": "ending_escape_02",
@@ -8666,6 +8666,7 @@
           "ending": "ESCAPE"
         }
       ],
+      "atmosphere": "dark",
       "tags": [
         "ending",
         "terminal"
@@ -8673,8 +8674,7 @@
       "state_notes": [
         "Escape Ending Part 2",
         "Schleife + Abschluss"
-      ],
-      "atmosphere": "dark"
+      ]
     },
     {
       "id": "ending_guilt_01",
@@ -8695,6 +8695,7 @@
           "next": "ending_guilt_02"
         }
       ],
+      "atmosphere": "somber",
       "tags": [
         "ending"
       ],
@@ -8703,8 +8704,7 @@
         "Protagonist fühlt Schuld",
         "NPCs sind noch im Zug",
         "Schaffner konfrontiert"
-      ],
-      "atmosphere": "somber"
+      ]
     },
     {
       "id": "ending_guilt_02",
@@ -8725,6 +8725,7 @@
           "ending": "GUILT"
         }
       ],
+      "atmosphere": "somber",
       "tags": [
         "ending",
         "terminal"
@@ -8732,8 +8733,7 @@
       "state_notes": [
         "Guilt Ending Part 2",
         "Verantwortung + Abschluss"
-      ],
-      "atmosphere": "somber"
+      ]
     },
     {
       "id": "ending_limbo_01",
@@ -8754,6 +8754,7 @@
           "next": "ending_limbo_02"
         }
       ],
+      "atmosphere": "tense",
       "tags": [
         "ending"
       ],
@@ -8762,8 +8763,7 @@
         "Protagonist kann nicht entscheiden",
         "Auf der Schwelle",
         "Weder-Noch"
-      ],
-      "atmosphere": "tense"
+      ]
     },
     {
       "id": "ending_limbo_02",
@@ -8784,6 +8784,7 @@
           "ending": "LIMBO"
         }
       ],
+      "atmosphere": "dark",
       "tags": [
         "ending",
         "terminal"
@@ -8793,8 +8794,7 @@
         "Protagonist bleibt auf Schwelle",
         "Ewiger Limbo",
         "Finale: Indecision"
-      ],
-      "atmosphere": "dark"
+      ]
     },
     {
       "id": "ending_love_01",
@@ -8815,6 +8815,7 @@
           "next": "ending_love_02"
         }
       ],
+      "atmosphere": "bittersweet",
       "tags": [
         "ending"
       ],
@@ -8822,8 +8823,7 @@
         "Love Ending Part 1",
         "Wiedersehen mit verlorener Liebe",
         "Emotionaler Peak"
-      ],
-      "atmosphere": "bittersweet"
+      ]
     },
     {
       "id": "ending_love_02",
@@ -8844,6 +8844,7 @@
           "ending": "LOVE"
         }
       ],
+      "atmosphere": "bittersweet",
       "tags": [
         "ending",
         "terminal"
@@ -8851,8 +8852,7 @@
       "state_notes": [
         "Love Ending Part 2",
         "Verlorene Zeit & Abschlussszene"
-      ],
-      "atmosphere": "bittersweet"
+      ]
     },
     {
       "id": "ending_truth_01",
@@ -8873,6 +8873,7 @@
           "next": "ending_truth_02"
         }
       ],
+      "atmosphere": "hopeful",
       "tags": [
         "ending"
       ],
@@ -8880,8 +8881,7 @@
         "Truth Ending Part 1",
         "NPCs verabschieden sich",
         "Zug löst sich auf"
-      ],
-      "atmosphere": "hopeful"
+      ]
     },
     {
       "id": "ending_truth_02",
@@ -8902,6 +8902,7 @@
           "ending": "TRUTH"
         }
       ],
+      "atmosphere": "peaceful",
       "tags": [
         "ending",
         "terminal"
@@ -8910,8 +8911,7 @@
         "Truth Ending Part 2",
         "Zeit läuft wieder",
         "Abschluss in einer Szene"
-      ],
-      "atmosphere": "peaceful"
+      ]
     }
   ],
   "endings": {

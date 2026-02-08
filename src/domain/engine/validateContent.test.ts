@@ -46,8 +46,6 @@ describe('validateContent - Graph-Validierung', () => {
     const endings: EndingsCollection = {
       A: {
         id: 'A',
-        titel: 'Ending A',
-        beschreibung: 'You reached ending A.',
         title: 'Ending A',
         narrative: 'You reached ending A.'
       }
@@ -119,8 +117,6 @@ describe('validateContent - Graph-Validierung', () => {
     const endings: EndingsCollection = {
       A: {
         id: 'A',
-        titel: 'Ending A',
-        beschreibung: 'You reached ending A.',
         title: 'Ending A',
         narrative: 'You reached ending A.'
       }
@@ -175,8 +171,6 @@ describe('validateContent - Graph-Validierung', () => {
     const endings: EndingsCollection = {
       A: {
         id: 'A',
-        titel: 'Ending A',
-        beschreibung: 'End.',
         title: 'Ending A',
         narrative: 'End.'
       }
@@ -217,8 +211,6 @@ describe('validateContent - Graph-Validierung', () => {
     const endings: EndingsCollection = {
       A: {
         id: 'A',
-        titel: 'Ending A',
-        beschreibung: 'End.',
         title: 'Ending A',
         narrative: 'End.'
       }
@@ -271,8 +263,6 @@ describe('validateContent - Graph-Validierung', () => {
     const endings: EndingsCollection = {
       A: {
         id: 'A',
-        titel: 'Ending A',
-        beschreibung: 'End.',
         title: 'Ending A',
         narrative: 'End.'
       }
@@ -310,8 +300,6 @@ describe('validateContent - Graph-Validierung', () => {
     const endings: EndingsCollection = {
       A: {
         id: 'A',
-        titel: 'Ending A',
-        beschreibung: 'End.',
         title: 'Ending A',
         narrative: 'End.'
       }
@@ -374,8 +362,6 @@ describe('validateContent - Graph-Validierung', () => {
     const endings: EndingsCollection = {
       A: {
         id: 'A',
-        titel: 'Ending A',
-        beschreibung: 'End.',
         title: 'Ending A',
         narrative: 'End.'
       }

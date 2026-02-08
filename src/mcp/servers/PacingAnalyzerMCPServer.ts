@@ -293,7 +293,7 @@ export class PacingAnalyzerMCPServer extends MCPServerBase {
       if (scene.choices.length > 5) {
         issues.push(`Szene '${sceneId}' hat mehr als 5 Choices (${scene.choices.length})`);
       }
-      if (!scene.narrative && !scene.beschreibung) {
+      if (!scene.narrative) {
         issues.push(`Szene '${sceneId}' hat keinen Text`);
       }
     });
@@ -330,7 +330,7 @@ export class PacingAnalyzerMCPServer extends MCPServerBase {
     let count = 0;
 
     // Haupt-Text
-    const narrative = scene.narrative || scene.beschreibung || '';
+    const narrative = scene.narrative || '';
     count += narrative.split(/\s+/).length;
 
     // Narrative Varianten

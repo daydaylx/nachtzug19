@@ -100,7 +100,7 @@ fun getAvailableChoices(state: GameState, scene: Scene): List<Choice> {
 }
 
 fun resolveSceneNarrative(scene: Scene, state: GameState): String {
-  val baseNarrative = scene.narrative ?: scene.beschreibung ?: ""
+  val baseNarrative = scene.narrative
   val variants = scene.narrative_variants ?: emptyList()
   if (variants.isEmpty()) return baseNarrative
 
@@ -154,7 +154,7 @@ fun transitionToNextScene(
 
   val historyEntry = de.daydaylx.nachtzug19.model.HistoryEntry(
     scene_id = nextState.current_scene_id,
-    choice_id = choice.id ?: choice.text ?: "unknown",
+    choice_id = choice.id ?: choice.label ?: "unknown",
     timestamp = System.currentTimeMillis()
   )
   nextState = nextState.copy(history = nextState.history + historyEntry)
@@ -175,7 +175,7 @@ fun transitionToNextScene(
     transitioned = applyEffects(transitioned, nextScene.entry_effects)
   }
 
-  if (nextScene.chapter != null && nextScene.chapter != transitioned.chapter_index) {
+  if (nextScene.chapter != transitioned.chapter_index) {
     transitioned = transitioned.copy(chapter_index = nextScene.chapter)
   }
 

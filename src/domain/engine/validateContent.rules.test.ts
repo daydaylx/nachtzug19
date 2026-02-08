@@ -153,7 +153,6 @@ describe('validateContent - canonical rules and graph guards', () => {
           { min_drift: 0, narrative: 'invalid drift' },
           { min_drift: 1, narrative: 'ok' },
           { min_drift: 1, narrative: 'duplicate drift' },
-          // @ts-expect-error - intentional empty variant
           { narrative: '' }
         ],
         choices: [
@@ -224,4 +223,3 @@ describe('validateContent - canonical rules and graph guards', () => {
     expect(tooManyError).toBeDefined();
   });
 });
-

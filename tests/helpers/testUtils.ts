@@ -1,6 +1,9 @@
 import { GameState, createInitialState } from '../../src/domain/types';
 
-type PartialGameState = Partial<GameState> & {
+type PartialGameState = Omit<
+  Partial<GameState>,
+  'stats' | 'tickets' | 'pressure' | 'relations' | 'items'
+> & {
   stats?: Partial<GameState['stats']>;
   tickets?: Partial<GameState['tickets']>;
   pressure?: Partial<GameState['pressure']>;
@@ -54,4 +57,3 @@ export function createLocalStorageMock(initial: Record<string, string> = {}) {
 
   return storage;
 }
-

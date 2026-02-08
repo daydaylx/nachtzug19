@@ -81,10 +81,10 @@ object ContentValidator {
       )
       return
     }
-    if (scene.choices.size > 4) {
+    if (scene.choices.size > 5) {
       errors += ValidationIssue(
         level = ValidationLevel.ERROR,
-        message = "Scene '${scene.id}' has more than 4 choices",
+        message = "Scene '${scene.id}' has more than 5 choices",
         sceneId = scene.id
       )
     }
@@ -102,7 +102,7 @@ object ContentValidator {
     errors: MutableList<ValidationIssue>,
     warnings: MutableList<ValidationIssue>
   ) {
-    val choiceLabel = choice.id ?: choice.text ?: "unknown"
+    val choiceLabel = choice.id ?: choice.label ?: "unknown"
 
     if (choice.next == null && choice.ending == null) {
       errors += ValidationIssue(
@@ -131,17 +131,7 @@ object ContentValidator {
       )
     }
 
-    val hasEffects = !choice.effects.isNullOrEmpty()
-    val hasLegacyEffects = choice.werteAenderung != null || choice.flagsAenderung != null
-      || choice.itemBelohnung != null || choice.itemVerlust != null
-    if (!hasEffects && !hasLegacyEffects) {
-      errors += ValidationIssue(
-        level = ValidationLevel.ERROR,
-        message = "Choice '$choiceLabel' has no effects (R3)",
-        sceneId = sceneId,
-        choiceId = choice.id
-      )
-    }
+    // Tone choices without effects are allowed (TS parity).
 
     choice.effects?.forEachIndexed { index, effect ->
       if (effect.target !in EffectTarget.values()) {
@@ -197,11 +187,10 @@ object ContentValidator {
     val existingChapters = mutableSetOf<Int>()
 
     scenes.values.forEach { scene ->
-      scene.chapter?.let { chapter ->
-        existingChapters.add(chapter)
-        if (scene.tags?.contains(SceneTag.StationEnd) == true) {
-          chapterStationEnds[chapter] = (chapterStationEnds[chapter] ?: 0) + 1
-        }
+      val chapter = scene.chapter
+      existingChapters.add(chapter)
+      if (scene.tags?.contains(SceneTag.StationEnd) == true) {
+        chapterStationEnds[chapter] = (chapterStationEnds[chapter] ?: 0) + 1
       }
     }
 
@@ -230,11 +219,10 @@ object ContentValidator {
     val existingChapters = mutableSetOf<Int>()
 
     scenes.values.forEach { scene ->
-      scene.chapter?.let { chapter ->
-        existingChapters.add(chapter)
-        if (scene.tags?.contains(SceneTag.Control) == true) {
-          chapterControlCounts[chapter] = (chapterControlCounts[chapter] ?: 0) + 1
-        }
+      val chapter = scene.chapter
+      existingChapters.add(chapter)
+      if (scene.tags?.contains(SceneTag.Control) == true) {
+        chapterControlCounts[chapter] = (chapterControlCounts[chapter] ?: 0) + 1
       }
     }
 

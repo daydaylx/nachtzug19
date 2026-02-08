@@ -38,6 +38,7 @@ import de.daydaylx.nachtzug19.ui.theme.PixelTypography
  *
  * @see TicketChoice für die Reader Noir Alternative
  */
+@Deprecated("Use TicketChoice instead for Reader Noir UI consistency")
 @Composable
 fun PixelMenu(
   options: List<String>,

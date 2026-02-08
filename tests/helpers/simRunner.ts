@@ -17,7 +17,6 @@ function choiceOrderKey(choice: Choice): string {
   return (
     choice.id ||
     choice.label ||
-    choice.text ||
     ORDER_KEY_FALLBACK
   );
 }
@@ -96,4 +95,3 @@ export function simulateWithPolicy(options: {
 
   return { state, steps, stuck, lastSceneId };
 }
-
