@@ -1,0 +1,123 @@
+{
+  "generated_at": "2026-02-09",
+  "device_status": "adb_device_attached_captured",
+  "selected_scenes": [
+    {
+      "scene_id": "c1_s01_platform",
+      "chapter": 1,
+      "title": "Leerer Bahnsteig",
+      "tags": [
+        "setup"
+      ],
+      "mapped_background": "Platform",
+      "mapped_asset": "bg_loc_platform_v1.png",
+      "asset_bytes": 5662266,
+      "asset_size_kb": 5529.6,
+      "screenshot_status": "captured",
+      "screenshot_file": "docs/evidence/ui-baseline/2026-02-09/medium/c1_s01_platform__before.png"
+    },
+    {
+      "scene_id": "c1_s03_inside_train",
+      "chapter": 1,
+      "title": "Innen",
+      "tags": [],
+      "mapped_background": "Window",
+      "mapped_asset": "bg_loc_window_v1.png",
+      "asset_bytes": 1536962,
+      "asset_size_kb": 1500.9,
+      "screenshot_status": "captured",
+      "screenshot_file": "docs/evidence/ui-baseline/2026-02-09/medium/c1_s03_inside_train__before.png"
+    },
+    {
+      "scene_id": "c2_control_01_approach",
+      "chapter": 2,
+      "title": "Der Schaffner",
+      "tags": [
+        "control"
+      ],
+      "mapped_background": "Control",
+      "mapped_asset": "bg_scene_control_v1.png",
+      "asset_bytes": 14076,
+      "asset_size_kb": 13.7,
+      "screenshot_status": "captured",
+      "screenshot_file": "docs/evidence/ui-baseline/2026-02-09/medium/c2_control_01_approach__before.png"
+    },
+    {
+      "scene_id": "c3_s03b_inside_comp7",
+      "chapter": 3,
+      "title": "Wagen 7",
+      "tags": [
+        "reveal"
+      ],
+      "mapped_background": "Comp7",
+      "mapped_asset": "bg_loc_comp7_v1.png",
+      "asset_bytes": 14697,
+      "asset_size_kb": 14.4,
+      "screenshot_status": "captured",
+      "screenshot_file": "docs/evidence/ui-baseline/2026-02-09/medium/c3_s03b_inside_comp7__before.png"
+    },
+    {
+      "scene_id": "c4_s01_mirror_intro",
+      "chapter": 4,
+      "title": "Spiegel",
+      "tags": [
+        "drift_variant",
+        "reveal"
+      ],
+      "mapped_background": "Mirror",
+      "mapped_asset": "bg_scene_mirror_v1.png",
+      "asset_bytes": 13800,
+      "asset_size_kb": 13.5,
+      "screenshot_status": "captured",
+      "screenshot_file": "docs/evidence/ui-baseline/2026-02-09/medium/c4_s01_mirror_intro__before.png"
+    },
+    {
+      "scene_id": "c6_s11_announcement",
+      "chapter": 6,
+      "title": "Durchsage",
+      "tags": [],
+      "mapped_background": "NightGeneral",
+      "mapped_asset": "bg_scene_night_general_v1.png",
+      "asset_bytes": 2130981,
+      "asset_size_kb": 2081.0,
+      "screenshot_status": "captured",
+      "screenshot_file": "docs/evidence/ui-baseline/2026-02-09/medium/c6_s11_announcement__before.png"
+    },
+    {
+      "scene_id": "c7_end_station",
+      "chapter": 7,
+      "title": "Endstation",
+      "tags": [
+        "station_end"
+      ],
+      "mapped_background": "Platform",
+      "mapped_asset": "bg_loc_platform_v1.png",
+      "asset_bytes": 5662266,
+      "asset_size_kb": 5529.6,
+      "screenshot_status": "captured",
+      "screenshot_file": "docs/evidence/ui-baseline/2026-02-09/medium/c7_end_station__before.png"
+    },
+    {
+      "scene_id": "ending_truth_01",
+      "chapter": 7,
+      "title": "Licht",
+      "tags": [
+        "ending"
+      ],
+      "mapped_background": "Window",
+      "mapped_asset": "bg_loc_window_v1.png",
+      "asset_bytes": 1536962,
+      "asset_size_kb": 1500.9,
+      "screenshot_status": "captured",
+      "screenshot_file": "docs/evidence/ui-baseline/2026-02-09/medium/ending_truth_01__before.png"
+    }
+  ],
+  "capture": {
+    "capture_date": "2026-02-09",
+    "device_serial": "RFCY210JHMJ",
+    "device_model": "SM-S931B",
+    "package": "de.daydaylx.nachtzug19.dev",
+    "screenshot_dir": "docs/evidence/ui-baseline/2026-02-09/medium",
+    "naming": "<scene_id>__before.png"
+  }
+}

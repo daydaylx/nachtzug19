@@ -45,6 +45,7 @@ class GameViewModel(
   private val engine = GameEngine()
   private val _uiState = MutableStateFlow(UiState())
   val uiState: StateFlow<UiState> = _uiState.asStateFlow()
+  private var pendingDebugSceneId: String? = null
 
   private data class HotspotSceneMapping(
     val defaultSceneId: String,
@@ -134,6 +135,7 @@ class GameViewModel(
         }
 
         updateUi(story)
+        applyPendingDebugScene(story)
       } catch (error: Exception) {
         Log.e(TAG, "Failed to load story", error)
         val userMessage = when {
@@ -193,6 +195,14 @@ class GameViewModel(
     }
   }
 
+  fun setDebugScene(sceneId: String) {
+    if (!BuildConfig.DEBUG || sceneId.isBlank()) return
+    pendingDebugSceneId = sceneId
+
+    val story = _uiState.value.story ?: return
+    applyPendingDebugScene(story)
+  }
+
   private fun updateUi(story: StoryContent) {
     val state = engine.state
     val scene = engine.getCurrentScene()
@@ -211,6 +221,21 @@ class GameViewModel(
       resolvedNarrative = narrative,
       ending = ending
     )
+  }
+
+  private fun applyPendingDebugScene(story: StoryContent) {
+    val sceneId = pendingDebugSceneId ?: return
+    if (!story.scenesById.containsKey(sceneId)) {
+      Log.w(TAG, "Debug scene not found: $sceneId")
+      return
+    }
+
+    val next = engine.state.copy(current_scene_id = sceneId)
+    engine.setState(next)
+    updateUi(story)
+    saveCurrentState()
+    pendingDebugSceneId = null
+    Log.d(TAG, "Debug scene override applied: $sceneId")
   }
 
   private fun saveCurrentState() {

@@ -16,12 +16,13 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import de.daydaylx.nachtzug19.R
 import de.daydaylx.nachtzug19.model.SceneTag
+import de.daydaylx.nachtzug19.ui.MotionPolicy
 
 /**
  * Background Asset System for NACHTZUG 19
  *
  * Defines all background images with their resource IDs.
- * Backgrounds crossfade smoothly between scenes (300ms).
+ * Backgrounds crossfade smoothly between scenes.
  */
 sealed class BackgroundAsset(@DrawableRes val resourceId: Int?) {
     // Locations
@@ -55,6 +56,39 @@ sealed class BackgroundAsset(@DrawableRes val resourceId: Int?) {
     data object Default : BackgroundAsset(null)
 }
 
+private fun chapterFallbackBackground(chapter: Int?): BackgroundAsset {
+    return when (chapter) {
+        1 -> BackgroundAsset.Window
+        2 -> BackgroundAsset.Corridor
+        3 -> BackgroundAsset.Comp7
+        4 -> BackgroundAsset.Window
+        else -> BackgroundAsset.NightGeneral
+    }
+}
+
+private fun revealBackground(chapter: Int?): BackgroundAsset {
+    return when (chapter) {
+        1 -> BackgroundAsset.PlatformAlt
+        2 -> BackgroundAsset.Corridor
+        3 -> BackgroundAsset.Comp7
+        4 -> BackgroundAsset.Window
+        else -> chapterFallbackBackground(chapter)
+    }
+}
+
+private fun endingBackground(sceneId: String?): BackgroundAsset {
+    return when {
+        sceneId?.contains("truth") == true -> BackgroundAsset.NightGeneral
+        sceneId?.contains("love") == true || sceneId?.contains("reunion") == true -> BackgroundAsset.Window
+        sceneId?.contains("guilt") == true -> BackgroundAsset.Corridor
+        sceneId?.contains("escape") == true || sceneId?.contains("limbo") == true -> BackgroundAsset.PlatformAlt
+        sceneId?.contains("city") == true -> BackgroundAsset.NightGeneral
+        sceneId?.contains("home") == true -> BackgroundAsset.PlatformAlt
+        sceneId?.contains("library") == true -> BackgroundAsset.Corridor
+        else -> BackgroundAsset.Window
+    }
+}
+
 /**
  * Maps scene tags to appropriate background assets
  *
@@ -68,62 +102,79 @@ fun getBackgroundForTags(
     sceneId: String? = null,
     chapter: Int? = null
 ): BackgroundAsset {
-    if (tags == null || tags.isEmpty()) return BackgroundAsset.NightGeneral
+    // Scene-ID based mapping (highest priority for specific scenes)
+    sceneId?.let { id ->
+        // Chapter 1: Platform scenes
+        if (id.contains("platform") || id.contains("station")) return BackgroundAsset.Platform
 
-    // Priority order: Ending > Terminal > Control > Announcement > Reveal > Secret > Station > Setup > General
+        // Chapter 1: Train exterior
+        if (id.contains("train_exterior") || id.contains("threshold")) return BackgroundAsset.PlatformAlt
 
-    // Ending scenes (highest priority - specific atmosphere)
-    if (tags.contains(SceneTag.Ending)) {
-        // Scene-ID based ending backgrounds
-        return when {
-            sceneId?.contains("city") == true -> BackgroundAsset.EndingCity
-            sceneId?.contains("reunion") == true -> BackgroundAsset.EndingReunion
-            sceneId?.contains("home") == true -> BackgroundAsset.EndingHome
-            sceneId?.contains("library") == true -> BackgroundAsset.EndingLibrary
-            else -> BackgroundAsset.Window
+        // Chapter 1-2: Inside train, compartment scenes
+        if (id.contains("inside_train") || id.contains("find_seat") || id.contains("window")) return BackgroundAsset.Window
+
+        // Chapter 1-2: Sleepless, corridor scenes
+        if (id.contains("sleepless") || id.contains("corridor") || id.contains("breath")) return BackgroundAsset.Corridor
+
+        // Compartment 7 scenes
+        if (id.contains("comp7") || id.contains("compartment7")) return BackgroundAsset.Comp7
+
+        // Recorder/listening scenes
+        if (id.contains("recorder") || id.contains("listening")) {
+            return if ((chapter ?: 0) >= 3) BackgroundAsset.Comp7 else BackgroundAsset.Window
         }
+
+        // Anomaly/passenger scenes: avoid low-detail compartment placeholder
+        if (id.contains("anomaly") || id.contains("passenger")) return BackgroundAsset.Corridor
     }
 
-    // Terminal scenes (final destination)
-    if (tags.contains(SceneTag.Terminal)) return BackgroundAsset.Platform
+    // Tag-based mapping (fallback)
+    tags?.let {
+        // Ending scenes (highest priority)
+        // NOTE: Use stable high-quality assets until dedicated ending backgrounds are replaced.
+        if (it.contains(SceneTag.Ending)) return endingBackground(sceneId)
 
-    // Control scenes (authority, checkpoints)
-    if (tags.contains(SceneTag.Control)) return BackgroundAsset.Control
+        // Terminal scenes (final destination)
+        if (it.contains(SceneTag.Terminal)) return BackgroundAsset.Platform
 
-    // Announcement scenes (public, impersonal)
-    if (tags.contains(SceneTag.Announcement)) return BackgroundAsset.Announcement
+        // Control scenes (authority, checkpoints): avoid low-detail control placeholder
+        if (it.contains(SceneTag.Control)) return BackgroundAsset.Corridor
 
-    // Reveal scenes (truth, reflection)
-    if (tags.contains(SceneTag.Reveal)) return BackgroundAsset.Mirror
+        // Announcement scenes (public, impersonal): avoid flat white announcement placeholder
+        if (it.contains(SceneTag.Announcement)) return BackgroundAsset.Transition
 
-    // Secret scenes (hidden, mysterious)
-    if (tags.contains(SceneTag.Secret)) return BackgroundAsset.Compartment
+        // Reveal scenes (truth, reflection) - context-aware
+        if (it.contains(SceneTag.Reveal)) return revealBackground(chapter)
 
-    // Station scenes
-    if (tags.contains(SceneTag.StationEnd)) return BackgroundAsset.Platform
+        // Secret scenes (hidden, mysterious)
+        if (it.contains(SceneTag.Secret)) return BackgroundAsset.Corridor
 
-    // Setup scenes - context-aware mapping
-    if (tags.contains(SceneTag.Setup)) {
-        return when (chapter) {
-            1 -> BackgroundAsset.Platform  // Chapter 1: Leerer Bahnsteig
-            2 -> BackgroundAsset.Corridor  // Chapter 2: First control
-            3 -> BackgroundAsset.Comp7     // Chapter 3: Wagen 7
-            4 -> BackgroundAsset.Mirror    // Chapter 4: Spiegelungen
-            else -> BackgroundAsset.NightGeneral
+        // Station scenes
+        if (it.contains(SceneTag.StationEnd)) return BackgroundAsset.Platform
+
+        // Setup scenes - context-aware mapping
+        if (it.contains(SceneTag.Setup)) {
+            return when (chapter) {
+                1 -> BackgroundAsset.Platform  // Chapter 1: Leerer Bahnsteig
+                2 -> BackgroundAsset.Corridor  // Chapter 2: First control
+                3 -> BackgroundAsset.Comp7     // Chapter 3: Wagen 7
+                4 -> BackgroundAsset.Window    // Avoid low-detail mirror placeholder
+                else -> chapterFallbackBackground(chapter)
+            }
         }
+
+        // Interlude scenes (transition)
+        if (it.contains(SceneTag.Interlude)) return BackgroundAsset.Transition
     }
 
-    // Interlude scenes (transition)
-    if (tags.contains(SceneTag.Interlude)) return BackgroundAsset.Transition
-
-    // Default: Night general atmosphere
-    return BackgroundAsset.NightGeneral
+    // Chapter-based fallback for scenes without tags
+    return chapterFallbackBackground(chapter)
 }
 
 /**
  * Animated Background Component
  *
- * Displays background images with smooth crossfade transitions (300ms).
+ * Displays background images with smooth crossfade transitions.
  * Applies drift-based color tinting for atmospheric effects.
  *
  * @param currentBackground The background asset to display
@@ -134,6 +185,7 @@ fun getBackgroundForTags(
 fun AnimatedBackground(
     currentBackground: BackgroundAsset,
     driftLevel: Int,
+    motionPolicy: MotionPolicy,
     enabled: Boolean,
     modifier: Modifier = Modifier
 ) {
@@ -150,12 +202,7 @@ fun AnimatedBackground(
         else -> 0f
     }
 
-    Crossfade(
-        targetState = currentBackground,
-        animationSpec = tween(durationMillis = 300),
-        label = "backgroundCrossfade",
-        modifier = modifier
-    ) { background ->
+    val render: @Composable (BackgroundAsset) -> Unit = { background ->
         Box(modifier = Modifier.fillMaxSize()) {
             // Background image or fallback
             if (enabled && background.resourceId != null) {
@@ -172,6 +219,21 @@ fun AnimatedBackground(
                 // Fallback: Dark gradient (matches BackgroundBase)
                 BackgroundBase()
             }
+        }
+    }
+
+    if (motionPolicy.backgroundCrossfadeDurationMs <= 0) {
+        Box(modifier = modifier.fillMaxSize()) {
+            render(currentBackground)
+        }
+    } else {
+        Crossfade(
+            targetState = currentBackground,
+            animationSpec = tween(durationMillis = motionPolicy.backgroundCrossfadeDurationMs),
+            label = "backgroundCrossfade",
+            modifier = modifier
+        ) { background ->
+            render(background)
         }
     }
 }

@@ -173,7 +173,7 @@ fun OverworldScreen(
           .align(Alignment.TopEnd)
           .padding(12.dp)
       ) {
-        Icon(Icons.Default.Settings, contentDescription = "Settings")
+        Icon(Icons.Default.Settings, contentDescription = "Einstellungen")
       }
     }
 
@@ -735,7 +735,7 @@ private fun StoryOverlay(
               .padding(top = 6.dp)
               .fillMaxWidth()
           ) {
-            Text("Zurück zur Overworld")
+            Text("Zurück zur Karte")
           }
         }
       }

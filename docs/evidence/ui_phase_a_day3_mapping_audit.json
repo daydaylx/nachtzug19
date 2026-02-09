@@ -1,0 +1,136 @@
+{
+  "generated_at": "2026-02-08",
+  "scene_count": 181,
+  "asset_distribution": {
+    "bg_loc_platform_v1.png": 19,
+    "bg_loc_platform_alt_v1.png": 11,
+    "bg_loc_window_v1.png": 14,
+    "bg_loc_corridor_v1.png": 33,
+    "bg_loc_comp7_v1.png": 26,
+    "bg_loc_transition_v1.png": 34,
+    "bg_scene_night_general_v1.png": 44
+  },
+  "asset_examples": {
+    "bg_loc_platform_v1.png": [
+      "c1_end_station",
+      "c1_s01_platform",
+      "c1_s01_platform_b",
+      "c1_s01a_platform_details",
+      "c1_s02_train_appears"
+    ],
+    "bg_loc_platform_alt_v1.png": [
+      "c1_s02a_train_exterior",
+      "c1_s02b_threshold",
+      "c7_s25b_threshold_dialog",
+      "c7_s25c_threshold_name",
+      "c7_s25c_threshold_silence"
+    ],
+    "bg_loc_window_v1.png": [
+      "c1_s03_inside_train",
+      "c1_s03a_find_seat",
+      "c1_s03b_window_vibration",
+      "c2_s02_boy_recorder",
+      "c2_s02a_recorder_listening"
+    ],
+    "bg_loc_corridor_v1.png": [
+      "c1_s04_sleepless_intro",
+      "c1_s04a_sleepless_past",
+      "c1_s04b_corridor_breath",
+      "c1_s05_first_anomaly",
+      "c1_s05a_other_passengers"
+    ],
+    "bg_loc_comp7_v1.png": [
+      "c1_s05b_compartment7_tease",
+      "c1_s05c_comp7_listen",
+      "c2_s03_comp7_intro",
+      "c2_s03a_comp7_notebook",
+      "c3_control_02_aftermath"
+    ],
+    "bg_loc_transition_v1.png": [
+      "c2_control_01_aftertalk",
+      "c2_control_01_aftertalk_emma",
+      "c2_control_01_aftertalk_name",
+      "c2_control_01_aftertalk_silence",
+      "c2_s02b1_door_numbers"
+    ],
+    "bg_scene_night_general_v1.png": [
+      "c5_s01_final_preparation",
+      "c5_s04_lights_flicker",
+      "c5_s06_abteil7",
+      "c5_s08_abteil7_aftermath",
+      "c5_s10_boy_reunion"
+    ]
+  },
+  "flagged_assets_in_use": [],
+  "selected_scene_mapping": [
+    {
+      "scene_id": "c1_s01_platform",
+      "chapter": 1,
+      "title": "Leerer Bahnsteig",
+      "tags": [
+        "setup"
+      ],
+      "asset": "bg_loc_platform_v1.png"
+    },
+    {
+      "scene_id": "c1_s03_inside_train",
+      "chapter": 1,
+      "title": "Innen",
+      "tags": [],
+      "asset": "bg_loc_window_v1.png"
+    },
+    {
+      "scene_id": "c2_control_01_approach",
+      "chapter": 2,
+      "title": "Der Schaffner",
+      "tags": [
+        "control"
+      ],
+      "asset": "bg_loc_corridor_v1.png"
+    },
+    {
+      "scene_id": "c3_s03b_inside_comp7",
+      "chapter": 3,
+      "title": "Wagen 7",
+      "tags": [
+        "reveal"
+      ],
+      "asset": "bg_loc_comp7_v1.png"
+    },
+    {
+      "scene_id": "c4_s01_mirror_intro",
+      "chapter": 4,
+      "title": "Spiegel",
+      "tags": [
+        "drift_variant",
+        "reveal"
+      ],
+      "asset": "bg_loc_window_v1.png"
+    },
+    {
+      "scene_id": "c6_s11_announcement",
+      "chapter": 6,
+      "title": "Durchsage",
+      "tags": [],
+      "asset": "bg_scene_night_general_v1.png"
+    },
+    {
+      "scene_id": "c7_end_station",
+      "chapter": 7,
+      "title": "Endstation",
+      "tags": [
+        "station_end"
+      ],
+      "asset": "bg_loc_platform_v1.png"
+    },
+    {
+      "scene_id": "ending_truth_01",
+      "chapter": 7,
+      "title": "Licht",
+      "tags": [
+        "ending"
+      ],
+      "asset": "bg_scene_night_general_v1.png"
+    }
+  ]
+}

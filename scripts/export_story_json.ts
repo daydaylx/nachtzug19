@@ -177,6 +177,7 @@ function normalizeChoice(choice: LegacyChoice, sceneId: string, index: number): 
   if (choice.label !== undefined || choice.text !== undefined) {
     normalized.label = choice.label ?? choice.text;
   }
+  if (choice.weight !== undefined) normalized.weight = choice.weight;
   if (choice.condition !== undefined) normalized.condition = choice.condition;
   if (mergedEffects.length > 0) normalized.effects = mergedEffects;
 

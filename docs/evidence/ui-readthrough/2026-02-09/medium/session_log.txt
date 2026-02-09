@@ -1,0 +1,91 @@
+start_utc=2026-02-08T23:42:13Z
+device_serial=RFCY210JHMJ
+device_model=SM-S931B
+package=de.daydaylx.nachtzug19.dev
+[00:42:13] cycle=1 scene=c1_s01_platform elapsed=0s
+  swipe=1
+  swipe=2
+  swipe=3
+  swipe=4
+  swipe=5
+  swipe=6
+[00:43:54] cycle=2 scene=c1_s03_inside_train elapsed=101s
+  swipe=1
+  swipe=2
+  swipe=3
+  swipe=4
+  swipe=5
+  swipe=6
+[00:45:35] cycle=3 scene=c2_control_01_approach elapsed=202s
+  swipe=1
+  swipe=2
+  swipe=3
+  swipe=4
+  swipe=5
+  swipe=6
+[00:47:16] cycle=4 scene=c3_s03b_inside_comp7 elapsed=303s
+  swipe=1
+  swipe=2
+  swipe=3
+  swipe=4
+  swipe=5
+  swipe=6
+[00:48:57] cycle=5 scene=c4_s01_mirror_intro elapsed=404s
+  swipe=1
+  swipe=2
+  swipe=3
+  swipe=4
+  swipe=5
+  swipe=6
+[00:50:38] cycle=6 scene=c6_s11_announcement elapsed=505s
+  swipe=1
+  swipe=2
+  swipe=3
+  swipe=4
+  swipe=5
+  swipe=6
+[00:52:19] cycle=7 scene=c7_end_station elapsed=606s
+  swipe=1
+  swipe=2
+  swipe=3
+  swipe=4
+  swipe=5
+  swipe=6
+[00:53:59] cycle=8 scene=ending_truth_01 elapsed=706s
+  swipe=1
+  swipe=2
+  swipe=3
+  swipe=4
+  swipe=5
+  swipe=6
+[00:55:40] cycle=9 scene=c1_s01_platform elapsed=807s
+  swipe=1
+  swipe=2
+  swipe=3
+  swipe=4
+  swipe=5
+  swipe=6
+[00:57:21] cycle=10 scene=c1_s03_inside_train elapsed=908s
+  swipe=1
+  swipe=2
+  swipe=3
+  swipe=4
+  swipe=5
+  swipe=6
+[00:59:02] cycle=11 scene=c2_control_01_approach elapsed=1009s
+  swipe=1
+  swipe=2
+  swipe=3
+  swipe=4
+  swipe=5
+  swipe=6
+[01:00:43] cycle=12 scene=c3_s03b_inside_comp7 elapsed=1110s
+  swipe=1
+  swipe=2
+  swipe=3
+  swipe=4
+  swipe=5
+  swipe=6
+end_utc=2026-02-09T00:02:24Z
+duration_seconds=1211
+screenshot_count=24

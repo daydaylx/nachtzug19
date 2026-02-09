@@ -21,6 +21,12 @@ class MainActivity : ComponentActivity() {
       GameViewModelFactory(repository, dataStore)
     )[de.daydaylx.nachtzug19.ui.GameViewModel::class.java]
 
+    if (BuildConfig.DEBUG) {
+      intent?.getStringExtra("debug_scene_id")?.let { sceneId ->
+        viewModel.setDebugScene(sceneId)
+      }
+    }
+
     setContent {
       NachtzugTheme {
         AppRoot(viewModel)

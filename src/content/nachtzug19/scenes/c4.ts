@@ -147,18 +147,13 @@ Die zweite Version formt lautlos Worte: „Wir sind viele.“`,
     id: 'c4_interlude_01_corridor_mirror',
     chapter: 4,
     title: 'Korridor',
-    narrative: `Du verlässt den Waschraum.
+    narrative: `Du reißt den Blick vom Spiegel los und verlässt den Waschraum.
 
 Der Gang vor dir wirkt endlos. Die Fenster zur Linken sind jetzt Spiegel.
 
-Du gehst an ihnen vorbei. In jedem Fenster siehst du eine andere Version von dir.
+Du gehst an ihnen vorbei. In jedem Fenster siehst du eine andere Version von dir: eine weint, eine lacht, eine ist blutverschmiert, eine ist alt.
 
-Eine weint.
-Eine lacht.
-Eine ist blutverschmiert.
-Eine ist alt.
-
-Sie drehen sich alle nach dir um, als du vorbeigehst.`,
+Als du vorbeigehst, drehen sie sich gleichzeitig nach dir um.`,
     choices: [
       {
         id: 'run',
@@ -191,7 +186,7 @@ Sie drehen sich alle nach dir um, als du vorbeigehst.`,
     id: 'c4_interlude_01b_mirror_whisper',
     chapter: 4,
     title: 'Flüstern',
-    narrative: `Du hörst Stimmen, aber sie kommen nicht von den Türen.
+    narrative: `Noch während du weitergehst, hörst du Stimmen, aber sie kommen nicht von den Türen.
 
 Sie kommen aus den Spiegeln. Wie Atem auf Glas. Ein Wort wiederholt sich: „Neunzehn.“`,
     choices: [
@@ -234,7 +229,7 @@ Die Kassette dreht sich langsam. Ein hypnotisches Klicken.
 
 Aus dem Lautsprecher kommt deine eigene Stimme:
 
-„—Kapitel 4. Wieder hier. Ich weiß jetzt, was der Spiegel ist. Er zeigt nicht mich. Er zeigt die, die es nicht geschafft haben.—"
+„—Vierter Durchlauf. Wieder hier. Ich weiß jetzt, was der Spiegel ist. Er zeigt nicht mich. Er zeigt die, die es nicht geschafft haben.—"
 
 Die Stimme bricht ab. Dann schreit sie.`,
     narrative_variants: [
@@ -248,7 +243,7 @@ Er läuft.
 
 Aus dem Lautsprecher kommt deine eigene Stimme:
 
-„—Kapitel 4. Wieder hier. Ich weiß jetzt, was der Spiegel ist. Er zeigt nicht mich. Er zeigt die, die es nicht geschafft haben.—"
+„—Vierter Durchlauf. Wieder hier. Ich weiß jetzt, was der Spiegel ist. Er zeigt nicht mich. Er zeigt die, die es nicht geschafft haben.—"
 
 Die Stimme bricht ab. Dann schreit sie.`
       }
@@ -713,7 +708,7 @@ Als es wieder angeht, ist der Bahnsteig leer.
 
 Du bist allein mit der 19 in deiner Hand.
 
-Kapitel 4 beendet.`,
+Der nächste Halt wartet schon.`,
     choices: [
       {
         id: 'continue_to_c5',

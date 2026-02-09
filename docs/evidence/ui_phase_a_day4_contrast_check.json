@@ -1,0 +1,26 @@
+{
+  "text_rgb": [
+    230,
+    235,
+    224
+  ],
+  "container_over_white_rgb": [
+    59.63,
+    64.62,
+    71.27
+  ],
+  "container_contrast_over_white": 8.54,
+  "mid_gradient_over_white_rgb": [
+    23.89,
+    29.79,
+    37.65
+  ],
+  "mid_gradient_contrast_over_white": 13.86,
+  "edge_with_radial_dim_rgb": [
+    18.63,
+    23.23,
+    29.37
+  ],
+  "edge_contrast_over_white": 14.81,
+  "threshold_wcag_aa_normal": 4.5
+}

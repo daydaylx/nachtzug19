@@ -1,0 +1,62 @@
+======================================================================
+NACHTZUG 19 - Path Simulation (Phase 2)
+======================================================================
+
+Loading scenes...
+  Loaded c1.ts: 18 scenes
+  Loaded c2.ts: 23 scenes
+  Loaded c3.ts: 18 scenes
+  Loaded c4.ts: 17 scenes
+  Loaded c5.ts: 26 scenes
+  Loaded c6.ts: 26 scenes
+  Loaded c7.ts: 43 scenes
+
+Total scenes loaded: 171
+
+Traversing all reachable paths from c1_s01_platform...
+
+======================================================================
+SIMULATION RESULTS
+======================================================================
+
+Scenes visited:        171 / 171
+Choices executed:      412
+Endings reached:       0
+Scenes with variants:  24
+
+Broken links: 5
+  - c7_end_station -> ending_truth_01
+  - c7_end_station -> ending_love_01
+  - c7_end_station -> ending_guilt_01
+  - c7_end_station -> ending_escape_01
+  - c7_end_station -> ending_limbo_01
+
+======================================================================
+COVERAGE: 100.0% of scenes reachable
+======================================================================
+
+WARNING: Missing expected endings:
+  - truth_ending
+  - escape_ending
+  - love_ending
+  - guilt_ending
+
+Scene distribution by chapter:
+  Chapter 1: 18/18 scenes (100%)
+  Chapter 2: 23/23 scenes (100%)
+  Chapter 3: 18/18 scenes (100%)
+  Chapter 4: 17/17 scenes (100%)
+  Chapter 5: 26/26 scenes (100%)
+  Chapter 6: 26/26 scenes (100%)
+  Chapter 7: 43/43 scenes (100%)
+
+Narrative variants by chapter:
+  Chapter 1: 2 scenes with drift variants
+  Chapter 2: 1 scenes with drift variants
+  Chapter 3: 2 scenes with drift variants
+  Chapter 4: 2 scenes with drift variants
+  Chapter 5: 2 scenes with drift variants
+  Chapter 6: 9 scenes with drift variants
+  Chapter 7: 6 scenes with drift variants
+
+Simulation complete.

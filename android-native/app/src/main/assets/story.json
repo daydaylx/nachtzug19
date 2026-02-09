@@ -186,7 +186,7 @@
       "id": "c1_s01_platform_b",
       "chapter": 1,
       "title": "Atmosphäre",
-      "narrative": "Aber du weißt: Du wartest auf etwas. Oder jemanden. Die Gewissheit sitzt in deinem Brustkorb wie ein Stein.\n\nDie Luft riecht nach kaltem Zigarettenrauch und Maschinenöl. Nicht nach frischem Rauch – nach altem. Nach Jahrzehnten. Als hätte jemand die Luft eingefroren, als hier noch geraucht werden durfte, und sie nie wieder aufgetaut. Der Geruch ist so dicht, dass du ihn auf der Zunge schmeckst. Bitter. Metallisch.\n\nAm Rand – auf einer Bank, die du vorhin nicht gesehen hast, schwörst du es – sitzt eine Gestalt. Sie liest eine Zeitung. Die Seiten rascheln nicht. Sie hält sie vollkommen still. Du siehst die Schlagzeile, aber das Datum ist verwischt, verschmiert, als hätte jemand darüber gewischt, bevor die Tinte trocken war. „ÖLKRISE VERSCHÄRFT SICH\", steht da in dieser altmodischen Frakturschrift, die an Grabsteine erinnert. Die Gestalt blättert nicht um. Nicht einmal, als der Wind durch den Bahnsteig fegt.\n\nWelcher Wind? Es gibt keine Fenster hier.\n\nEin Name brennt sich in deine Gedanken. Emma. Nicht wie eine Erinnerung – wie eine Narbe. Ein Gesicht, das du fast sehen kannst. Braune Augen. Sommerspr ossen auf der Nase. Ein Lächeln, das du nie vergessen wolltest. Aber die Details verschwimmen, je mehr du versuchst, sie festzuhalten.\n\nWo ist sie? Warum ist sie nicht hier? Oder… war sie hier? Warst du zu spät?",
+      "narrative": "Aber du weißt: Du wartest auf etwas. Oder jemanden. Die Gewissheit sitzt in deinem Brustkorb wie ein Stein.\n\nDie Luft riecht nach kaltem Zigarettenrauch und Maschinenöl. Nicht nach frischem Rauch – nach altem. Nach Jahrzehnten. Als hätte jemand die Luft eingefroren, als hier noch geraucht werden durfte, und sie nie wieder aufgetaut. Der Geruch ist so dicht, dass du ihn auf der Zunge schmeckst. Bitter. Metallisch.\n\nAm Rand – auf einer Bank, die du vorhin nicht gesehen hast, schwörst du es – sitzt eine Gestalt. Sie liest eine Zeitung. Die Seiten rascheln nicht. Sie hält sie vollkommen still. Du siehst die Schlagzeile, aber das Datum ist verwischt, verschmiert, als hätte jemand darüber gewischt, bevor die Tinte trocken war. „ÖLKRISE VERSCHÄRFT SICH\", steht da in dieser altmodischen Frakturschrift, die an Grabsteine erinnert. Die Gestalt blättert nicht um. Nicht einmal, als der Wind durch den Bahnsteig fegt.\n\nWelcher Wind? Es gibt keine Fenster hier.\n\nEin Name brennt sich in deine Gedanken. Emma. Nicht wie eine Erinnerung – wie eine Narbe. Ein Gesicht, das du fast sehen kannst. Braune Augen. Sommersprossen auf der Nase. Ein Lächeln, das du nie vergessen wolltest. Aber die Details verschwimmen, je mehr du versuchst, das Bild festzuhalten.\n\nWo ist Emma? Warum ist Emma nicht hier? Oder… war Emma hier? Warst du zu spät?",
       "choices": [
         {
           "id": "search_person",
@@ -239,7 +239,7 @@
       "narrative_variants": [
         {
           "min_drift": 5,
-          "narrative": "Die Luft riecht nach kaltem Zigarettenrauch. Die Gestalt mit der Zeitung sitzt näher. Die Schlagzeile: „ENERGIEKRISE—\". Der Rest ist verwischt. Die Gestalt blättert nicht um. Emma. Der Name brennt in deinem Kopf. Du musst sie finden."
+          "narrative": "Die Luft riecht nach kaltem Zigarettenrauch. Die Gestalt mit der Zeitung sitzt näher. Die Schlagzeile: „ENERGIEKRISE—\". Der Rest ist verwischt. Die Gestalt blättert nicht um. Emma. Der Name brennt in deinem Kopf. Du musst Emma finden."
         }
       ],
       "tags": [
@@ -254,7 +254,7 @@
       "id": "c1_s01a_platform_details",
       "chapter": 1,
       "title": "Das Gerät",
-      "narrative": "Du setzt dich in Bewegung. Der Beton unter deinen Sohlen klingt hohl. Am Rand des Bahnsteigs: Eine gelbe Linie, abgeblättert. Dahinter die Schienen. Schwarz. Matt. Als wären sie aus etwas anderem als Metall gemacht.\n\nDu greifst in deine Tasche. Da ist… etwas. Ein Gerät.\n\nEin rechteckiges Ding aus Plastik und Glas. Schwer. Der Bildschirm ist schwarz. Du drückst darauf, und für einen Moment flackert das Display auf – nicht mit Icons oder Apps, sondern mit statischem Rauschen, wie bei einem alten Fernseher.\n\nDann wird es wieder schwarz.\n\nPlötzlich flackert die Neonröhre über dir schneller. Ein, aus, ein, aus. Dein Schatten auf dem Boden streckt sich, wird unnatürlich lang. Ein tiefes Brummen erfüllt die Luft, vibriert in deinem Brustkorb.",
+      "narrative": "Du reißt dich von der Frage los und setzt dich in Bewegung. Der Beton unter deinen Sohlen klingt hohl. Am Rand des Bahnsteigs: Eine gelbe Linie, abgeblättert. Dahinter die Schienen. Schwarz. Matt. Als wären sie aus etwas anderem als Metall gemacht.\n\nDu greifst in deine Tasche. Da ist… etwas. Ein Gerät.\n\nEin rechteckiges Ding aus Plastik und Glas. Schwer. Der Bildschirm ist schwarz. Du drückst darauf, und für einen Moment flackert das Display auf – nicht mit Icons oder Apps, sondern mit statischem Rauschen, wie bei einem alten Fernseher.\n\nDann wird es wieder schwarz.\n\nPlötzlich flackert die Neonröhre über dir schneller. Ein, aus, ein, aus. Dein Schatten auf dem Boden streckt sich, wird unnatürlich lang. Ein tiefes Brummen erfüllt die Luft, vibriert in deinem Brustkorb.",
       "choices": [
         {
           "id": "step_back",
@@ -442,7 +442,7 @@
       "id": "c1_s02b_threshold",
       "chapter": 1,
       "title": "Schwelle",
-      "narrative": "Du stellst einen Fuß auf die Stufe. (Hook)\n\nDas Metall ist feucht, fast glitschig. Nicht nass – aber auch nicht trocken. Eine Feuchtigkeit, die sich anfühlt wie kalter Schweiß. Ein kurzer Geruch von warmem Staub schlägt dir entgegen, süßlich und alt, als würde der Zug ausatmen – einen langsamen, tiefen Atemzug aus seiner Tiefe.\n\nHinter dir klackt die Anzeigetafel einmal, laut und final. Du drehst dich um. Die Ziffern haben gewechselt. 23:48. Eine Minute ist vergangen. Oder sind es zwei? Warst du länger auf dem Bahnsteig, als du dachtest?\n\nDer Nebel kriecht näher. Die Gestalt mit der Zeitung ist verschwunden. War sie jemals da? (Konsequenz)",
+      "narrative": "Du stellst einen Fuß auf die Stufe.\n\nDas Metall ist feucht, fast glitschig. Nicht nass – aber auch nicht trocken. Eine Feuchtigkeit, die sich anfühlt wie kalter Schweiß. Ein kurzer Geruch von warmem Staub schlägt dir entgegen, süßlich und alt, als würde der Zug ausatmen – einen langsamen, tiefen Atemzug aus seiner Tiefe.\n\nHinter dir klackt die Anzeigetafel einmal, laut und final. Du drehst dich um. Die Ziffern haben gewechselt. 23:48. Eine Minute ist vergangen. Oder sind es zwei? Warst du länger auf dem Bahnsteig, als du dachtest?\n\nDer Nebel kriecht näher. Die Gestalt mit der Zeitung ist verschwunden. War sie jemals da?",
       "choices": [
         {
           "id": "step_in",
@@ -481,7 +481,7 @@
       "id": "c1_s03_inside_train",
       "chapter": 1,
       "title": "Innen",
-      "narrative": "Du steigst ein. Die Tür schließt sich mit einem finalen Klack.\n\nStille. Eine zu saubere Stille, als hätte jemand den Ton abgedreht. Der Druck auf deinen Ohren wächst, wie unter Wasser.\n\nDer Wagen ist ein Gang mit Abteilen. Orange-braune Polstersitze, abgenutzt, Siebziger-Jahre-Muster. Messinglampen flackern. Es riecht nach altem Rauch und Pfeifentabak.\n\nDer Zug setzt sich in Bewegung – sanft, schwebend. Kein Ruck.\n\nEmma hätte diesen Zug gehasst. Zu alt. Zu kalt. Zu falsch. Aber sie ist nicht hier. Du musst sie finden.\n\nZur Linken: Ein Mann, mittleren Alters, der aus dem Fenster starrt. Seine Augen sind rot umrandet. Er trägt einen braunen Anzug, der aus der Zeit gefallen wirkt.\n\nZur Rechten: Ein leeres Abteil.",
+      "narrative": "Du antwortest dir nicht, sondern steigst ein. Die Tür schließt sich mit einem finalen Klack.\n\nStille. Eine zu saubere Stille, als hätte jemand den Ton abgedreht. Der Druck auf deinen Ohren wächst, wie unter Wasser.\n\nDer Wagen ist ein Gang mit Abteilen. Orange-braune Polstersitze, abgenutzt, Siebziger-Jahre-Muster. Messinglampen flackern. Es riecht nach altem Rauch und Pfeifentabak.\n\nDer Zug setzt sich in Bewegung – sanft, schwebend. Kein Ruck.\n\nEmma hätte diesen Zug gehasst. Zu alt. Zu kalt. Zu falsch. Aber Emma ist nicht hier. Du musst Emma finden.\n\nZur Linken: Ein Mann, mittleren Alters, der aus dem Fenster starrt. Seine Augen sind rot umrandet. Er trägt einen braunen Anzug, der aus der Zeit gefallen wirkt.\n\nZur Rechten: Ein leeres Abteil.",
       "choices": [
         {
           "id": "talk_to_man",
@@ -601,7 +601,7 @@
       "id": "c1_s03b_window_vibration",
       "chapter": 1,
       "title": "Fensterpuls",
-      "narrative": "Das Glas vibriert kurz. Ein Puls, der durch deine Schläfe fährt, schmerzhaft und präzise.\n\nFür einen Augenblick siehst du nicht die Dunkelheit draußen, sondern Bahnsteige, die sich überlagern – wie Doppelbelichtungen, wie Bilder, die nicht richtig übereinanderliegen. Drei, vier, fünf Bahnsteige gleichzeitig, alle leer.\n\nDann ist alles wieder still. Dein Herzschlag zu laut.",
+      "narrative": "Noch bevor du auf die Stimme reagieren kannst, vibriert das Glas. Ein Puls fährt durch deine Schläfe, schmerzhaft und präzise.\n\nFür einen Augenblick siehst du nicht die Dunkelheit draußen, sondern Bahnsteige, die sich überlagern – wie Doppelbelichtungen, wie Bilder, die nicht richtig übereinanderliegen. Drei, vier, fünf Bahnsteige gleichzeitig, alle leer.\n\nDann ist alles wieder still. Dein Herzschlag zu laut.",
       "choices": [
         {
           "id": "call_back",
@@ -777,7 +777,7 @@
       "id": "c1_s04b_corridor_breath",
       "chapter": 1,
       "title": "Der Atem des Zuges",
-      "narrative": "Ihr steht im Gang. Einen Moment lang scheint der Zug den Atem anzuhalten.\n\nDann ein leises Ausströmen, wie ein Ventil. Die Lampen flackern, und im Glas der Tür siehst du dein Gesicht für einen Wimpernschlag älter.\n\nDer Schlaflose tippt mit dem Finger gegen die Wand. „Hörst du das?\"",
+      "narrative": "Ohne dass ihr es merkt, steht ihr schon im Gang. Einen Moment lang scheint der Zug den Atem anzuhalten.\n\nDann ein leises Ausströmen, wie ein Ventil. Die Lampen flackern, und im Glas der Tür siehst du dein Gesicht für einen Wimpernschlag älter.\n\nDer Schlaflose tippt mit dem Finger gegen die Wand. „Hörst du das?\"",
       "choices": [
         {
           "id": "listen_closer",
@@ -1136,7 +1136,7 @@
               "value": 2
             }
           ],
-          "next": "c2_end_station"
+          "next": "c2_control_01_aftertalk"
         },
         {
           "id": "confront_jacket",
@@ -1153,7 +1153,7 @@
               "value": 1
             }
           ],
-          "next": "c2_end_station"
+          "next": "c2_control_01_aftertalk"
         }
       ],
       "atmosphere": "somber",
@@ -1162,6 +1162,121 @@
       ],
       "state_notes": [
         "Merged Aftermath with Sleepless Talk"
+      ]
+    },
+    {
+      "id": "c2_control_01_aftertalk",
+      "chapter": 2,
+      "title": "Ein Satz im Gang",
+      "narrative": "Der Schlaflose bleibt neben dir im Gang stehen.\n\nDas Rattern wirkt für einen Moment fern, als würde der Zug euch zuhören.\n\n„Bevor wir weiterfahren,\" sagt er leise, „sag irgendwas Echtes.\"",
+      "choices": [
+        {
+          "id": "ask_his_name",
+          "label": "„Wie hießest du, bevor das alles anfing?\"",
+          "effects": [
+            {
+              "type": "set",
+              "target": "mut",
+              "value": 1
+            }
+          ],
+          "next": "c2_control_01_aftertalk_name"
+        },
+        {
+          "id": "say_emma_name",
+          "label": "„Ich suche Emma. Das ist das Einzige, das noch klar ist.\"",
+          "effects": [
+            {
+              "type": "set",
+              "target": "mut",
+              "value": 2
+            }
+          ],
+          "next": "c2_control_01_aftertalk_emma"
+        },
+        {
+          "id": "share_silence",
+          "label": "Nichts sagen und nur neben ihm stehen",
+          "effects": [
+            {
+              "type": "set",
+              "target": "mut",
+              "value": 3
+            }
+          ],
+          "next": "c2_control_01_aftertalk_silence"
+        }
+      ],
+      "atmosphere": "somber",
+      "tags": [
+        "interlude"
+      ],
+      "state_notes": [
+        "Agency: optionaler Mini-Dialog ohne System-Einfluss",
+        "Alle Optionen rekombinieren in c2_end_station"
+      ]
+    },
+    {
+      "id": "c2_control_01_aftertalk_emma",
+      "chapter": 2,
+      "title": "Ein Name bleibt",
+      "narrative": "Bei „Emma\" zuckt etwas in seinem Gesicht, kaum sichtbar.\n\n„Gut,\" murmelt er. „Dann gibt es wenigstens einen Punkt, der nicht verrutscht.\"\n\nEr tippt dir kurz gegen den Ärmel. „Sprich den Namen weiter. Sonst nimmt ihn der Zug.\"",
+      "choices": [
+        {
+          "id": "move_on_after_emma",
+          "label": "Den Namen im Kopf wiederholen",
+          "next": "c2_end_station"
+        }
+      ],
+      "atmosphere": "somber",
+      "tags": [
+        "interlude"
+      ],
+      "state_notes": [
+        "Choice-Reaktion: Emma-Bekenntnis",
+        "Rekombination in c2_end_station"
+      ]
+    },
+    {
+      "id": "c2_control_01_aftertalk_name",
+      "chapter": 2,
+      "title": "Ein verlorener Name",
+      "narrative": "Der Schlaflose blinzelt, als hättest du ihn geweckt.\n\n„Ich hatte mal einen,\" sagt er nach einer Weile. „Er lag mir immer auf der Zunge. Jetzt ist da nur Metallgeschmack.\"\n\nDann nickt er Richtung Fenster. „Wenn deiner noch da ist, halt ihn fest.\"",
+      "choices": [
+        {
+          "id": "move_on_after_name",
+          "label": "Weiter",
+          "next": "c2_end_station"
+        }
+      ],
+      "atmosphere": "somber",
+      "tags": [
+        "interlude"
+      ],
+      "state_notes": [
+        "Choice-Reaktion: Namensfrage",
+        "Rekombination in c2_end_station"
+      ]
+    },
+    {
+      "id": "c2_control_01_aftertalk_silence",
+      "chapter": 2,
+      "title": "Geteilte Stille",
+      "narrative": "Du sagst nichts.\n\nDer Schlaflose sagt auch nichts. Ihr steht nur da, während der Zug durch euch hindurch zu fahren scheint.\n\nNach ein paar Atemzügen flüstert er: „Vielleicht reicht das schon. Nicht allein zu schweigen.\"",
+      "choices": [
+        {
+          "id": "move_on_after_silence",
+          "label": "Weiter",
+          "next": "c2_end_station"
+        }
+      ],
+      "atmosphere": "somber",
+      "tags": [
+        "interlude"
+      ],
+      "state_notes": [
+        "Choice-Reaktion: geteiltes Schweigen",
+        "Rekombination in c2_end_station"
       ]
     },
     {
@@ -1226,7 +1341,7 @@
         },
         {
           "id": "offer_search",
-          "label": "„Ich suche [NAME].\"",
+          "label": "„Ich suche Emma.\"",
           "condition": {
             "type": "bool",
             "target": "memory_search_active",
@@ -1292,7 +1407,7 @@
         "control"
       ],
       "state_notes": [
-        "Agency Fix: \"Suche [NAME]\" option added",
+        "Agency Fix: \"Suche Emma\" option added",
         "Attention Fix: Lie blocked if attention >= 2"
       ]
     },
@@ -1300,7 +1415,7 @@
       "id": "c2_end_station",
       "chapter": 2,
       "title": "Veränderung",
-      "narrative": "Der Zug hält. 23:47 Uhr. Wieder.\n\nDer Bahnsteig ist leer. Aber am Ende steht eine Gestalt. Sie winkt.\n\nDann geht das Licht aus. Als es wieder anspringt, ist sie weg.\n\nDu drehst dich um. Der Wagen hat sich verändert. Der Junge ist weg. Comp7 schreibt.\n\n„Spieler hat Kontrolle 1 überstanden,\" sagt sie. „Geht weiter zu Kapitel 3.\"",
+      "narrative": "Der Zug hält. 23:47 Uhr. Wieder.\n\nDer Bahnsteig ist leer. Aber am Ende steht eine Gestalt. Sie winkt.\n\nDann geht das Licht aus. Als es wieder anspringt, ist sie weg.\n\nDu drehst dich um. Der Wagen hat sich verändert. Der Junge ist weg. Comp7 schreibt.\n\nOhne aufzublicken sagt sie: „Du hast die erste Kontrolle überstanden. Beim nächsten Halt wird es enger.“",
       "choices": [
         {
           "id": "continue_chapter_3",
@@ -1312,7 +1427,7 @@
               "value": 3
             }
           ],
-          "next": "c3_s01_wagen7_locked"
+          "next": "c2_end_station_callback"
         },
         {
           "id": "play_recorder_end",
@@ -1334,7 +1449,7 @@
               "value": true
             }
           ],
-          "next": "c3_s01_wagen7_locked"
+          "next": "c2_end_station_callback"
         }
       ],
       "atmosphere": "somber",
@@ -1343,6 +1458,57 @@
       ],
       "state_notes": [
         "Kapitelende"
+      ]
+    },
+    {
+      "id": "c2_end_station_callback",
+      "chapter": 2,
+      "title": "Nachhall",
+      "narrative": "Der Zug setzt sich wieder in Bewegung.\n\nFür einen Moment denkst du an das, was gerade im Gang zwischen euch stand.\n\nNicht als Information.\n\nAls Haltung.",
+      "choices": [
+        {
+          "id": "continue_to_ch3_after_callback",
+          "label": "Weiter zum nächsten Wagen",
+          "next": "c3_s01_wagen7_locked"
+        }
+      ],
+      "atmosphere": "somber",
+      "narrative_variants": [
+        {
+          "condition": {
+            "type": "compare",
+            "target": "mut",
+            "operator": "==",
+            "value": 1
+          },
+          "narrative": "Der Zug setzt sich wieder in Bewegung.\n\nDir bleibt sein Blick, als du nach seinem Namen gefragt hast.\n\nAls hättet ihr beide gemerkt, dass Erinnern nicht mit Fakten beginnt, sondern mit der Frage, ob man noch jemand sein darf.\n\nDann rattert der Wagen weiter."
+        },
+        {
+          "condition": {
+            "type": "compare",
+            "target": "mut",
+            "operator": "==",
+            "value": 2
+          },
+          "narrative": "Der Zug setzt sich wieder in Bewegung.\n\n„Emma\" hallt in dir nach wie ein kleiner fester Punkt in einem verrutschenden Raum.\n\nDu merkst: Solange ein Name bleibt, bleibt auch Richtung.\n\nDann schluckt das Rattern den Rest."
+        },
+        {
+          "condition": {
+            "type": "compare",
+            "target": "mut",
+            "operator": "==",
+            "value": 3
+          },
+          "narrative": "Der Zug setzt sich wieder in Bewegung.\n\nDie gemeinsame Stille aus dem Gang wirkt noch nach.\n\nKein Trost, eher etwas Nüchternes: Dass man selbst im Schweigen nicht ganz allein sein muss.\n\nDer nächste Wagen kommt näher."
+        }
+      ],
+      "tags": [
+        "interlude"
+      ],
+      "state_notes": [
+        "Später Callback auf c2_control_01_aftertalk",
+        "mut wird hier nur als Flavor-Flag genutzt",
+        "Kein Einfluss auf Endings/Route"
       ]
     },
     {
@@ -1554,7 +1720,7 @@
       "id": "c2_s02_boy_recorder",
       "chapter": 2,
       "title": "Das Angebot",
-      "narrative": "Der Junge nimmt die Kopfhörer ab.\n\n„Du suchst ein Ticket,\" sagt er. „Gibt's nicht. Niemand hat eins.\"\n\nEr drückt auf Play. Ein Knistern, dann eine verzerrte Stimme: „—nächster Halt: [unverständlich]—\"\n\n„Die Station,\" sagt der Junge ernst. „Sie war mal da. Jetzt fehlt sie.\"\n\nEr hält dir den Rekorder hin. „Behalt ihn. Vielleicht ist deine Stimme noch drauf.\"",
+      "narrative": "Dem Surren folgend bleibst du vor dem Jungen stehen. Er nimmt die Kopfhörer ab.\n\n„Du suchst ein Ticket,\" sagt er. „Gibt's nicht. Niemand hat eins.\"\n\nEr drückt auf Play. Ein Knistern, dann eine verzerrte Stimme: „—nächster Halt: [unverständlich]—\"\n\n„Die Station,\" sagt der Junge ernst. „Sie war mal da. Jetzt fehlt sie.\"\n\nEr hält dir den Rekorder hin. „Behalt ihn. Vielleicht ist deine Stimme noch drauf.\"",
       "choices": [
         {
           "id": "take_recorder",
@@ -1656,7 +1822,7 @@
       "id": "c2_s02a_recorder_listening",
       "chapter": 2,
       "title": "Die Stimme",
-      "narrative": "Du nimmst das Gerät. Es ist schwer, kaltes Metall.\n\nDu drückst Play.\n\nZuerst nur Rauschen. Dann zwei Stimmen. Deine – jünger. Und eine zweite.\n\nEmma.\n\n„Warte am Bahnsteig,\" sagt sie. Ihre Stimme bricht. „Bitte komm zurück. Ich kann nicht ohne—\"\n\nDann deine Stimme: „Emma, ich verspreche—\"\n\nAbbruch. Überschrieben von einem tiefen, mechanischen Brummen: „—NACHTZUG 19. Kein Ausstieg.\"\n\nDu stoppst das Band. Dein Herz hämmert. Das war... vor dem Unfall.\n\nAls du aufblickst, ist der Junge weg. Das Abteil ist leer.",
+      "narrative": "Du nimmst das Gerät. Es ist schwer, kaltes Metall.\n\nDu drückst Play.\n\nZuerst nur Rauschen. Dann zwei Stimmen. Deine – jünger. Und eine zweite.\n\nEmma.\n\n„Warte am Bahnsteig,\" sagt Emma. Emmas Stimme bricht. „Bitte komm zurück. Ich kann nicht ohne—\"\n\nDann deine Stimme: „Emma, ich verspreche—\"\n\nAbbruch. Überschrieben von einem tiefen, mechanischen Brummen: „—NACHTZUG 19. Kein Ausstieg.\"\n\nDu stoppst das Band. Dein Herz hämmert. Das war... vor dem Unfall.\n\nAls du aufblickst, ist der Junge weg. Das Abteil ist leer.",
       "choices": [
         {
           "id": "rewind_again",
@@ -1709,6 +1875,11 @@
         "Junge verschwindet plötzlich"
       ],
       "entry_effects": [
+        {
+          "type": "set",
+          "target": "has_recorder",
+          "value": true
+        },
         {
           "type": "set",
           "target": "played_recorder",
@@ -1852,7 +2023,7 @@
       "id": "c2_s03_comp7_intro",
       "chapter": 2,
       "title": "Abteil 7",
-      "narrative": "Am Ende des Gangs sitzt eine Person. Comp7.\n\nVor ihr ein vollgeschriebenes Notizbuch. Ihr Gesicht ist unscharf – dein Blick rutscht ab.\n\nDu öffnest den Mund, um etwas zu sagen.\n\n„Nicht jetzt,\" schnauzt sie, ohne aufzublicken. Ihre Hand fliegt über das Papier, kritzelt hastig.\n\nDann stoppt sie. Atmet aus.\n\n„Entschuldigung.\" Ihre Stimme ist leiser jetzt. „Ich... ich muss das aufschreiben, bevor ich es vergesse.\"\n\nSie sieht dich an. „Du hast den Rekorder. Ich bin Comp7. Ich weiß meinen Namen nicht mehr.\"\n\nSie deutet auf das Buch. „Ich schreibe alles auf. Damit ich nicht vergesse.\"",
+      "narrative": "Mit den verrutschenden Wagennummern noch im Blick erreichst du das Ende des Gangs. Dort sitzt eine Person: Comp7.\n\nVor ihr ein vollgeschriebenes Notizbuch. Ihr Gesicht ist unscharf – dein Blick rutscht ab.\n\nDu öffnest den Mund, um etwas zu sagen.\n\n„Nicht jetzt,\" schnauzt sie, ohne aufzublicken. Ihre Hand fliegt über das Papier, kritzelt hastig.\n\nDann stoppt sie. Atmet aus.\n\n„Entschuldigung.\" Ihre Stimme ist leiser jetzt. „Ich... ich muss das aufschreiben, bevor ich es vergesse.\"\n\nSie sieht dich an. „Du hast den Rekorder. Ich bin Comp7. Ich weiß meinen Namen nicht mehr.\"\n\nSie deutet auf das Buch. „Ich schreibe alles auf. Damit ich nicht vergesse.\"",
       "choices": [
         {
           "id": "ask_notebook",
@@ -1960,7 +2131,7 @@
       "id": "c2_s04_announcement",
       "chapter": 2,
       "title": "Kontrolle",
-      "narrative": "Der Lautsprecher knackt.\n\n„Sehr geehrte Fahrgäste. Wir erreichen in Kürze [unverständlich]. Kontrolle in Wagen 1 bis 4.\"\n\nDas Wort hängt schwer in der Luft. Kontrolle.\n\nDu musst dich entscheiden. Jetzt. Was sagst du ihm?",
+      "narrative": "Kaum hast du dich von Comp7 gelöst, knackt der Lautsprecher.\n\n„Sehr geehrte Fahrgäste. Wir erreichen in Kürze [unverständlich]. Kontrolle in Wagen 1 bis 4.\"\n\nDas Wort hängt schwer in der Luft. Kontrolle.\n\nDu musst dich entscheiden. Jetzt. Was sagst du ihm?",
       "choices": [
         {
           "id": "prepare_truth",
@@ -2242,7 +2413,7 @@
         },
         {
           "id": "offer_search",
-          "label": "„Ich suche [NAME].\"",
+          "label": "„Ich suche Emma.\"",
           "condition": {
             "type": "bool",
             "target": "memory_search_active",
@@ -2359,7 +2530,7 @@
       "id": "c3_s01a_after_station",
       "chapter": 3,
       "title": "Nach dem Halt",
-      "narrative": "Der Zug gleitet lautlos weiter.\n\nDer Schlaflose sitzt drei Reihen weiter hinten; seine Jacke ist jetzt tiefschwarz. In Comp7s leerem Abteil liegt ein Notizbuch.\n\nAuf der Seite steht: „Passagier #[UNLESBAR]: Sucht nach [NAME]. Findet Wagen 7.“",
+      "narrative": "Der Zug gleitet lautlos weiter.\n\nDer Schlaflose sitzt drei Reihen weiter hinten; seine Jacke ist jetzt tiefschwarz. In Comp7s leerem Abteil liegt ein Notizbuch.\n\nAuf der Seite steht: „Passagier #[UNLESBAR]: Sucht nach Emma. Findet Wagen 7.“",
       "choices": [
         {
           "id": "read_notebook",
@@ -2508,7 +2679,7 @@
       "id": "c3_s02_recorder_anomaly",
       "chapter": 3,
       "title": "Die Aufnahme",
-      "narrative": "Du drückst auf Play.\n\nEine Stimme schält sich aus dem Rauschen – es ist deine eigene. Du hörst Dinge, die du noch nicht ausgesprochen hast.\n\nDer Junge nickt langsam: „Der Zug zeichnet alles auf. Vergangenheit und Zukunft.“",
+      "narrative": "Nach einem langen Moment des Schweigens drückst du auf Play.\n\nEine Stimme schält sich aus dem Rauschen – es ist deine eigene. Du hörst Dinge, die du noch nicht ausgesprochen hast.\n\nDer Junge nickt langsam: „Der Zug zeichnet alles auf. Vergangenheit und Zukunft.“",
       "choices": [
         {
           "id": "listen_more",
@@ -2541,6 +2712,16 @@
         }
       ],
       "atmosphere": "danger",
+      "narrative_variants": [
+        {
+          "condition": {
+            "type": "bool",
+            "target": "has_recorder",
+            "value": false
+          },
+          "narrative": "Nach eurem Schweigen drückt der Junge auf Play.\n\nEine Stimme schält sich aus dem Rauschen – es ist deine eigene. Du hörst Dinge, die du noch nicht ausgesprochen hast.\n\nDer Junge nickt langsam: „Der Zug zeichnet alles auf. Vergangenheit und Zukunft.“"
+        }
+      ],
       "tags": [
         "reveal"
       ],
@@ -2590,6 +2771,16 @@
         }
       ],
       "atmosphere": "danger",
+      "narrative_variants": [
+        {
+          "condition": {
+            "type": "bool",
+            "target": "has_recorder",
+            "value": false
+          },
+          "narrative": "Comp7s Stimme auf dem Band: „Er muss etwas geben. Etwas von sich abspalten.“\n\nDann ein Geräusch wie brechendes Eis.\n\nDer Junge hält den Rekorder fest, als würde er ihn vor dir schützen: „Manche Antworten stehen noch nicht drauf.“"
+        }
+      ],
       "tags": [
         "reveal"
       ],
@@ -3010,7 +3201,7 @@
       "id": "c4_end_station",
       "chapter": 4,
       "title": "Ende 4",
-      "narrative": "Eine der Kopien tritt vor. Sie legt die Hand an die Scheibe, genau dort, wo deine ist.\n\nSie formt ein Wort mit den Lippen: „Bald.“\n\nDann schlagen die Türen zu. Das Licht flackert aus.\n\nAls es wieder angeht, ist der Bahnsteig leer.\n\nDu bist allein mit der 19 in deiner Hand.\n\nKapitel 4 beendet.",
+      "narrative": "Eine der Kopien tritt vor. Sie legt die Hand an die Scheibe, genau dort, wo deine ist.\n\nSie formt ein Wort mit den Lippen: „Bald.“\n\nDann schlagen die Türen zu. Das Licht flackert aus.\n\nAls es wieder angeht, ist der Bahnsteig leer.\n\nDu bist allein mit der 19 in deiner Hand.\n\nDer nächste Halt wartet schon.",
       "choices": [
         {
           "id": "continue_to_c5",
@@ -3037,7 +3228,7 @@
       "id": "c4_interlude_01_corridor_mirror",
       "chapter": 4,
       "title": "Korridor",
-      "narrative": "Du verlässt den Waschraum.\n\nDer Gang vor dir wirkt endlos. Die Fenster zur Linken sind jetzt Spiegel.\n\nDu gehst an ihnen vorbei. In jedem Fenster siehst du eine andere Version von dir.\n\nEine weint.\nEine lacht.\nEine ist blutverschmiert.\nEine ist alt.\n\nSie drehen sich alle nach dir um, als du vorbeigehst.",
+      "narrative": "Du reißt den Blick vom Spiegel los und verlässt den Waschraum.\n\nDer Gang vor dir wirkt endlos. Die Fenster zur Linken sind jetzt Spiegel.\n\nDu gehst an ihnen vorbei. In jedem Fenster siehst du eine andere Version von dir: eine weint, eine lacht, eine ist blutverschmiert, eine ist alt.\n\nAls du vorbeigehst, drehen sie sich gleichzeitig nach dir um.",
       "choices": [
         {
           "id": "run",
@@ -3086,7 +3277,7 @@
       "id": "c4_interlude_01b_mirror_whisper",
       "chapter": 4,
       "title": "Flüstern",
-      "narrative": "Du hörst Stimmen, aber sie kommen nicht von den Türen.\n\nSie kommen aus den Spiegeln. Wie Atem auf Glas. Ein Wort wiederholt sich: „Neunzehn.“",
+      "narrative": "Noch während du weitergehst, hörst du Stimmen, aber sie kommen nicht von den Türen.\n\nSie kommen aus den Spiegeln. Wie Atem auf Glas. Ein Wort wiederholt sich: „Neunzehn.“",
       "choices": [
         {
           "id": "answer_whisper",
@@ -3275,7 +3466,7 @@
       "id": "c4_s03_recorder_loop_discovery",
       "chapter": 4,
       "title": "Die Aufnahme",
-      "narrative": "Du findest dich in deinem Abteil wieder. Der Rekorder liegt auf dem Tisch. Er läuft.\n\nDu hast ihn nicht eingeschaltet.\n\nDie Kassette dreht sich langsam. Ein hypnotisches Klicken.\n\nAus dem Lautsprecher kommt deine eigene Stimme:\n\n„—Kapitel 4. Wieder hier. Ich weiß jetzt, was der Spiegel ist. Er zeigt nicht mich. Er zeigt die, die es nicht geschafft haben.—\"\n\nDie Stimme bricht ab. Dann schreit sie.",
+      "narrative": "Du findest dich in deinem Abteil wieder. Der Rekorder liegt auf dem Tisch. Er läuft.\n\nDu hast ihn nicht eingeschaltet.\n\nDie Kassette dreht sich langsam. Ein hypnotisches Klicken.\n\nAus dem Lautsprecher kommt deine eigene Stimme:\n\n„—Vierter Durchlauf. Wieder hier. Ich weiß jetzt, was der Spiegel ist. Er zeigt nicht mich. Er zeigt die, die es nicht geschafft haben.—\"\n\nDie Stimme bricht ab. Dann schreit sie.",
       "choices": [
         {
           "id": "stop_tape",
@@ -3315,7 +3506,7 @@
             "target": "has_recorder",
             "value": false
           },
-          "narrative": "Du findest dich in deinem Abteil wieder. Auf dem Tisch liegt ein Rekorder.\n\nDu besitzt keinen Rekorder. Aber dieser hier… er sieht aus, als hätte er im Feuer gelegen.\n\nEr läuft.\n\nAus dem Lautsprecher kommt deine eigene Stimme:\n\n„—Kapitel 4. Wieder hier. Ich weiß jetzt, was der Spiegel ist. Er zeigt nicht mich. Er zeigt die, die es nicht geschafft haben.—\"\n\nDie Stimme bricht ab. Dann schreit sie."
+          "narrative": "Du findest dich in deinem Abteil wieder. Auf dem Tisch liegt ein Rekorder.\n\nDu besitzt keinen Rekorder. Aber dieser hier… er sieht aus, als hätte er im Feuer gelegen.\n\nEr läuft.\n\nAus dem Lautsprecher kommt deine eigene Stimme:\n\n„—Vierter Durchlauf. Wieder hier. Ich weiß jetzt, was der Spiegel ist. Er zeigt nicht mich. Er zeigt die, die es nicht geschafft haben.—\"\n\nDie Stimme bricht ab. Dann schreit sie."
         }
       ],
       "tags": [
@@ -3965,7 +4156,7 @@
       "id": "c5_s04_lights_flicker",
       "chapter": 5,
       "title": "Flackern",
-      "narrative": "Die Lichter beginnen zu sterben. (Hook)\n\n    Mit jedem Flackern verlierst du kurz die Orientierung. In der Dunkelheit hörst du dein eigenes, raues Atmen, und wenn das Licht zurückkehrt, scheint dein Schatten an der Wand einen Schritt näher gerückt zu sein als du selbst. (Detail)\n\n    Du presst die Hand gegen die Wand. Der Kunststoff fühlt sich rauer an als sonst, als hätte sich die Oberfläche über Nacht verändert. Die Kälte ist nicht die des Zuges, sondern die eines Raums, in dem schon lange niemand mehr gewesen ist.\n\n    Ein Flackern länger als alle anderen. Für einen Atemzug ist alles schwarz. Du spürst den Zug ruckeln, hörst das Schaben der Räder wie Nägel auf Stein. Und als das Licht wieder an ist, steht der Schatten nicht mehr hinter dir, sondern halb neben dir.\n\n    Ein kühler Luftzug streicht über deine Stirn, wie eine unsichtbare Hand. (Konsequenz)",
+      "narrative": "Die Lichter beginnen zu sterben.\n\nMit jedem Flackern verlierst du kurz die Orientierung. In der Dunkelheit hörst du dein eigenes, raues Atmen, und wenn das Licht zurückkehrt, scheint dein Schatten an der Wand einen Schritt näher gerückt zu sein als du selbst.\n\nDu presst die Hand gegen die Wand. Der Kunststoff fühlt sich rauer an als sonst, als hätte sich die Oberfläche über Nacht verändert. Die Kälte ist nicht die des Zuges, sondern die eines Raums, in dem schon lange niemand mehr gewesen ist.\n\nEin Flackern länger als alle anderen. Für einen Atemzug ist alles schwarz. Du spürst den Zug ruckeln, hörst das Schaben der Räder wie Nägel auf Stein. Und als das Licht wieder an ist, steht der Schatten nicht mehr hinter dir, sondern halb neben dir.\n\nEin kühler Luftzug streicht über deine Stirn, wie eine unsichtbare Hand.",
       "choices": [
         {
           "id": "hold_ground",
@@ -4095,7 +4286,7 @@
       "id": "c5_s06_abteil7",
       "chapter": 5,
       "title": "Abteil 7",
-      "narrative": "Du gehst den Gang entlang. Deine Schritte hallen wider, zu laut in der Stille.\n\nUnd dann siehst du es:\n\nAbteil 7.\n\nDie Tür ist geschlossen. Kein Licht dringt heraus. Kein Geräusch. Nur eine absolute, undurchdringliche Schwärze hinter dem matten Glas.\n\nAber da ist… etwas.\n\nEin Gefühl. Eine Präsenz. Ein Druck gegen deine Brust, als würde die Luft selbst dich warnen. Zurückstoßen.\n\nDie Metallplatte mit der Nummer ist kälter als alles andere im Zug. Du spürst es, ohne sie zu berühren – eine eisige Aura, die von ihr ausgeht.\n\nDu erinnerst dich an die Warnung. An die Andeutungen. An die Blicke der anderen Passagiere, wenn sie an dieser Tür vorbeigingen. Schnell. Ohne hinzusehen.\n\n„Geh nicht nach Abteil 7.\"\n\nAber niemand hat dir gesagt, warum. Niemand hat erklärt, was dahinter ist. Oder wer.\n\nDie Tür ist unverschlossen. Du könntest die Klinke drücken. Du könntest eintreten.\n\nDu könntest auch weitergehen. Weitergehen, als wäre diese Tür nie dagewesen.\n\nAber dann wüsstest du nie, was sich dahinter verbirgt.\n\nWas tust du?",
+      "narrative": "Noch hängt die Frage des Schlaflosen in dir nach, als du den Gang entlanggehst. Deine Schritte hallen wider, zu laut in der Stille.\n\nUnd dann siehst du es:\n\nAbteil 7.\n\nDie Tür ist geschlossen. Kein Licht dringt heraus. Kein Geräusch. Nur eine absolute, undurchdringliche Schwärze hinter dem matten Glas.\n\nAber da ist… etwas.\n\nEin Gefühl. Eine Präsenz. Ein Druck gegen deine Brust, als würde die Luft selbst dich warnen. Zurückstoßen.\n\nDie Metallplatte mit der Nummer ist kälter als alles andere im Zug. Du spürst es, ohne sie zu berühren – eine eisige Aura, die von ihr ausgeht.\n\nDu erinnerst dich an die Warnung. An die Andeutungen. An die Blicke der anderen Passagiere, wenn sie an dieser Tür vorbeigingen. Schnell. Ohne hinzusehen.\n\n„Geh nicht nach Abteil 7.\"\n\nAber niemand hat dir gesagt, warum. Niemand hat erklärt, was dahinter ist. Oder wer.\n\nDie Tür ist unverschlossen. Du könntest die Klinke drücken. Du könntest eintreten.\n\nDu könntest auch weitergehen. Weitergehen, als wäre diese Tür nie dagewesen.\n\nAber dann wüsstest du nie, was sich dahinter verbirgt.\n\nWas tust du?",
       "choices": [
         {
           "id": "walk_past",
@@ -4227,7 +4418,7 @@
       "id": "c5_s08_abteil7_aftermath",
       "chapter": 5,
       "title": "Nach Abteil 7",
-      "narrative": "Du stehst wieder im Gang.\n\nDie Tür von Abteil 7 ist geschlossen.\n\nWar sie je offen?\n\nDu versuchst, dich zu erinnern, was du gesehen hast.\n\nDie Namen. Die Uhr. Die leeren Wände.\n\nAber die Details verschwimmen.\n\nNur ein Gefühl bleibt:\n\nEtwas Wichtiges ist passiert.\n\nEtwas, das du nicht vergessen solltest.\n\nAber du weißt nicht mehr genau, was.\n\nDer Zug rattert weiter.",
+      "narrative": "Als hättest du geblinzelt, stehst du wieder im Gang.\n\nDie Tür von Abteil 7 ist geschlossen.\n\nWar sie je offen?\n\nDu versuchst, dich zu erinnern, was du gesehen hast.\n\nDie Namen. Die Uhr. Die leeren Wände.\n\nAber die Details verschwimmen.\n\nNur ein Gefühl bleibt:\n\nEtwas Wichtiges ist passiert.\n\nEtwas, das du nicht vergessen solltest.\n\nAber du weißt nicht mehr genau, was.\n\nDer Zug rattert weiter.",
       "choices": [
         {
           "id": "try_to_remember",
@@ -4321,7 +4512,7 @@
       "id": "c5_s10_boy_reunion",
       "chapter": 5,
       "title": "Der Junge",
-      "narrative": "Du findest den Jungen mit dem Kassettenrekorder.\n\nEr sitzt in einem Abteil, die Kopfhörer auf den Ohren.\n\nAls er dich sieht, nimmt er sie langsam ab.\n\n„Du bist noch da,\" sagt er leise.\n\n„Ich dachte… ich dachte, du wärst schon weg.\"\n\nEr blickt auf den Rekorder.\n\n„Die Kassette ist fast zu Ende.\"\n\nEine Pause.\n\n„Was passiert, wenn sie zu Ende ist?\"\n\nSeine Stimme zittert leicht.\n\n„Muss ich dann… aussteigen?\"",
+      "narrative": "Wenig später findest du den Jungen mit dem Kassettenrekorder.\n\nEr sitzt in einem Abteil, die Kopfhörer auf den Ohren.\n\nAls er dich sieht, nimmt er sie langsam ab.\n\n„Du bist noch da,\" sagt er leise.\n\n„Ich dachte… ich dachte, du wärst schon weg.\"\n\nEr blickt auf den Rekorder.\n\n„Die Kassette ist fast zu Ende.\"\n\nEine Pause.\n\n„Was passiert, wenn sie zu Ende ist?\"\n\nSeine Stimme zittert leicht.\n\n„Muss ich dann… aussteigen?\"",
       "choices": [
         {
           "id": "show_recorder_connection",
@@ -4343,7 +4534,7 @@
               "value": 2
             }
           ],
-          "next": "c5_s11_corridor_encounter"
+          "next": "c5_s10b_boy_followup"
         },
         {
           "id": "admit_lost_recorder",
@@ -4365,7 +4556,7 @@
               "value": 1
             }
           ],
-          "next": "c5_s11_corridor_encounter"
+          "next": "c5_s10b_boy_followup"
         },
         {
           "id": "show_tag19",
@@ -4387,7 +4578,7 @@
               "value": 1
             }
           ],
-          "next": "c5_s11_corridor_encounter"
+          "next": "c5_s10b_boy_followup"
         },
         {
           "id": "reassure_boy",
@@ -4410,7 +4601,7 @@
               "value": 1
             }
           ],
-          "next": "c5_s11_corridor_encounter"
+          "next": "c5_s10b_boy_followup"
         }
       ],
       "atmosphere": "somber",
@@ -4423,10 +4614,125 @@
       ]
     },
     {
+      "id": "c5_s10b_boy_followup",
+      "chapter": 5,
+      "title": "Noch ein Moment",
+      "narrative": "Der Junge hält den Rekorder fest an seine Brust.\n\n„Wenn das Band endet,\" sagt er, „will ich nicht allein sein.\"\n\nSein Blick bleibt auf dir hängen. Wartend.",
+      "choices": [
+        {
+          "id": "promise_presence",
+          "label": "„Ich bleibe bei dir, solange es nötig ist.\"",
+          "effects": [
+            {
+              "type": "set",
+              "target": "wissen",
+              "value": 1
+            }
+          ],
+          "next": "c5_s10c_boy_presence"
+        },
+        {
+          "id": "encourage_step",
+          "label": "„Vielleicht ist das Ende der Kassette nur ein Anfang.\"",
+          "effects": [
+            {
+              "type": "set",
+              "target": "wissen",
+              "value": 2
+            }
+          ],
+          "next": "c5_s10c_boy_beginning"
+        },
+        {
+          "id": "admit_fear_together",
+          "label": "„Ich hab auch Angst. Wir gehen trotzdem weiter.\"",
+          "effects": [
+            {
+              "type": "set",
+              "target": "wissen",
+              "value": 3
+            }
+          ],
+          "next": "c5_s10c_boy_shared_fear"
+        }
+      ],
+      "atmosphere": "somber",
+      "tags": [
+        "interlude"
+      ],
+      "state_notes": [
+        "Agency: emotionaler Dialog-Knoten ohne zusätzliche Effects",
+        "Alle Optionen rekombinieren in c5_s11_corridor_encounter"
+      ]
+    },
+    {
+      "id": "c5_s10c_boy_beginning",
+      "chapter": 5,
+      "title": "Vielleicht ein Anfang",
+      "narrative": "Er runzelt die Stirn, dann versucht er ein unsicheres Lächeln.\n\n„Ein Anfang klingt besser als Ende,\" sagt er leise.\n\nEr dreht den Rekorder einmal in der Hand, als würde er dessen Gewicht neu prüfen.",
+      "choices": [
+        {
+          "id": "continue_after_beginning",
+          "label": "Weitergehen",
+          "next": "c5_s11_corridor_encounter"
+        }
+      ],
+      "atmosphere": "somber",
+      "tags": [
+        "interlude"
+      ],
+      "state_notes": [
+        "Choice-Reaktion: Reframing als Anfang",
+        "Rekombination in c5_s11_corridor_encounter"
+      ]
+    },
+    {
+      "id": "c5_s10c_boy_presence",
+      "chapter": 5,
+      "title": "Nicht allein",
+      "narrative": "Der Junge nickt sofort, als hätte er auf genau diesen Satz gewartet.\n\nEr legt eine Hand auf den Rekorder und atmet hörbar aus.\n\n„Dann kann ich vielleicht sitzenbleiben, bis ich bereit bin,\" flüstert er.",
+      "choices": [
+        {
+          "id": "continue_after_presence",
+          "label": "Ihm kurz zunicken",
+          "next": "c5_s11_corridor_encounter"
+        }
+      ],
+      "atmosphere": "somber",
+      "tags": [
+        "interlude"
+      ],
+      "state_notes": [
+        "Choice-Reaktion: Zusicherung von Präsenz",
+        "Rekombination in c5_s11_corridor_encounter"
+      ]
+    },
+    {
+      "id": "c5_s10c_boy_shared_fear",
+      "chapter": 5,
+      "title": "Trotzdem weiter",
+      "narrative": "„Gut,\" sagt er nach einer Pause. „Dann bin ich nicht falsch, weil ich Angst habe.\"\n\nSeine Schultern sinken ein kleines Stück.\n\n„Dann gehen wir eben mit Angst.\"",
+      "choices": [
+        {
+          "id": "continue_after_shared_fear",
+          "label": "Den Gang wieder betreten",
+          "next": "c5_s11_corridor_encounter"
+        }
+      ],
+      "atmosphere": "somber",
+      "tags": [
+        "interlude"
+      ],
+      "state_notes": [
+        "Choice-Reaktion: geteilte Angst",
+        "Rekombination in c5_s11_corridor_encounter"
+      ]
+    },
+    {
       "id": "c5_s11_corridor_encounter",
       "chapter": 5,
       "title": "Begegnung",
-      "narrative": "Du gehst zurück in den Gang. Das Licht flackert. Ein. Aus. Ein. Aus.\n\nUnd dann siehst du ihn:\n\nDen Schaffner.\n\nEr steht am anderen Ende. Reglos. Wie ein Schatten, der beschlossen hat, Form anzunehmen.\n\nSeine Silhouette hebt sich gegen das flackernde Licht ab. Zu scharf. Zu definiert. Als würde er aus anderem Material bestehen als der Rest der Welt.\n\nEr sieht dich an. Direkt. Ohne zu blinzeln.\n\nAber für einen Moment – nur einen kurzen, flüchtigen Augenblick – siehst du etwas anderes in seinem Gesicht. Keine Kälte. Sondern Erschöpfung. Eine tiefe, endlose Müdigkeit. Als trüge er eine Last, die nie enden wird.\n\nEr greift in seine Tasche. Seine Finger schließen sich um etwas. Etwas Kleines. Metallisches. Du hörst ein leises Klicken.\n\nDann zieht er die Hand sofort wieder zurück. Leer.\n\nSagt nichts.\n\nBewegt sich nicht.\n\nNur der Zug rattert weiter. Unaufhaltsam. Gnadenlos.\n\nAber du weißt:\n\nDie nächste Kontrolle kommt bald.\n\nSehr bald.\n\nUnd diesmal wird es anders sein. Diesmal gibt es keine Ausweichmöglichkeit. Keine zweite Chance.\n\nHärter.\n\nFinaler.\n\nDie letzte Prüfung.",
+      "narrative": "Du gehst zurück in den Gang. Das Licht flackert: ein, aus, ein, aus.\n\nUnd dann siehst du ihn:\n\nDen Schaffner.\n\nEr steht am anderen Ende. Reglos. Wie ein Schatten, der beschlossen hat, Form anzunehmen.\n\nSeine Silhouette hebt sich gegen das flackernde Licht ab. Zu scharf. Zu definiert. Als würde er aus anderem Material bestehen als der Rest der Welt.\n\nEr sieht dich an. Direkt. Ohne zu blinzeln.\n\nAber für einen Moment – nur einen kurzen, flüchtigen Augenblick – siehst du etwas anderes in seinem Gesicht. Keine Kälte. Sondern Erschöpfung. Eine tiefe, endlose Müdigkeit. Als trüge er eine Last, die nie enden wird.\n\nEr greift in seine Tasche. Seine Finger schließen sich um etwas. Etwas Kleines. Metallisches. Du hörst ein leises Klicken.\n\nDann zieht er die Hand sofort wieder zurück. Leer.\n\nEr sagt nichts. Er bewegt sich nicht.\n\nNur der Zug rattert weiter, unaufhaltsam, gnadenlos.\n\nDu weißt, was das bedeutet: Die nächste Kontrolle kommt bald. Sehr bald. Und diesmal gibt es keine Ausweichmöglichkeit, keine zweite Chance.\n\nSie wird härter sein. Finaler. Die letzte Prüfung.",
       "choices": [
         {
           "id": "approach_conductor",
@@ -4474,7 +4780,7 @@
       "id": "c5_s12_window_void",
       "chapter": 5,
       "title": "Das Nichts",
-      "narrative": "Du blickst aus dem Fenster. (Hook)\n\n    Aber da ist keine Dunkelheit mehr. Nicht einmal Schwarz. Nur eine Leere, die das Auge nicht fokussieren kann – ein Nicht-Raum, der sich weigert, wahrgenommen zu werden.\n\n    Ein blinder Fleck in der Realität, der direkt in deinen Verstand schneidet. Schmerzhaft. Wie eine Nadel hinter den Augen.\n\n    Deine Pupillen zucken. Suchen nach etwas, an dem sie sich festhalten können. Aber da ist nichts. Kein Oben. Kein Unten. Keine Entfernung. Ein Summen setzt ein, nicht hörbar, sondern spürbar: in den Zähnen, hinter der Stirn.\n\n    Die Scheibe spiegelt dich nicht richtig. Dein Gesicht scheint zu spät zu blinzeln. Für den Bruchteil einer Sekunde bist du zwei Personen, leicht versetzt, wie ein schlechtes Foto.\n\n    Der Zug fährt nicht durch eine Landschaft – er schält sich durch das Gewebe der Existenz. Durch eine Lücke zwischen den Welten. (Konsequenz)\n\n    Und du fragst dich: Was passiert, wenn das Gewebe reißt?",
+      "narrative": "Als du am Fenster stehen bleibst, blickst du hinaus.\n\nAber da ist keine Dunkelheit mehr. Nicht einmal Schwarz. Nur eine Leere, die das Auge nicht fokussieren kann – ein Nicht-Raum, der sich weigert, wahrgenommen zu werden.\n\nEin blinder Fleck in der Realität, der direkt in deinen Verstand schneidet. Schmerzhaft. Wie eine Nadel hinter den Augen.\n\nDeine Pupillen zucken. Suchen nach etwas, an dem sie sich festhalten können. Aber da ist nichts. Kein Oben. Kein Unten. Keine Entfernung. Ein Summen setzt ein, nicht hörbar, sondern spürbar: in den Zähnen, hinter der Stirn.\n\nDie Scheibe spiegelt dich nicht richtig. Dein Gesicht scheint zu spät zu blinzeln. Für den Bruchteil einer Sekunde bist du zwei Personen, leicht versetzt, wie ein schlechtes Foto.\n\nDer Zug fährt nicht durch eine Landschaft – er schält sich durch das Gewebe der Existenz. Durch eine Lücke zwischen den Welten.\n\nUnd du fragst dich: Was passiert, wenn das Gewebe reißt?",
       "choices": [
         {
           "id": "touch_glass",
@@ -4564,7 +4870,7 @@
       "id": "c5_s13_memory_fragment",
       "chapter": 5,
       "title": "Fragment",
-      "narrative": "Plötzlich – eine Erinnerung.\n\nKlar und scharf.\n\nDu bist an einem Bahnhof. Ein normaler Bahnhof.\n\nMenschen um dich herum. Züge, die kommen und gehen.\n\nDu wartest auf jemanden.\n\nWer?\n\nDas Bild verschwimmt.\n\nDu greifst danach, versuchst es festzuhalten.\n\nAber es zerrinnt.\n\nUnd was bleibt, ist nur:\n\nEin Name. Ein Gesicht.\n\nFast greifbar.\n\nAber nicht ganz.",
+      "narrative": "Plötzlich trifft dich eine Erinnerung, klar und scharf.\n\nDu stehst an einem ganz normalen Bahnhof. Menschen drängen an dir vorbei, Züge kommen und gehen.\n\nDu wartest auf jemanden.\n\nWer?\n\nDas Bild verschwimmt. Du greifst danach, versuchst es festzuhalten, aber es zerrinnt zwischen deinen Gedanken.\n\nWas bleibt, ist nur ein Name. Ein Gesicht. Fast greifbar. Aber nicht ganz.",
       "choices": [
         {
           "id": "chase_memory",
@@ -4581,7 +4887,7 @@
               "value": 1
             }
           ],
-          "next": "c5_s14_control3_approach"
+          "next": "c5_s13b_boy_callback"
         },
         {
           "id": "let_memory_fade",
@@ -4598,7 +4904,7 @@
               "value": 1
             }
           ],
-          "next": "c5_s14_control3_approach"
+          "next": "c5_s13b_boy_callback"
         },
         {
           "id": "write_down_memory",
@@ -4615,7 +4921,7 @@
               "value": 1
             }
           ],
-          "next": "c5_s14_control3_approach"
+          "next": "c5_s13b_boy_callback"
         }
       ],
       "atmosphere": "mystic",
@@ -4633,6 +4939,57 @@
         "Erinnerungsfragment (wichtig für Ending)",
         "memory_drift beeinflusst Klarheit der Erinnerungen",
         "Vorbereitung auf emotionale Kontrolle"
+      ]
+    },
+    {
+      "id": "c5_s13b_boy_callback",
+      "chapter": 5,
+      "title": "Was nachklingt",
+      "narrative": "Die Erinnerung reißt ab.\n\nWas bleibt, ist das Gefühl einer Stimme, die nicht loslässt.",
+      "choices": [
+        {
+          "id": "continue_to_control3_after_boy_callback",
+          "label": "Den Fokus zurückholen",
+          "next": "c5_s14_control3_approach"
+        }
+      ],
+      "atmosphere": "somber",
+      "narrative_variants": [
+        {
+          "condition": {
+            "type": "compare",
+            "target": "wissen",
+            "operator": "==",
+            "value": 1
+          },
+          "narrative": "Die Erinnerung reißt ab.\n\nDir fällt wieder ein, wie der Junge ausgeatmet hat, als du ihm Nähe versprochen hast.\n\nIn dem Moment klingt selbst der Gang weniger feindlich."
+        },
+        {
+          "condition": {
+            "type": "compare",
+            "target": "wissen",
+            "operator": "==",
+            "value": 2
+          },
+          "narrative": "Die Erinnerung reißt ab.\n\nSein vorsichtiges „Ein Anfang klingt besser\" bleibt in dir hängen.\n\nVielleicht gilt das nicht nur für ihn."
+        },
+        {
+          "condition": {
+            "type": "compare",
+            "target": "wissen",
+            "operator": "==",
+            "value": 3
+          },
+          "narrative": "Die Erinnerung reißt ab.\n\n„Dann gehen wir eben mit Angst\" - der Satz sitzt plötzlich glasklar in dir.\n\nNicht beruhigend. Aber brauchbar."
+        }
+      ],
+      "tags": [
+        "interlude"
+      ],
+      "state_notes": [
+        "Später Callback auf c5_s10b/c5_s10c",
+        "wissen wird hier nur als Flavor-Flag genutzt",
+        "Kein Einfluss auf Endings/Route"
       ]
     },
     {
@@ -4810,7 +5167,7 @@
       "id": "c5_s16_control3_aftermath",
       "chapter": 5,
       "title": "Nach der Kontrolle",
-      "narrative": "Der Schaffner steht auf.\n\nLangsam. Bedächtig.\n\nEr gibt dir die Fahrkarte zurück.\n\n„Du darfst bleiben,\" sagt er schließlich.\n\n„Vorerst.\"\n\nEr dreht sich zur Tür.\n\n„Aber die Fahrt ist fast zu Ende.\"\n\nEr blickt zurück.\n\n„Bald musst du entscheiden.\"\n\n„Wirklich entscheiden.\"\n\nDann ist er weg.\n\n---\n\nDu sitzt allein in deinem Abteil. Die Fahrkarte in der Hand. Noch gültig. Noch.\n\nDu denkst nach. Über die Kontrolle. Über deine Antworten.\n\nDer Schaffner hat recht: Die Fahrt geht zu Ende.\n\nBald wirst du ankommen. Irgendwo. Oder aussteigen müssen.\n\nOder…\n\nEs gibt noch eine dritte Möglichkeit. Eine, über die niemand spricht.\n\nEinfach weiterfahren. Für immer. Im Zug bleiben.\n\nIst das möglich?",
+      "narrative": "Der Schaffner steht auf, langsam und bedächtig.\n\nEr gibt dir die Fahrkarte zurück.\n\n„Du darfst bleiben,\" sagt er schließlich. „Vorerst.\"\n\nEr dreht sich zur Tür, blickt noch einmal über die Schulter.\n\n„Aber die Fahrt ist fast zu Ende. Bald musst du entscheiden. Wirklich entscheiden.\"\n\nDann ist er weg.\n\n---\n\nDu sitzt allein in deinem Abteil. Die Fahrkarte in der Hand. Noch gültig. Noch.\n\nDu denkst nach. Über die Kontrolle. Über deine Antworten.\n\nDer Schaffner hat recht: Die Fahrt geht zu Ende.\n\nBald wirst du ankommen. Irgendwo. Oder aussteigen müssen.\n\nOder…\n\nEs gibt noch eine dritte Möglichkeit, eine, über die niemand spricht.\n\nEinfach weiterfahren. Für immer im Zug bleiben.\n\nIst das möglich?",
       "choices": [
         {
           "id": "consider_staying",
@@ -4853,7 +5210,7 @@
       "id": "c5_s18_darkness_spreads",
       "chapter": 5,
       "title": "Ausbreitung",
-      "narrative": "Die Dunkelheit ist jetzt überall.\n\n    Nicht nur draußen.\n\n    Auch im Zug.\n\n    Die Lichter werden schwächer. Flackern öfter.\n\n    Ganze Abschnitte liegen im Dunkeln.\n\n    Du gehst durch den Gang.\n\n    Und merkst:\n\n    Es gibt weniger Abteile als vorher.\n\n    Oder… erinnerst du dich falsch?\n\n    War Abteil 4 nicht hier?\n\n    Oder war es nie da?\n\n    Du bleibst stehen und zählst die Türen. Eins. Zwei. Drei. Dann eine Lücke, wo keine sein sollte. Dein Finger streift die Wand: Der Lack ist wärmer als er sein dürfte, und unter der glatten Oberfläche spürst du feine Vibrationen, als würde der Zug atmen.\n\n    Der Zug wird kleiner.\n\n    Enger.\n\n    Als würde er sich um dich herum zusammenziehen.",
+      "narrative": "Die Dunkelheit ist jetzt überall, nicht nur draußen, auch im Zug.\n\nDie Lichter werden schwächer und flackern immer öfter. Ganze Abschnitte liegen bereits im Schwarz.\n\nAls du durch den Gang gehst, merkst du, dass etwas nicht stimmt: Es gibt weniger Abteile als vorher.\n\nOder erinnerst du dich falsch? War Abteil 4 nicht hier? Oder war es nie da?\n\nDu bleibst stehen und zählst die Türen. Eins. Zwei. Drei. Dann eine Lücke, wo keine sein sollte.\n\nDein Finger streift die Wand. Der Lack ist wärmer, als er sein dürfte, und unter der glatten Oberfläche spürst du feine Vibrationen, als würde der Zug atmen.\n\nDer Zug wird kleiner. Enger. Als würde er sich um dich herum zusammenziehen.",
       "choices": [
         {
           "id": "keep_walking",
@@ -4969,7 +5326,7 @@
       "id": "c5_s20_decision",
       "chapter": 5,
       "title": "Die Entscheidung",
-      "narrative": "Du spürst es:\n\nDie nächste Station kommt.\n\nNicht in Stunden. In Minuten.\n\nDer Zug verlangsamt sich. Ganz langsam. Fast unmerklich.\n\nAber du spürst es.\n\nDraußen – da ist etwas. Kein Licht. Aber… eine Präsenz. Ein Ort.\n\n---\n\nDer Zug hält.\n\nVollständig.\n\nZum ersten Mal seit… du weißt nicht mehr, wie lange.\n\nDie Türen öffnen sich.\n\nDu siehst hinaus.\n\nDa ist… ein Bahnsteig.\n\nAber er ist anders als die anderen. Leerer. Stiller. Finaler.\n\nDu spürst:\n\nWenn du jetzt aussteigst, kommst du nie zurück.\n\nWenn du bleibst… was dann?\n\nDer Schaffner erscheint hinter dir.\n\n„Zeit zu gehen,\" sagt er leise.\n\n„Oder zu bleiben.\"\n\n„Deine Wahl.\"",
+      "narrative": "Du spürst es sofort: Die nächste Station kommt.\n\nNicht in Stunden. In Minuten.\n\nDer Zug verlangsamt sich, ganz langsam, fast unmerklich, und doch spürst du jede Veränderung im Körper.\n\nDraußen ist kein Licht, nur eine Präsenz. Ein Ort.\n\n---\n\nDer Zug hält. Vollständig. Zum ersten Mal seit einer Zeit, die du nicht mehr benennen kannst.\n\nDie Türen öffnen sich.\n\nDraußen liegt ein Bahnsteig, anders als die anderen: leerer, stiller, finaler.\n\nDu weißt: Wenn du jetzt aussteigst, gibt es kein Zurück.\n\nUnd wenn du bleibst?\n\nDer Schaffner steht hinter dir.\n\n„Zeit zu gehen,\" sagt er leise. „Oder zu bleiben. Deine Wahl.\"",
       "choices": [
         {
           "id": "drift_variant_stay",
@@ -5109,7 +5466,7 @@
       "id": "c5_s24_platform_arrives",
       "chapter": 5,
       "title": "Der Bahnsteig",
-      "narrative": "Draußen taucht etwas auf.\n\nLangsam. Wie aus dem Nichts.\n\nEin Bahnsteig.\n\nDer fünfte.\n\nDer letzte.\n\nEr ist… still.\n\nKeine Menschen. Keine Bewegung.\n\nNur Stille.\n\nUnd ein Schild.\n\nDu kannst es fast lesen.\n\nFast.\n\nDer Zug wird langsamer.\n\nNoch langsamer.\n\nGleich hält er.\n\nGleich öffnen sich die Türen.\n\nUnd dann…\n\nDann ist die Fahrt vorbei.",
+      "narrative": "Draußen taucht etwas auf, langsam, wie aus dem Nichts: ein Bahnsteig.\n\nDer fünfte. Der letzte.\n\nEr ist still. Keine Menschen. Keine Bewegung. Nur dieses starre Schweigen und ein Schild, das du fast lesen kannst. Fast.\n\nDer Zug wird langsamer. Noch langsamer.\n\nGleich hält er. Gleich öffnen sich die Türen.\n\nUnd dann ist die Fahrt vorbei.",
       "choices": [
         {
           "id": "prepare_to_exit",
@@ -5165,7 +5522,7 @@
       "id": "c6_s01_awakening",
       "chapter": 6,
       "title": "Erwachen",
-      "narrative": "Du sitzt wieder im Abteil.\n\nWann bist du wieder eingestiegen?\n\nDu erinnerst dich an die Station. An Comp7 im Türrahmen.\n\n„Noch eine Station.\"\n\nAber… war das real?\n\nOder träumst du schon?\n\nDer Zug fährt. Das Rattern ist leiser geworden. Fast unhörbar.\n\nAls würde der Zug selbst… verschwinden.\n\nDu blickst aus dem Fenster.\n\nDraußen ist nichts. Nicht einmal Dunkelheit.\n\nNur Abwesenheit.\n\nDer Geruch im Abteil ist seltsam. Zu sauber. Wie Desinfektionsmittel in einem leeren Krankenhaus.\n\nKalt. Steril.\n\nFalsch.",
+      "narrative": "Als hätte dich der Zug zurück in dich selbst gezogen, sitzt du wieder im Abteil.\n\nDu weißt nicht, wann du wieder eingestiegen bist. Du erinnerst dich an die Station, an Comp7 im Türrahmen, an den Satz: „Noch eine Station.\"\n\nAber war das real? Oder beginnt der Traum schon wieder?\n\nDer Zug fährt weiter, doch das Rattern ist nur noch ein Flüstern, als würde sich selbst dieses Geräusch langsam aus der Welt zurückziehen.\n\nDu blickst aus dem Fenster. Draußen ist nichts. Nicht einmal Dunkelheit. Nur Abwesenheit.\n\nIm Abteil hängt ein Geruch von Desinfektionsmittel, wie in einem verlassenen Krankenhaus.\n\nKalt. Steril. Falsch.",
       "choices": [
         {
           "id": "check_surroundings",
@@ -5217,7 +5574,7 @@
             "target": "has_tag19",
             "value": true
           },
-          "narrative": "Du sitzt wieder im Abteil.\n\nEin rhythmisches Pochen in deiner Tasche weckt dich. Der Schlüsselanhänger ist heiß geworden, eine pulsierende Wärme, die durch den Stoff deiner Hose bis auf die Haut dringt.\n\nWann bist du wieder eingestiegen? Du erinnerst dich an die Station, an Comp7 im Türrahmen.\n\n„Noch eine Station.\"\n\nDer Anhänger vibriert leise, ein tiefer Ton, den du eher im Kiefer spürst als hörst. Er gibt dir ein Gefühl von Gewicht, von Festigkeit in einer Welt, die sich aufzulösen scheint.\n\nDraußen ist nichts. Nur Abwesenheit.\n\nAber das Metall in deiner Hand – oder in deiner Tasche – ist real. Es ist ein Anker. Ein Versprechen, dass es ein Ende gibt.\n\nDer sterile Geruch im Abteil wird von einer Note nach altem Messing und warmem Öl überlagert.\n\nDu bist hier. Du bist noch da."
+          "narrative": "Als hätte dich der Zug genau an diesen Punkt zurückgefaltet, sitzt du wieder im Abteil.\n\nEin rhythmisches Pochen in deiner Tasche weckt dich. Der Schlüsselanhänger ist heiß geworden, eine pulsierende Wärme, die durch den Stoff deiner Hose bis auf die Haut dringt.\n\nWann bist du wieder eingestiegen? Du erinnerst dich an die Station, an Comp7 im Türrahmen.\n\n„Noch eine Station.\"\n\nDer Anhänger vibriert leise, ein tiefer Ton, den du eher im Kiefer spürst als hörst. Er gibt dir ein Gefühl von Gewicht, von Festigkeit in einer Welt, die sich aufzulösen scheint.\n\nDraußen ist nichts. Nur Abwesenheit.\n\nAber das Metall in deiner Hand – oder in deiner Tasche – ist real. Es ist ein Anker. Ein Versprechen, dass es ein Ende gibt.\n\nDer sterile Geruch im Abteil wird von einer Note nach altem Messing und warmem Öl überlagert.\n\nDu bist hier. Du bist noch da."
         }
       ],
       "state_notes": [
@@ -5230,7 +5587,7 @@
       "id": "c6_s03_comp7_final",
       "chapter": 6,
       "title": "Comp7 - Letzte Worte",
-      "narrative": "Du findest Comp7 in ihrem Abteil.\n\nSie sitzt auf der Bank. Bewegungslos.\n\nIhre Augen sind geschlossen.\n\n„Du bist noch hier,\" sagt sie, ohne die Augen zu öffnen.\n\n„Ich habe gehofft, du wärst gegangen.\"\n\nEine Pause.\n\n„An der letzten Station. Du hättest gehen können.\"\n\n„Nein,\" flüsterst du. „Die Türen waren zu.\"\n\nSie sieht dich an. „Die Türen sind immer offen. Aber nur für die, die fertig sind. Wer aus Flucht geht, landet nur im nächsten Wagen.\"\n\nSie öffnet die Augen.\n\n„Aber du bist zurückgekommen.\"\n\nIhr Blick ist… traurig. Aber auch… etwas anderes.\n\nAngst? Mitgefühl? Schuld?\n\n„Weißt du, was in Abteil 7 ist?\" fragt sie leise.",
+      "narrative": "Dem nachklingenden Satz folgend findest du Comp7 in ihrem Abteil.\n\nSie sitzt auf der Bank. Bewegungslos.\n\nIhre Augen sind geschlossen.\n\n„Du bist noch hier,\" sagt sie, ohne die Augen zu öffnen.\n\n„Ich habe gehofft, du wärst gegangen.\"\n\nEine Pause.\n\n„An der letzten Station. Du hättest gehen können.\"\n\n„Nein,\" flüsterst du. „Die Türen waren zu.\"\n\nSie sieht dich an. „Die Türen sind immer offen. Aber nur für die, die fertig sind. Wer aus Flucht geht, landet nur im nächsten Wagen.\"\n\nSie öffnet die Augen.\n\n„Aber du bist zurückgekommen.\"\n\nIhr Blick ist… traurig. Aber auch… etwas anderes.\n\nAngst? Mitgefühl? Schuld?\n\n„Weißt du, was in Abteil 7 ist?\" fragt sie leise.",
       "choices": [
         {
           "id": "ask_directly_high_rel",
@@ -5302,7 +5659,7 @@
       "id": "c6_s04_corridor_changes",
       "chapter": 6,
       "title": "Veränderung",
-      "narrative": "Der Gang… verändert sich.\n\nNicht plötzlich. Langsam.\n\nDie Wände sind jetzt aus anderem Material. Nicht mehr Metall.\n\nHolz? Nein… etwas anderes.\n\nDu berührst die Wand.\n\nWarm. Fast körperwarm.\n\nDu ziehst die Hand zurück.\n\nDie Nummern an den Abteilen sind jetzt anders.\n\n4, 5, 6…\n\nUnd dann:\n\n7.\n\nDie Tür ist geschlossen.\n\nAber da ist kein Schloss.\n\nNur ein Türknauf.\n\nAus Messing. Angelaufen.\n\nDu könntest sie öffnen.\n\nJetzt.",
+      "narrative": "Mit Comp7s Frage noch im Kopf verändert sich der Gang.\n\nNicht plötzlich. Langsam.\n\nDie Wände sind jetzt aus anderem Material. Nicht mehr Metall.\n\nHolz? Nein… etwas anderes.\n\nDu berührst die Wand.\n\nWarm. Fast körperwarm.\n\nDu ziehst die Hand zurück.\n\nDie Nummern an den Abteilen sind jetzt anders.\n\n4, 5, 6…\n\nUnd dann:\n\n7.\n\nDie Tür ist geschlossen.\n\nAber da ist kein Schloss.\n\nNur ein Türknauf.\n\nAus Messing. Angelaufen.\n\nDu könntest sie öffnen.\n\nJetzt.",
       "choices": [
         {
           "id": "approach_door",
@@ -5352,7 +5709,7 @@
       "id": "c6_s05_door_seven",
       "chapter": 6,
       "title": "Abteil 7 - Die Tür",
-      "narrative": "Du stehst vor der Tür.\n\nDie Nummer ist eingraviert. Tief. Als wäre sie seit Jahrhunderten da.\n\n7.\n\nDeine Hand zittert, als du sie zum Türknauf ausstreckst.\n\nWarm. Der Knauf ist warm.\n\nWie eine Hand.\n\nDu spürst… etwas. Durch die Tür.\n\nEine Präsenz.\n\nEtwas Vertrautes.\n\nEtwas, das du verloren hast.\n\nOder… nie hattest.\n\nOder… vergessen wolltest.\n\nÖffnest du die Tür?",
+      "narrative": "Wenig später stehst du vor der Tür.\n\nDie Nummer ist eingraviert. Tief. Als wäre sie seit Jahrhunderten da.\n\n7.\n\nDeine Hand zittert, als du sie zum Türknauf ausstreckst.\n\nWarm. Der Knauf ist warm.\n\nWie eine Hand.\n\nDu spürst… etwas. Durch die Tür.\n\nEine Präsenz.\n\nEtwas Vertrautes.\n\nEtwas, das du verloren hast.\n\nOder… nie hattest.\n\nOder… vergessen wolltest.\n\nÖffnest du die Tür?",
       "choices": [
         {
           "id": "open_door_truth",
@@ -5410,7 +5767,7 @@
             "target": "has_tag19",
             "value": true
           },
-          "narrative": "Du stehst vor der Tür.\n\nDer Schlüsselanhänger in deiner Hand beginnt im Takt deines Herzschlags zu glühen. Ein tiefes, goldenes Licht scheint durch deine geschlossenen Finger.\n\nDie Nummer 7 auf der Tür leuchtet im gleichen Rhythmus auf. Es ist kein Zufall mehr. Es ist eine Resonanz.\n\nDeine Hand zittert nicht mehr, als du sie zum Knauf ausstreckst. Die Hitze des Metalls und die Wärme des Anhängers verschmelzen zu einer einzigen Empfindung.\n\nDu spürst die Präsenz hinter der Tür nicht nur – du hörst sie als einen klaren, reinen Ton, der aus dem Anhänger aufsteigt.\n\nEtwas Vertrautes. Etwas, das dir gehört.\n\nDas Tag 19 ist der Schlüssel. Nicht für ein Schloss, sondern für die Wahrheit.\n\nÖffnest du die Tür?"
+          "narrative": "Wenig später stehst du vor der Tür.\n\nDer Schlüsselanhänger in deiner Hand beginnt im Takt deines Herzschlags zu glühen. Ein tiefes, goldenes Licht scheint durch deine geschlossenen Finger.\n\nDie Nummer 7 auf der Tür leuchtet im gleichen Rhythmus auf. Es ist kein Zufall mehr. Es ist eine Resonanz.\n\nDeine Hand zittert nicht mehr, als du sie zum Knauf ausstreckst. Die Hitze des Metalls und die Wärme des Anhängers verschmelzen zu einer einzigen Empfindung.\n\nDu spürst die Präsenz hinter der Tür nicht nur – du hörst sie als einen klaren, reinen Ton, der aus dem Anhänger aufsteigt.\n\nEtwas Vertrautes. Etwas, das dir gehört.\n\nDas Tag 19 ist der Schlüssel. Nicht für ein Schloss, sondern für die Wahrheit.\n\nÖffnest du die Tür?"
         }
       ],
       "tags": [
@@ -5427,7 +5784,7 @@
       "id": "c6_s06_inside_seven",
       "chapter": 6,
       "title": "Abteil 7 - Innen",
-      "narrative": "Du öffnest die Tür.\n\nDas Abteil ist… wie deines.\n\nGenau wie deines.\n\nDie gleichen Sitze. Das gleiche Fenster.\n\nAber da sitzt… jemand.\n\nEine Gestalt. Verschwommen.\n\nDu kannst das Gesicht nicht sehen.\n\nAber du kennst diese Person.\n\nTief in dir. Du kennst sie.\n\nDie Gestalt bewegt sich nicht. Sagt nichts.\n\nWartet nur.\n\nWartet darauf, dass du… etwas tust.\n\nEtwas sagst.\n\nEtwas erinnerst.",
+      "narrative": "Dann gibst du dem Impuls nach und öffnest die Tür.\n\nDas Abteil ist… wie deines.\n\nGenau wie deines.\n\nDie gleichen Sitze. Das gleiche Fenster.\n\nAber da sitzt… jemand.\n\nEine Gestalt. Verschwommen.\n\nDu kannst das Gesicht nicht sehen.\n\nAber du kennst diese Person.\n\nTief in dir. Du kennst sie.\n\nDie Gestalt bewegt sich nicht. Sagt nichts.\n\nWartet nur.\n\nWartet darauf, dass du… etwas tust.\n\nEtwas sagst.\n\nEtwas erinnerst.",
       "choices": [
         {
           "id": "speak_high_drift",
@@ -5531,7 +5888,7 @@
       "id": "c6_s07_seven_aftermath",
       "chapter": 6,
       "title": "Nach Abteil 7",
-      "narrative": "Du stehst wieder im Gang.\n\nDie Tür von Abteil 7 ist… weg.\n\nEinfach weg.\n\nAn ihrer Stelle ist nur eine glatte Wand.\n\nWar sie je da?\n\nDu versuchst, dich zu erinnern, was du gesehen hast.\n\nDie Gestalt. Das Gesicht.\n\nAber die Details verschwimmen.\n\nNur ein Gefühl bleibt:\n\nEtwas Wichtiges ist passiert.\n\nEtwas Unwiderrufliches.\n\nDer Zug rattert weiter.\n\nAber du bist nicht mehr derselbe.",
+      "narrative": "Als du das nächste Mal blinzelst, stehst du wieder im Gang.\n\nDie Tür von Abteil 7 ist… weg.\n\nEinfach weg.\n\nAn ihrer Stelle ist nur eine glatte Wand.\n\nWar sie je da?\n\nDu versuchst, dich zu erinnern, was du gesehen hast.\n\nDie Gestalt. Das Gesicht.\n\nAber die Details verschwimmen.\n\nNur ein Gefühl bleibt:\n\nEtwas Wichtiges ist passiert.\n\nEtwas Unwiderrufliches.\n\nDer Zug rattert weiter.\n\nAber du bist nicht mehr derselbe.",
       "choices": [
         {
           "id": "process_experience",
@@ -5603,7 +5960,7 @@
       "id": "c6_s09_boy_final",
       "chapter": 6,
       "title": "Der Junge - Abschied",
-      "narrative": "Du findest den Jungen in seinem Abteil.\n\nDer Kassettenrekorder liegt auf dem Sitz. Still.\n\n„Die Kassette ist zu Ende,\" sagt er leise.\n\n„Schon vor einer Weile.\"\n\nEr blickt auf das Gerät.\n\n„Aber ich… ich kann nicht aussteigen.\"\n\nSeine Stimme bricht.\n\n„Ich will nicht vergessen werden,\" flüstert er. „Wenn ich aussteige... erinnert sich dann noch jemand an mich?\"\n\nEr sieht dich an. Seine Augen glänzen.\n\n„Du hast auch einen,\" sagt er und deutet auf deinen Rekorder.\n\n„Hast du… hast du deine Kassette abgespielt?\"",
+      "narrative": "Noch benommen von Abteil 7 findest du den Jungen in seinem Abteil.\n\nDer Kassettenrekorder liegt auf dem Sitz. Still.\n\n„Die Kassette ist zu Ende,\" sagt er leise.\n\n„Schon vor einer Weile.\"\n\nEr blickt auf das Gerät.\n\n„Aber ich… ich kann nicht aussteigen.\"\n\nSeine Stimme bricht.\n\n„Ich will nicht vergessen werden,\" flüstert er. „Wenn ich aussteige... erinnert sich dann noch jemand an mich?\"\n\nEr sieht dich an. Seine Augen glänzen.\n\n„Du hast auch einen,\" sagt er und deutet auf deinen Rekorder.\n\n„Hast du… hast du deine Kassette abgespielt?\"",
       "choices": [
         {
           "id": "share_recorder_experience",
@@ -5674,7 +6031,7 @@
       "id": "c6_s10_sleepless_gone",
       "chapter": 6,
       "title": "Verschwunden",
-      "narrative": "Du gehst zum Abteil des schlaflosen Mannes.\n\nDie Tür steht offen.\n\nDas Abteil ist leer.\n\nKein Gepäck. Keine Spuren.\n\nAls wäre nie jemand hier gewesen.\n\nAber… da ist etwas.\n\nAuf dem Sitz.\n\nEin Foto. Ein altes Schwarzweißfoto.\n\nEs zeigt… einen Zug. Diesen Zug. Und davor… Menschen. Viele Menschen.\n\nDaneben liegt eine Notiz, hastig gekritzelt:\n\n„Endlich kann ich schlafen. Danke für die Gesellschaft.\"\n\nDu drehst das Foto um.\n\nAuf der Rückseite steht in verblasster Tinte:\n\n„1973. Letzte Fahrt.\"\n\n1973. Das ist… vor über fünfzig Jahren.",
+      "narrative": "Nach dem Gespräch mit dem Jungen gehst du zum Abteil des schlaflosen Mannes.\n\nDie Tür steht offen.\n\nDas Abteil ist leer.\n\nKein Gepäck. Keine Spuren.\n\nAls wäre nie jemand hier gewesen.\n\nAber… da ist etwas.\n\nAuf dem Sitz.\n\nEin Foto. Ein altes Schwarzweißfoto.\n\nEs zeigt… einen Zug. Diesen Zug. Und davor… Menschen. Viele Menschen.\n\nDaneben liegt eine Notiz, hastig gekritzelt:\n\n„Endlich kann ich schlafen. Danke für die Gesellschaft.\"\n\nDu drehst das Foto um.\n\nAuf der Rückseite steht in verblasster Tinte:\n\n„1973. Letzte Fahrt.\"\n\n1973. Das ist… vor über fünfzig Jahren.",
       "choices": [
         {
           "id": "take_photo",
@@ -5807,7 +6164,7 @@
       "id": "c6_s12_mirror_self",
       "chapter": 6,
       "title": "Spiegel",
-      "narrative": "Du gehst zurück zu deinem Abteil.\n\nAber als du die Tür öffnest… da sitzt jemand.\n\nDu selbst. Ein exaktes Spiegelbild.\n\nDie Gestalt sitzt auf deinem Platz. Blickt aus dem Fenster. Dreht sich langsam um. Sieht dich an.\n\nLächelt. Nicht freundlich. Wissend.\n\n„Endlich,\" sagt die Gestalt mit deiner Stimme. „Ich habe gewartet.\"\n\nSie steht auf. „Weißt du, warum du hier bist? Wirklich?\"\n\nDie Gestalt kommt näher.\n\n---\n\nSie lacht leise. „Ich bin du. Der Teil von dir, den du vergessen wolltest. Der Teil, der weiß, warum du wirklich hier bist.\"\n\nSie streckt die Hand aus. „Komm. Ich zeige es dir.\"\n\n„Oder…\" Die Gestalt deutet zum Fenster. „Du kannst weglaufen. Wie immer.\"\n\n„Deine Wahl.\"\n\nDie Hand bleibt ausgestreckt. Wartend.",
+      "narrative": "Von der Durchsage aufgeschreckt gehst du zurück zu deinem Abteil.\n\nAber als du die Tür öffnest… da sitzt jemand.\n\nDu selbst. Ein exaktes Spiegelbild.\n\nDie Gestalt sitzt auf deinem Platz. Blickt aus dem Fenster. Dreht sich langsam um. Sieht dich an.\n\nLächelt. Nicht freundlich. Wissend.\n\n„Endlich,\" sagt die Gestalt mit deiner Stimme. „Ich habe gewartet.\"\n\nSie steht auf. „Weißt du, warum du hier bist? Wirklich?\"\n\nDie Gestalt kommt näher.\n\n---\n\nSie lacht leise. „Ich bin du. Der Teil von dir, den du vergessen wolltest. Der Teil, der weiß, warum du wirklich hier bist.\"\n\nSie streckt die Hand aus. „Komm. Ich zeige es dir.\"\n\n„Oder…\" Die Gestalt deutet zum Fenster. „Du kannst weglaufen. Wie immer.\"\n\n„Deine Wahl.\"\n\nDie Hand bleibt ausgestreckt. Wartend.",
       "choices": [
         {
           "id": "take_hand_escape",
@@ -5911,7 +6268,7 @@
       "id": "c6_s14_mirror_aftermath",
       "chapter": 6,
       "title": "Nach dem Spiegel",
-      "narrative": "Du bist allein im Abteil.\n\nDie Gestalt ist weg.\n\nWar sie je da?\n\nAber… etwas hat sich verändert.\n\nDu erinnerst dich jetzt an… Fragmente.\n\nEin Gesicht. Ein Name. Ein Ort.\n\nNichts Vollständiges.\n\nAber mehr als vorher.\n\nViel mehr.\n\nDeine Hände zittern.\n\nNicht vor Kälte.\n\nVor Erkenntnis.\n\nVor dem, was kommt.",
+      "narrative": "Als die Gestalt zerfällt, bist du allein im Abteil.\n\nDie Gestalt ist weg.\n\nWar sie je da?\n\nAber… etwas hat sich verändert.\n\nDu erinnerst dich jetzt an… Fragmente.\n\nEin Gesicht. Ein Name. Ein Ort.\n\nNichts Vollständiges.\n\nAber mehr als vorher.\n\nViel mehr.\n\nDeine Hände zittern.\n\nNicht vor Kälte.\n\nVor Erkenntnis.\n\nVor dem, was kommt.",
       "choices": [
         {
           "id": "embrace_memory",
@@ -5959,7 +6316,7 @@
       "id": "c6_s15_recorder_playback",
       "chapter": 6,
       "title": "Die Kassette",
-      "narrative": "Du sitzt da und blickst auf den Kassettenrekorder.\n\nDen Rekorder, den du seit… wann eigentlich?\n\nDu erinnerst dich nicht, ihn bekommen zu haben.\n\nEr war einfach… da.\n\nDeine Finger bewegen sich zum Play-Knopf.\n\nDu hast ihn noch nie gedrückt.\n\nNoch nie die Kassette abgespielt.\n\nWarum?\n\nAngst?\n\nOder… weißt du bereits, was darauf ist?\n\nDer Knopf wartet.\n\nDrückst du ihn?",
+      "narrative": "Du sitzt im Halbdunkel und blickst auf den Kassettenrekorder.\n\nSeit wann trägst du ihn bei dir? Du erinnerst dich nicht an den Moment, in dem er in deine Hand kam. Er war einfach da.\n\nDeine Finger schweben über dem Play-Knopf. Du hast die Kassette nie ganz gehört. Vielleicht aus Angst. Vielleicht, weil du längst ahnst, was sie sagt.\n\nDer Knopf wartet.\n\nDrückst du ihn?",
       "choices": [
         {
           "id": "play_recorder",
@@ -6009,7 +6366,7 @@
             "target": "played_recorder",
             "value": true
           },
-          "narrative": "Du sitzt da und blickst auf den Kassettenrekorder.\n\nDen Rekorder, den du schon einmal benutzt hast.\n\nDu erinnerst dich an das Klicken. Das Rauschen. Die Stimmen.\n\nAber das fühlt sich an wie ein anderes Leben. Eine andere Schleife.\n\nDeine Finger bewegen sich zum Play-Knopf.\n\nDu zögerst, ihn wieder zu drücken.\n\nWeil du weißt, dass es diesmal anders sein wird.\n\nEndgültiger.\n\nDer Knopf wartet.\n\nDrückst du ihn wieder?"
+          "narrative": "Du sitzt im Halbdunkel und blickst auf den Kassettenrekorder.\n\nDas Klicken, das Rauschen, die Stimmen: Du kennst sie bereits. Und trotzdem fühlt es sich an, als hätte das alles jemand anderem gehört.\n\nDeine Finger wandern wieder zum Play-Knopf. Du zögerst, weil du weißt: Beim zweiten Mal klingt Wahrheit nicht leiser, nur endgültiger.\n\nDer Knopf wartet.\n\nDrückst du ihn wieder?"
         }
       ],
       "state_notes": [
@@ -6023,7 +6380,7 @@
       "id": "c6_s16_tag19_discovery",
       "chapter": 6,
       "title": "Das Etikett",
-      "narrative": "Du findest das Tag19-Etikett in deiner Tasche.\n\nDas kleine, gelbe Etikett.\n\nDu hast es… wann gefunden?\n\nKapitel 2? 3?\n\nDie Erinnerung ist verschwommen.\n\nAber jetzt… jetzt siehst du es klarer.\n\nDie Zahl. 19.\n\nUnd darunter, in winziger Schrift:\n\n„Wagen 7, Sitz 19\"\n\n„1973\"\n\n„Letzte Fahrt\"\n\nDein Herz schlägt schneller.\n\nDas ist… dein Platz.\n\nDein Sitz.\n\nAber… 1973?",
+      "narrative": "Du findest das Tag19-Etikett in deiner Tasche.\n\nDas kleine, gelbe Etikett.\n\nDu hast es… wann gefunden?\n\nAm zweiten Halt? Oder am dritten?\n\nDie Erinnerung ist verschwommen.\n\nAber jetzt… jetzt siehst du es klarer.\n\nDie Zahl. 19.\n\nUnd darunter, in winziger Schrift:\n\n„Wagen 7, Sitz 19\"\n\n„1973\"\n\n„Letzte Fahrt\"\n\nDein Herz schlägt schneller.\n\nDas ist… dein Platz.\n\nDein Sitz.\n\nAber… 1973?",
       "choices": [
         {
           "id": "understand_tag",
@@ -6095,7 +6452,7 @@
       "id": "c6_s17_lights_failing",
       "chapter": 6,
       "title": "Dunkelheit",
-      "narrative": "Die Lichter flackern.\n\nDann – aus.\n\nVollständige Dunkelheit.\n\nDu kannst deine Hand vor Augen nicht sehen.\n\nNichts.\n\nNur das Rattern der Räder.\n\nImmer leiser.\n\nImmer… ferner.\n\nAls würde der Zug… aufhören zu existieren.\n\nDann – ein Licht.\n\nSchwach. In der Ferne.\n\nEin Gang-Licht.\n\nEs bewegt sich.\n\nKommt näher.\n\nDer Schaffner.\n\nEr kommt.",
+      "narrative": "Noch während der Gedanke an 1973 in dir nachhallt, flackern die Lichter.\n\nDann – aus.\n\nVollständige Dunkelheit.\n\nDu kannst deine Hand vor Augen nicht sehen.\n\nNichts.\n\nNur das Rattern der Räder.\n\nImmer leiser.\n\nImmer… ferner.\n\nAls würde der Zug… aufhören zu existieren.\n\nDann – ein Licht.\n\nSchwach. In der Ferne.\n\nEin Gang-Licht.\n\nEs bewegt sich.\n\nKommt näher.\n\nDer Schaffner.\n\nEr kommt.",
       "choices": [
         {
           "id": "wait_for_conductor",
@@ -6159,6 +6516,7 @@
         {
           "id": "choose_memory_love",
           "label": "„Ich will mich erinnern. Um ihretwillen.\"",
+          "weight": "riskant",
           "condition": {
             "type": "compare",
             "target": "tickets_love",
@@ -6182,6 +6540,7 @@
         {
           "id": "choose_forget_escape",
           "label": "„Ich will vergessen.\"",
+          "weight": "riskant",
           "condition": {
             "type": "compare",
             "target": "tickets_escape",
@@ -6200,6 +6559,7 @@
         {
           "id": "refuse_choice",
           "label": "„Ich wähle weder das eine noch das andere.\"",
+          "weight": "riskant",
           "effects": [
             {
               "type": "inc",
@@ -6217,6 +6577,7 @@
         {
           "id": "accept_truth",
           "label": "„Ich nehme die Erinnerung.\"",
+          "weight": "riskant",
           "effects": [
             {
               "type": "inc",
@@ -6286,7 +6647,7 @@
       "id": "c6_s21_final_reflection",
       "chapter": 6,
       "title": "Reflexion",
-      "narrative": "Du denkst nach.\n\nÜber die Fahrt. Die Stationen. Die Menschen.\n\nComp7. Der Junge. Der Schlaflose.\n\nWo sind sie jetzt?\n\nAusgestiegen?\n\nOder… noch hier?\n\nIrgendwo im Zug?\n\nDu erinnerst dich an die Entscheidungen.\n\nAn die Kontrollen.\n\nAn Abteil 7.\n\nAn dein Spiegelbild.\n\nAn das Angebot.\n\nAlles führte hierher.\n\nZu diesem Moment.\n\nZu dem, was jetzt kommt.\n\nBist du bereit?",
+      "narrative": "Nachdem der Schaffner verschwunden ist, denkst du nach.\n\nÜber die Fahrt. Die Stationen. Die Menschen.\n\nComp7. Der Junge. Der Schlaflose.\n\nWo sind sie jetzt?\n\nAusgestiegen?\n\nOder… noch hier?\n\nIrgendwo im Zug?\n\nDu erinnerst dich an die Entscheidungen.\n\nAn die Kontrollen.\n\nAn Abteil 7.\n\nAn dein Spiegelbild.\n\nAn das Angebot.\n\nAlles führte hierher.\n\nZu diesem Moment.\n\nZu dem, was jetzt kommt.\n\nBist du bereit?",
       "choices": [
         {
           "id": "feel_ready",
@@ -6298,7 +6659,7 @@
               "value": 1
             }
           ],
-          "next": "c6_s22_conductor_last"
+          "next": "c6_s21b_reflection_dialog"
         },
         {
           "id": "feel_uncertain",
@@ -6310,7 +6671,7 @@
               "value": 1
             }
           ],
-          "next": "c6_s22_conductor_last"
+          "next": "c6_s21b_reflection_dialog"
         },
         {
           "id": "feel_afraid",
@@ -6322,7 +6683,7 @@
               "value": 1
             }
           ],
-          "next": "c6_s22_conductor_last"
+          "next": "c6_s21b_reflection_dialog"
         }
       ],
       "atmosphere": "somber",
@@ -6333,10 +6694,125 @@
       ]
     },
     {
+      "id": "c6_s21b_reflection_dialog",
+      "chapter": 6,
+      "title": "Antwort an dich selbst",
+      "narrative": "Deine Stimme kommt erst als Flüstern zurück.\n\nDann klarer.\n\nAls würdest du dir zum ersten Mal selbst zuhören.",
+      "choices": [
+        {
+          "id": "choose_truth_voice",
+          "label": "„Ich will wissen, was wirklich war.\"",
+          "effects": [
+            {
+              "type": "set",
+              "target": "empathie",
+              "value": 1
+            }
+          ],
+          "next": "c6_s21c_truth_voice"
+        },
+        {
+          "id": "choose_mercy_voice",
+          "label": "„Ich will mir verzeihen können.\"",
+          "effects": [
+            {
+              "type": "set",
+              "target": "empathie",
+              "value": 2
+            }
+          ],
+          "next": "c6_s21c_mercy_voice"
+        },
+        {
+          "id": "choose_courage_voice",
+          "label": "„Ich gehe trotzdem weiter.\"",
+          "effects": [
+            {
+              "type": "set",
+              "target": "empathie",
+              "value": 3
+            }
+          ],
+          "next": "c6_s21c_courage_voice"
+        }
+      ],
+      "atmosphere": "somber",
+      "tags": [
+        "interlude"
+      ],
+      "state_notes": [
+        "Agency: kurzer Selbst-Dialog ohne zusätzliche Effects",
+        "Alle Optionen rekombinieren in c6_s22_conductor_last"
+      ]
+    },
+    {
+      "id": "c6_s21c_courage_voice",
+      "chapter": 6,
+      "title": "Trotzdem",
+      "narrative": "Der Satz ist härter als gedacht, aber er trägt.\n\nDu spürst die Angst noch.\n\nNur steht sie nicht mehr vor dir, sondern neben dir.",
+      "choices": [
+        {
+          "id": "continue_after_courage_voice",
+          "label": "Mit der Angst weitergehen",
+          "next": "c6_s22_conductor_last"
+        }
+      ],
+      "atmosphere": "somber",
+      "tags": [
+        "interlude"
+      ],
+      "state_notes": [
+        "Choice-Reaktion: Mut trotz Angst",
+        "Rekombination in c6_s22_conductor_last"
+      ]
+    },
+    {
+      "id": "c6_s21c_mercy_voice",
+      "chapter": 6,
+      "title": "Milde",
+      "narrative": "Dein Satz klingt fremd und tröstlich zugleich.\n\nFür einen Herzschlag fühlt sich der Zug weniger wie ein Urteil an.\n\nWie ein Flur, durch den man gehen darf.",
+      "choices": [
+        {
+          "id": "continue_after_mercy_voice",
+          "label": "Weiter",
+          "next": "c6_s22_conductor_last"
+        }
+      ],
+      "atmosphere": "somber",
+      "tags": [
+        "interlude"
+      ],
+      "state_notes": [
+        "Choice-Reaktion: Vergebung/Milde",
+        "Rekombination in c6_s22_conductor_last"
+      ]
+    },
+    {
+      "id": "c6_s21c_truth_voice",
+      "chapter": 6,
+      "title": "Ohne Ausweichung",
+      "narrative": "Die Worte bleiben im Raum, schwer und klar.\n\nNichts antwortet dir.\n\nAber in dir wird etwas still: keine Ausrede, kein Umweg, nur der nächste Schritt.",
+      "choices": [
+        {
+          "id": "continue_after_truth_voice",
+          "label": "Den nächsten Schritt nehmen",
+          "next": "c6_s22_conductor_last"
+        }
+      ],
+      "atmosphere": "somber",
+      "tags": [
+        "interlude"
+      ],
+      "state_notes": [
+        "Choice-Reaktion: Wahrheitsfokus",
+        "Rekombination in c6_s22_conductor_last"
+      ]
+    },
+    {
       "id": "c6_s22_conductor_last",
       "chapter": 6,
       "title": "Letzte Begegnung",
-      "narrative": "Der Schaffner erscheint ein letztes Mal.\n\nNicht bedrohlich diesmal.\n\nFast… traurig.\n\n„Es ist Zeit,\" sagt er leise.\n\n„Die letzte Station.\"\n\nEr reicht dir… etwas.\n\nDeine Fahrkarte.\n\nDu hattest sie vergessen.\n\nSie ist… anders jetzt.\n\nBeschriftet. Mit deiner eigenen Handschrift.\n\n„Du hast sie selbst ausgefüllt,\" sagt er.\n\n„Am Anfang.\"\n\n„Erinnerst du dich?\"\n\nDu blickst auf die Karte.\n\nUnd langsam… erinnerst du dich.",
+      "narrative": "Der Schaffner erscheint ein letztes Mal.\n\nDiesmal wirkt er nicht bedrohlich. Nur müde. Fast traurig.\n\n„Es ist Zeit,\" sagt er leise. „Die letzte Station.\"\n\nEr hält dir etwas hin: deine Fahrkarte.\n\nDu hattest sie vergessen.\n\nJetzt ist sie vollständig ausgefüllt, in deiner eigenen Handschrift.\n\n„Du hast sie am Anfang selbst geschrieben,\" sagt er. „Erinnerst du dich?\"\n\nDu blickst auf die Karte.\n\nUnd langsam kommt die Erinnerung zurück.",
       "choices": [
         {
           "id": "remember_high_attention",
@@ -6359,7 +6835,7 @@
               "value": 2
             }
           ],
-          "next": "c6_s23_platform_ahead"
+          "next": "c6_s22b_reflection_callback"
         },
         {
           "id": "remember_partial",
@@ -6371,7 +6847,7 @@
               "value": 2
             }
           ],
-          "next": "c6_s23_platform_ahead"
+          "next": "c6_s22b_reflection_callback"
         },
         {
           "id": "resist_memory",
@@ -6383,7 +6859,7 @@
               "value": 1
             }
           ],
-          "next": "c6_s23_platform_ahead"
+          "next": "c6_s22b_reflection_callback"
         }
       ],
       "atmosphere": "mystic",
@@ -6392,6 +6868,57 @@
         "CONDITION: remember_high_attention nur bei conductor_attention >= 4",
         "Fahrkarte als Erinnerungs-Trigger",
         "Wichtige Enthüllung"
+      ]
+    },
+    {
+      "id": "c6_s22b_reflection_callback",
+      "chapter": 6,
+      "title": "Innere Linie",
+      "narrative": "Die Erinnerung kippt zurück in die Gegenwart.\n\nUnd du merkst, dass ein Satz von eben noch in dir steht.",
+      "choices": [
+        {
+          "id": "continue_to_platform_after_reflection_callback",
+          "label": "Zum letzten Wagen weiter",
+          "next": "c6_s23_platform_ahead"
+        }
+      ],
+      "atmosphere": "somber",
+      "narrative_variants": [
+        {
+          "condition": {
+            "type": "compare",
+            "target": "empathie",
+            "operator": "==",
+            "value": 1
+          },
+          "narrative": "Die Erinnerung kippt zurück in die Gegenwart.\n\nDein eigener Satz - „Ich will wissen\" - wirkt plötzlich wie eine Linie auf den Boden gemalt.\n\nNicht tröstlich. Aber eindeutig."
+        },
+        {
+          "condition": {
+            "type": "compare",
+            "target": "empathie",
+            "operator": "==",
+            "value": 2
+          },
+          "narrative": "Die Erinnerung kippt zurück in die Gegenwart.\n\n„Ich will mir verzeihen können\" klingt nach, leise, aber beharrlich.\n\nZum ersten Mal fühlt sich der nächste Schritt nicht wie Strafe an."
+        },
+        {
+          "condition": {
+            "type": "compare",
+            "target": "empathie",
+            "operator": "==",
+            "value": 3
+          },
+          "narrative": "Die Erinnerung kippt zurück in die Gegenwart.\n\nDer Mut-Satz von eben hält noch.\n\nDie Angst ist nicht weg, aber sie nimmt dir nicht mehr die Richtung."
+        }
+      ],
+      "tags": [
+        "interlude"
+      ],
+      "state_notes": [
+        "Später Callback auf c6_s21b/c6_s21c",
+        "empathie wird hier nur als Flavor-Flag genutzt",
+        "Kein Einfluss auf Endings/Route"
       ]
     },
     {
@@ -6513,6 +7040,7 @@
         {
           "id": "truth_path",
           "label": "Der Wahrheit begegnen – koste es, was es wolle",
+          "weight": "irreversibel",
           "condition": {
             "type": "compare",
             "target": "tickets_truth",
@@ -6531,6 +7059,7 @@
         {
           "id": "love_path",
           "label": "Jemandem folgen – nicht allein sein",
+          "weight": "irreversibel",
           "condition": {
             "type": "compare",
             "target": "tickets_love",
@@ -6549,6 +7078,7 @@
         {
           "id": "guilt_path",
           "label": "Die Verantwortung tragen – und weitergehen",
+          "weight": "irreversibel",
           "condition": {
             "type": "compare",
             "target": "tickets_guilt",
@@ -6567,6 +7097,7 @@
         {
           "id": "escape_path",
           "label": "Im Zug bleiben – für immer",
+          "weight": "irreversibel",
           "condition": {
             "type": "compare",
             "target": "tickets_escape",
@@ -6585,6 +7116,7 @@
         {
           "id": "limbo_path",
           "label": "Nicht entscheiden – auf der Schwelle bleiben",
+          "weight": "irreversibel",
           "effects": [
             {
               "type": "inc",
@@ -6688,7 +7220,7 @@
       "id": "c7_s02_interlude_silence",
       "chapter": 7,
       "title": "Stumm",
-      "narrative": "Das Rattern der Räder ist weg. Komplett. (Hook)\n\nDer Zug bewegt sich noch, du spürst die Bewegung in den Beinen, aber es gibt kein Geräusch mehr. Du klatschst in die Hände – die Bewegung ist da, aber der Ton fehlt, als würde der Raum ihn schlucken, bevor er entsteht. (Detail)\n\nEin feiner Schwindel zieht dir durch den Magen: Die Welt ist stumm geworden. (Konsequenz)",
+      "narrative": "Das Rattern der Räder ist weg. Komplett.\n\nDer Zug bewegt sich noch, du spürst die Bewegung in den Beinen, aber es gibt kein Geräusch mehr. Du klatschst in die Hände – die Bewegung ist da, aber der Ton fehlt, als würde der Raum ihn schlucken, bevor er entsteht.\n\nEin feiner Schwindel zieht dir durch den Magen: Die Welt ist stumm geworden.",
       "choices": [
         {
           "id": "test_voice",
@@ -6728,7 +7260,7 @@
       "id": "c7_s02_interlude_silence_b",
       "chapter": 7,
       "title": "Isolation",
-      "narrative": "Deine Lippen bewegen sich, aber kein Ton kommt heraus. (Hook)\n\nDer Boden unter deinen Füßen fühlt sich zu glatt an, ohne jede Reibung. Deine Fingerkuppen suchen die Wand, sie ist kühl und gibt minimal nach, als hätte sie Haut. (Detail)\n\nDu bist allein an einem Ort, wo Geräusche nicht mehr existieren. (Konsequenz)",
+      "narrative": "Deine Lippen bewegen sich, aber kein Ton kommt heraus.\n\nDer Boden unter deinen Füßen fühlt sich zu glatt an, ohne jede Reibung. Deine Fingerkuppen suchen die Wand, sie ist kühl und gibt minimal nach, als hätte sie Haut.\n\nDu bist allein an einem Ort, wo Geräusche nicht mehr existieren.",
       "choices": [
         {
           "id": "accept_silence",
@@ -6779,7 +7311,7 @@
       "id": "c7_s03_comp7_goodbye",
       "chapter": 7,
       "title": "Comp7 - Abschied",
-      "narrative": "Du findest Comp7.\n\nSie steht am Ende des Gangs.\n\nVor einer geschlossenen Tür.\n\n„Du hast es also geschafft,\" sagt sie.\n\nIhre Stimme ist leise. Fast unhörbar.\n\n„Bis hierher.\"\n\nSie dreht sich nicht um.\n\n„Ich kann nicht weiter. Nicht über diese Tür hinaus.\"\n\nEine Pause.\n\n„Ich war Passagier #7. Aber irgendwann... bin ich zum Zug geworden. Teil davon. Ich kann nicht mehr aussteigen.\"\n\nIhre Stimme zittert.\n\n„Wenn du gehst... lösche ich mich mit dem Zug auf. Aber das ist okay. Ich bin müde. Ich will... ruhen.\"\n\nSie legt ihre Hand auf die Tür.\n\n„Hinter dieser Tür… ist alles. Die Wahrheit. Das Ende. Der Anfang.\"\n\n„Alles, was du vergessen hast. Alles, was du warst.\"\n\nEndlich dreht sie sich um.\n\nIhr Gesicht ist… verschwommen. Als würde sie bereits… verschwinden.\n\n„Danke,\" flüstert sie. „Für die Gesellschaft. Für die Erinnerung. Dafür, dass ich... für einen Moment... wieder real war.\"\n\nDann ist sie weg.",
+      "narrative": "Als die tonlose Stille abreißt, findest du Comp7.\n\nSie steht am Ende des Gangs.\n\nVor einer geschlossenen Tür.\n\n„Du hast es also geschafft,\" sagt sie.\n\nIhre Stimme ist leise. Fast unhörbar.\n\n„Bis hierher.\"\n\nSie dreht sich nicht um.\n\n„Ich kann nicht weiter. Nicht über diese Tür hinaus.\"\n\nEine Pause.\n\n„Ich war Passagier #7. Aber irgendwann... bin ich zum Zug geworden. Teil davon. Ich kann nicht mehr aussteigen.\"\n\nIhre Stimme zittert.\n\n„Wenn du gehst... lösche ich mich mit dem Zug auf. Aber das ist okay. Ich bin müde. Ich will... ruhen.\"\n\nSie legt ihre Hand auf die Tür.\n\n„Hinter dieser Tür… ist alles. Die Wahrheit. Das Ende. Der Anfang.\"\n\n„Alles, was du vergessen hast. Alles, was du warst.\"\n\nEndlich dreht sie sich um.\n\nIhr Gesicht ist… verschwommen. Als würde sie bereits… verschwinden.\n\n„Danke,\" flüstert sie. „Für die Gesellschaft. Für die Erinnerung. Dafür, dass ich... für einen Moment... wieder real war.\"\n\nDann ist sie weg.",
       "choices": [
         {
           "id": "say_goodbye_high_rel_recognized",
@@ -6858,7 +7390,7 @@
       "id": "c7_s04_boy_recognized",
       "chapter": 7,
       "title": "Die Erkenntnis - Der Junge",
-      "narrative": "Der Junge sitzt in seinem Abteil.\n\nAber… er ist anders.\n\nÄlter. Oder jünger.\n\nDu kannst es nicht sagen.\n\nSein Gesicht verändert sich.\n\nFlackert zwischen verschiedenen Altern.\n\nKind. Teenager. Erwachsener.\n\nUnd dann…\n\nDann erkennst du es.\n\nDie Nase. Die Augen. Die Art, wie er den Kopf hält.\n\nDas bist du.\n\nNicht \"wie du\". Nicht \"ähnlich\".\n\n**Du.**\n\nVor dem 19. September 1973.\n\nVor dem Unfall.\n\nVor… allem.\n\n„Ich erinnere mich,\" sagt er.\n\nAber es ist deine Stimme.\n\nDeine Stimme aus einer anderen Zeit.\n\n„Ich erinnere mich an… danach.\"\n\n„An das, was du geworden bist.\"\n\n„An das, was wir… verloren haben.\"\n\nEr hält den Rekorder hoch.\n\nDas Band dreht sich rückwärts.\n\n„Fünfzig Jahre,\" flüstert er.\n\n„Hast du nach mir gesucht.\"\n\n„Nach dem Teil von dir, der… nie erwachsen wurde.\"\n\n„Der nie… das Blut vergessen konnte.\"\n\nSeine Augen – deine Augen – füllen sich mit Tränen.\n\n„Ich bin müde.\"\n\n„So müde.\"\n\n„Kann ich endlich… nach Hause?\"",
+      "narrative": "Der Junge sitzt in seinem Abteil, aber etwas an ihm kippt ständig: älter, jünger, Kind, Teenager, Erwachsener, immer wieder.\n\nDann erkennst du ihn.\n\nDie Nase. Die Augen. Die Art, wie er den Kopf hält.\nDas bist du. Nicht ähnlich. Nicht fast. Du.\n\nVor dem 19. September 1973. Vor dem Unfall. Vor allem.\n\n„Ich erinnere mich,\" sagt er, und es ist deine Stimme aus einer anderen Zeit. „An danach. An das, was du geworden bist. An das, was wir verloren haben.\"\n\nEr hebt den Rekorder. Das Band läuft rückwärts.\n\n„Fünfzig Jahre,\" flüstert er. „Du hast nach mir gesucht. Nach dem Teil von dir, der nie erwachsen wurde. Der das Blut nie vergessen konnte.\"\n\nSeine Augen - deine Augen - füllen sich mit Tränen.\n\n„Ich bin müde,\" sagt er. „So müde. Kann ich endlich nach Hause?\"",
       "choices": [
         {
           "id": "integrate_innocence",
@@ -6960,7 +7492,7 @@
       "id": "c7_s04_boy_transformation",
       "chapter": 7,
       "title": "Der Junge - Veränderung",
-      "narrative": "Der Junge sitzt in seinem Abteil.\n\nAber… er ist anders.\n\nÄlter. Oder jünger.\n\nDu kannst es nicht sagen.\n\nSein Gesicht verändert sich.\n\nFlackert zwischen verschiedenen Altern.\n\nKind. Teenager. Erwachsener.\n\n„Die Kassette,\" sagt er.\n\nSeine Stimme ist tief. Dann hoch. Dann normal.\n\n„Sie läuft rückwärts jetzt.\"\n\nEr hält den Rekorder hoch.\n\nDas Band dreht sich.\n\nAber die falsche Richtung.\n\n„Ich erinnere mich… vorwärts.\"\n\n„An das, was noch nicht passiert ist.\"\n\nEr lacht. Oder weint. Beides gleichzeitig.\n\n„Ist das die Zukunft?\"\n\n„Oder die Vergangenheit?\"\n\n„Oder… war nie ein Unterschied?\"",
+      "narrative": "Hinter der Tür sitzt der Junge in seinem Abteil.\n\nAber… er ist anders.\n\nÄlter. Oder jünger.\n\nDu kannst es nicht sagen.\n\nSein Gesicht verändert sich.\n\nFlackert zwischen verschiedenen Altern.\n\nKind. Teenager. Erwachsener.\n\n„Die Kassette,\" sagt er.\n\nSeine Stimme ist tief. Dann hoch. Dann normal.\n\n„Sie läuft rückwärts jetzt.\"\n\nEr hält den Rekorder hoch.\n\nDas Band dreht sich.\n\nAber die falsche Richtung.\n\n„Ich erinnere mich… vorwärts.\"\n\n„An das, was noch nicht passiert ist.\"\n\nEr lacht. Oder weint. Beides gleichzeitig.\n\n„Ist das die Zukunft?\"\n\n„Oder die Vergangenheit?\"\n\n„Oder… war nie ein Unterschied?\"",
       "choices": [
         {
           "id": "comfort_boy_high_rel",
@@ -7030,7 +7562,7 @@
       "id": "c7_s05_interlude_timeshift",
       "chapter": 7,
       "title": "Chronos",
-      "narrative": "Die Uhren an den Wänden zeigen unmöglich Zeiten: 1973, 2024, und ein Jahr, das es noch nicht gibt. (Hook)\n\nDie Ziffern blättern nicht um, sie kippen einfach weg. Wenn du das Glas berührst, ist es feucht von einem kalten Film, und der Sekundenzeiger springt unter deinem Finger rückwärts. (Detail)\n\nEin leises Summen legt sich über den Gang – der Klang von brechender Zeit. (Konsequenz)",
+      "narrative": "Kaum verlässt du das Abteil, zeigen die Uhren an den Wänden unmöglich Zeiten: 1973, 2024, und ein Jahr, das es noch nicht gibt.\n\nDie Ziffern blättern nicht um, sie kippen einfach weg. Wenn du das Glas berührst, ist es feucht von einem kalten Film, und der Sekundenzeiger springt unter deinem Finger rückwärts.\n\nEin leises Summen legt sich über den Gang – der Klang von brechender Zeit.",
       "choices": [
         {
           "id": "watch_clocks",
@@ -7070,7 +7602,7 @@
       "id": "c7_s05_interlude_timeshift_b",
       "chapter": 7,
       "title": "Faltung",
-      "narrative": "Der Gang dehnt sich wie Gummi, wird länger, dann wieder kurz. (Hook)\n\nDu machst einen Schritt, und der Boden ist plötzlich da, wo er eben nicht war. Am anderen Ende siehst du dich selbst – du winkst dir zu, aber die Bewegung ist verzögert, wie bei einer schlechten Übertragung. (Detail)\n\nDu bist dir nicht mehr sicher, welches „Du“ das echte ist. (Konsequenz)",
+      "narrative": "Der Gang dehnt sich wie Gummi, wird länger, dann wieder kurz.\n\nDu machst einen Schritt, und der Boden ist plötzlich da, wo er eben nicht war. Am anderen Ende siehst du dich selbst – du winkst dir zu, aber die Bewegung ist verzögert, wie bei einer schlechten Übertragung.\n\nDu bist dir nicht mehr sicher, welches „Du“ das echte ist.",
       "choices": [
         {
           "id": "continue_forward",
@@ -7121,7 +7653,7 @@
       "id": "c7_s06_announcement_distorted",
       "chapter": 7,
       "title": "Die letzte Ansage",
-      "narrative": "Die Lautsprecher knistern.\n\nLauter als je zuvor.\n\nDann – eine Stimme.\n\n„Nächster Halt. Endstation.\"\n\nAber die Stimme… ist falsch.\n\nZu tief. Zu verzerrt.\n\n„Bitte alle… aussteigen.\"\n\nKnistern.\n\n„Alle… außer…\"\n\nDie Stimme stoppt.\n\nDann:\n\n„Alle außer… den Passagieren von Wagen 7, Sitz 19.\"\n\nDein Sitz.\n\n„Ankunft… 19:19 Uhr.\"\n\n„Am 19. September.\"\n\n„1973.\"\n\nDie Lautsprecher kreischen.\n\nDann – Stille.",
+      "narrative": "Als du weiter in den Gang trittst, knistern die Lautsprecher.\n\nLauter als je zuvor.\n\nDann – eine Stimme.\n\n„Nächster Halt. Endstation.\"\n\nAber die Stimme… ist falsch.\n\nZu tief. Zu verzerrt.\n\n„Bitte alle… aussteigen.\"\n\nKnistern.\n\n„Alle… außer…\"\n\nDie Stimme stoppt.\n\nDann:\n\n„Alle außer… den Passagieren von Wagen 7, Sitz 19.\"\n\nDein Sitz.\n\n„Ankunft… 19:19 Uhr.\"\n\n„Am 19. September.\"\n\n„1973.\"\n\nDie Lautsprecher kreischen.\n\nDann – Stille.",
       "choices": [
         {
           "id": "realize_truth_high_drift",
@@ -7205,7 +7737,7 @@
       "id": "c7_s07_announcement_name",
       "chapter": 7,
       "title": "Dein Name",
-      "narrative": "Die Lautsprecher knistern wieder.\n\n„Passagier…\"\n\nEine Pause.\n\n„Passagier…\"\n\nUnd dann sagt die Stimme deinen Namen.\n\nDeinen echten Namen.\n\nDen du vergessen hattest.\n\nOder nie gewusst hast.\n\n„…wird gebeten, zum Ausgang zu kommen.\"\n\n„Letzte Gelegenheit.\"\n\n„Letzte… Gelegenheit… für…\"\n\nDie Stimme bricht ab.\n\nWird zu einem Schluchzen.\n\nOder einem Lachen.\n\n„…Vergebung.\"\n\nDann – Stille.\n\nUnd du erinnerst dich.\n\nAn alles.",
+      "narrative": "Du hältst im Gang inne, dann knistern die Lautsprecher wieder.\n\n„Passagier…\"\n\nEine Pause.\n\n„Passagier…\"\n\nUnd dann sagt die Stimme deinen Namen.\n\nDeinen echten Namen.\n\nDen du vergessen hattest.\n\nOder nie gewusst hast.\n\n„…wird gebeten, zum Ausgang zu kommen.\"\n\n„Letzte Gelegenheit.\"\n\n„Letzte… Gelegenheit… für…\"\n\nDie Stimme bricht ab.\n\nWird zu einem Schluchzen.\n\nOder einem Lachen.\n\n„…Vergebung.\"\n\nDann – Stille.\n\nUnd du erinnerst dich.\n\nAn alles.",
       "choices": [
         {
           "id": "accept_memory_truth",
@@ -7303,7 +7835,7 @@
       "id": "c7_s08_announcement_aftermath",
       "chapter": 7,
       "title": "Nach der Ansage",
-      "narrative": "Du stehst im Gang.\n\nDie Erinnerungen fluten dich.\n\nNicht alle auf einmal.\n\nAber genug.\n\nGenug, um zu verstehen.\n\nWarum du hier bist.\n\nWas passiert ist.\n\nWas du getan hast.\n\nOder… was dir angetan wurde.\n\nDie Grenze verschwimmt.\n\nTäter und Opfer.\n\nSchuld und Unschuld.\n\nAlles… verschwimmt.\n\nDu sinkst gegen die Wand.\n\nDie Wand ist warm.\n\nWie immer.\n\nAber jetzt weißt du warum.\n\nEs ist nicht die Wand.\n\nEs ist die Zeit selbst.\n\nDie brennt.",
+      "narrative": "Als die Ansage verstummt, stehst du im Gang.\n\nDie Erinnerungen fluten dich.\n\nNicht alle auf einmal.\n\nAber genug.\n\nGenug, um zu verstehen.\n\nWarum du hier bist.\n\nWas passiert ist.\n\nWas du getan hast.\n\nOder… was dir angetan wurde.\n\nDie Grenze verschwimmt.\n\nTäter und Opfer.\n\nSchuld und Unschuld.\n\nAlles… verschwimmt.\n\nDu sinkst gegen die Wand.\n\nDie Wand ist warm.\n\nWie immer.\n\nAber jetzt weißt du warum.\n\nEs ist nicht die Wand.\n\nEs ist die Zeit selbst.\n\nDie brennt.",
       "choices": [
         {
           "id": "stand_up",
@@ -7386,7 +7918,7 @@
       "id": "c7_s10_passengers_vanish",
       "chapter": 7,
       "title": "Die Anderen",
-      "narrative": "Du siehst sie.\n\nDie anderen Passagiere.\n\nAlle.\n\nGleichzeitig.\n\nIn verschiedenen Abteilen.\n\nIn verschiedenen Zeiten.\n\nDer Junge. Comp7. Der Schlaflose.\n\nUnd… andere.\n\nMenschen, die du nie getroffen hast.\n\nAber irgendwie… kennst.\n\nSie sehen dich alle an.\n\nGleichzeitig.\n\nUnd langsam…\n\nVerschwinden sie.\n\nEiner nach dem anderen.\n\nWie Kerzen, die ausgehen.\n\nBis nur noch…\n\nDu übrig bist.\n\nAllein.\n\nIm Zug.",
+      "narrative": "Dann siehst du sie.\n\nDie anderen Passagiere.\n\nAlle.\n\nGleichzeitig.\n\nIn verschiedenen Abteilen.\n\nIn verschiedenen Zeiten.\n\nDer Junge. Comp7. Der Schlaflose.\n\nUnd… andere.\n\nMenschen, die du nie getroffen hast.\n\nAber irgendwie… kennst.\n\nSie sehen dich alle an.\n\nGleichzeitig.\n\nUnd langsam…\n\nVerschwinden sie.\n\nEiner nach dem anderen.\n\nWie Kerzen, die ausgehen.\n\nBis nur noch…\n\nDu übrig bist.\n\nAllein.\n\nIm Zug.",
       "choices": [
         {
           "id": "call_out",
@@ -7441,7 +7973,7 @@
       "id": "c7_s11_interlude_memory_flood",
       "chapter": 7,
       "title": "Erinnerungsflut",
-      "narrative": "Die Erinnerungen kommen.\n\nAlle auf einmal.\n\nWie eine Welle.\n\nEin Bahnsteig. 1973. Menschen.\n\nRauch und nasser Beton. Das Geländer kalt in deiner Hand, obwohl du hier leer bist.",
+      "narrative": "Als die letzten Gesichter verschwinden, kommen die Erinnerungen.\n\nAlle auf einmal.\n\nWie eine Welle.\n\nEin Bahnsteig. 1973. Menschen.\n\nRauch und nasser Beton. Das Geländer kalt in deiner Hand, obwohl du hier leer bist.",
       "choices": [
         {
           "id": "hold_breath",
@@ -7536,7 +8068,7 @@
       "id": "c7_s12_seven_offer",
       "chapter": 7,
       "title": "Abteil 7 - Das letzte Angebot",
-      "narrative": "Du stehst wieder vor Abteil 7.\n\nDie Tür ist da.\n\nWar sie nicht verschwunden?\n\nAber jetzt ist sie wieder da.\n\nUnd sie ist… offen.\n\nEinen Spaltbreit.\n\nLicht scheint heraus.\n\nWarmes, goldenes Licht.\n\nEine Stimme ruft von innen:\n\n„Komm herein.\"\n\nEs ist… deine Stimme.\n\nAber auch… nicht.\n\n„Ich habe auf dich gewartet.\"\n\n„Fünfzig Jahre.\"\n\n„Oder fünfzig Minuten.\"\n\n„Zeit ist hier… anders.\"\n\n„Komm. Wir können es beenden.\"\n\n„Gemeinsam.\"\n\nDie Tür öffnet sich weiter.\n\nDas Licht wird heller.\n\nBlendend.",
+      "narrative": "Als die letzten Bilder nachglühen, stehst du wieder vor Abteil 7.\n\nDie Tür ist da.\n\nWar sie nicht verschwunden?\n\nAber jetzt ist sie wieder da.\n\nUnd sie ist… offen.\n\nEinen Spaltbreit.\n\nLicht scheint heraus.\n\nWarmes, goldenes Licht.\n\nEine Stimme ruft von innen:\n\n„Komm herein.\"\n\nEs ist… deine Stimme.\n\nAber auch… nicht.\n\n„Ich habe auf dich gewartet.\"\n\n„Fünfzig Jahre.\"\n\n„Oder fünfzig Minuten.\"\n\n„Zeit ist hier… anders.\"\n\n„Komm. Wir können es beenden.\"\n\n„Gemeinsam.\"\n\nDie Tür öffnet sich weiter.\n\nDas Licht wird heller.\n\nBlendend.",
       "choices": [
         {
           "id": "enter_seven_recognized",
@@ -7595,7 +8127,7 @@
             "target": "has_tag19",
             "value": true
           },
-          "narrative": "Du stehst wieder vor Abteil 7. Die Tür ist da, massiv und realer als alles andere im Zug.\n\nSie ist offen. Ein Spaltbreit goldenes Licht dringt heraus, aber es blendet dich nicht. Der Schlüsselanhänger in deiner Hand erzeugt ein schützendes Feld, eine kühle Brise, die das Feuer des Lichts abmildert.\n\nEine Stimme ruft von innen – es ist deine eigene, aber sie klingt geheilt, vollständig. „Komm herein. Ich habe auf dich gewartet. Fünfzig Jahre… oder nur diesen einen Moment.\"\n\nDer Anhänger vibriert sanft, ein beständiges, beruhigendes Brummen, das dir den Weg weist. Er zieht dich förmlich zur Tür hin, ein sanfter magnetischer Sog, dem du vertrauen kannst.\n\n„Komm. Wir können es beenden. Gemeinsam.\"\n\nDie Tür öffnet sich weit. Das Licht flutet den Gang, doch durch das Tag 19 siehst du die Strukturen dahinter – den Weg nach Hause.\n\nDu trittst über die Schwelle."
+          "narrative": "Als die letzten Bilder nachglühen, stehst du wieder vor Abteil 7. Die Tür ist da, massiv und realer als alles andere im Zug.\n\nSie ist offen. Ein Spaltbreit goldenes Licht dringt heraus, aber es blendet dich nicht. Der Schlüsselanhänger in deiner Hand erzeugt ein schützendes Feld, eine kühle Brise, die das Feuer des Lichts abmildert.\n\nEine Stimme ruft von innen – es ist deine eigene, aber sie klingt geheilt, vollständig. „Komm herein. Ich habe auf dich gewartet. Fünfzig Jahre… oder nur diesen einen Moment.\"\n\nDer Anhänger vibriert sanft, ein beständiges, beruhigendes Brummen, das dir den Weg weist. Er zieht dich förmlich zur Tür hin, ein sanfter magnetischer Sog, dem du vertrauen kannst.\n\n„Komm. Wir können es beenden. Gemeinsam.\"\n\nDie Tür öffnet sich weit. Das Licht flutet den Gang, doch durch das Tag 19 siehst du die Strukturen dahinter – den Weg nach Hause.\n\nDu trittst über die Schwelle."
         }
       ],
       "tags": [
@@ -7612,7 +8144,7 @@
       "id": "c7_s13_comp7_recognized",
       "chapter": 7,
       "title": "Die Erkenntnis - Abteil 7",
-      "narrative": "Du trittst ein.\n\nDas Abteil ist… anders.\n\nGrößer. Oder kleiner.\n\nEs verändert sich.\n\nUnd da sitzt… du.\n\nAber nicht nur du.\n\n**Comp7.**\n\nDie Gestalt aus Abteil 7.\n\nDie Gestalt, die niemals wirklich da war.\n\nDie niemals real war.\n\n„Du verstehst es jetzt,\" sagt sie.\n\nUnd du tust es.\n\nDu verstehst.\n\nComp7 war nie ein Mitreisender.\n\nNie eine andere Person.\n\nComp7 war… der Teil von dir, der nicht loslassen konnte.\n\nDer Teil, der an der Liebe festhielt. An der Bindung.\n\nAn dem Menschen, der im Unfall starb.\n\nAn allem, was du hättest sein können. Hättest tun können.\n\n„Fünfzig Jahre,\" flüstert die Gestalt.\n\n„Hast du an mich festgehalten.\"\n\n„An uns.\"\n\n„An der Liebe, die nicht sterben durfte.\"\n\n„An der Schuld, nicht genug geliebt zu haben.\"\n\nSie steht auf.\n\nUnd du erkennst das Gesicht.\n\nEs ist nicht dein Gesicht.\n\nEs ist… ihr Gesicht. Sein Gesicht.\n\nDas Gesicht derjenigen, die du verloren hast.\n\n„Der Preis,\" sagt die Gestalt, „ist die Liebe selbst.\"\n\n„Du kannst weitergehen.\"\n\n„Aber nur, wenn du… mich zurücklässt.\"\n\n„Diesen Teil von dir, der nie aufgehört hat zu trauern.\"\n\n„Der nie aufgehört hat zu lieben.\"\n\n„Oder…\"\n\nDie Gestalt lächelt.\n\nTraurig. Liebevoll.\n\n„Du nimmst mich mit.\"\n\n„Integrierst diesen Teil wieder.\"\n\n„Und lebst mit der Liebe. Mit der Trauer. Mit allem.\"\n\n„Für den Rest deines Lebens.\"",
+      "narrative": "Du trittst über die Schwelle von Abteil 7.\n\nDas Abteil ist… anders.\n\nGrößer. Oder kleiner.\n\nEs verändert sich.\n\nUnd da sitzt… du.\n\nAber nicht nur du.\n\n**Comp7.**\n\nDie Gestalt aus Abteil 7.\n\nDie Gestalt, die niemals wirklich da war.\n\nDie niemals real war.\n\n„Du verstehst es jetzt,\" sagt sie.\n\nUnd du tust es.\n\nDu verstehst.\n\nComp7 war nie ein Mitreisender.\n\nNie eine andere Person.\n\nComp7 war… der Teil von dir, der nicht loslassen konnte.\n\nDer Teil, der an der Liebe festhielt. An der Bindung.\n\nAn dem Menschen, der im Unfall starb.\n\nAn allem, was du hättest sein können. Hättest tun können.\n\n„Fünfzig Jahre,\" flüstert die Gestalt.\n\n„Hast du an mich festgehalten.\"\n\n„An uns.\"\n\n„An der Liebe, die nicht sterben durfte.\"\n\n„An der Schuld, nicht genug geliebt zu haben.\"\n\nSie steht auf.\n\nUnd du erkennst das Gesicht.\n\nEs ist nicht dein Gesicht.\n\nEs ist… ihr Gesicht. Sein Gesicht.\n\nDas Gesicht derjenigen, die du verloren hast.\n\n„Der Preis,\" sagt die Gestalt, „ist die Liebe selbst.\"\n\n„Du kannst weitergehen.\"\n\n„Aber nur, wenn du… mich zurücklässt.\"\n\n„Diesen Teil von dir, der nie aufgehört hat zu trauern.\"\n\n„Der nie aufgehört hat zu lieben.\"\n\n„Oder…\"\n\nDie Gestalt lächelt.\n\nTraurig. Liebevoll.\n\n„Du nimmst mich mit.\"\n\n„Integrierst diesen Teil wieder.\"\n\n„Und lebst mit der Liebe. Mit der Trauer. Mit allem.\"\n\n„Für den Rest deines Lebens.\"",
       "choices": [
         {
           "id": "integrate_love",
@@ -7716,7 +8248,7 @@
       "id": "c7_s13_seven_price",
       "chapter": 7,
       "title": "Abteil 7 - Der Preis",
-      "narrative": "Du trittst ein.\n\nDas Abteil ist… anders.\n\nGrößer. Oder kleiner.\n\nEs verändert sich.\n\nUnd da sitzt… du.\n\nOder eine Version von dir.\n\nDie Version, die nie aus dem Zug gestiegen ist.\n\nDie Version, die im Unfall… geblieben ist.\n\n„Der Preis,\" sagt die Gestalt.\n\n„Ist einfach.\"\n\n„Du kannst gehen.\"\n\n„Zurück in die Welt.\"\n\n„Aber du musst… mich dalassen.\"\n\n„Diesen Teil von dir.\"\n\n„Die Schuld, nicht geholfen zu haben. Die Last, der Einzige zu sein, der entkam.\"\n\n„Den Teil, der hier bleiben will.\"\n\n„Der Angst hat.\"\n\n„Der nicht bereit ist.\"\n\nDie Gestalt steht auf.\n\n„Oder…\"\n\n„Wir bleiben beide.\"\n\n„Für immer.\"\n\n„Hier im Zug.\"\n\n„Sicher. Allein. Ewig.\"",
+      "narrative": "Du trittst über die Schwelle von Abteil 7.\n\nDas Abteil ist… anders.\n\nGrößer. Oder kleiner.\n\nEs verändert sich.\n\nUnd da sitzt… du.\n\nOder eine Version von dir.\n\nDie Version, die nie aus dem Zug gestiegen ist.\n\nDie Version, die im Unfall… geblieben ist.\n\n„Der Preis,\" sagt die Gestalt.\n\n„Ist einfach.\"\n\n„Du kannst gehen.\"\n\n„Zurück in die Welt.\"\n\n„Aber du musst… mich dalassen.\"\n\n„Diesen Teil von dir.\"\n\n„Die Schuld, nicht geholfen zu haben. Die Last, der Einzige zu sein, der entkam.\"\n\n„Den Teil, der hier bleiben will.\"\n\n„Der Angst hat.\"\n\n„Der nicht bereit ist.\"\n\nDie Gestalt steht auf.\n\n„Oder…\"\n\n„Wir bleiben beide.\"\n\n„Für immer.\"\n\n„Hier im Zug.\"\n\n„Sicher. Allein. Ewig.\"",
       "choices": [
         {
           "id": "leave_shadow",
@@ -7812,7 +8344,7 @@
       "id": "c7_s14_seven_decision",
       "chapter": 7,
       "title": "Abteil 7 - Entscheidung",
-      "narrative": "Die Gestalt nickt.\n\n„So sei es.\"\n\nSie beginnt zu verblassen.\n\nOder… zu verschmelzen.\n\nMit dir.\n\nOder du mit ihr.\n\nDie Grenze verschwimmt.\n\nDu spürst… alles.\n\nDie Angst. Die Hoffnung. Die Schuld. Die Liebe.\n\nAlles gleichzeitig.\n\nDas Abteil löst sich auf.\n\nAber du bleibst.\n\nGanz. Vollständig.\n\nOder… so vollständig, wie du sein kannst.\n\nMit all deinen Teilen.\n\nMit all deinen Entscheidungen.\n\nMit all deiner Geschichte.\n\nDie Tür von Abteil 7 verschwindet.\n\nUnd du stehst wieder im Gang.\n\nAber du bist nicht mehr derselbe.\n\nDu bist… bereit.",
+      "narrative": "Auf deine Worte hin nickt die Gestalt.\n\n„So sei es.\"\n\nSie beginnt zu verblassen.\n\nOder… zu verschmelzen.\n\nMit dir.\n\nOder du mit ihr.\n\nDie Grenze verschwimmt.\n\nDu spürst… alles.\n\nDie Angst. Die Hoffnung. Die Schuld. Die Liebe.\n\nAlles gleichzeitig.\n\nDas Abteil löst sich auf.\n\nAber du bleibst.\n\nGanz. Vollständig.\n\nOder… so vollständig, wie du sein kannst.\n\nMit all deinen Teilen.\n\nMit all deinen Entscheidungen.\n\nMit all deiner Geschichte.\n\nDie Tür von Abteil 7 verschwindet.\n\nUnd du stehst wieder im Gang.\n\nAber du bist nicht mehr derselbe.\n\nDu bist… bereit.",
       "choices": [
         {
           "id": "feel_complete",
@@ -7850,7 +8382,7 @@
       "id": "c7_s15_recorder_trigger",
       "chapter": 7,
       "title": "Der Rekorder",
-      "narrative": "Du blickst auf den Kassettenrekorder.\n\nDer Rekorder, den du die ganze Zeit bei dir hattest.\n\nJetzt… vibriert er.\n\nLeicht.\n\nAls wäre er… lebendig.\n\nDer Play-Knopf leuchtet.\n\nRot. Pulsierend.\n\nWie ein Herz.\n\nDu weißt: Wenn du jetzt abspielst…\n\nWird sich alles verändern.\n\nAlles.\n\nDie Kassette enthält… die Wahrheit.\n\nDeine Wahrheit.\n\nDie Wahrheit dessen, was 1973 passiert ist.\n\nDrückst du?",
+      "narrative": "Zurück im Gang blickst du auf den Kassettenrekorder.\n\nDer Rekorder, den du die ganze Zeit bei dir hattest.\n\nJetzt… vibriert er.\n\nLeicht.\n\nAls wäre er… lebendig.\n\nDer Play-Knopf leuchtet.\n\nRot. Pulsierend.\n\nWie ein Herz.\n\nDu weißt: Wenn du jetzt abspielst…\n\nWird sich alles verändern.\n\nAlles.\n\nDie Kassette enthält… die Wahrheit.\n\nDeine Wahrheit.\n\nDie Wahrheit dessen, was 1973 passiert ist.\n\nDrückst du?",
       "choices": [
         {
           "id": "play_recorder_final",
@@ -7916,7 +8448,7 @@
       "id": "c7_s16_recorder_playback",
       "chapter": 7,
       "title": "Die Kassette - Wiedergabe",
-      "narrative": "Du drückst Play.\n\nDie Kassette beginnt zu laufen.\n\nZuerst – nur Rauschen.\n\nDann – eine Stimme.\n\nDeine Stimme.\n\nAber… jünger.\n\nOder älter.\n\nSchwer zu sagen.\n\n„Test. Eins. Zwei. Drei.\"\n\n„19. September 1973.\"\n\n„Ich bin im Nachtzug 19.\"\n\n„Wagen 7, Sitz 19.\"\n\n„Es ist… 19:19 Uhr.\"\n\nEine Pause.\n\n„Ich habe… Angst.\"\n\n„Etwas stimmt nicht.\"\n\n„Der Zug… fährt zu schnell.\"\n\n„Viel zu schnell.\"\n\n„Die Schienen… ich glaube, da ist…\"\n\nEin Geräusch.\n\nEin schreckliches, zerreißendes Geräusch.\n\nDann – Stille.\n\nDann – deine Stimme wieder:\n\n„Ich bin tot, oder?\"",
+      "narrative": "Dann drückst du Play.\n\nDie Kassette läuft an. Erst Rauschen. Dann deine Stimme - jünger, vielleicht älter, unmöglich zu sagen.\n\n„Test. Eins. Zwei. Drei.\"\n„19. September 1973.\"\n„Ich bin im Nachtzug 19. Wagen 7, Sitz 19. Es ist 19:19 Uhr.\"\n\nEine Pause, dann flacher Atem.\n\n„Ich habe Angst. Etwas stimmt nicht. Der Zug fährt zu schnell. Viel zu schnell.\"\n„Die Schienen ... ich glaube, da ist ...\"\n\nDann das Geräusch: Metall, das zerreißt. Glas. Schreie. Und plötzlich Stille.\n\nNach einem langen Knistern hörst du wieder deine Stimme:\n\n„Ich bin tot, oder?\"",
       "choices": [
         {
           "id": "listen_more",
@@ -7963,7 +8495,7 @@
       "id": "c7_s17_recorder_truth",
       "chapter": 7,
       "title": "Die Kassette - Wahrheit",
-      "narrative": "Die Kassette läuft weiter.\n\nDeine Stimme:\n\n„Ich bin tot.\"\n\n„Aber ich bin noch hier.\"\n\n„Im Zug.\"\n\n„Er fährt weiter.\"\n\n„Immer weiter.\"\n\n„Durch… die Zeit.\"\n\n„Durch… Erinnerungen.\"\n\n„Ich sehe… andere.\"\n\n„Andere Passagiere.\"\n\n„Sind sie auch…?\"\n\nEine andere Stimme. Comp7.\n\n„Ja. Wir alle.\"\n\n„Wir alle sind… zurückgeblieben.\"\n\n„Im Moment des Unfalls.\"\n\n„Gefangen.\"\n\n„Bis wir… bereit sind.\"\n\n„Bereit, loszulassen.\"\n\n„Bereit, zu gehen.\"\n\nDann – deine Stimme wieder:\n\n„Ich will gehen.\"\n\n„Aber ich habe Angst.\"\n\n„So viel Angst.\"\n\nDie Kassette endet.\n\nKlick.",
+      "narrative": "Die Kassette läuft weiter.\n\nDeine Stimme, brüchig und fern:\n\n„Ich bin tot. Aber ich bin noch hier. Im Zug. Er fährt weiter. Immer weiter. Durch Zeit. Durch Erinnerungen. Ich sehe andere Passagiere. Sind sie auch ...?\"\n\nDann Comp7:\n\n„Ja. Wir alle. Wir sind im Moment des Unfalls zurückgeblieben. Gefangen, bis wir bereit sind loszulassen. Bereit zu gehen.\"\n\nWieder deine Stimme:\n\n„Ich will gehen. Aber ich habe Angst. So viel Angst.\"\n\nDie Kassette stoppt.\n\nKlick.",
       "choices": [
         {
           "id": "accept_death",
@@ -8024,7 +8556,7 @@
       ],
       "state_notes": [
         "Set-Piece Teil 2: Vollständige Wahrheit (conditional)",
-        "CONDITION: accept_death nur bei tickets_truth >= 6",
+        "CONDITION: accept_death nur bei tickets_truth >= 5",
         "Tod bestätigt",
         "Zug als Limbus/Fegefeuer bestätigt",
         "Comp7 Stimme"
@@ -8034,7 +8566,7 @@
       "id": "c7_s18_recorder_aftermath",
       "chapter": 7,
       "title": "Nach der Kassette",
-      "narrative": "Du legst den Rekorder weg.\n\nDeine Hände zittern.\n\nNicht vor Kälte.\n\nVor Klarheit.\n\nVor dem Wissen.\n\nDu bist… tot.\n\nSeit 1973.\n\nAber auch… nicht.\n\nNicht ganz.\n\nNicht vollständig.\n\nDu bist in diesem Zwischenraum.\n\nDiesem Ort zwischen Leben und Tod.\n\nZwischen Erinnern und Vergessen.\n\nUnd jetzt…\n\nJetzt musst du wählen.\n\nVollständig.\n\nEndgültig.\n\nGehst du?\n\nOder bleibst du?",
+      "narrative": "Du legst den Rekorder weg.\n\nDeine Hände zittern - nicht vor Kälte, sondern vor Klarheit.\n\nSeit 1973 bist du tot. Und doch nicht ganz.\nDu hängst in diesem Zwischenraum fest, zwischen Leben und Tod, zwischen Erinnern und Vergessen.\n\nJetzt bleibt nur noch eine Entscheidung.\nVollständig. Endgültig.\n\nGehst du?\nOder bleibst du?",
       "choices": [
         {
           "id": "choose_leave",
@@ -8072,7 +8604,7 @@
       "id": "c7_s19_interlude_train_stops",
       "chapter": 7,
       "title": "Stillstand",
-      "narrative": "Der Zug… hält.\n\nNicht langsam.\n\nPlötzlich.\n\nVollständig.\n\nAber sanft.\n\nWie ein Seufzer.\n\nDie Bewegung, die so lange da war…\n\nIst weg.\n\nErsetzt durch absolute Stille.\n\nAbsolute Ruhe.\n\nDu spürst es.\n\nDas Ende.\n\nEs ist hier.\n\nDie Türen… werden sich öffnen.\n\nJeden Moment.\n\nUnd dann…\n\nDann ist es vorbei.",
+      "narrative": "Egal, wie du dich entschieden hast: Der Zug… hält.\n\nNicht langsam.\n\nPlötzlich.\n\nVollständig.\n\nAber sanft.\n\nWie ein Seufzer.\n\nDie Bewegung, die so lange da war…\n\nIst weg.\n\nErsetzt durch absolute Stille.\n\nAbsolute Ruhe.\n\nDu spürst es.\n\nDas Ende.\n\nEs ist hier.\n\nDie Türen… werden sich öffnen.\n\nJeden Moment.\n\nUnd dann…\n\nDann ist es vorbei.",
       "choices": [
         {
           "id": "prepare",
@@ -8135,11 +8667,12 @@
       "id": "c7_s20_conductor_finale",
       "chapter": 7,
       "title": "Der Schaffner - Abschied",
-      "narrative": "Der Schaffner erscheint.\n\nZum letzten Mal.\n\nEr sieht… anders aus.\n\nNicht mehr bedrohlich.\n\nNicht mehr mysteriös.\n\nNur… müde.\n\nAlt.\n\nMenschlich.\n\n„Es ist Zeit,\" sagt er leise.\n\n„Für dich.\"\n\n„Für alle.\"\n\nEr reicht dir… deine Fahrkarte.\n\nSie ist vollständig ausgefüllt jetzt.\n\nJede Zeile.\n\nJedes Detail.\n\nDein Name. Dein Ziel. Deine Zeit.\n\n„Du hast gut gewählt,\" sagt er.\n\n„Oder… gut genug.\"\n\nEr lächelt. Schwach.\n\n„Es gibt keine perfekte Wahl.\"\n\n„Nur… deine Wahl.\"\n\nEr deutet zur Tür.\n\n„Geh. Und… leb.\"\n\n„Oder… was auch immer danach kommt.\"\n\nDann verschwindet er.\n\nEndgültig.",
+      "narrative": "Der Schaffner erscheint zum letzten Mal.\n\nEr wirkt nicht mehr bedrohlich, nicht mehr unnahbar. Nur müde. Alt. Menschlich.\n\n„Es ist Zeit,\" sagt er. „Für dich. Für alle.\"\n\nEr reicht dir deine Fahrkarte. Jetzt ist jede Zeile ausgefüllt: dein Name, dein Ziel, deine Zeit.\n\n„Du hast gut gewählt,\" sagt er, dann ein schwaches Lächeln. „Oder gut genug. Eine perfekte Wahl gibt es nicht. Nur deine.\"\n\nEr deutet zur Tür.\n\n„Geh. Und leb. Oder ... was auch immer danach kommt.\"\n\nDann verschwindet er.\nEndgültig.",
       "choices": [
         {
           "id": "thank_conductor_high_attention",
           "label": "„Danke. Für alles.\"",
+          "weight": "neutral",
           "condition": {
             "type": "compare",
             "target": "conductor_attention",
@@ -8158,11 +8691,12 @@
               "value": 1
             }
           ],
-          "next": "c7_s21_photo_revelation"
+          "next": "c7_s20c_conductor_echo"
         },
         {
           "id": "say_nothing",
           "label": "Schweigen",
+          "weight": "neutral",
           "effects": [
             {
               "type": "inc",
@@ -8170,11 +8704,12 @@
               "value": 1
             }
           ],
-          "next": "c7_s21_photo_revelation"
+          "next": "c7_s20c_conductor_echo"
         },
         {
           "id": "take_ticket",
           "label": "Die Fahrkarte nehmen",
+          "weight": "neutral",
           "effects": [
             {
               "type": "inc",
@@ -8182,11 +8717,12 @@
               "value": 1
             }
           ],
-          "next": "c7_s21_photo_revelation"
+          "next": "c7_s20c_conductor_echo"
         },
         {
           "id": "last_sacrifice",
           "label": "Ein letztes Opfer bringen",
+          "weight": "irreversibel",
           "effects": [
             {
               "type": "inc",
@@ -8215,6 +8751,7 @@
         {
           "id": "sacrifice_for_truth",
           "label": "Erinnerung opfern für Klarheit",
+          "weight": "irreversibel",
           "effects": [
             {
               "type": "inc",
@@ -8227,11 +8764,12 @@
               "value": 2
             }
           ],
-          "next": "c7_s21_photo_revelation"
+          "next": "c7_s20c_conductor_echo"
         },
         {
           "id": "sacrifice_for_escape",
           "label": "Identität opfern für Flucht",
+          "weight": "irreversibel",
           "effects": [
             {
               "type": "inc",
@@ -8244,11 +8782,12 @@
               "value": 2
             }
           ],
-          "next": "c7_s21_photo_revelation"
+          "next": "c7_s20c_conductor_echo"
         },
         {
           "id": "sacrifice_for_guilt",
           "label": "Zukunft opfern für Verantwortung",
+          "weight": "irreversibel",
           "effects": [
             {
               "type": "inc",
@@ -8261,11 +8800,12 @@
               "value": 2
             }
           ],
-          "next": "c7_s21_photo_revelation"
+          "next": "c7_s20c_conductor_echo"
         },
         {
           "id": "sacrifice_for_love",
           "label": "Selbst opfern für Verbindung",
+          "weight": "irreversibel",
           "effects": [
             {
               "type": "inc",
@@ -8278,7 +8818,7 @@
               "value": 2
             }
           ],
-          "next": "c7_s21_photo_revelation"
+          "next": "c7_s20c_conductor_echo"
         }
       ],
       "atmosphere": "danger",
@@ -8290,10 +8830,125 @@
       ]
     },
     {
+      "id": "c7_s20c_conductor_echo",
+      "chapter": 7,
+      "title": "Echo im Gang",
+      "narrative": "Wo der Schaffner eben stand, bleibt nur ein Hauch kalter Luft.\n\nDoch seine letzten Worte hallen nach.\n\nDu kannst antworten.\n\nNicht für ihn.\n\nFür dich.",
+      "choices": [
+        {
+          "id": "echo_acceptance",
+          "label": "„Ich gehe. Aber ich vergesse euch nicht.\"",
+          "effects": [
+            {
+              "type": "set",
+              "target": "mut",
+              "value": 4
+            }
+          ],
+          "next": "c7_s20d_echo_acceptance"
+        },
+        {
+          "id": "echo_defiance",
+          "label": "„Ich gehe erst, wenn ich alles verstanden habe.\"",
+          "effects": [
+            {
+              "type": "set",
+              "target": "mut",
+              "value": 5
+            }
+          ],
+          "next": "c7_s20d_echo_defiance"
+        },
+        {
+          "id": "echo_gratitude",
+          "label": "„Dann lass uns das würdig beenden.\"",
+          "effects": [
+            {
+              "type": "set",
+              "target": "mut",
+              "value": 6
+            }
+          ],
+          "next": "c7_s20d_echo_gratitude"
+        }
+      ],
+      "atmosphere": "somber",
+      "tags": [
+        "interlude"
+      ],
+      "state_notes": [
+        "Agency: zusätzlicher Abschiedsdialog ohne neue Effects",
+        "Rekombination in c7_s21_photo_revelation"
+      ]
+    },
+    {
+      "id": "c7_s20d_echo_acceptance",
+      "chapter": 7,
+      "title": "Nicht vergessen",
+      "narrative": "Deine Worte hängen im Gang, ohne Widerhall.\n\nUnd doch fühlt es sich an, als hätten sie jemand erreicht.\n\nNicht den Schaffner. Die, die mit dir gefahren sind.",
+      "choices": [
+        {
+          "id": "continue_after_echo_acceptance",
+          "label": "Weiter",
+          "next": "c7_s21_photo_revelation"
+        }
+      ],
+      "atmosphere": "somber",
+      "tags": [
+        "interlude"
+      ],
+      "state_notes": [
+        "Choice-Reaktion: Annahme",
+        "Rekombination in c7_s21_photo_revelation"
+      ]
+    },
+    {
+      "id": "c7_s20d_echo_defiance",
+      "chapter": 7,
+      "title": "Hartnäckig",
+      "narrative": "Der Satz klingt wie Widerstand.\n\nDie Luft wird kurz schärfer, kälter.\n\nDann lässt der Druck nach, als hätte der Zug deinen Trotz notiert und akzeptiert.",
+      "choices": [
+        {
+          "id": "continue_after_echo_defiance",
+          "label": "Nicht stehenbleiben",
+          "next": "c7_s21_photo_revelation"
+        }
+      ],
+      "atmosphere": "somber",
+      "tags": [
+        "interlude"
+      ],
+      "state_notes": [
+        "Choice-Reaktion: Trotz",
+        "Rekombination in c7_s21_photo_revelation"
+      ]
+    },
+    {
+      "id": "c7_s20d_echo_gratitude",
+      "chapter": 7,
+      "title": "Würdig",
+      "narrative": "Für einen Augenblick wird es warm im Gang.\n\nWie ein stilles Nicken aus einer Richtung, die es nicht mehr gibt.\n\nDann kehrt die Kälte zurück, aber sie wirkt weniger feindlich.",
+      "choices": [
+        {
+          "id": "continue_after_echo_gratitude",
+          "label": "Den Blick nach vorn richten",
+          "next": "c7_s21_photo_revelation"
+        }
+      ],
+      "atmosphere": "somber",
+      "tags": [
+        "interlude"
+      ],
+      "state_notes": [
+        "Choice-Reaktion: Dankbarkeit",
+        "Rekombination in c7_s21_photo_revelation"
+      ]
+    },
+    {
       "id": "c7_s21_photo_revelation",
       "chapter": 7,
       "title": "Das Foto",
-      "narrative": "Du erinnerst dich an das Foto.\n\nDas Foto vom schlaflosen Mann.\n\n„1973. Letzte Fahrt.\"\n\nDu holst es hervor.\n\nSiehst es dir genau an.\n\nDie Menschen vor dem Zug.\n\nLächelnd. Winkend.\n\nUnd… da.\n\nGanz links.\n\nEine verschwommene Gestalt.\n\nDu.\n\nDu bist auf diesem Foto.\n\n1973.\n\nVor dem Nachtzug 19.\n\nVor der letzten Fahrt.\n\nVor dem Unfall.\n\nBevor… alles endete.\n\nDu drehst das Foto um.\n\nAuf der Rückseite steht jetzt mehr:\n\n„Letzte Fahrt. 19:19 Uhr. 156 Passagiere.\"\n\n„Alle angekommen.\"\n\n„Irgendwann.\"",
+      "narrative": "Nach den letzten Worten des Schaffners erinnerst du dich an das Foto.\n\nDas Foto vom schlaflosen Mann.\n\n„1973. Letzte Fahrt.\"\n\nDu holst es hervor.\n\nSiehst es dir genau an.\n\nDie Menschen vor dem Zug.\n\nLächelnd. Winkend.\n\nUnd… da.\n\nGanz links.\n\nEine verschwommene Gestalt.\n\nDu.\n\nDu bist auf diesem Foto.\n\n1973.\n\nVor dem Nachtzug 19.\n\nVor der letzten Fahrt.\n\nVor dem Unfall.\n\nBevor… alles endete.\n\nDu drehst das Foto um.\n\nAuf der Rückseite steht jetzt mehr:\n\n„Letzte Fahrt. 19:19 Uhr. 156 Passagiere.\"\n\n„Alle angekommen.\"\n\n„Irgendwann.\"",
       "choices": [
         {
           "id": "understand_photo",
@@ -8305,7 +8960,7 @@
               "value": 2
             }
           ],
-          "next": "c7_s22_tag19_resonance"
+          "next": "c7_s21b_echo_callback"
         },
         {
           "id": "trace_anomaly",
@@ -8327,7 +8982,7 @@
               "value": 1
             }
           ],
-          "next": "c7_s22_tag19_resonance"
+          "next": "c7_s21b_echo_callback"
         },
         {
           "id": "put_away_photo",
@@ -8339,7 +8994,7 @@
               "value": 1
             }
           ],
-          "next": "c7_s22_tag19_resonance"
+          "next": "c7_s21b_echo_callback"
         }
       ],
       "atmosphere": "mystic",
@@ -8350,10 +9005,61 @@
       ]
     },
     {
+      "id": "c7_s21b_echo_callback",
+      "chapter": 7,
+      "title": "Nach dem Echo",
+      "narrative": "Das Foto sinkt wieder in deine Hand.\n\nDein letzter Satz im Gang wirkt noch nach, wie eine Haltung, die du mitgenommen hast.",
+      "choices": [
+        {
+          "id": "continue_to_tag_after_echo_callback",
+          "label": "Auf das Etikett sehen",
+          "next": "c7_s22_tag19_resonance"
+        }
+      ],
+      "atmosphere": "somber",
+      "narrative_variants": [
+        {
+          "condition": {
+            "type": "compare",
+            "target": "mut",
+            "operator": "==",
+            "value": 4
+          },
+          "narrative": "Das Foto sinkt wieder in deine Hand.\n\nDein Satz über Erinnern macht den Gang nicht heller, aber weniger kalt.\n\nDu spürst, dass du gehst, ohne abzuschneiden."
+        },
+        {
+          "condition": {
+            "type": "compare",
+            "target": "mut",
+            "operator": "==",
+            "value": 5
+          },
+          "narrative": "Das Foto sinkt wieder in deine Hand.\n\nDer Trotz von eben bleibt in dir wie ein kleiner Widerhaken.\n\nNicht gegen die Wahrheit. Gegen das Verschwinden."
+        },
+        {
+          "condition": {
+            "type": "compare",
+            "target": "mut",
+            "operator": "==",
+            "value": 6
+          },
+          "narrative": "Das Foto sinkt wieder in deine Hand.\n\nDein Dank von eben wirkt nach wie ein stilles Ritual.\n\nAls hättest du der Fahrt einen Abschluss gegeben, bevor sie endet."
+        }
+      ],
+      "tags": [
+        "interlude"
+      ],
+      "state_notes": [
+        "Später Callback auf c7_s20c/c7_s20d",
+        "mut wird hier nur als Flavor-Flag genutzt",
+        "Kein Einfluss auf Endings/Route"
+      ]
+    },
+    {
       "id": "c7_s22_tag19_final",
       "chapter": 7,
       "title": "Das Etikett - Letzte Bedeutung",
-      "narrative": "Wagen 7, Sitz 19.\n\n1973. Letzte Fahrt.\n\nDu verstehst jetzt: 19 ist kein Zufall.\n\n19. September. 19:19 Uhr. Nachtzug 19.\n\nAlles ist ein Muster. Ein Code.\n\nDas Tag vibriert stärker. Die Hitze wird unerträglich. Die Ziffern brennen sich in deine Handfläche.\n\n„19\" ist nicht nur eine Nummer. Es ist ein Anker.\n\nWenn du es festhältst und dich darauf konzentrierst, könntest du die Zeit stabilisieren. Den Drift stoppen.\n\nOder du lässt los. Lässt die Vergangenheit gehen.\n\nDas Tag pulsiert. Wartend.",
+      "narrative": "Der Puls hämmert weiter: Wagen 7, Sitz 19.\n\n1973. Letzte Fahrt.\n\nDu verstehst jetzt: 19 ist kein Zufall.\n\n19. September. 19:19 Uhr. Nachtzug 19.\n\nAlles ist ein Muster. Ein Code.\n\nDas Tag vibriert stärker. Die Hitze wird unerträglich. Die Ziffern brennen sich in deine Handfläche.\n\n„19\" ist nicht nur eine Nummer. Es ist ein Anker.\n\nWenn du es festhältst und dich darauf konzentrierst, könntest du die Zeit stabilisieren. Den Drift stoppen.\n\nOder du lässt los. Lässt die Vergangenheit gehen.\n\nDas Tag pulsiert. Wartend.",
       "choices": [
         {
           "id": "use_as_anchor",
@@ -8453,7 +9159,7 @@
       "id": "c7_s22_tag19_resonance",
       "chapter": 7,
       "title": "Das Etikett",
-      "narrative": "Das Tag19-Etikett liegt schwer in deiner Hand.\n\nEs wird heiß. Nicht sichtbar, aber spürbar. Ein Puls, der sich durch den Knochen frisst.\n\nEin Summen setzt ein – tief, unter der Hörschwelle. Nicht vom Tag. Aus dir.",
+      "narrative": "Mit der Erkenntnis aus dem Foto in dir liegt das Tag19-Etikett schwer in deiner Hand.\n\nEs wird heiß. Nicht sichtbar, aber spürbar. Ein Puls, der sich durch den Knochen frisst.\n\nEin Summen setzt ein – tief, unter der Hörschwelle. Nicht vom Tag. Aus dir.",
       "choices": [
         {
           "id": "focus_on_pulse",
@@ -8489,7 +9195,7 @@
       "id": "c7_s23_interlude_doors_open",
       "chapter": 7,
       "title": "Die Türen",
-      "narrative": "Die Türen…\n\nBeginnen sich zu öffnen.\n\nLangsam.\n\nSehr langsam.\n\nDer Spalt ist zuerst nur eine Linie, dünn wie ein Haar. Kühle Luft drückt hinein und legt sich auf deine Lippen.\n\nStaub wirbelt im Licht, kleine Punkte, die langsam schweben. Du hörst ein fernes Summen, nicht vom Zug, eher vom Bahnsteig.\n\nDu trittst einen halben Schritt vor, stoppst, die Sohlen kleben kurz am Boden.\n\nDer Geruch von nassem Stein trifft dich, und etwas darin ist vertraut, ohne dass du es greifen kannst.\n\nDein Herz pocht, als hättest du endlich wieder einen Rhythmus.\n\nDas Licht zeichnet eine klare Kante über die Sitze, und du siehst zum ersten Mal Staub, der sich nicht bewegt.\n\nLicht strömt herein.\n\nNicht das goldene Licht von Abteil 7.\n\nNicht das künstliche Licht des Zuges.\n\nEchtes Licht.\n\nTageslicht.\n\nOder… Nachtlicht.\n\nSchwer zu sagen.\n\nAber es ist… real.\n\nEndlich real.\n\nDie Luft, die hereinströmt, ist kalt.\n\nFrisch.\n\nLebendig.\n\nDu atmest tief ein.\n\nDas erste Mal seit…\n\nWie lange?\n\nFünfzig Jahre?\n\nFünfzig Minuten?\n\nDie Türen sind jetzt vollständig offen.\n\nDer Bahnsteig liegt vor dir.\n\nReal. Fest. Endgültig.",
+      "narrative": "Dann beginnen die Türen…\n\nBeginnen sich zu öffnen.\n\nLangsam.\n\nSehr langsam.\n\nDer Spalt ist zuerst nur eine Linie, dünn wie ein Haar. Kühle Luft drückt hinein und legt sich auf deine Lippen.\n\nStaub wirbelt im Licht, kleine Punkte, die langsam schweben. Du hörst ein fernes Summen, nicht vom Zug, eher vom Bahnsteig.\n\nDu trittst einen halben Schritt vor, stoppst, die Sohlen kleben kurz am Boden.\n\nDer Geruch von nassem Stein trifft dich, und etwas darin ist vertraut, ohne dass du es greifen kannst.\n\nDein Herz pocht, als hättest du endlich wieder einen Rhythmus.\n\nDas Licht zeichnet eine klare Kante über die Sitze, und du siehst zum ersten Mal Staub, der sich nicht bewegt.\n\nLicht strömt herein.\n\nNicht das goldene Licht von Abteil 7.\n\nNicht das künstliche Licht des Zuges.\n\nEchtes Licht.\n\nTageslicht.\n\nOder… Nachtlicht.\n\nSchwer zu sagen.\n\nAber es ist… real.\n\nEndlich real.\n\nDie Luft, die hereinströmt, ist kalt.\n\nFrisch.\n\nLebendig.\n\nDu atmest tief ein.\n\nDas erste Mal seit…\n\nWie lange?\n\nFünfzig Jahre?\n\nFünfzig Minuten?\n\nDie Türen sind jetzt vollständig offen.\n\nDer Bahnsteig liegt vor dir.\n\nReal. Fest. Endgültig.",
       "choices": [
         {
           "id": "step_forward",
@@ -8519,7 +9225,7 @@
       "id": "c7_s24_platform_real",
       "chapter": 7,
       "title": "Der echte Bahnsteig",
-      "narrative": "Du trittst hinaus.\n\nDer Bahnsteig ist… anders.\n\nNicht wie die anderen Stationen.\n\nNicht verschwommen oder traumhaft.\n\nNicht mystisch oder unheimlich.\n\nEinfach… da.\n\nReal. Fest. Wirklich.\n\nEs gibt ein Schild.\n\nMit dem Namen der Station.\n\nAber… es ist nicht lesbar.\n\nDie Buchstaben verschwimmen.\n\nOder… sie ändern sich.\n\nJe nachdem, wie du hinsiehst.\n\nFür jeden Passagier… eine andere Station.\n\nEin anderes Ziel.\n\nEin anderes… danach.\n\nDu blickst zurück zum Zug.\n\nEr steht noch da.\n\nDie Türen offen.\n\nAber… du weißt.\n\nWenn du jetzt gehst…\n\nGibt es kein Zurück.\n\nNie wieder.\n\nDie Frage ist:\n\nBist du bereit?",
+      "narrative": "Du trittst hinaus.\n\nDer Bahnsteig ist anders als alle davor: nicht verschwommen, nicht traumhaft, nicht unheimlich. Einfach da. Real. Fest. Wirklich.\n\nEin Schild hängt an der Kante, doch der Name bleibt unlesbar. Die Buchstaben verschwimmen oder verändern sich, je nachdem, wie du hinsiehst.\n\nFür jeden Passagier ein anderer Bahnhof. Ein anderes Ziel. Ein anderes Danach.\n\nDu blickst zurück. Der Zug steht noch da, die Türen offen.\n\nAber du weißt: Wenn du jetzt gehst, gibt es kein Zurück.\n\nNie wieder.\n\nBist du bereit?",
       "choices": [
         {
           "id": "look_around",
@@ -8575,6 +9281,7 @@
         {
           "id": "step_off",
           "label": "Aussteigen",
+          "weight": "irreversibel",
           "effects": [
             {
               "type": "inc",
@@ -8582,11 +9289,12 @@
               "value": 1
             }
           ],
-          "next": "c7_end_station"
+          "next": "c7_s25b_threshold_dialog"
         },
         {
           "id": "look_back_one_last_time",
           "label": "Ein letztes Mal zurückblicken",
+          "weight": "irreversibel",
           "condition": {
             "type": "compare",
             "target": "tickets_truth",
@@ -8605,7 +9313,7 @@
               "value": 1
             }
           ],
-          "next": "c7_end_station"
+          "next": "c7_s25b_threshold_dialog"
         }
       ],
       "atmosphere": "somber",
@@ -8618,10 +9326,176 @@
       ]
     },
     {
+      "id": "c7_s25b_threshold_dialog",
+      "chapter": 7,
+      "title": "Die Schwelle",
+      "narrative": "Der Bahnsteig ist still, als würde die Welt den Atem anhalten.\n\nNoch ein Gedanke.\n\nNoch ein Satz, bevor alles fest wird.",
+      "choices": [
+        {
+          "id": "threshold_name_choice",
+          "label": "Deinen Namen laut sagen",
+          "effects": [
+            {
+              "type": "set",
+              "target": "wissen",
+              "value": 7
+            }
+          ],
+          "next": "c7_s25c_threshold_name"
+        },
+        {
+          "id": "threshold_thank_choice",
+          "label": "Dich bei den Verlorenen bedanken",
+          "effects": [
+            {
+              "type": "set",
+              "target": "wissen",
+              "value": 8
+            }
+          ],
+          "next": "c7_s25c_threshold_thanks"
+        },
+        {
+          "id": "threshold_silent_choice",
+          "label": "Schweigend den ersten Schritt setzen",
+          "effects": [
+            {
+              "type": "set",
+              "target": "wissen",
+              "value": 9
+            }
+          ],
+          "next": "c7_s25c_threshold_silence"
+        }
+      ],
+      "atmosphere": "somber",
+      "tags": [
+        "interlude"
+      ],
+      "state_notes": [
+        "Agency: letzter Mikro-Dialog ohne zusätzliche Effects",
+        "Rekombination in c7_end_station"
+      ]
+    },
+    {
+      "id": "c7_s25c_threshold_name",
+      "chapter": 7,
+      "title": "Der eigene Name",
+      "narrative": "Du sagst deinen Namen laut.\n\nDer Klang ist rau, aber er gehört dir.\n\nDer Bahnsteig antwortet mit Stille, die nicht mehr leer wirkt.",
+      "choices": [
+        {
+          "id": "continue_after_threshold_name",
+          "label": "Weiter",
+          "next": "c7_s25d_threshold_callback"
+        }
+      ],
+      "atmosphere": "somber",
+      "tags": [
+        "interlude"
+      ],
+      "state_notes": [
+        "Choice-Reaktion: Name",
+        "Rekombination in c7_end_station"
+      ]
+    },
+    {
+      "id": "c7_s25c_threshold_silence",
+      "chapter": 7,
+      "title": "Ohne Worte",
+      "narrative": "Du bleibst stumm.\n\nDer erste Schritt klingt deshalb lauter als erwartet.\n\nNicht hart. Nur endgültig.",
+      "choices": [
+        {
+          "id": "continue_after_threshold_silence",
+          "label": "Nicht mehr zurücksehen",
+          "next": "c7_s25d_threshold_callback"
+        }
+      ],
+      "atmosphere": "somber",
+      "tags": [
+        "interlude"
+      ],
+      "state_notes": [
+        "Choice-Reaktion: Schweigen",
+        "Rekombination in c7_end_station"
+      ]
+    },
+    {
+      "id": "c7_s25c_threshold_thanks",
+      "chapter": 7,
+      "title": "Ein Dank",
+      "narrative": "„Danke,\" sagst du in die Luft, zu niemandem und zu allen.\n\nZwischen den Schienen scheint etwas zu zittern, wie eine letzte Erinnerung, die loslässt.\n\nDann wird es ruhig.",
+      "choices": [
+        {
+          "id": "continue_after_threshold_thanks",
+          "label": "Den Schritt setzen",
+          "next": "c7_s25d_threshold_callback"
+        }
+      ],
+      "atmosphere": "somber",
+      "tags": [
+        "interlude"
+      ],
+      "state_notes": [
+        "Choice-Reaktion: Dank",
+        "Rekombination in c7_end_station"
+      ]
+    },
+    {
+      "id": "c7_s25d_threshold_callback",
+      "chapter": 7,
+      "title": "Der letzte Nachhall",
+      "narrative": "Der Bahnsteig bleibt still.\n\nAber dein letzter Satz davor hängt noch in der Luft.",
+      "choices": [
+        {
+          "id": "continue_to_end_station_after_threshold_callback",
+          "label": "Weiter",
+          "next": "c7_end_station"
+        }
+      ],
+      "atmosphere": "somber",
+      "narrative_variants": [
+        {
+          "condition": {
+            "type": "compare",
+            "target": "wissen",
+            "operator": "==",
+            "value": 7
+          },
+          "narrative": "Der Bahnsteig bleibt still.\n\nDass du deinen Namen gesagt hast, wirkt wie ein Anker im letzten Windstoß.\n\nDu trittst nicht als Unbekannter ins Danach."
+        },
+        {
+          "condition": {
+            "type": "compare",
+            "target": "wissen",
+            "operator": "==",
+            "value": 8
+          },
+          "narrative": "Der Bahnsteig bleibt still.\n\nDein Dank schwingt noch nach, leise, aber deutlich.\n\nAls hätte die Fahrt nicht nur ein Ende, sondern auch eine Form bekommen."
+        },
+        {
+          "condition": {
+            "type": "compare",
+            "target": "wissen",
+            "operator": "==",
+            "value": 9
+          },
+          "narrative": "Der Bahnsteig bleibt still.\n\nDein Schweigen von eben war kein Ausweichen.\n\nEs war eine Entscheidung, die keinen zusätzlichen Satz mehr brauchte."
+        }
+      ],
+      "tags": [
+        "interlude"
+      ],
+      "state_notes": [
+        "Später Callback auf c7_s25b/c7_s25c",
+        "wissen wird hier nur als Flavor-Flag genutzt",
+        "Kein Einfluss auf Endings/Route"
+      ]
+    },
+    {
       "id": "ending_escape_01",
       "chapter": 7,
       "title": "Bleiben",
-      "narrative": "Du steigst nicht aus.\n\nDie Türen sind offen. Der Bahnsteig wartet.\n\nAber du...\n\nDu drehst dich um.\n\nGehst zurück in den Zug.\n\nDie Türen schließen sich hinter dir. Leise. Final.\n\n\"Bleibst du?\" fragt eine Stimme.\n\nDer Schlaflose. Er sitzt auf seinem alten Platz. Sieht müde aus. Wie immer.\n\n\"Ja,\" sagst du.\n\n\"Warum?\"\n\n\"Weil... ich nicht bereit bin.\"\n\nEr nickt. Als hätte er das erwartet.\n\n\"Ich verstehe.\"\n\nDu setzt dich ihm gegenüber.\n\nDer Zug setzt sich in Bewegung. Sanft. Lautlos.\n\nDraußen: Schwärze. Wie immer.\n\n\"Wo fahren wir hin?\" fragst du.\n\n\"Nirgendwohin,\" sagt der Schlaflose. \"Wir fahren im Kreis.\"\n\n\"Für immer?\"\n\n\"Bis wir bereit sind.\"\n\nDu lehnst den Kopf ans Fenster. Das Glas ist kalt.\n\n\"Und wenn ich nie bereit bin?\"\n\nEr lächelt. Müde. Traurig.\n\n\"Dann bleibst du. Wie ich. Wie die anderen.\"",
+      "narrative": "Du steigst nicht aus.\n\nDie Türen sind offen, der Bahnsteig wartet - aber du drehst dich um und gehst zurück in den Zug.\n\nHinter dir schließen sich die Türen, leise und endgültig.\n\n\"Bleibst du?\" fragt eine Stimme.\n\nDer Schlaflose sitzt auf seinem alten Platz. Müde wie immer.\n\n\"Ja,\" sagst du.\n\n\"Warum?\"\n\n\"Weil ich nicht bereit bin.\"\n\nEr nickt, als hätte er nichts anderes erwartet.\n\n\"Ich verstehe.\"\n\nDu setzt dich ihm gegenüber.\n\nDer Zug setzt sich lautlos in Bewegung. Draußen nur Schwärze.\n\n\"Wo fahren wir hin?\" fragst du.\n\n\"Nirgendwohin,\" sagt er. \"Wir fahren im Kreis.\"\n\n\"Für immer?\"\n\n\"Bis wir bereit sind.\"\n\nDu lehnst den Kopf ans kalte Fenster.\n\n\"Und wenn ich nie bereit bin?\"\n\nEr lächelt müde, traurig.\n\n\"Dann bleibst du. Wie ich. Wie die anderen.\"",
       "choices": [
         {
           "id": "continue",
@@ -8651,7 +9525,7 @@
       "id": "ending_escape_02",
       "chapter": 7,
       "title": "Die Schleife",
-      "narrative": "Der Zug fährt. Weiter. Immer weiter.\n\nDie Durchsage wiederholt sich. Die Uhr zeigt 23:47. Immer.\n\nDer Junge malt den Zug. Comp7 schreibt 19. 19. 19. Der Schlaflose starrt ins Schwarz.\n\n\"Bereust du es?\" fragt er.\n\n\"Nein,\" lügst du.\n\nIhr wisst beide, dass es eine Lüge ist.\n\nDer Schaffner kommt. \"Ihr Ticket, bitte.\"\n\nDu gibst ihm das Tag19. Er nickt. \"Gültig.\" \n\n\"Bis wann?\" \n\n\"Bis Sie bereit sind auszusteigen.\" \n\nDer Zug fährt weiter. 23:47. Immer 23:47.\n\nDu schließt die Augen.\n\n---\n\n**ENDE: FLUCHT**\n\n*Du bist geblieben.*\n\n*Im Zug. In der Schleife. In der Sicherheit.*\n\n*Die Welt wartet draußen.*\n\n*Aber du wirst nie aussteigen.*\n\n*Und vielleicht... ist das okay.*",
+      "narrative": "Der Zug fährt weiter. Immer weiter.\n\nDie Durchsage wiederholt sich. Die Uhr zeigt 23:47.\n\nImmer.\n\nDer Junge malt den Zug. Comp7 schreibt 19. 19. 19. Der Schlaflose starrt ins Schwarz.\n\n\"Bereust du es?\" fragt er.\n\n\"Nein,\" lügst du.\n\nIhr wisst beide, dass es eine Lüge ist.\n\nDer Schaffner kommt. \"Ihr Ticket, bitte.\"\n\nDu gibst ihm das Tag19. Er nickt. \"Gültig.\"\n\n\"Bis wann?\"\n\n\"Bis Sie bereit sind auszusteigen.\"\n\nDer Zug fährt weiter. 23:47.\n\nImmer 23:47.\n\nDu schließt die Augen.\n\n---\n\n**ENDE: FLUCHT**\n\n*Du bist geblieben.*\n\n*Im Zug. In der Schleife. In der Sicherheit.*\n\n*Die Welt wartet draußen.*\n\n*Aber du wirst nie aussteigen.*\n\n*Und vielleicht... ist das okay.*",
       "choices": [
         {
           "id": "finish",
@@ -8680,7 +9554,7 @@
       "id": "ending_guilt_01",
       "chapter": 7,
       "title": "Schuld",
-      "narrative": "Du steigst aus.\n\nAber du kannst nicht weitergehen.\n\nDeine Füße... sie bleiben stehen. Direkt am Rand des Bahnsteigs.\n\nDu siehst zurück zum Zug.\n\nEr verblasst. Langsam. Aber er verblasst.\n\nUnd in den Fenstern... siehst du sie.\n\nDie anderen Passagiere.\n\nDie Menschen, die noch im Zug sind.\n\nDer Schlaflose. Er sieht dich an. Seine Augen sind leer.\n\nDer Junge. Er steht am Fenster. Seine Hand liegt auf dem Glas.\n\n\"Warum gehst du?\" scheint er zu fragen. \"Warum lässt du uns hier?\"\n\nComp7. Sie sitzt in Wagen 7. Umgeben von ihren Notizbüchern. Allein.\n\nSie sieht dich nicht an.\n\nSie schreibt. Weiter. Immer weiter.\n\n19. 19. 19.\n\nDu hast sie zurückgelassen.\n\nAlle.\n\nDu bist gegangen. Aber sie... sie sind noch da.\n\nIm Zug. In der Schleife. In der Erinnerung.\n\n\"Es war nicht deine Schuld,\" sagt eine Stimme.\n\nDu drehst dich um.\n\nDer Schaffner. Er steht neben dir. Auf dem Bahnsteig.\n\n\"Der Unfall. 1973. Es war nicht deine Schuld.\"\n\n\"Ich weiß,\" flüsterst du.\n\n\"Aber du glaubst es nicht.\"\n\nDu schweigst.\n\n\"Du hättest sie nicht retten können,\" sagt er. \"Die 19 Menschen im Zug. Du hättest nichts tun können.\"\n\n\"Ich hätte... nicht einsteigen sollen. An dem Tag. Wenn ich...\"\n\n\"Dann wärst du nicht gestorben. Aber sie... wären es trotzdem.\"\n\nDu siehst ihn an.\n\n\"Du kannst nicht die Schuld für etwas tragen, das du nicht kontrollieren konntest,\" sagt er.\n\n\"Aber ich kann nicht loslassen.\"\n\n\"Ich weiß,\" sagt er leise. \"Deshalb bist du hier.\"",
+      "narrative": "Du steigst aus.\n\nAber du kannst nicht weitergehen.\n\nDeine Füße bleiben am Rand des Bahnsteigs stehen.\n\nDu blickst zurück zum Zug.\n\nEr verblasst langsam, und in den Fenstern siehst du die anderen: den Schlaflosen mit leeren Augen, den Jungen mit der Hand am Glas, Comp7 in Wagen 7, allein zwischen ihren Notizbüchern, wie sie weiter schreibt: 19. 19. 19.\n\nDu hast sie zurückgelassen.\n\nAlle.\n\nDu bist gegangen, aber sie sind noch da. Im Zug. In der Schleife. In der Erinnerung.\n\n\"Es war nicht deine Schuld,\" sagt eine Stimme.\n\nDu drehst dich um. Der Schaffner steht neben dir auf dem Bahnsteig.\n\n\"Der Unfall 1973. Es war nicht deine Schuld.\"\n\n\"Ich weiß,\" flüsterst du.\n\n\"Aber du glaubst es nicht.\"\n\nDu schweigst.\n\n\"Du hättest sie nicht retten können. Die 19 Menschen im Zug. Du hättest nichts tun können.\"\n\n\"Ich hätte nicht einsteigen sollen. An dem Tag. Wenn ich ...\"\n\n\"Dann wärst du nicht gestorben. Aber sie wären es trotzdem.\"\n\nDu siehst ihn an.\n\n\"Du kannst nicht die Schuld für etwas tragen, das du nicht kontrollieren konntest,\" sagt er.\n\n\"Aber ich kann nicht loslassen.\"\n\n\"Ich weiß,\" sagt er leise. \"Deshalb bist du hier.\"",
       "choices": [
         {
           "id": "continue",
@@ -8710,7 +9584,7 @@
       "id": "ending_guilt_02",
       "chapter": 7,
       "title": "Verantwortung",
-      "narrative": "\"Was soll ich tun?\" fragst du.\n\n\"Das musst du entscheiden,\" sagt der Schaffner.\n\n\"Du kannst die Toten nicht retten. Aber du kannst sie lebendig halten. In der Erinnerung.\"\n\nDer Zug verschwindet. Ganz.\n\nDu stehst allein auf dem Bahnsteig. Aber du weißt, was du tun musst.\n\nDu gehst zu einer Bibliothek. Suchst nach Informationen.\n\nNachtzug 19. 19. September 1973. 19:19 Uhr.\n\nDu liest die Namen. Jeden einzelnen.\n\nDu schreibst sie auf. Nicht um zu vergessen. Sondern um zu erinnern.\n\n---\n\n**ENDE: SCHULD**\n\n*Du trägst die Verantwortung für die Toten.*\n\n*Nicht ihre Schuld. Sondern ihre Erinnerung.*\n\n*Es ist schwer. Es tut weh.*\n\n*Aber es ist... notwendig.*",
+      "narrative": "\"Was soll ich tun?\" fragst du.\n\n\"Das musst du entscheiden,\" sagt der Schaffner.\n\n\"Du kannst die Toten nicht retten. Aber du kannst sie in der Erinnerung lebendig halten.\"\n\nDer Zug verschwindet. Ganz.\n\nDu stehst allein auf dem Bahnsteig. Aber du weißt, was du tun musst.\n\nDu gehst in eine Bibliothek und suchst nach Informationen.\n\nNachtzug 19. 19. September 1973. 19:19 Uhr.\n\nDu liest die Namen. Jeden einzelnen.\n\nDu schreibst sie auf. Nicht um zu vergessen, sondern um zu erinnern.\n\n---\n\n**ENDE: SCHULD**\n\n*Du trägst die Verantwortung für die Toten.*\n\n*Nicht ihre Schuld. Sondern ihre Erinnerung.*\n\n*Es ist schwer. Es tut weh.*\n\n*Aber es ist... notwendig.*",
       "choices": [
         {
           "id": "finish",
@@ -8739,7 +9613,7 @@
       "id": "ending_limbo_01",
       "chapter": 7,
       "title": "Unentschieden",
-      "narrative": "Du stehst auf dem Bahnsteig.\n\nDie Türen sind offen.\n\nVor dir: Die Welt. Hell. Laut. Unbekannt.\n\nHinter dir: Der Zug. Dunkel. Vertraut. Sicher.\n\nDu kannst dich nicht entscheiden.\n\nEin Schritt nach vorne?\n\nEin Schritt zurück?\n\nDu bleibst stehen. Genau in der Mitte.\n\nAuf der Schwelle.\n\nWeder drinnen noch draußen.\n\nWeder tot noch lebendig.\n\n\"Was tust du?\" fragt der Schaffner. Er steht neben dir.\n\n\"Ich... weiß es nicht.\"\n\n\"Du musst entscheiden.\"\n\n\"Kann ich nicht einfach... hier bleiben?\"\n\nEr sieht dich an. Lange. Dann schüttelt er den Kopf.\n\n\"Nein. Das ist keine Entscheidung. Das ist... Stillstand.\"\n\n\"Aber ich bin nicht bereit.\"\n\n\"Wirst du es jemals sein?\"\n\nDu schweigst.\n\nDie Türen beginnen zu piepen. Eine Warnung.\n\nSie werden sich bald schließen.\n\n\"Letzte Chance,\" sagt der Schaffner.\n\nDu siehst nach vorne. Nach hinten.\n\nUnd du...\n\n...kannst dich immer noch nicht entscheiden.",
+      "narrative": "Du stehst auf dem Bahnsteig.\n\nDie Türen sind offen.\n\nVor dir liegt die Welt: hell, laut, unbekannt.\n\nHinter dir der Zug: dunkel, vertraut, sicher.\n\nDu kannst dich nicht entscheiden.\n\nEin Schritt nach vorn?\nEin Schritt zurück?\n\nDu bleibst genau in der Mitte stehen.\n\nAuf der Schwelle.\n\nWeder drinnen noch draußen.\nWeder tot noch lebendig.\n\n\"Was tust du?\" fragt der Schaffner neben dir.\n\n\"Ich weiß es nicht.\"\n\n\"Du musst entscheiden.\"\n\n\"Kann ich nicht einfach hier bleiben?\"\n\nEr sieht dich lange an und schüttelt dann den Kopf.\n\n\"Nein. Das ist keine Entscheidung. Das ist Stillstand.\"\n\n\"Aber ich bin nicht bereit.\"\n\n\"Wirst du es jemals sein?\"\n\nDu schweigst.\n\nDie Türen beginnen zu piepen. Eine Warnung.\n\nSie werden sich gleich schließen.\n\n\"Letzte Chance,\" sagt der Schaffner.\n\nDu siehst nach vorn. Nach hinten.\n\nUnd kannst dich immer noch nicht entscheiden.",
       "choices": [
         {
           "id": "continue",
@@ -8769,7 +9643,7 @@
       "id": "ending_limbo_02",
       "chapter": 7,
       "title": "Zwischen",
-      "narrative": "Die Türen schließen sich.\n\nHalb.\n\nSie bleiben stecken. Piepen. Versuchen sich zu schließen. Scheitern.\n\nDu stehst genau dazwischen.\n\nEin Fuß auf dem Bahnsteig. Ein Fuß im Zug.\n\nDer Schaffner seufzt.\n\n\"Das habe ich befürchtet.\"\n\n\"Was passiert jetzt?\"\n\n\"Nichts,\" sagt er. \"Und alles. Du bist... zwischen.\"\n\nDer Zug fährt nicht weiter. Bleibt stehen.\n\nDer Bahnsteig verschwindet nicht. Bleibt da.\n\nDu bleibst. Genau hier. Auf der Schwelle.\n\n\"Für wie lange?\" fragst du.\n\n\"Bis du entscheidest.\"\n\n\"Und wenn ich nie entscheide?\"\n\nEr lächelt nicht. \"Dann bleibst du hier. Zwischen. Für immer.\"\n\nDie Welt um dich herum verblasst. Nicht ganz. Aber... ein bisschen.\n\nDie Farben werden grauer. Die Geräusche leiser. Die Zeit langsamer.\n\nDu bist nicht tot. Aber auch nicht lebendig.\n\nNicht im Zug. Aber auch nicht draußen.\n\nDu bist... zwischen.\n\nUnd vielleicht...\n\n...bleibst du hier für immer.\n\nIn der Schwebe.\n\nWartend auf eine Entscheidung, die nie kommt.\n\n---\n\n**ENDE: LIMBO**\n\n*Du hast nicht gewählt.*\n\n*Weder Wahrheit noch Flucht. Weder Liebe noch Schuld.*\n\n*Du bist... zwischen.*\n\n*Und hier bleibst du.*\n\n*Für immer.*",
+      "narrative": "Die Türen schließen sich.\n\nHalb.\n\nDann bleiben sie stecken. Sie piepen, rucken, versuchen es erneut - und scheitern.\n\nDu stehst genau dazwischen.\n\nEin Fuß auf dem Bahnsteig. Ein Fuß im Zug.\n\nDer Schaffner seufzt.\n\n\"Das habe ich befürchtet.\"\n\n\"Was passiert jetzt?\"\n\n\"Nichts,\" sagt er. \"Und alles. Du bist zwischen.\"\n\nDer Zug fährt nicht weiter.\nDer Bahnsteig verschwindet nicht.\n\nBeides bleibt.\n\nUnd du bleibst mit.\n\nGenau hier. Auf der Schwelle.\n\n\"Für wie lange?\" fragst du.\n\n\"Bis du entscheidest.\"\n\n\"Und wenn ich nie entscheide?\"\n\nEr lächelt nicht. \"Dann bleibst du hier. Zwischen. Für immer.\"\n\nDie Welt um dich herum verblasst ein wenig. Die Farben werden grauer, die Geräusche leiser, die Zeit langsamer.\n\nDu bist nicht tot. Aber auch nicht lebendig.\nNicht im Zug. Aber auch nicht draußen.\n\nDu bist zwischen.\n\nVielleicht bleibst du es für immer.\n\nIn der Schwebe.\n\nWartend auf eine Entscheidung, die nie kommt.\n\n---\n\n**ENDE: LIMBO**\n\n*Du hast nicht gewählt.*\n\n*Weder Wahrheit noch Flucht. Weder Liebe noch Schuld.*\n\n*Du bist... zwischen.*\n\n*Und hier bleibst du.*\n\n*Für immer.*",
       "choices": [
         {
           "id": "finish",
@@ -8800,7 +9674,7 @@
       "id": "ending_love_01",
       "chapter": 7,
       "title": "Wiedersehen",
-      "narrative": "Du steigst aus.\n\nUnd da... steht jemand.\n\nAuf dem Bahnsteig. Wartend.\n\nNicht Comp7. Nicht der Junge. Nicht der Schlaflose.\n\nSondern... **Emma**.\n\nDas Gesicht aus deinen Träumen. Die Stimme vom Kassettenrekorder.\n\nDie Person, die du gesucht hast. Die ganze Fahrt lang.\n\nSie sieht älter aus. Grauere Haare. Fältchen um die Augen. Aber...\n\nSie lächelt.\n\nGenau wie damals.\n\n\"Du bist zu spät,\" sagt sie. Ihre Stimme bricht. \"Fünfzig Jahre zu spät.\"\n\nDu kannst nicht sprechen. Die Worte bleiben stecken.\n\n\"Ich weiß,\" flüsterst du schließlich.\n\nSie geht auf dich zu. Langsam. Als hätte sie Angst, dass du verschwindest, wenn sie zu schnell gehst.\n\nIhre Hand hebt sich. Berührt dein Gesicht. Warm. Real.\n\n\"Du bist... wirklich hier,\" sagt sie. Tränen in den Augen.\n\n\"Ich bin hier.\"\n\n\"Ich habe gewartet. So lange. Sie haben gesagt, ich soll aufhören. Sie haben gesagt, du kommst nicht zurück. Aber ich... ich konnte nicht.\"\n\nDu nimmst ihre Hand. Hältst sie fest.\n\n\"Ich bin zurück.\"\n\n\"Nein,\" sagt sie leise. \"Du bist... angekommen.\"\n\nHinter dir: Der Zug. Er verblasst. Langsam.\n\nAber du drehst dich nicht um.\n\nDu siehst nur Emma an.",
+      "narrative": "Du steigst aus.\n\nUnd da steht jemand auf dem Bahnsteig.\n\nNicht Comp7. Nicht der Junge. Nicht der Schlaflose.\n\nSondern **Emma**.\n\nDas Gesicht aus deinen Träumen. Die Stimme vom Kassettenrekorder. Die Person, die du die ganze Fahrt gesucht hast.\n\nEmma sieht älter aus. Grauere Haare. Fältchen um die Augen.\n\nAber sie lächelt.\n\nGenau wie damals.\n\n\"Du bist zu spät,\" sagt sie mit brechender Stimme. \"Fünfzig Jahre zu spät.\"\n\nDu bringst erst kein Wort heraus.\n\n\"Ich weiß,\" flüsterst du schließlich.\n\nSie geht langsam auf dich zu, als hätte sie Angst, du könntest verschwinden, wenn sie sich zu schnell bewegt.\n\nIhre Hand berührt dein Gesicht.\n\nWarm. Real.\n\n\"Du bist wirklich hier,\" sagt sie, Tränen in den Augen.\n\n\"Ich bin hier.\"\n\n\"Ich habe gewartet. So lange. Alle haben gesagt, ich soll aufhören. Dass du nicht zurückkommst. Aber ich konnte nicht.\"\n\nDu nimmst ihre Hand und hältst sie fest.\n\n\"Ich bin zurück.\"\n\n\"Nein,\" sagt sie leise. \"Du bist angekommen.\"\n\nHinter dir verblasst der Zug.\n\nDu drehst dich nicht um.\n\nDu siehst nur Emma an.",
       "choices": [
         {
           "id": "continue",
@@ -8829,7 +9703,7 @@
       "id": "ending_love_02",
       "chapter": 7,
       "title": "Verlorene Zeit",
-      "narrative": "\"Fünfzig Jahre,\" sagst du. \"Ich war... weg.\"\n\n\"Ich weiß.\"\n\nSie setzt sich auf eine Bank. Du setzt dich neben sie.\n\n\"Sie haben deinen Körper nie gefunden,\" sagt sie. \"19 Tote. Aber nur 18 Leichen.\"\n\n\"Verschwunden.\"\n\n\"Ja.\"\n\nSie erzählt von ihrem Leben. Von Jahren, die weitergingen, während du stehen geblieben bist.\n\n\"Ich liebe dich,\" sagst du.\n\n\"Ich weiß,\" sagt sie. \"Ich dich auch.\"\n\nSie steht auf. Reicht dir die Hand.\n\n\"Komm.\"\n\nIhr Haus ist klein. Gemütlich. Fotos an der Wand. Ein Leben ohne dich.\n\n\"Wie lange habe ich?\" fragst du.\n\n\"Ich weiß es nicht,\" sagt sie ehrlich. \"Aber wir haben jetzt.\"\n\n---\n\n**ENDE: LIEBE**\n\n*Du hast jemanden gefunden. Oder... sie hat dich gefunden.*\n\n*Die Zeit, die ihr habt, ist vielleicht kurz. Vielleicht lang.*\n\n*Aber sie ist echt.*\n\n*Und manchmal ist das genug.*",
+      "narrative": "\"Fünfzig Jahre,\" sagst du. \"Ich war weg.\"\n\n\"Ich weiß.\"\n\nSie setzt sich auf eine Bank. Du setzt dich neben sie.\n\n\"Sie haben deinen Körper nie gefunden,\" sagt sie. \"19 Tote. Aber nur 18 Leichen.\"\n\n\"Verschwunden.\"\n\n\"Ja.\"\n\nSie erzählt von ihrem Leben. Von Jahren, die weitergingen, während du stehen geblieben bist.\n\n\"Ich liebe dich,\" sagst du.\n\n\"Ich weiß,\" sagt sie. \"Ich dich auch.\"\n\nSie steht auf. Reicht dir die Hand.\n\n\"Komm.\"\n\nIhr Haus ist klein. Gemütlich. Fotos an der Wand. Ein Leben ohne dich.\n\n\"Wie lange habe ich?\" fragst du.\n\n\"Ich weiß es nicht,\" sagt sie ehrlich. \"Aber wir haben jetzt.\"\n\n---\n\n**ENDE: LIEBE**\n\n*Du hast jemanden gefunden. Oder... sie hat dich gefunden.*\n\n*Die Zeit, die ihr habt, ist vielleicht kurz. Vielleicht lang.*\n\n*Aber sie ist echt.*\n\n*Und manchmal ist das genug.*",
       "choices": [
         {
           "id": "finish",
@@ -8858,7 +9732,7 @@
       "id": "ending_truth_01",
       "chapter": 7,
       "title": "Licht",
-      "narrative": "Du steigst aus.\n\nDer Bahnsteig ist warm. Nicht heiß. Nicht kalt. Genau richtig.\n\nHinter dir schließt sich die Tür. Ein leises Klicken. Final.\n\nDu drehst dich um. Der Zug – NACHTZUG 19 – steht noch da. Aber er verblasst. Langsam. Als würde er von der Sonne aufgelöst.\n\nDurch die Fenster siehst du sie. Alle.\n\nDer Schlaflose. Er lächelt. Nicht müde. Erleichtert. Er hebt die Hand. Winkt. Dann löst er sich auf. Nicht schmerzhaft. Einfach... weg.\n\nDer Junge. Er steht am Fenster von Wagen 3. Er sieht dich an. Direkt. Seine Augen sind klar. Keine Angst mehr. Er winkt. Einmal. Kurz.\n\n\"Danke,\" formt er stumm mit den Lippen.\n\nDann ist er weg.\n\nComp7. Sie steht im Gang von Wagen 7. Ihre Notizbücher liegen auf dem Boden. Verstreut. Nicht mehr wichtig.\n\nSie legt die Hand ans Fenster.\n\nDu legst deine Hand auf dieselbe Stelle. Das Glas ist warm.\n\nFür einen Moment fühlt es sich an, als würdest du ihre Hand halten.\n\nDann lässt sie los.\n\nSie lächelt. Zum ersten Mal.\n\n\"Leb wohl,\" sagst du.\n\nSie nickt. \"Leb.\"\n\nDann ist auch sie weg.\n\nDer Schaffner. Er steht ganz hinten. Im letzten Wagen. Seine Uniform ist perfekt. Kein Staub. Keine Falten.\n\nEr sieht dich an. Nickt. Einmal.\n\nDann zieht er die Mütze. Hält sie in der Hand.\n\n\"Gute Reise,\" sagt er. Seine Stimme ist leise. Aber du hörst sie.\n\nDann verschwindet auch er.",
+      "narrative": "Du steigst aus.\n\nDer Bahnsteig ist warm, genau richtig.\n\nHinter dir klickt die Tür ins Schloss.\n\nDu drehst dich um. Der NACHTZUG 19 steht noch da, verblasst aber langsam, als würde Sonnenlicht ihn auflösen.\n\nDurch die Fenster siehst du sie alle.\n\nDer Schlaflose lächelt erleichtert, hebt die Hand, dann löst er sich still auf.\n\nDer Junge steht am Fenster von Wagen 3, sieht dich direkt an und formt lautlos ein einziges Wort: \"Danke.\"\n\nDann ist er fort.\n\nComp7 steht im Gang von Wagen 7. Ihre Notizbücher liegen verstreut auf dem Boden, plötzlich bedeutungslos.\n\nSie legt die Hand an die Scheibe. Du legst deine auf dieselbe Stelle. Das Glas ist warm, fast wie Haut.\n\nFür einen Atemzug fühlt es sich an, als würdet ihr euch halten.\n\nDann lässt sie los. Sie lächelt, zum ersten Mal.\n\n\"Leb wohl,\" sagst du.\n\nSie nickt. \"Leb.\"\n\nDann verschwindet auch sie.\n\nGanz hinten im letzten Wagen steht der Schaffner. Seine Uniform sitzt makellos, als hätte es nie Staub gegeben.\n\nEr nickt dir einmal zu, zieht die Mütze und hält sie vor die Brust.\n\n\"Gute Reise,\" sagt er leise.\n\nDann ist auch er weg.",
       "choices": [
         {
           "id": "continue",
@@ -8887,7 +9761,7 @@
       "id": "ending_truth_02",
       "chapter": 7,
       "title": "Leere",
-      "narrative": "Der Zug ist weg.\n\nDu stehst allein auf dem Bahnsteig. Aber es fühlt sich nicht leer an.\n\nDie Uhr an der Wand zeigt 06:00. Morgen. Zum ersten Mal seit… wie lange? … tickt sie.\n\nZeit. Echte Zeit.\n\nDie Luft riecht nach frischem Regen. Nach Asphalt. Nach Kaffee aus einem Automaten. Nach Leben.\n\nEin echter Zug fährt ein. Menschen steigen aus. Müde. Verschlafen. Mit Koffern.\n\nEine Frau sieht dich an. \"Entschuldigung, ist das Gleis 4?\"\n\n\"Ja. Gleis 4.\" Deine Stimme funktioniert. Klar. Ohne Echo.\n\nDie Sonne geht auf. Ein orangefarbener Streifen am Horizont. Dann gelb. Dann weiß.\n\nDu verlässt den Bahnhof.\n\nDraußen: Eine Stadt. Modern. Laut. Lebendig.\n\nDu weißt nicht, wo du bist. Du weißt nicht, welches Jahr es ist. Aber du gehst.\n\nDu lebst.\n\n---\n\n**ENDE: WAHRHEIT**\n\n*Du hast die Wahrheit akzeptiert. Den Tod. Das Leben. Dich selbst.*\n\n*Der Nachtzug 19 ist weg.*\n\n*Du bleibst.*\n\n*Und das ist genug.*",
+      "narrative": "Der Zug ist weg.\n\nDu stehst allein auf dem Bahnsteig, aber es fühlt sich nicht leer an.\n\nDie Uhr an der Wand zeigt 06:00. Sie tickt.\n\nZeit. Echte Zeit.\n\nDie Luft riecht nach Regen, Asphalt und Kaffee aus einem Automaten.\n\nEin gewöhnlicher Zug fährt ein. Menschen steigen aus, müde und verschlafen, mit Taschen und Koffern.\n\nEine Frau sieht dich an. \"Entschuldigung, ist das Gleis 4?\"\n\n\"Ja. Gleis 4.\" Deine Stimme ist klar. Ohne Echo.\n\nDie Sonne schiebt sich über den Horizont: erst orange, dann gelb, dann weiß.\n\nDu verlässt den Bahnhof.\n\nDraußen liegt eine Stadt, modern, laut, lebendig.\n\nDu weißt nicht, wo du bist. Du weißt nicht, welches Jahr es ist.\n\nAber du gehst.\nDu lebst.\n\n---\n\n**ENDE: WAHRHEIT**\n\n*Du hast die Wahrheit akzeptiert. Den Tod. Das Leben. Dich selbst.*\n\n*Der Nachtzug 19 ist weg.*\n\n*Du bleibst.*\n\n*Und das ist genug.*",
       "choices": [
         {
           "id": "finish",

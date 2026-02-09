@@ -7,10 +7,9 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Settings
-import androidx.compose.material.icons.filled.Tune
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
@@ -21,8 +20,8 @@ import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.dp
-import de.daydaylx.nachtzug19.ui.theme.PixelTypography
 
 /**
  * Pixel-basierte Top-Bar für Kapitel-Label, Status und Einstellungen.
@@ -69,24 +68,42 @@ fun PixelHUD(
 
       Row(verticalAlignment = Alignment.CenterVertically) {
         if (showStatusButton) {
-          IconButton(onClick = onStatusClick) {
-            Icon(
-              imageVector = Icons.Default.Tune,
-              contentDescription = "Status",
-              tint = Color(0xFFE8E8E8)
-            )
-          }
+          HudIconButton(
+            icon = ReaderIcons.Status,
+            contentDescription = "Status",
+            tint = Color(0xFF5BC0BE),
+            onClick = onStatusClick
+          )
           Spacer(modifier = Modifier.width(4.dp))
         }
-        IconButton(onClick = onSettingsClick) {
-          Icon(
-            imageVector = Icons.Default.Settings,
-            contentDescription = "Settings",
-            tint = Color(0xFFE8E8E8)
-          )
-        }
+        HudIconButton(
+          icon = ReaderIcons.Settings,
+          contentDescription = "Einstellungen",
+          tint = Color(0xFFE8E8E8),
+          onClick = onSettingsClick
+        )
       }
     }
+  }
+}
+
+@Composable
+private fun HudIconButton(
+  icon: ImageVector,
+  contentDescription: String,
+  tint: Color,
+  onClick: () -> Unit
+) {
+  IconButton(
+    onClick = onClick,
+    modifier = Modifier.size(36.dp)
+  ) {
+    Icon(
+      imageVector = icon,
+      contentDescription = contentDescription,
+      tint = tint,
+      modifier = Modifier.size(20.dp)
+    )
   }
 }
 
@@ -94,7 +111,7 @@ fun PixelHUD(
 private fun PixelLabel(text: String) {
   Text(
     text = text,
-    style = PixelTypography.body,
+    style = MaterialTheme.typography.labelMedium,
     color = Color(0xFFE8E8E8)
   )
 }

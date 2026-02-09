@@ -176,15 +176,15 @@ Sie lacht bitter. „Widersprüchlich, oder?"
     id: 'c5_s04_lights_flicker',
     chapter: 5,
     title: 'Flackern',
-    narrative: `Die Lichter beginnen zu sterben. (Hook)
+    narrative: `Die Lichter beginnen zu sterben.
 
-    Mit jedem Flackern verlierst du kurz die Orientierung. In der Dunkelheit hörst du dein eigenes, raues Atmen, und wenn das Licht zurückkehrt, scheint dein Schatten an der Wand einen Schritt näher gerückt zu sein als du selbst. (Detail)
+Mit jedem Flackern verlierst du kurz die Orientierung. In der Dunkelheit hörst du dein eigenes, raues Atmen, und wenn das Licht zurückkehrt, scheint dein Schatten an der Wand einen Schritt näher gerückt zu sein als du selbst.
 
-    Du presst die Hand gegen die Wand. Der Kunststoff fühlt sich rauer an als sonst, als hätte sich die Oberfläche über Nacht verändert. Die Kälte ist nicht die des Zuges, sondern die eines Raums, in dem schon lange niemand mehr gewesen ist.
+Du presst die Hand gegen die Wand. Der Kunststoff fühlt sich rauer an als sonst, als hätte sich die Oberfläche über Nacht verändert. Die Kälte ist nicht die des Zuges, sondern die eines Raums, in dem schon lange niemand mehr gewesen ist.
 
-    Ein Flackern länger als alle anderen. Für einen Atemzug ist alles schwarz. Du spürst den Zug ruckeln, hörst das Schaben der Räder wie Nägel auf Stein. Und als das Licht wieder an ist, steht der Schatten nicht mehr hinter dir, sondern halb neben dir.
+Ein Flackern länger als alle anderen. Für einen Atemzug ist alles schwarz. Du spürst den Zug ruckeln, hörst das Schaben der Räder wie Nägel auf Stein. Und als das Licht wieder an ist, steht der Schatten nicht mehr hinter dir, sondern halb neben dir.
 
-    Ein kühler Luftzug streicht über deine Stirn, wie eine unsichtbare Hand. (Konsequenz)`,
+Ein kühler Luftzug streicht über deine Stirn, wie eine unsichtbare Hand.`,
     choices: [
       {
         id: 'hold_ground',
@@ -296,7 +296,7 @@ Er blickt dich an. Direkt. Durchdringend. „Was hast du ihnen gesagt? Warum bis
     id: 'c5_s06_abteil7',
     chapter: 5,
     title: 'Abteil 7',
-    narrative: `Du gehst den Gang entlang. Deine Schritte hallen wider, zu laut in der Stille.
+    narrative: `Noch hängt die Frage des Schlaflosen in dir nach, als du den Gang entlanggehst. Deine Schritte hallen wider, zu laut in der Stille.
 
 Und dann siehst du es:
 
@@ -408,7 +408,7 @@ Was tust du?`,
     id: 'c5_s08_abteil7_aftermath',
     chapter: 5,
     title: 'Nach Abteil 7',
-    narrative: `Du stehst wieder im Gang.
+    narrative: `Als hättest du geblinzelt, stehst du wieder im Gang.
 
 Die Tür von Abteil 7 ist geschlossen.
 
@@ -495,7 +495,7 @@ Der Zug rattert weiter.`,
     id: 'c5_s10_boy_reunion',
     chapter: 5,
     title: 'Der Junge',
-    narrative: `Du findest den Jungen mit dem Kassettenrekorder.
+    narrative: `Wenig später findest du den Jungen mit dem Kassettenrekorder.
 
 Er sitzt in einem Abteil, die Kopfhörer auf den Ohren.
 
@@ -529,7 +529,7 @@ Seine Stimme zittert leicht.
           { type: 'inc', target: 'tickets_love', value: 2 },
           { type: 'inc', target: 'rel_boy', value: 2 }
         ],
-        next: 'c5_s11_corridor_encounter'
+        next: 'c5_s10b_boy_followup'
       },
       {
         id: 'admit_lost_recorder',
@@ -543,7 +543,7 @@ Seine Stimme zittert leicht.
           { type: 'inc', target: 'tickets_truth', value: 1 },
           { type: 'inc', target: 'rel_boy', value: 1 }
         ],
-        next: 'c5_s11_corridor_encounter'
+        next: 'c5_s10b_boy_followup'
       },
       {
         id: 'show_tag19',
@@ -557,7 +557,7 @@ Seine Stimme zittert leicht.
           { type: 'inc', target: 'tickets_truth', value: 2 },
           { type: 'inc', target: 'rel_boy', value: 1 }
         ],
-        next: 'c5_s11_corridor_encounter'
+        next: 'c5_s10b_boy_followup'
       },
       {
         id: 'reassure_boy',
@@ -572,7 +572,7 @@ Seine Stimme zittert leicht.
           { type: 'inc', target: 'tickets_love', value: 1 },
           { type: 'inc', target: 'rel_boy', value: 1 }
         ],
-        next: 'c5_s11_corridor_encounter'
+        next: 'c5_s10b_boy_followup'
       }
     ],
     state_notes: [
@@ -586,6 +586,137 @@ Seine Stimme zittert leicht.
   },
 
   // ==========================================================================
+  // STANDARD: Mini-Dialog mit dem Jungen (ohne Pfad-Einfluss)
+  // ==========================================================================
+
+  'c5_s10b_boy_followup': {
+    id: 'c5_s10b_boy_followup',
+    chapter: 5,
+    title: 'Noch ein Moment',
+    narrative: `Der Junge hält den Rekorder fest an seine Brust.
+
+„Wenn das Band endet," sagt er, „will ich nicht allein sein."
+
+Sein Blick bleibt auf dir hängen. Wartend.`,
+    choices: [
+      {
+        id: 'promise_presence',
+        label: '„Ich bleibe bei dir, solange es nötig ist."',
+        effects: [
+          { type: 'set', target: 'wissen', value: 1 }
+        ],
+        next: 'c5_s10c_boy_presence'
+      },
+      {
+        id: 'encourage_step',
+        label: '„Vielleicht ist das Ende der Kassette nur ein Anfang."',
+        effects: [
+          { type: 'set', target: 'wissen', value: 2 }
+        ],
+        next: 'c5_s10c_boy_beginning'
+      },
+      {
+        id: 'admit_fear_together',
+        label: '„Ich hab auch Angst. Wir gehen trotzdem weiter."',
+        effects: [
+          { type: 'set', target: 'wissen', value: 3 }
+        ],
+        next: 'c5_s10c_boy_shared_fear'
+      }
+    ],
+    tags: ['interlude'],
+    state_notes: [
+      'Agency: emotionaler Dialog-Knoten ohne zusätzliche Effects',
+      'Alle Optionen rekombinieren in c5_s11_corridor_encounter'
+    ],
+    atmosphere: 'somber'
+  },
+
+  // ==========================================================================
+  // STANDARD: Reaktion des Jungen - Präsenz
+  // ==========================================================================
+
+  'c5_s10c_boy_presence': {
+    id: 'c5_s10c_boy_presence',
+    chapter: 5,
+    title: 'Nicht allein',
+    narrative: `Der Junge nickt sofort, als hätte er auf genau diesen Satz gewartet.
+
+Er legt eine Hand auf den Rekorder und atmet hörbar aus.
+
+„Dann kann ich vielleicht sitzenbleiben, bis ich bereit bin," flüstert er.`,
+    choices: [
+      {
+        id: 'continue_after_presence',
+        label: 'Ihm kurz zunicken',
+        next: 'c5_s11_corridor_encounter'
+      }
+    ],
+    tags: ['interlude'],
+    state_notes: [
+      'Choice-Reaktion: Zusicherung von Präsenz',
+      'Rekombination in c5_s11_corridor_encounter'
+    ],
+    atmosphere: 'somber'
+  },
+
+  // ==========================================================================
+  // STANDARD: Reaktion des Jungen - Anfang
+  // ==========================================================================
+
+  'c5_s10c_boy_beginning': {
+    id: 'c5_s10c_boy_beginning',
+    chapter: 5,
+    title: 'Vielleicht ein Anfang',
+    narrative: `Er runzelt die Stirn, dann versucht er ein unsicheres Lächeln.
+
+„Ein Anfang klingt besser als Ende," sagt er leise.
+
+Er dreht den Rekorder einmal in der Hand, als würde er dessen Gewicht neu prüfen.`,
+    choices: [
+      {
+        id: 'continue_after_beginning',
+        label: 'Weitergehen',
+        next: 'c5_s11_corridor_encounter'
+      }
+    ],
+    tags: ['interlude'],
+    state_notes: [
+      'Choice-Reaktion: Reframing als Anfang',
+      'Rekombination in c5_s11_corridor_encounter'
+    ],
+    atmosphere: 'somber'
+  },
+
+  // ==========================================================================
+  // STANDARD: Reaktion des Jungen - Geteilte Angst
+  // ==========================================================================
+
+  'c5_s10c_boy_shared_fear': {
+    id: 'c5_s10c_boy_shared_fear',
+    chapter: 5,
+    title: 'Trotzdem weiter',
+    narrative: `„Gut," sagt er nach einer Pause. „Dann bin ich nicht falsch, weil ich Angst habe."
+
+Seine Schultern sinken ein kleines Stück.
+
+„Dann gehen wir eben mit Angst."`,
+    choices: [
+      {
+        id: 'continue_after_shared_fear',
+        label: 'Den Gang wieder betreten',
+        next: 'c5_s11_corridor_encounter'
+      }
+    ],
+    tags: ['interlude'],
+    state_notes: [
+      'Choice-Reaktion: geteilte Angst',
+      'Rekombination in c5_s11_corridor_encounter'
+    ],
+    atmosphere: 'somber'
+  },
+
+  // ==========================================================================
   // STANDARD: Begegnung im Gang
   // ==========================================================================
 
@@ -593,7 +724,7 @@ Seine Stimme zittert leicht.
     id: 'c5_s11_corridor_encounter',
     chapter: 5,
     title: 'Begegnung',
-    narrative: `Du gehst zurück in den Gang. Das Licht flackert. Ein. Aus. Ein. Aus.
+    narrative: `Du gehst zurück in den Gang. Das Licht flackert: ein, aus, ein, aus.
 
 Und dann siehst du ihn:
 
@@ -611,25 +742,13 @@ Er greift in seine Tasche. Seine Finger schließen sich um etwas. Etwas Kleines.
 
 Dann zieht er die Hand sofort wieder zurück. Leer.
 
-Sagt nichts.
+Er sagt nichts. Er bewegt sich nicht.
 
-Bewegt sich nicht.
+Nur der Zug rattert weiter, unaufhaltsam, gnadenlos.
 
-Nur der Zug rattert weiter. Unaufhaltsam. Gnadenlos.
+Du weißt, was das bedeutet: Die nächste Kontrolle kommt bald. Sehr bald. Und diesmal gibt es keine Ausweichmöglichkeit, keine zweite Chance.
 
-Aber du weißt:
-
-Die nächste Kontrolle kommt bald.
-
-Sehr bald.
-
-Und diesmal wird es anders sein. Diesmal gibt es keine Ausweichmöglichkeit. Keine zweite Chance.
-
-Härter.
-
-Finaler.
-
-Die letzte Prüfung.`,
+Sie wird härter sein. Finaler. Die letzte Prüfung.`,
     choices: [
       {
         id: 'approach_conductor',
@@ -666,19 +785,19 @@ Die letzte Prüfung.`,
     id: 'c5_s12_window_void',
     chapter: 5,
     title: 'Das Nichts',
-    narrative: `Du blickst aus dem Fenster. (Hook)
+    narrative: `Als du am Fenster stehen bleibst, blickst du hinaus.
 
-    Aber da ist keine Dunkelheit mehr. Nicht einmal Schwarz. Nur eine Leere, die das Auge nicht fokussieren kann – ein Nicht-Raum, der sich weigert, wahrgenommen zu werden.
+Aber da ist keine Dunkelheit mehr. Nicht einmal Schwarz. Nur eine Leere, die das Auge nicht fokussieren kann – ein Nicht-Raum, der sich weigert, wahrgenommen zu werden.
 
-    Ein blinder Fleck in der Realität, der direkt in deinen Verstand schneidet. Schmerzhaft. Wie eine Nadel hinter den Augen.
+Ein blinder Fleck in der Realität, der direkt in deinen Verstand schneidet. Schmerzhaft. Wie eine Nadel hinter den Augen.
 
-    Deine Pupillen zucken. Suchen nach etwas, an dem sie sich festhalten können. Aber da ist nichts. Kein Oben. Kein Unten. Keine Entfernung. Ein Summen setzt ein, nicht hörbar, sondern spürbar: in den Zähnen, hinter der Stirn.
+Deine Pupillen zucken. Suchen nach etwas, an dem sie sich festhalten können. Aber da ist nichts. Kein Oben. Kein Unten. Keine Entfernung. Ein Summen setzt ein, nicht hörbar, sondern spürbar: in den Zähnen, hinter der Stirn.
 
-    Die Scheibe spiegelt dich nicht richtig. Dein Gesicht scheint zu spät zu blinzeln. Für den Bruchteil einer Sekunde bist du zwei Personen, leicht versetzt, wie ein schlechtes Foto.
+Die Scheibe spiegelt dich nicht richtig. Dein Gesicht scheint zu spät zu blinzeln. Für den Bruchteil einer Sekunde bist du zwei Personen, leicht versetzt, wie ein schlechtes Foto.
 
-    Der Zug fährt nicht durch eine Landschaft – er schält sich durch das Gewebe der Existenz. Durch eine Lücke zwischen den Welten. (Konsequenz)
+Der Zug fährt nicht durch eine Landschaft – er schält sich durch das Gewebe der Existenz. Durch eine Lücke zwischen den Welten.
 
-    Und du fragst dich: Was passiert, wenn das Gewebe reißt?`,
+Und du fragst dich: Was passiert, wenn das Gewebe reißt?`,
     choices: [
       {
         id: 'touch_glass',
@@ -759,31 +878,17 @@ Die letzte Prüfung.`,
     id: 'c5_s13_memory_fragment',
     chapter: 5,
     title: 'Fragment',
-    narrative: `Plötzlich – eine Erinnerung.
+    narrative: `Plötzlich trifft dich eine Erinnerung, klar und scharf.
 
-Klar und scharf.
-
-Du bist an einem Bahnhof. Ein normaler Bahnhof.
-
-Menschen um dich herum. Züge, die kommen und gehen.
+Du stehst an einem ganz normalen Bahnhof. Menschen drängen an dir vorbei, Züge kommen und gehen.
 
 Du wartest auf jemanden.
 
 Wer?
 
-Das Bild verschwimmt.
+Das Bild verschwimmt. Du greifst danach, versuchst es festzuhalten, aber es zerrinnt zwischen deinen Gedanken.
 
-Du greifst danach, versuchst es festzuhalten.
-
-Aber es zerrinnt.
-
-Und was bleibt, ist nur:
-
-Ein Name. Ein Gesicht.
-
-Fast greifbar.
-
-Aber nicht ganz.`,
+Was bleibt, ist nur ein Name. Ein Gesicht. Fast greifbar. Aber nicht ganz.`,
     narrative_variants: [
       {
         condition: { type: 'bool', target: 'emma_memory_unlocked', value: true },
@@ -820,7 +925,7 @@ Emma. Du warst auf dem Weg zu ihr. Und der Zug... ist nie angekommen.`
           { type: 'inc', target: 'tickets_truth', value: 2 },
           { type: 'inc', target: 'memory_drift', value: 1 }
         ],
-        next: 'c5_s14_control3_approach'
+        next: 'c5_s13b_boy_callback'
       },
       {
         id: 'let_memory_fade',
@@ -829,7 +934,7 @@ Emma. Du warst auf dem Weg zu ihr. Und der Zug... ist nie angekommen.`
           { type: 'inc', target: 'tickets_escape', value: 1 },
           { type: 'dec', target: 'memory_drift', value: 1 }
         ],
-        next: 'c5_s14_control3_approach'
+        next: 'c5_s13b_boy_callback'
       },
       {
         id: 'write_down_memory',
@@ -838,7 +943,7 @@ Emma. Du warst auf dem Weg zu ihr. Und der Zug... ist nie angekommen.`
           { type: 'inc', target: 'tickets_guilt', value: 1 },
           { type: 'inc', target: 'tickets_truth', value: 1 }
         ],
-        next: 'c5_s14_control3_approach'
+        next: 'c5_s13b_boy_callback'
       }
     ],
     state_notes: [
@@ -847,6 +952,74 @@ Emma. Du warst auf dem Weg zu ihr. Und der Zug... ist nie angekommen.`
       'Vorbereitung auf emotionale Kontrolle'
     ],
     atmosphere: 'mystic'
+  },
+
+  // ==========================================================================
+  // STANDARD: Später Callback auf Jungen-Dialog
+  // ==========================================================================
+
+  'c5_s13b_boy_callback': {
+    id: 'c5_s13b_boy_callback',
+    chapter: 5,
+    title: 'Was nachklingt',
+    narrative: `Die Erinnerung reißt ab.
+
+Was bleibt, ist das Gefühl einer Stimme, die nicht loslässt.`,
+    narrative_variants: [
+      {
+        condition: {
+          type: 'compare',
+          target: 'wissen',
+          operator: '==',
+          value: 1
+        },
+        narrative: `Die Erinnerung reißt ab.
+
+Dir fällt wieder ein, wie der Junge ausgeatmet hat, als du ihm Nähe versprochen hast.
+
+In dem Moment klingt selbst der Gang weniger feindlich.`
+      },
+      {
+        condition: {
+          type: 'compare',
+          target: 'wissen',
+          operator: '==',
+          value: 2
+        },
+        narrative: `Die Erinnerung reißt ab.
+
+Sein vorsichtiges „Ein Anfang klingt besser" bleibt in dir hängen.
+
+Vielleicht gilt das nicht nur für ihn.`
+      },
+      {
+        condition: {
+          type: 'compare',
+          target: 'wissen',
+          operator: '==',
+          value: 3
+        },
+        narrative: `Die Erinnerung reißt ab.
+
+„Dann gehen wir eben mit Angst" - der Satz sitzt plötzlich glasklar in dir.
+
+Nicht beruhigend. Aber brauchbar.`
+      }
+    ],
+    choices: [
+      {
+        id: 'continue_to_control3_after_boy_callback',
+        label: 'Den Fokus zurückholen',
+        next: 'c5_s14_control3_approach'
+      }
+    ],
+    tags: ['interlude'],
+    state_notes: [
+      'Später Callback auf c5_s10b/c5_s10c',
+      'wissen wird hier nur als Flavor-Flag genutzt',
+      'Kein Einfluss auf Endings/Route'
+    ],
+    atmosphere: 'somber'
   },
 
   // ==========================================================================
@@ -1029,25 +1202,15 @@ Die Luft im Abteil wird dünner, sauerstoffarm. Deine Lungen brennen, während e
     id: 'c5_s16_control3_aftermath',
     chapter: 5,
     title: 'Nach der Kontrolle',
-    narrative: `Der Schaffner steht auf.
-
-Langsam. Bedächtig.
+    narrative: `Der Schaffner steht auf, langsam und bedächtig.
 
 Er gibt dir die Fahrkarte zurück.
 
-„Du darfst bleiben," sagt er schließlich.
+„Du darfst bleiben," sagt er schließlich. „Vorerst."
 
-„Vorerst."
+Er dreht sich zur Tür, blickt noch einmal über die Schulter.
 
-Er dreht sich zur Tür.
-
-„Aber die Fahrt ist fast zu Ende."
-
-Er blickt zurück.
-
-„Bald musst du entscheiden."
-
-„Wirklich entscheiden."
+„Aber die Fahrt ist fast zu Ende. Bald musst du entscheiden. Wirklich entscheiden."
 
 Dann ist er weg.
 
@@ -1063,9 +1226,9 @@ Bald wirst du ankommen. Irgendwo. Oder aussteigen müssen.
 
 Oder…
 
-Es gibt noch eine dritte Möglichkeit. Eine, über die niemand spricht.
+Es gibt noch eine dritte Möglichkeit, eine, über die niemand spricht.
 
-Einfach weiterfahren. Für immer. Im Zug bleiben.
+Einfach weiterfahren. Für immer im Zug bleiben.
 
 Ist das möglich?`,
     choices: [
@@ -1103,35 +1266,19 @@ Ist das möglich?`,
     id: 'c5_s18_darkness_spreads',
     chapter: 5,
     title: 'Ausbreitung',
-    narrative: `Die Dunkelheit ist jetzt überall.
+    narrative: `Die Dunkelheit ist jetzt überall, nicht nur draußen, auch im Zug.
 
-    Nicht nur draußen.
+Die Lichter werden schwächer und flackern immer öfter. Ganze Abschnitte liegen bereits im Schwarz.
 
-    Auch im Zug.
+Als du durch den Gang gehst, merkst du, dass etwas nicht stimmt: Es gibt weniger Abteile als vorher.
 
-    Die Lichter werden schwächer. Flackern öfter.
+Oder erinnerst du dich falsch? War Abteil 4 nicht hier? Oder war es nie da?
 
-    Ganze Abschnitte liegen im Dunkeln.
+Du bleibst stehen und zählst die Türen. Eins. Zwei. Drei. Dann eine Lücke, wo keine sein sollte.
 
-    Du gehst durch den Gang.
+Dein Finger streift die Wand. Der Lack ist wärmer, als er sein dürfte, und unter der glatten Oberfläche spürst du feine Vibrationen, als würde der Zug atmen.
 
-    Und merkst:
-
-    Es gibt weniger Abteile als vorher.
-
-    Oder… erinnerst du dich falsch?
-
-    War Abteil 4 nicht hier?
-
-    Oder war es nie da?
-
-    Du bleibst stehen und zählst die Türen. Eins. Zwei. Drei. Dann eine Lücke, wo keine sein sollte. Dein Finger streift die Wand: Der Lack ist wärmer als er sein dürfte, und unter der glatten Oberfläche spürst du feine Vibrationen, als würde der Zug atmen.
-
-    Der Zug wird kleiner.
-
-    Enger.
-
-    Als würde er sich um dich herum zusammenziehen.`,
+Der Zug wird kleiner. Enger. Als würde er sich um dich herum zusammenziehen.`,
     choices: [
       {
         id: 'keep_walking',
@@ -1247,47 +1394,29 @@ Sie lächelt traurig.
     id: 'c5_s20_decision',
     chapter: 5,
     title: 'Die Entscheidung',
-    narrative: `Du spürst es:
-
-Die nächste Station kommt.
+    narrative: `Du spürst es sofort: Die nächste Station kommt.
 
 Nicht in Stunden. In Minuten.
 
-Der Zug verlangsamt sich. Ganz langsam. Fast unmerklich.
+Der Zug verlangsamt sich, ganz langsam, fast unmerklich, und doch spürst du jede Veränderung im Körper.
 
-Aber du spürst es.
-
-Draußen – da ist etwas. Kein Licht. Aber… eine Präsenz. Ein Ort.
+Draußen ist kein Licht, nur eine Präsenz. Ein Ort.
 
 ---
 
-Der Zug hält.
-
-Vollständig.
-
-Zum ersten Mal seit… du weißt nicht mehr, wie lange.
+Der Zug hält. Vollständig. Zum ersten Mal seit einer Zeit, die du nicht mehr benennen kannst.
 
 Die Türen öffnen sich.
 
-Du siehst hinaus.
+Draußen liegt ein Bahnsteig, anders als die anderen: leerer, stiller, finaler.
 
-Da ist… ein Bahnsteig.
+Du weißt: Wenn du jetzt aussteigst, gibt es kein Zurück.
 
-Aber er ist anders als die anderen. Leerer. Stiller. Finaler.
+Und wenn du bleibst?
 
-Du spürst:
+Der Schaffner steht hinter dir.
 
-Wenn du jetzt aussteigst, kommst du nie zurück.
-
-Wenn du bleibst… was dann?
-
-Der Schaffner erscheint hinter dir.
-
-„Zeit zu gehen," sagt er leise.
-
-„Oder zu bleiben."
-
-„Deine Wahl."`,
+„Zeit zu gehen," sagt er leise. „Oder zu bleiben. Deine Wahl."`,
     choices: [
       {
         id: 'drift_variant_stay',
@@ -1426,39 +1555,17 @@ Aber du wirst es bald wissen. Sehr bald.`,
     id: 'c5_s24_platform_arrives',
     chapter: 5,
     title: 'Der Bahnsteig',
-    narrative: `Draußen taucht etwas auf.
+    narrative: `Draußen taucht etwas auf, langsam, wie aus dem Nichts: ein Bahnsteig.
 
-Langsam. Wie aus dem Nichts.
+Der fünfte. Der letzte.
 
-Ein Bahnsteig.
+Er ist still. Keine Menschen. Keine Bewegung. Nur dieses starre Schweigen und ein Schild, das du fast lesen kannst. Fast.
 
-Der fünfte.
+Der Zug wird langsamer. Noch langsamer.
 
-Der letzte.
+Gleich hält er. Gleich öffnen sich die Türen.
 
-Er ist… still.
-
-Keine Menschen. Keine Bewegung.
-
-Nur Stille.
-
-Und ein Schild.
-
-Du kannst es fast lesen.
-
-Fast.
-
-Der Zug wird langsamer.
-
-Noch langsamer.
-
-Gleich hält er.
-
-Gleich öffnen sich die Türen.
-
-Und dann…
-
-Dann ist die Fahrt vorbei.`,
+Und dann ist die Fahrt vorbei.`,
     choices: [
       {
         id: 'prepare_to_exit',

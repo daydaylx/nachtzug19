@@ -44,7 +44,6 @@ import de.daydaylx.nachtzug19.ui.components.NoiseLayer
 import de.daydaylx.nachtzug19.ui.components.SafeZoneOverlay
 import de.daydaylx.nachtzug19.ui.components.VignetteLayer
 import de.daydaylx.nachtzug19.ui.theme.NachtzugColors
-import de.daydaylx.nachtzug19.ui.theme.PixelTypography
 
 @Composable
 fun SettingsScreen(
@@ -53,17 +52,19 @@ fun SettingsScreen(
   onUpdateSettings: (ReaderSettings) -> Unit
 ) {
   var localSettings by remember(settings) { mutableStateOf(settings) }
+  val motionPolicy = remember(localSettings) { localSettings.toMotionPolicy() }
   val scrollState = rememberScrollState()
 
   Box(modifier = Modifier.fillMaxSize()) {
     AnimatedBackground(
       currentBackground = BackgroundAsset.Compartment,
       driftLevel = 1,
+      motionPolicy = motionPolicy,
       enabled = true
     )
     SafeZoneOverlay(enabled = true)
     VignetteLayer()
-    NoiseLayer(enabled = localSettings.immersionFx)
+    NoiseLayer(enabled = motionPolicy.allowContinuousEffects)
 
     Column(
       modifier = Modifier
@@ -72,11 +73,14 @@ fun SettingsScreen(
         .navigationBarsPadding()
         .verticalScroll(scrollState)
         .padding(horizontal = 20.dp, vertical = 12.dp),
-      verticalArrangement = Arrangement.spacedBy(12.dp)
+      verticalArrangement = Arrangement.spacedBy(10.dp)
     ) {
       SettingsHeader(onBack = onBack)
 
-      SettingsSection(title = "Reader") {
+      SettingsSection(
+        title = "Lesen",
+        description = "Grundlagen für ruhiges, längeres Lesen."
+      ) {
         Text(
           text = "Textgröße",
           style = MaterialTheme.typography.labelLarge,
@@ -107,11 +111,16 @@ fun SettingsScreen(
             inactiveTrackColor = NachtzugColors.ReaderBorder
           )
         )
+        SettingHint("Empfohlen: 18 pt für ruhiges Lesen auf dem Smartphone.")
       }
 
-      SettingsSection(title = "Effekte") {
+      SettingsSection(
+        title = "Effekte",
+        description = "Animation und Atmosphäre."
+      ) {
         SettingsToggleRow(
-          label = "Reduce Motion",
+          label = "Bewegung reduzieren",
+          hint = "Reduziert Übergänge und kontinuierliche Bewegung.",
           checked = localSettings.reduceMotion,
           onToggle = {
             localSettings = localSettings.copy(reduceMotion = it)
@@ -119,7 +128,8 @@ fun SettingsScreen(
           }
         )
         SettingsToggleRow(
-          label = "Immersion FX",
+          label = "Atmosphäreneffekte",
+          hint = "Steuert Drift, Rauschen und visuelle Effekte.",
           checked = localSettings.immersionFx,
           onToggle = {
             localSettings = localSettings.copy(immersionFx = it)
@@ -128,9 +138,13 @@ fun SettingsScreen(
         )
       }
 
-      SettingsSection(title = "Overlay") {
+      SettingsSection(
+        title = "Einblendungen",
+        description = "Zusätzliche Informationen im Reader."
+      ) {
         SettingsToggleRow(
           label = "Status anzeigen",
+          hint = "Erlaubt den Zugriff auf die Statusansicht im Spiel.",
           checked = localSettings.showStatus,
           onToggle = {
             localSettings = localSettings.copy(showStatus = it)
@@ -138,7 +152,18 @@ fun SettingsScreen(
           }
         )
         SettingsToggleRow(
+          label = "Mini-Statusleiste anzeigen",
+          hint = "Zeigt Statuswerte dauerhaft über den Entscheidungen.",
+          checked = localSettings.showMicrobar,
+          enabled = localSettings.showStatus,
+          onToggle = {
+            localSettings = localSettings.copy(showMicrobar = it)
+            onUpdateSettings(localSettings)
+          }
+        )
+        SettingsToggleRow(
           label = "Beziehungen anzeigen",
+          hint = "Blendet Beziehungswerte in der Statusansicht ein.",
           checked = localSettings.showRelations,
           onToggle = {
             localSettings = localSettings.copy(showRelations = it)
@@ -193,8 +218,8 @@ private fun SettingsHeader(
       }
       Spacer(modifier = Modifier.width(8.dp))
       Text(
-        text = "EINSTELLUNGEN",
-        style = PixelTypography.body,
+        text = "Einstellungen",
+        style = MaterialTheme.typography.titleMedium,
         color = Color(0xFFE8E8E8)
       )
     }
@@ -204,13 +229,14 @@ private fun SettingsHeader(
 @Composable
 private fun SettingsSection(
   title: String,
+  description: String? = null,
   modifier: Modifier = Modifier,
   content: @Composable ColumnScope.() -> Unit
 ) {
   val borderOuter = Color(0x990B0F14)
   val borderInner = Color(0x882E3540)
   val background = Color(0xB2141A22)
-  val borderSize = 3.dp
+  val borderSize = 2.dp
   val innerBorderSize = 1.dp
 
   Box(
@@ -236,14 +262,17 @@ private fun SettingsSection(
     Column(
       modifier = Modifier
         .fillMaxWidth()
-        .padding(14.dp),
-      verticalArrangement = Arrangement.spacedBy(10.dp)
+        .padding(12.dp),
+      verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
       Text(
         text = title,
         style = MaterialTheme.typography.labelLarge,
         color = NachtzugColors.StationNeon
       )
+      if (!description.isNullOrBlank()) {
+        SettingHint(description)
+      }
       content()
     }
   }
@@ -252,23 +281,37 @@ private fun SettingsSection(
 @Composable
 private fun SettingsToggleRow(
   label: String,
+  hint: String,
   checked: Boolean,
+  enabled: Boolean = true,
   onToggle: (Boolean) -> Unit
 ) {
   Row(
     modifier = Modifier.fillMaxWidth(),
-    verticalAlignment = Alignment.CenterVertically,
+    verticalAlignment = Alignment.Top,
     horizontalArrangement = Arrangement.SpaceBetween
   ) {
-    Text(
-      text = label,
-      style = MaterialTheme.typography.bodyMedium,
-      color = Color(0xFFE8E8E8),
-      modifier = Modifier.weight(1f)
-    )
+    Column(
+      modifier = Modifier
+        .weight(1f)
+        .padding(end = 12.dp),
+      verticalArrangement = Arrangement.spacedBy(2.dp)
+    ) {
+      Text(
+        text = label,
+        style = MaterialTheme.typography.bodyMedium,
+        color = if (enabled) Color(0xFFE8E8E8) else Color(0x80E8E8E8)
+      )
+      SettingHint(
+        text = hint,
+        enabled = enabled
+      )
+    }
     Switch(
       checked = checked,
+      enabled = enabled,
       onCheckedChange = onToggle,
+      modifier = Modifier.padding(top = 2.dp),
       colors = SwitchDefaults.colors(
         checkedThumbColor = NachtzugColors.StationNeon,
         checkedTrackColor = NachtzugColors.TicketEmpty,
@@ -279,4 +322,16 @@ private fun SettingsToggleRow(
       )
     )
   }
+}
+
+@Composable
+private fun SettingHint(
+  text: String,
+  enabled: Boolean = true
+) {
+  Text(
+    text = text,
+    style = MaterialTheme.typography.bodySmall,
+    color = if (enabled) Color(0xB3C9D0D8) else Color(0x669AA4AF)
+  )
 }

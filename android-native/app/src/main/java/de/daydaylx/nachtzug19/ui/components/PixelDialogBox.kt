@@ -24,13 +24,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
-import de.daydaylx.nachtzug19.ui.theme.PixelTypography
 
 /**
  * Dialog-Container für Titel + Narrative mit optionalen Scroll-Hinweisen.
@@ -46,9 +46,10 @@ fun PixelDialogBox(
   textSizeSp: Float = 16f,
   enableTypewriter: Boolean = false
 ) {
-  val borderOuter = Color(0x990B0F14)  // 60% opaque - very transparent border
-  val borderInner = Color(0x882E3540)  // 53% opaque - very transparent inner border
-  val background = Color(0xAA141A22)   // 67% opaque - much more transparent background
+  // Higher opacity + local dimming: keeps narrative readable over photo-rich backgrounds.
+  val borderOuter = Color(0xCC0B0F14)
+  val borderInner = Color(0xAA2E3540)
+  val background = Color(0xD4141A22)
   val borderSize = 3.dp
   val innerBorderSize = 1.dp
   val hasOverflow = scrollState.maxValue > 0
@@ -84,9 +85,31 @@ fun PixelDialogBox(
     Box(
       modifier = Modifier
         .fillMaxSize()
-        .background(Color.Transparent)
+        .background(
+          Brush.verticalGradient(
+            colors = listOf(
+              Color(0xD6141A22),
+              Color(0xE6141A22),
+              Color(0xD6141A22)
+            )
+          )
+        )
         .padding(contentPadding)
     ) {
+      Box(
+        modifier = Modifier
+          .fillMaxSize()
+          .background(
+            Brush.radialGradient(
+              colors = listOf(
+                Color.Transparent,
+                Color.Black.copy(alpha = 0.22f)
+              ),
+              radius = Float.POSITIVE_INFINITY
+            )
+          )
+      )
+
       Column(
         modifier = Modifier
         .fillMaxWidth()
@@ -96,7 +119,7 @@ fun PixelDialogBox(
         if (!title.isNullOrBlank()) {
           Text(
             text = title,
-            style = PixelTypography.title,
+            style = MaterialTheme.typography.titleMedium,
             color = Color(0xFFE8E8E8)
           )
           Spacer(modifier = Modifier.height(8.dp))
@@ -132,7 +155,7 @@ fun PixelDialogBox(
         )
       }
 
-      if (showScrollIndicators && hasOverflow) {
+      if (showScrollIndicators && hasOverflow && scrollState.canScrollForward) {
         Column(
           modifier = Modifier
             .align(Alignment.BottomCenter)

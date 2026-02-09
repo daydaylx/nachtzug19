@@ -1,0 +1,66 @@
+🔍 Starting Conditional Choice Coverage Analysis...
+
+📚 Loaded 181 scenes
+
+🎯 Found 91 conditional choices
+
+🎮 Running 1000 simulations...
+
+Progress: 100/1000Progress: 200/1000Progress: 300/1000Progress: 400/1000Progress: 500/1000Progress: 600/1000Progress: 700/1000Progress: 800/1000Progress: 900/1000Progress: 1000/1000
+✅ Simulation complete!
+
+# CONDITIONAL CHOICE COVERAGE REPORT
+
+**Total Conditional Choices**: 91
+**Playthroughs**: 1000
+
+## Summary
+
+- **Never Available**: 0 (0.0%)
+- **Rare** (< 10%): 5
+- **Uncommon** (10-30%): 1
+- **Common** (> 30%): 85
+
+## ⚠️ RARE CHOICES (< 10% Availability)
+
+| Scene | Choice | Condition | Availability | Recommendation |
+|-------|--------|-----------|--------------|----------------|
+| c2_control_01_question | „Ich besuche Verwand | conductor_attention < 2 | 1.8% | Consider lowering threshold |
+| c2_s01a_passenger_examination | Die Frau beobachten | conductor_attention < 2 | 5.8% | Consider lowering threshold |
+| c7_s17_recorder_truth | „Ich bin bereit." | tickets_truth >= 5 | 5.9% | Consider lowering threshold |
+| c2_s04_announcement | Verstecken | conductor_attention < 2 | 6.5% | Consider lowering threshold |
+| c3_s04b_third_announcement | Verstecken | conductor_attention < 2 | 9.6% | Consider lowering threshold |
+
+## 📝 UNCOMMON CHOICES (10-30% Availability)
+
+| Scene | Choice | Condition | Availability |
+|-------|--------|-----------|--------------|
+| c7_s04_boy_transformation | „Du wirst es herausfinden | rel_boy >= 1 | 28.1% |
+
+## Complete Coverage Table (Bottom 20)
+
+| Scene | Choice | Condition | Avail % | Chosen % |
+|-------|--------|-----------|---------|----------|
+| c2_control_01_question | „Ich besuche Verwandte."  | conductor_attention < 2             |   1.8% |   61.1% |
+| c2_s01a_passenger_examination | Die Frau beobachten       | conductor_attention < 2             |   5.8% |   32.8% |
+| c7_s17_recorder_truth | „Ich bin bereit."         | tickets_truth >= 5                  |   5.9% |   27.1% |
+| c2_s04_announcement  | Verstecken                | conductor_attention < 2             |   6.5% |   41.5% |
+| c3_s04b_third_announcement | Verstecken                | conductor_attention < 2             |   9.6% |   53.1% |
+| c7_s04_boy_transformation | „Du wirst es herausfin... | rel_boy >= 1                        |  28.1% |   32.0% |
+| c1_s01a_platform_details | Das Gerät fest umklammern | memory_search_active == true        |  34.0% |   29.7% |
+| c2_control_01_question | „Ich suche Emma."         | memory_search_active == true        |  34.0% |   38.8% |
+| c3_control_02_question | „Ich suche Emma."         | memory_search_active == true        |  34.0% |   37.1% |
+| c5_s01_final_preparation | Den Rekorder noch einm... | has_recorder == true                |  34.4% |   28.5% |
+| c5_s10_boy_reunion   | Deinen Rekorder zeigen    | has_recorder == true                |  34.4% |   37.8% |
+| c6_s09_boy_final     | Von deiner Kassette er... | has_recorder == true                |  34.4% |   32.3% |
+| c6_s15_recorder_playback | Die Kassette abspielen    | has_recorder == true                |  34.4% |   49.1% |
+| c7_s15_recorder_trigger | Abspielen                 | has_recorder == true                |  34.4% |   33.4% |
+| c7_s15_recorder_trigger | Den Rekorder zerstören    | has_recorder == true                |  34.4% |   35.5% |
+| c7_s13_seven_price   | „Ich muss diesen Teil ... | tickets_guilt >= 3                  |  35.2% |   23.9% |
+| c7_s13_seven_price   | „Wir gehen zusammen."     | tickets_love >= 3                   |  35.2% |   26.4% |
+| c7_s13_seven_price   | „Wir bleiben beide."      | tickets_escape >= 4                 |  35.2% |   23.6% |
+| c7_s21_photo_revelation | Die Verzerrung nachzei... | photo_anomaly == true               |  49.8% |   36.3% |
+| c5_s10_boy_reunion   | Ihm versichern, dass e... | rel_boy >= 2                        |  52.6% |   38.0% |
+
+✅ Analysis complete!
+

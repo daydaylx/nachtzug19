@@ -161,24 +161,25 @@ fun NarrativeProgressIndicator(
     scrollProgress: Float,  // 0.0 to 1.0
     modifier: Modifier = Modifier
 ) {
+    val trackWidth = 48.dp
     Box(
         modifier = modifier
-            .height(2.dp)
-            .width(60.dp)
+            .height(1.dp)
+            .width(trackWidth)
             .background(
-                color = Color.White.copy(alpha = 0.1f),
+                color = Color.White.copy(alpha = 0.08f),
                 shape = RoundedCornerShape(1.dp)
             )
     ) {
         Box(
             modifier = Modifier
-                .height(2.dp)
-                .width(60.dp * scrollProgress)
+                .height(1.dp)
+                .width(trackWidth * scrollProgress.coerceIn(0f, 1f))
                 .background(
                     brush = Brush.horizontalGradient(
                         colors = listOf(
-                            MaterialTheme.colorScheme.primary,
-                            Color.White.copy(alpha = 0.3f)
+                            MaterialTheme.colorScheme.primary.copy(alpha = 0.65f),
+                            Color.White.copy(alpha = 0.2f)
                         )
                     ),
                     shape = RoundedCornerShape(1.dp)
@@ -204,9 +205,9 @@ fun ContinueHint(
         contentAlignment = androidx.compose.ui.Alignment.Center
     ) {
         Text(
-            text = "↓ Scrollen ↓",
+            text = "Weiter unten",
             style = MaterialTheme.typography.labelSmall,
-            color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.3f)
+            color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.24f)
         )
     }
 }

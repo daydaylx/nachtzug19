@@ -201,7 +201,7 @@ Aus der Ferne hörst du das Surren des Kassettenrekorders wieder.`,
     id: 'c2_s02_boy_recorder',
     chapter: 2,
     title: 'Das Angebot',
-    narrative: `Der Junge nimmt die Kopfhörer ab.
+    narrative: `Dem Surren folgend bleibst du vor dem Jungen stehen. Er nimmt die Kopfhörer ab.
 
 „Du suchst ein Ticket," sagt er. „Gibt's nicht. Niemand hat eins."
 
@@ -268,6 +268,7 @@ Er hält dir den Rekorder hin. „Behalt ihn. Vielleicht ist deine Stimme noch d
     chapter: 2,
     title: 'Die Stimme',
     entry_effects: [
+      { type: 'set', target: 'has_recorder', value: true },
       { type: 'set', target: 'played_recorder', value: true }
     ],
     narrative: `Du nimmst das Gerät. Es ist schwer, kaltes Metall.
@@ -278,7 +279,7 @@ Zuerst nur Rauschen. Dann zwei Stimmen. Deine – jünger. Und eine zweite.
 
 Emma.
 
-„Warte am Bahnsteig," sagt sie. Ihre Stimme bricht. „Bitte komm zurück. Ich kann nicht ohne—"
+„Warte am Bahnsteig," sagt Emma. Emmas Stimme bricht. „Bitte komm zurück. Ich kann nicht ohne—"
 
 Dann deine Stimme: „Emma, ich verspreche—"
 
@@ -443,7 +444,7 @@ Die Zahlen klirren leise, als wären sie aus Glas. Du blinzelst – und sie sitz
     id: 'c2_s03_comp7_intro',
     chapter: 2,
     title: 'Abteil 7',
-    narrative: `Am Ende des Gangs sitzt eine Person. Comp7.
+    narrative: `Mit den verrutschenden Wagennummern noch im Blick erreichst du das Ende des Gangs. Dort sitzt eine Person: Comp7.
 
 Vor ihr ein vollgeschriebenes Notizbuch. Ihr Gesicht ist unscharf – dein Blick rutscht ab.
 
@@ -542,7 +543,7 @@ Schwere Schritte im Gang. Rhythmisch.
     id: 'c2_s04_announcement',
     chapter: 2,
     title: 'Kontrolle',
-    narrative: `Der Lautsprecher knackt.
+    narrative: `Kaum hast du dich von Comp7 gelöst, knackt der Lautsprecher.
 
 „Sehr geehrte Fahrgäste. Wir erreichen in Kürze [unverständlich]. Kontrolle in Wagen 1 bis 4."
 
@@ -729,7 +730,7 @@ Die Zeit dehnt sich.`,
       },
       {
         id: 'offer_search',
-        label: '„Ich suche [NAME]."',
+        label: '„Ich suche Emma."',
         condition: {
           type: 'bool',
           target: 'memory_search_active',
@@ -772,7 +773,7 @@ Die Zeit dehnt sich.`,
     ],
     tags: ['control'],
     state_notes: [
-      'Agency Fix: "Suche [NAME]" option added',
+      'Agency Fix: "Suche Emma" option added',
       'Attention Fix: Lie blocked if attention >= 2'
     ],
     atmosphere: 'danger'
@@ -802,7 +803,7 @@ Seine Jacke ist jetzt rot.
           { type: 'inc', target: 'tickets_truth', value: 1 },
           { type: 'inc', target: 'rel_sleepless', value: 2 }
         ],
-        next: 'c2_end_station'
+        next: 'c2_control_01_aftertalk'
       },
       {
         id: 'confront_jacket',
@@ -811,12 +812,139 @@ Seine Jacke ist jetzt rot.
           { type: 'inc', target: 'tickets_truth', value: 1 },
           { type: 'inc', target: 'memory_drift', value: 1 }
         ],
-        next: 'c2_end_station'
+        next: 'c2_control_01_aftertalk'
       }
     ],
     tags: ['reveal'],
     state_notes: [
       'Merged Aftermath with Sleepless Talk'
+    ],
+    atmosphere: 'somber'
+  },
+
+  // ============================================================================
+  // c2_control_01_aftertalk: Optionaler Mini-Dialog nach Kontrolle 1
+  // ============================================================================
+  'c2_control_01_aftertalk': {
+    id: 'c2_control_01_aftertalk',
+    chapter: 2,
+    title: 'Ein Satz im Gang',
+    narrative: `Der Schlaflose bleibt neben dir im Gang stehen.
+
+Das Rattern wirkt für einen Moment fern, als würde der Zug euch zuhören.
+
+„Bevor wir weiterfahren," sagt er leise, „sag irgendwas Echtes."`,
+    choices: [
+      {
+        id: 'ask_his_name',
+        label: '„Wie hießest du, bevor das alles anfing?"',
+        effects: [
+          { type: 'set', target: 'mut', value: 1 }
+        ],
+        next: 'c2_control_01_aftertalk_name'
+      },
+      {
+        id: 'say_emma_name',
+        label: '„Ich suche Emma. Das ist das Einzige, das noch klar ist."',
+        effects: [
+          { type: 'set', target: 'mut', value: 2 }
+        ],
+        next: 'c2_control_01_aftertalk_emma'
+      },
+      {
+        id: 'share_silence',
+        label: 'Nichts sagen und nur neben ihm stehen',
+        effects: [
+          { type: 'set', target: 'mut', value: 3 }
+        ],
+        next: 'c2_control_01_aftertalk_silence'
+      }
+    ],
+    tags: ['interlude'],
+    state_notes: [
+      'Agency: optionaler Mini-Dialog ohne System-Einfluss',
+      'Alle Optionen rekombinieren in c2_end_station'
+    ],
+    atmosphere: 'somber'
+  },
+
+  // ============================================================================
+  // c2_control_01_aftertalk_name: Reaktion auf Namensfrage
+  // ============================================================================
+  'c2_control_01_aftertalk_name': {
+    id: 'c2_control_01_aftertalk_name',
+    chapter: 2,
+    title: 'Ein verlorener Name',
+    narrative: `Der Schlaflose blinzelt, als hättest du ihn geweckt.
+
+„Ich hatte mal einen," sagt er nach einer Weile. „Er lag mir immer auf der Zunge. Jetzt ist da nur Metallgeschmack."
+
+Dann nickt er Richtung Fenster. „Wenn deiner noch da ist, halt ihn fest."`,
+    choices: [
+      {
+        id: 'move_on_after_name',
+        label: 'Weiter',
+        next: 'c2_end_station'
+      }
+    ],
+    tags: ['interlude'],
+    state_notes: [
+      'Choice-Reaktion: Namensfrage',
+      'Rekombination in c2_end_station'
+    ],
+    atmosphere: 'somber'
+  },
+
+  // ============================================================================
+  // c2_control_01_aftertalk_emma: Reaktion auf Emma-Bekenntnis
+  // ============================================================================
+  'c2_control_01_aftertalk_emma': {
+    id: 'c2_control_01_aftertalk_emma',
+    chapter: 2,
+    title: 'Ein Name bleibt',
+    narrative: `Bei „Emma" zuckt etwas in seinem Gesicht, kaum sichtbar.
+
+„Gut," murmelt er. „Dann gibt es wenigstens einen Punkt, der nicht verrutscht."
+
+Er tippt dir kurz gegen den Ärmel. „Sprich den Namen weiter. Sonst nimmt ihn der Zug."`,
+    choices: [
+      {
+        id: 'move_on_after_emma',
+        label: 'Den Namen im Kopf wiederholen',
+        next: 'c2_end_station'
+      }
+    ],
+    tags: ['interlude'],
+    state_notes: [
+      'Choice-Reaktion: Emma-Bekenntnis',
+      'Rekombination in c2_end_station'
+    ],
+    atmosphere: 'somber'
+  },
+
+  // ============================================================================
+  // c2_control_01_aftertalk_silence: Reaktion auf Schweigen
+  // ============================================================================
+  'c2_control_01_aftertalk_silence': {
+    id: 'c2_control_01_aftertalk_silence',
+    chapter: 2,
+    title: 'Geteilte Stille',
+    narrative: `Du sagst nichts.
+
+Der Schlaflose sagt auch nichts. Ihr steht nur da, während der Zug durch euch hindurch zu fahren scheint.
+
+Nach ein paar Atemzügen flüstert er: „Vielleicht reicht das schon. Nicht allein zu schweigen."`,
+    choices: [
+      {
+        id: 'move_on_after_silence',
+        label: 'Weiter',
+        next: 'c2_end_station'
+      }
+    ],
+    tags: ['interlude'],
+    state_notes: [
+      'Choice-Reaktion: geteiltes Schweigen',
+      'Rekombination in c2_end_station'
     ],
     atmosphere: 'somber'
   },
@@ -836,7 +964,7 @@ Dann geht das Licht aus. Als es wieder anspringt, ist sie weg.
 
 Du drehst dich um. Der Wagen hat sich verändert. Der Junge ist weg. Comp7 schreibt.
 
-„Spieler hat Kontrolle 1 überstanden," sagt sie. „Geht weiter zu Kapitel 3."`,
+Ohne aufzublicken sagt sie: „Du hast die erste Kontrolle überstanden. Beim nächsten Halt wird es enger.“`,
     choices: [
       {
         id: 'continue_chapter_3',
@@ -844,7 +972,7 @@ Du drehst dich um. Der Wagen hat sich verändert. Der Junge ist weg. Comp7 schre
         effects: [
           { type: 'set', target: 'chapter_index', value: 3 }
         ],
-        next: 'c3_s01_wagen7_locked'
+        next: 'c2_end_station_callback'
       },
       {
         id: 'play_recorder_end',
@@ -858,12 +986,89 @@ Du drehst dich um. Der Wagen hat sich verändert. Der Junge ist weg. Comp7 schre
           { type: 'set', target: 'chapter_index', value: 3 },
           { type: 'set', target: 'played_recorder', value: true }
         ],
-        next: 'c3_s01_wagen7_locked'
+        next: 'c2_end_station_callback'
       }
     ],
     tags: ['station_end'],
     state_notes: [
       'Kapitelende'
+    ],
+    atmosphere: 'somber'
+  },
+
+  // ============================================================================
+  // c2_end_station_callback: Später Callback auf Kontrolle-Dialog
+  // ============================================================================
+  'c2_end_station_callback': {
+    id: 'c2_end_station_callback',
+    chapter: 2,
+    title: 'Nachhall',
+    narrative: `Der Zug setzt sich wieder in Bewegung.
+
+Für einen Moment denkst du an das, was gerade im Gang zwischen euch stand.
+
+Nicht als Information.
+
+Als Haltung.`,
+    narrative_variants: [
+      {
+        condition: {
+          type: 'compare',
+          target: 'mut',
+          operator: '==',
+          value: 1
+        },
+        narrative: `Der Zug setzt sich wieder in Bewegung.
+
+Dir bleibt sein Blick, als du nach seinem Namen gefragt hast.
+
+Als hättet ihr beide gemerkt, dass Erinnern nicht mit Fakten beginnt, sondern mit der Frage, ob man noch jemand sein darf.
+
+Dann rattert der Wagen weiter.`
+      },
+      {
+        condition: {
+          type: 'compare',
+          target: 'mut',
+          operator: '==',
+          value: 2
+        },
+        narrative: `Der Zug setzt sich wieder in Bewegung.
+
+„Emma" hallt in dir nach wie ein kleiner fester Punkt in einem verrutschenden Raum.
+
+Du merkst: Solange ein Name bleibt, bleibt auch Richtung.
+
+Dann schluckt das Rattern den Rest.`
+      },
+      {
+        condition: {
+          type: 'compare',
+          target: 'mut',
+          operator: '==',
+          value: 3
+        },
+        narrative: `Der Zug setzt sich wieder in Bewegung.
+
+Die gemeinsame Stille aus dem Gang wirkt noch nach.
+
+Kein Trost, eher etwas Nüchternes: Dass man selbst im Schweigen nicht ganz allein sein muss.
+
+Der nächste Wagen kommt näher.`
+      }
+    ],
+    choices: [
+      {
+        id: 'continue_to_ch3_after_callback',
+        label: 'Weiter zum nächsten Wagen',
+        next: 'c3_s01_wagen7_locked'
+      }
+    ],
+    tags: ['interlude'],
+    state_notes: [
+      'Später Callback auf c2_control_01_aftertalk',
+      'mut wird hier nur als Flavor-Flag genutzt',
+      'Kein Einfluss auf Endings/Route'
     ],
     atmosphere: 'somber'
   }

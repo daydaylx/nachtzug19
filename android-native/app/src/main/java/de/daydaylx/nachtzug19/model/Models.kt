@@ -6,6 +6,7 @@ import kotlinx.serialization.json.JsonElement
 import kotlinx.serialization.json.JsonPrimitive
 import kotlinx.serialization.json.booleanOrNull
 import kotlinx.serialization.json.intOrNull
+import kotlin.math.abs
 
 @Serializable
 enum class Atmosphere {
@@ -77,6 +78,13 @@ enum class ComparisonOperator {
   @SerialName("<") Lt,
   @SerialName(">=") Gte,
   @SerialName("<=") Lte
+}
+
+@Serializable
+enum class ChoiceWeight {
+  @SerialName("neutral") Neutral,
+  @SerialName("riskant") Riskant,
+  @SerialName("irreversibel") Irreversibel
 }
 
 @Serializable
@@ -209,6 +217,7 @@ data class NarrativeVariant(
 data class Choice(
   val id: String? = null,
   val label: String? = null,
+  val weight: ChoiceWeight? = null,
   val condition: Condition? = null,
   val effects: List<Effect>? = null,
   val next: String? = null,
@@ -274,6 +283,7 @@ data class ReaderSettings(
   val reduceMotion: Boolean = false,
   val immersionFx: Boolean = true,
   val showStatus: Boolean = true,
+  val showMicrobar: Boolean = false,
   val showRelations: Boolean = false
 )
 
@@ -283,6 +293,55 @@ data class GameSave(
   val state: GameState,
   val history: List<HistoryEntry>
 )
+
+fun Choice.resolvedWeight(): ChoiceWeight {
+  weight?.let { return it }
+
+  if (ending != null || next?.startsWith("ending_") == true) {
+    return ChoiceWeight.Irreversibel
+  }
+
+  val effectList = effects.orEmpty()
+  val hasIrreversibleEffect = effectList.any { effect ->
+    effect.target == EffectTarget.ChapterIndex && effect.type == EffectType.Set
+  }
+  if (hasIrreversibleEffect) {
+    return ChoiceWeight.Irreversibel
+  }
+
+  val hasRiskyEffect = effectList.any { effect ->
+    val intValue = effect.intValueOrNull()
+    when (effect.target) {
+      EffectTarget.MemoryDrift -> {
+        when (effect.type) {
+          EffectType.Set, EffectType.Clamp -> true
+          EffectType.Inc, EffectType.Dec -> intValue?.let { abs(it) >= 2 } == true
+        }
+      }
+      EffectTarget.ConductorAttention -> {
+        when (effect.type) {
+          EffectType.Set, EffectType.Clamp -> true
+          EffectType.Inc, EffectType.Dec -> intValue?.let { abs(it) >= 2 } == true
+        }
+      }
+      EffectTarget.StationCount -> {
+        when (effect.type) {
+          EffectType.Set -> intValue?.let { it >= 1 } == true
+          EffectType.Inc -> intValue?.let { it >= 1 } == true
+          else -> false
+        }
+      }
+      else -> false
+    }
+  }
+
+  return if (hasRiskyEffect) ChoiceWeight.Riskant else ChoiceWeight.Neutral
+}
+
+private fun Effect.intValueOrNull(): Int? {
+  val primitive = value as? JsonPrimitive ?: return null
+  return primitive.intOrNull
+}
 
 fun createInitialState(startSceneId: String): GameState {
   return GameState(

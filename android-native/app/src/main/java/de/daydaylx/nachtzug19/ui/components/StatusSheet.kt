@@ -25,7 +25,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import de.daydaylx.nachtzug19.ui.UiState
 import de.daydaylx.nachtzug19.ui.theme.NachtzugColors
-import de.daydaylx.nachtzug19.ui.theme.PixelTypography
 
 @Composable
 fun StatusSheet(
@@ -48,7 +47,7 @@ fun StatusSheet(
   ) {
     Text(
       text = "STATUS",
-      style = PixelTypography.body,
+      style = MaterialTheme.typography.labelMedium,
       color = Color(0xFFE8E8E8)
     )
 
@@ -96,14 +95,14 @@ fun StatusSheet(
     StatusSection(title = "Druck") {
       Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
         PressureBar(
-          label = "Attention (Schaffner)",
+          label = "Aufmerksamkeit (Schaffner)",
           value = state.pressure.conductor_attention,
           baseColor = androidx.compose.ui.graphics.Color(0xFFE07856),
           warningThreshold = 3,
           dangerThreshold = 5
         )
         PressureBar(
-          label = "Memory Drift",
+          label = "Erinnerungsdrift",
           value = state.pressure.memory_drift,
           baseColor = androidx.compose.ui.graphics.Color(0xFF9BC1BC),
           warningThreshold = 3,
@@ -112,7 +111,7 @@ fun StatusSheet(
       }
     }
 
-    StatusSection(title = "Items") {
+    StatusSection(title = "Gegenstände") {
       ItemIcon("Kassettenrekorder", state.items.has_recorder)
       ItemIcon("Tag19-Etikett", state.items.has_tag19)
       ItemIcon("Foto-Anomalie", state.items.photo_anomaly)
@@ -120,9 +119,9 @@ fun StatusSheet(
 
     if (uiState.settings.showRelations) {
       StatusSection(title = "Beziehungen") {
-        RelationshipDots("Compartment 7", state.relations.rel_comp7)
-        RelationshipDots("The Boy", state.relations.rel_boy)
-        RelationshipDots("Sleepless", state.relations.rel_sleepless)
+        RelationshipDots("Abteil 7", state.relations.rel_comp7)
+        RelationshipDots("Der Junge", state.relations.rel_boy)
+        RelationshipDots("Der Schlaflose", state.relations.rel_sleepless)
       }  
     }
   }

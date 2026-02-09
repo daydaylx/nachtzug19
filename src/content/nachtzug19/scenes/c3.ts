@@ -108,7 +108,7 @@ Dein Name liegt dir auf der Zunge, aber du schluckst ihn herunter.`,
 
 Der Schlaflose sitzt drei Reihen weiter hinten; seine Jacke ist jetzt tiefschwarz. In Comp7s leerem Abteil liegt ein Notizbuch.
 
-Auf der Seite steht: „Passagier #[UNLESBAR]: Sucht nach [NAME]. Findet Wagen 7.“`,
+Auf der Seite steht: „Passagier #[UNLESBAR]: Sucht nach Emma. Findet Wagen 7.“`,
     choices: [
       {
         id: 'read_notebook',
@@ -190,11 +190,21 @@ Er sieht dich an. Seine Augen sind älter als sein Gesicht.
     id: 'c3_s02_recorder_anomaly',
     chapter: 3,
     title: 'Die Aufnahme',
-    narrative: `Du drückst auf Play.
+    narrative: `Nach einem langen Moment des Schweigens drückst du auf Play.
 
 Eine Stimme schält sich aus dem Rauschen – es ist deine eigene. Du hörst Dinge, die du noch nicht ausgesprochen hast.
 
 Der Junge nickt langsam: „Der Zug zeichnet alles auf. Vergangenheit und Zukunft.“`,
+    narrative_variants: [
+      {
+        condition: { type: 'bool', target: 'has_recorder', value: false },
+        narrative: `Nach eurem Schweigen drückt der Junge auf Play.
+
+Eine Stimme schält sich aus dem Rauschen – es ist deine eigene. Du hörst Dinge, die du noch nicht ausgesprochen hast.
+
+Der Junge nickt langsam: „Der Zug zeichnet alles auf. Vergangenheit und Zukunft.“`
+      }
+    ],
     choices: [
       {
         id: 'listen_more',
@@ -231,6 +241,16 @@ Der Junge nickt langsam: „Der Zug zeichnet alles auf. Vergangenheit und Zukunf
 Dann ein Geräusch wie brechendes Eis.
 
 Der Junge nimmt dir das Gerät sanft aus der Hand: „Manche Antworten stehen noch nicht drauf.“`,
+    narrative_variants: [
+      {
+        condition: { type: 'bool', target: 'has_recorder', value: false },
+        narrative: `Comp7s Stimme auf dem Band: „Er muss etwas geben. Etwas von sich abspalten.“
+
+Dann ein Geräusch wie brechendes Eis.
+
+Der Junge hält den Rekorder fest, als würde er ihn vor dir schützen: „Manche Antworten stehen noch nicht drauf.“`
+      }
+    ],
     choices: [
       {
         id: 'ask_what_answer',
@@ -635,7 +655,7 @@ Du musst jetzt etwas geben.`,
       },
       {
         id: 'offer_search',
-        label: '„Ich suche [NAME]."',
+        label: '„Ich suche Emma."',
         condition: { type: 'bool', target: 'memory_search_active', value: true },
         effects: [
           { type: 'inc', target: 'tickets_love', value: 2 }

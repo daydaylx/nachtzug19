@@ -1,0 +1,15 @@
+
+> nachtzug19@1.0.0 validate
+> tsx scripts/validate.ts
+
+🔍 Lade NACHTZUG 19 Story...
+
+✅ Story geladen: 181 Szenen, 5 Endings
+
+🔍 Starte Content-Validierung...
+
+✅ Content-Validierung erfolgreich
+
+Zusammenfassung: 0 Errors, 0 Warnings
+
+✅ Alle Checks bestanden!

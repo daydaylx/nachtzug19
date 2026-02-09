@@ -18,45 +18,60 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import de.daydaylx.nachtzug19.ui.MotionPolicy
 import de.daydaylx.nachtzug19.ui.theme.NachtzugColors
 
 @Composable
 fun StationOverlay(
     visible: Boolean, 
     stationCount: Int,
-    animationsEnabled: Boolean
+    motionPolicy: MotionPolicy
 ) {
-    if (animationsEnabled) {
+    if (motionPolicy.allowTransitions) {
         AnimatedVisibility(
             visible = visible,
-            enter = fadeIn(animationSpec = tween(200)) + slideInVertically(
-                animationSpec = tween(200),
+            enter = fadeIn(animationSpec = tween(motionPolicy.overlayTransitionDurationMs)) + slideInVertically(
+                animationSpec = tween(motionPolicy.overlayTransitionDurationMs),
                 initialOffsetY = { -it }  // Von oben
             ),
-            exit = fadeOut(animationSpec = tween(200)) + slideOutVertically(
-                animationSpec = tween(200),
+            exit = fadeOut(animationSpec = tween(motionPolicy.overlayTransitionDurationMs)) + slideOutVertically(
+                animationSpec = tween(motionPolicy.overlayTransitionDurationMs),
                 targetOffsetY = { -it }  // Nach oben
             )
         ) {
-            StationOverlayCard(stationCount)
+            StationOverlayCard(
+                stationCount = stationCount,
+                pulseEnabled = motionPolicy.allowContinuousEffects
+            )
         }
     } else if (visible) {
-        StationOverlayCard(stationCount)
+        StationOverlayCard(
+            stationCount = stationCount,
+            pulseEnabled = false
+        )
     }
 }
 
 @Composable
-private fun StationOverlayCard(stationCount: Int) {
-    val infiniteTransition = rememberInfiniteTransition(label = "pulse")
-    val alpha by infiniteTransition.animateFloat(
-        initialValue = 0.6f,
-        targetValue = 1f,
-        animationSpec = infiniteRepeatable(
-            animation = tween(1000, easing = FastOutSlowInEasing),
-            repeatMode = RepeatMode.Reverse
-        ),
-        label = "pulseAlpha"
-    )
+private fun StationOverlayCard(
+    stationCount: Int,
+    pulseEnabled: Boolean
+) {
+    val alpha = if (pulseEnabled) {
+        val infiniteTransition = rememberInfiniteTransition(label = "pulse")
+        val pulsingAlpha by infiniteTransition.animateFloat(
+            initialValue = 0.6f,
+            targetValue = 1f,
+            animationSpec = infiniteRepeatable(
+                animation = tween(1000, easing = FastOutSlowInEasing),
+                repeatMode = RepeatMode.Reverse
+            ),
+            label = "pulseAlpha"
+        )
+        pulsingAlpha
+    } else {
+        1f
+    }
 
     Box(
         modifier = Modifier

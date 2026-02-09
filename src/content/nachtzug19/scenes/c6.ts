@@ -24,37 +24,23 @@ export const c6Scenes: ScenesCollection = {
     id: 'c6_s01_awakening',
     chapter: 6,
     title: 'Erwachen',
-    narrative: `Du sitzt wieder im Abteil.
+    narrative: `Als hätte dich der Zug zurück in dich selbst gezogen, sitzt du wieder im Abteil.
 
-Wann bist du wieder eingestiegen?
+Du weißt nicht, wann du wieder eingestiegen bist. Du erinnerst dich an die Station, an Comp7 im Türrahmen, an den Satz: „Noch eine Station."
 
-Du erinnerst dich an die Station. An Comp7 im Türrahmen.
+Aber war das real? Oder beginnt der Traum schon wieder?
 
-„Noch eine Station."
+Der Zug fährt weiter, doch das Rattern ist nur noch ein Flüstern, als würde sich selbst dieses Geräusch langsam aus der Welt zurückziehen.
 
-Aber… war das real?
+Du blickst aus dem Fenster. Draußen ist nichts. Nicht einmal Dunkelheit. Nur Abwesenheit.
 
-Oder träumst du schon?
+Im Abteil hängt ein Geruch von Desinfektionsmittel, wie in einem verlassenen Krankenhaus.
 
-Der Zug fährt. Das Rattern ist leiser geworden. Fast unhörbar.
-
-Als würde der Zug selbst… verschwinden.
-
-Du blickst aus dem Fenster.
-
-Draußen ist nichts. Nicht einmal Dunkelheit.
-
-Nur Abwesenheit.
-
-Der Geruch im Abteil ist seltsam. Zu sauber. Wie Desinfektionsmittel in einem leeren Krankenhaus.
-
-Kalt. Steril.
-
-Falsch.`,
+Kalt. Steril. Falsch.`,
     narrative_variants: [
       {
         condition: { type: 'bool', target: 'has_tag19', value: true },
-        narrative: `Du sitzt wieder im Abteil.
+        narrative: `Als hätte dich der Zug genau an diesen Punkt zurückgefaltet, sitzt du wieder im Abteil.
 
 Ein rhythmisches Pochen in deiner Tasche weckt dich. Der Schlüsselanhänger ist heiß geworden, eine pulsierende Wärme, die durch den Stoff deiner Hose bis auf die Haut dringt.
 
@@ -116,7 +102,7 @@ Du bist hier. Du bist noch da.`
     id: 'c6_s03_comp7_final',
     chapter: 6,
     title: 'Comp7 - Letzte Worte',
-    narrative: `Du findest Comp7 in ihrem Abteil.
+    narrative: `Dem nachklingenden Satz folgend findest du Comp7 in ihrem Abteil.
 
 Sie sitzt auf der Bank. Bewegungslos.
 
@@ -223,7 +209,7 @@ Ihr Blick ist… schwer.
     id: 'c6_s04_corridor_changes',
     chapter: 6,
     title: 'Veränderung',
-    narrative: `Der Gang… verändert sich.
+    narrative: `Mit Comp7s Frage noch im Kopf verändert sich der Gang.
 
 Nicht plötzlich. Langsam.
 
@@ -298,7 +284,7 @@ Jetzt.`,
     id: 'c6_s05_door_seven',
     chapter: 6,
     title: 'Abteil 7 - Die Tür',
-    narrative: `Du stehst vor der Tür.
+    narrative: `Wenig später stehst du vor der Tür.
 
 Die Nummer ist eingraviert. Tief. Als wäre sie seit Jahrhunderten da.
 
@@ -326,7 +312,7 @@ Oder… vergessen wolltest.
     narrative_variants: [
       {
         condition: { type: 'bool', target: 'has_tag19', value: true },
-        narrative: `Du stehst vor der Tür.
+        narrative: `Wenig später stehst du vor der Tür.
 
 Der Schlüsselanhänger in deiner Hand beginnt im Takt deines Herzschlags zu glühen. Ein tiefes, goldenes Licht scheint durch deine geschlossenen Finger.
 
@@ -394,7 +380,7 @@ Das Tag 19 ist der Schlüssel. Nicht für ein Schloss, sondern für die Wahrheit
     id: 'c6_s06_inside_seven',
     chapter: 6,
     title: 'Abteil 7 - Innen',
-    narrative: `Du öffnest die Tür.
+    narrative: `Dann gibst du dem Impuls nach und öffnest die Tür.
 
 Das Abteil ist… wie deines.
 
@@ -491,7 +477,7 @@ Etwas erinnerst.`,
     id: 'c6_s07_seven_aftermath',
     chapter: 6,
     title: 'Nach Abteil 7',
-    narrative: `Du stehst wieder im Gang.
+    narrative: `Als du das nächste Mal blinzelst, stehst du wieder im Gang.
 
 Die Tür von Abteil 7 ist… weg.
 
@@ -568,7 +554,7 @@ Aber du bist nicht mehr derselbe.`,
     id: 'c6_s09_boy_final',
     chapter: 6,
     title: 'Der Junge - Abschied',
-    narrative: `Du findest den Jungen in seinem Abteil.
+    narrative: `Noch benommen von Abteil 7 findest du den Jungen in seinem Abteil.
 
 Der Kassettenrekorder liegt auf dem Sitz. Still.
 
@@ -640,7 +626,7 @@ Er sieht dich an. Seine Augen glänzen.
     id: 'c6_s10_sleepless_gone',
     chapter: 6,
     title: 'Verschwunden',
-    narrative: `Du gehst zum Abteil des schlaflosen Mannes.
+    narrative: `Nach dem Gespräch mit dem Jungen gehst du zum Abteil des schlaflosen Mannes.
 
 Die Tür steht offen.
 
@@ -785,7 +771,7 @@ Das Knistern verstummt abrupt, und der Zug fährt weiter, als wäre nichts gesch
     id: 'c6_s12_mirror_self',
     chapter: 6,
     title: 'Spiegel',
-    narrative: `Du gehst zurück zu deinem Abteil.
+    narrative: `Von der Durchsage aufgeschreckt gehst du zurück zu deinem Abteil.
 
 Aber als du die Tür öffnest… da sitzt jemand.
 
@@ -907,7 +893,7 @@ Die Kälte des Metalls in deiner Hand ist der einzige Beweis dafür, dass du noc
     id: 'c6_s14_mirror_aftermath',
     chapter: 6,
     title: 'Nach dem Spiegel',
-    narrative: `Du bist allein im Abteil.
+    narrative: `Als die Gestalt zerfällt, bist du allein im Abteil.
 
 Die Gestalt ist weg.
 
@@ -968,25 +954,11 @@ Vor dem, was kommt.`,
     id: 'c6_s15_recorder_playback',
     chapter: 6,
     title: 'Die Kassette',
-    narrative: `Du sitzt da und blickst auf den Kassettenrekorder.
+    narrative: `Du sitzt im Halbdunkel und blickst auf den Kassettenrekorder.
 
-Den Rekorder, den du seit… wann eigentlich?
+Seit wann trägst du ihn bei dir? Du erinnerst dich nicht an den Moment, in dem er in deine Hand kam. Er war einfach da.
 
-Du erinnerst dich nicht, ihn bekommen zu haben.
-
-Er war einfach… da.
-
-Deine Finger bewegen sich zum Play-Knopf.
-
-Du hast ihn noch nie gedrückt.
-
-Noch nie die Kassette abgespielt.
-
-Warum?
-
-Angst?
-
-Oder… weißt du bereits, was darauf ist?
+Deine Finger schweben über dem Play-Knopf. Du hast die Kassette nie ganz gehört. Vielleicht aus Angst. Vielleicht, weil du längst ahnst, was sie sagt.
 
 Der Knopf wartet.
 
@@ -994,21 +966,11 @@ Drückst du ihn?`,
     narrative_variants: [
       {
         condition: { type: 'bool', target: 'played_recorder', value: true },
-        narrative: `Du sitzt da und blickst auf den Kassettenrekorder.
+        narrative: `Du sitzt im Halbdunkel und blickst auf den Kassettenrekorder.
 
-Den Rekorder, den du schon einmal benutzt hast.
+Das Klicken, das Rauschen, die Stimmen: Du kennst sie bereits. Und trotzdem fühlt es sich an, als hätte das alles jemand anderem gehört.
 
-Du erinnerst dich an das Klicken. Das Rauschen. Die Stimmen.
-
-Aber das fühlt sich an wie ein anderes Leben. Eine andere Schleife.
-
-Deine Finger bewegen sich zum Play-Knopf.
-
-Du zögerst, ihn wieder zu drücken.
-
-Weil du weißt, dass es diesmal anders sein wird.
-
-Endgültiger.
+Deine Finger wandern wieder zum Play-Knopf. Du zögerst, weil du weißt: Beim zweiten Mal klingt Wahrheit nicht leiser, nur endgültiger.
 
 Der Knopf wartet.
 
@@ -1063,7 +1025,7 @@ Das kleine, gelbe Etikett.
 
 Du hast es… wann gefunden?
 
-Kapitel 2? 3?
+Am zweiten Halt? Oder am dritten?
 
 Die Erinnerung ist verschwommen.
 
@@ -1164,7 +1126,7 @@ Dein Sitz.
     id: 'c6_s17_lights_failing',
     chapter: 6,
     title: 'Dunkelheit',
-    narrative: `Die Lichter flackern.
+    narrative: `Noch während der Gedanke an 1973 in dir nachhallt, flackern die Lichter.
 
 Dann – aus.
 
@@ -1325,6 +1287,7 @@ Er steht auf. „Aber du… du wirst dich erinnern. An alles."
       {
         id: 'choose_memory_love',
         label: '„Ich will mich erinnern. Um ihretwillen."',
+        weight: 'riskant',
         condition: {
           type: 'compare',
           target: 'tickets_love',
@@ -1340,6 +1303,7 @@ Er steht auf. „Aber du… du wirst dich erinnern. An alles."
       {
         id: 'choose_forget_escape',
         label: '„Ich will vergessen."',
+        weight: 'riskant',
         condition: {
           type: 'compare',
           target: 'tickets_escape',
@@ -1354,6 +1318,7 @@ Er steht auf. „Aber du… du wirst dich erinnern. An alles."
       {
         id: 'refuse_choice',
         label: '„Ich wähle weder das eine noch das andere."',
+        weight: 'riskant',
         effects: [
           { type: 'inc', target: 'tickets_truth', value: 2 },
           { type: 'inc', target: 'conductor_attention', value: 2 }
@@ -1363,6 +1328,7 @@ Er steht auf. „Aber du… du wirst dich erinnern. An alles."
       {
         id: 'accept_truth',
         label: '„Ich nehme die Erinnerung."',
+        weight: 'riskant',
         effects: [
           { type: 'inc', target: 'tickets_truth', value: 2 },
           { type: 'inc', target: 'tickets_guilt', value: 1 }
@@ -1451,7 +1417,7 @@ Es ist fast vorbei.`,
     id: 'c6_s21_final_reflection',
     chapter: 6,
     title: 'Reflexion',
-    narrative: `Du denkst nach.
+    narrative: `Nachdem der Schaffner verschwunden ist, denkst du nach.
 
 Über die Fahrt. Die Stationen. Die Menschen.
 
@@ -1489,7 +1455,7 @@ Bist du bereit?`,
         effects: [
           { type: 'inc', target: 'tickets_truth', value: 1 }
         ],
-        next: 'c6_s22_conductor_last'
+        next: 'c6_s21b_reflection_dialog'
       },
       {
         id: 'feel_uncertain',
@@ -1497,7 +1463,7 @@ Bist du bereit?`,
         effects: [
           { type: 'inc', target: 'tickets_guilt', value: 1 }
         ],
-        next: 'c6_s22_conductor_last'
+        next: 'c6_s21b_reflection_dialog'
       },
       {
         id: 'feel_afraid',
@@ -1505,13 +1471,144 @@ Bist du bereit?`,
         effects: [
           { type: 'inc', target: 'tickets_escape', value: 1 }
         ],
-        next: 'c6_s22_conductor_last'
+        next: 'c6_s21b_reflection_dialog'
       }
     ],
     state_notes: [
       'Finale Reflexion über die gesamte Reise',
       'Emotionale Vorbereitung auf Ending',
       'Callback zu allen wichtigen Momenten'
+    ],
+    atmosphere: 'somber'
+  },
+
+  // ==========================================================================
+  // STANDARD: Reflexions-Dialog (ohne Endings-Einfluss)
+  // ==========================================================================
+
+  'c6_s21b_reflection_dialog': {
+    id: 'c6_s21b_reflection_dialog',
+    chapter: 6,
+    title: 'Antwort an dich selbst',
+    narrative: `Deine Stimme kommt erst als Flüstern zurück.
+
+Dann klarer.
+
+Als würdest du dir zum ersten Mal selbst zuhören.`,
+    choices: [
+      {
+        id: 'choose_truth_voice',
+        label: '„Ich will wissen, was wirklich war."',
+        effects: [
+          { type: 'set', target: 'empathie', value: 1 }
+        ],
+        next: 'c6_s21c_truth_voice'
+      },
+      {
+        id: 'choose_mercy_voice',
+        label: '„Ich will mir verzeihen können."',
+        effects: [
+          { type: 'set', target: 'empathie', value: 2 }
+        ],
+        next: 'c6_s21c_mercy_voice'
+      },
+      {
+        id: 'choose_courage_voice',
+        label: '„Ich gehe trotzdem weiter."',
+        effects: [
+          { type: 'set', target: 'empathie', value: 3 }
+        ],
+        next: 'c6_s21c_courage_voice'
+      }
+    ],
+    tags: ['interlude'],
+    state_notes: [
+      'Agency: kurzer Selbst-Dialog ohne zusätzliche Effects',
+      'Alle Optionen rekombinieren in c6_s22_conductor_last'
+    ],
+    atmosphere: 'somber'
+  },
+
+  // ==========================================================================
+  // STANDARD: Reaktion auf Wahrheits-Stimme
+  // ==========================================================================
+
+  'c6_s21c_truth_voice': {
+    id: 'c6_s21c_truth_voice',
+    chapter: 6,
+    title: 'Ohne Ausweichung',
+    narrative: `Die Worte bleiben im Raum, schwer und klar.
+
+Nichts antwortet dir.
+
+Aber in dir wird etwas still: keine Ausrede, kein Umweg, nur der nächste Schritt.`,
+    choices: [
+      {
+        id: 'continue_after_truth_voice',
+        label: 'Den nächsten Schritt nehmen',
+        next: 'c6_s22_conductor_last'
+      }
+    ],
+    tags: ['interlude'],
+    state_notes: [
+      'Choice-Reaktion: Wahrheitsfokus',
+      'Rekombination in c6_s22_conductor_last'
+    ],
+    atmosphere: 'somber'
+  },
+
+  // ==========================================================================
+  // STANDARD: Reaktion auf Vergebungs-Stimme
+  // ==========================================================================
+
+  'c6_s21c_mercy_voice': {
+    id: 'c6_s21c_mercy_voice',
+    chapter: 6,
+    title: 'Milde',
+    narrative: `Dein Satz klingt fremd und tröstlich zugleich.
+
+Für einen Herzschlag fühlt sich der Zug weniger wie ein Urteil an.
+
+Wie ein Flur, durch den man gehen darf.`,
+    choices: [
+      {
+        id: 'continue_after_mercy_voice',
+        label: 'Weiter',
+        next: 'c6_s22_conductor_last'
+      }
+    ],
+    tags: ['interlude'],
+    state_notes: [
+      'Choice-Reaktion: Vergebung/Milde',
+      'Rekombination in c6_s22_conductor_last'
+    ],
+    atmosphere: 'somber'
+  },
+
+  // ==========================================================================
+  // STANDARD: Reaktion auf Mut-Stimme
+  // ==========================================================================
+
+  'c6_s21c_courage_voice': {
+    id: 'c6_s21c_courage_voice',
+    chapter: 6,
+    title: 'Trotzdem',
+    narrative: `Der Satz ist härter als gedacht, aber er trägt.
+
+Du spürst die Angst noch.
+
+Nur steht sie nicht mehr vor dir, sondern neben dir.`,
+    choices: [
+      {
+        id: 'continue_after_courage_voice',
+        label: 'Mit der Angst weitergehen',
+        next: 'c6_s22_conductor_last'
+      }
+    ],
+    tags: ['interlude'],
+    state_notes: [
+      'Choice-Reaktion: Mut trotz Angst',
+      'Rekombination in c6_s22_conductor_last'
     ],
     atmosphere: 'somber'
   },
@@ -1526,33 +1623,21 @@ Bist du bereit?`,
     title: 'Letzte Begegnung',
     narrative: `Der Schaffner erscheint ein letztes Mal.
 
-Nicht bedrohlich diesmal.
+Diesmal wirkt er nicht bedrohlich. Nur müde. Fast traurig.
 
-Fast… traurig.
+„Es ist Zeit," sagt er leise. „Die letzte Station."
 
-„Es ist Zeit," sagt er leise.
-
-„Die letzte Station."
-
-Er reicht dir… etwas.
-
-Deine Fahrkarte.
+Er hält dir etwas hin: deine Fahrkarte.
 
 Du hattest sie vergessen.
 
-Sie ist… anders jetzt.
+Jetzt ist sie vollständig ausgefüllt, in deiner eigenen Handschrift.
 
-Beschriftet. Mit deiner eigenen Handschrift.
-
-„Du hast sie selbst ausgefüllt," sagt er.
-
-„Am Anfang."
-
-„Erinnerst du dich?"
+„Du hast sie am Anfang selbst geschrieben," sagt er. „Erinnerst du dich?"
 
 Du blickst auf die Karte.
 
-Und langsam… erinnerst du dich.`,
+Und langsam kommt die Erinnerung zurück.`,
     choices: [
       {
         id: 'remember_high_attention',
@@ -1567,7 +1652,7 @@ Und langsam… erinnerst du dich.`,
           { type: 'inc', target: 'tickets_truth', value: 3 },
           { type: 'inc', target: 'tickets_guilt', value: 2 }
         ],
-        next: 'c6_s23_platform_ahead'
+        next: 'c6_s22b_reflection_callback'
       },
       {
         id: 'remember_partial',
@@ -1575,7 +1660,7 @@ Und langsam… erinnerst du dich.`,
         effects: [
           { type: 'inc', target: 'tickets_truth', value: 2 }
         ],
-        next: 'c6_s23_platform_ahead'
+        next: 'c6_s22b_reflection_callback'
       },
       {
         id: 'resist_memory',
@@ -1583,7 +1668,7 @@ Und langsam… erinnerst du dich.`,
         effects: [
           { type: 'inc', target: 'tickets_escape', value: 1 }
         ],
-        next: 'c6_s23_platform_ahead'
+        next: 'c6_s22b_reflection_callback'
       }
     ],
     state_notes: [
@@ -1593,6 +1678,74 @@ Und langsam… erinnerst du dich.`,
       'Wichtige Enthüllung'
     ],
     atmosphere: 'mystic'
+  },
+
+  // ==========================================================================
+  // STANDARD: Später Callback auf Reflexions-Stimme
+  // ==========================================================================
+
+  'c6_s22b_reflection_callback': {
+    id: 'c6_s22b_reflection_callback',
+    chapter: 6,
+    title: 'Innere Linie',
+    narrative: `Die Erinnerung kippt zurück in die Gegenwart.
+
+Und du merkst, dass ein Satz von eben noch in dir steht.`,
+    narrative_variants: [
+      {
+        condition: {
+          type: 'compare',
+          target: 'empathie',
+          operator: '==',
+          value: 1
+        },
+        narrative: `Die Erinnerung kippt zurück in die Gegenwart.
+
+Dein eigener Satz - „Ich will wissen" - wirkt plötzlich wie eine Linie auf den Boden gemalt.
+
+Nicht tröstlich. Aber eindeutig.`
+      },
+      {
+        condition: {
+          type: 'compare',
+          target: 'empathie',
+          operator: '==',
+          value: 2
+        },
+        narrative: `Die Erinnerung kippt zurück in die Gegenwart.
+
+„Ich will mir verzeihen können" klingt nach, leise, aber beharrlich.
+
+Zum ersten Mal fühlt sich der nächste Schritt nicht wie Strafe an.`
+      },
+      {
+        condition: {
+          type: 'compare',
+          target: 'empathie',
+          operator: '==',
+          value: 3
+        },
+        narrative: `Die Erinnerung kippt zurück in die Gegenwart.
+
+Der Mut-Satz von eben hält noch.
+
+Die Angst ist nicht weg, aber sie nimmt dir nicht mehr die Richtung.`
+      }
+    ],
+    choices: [
+      {
+        id: 'continue_to_platform_after_reflection_callback',
+        label: 'Zum letzten Wagen weiter',
+        next: 'c6_s23_platform_ahead'
+      }
+    ],
+    tags: ['interlude'],
+    state_notes: [
+      'Später Callback auf c6_s21b/c6_s21c',
+      'empathie wird hier nur als Flavor-Flag genutzt',
+      'Kein Einfluss auf Endings/Route'
+    ],
+    atmosphere: 'somber'
   },
 
   // ==========================================================================

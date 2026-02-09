@@ -1,0 +1,42 @@
+🔍 Starting NACHTZUG 19 State Balance Simulation...
+
+📚 Loaded 181 scenes
+
+
+🎮 Running 1000 simulated playthroughs...
+
+Progress: 100/1000Progress: 200/1000Progress: 300/1000Progress: 400/1000Progress: 500/1000Progress: 600/1000Progress: 700/1000Progress: 800/1000Progress: 900/1000Progress: 1000/1000
+✅ Simulation complete!
+
+# NACHTZUG 19 - STATE BALANCE SIMULATION REPORT
+
+**Total Playthroughs**: 1000
+
+## Ending Distribution
+
+- **TRUTH  **:  212 ( 21.2%) ██████████
+- **LOVE   **:  209 ( 20.9%) ██████████
+- **GUILT  **:  203 ( 20.3%) ██████████
+- **ESCAPE **:  185 ( 18.5%) █████████
+- **LIMBO  **:  191 ( 19.1%) █████████
+
+## Ticket Statistics (Final Values)
+
+| Ticket | Min | Max | Avg  | Median |
+|--------|-----|-----|------|--------|
+| truth  | 50   | 50   | 50.00 | 50      |
+| love   | 10   | 41   | 22.93 | 23      |
+| guilt  | 9   | 34   | 21.42 | 21      |
+| escape | 21   | 50   | 38.48 | 38      |
+
+## Analysis
+
+✅ **All endings are reachable**
+
+✅ **Balanced distribution** (largest: TRUTH at 21.2%)
+
+## Ticket Reachability
+
+
+✅ Simulation complete! Results saved to console.
+

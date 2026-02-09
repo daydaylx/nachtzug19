@@ -212,10 +212,16 @@ export type SceneTag = 'station_end' | 'control' | 'reveal' | 'drift_variant' | 
 /**
  * Choice - Eine Entscheidungsmöglichkeit
  */
+export type ChoiceWeight = 'neutral' | 'riskant' | 'irreversibel';
+
+/**
+ * Choice - Eine Entscheidungsmöglichkeit
+ */
 export type Choice = {
   // Kanonische Felder (NACHTZUG 19)
   id?: string;                   // Lokal eindeutig in Szene
   label?: string;                // Button-Text
+  weight?: ChoiceWeight;         // Optional: Entscheidungsgewicht für UI/UX-Semantik
   condition?: Condition | ((stats: PlayerStats, flags: Record<string, boolean | undefined>, inventory: string[]) => boolean);  // Condition-Object oder Legacy-Funktion
   effects?: Effect[];            // R3: Tone Choices ohne Effects sind erlaubt
   next?: string;                 // Nächste Szene-ID

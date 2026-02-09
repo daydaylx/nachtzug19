@@ -136,11 +136,11 @@ Du bist kein Passagier mehr. Du bist der Anker.`
     id: 'c7_s02_interlude_silence',
     chapter: 7,
     title: 'Stumm',
-    narrative: `Das Rattern der Räder ist weg. Komplett. (Hook)
+    narrative: `Das Rattern der Räder ist weg. Komplett.
 
-Der Zug bewegt sich noch, du spürst die Bewegung in den Beinen, aber es gibt kein Geräusch mehr. Du klatschst in die Hände – die Bewegung ist da, aber der Ton fehlt, als würde der Raum ihn schlucken, bevor er entsteht. (Detail)
+Der Zug bewegt sich noch, du spürst die Bewegung in den Beinen, aber es gibt kein Geräusch mehr. Du klatschst in die Hände – die Bewegung ist da, aber der Ton fehlt, als würde der Raum ihn schlucken, bevor er entsteht.
 
-Ein feiner Schwindel zieht dir durch den Magen: Die Welt ist stumm geworden. (Konsequenz)`,
+Ein feiner Schwindel zieht dir durch den Magen: Die Welt ist stumm geworden.`,
     choices: [
       {
         id: 'test_voice',
@@ -175,11 +175,11 @@ Ein feiner Schwindel zieht dir durch den Magen: Die Welt ist stumm geworden. (Ko
     id: 'c7_s02_interlude_silence_b',
     chapter: 7,
     title: 'Isolation',
-    narrative: `Deine Lippen bewegen sich, aber kein Ton kommt heraus. (Hook)
+    narrative: `Deine Lippen bewegen sich, aber kein Ton kommt heraus.
 
-Der Boden unter deinen Füßen fühlt sich zu glatt an, ohne jede Reibung. Deine Fingerkuppen suchen die Wand, sie ist kühl und gibt minimal nach, als hätte sie Haut. (Detail)
+Der Boden unter deinen Füßen fühlt sich zu glatt an, ohne jede Reibung. Deine Fingerkuppen suchen die Wand, sie ist kühl und gibt minimal nach, als hätte sie Haut.
 
-Du bist allein an einem Ort, wo Geräusche nicht mehr existieren. (Konsequenz)`,
+Du bist allein an einem Ort, wo Geräusche nicht mehr existieren.`,
     choices: [
       {
         id: 'accept_silence',
@@ -221,7 +221,7 @@ Du bist allein an einem Ort, wo Geräusche nicht mehr existieren. (Konsequenz)`,
     id: 'c7_s03_comp7_goodbye',
     chapter: 7,
     title: 'Comp7 - Abschied',
-    narrative: `Du findest Comp7.
+    narrative: `Als die tonlose Stille abreißt, findest du Comp7.
 
 Sie steht am Ende des Gangs.
 
@@ -315,7 +315,7 @@ Dann ist sie weg.`,
     id: 'c7_s04_boy_transformation',
     chapter: 7,
     title: 'Der Junge - Veränderung',
-    narrative: `Der Junge sitzt in seinem Abteil.
+    narrative: `Hinter der Tür sitzt der Junge in seinem Abteil.
 
 Aber… er ist anders.
 
@@ -404,69 +404,24 @@ Er lacht. Oder weint. Beides gleichzeitig.
     id: 'c7_s04_boy_recognized',
     chapter: 7,
     title: 'Die Erkenntnis - Der Junge',
-    narrative: `Der Junge sitzt in seinem Abteil.
+    narrative: `Der Junge sitzt in seinem Abteil, aber etwas an ihm kippt ständig: älter, jünger, Kind, Teenager, Erwachsener, immer wieder.
 
-Aber… er ist anders.
-
-Älter. Oder jünger.
-
-Du kannst es nicht sagen.
-
-Sein Gesicht verändert sich.
-
-Flackert zwischen verschiedenen Altern.
-
-Kind. Teenager. Erwachsener.
-
-Und dann…
-
-Dann erkennst du es.
+Dann erkennst du ihn.
 
 Die Nase. Die Augen. Die Art, wie er den Kopf hält.
+Das bist du. Nicht ähnlich. Nicht fast. Du.
 
-Das bist du.
+Vor dem 19. September 1973. Vor dem Unfall. Vor allem.
 
-Nicht "wie du". Nicht "ähnlich".
+„Ich erinnere mich," sagt er, und es ist deine Stimme aus einer anderen Zeit. „An danach. An das, was du geworden bist. An das, was wir verloren haben."
 
-**Du.**
+Er hebt den Rekorder. Das Band läuft rückwärts.
 
-Vor dem 19. September 1973.
+„Fünfzig Jahre," flüstert er. „Du hast nach mir gesucht. Nach dem Teil von dir, der nie erwachsen wurde. Der das Blut nie vergessen konnte."
 
-Vor dem Unfall.
+Seine Augen - deine Augen - füllen sich mit Tränen.
 
-Vor… allem.
-
-„Ich erinnere mich," sagt er.
-
-Aber es ist deine Stimme.
-
-Deine Stimme aus einer anderen Zeit.
-
-„Ich erinnere mich an… danach."
-
-„An das, was du geworden bist."
-
-„An das, was wir… verloren haben."
-
-Er hält den Rekorder hoch.
-
-Das Band dreht sich rückwärts.
-
-„Fünfzig Jahre," flüstert er.
-
-„Hast du nach mir gesucht."
-
-„Nach dem Teil von dir, der… nie erwachsen wurde."
-
-„Der nie… das Blut vergessen konnte."
-
-Seine Augen – deine Augen – füllen sich mit Tränen.
-
-„Ich bin müde."
-
-„So müde."
-
-„Kann ich endlich… nach Hause?"`,
+„Ich bin müde," sagt er. „So müde. Kann ich endlich nach Hause?"`,
     choices: [
       {
         id: 'integrate_innocence',
@@ -531,11 +486,11 @@ Seine Augen – deine Augen – füllen sich mit Tränen.
     id: 'c7_s05_interlude_timeshift',
     chapter: 7,
     title: 'Chronos',
-    narrative: `Die Uhren an den Wänden zeigen unmöglich Zeiten: 1973, 2024, und ein Jahr, das es noch nicht gibt. (Hook)
+    narrative: `Kaum verlässt du das Abteil, zeigen die Uhren an den Wänden unmöglich Zeiten: 1973, 2024, und ein Jahr, das es noch nicht gibt.
 
-Die Ziffern blättern nicht um, sie kippen einfach weg. Wenn du das Glas berührst, ist es feucht von einem kalten Film, und der Sekundenzeiger springt unter deinem Finger rückwärts. (Detail)
+Die Ziffern blättern nicht um, sie kippen einfach weg. Wenn du das Glas berührst, ist es feucht von einem kalten Film, und der Sekundenzeiger springt unter deinem Finger rückwärts.
 
-Ein leises Summen legt sich über den Gang – der Klang von brechender Zeit. (Konsequenz)`,
+Ein leises Summen legt sich über den Gang – der Klang von brechender Zeit.`,
     choices: [
       {
         id: 'watch_clocks',
@@ -570,11 +525,11 @@ Ein leises Summen legt sich über den Gang – der Klang von brechender Zeit. (K
     id: 'c7_s05_interlude_timeshift_b',
     chapter: 7,
     title: 'Faltung',
-    narrative: `Der Gang dehnt sich wie Gummi, wird länger, dann wieder kurz. (Hook)
+    narrative: `Der Gang dehnt sich wie Gummi, wird länger, dann wieder kurz.
 
-Du machst einen Schritt, und der Boden ist plötzlich da, wo er eben nicht war. Am anderen Ende siehst du dich selbst – du winkst dir zu, aber die Bewegung ist verzögert, wie bei einer schlechten Übertragung. (Detail)
+Du machst einen Schritt, und der Boden ist plötzlich da, wo er eben nicht war. Am anderen Ende siehst du dich selbst – du winkst dir zu, aber die Bewegung ist verzögert, wie bei einer schlechten Übertragung.
 
-Du bist dir nicht mehr sicher, welches „Du“ das echte ist. (Konsequenz)`,
+Du bist dir nicht mehr sicher, welches „Du“ das echte ist.`,
     choices: [
       {
         id: 'continue_forward',
@@ -616,7 +571,7 @@ Du bist dir nicht mehr sicher, welches „Du“ das echte ist. (Konsequenz)`,
     id: 'c7_s06_announcement_distorted',
     chapter: 7,
     title: 'Die letzte Ansage',
-    narrative: `Die Lautsprecher knistern.
+    narrative: `Als du weiter in den Gang trittst, knistern die Lautsprecher.
 
 Lauter als je zuvor.
 
@@ -784,7 +739,7 @@ Die Stimme lacht.
     id: 'c7_s07_announcement_name',
     chapter: 7,
     title: 'Dein Name',
-    narrative: `Die Lautsprecher knistern wieder.
+    narrative: `Du hältst im Gang inne, dann knistern die Lautsprecher wieder.
 
 „Passagier…"
 
@@ -887,7 +842,7 @@ An alles.`,
     id: 'c7_s08_announcement_aftermath',
     chapter: 7,
     title: 'Nach der Ansage',
-    narrative: `Du stehst im Gang.
+    narrative: `Als die Ansage verstummt, stehst du im Gang.
 
 Die Erinnerungen fluten dich.
 
@@ -1034,7 +989,7 @@ Einem anderen Zug.`,
     id: 'c7_s10_passengers_vanish',
     chapter: 7,
     title: 'Die Anderen',
-    narrative: `Du siehst sie.
+    narrative: `Dann siehst du sie.
 
 Die anderen Passagiere.
 
@@ -1116,7 +1071,7 @@ Im Zug.`,
     id: 'c7_s11_interlude_memory_flood',
     chapter: 7,
     title: 'Erinnerungsflut',
-    narrative: `Die Erinnerungen kommen.
+    narrative: `Als die letzten Gesichter verschwinden, kommen die Erinnerungen.
 
 Alle auf einmal.
 
@@ -1209,7 +1164,7 @@ Alles.`,
     id: 'c7_s12_seven_offer',
     chapter: 7,
     title: 'Abteil 7 - Das letzte Angebot',
-    narrative: `Du stehst wieder vor Abteil 7.
+    narrative: `Als die letzten Bilder nachglühen, stehst du wieder vor Abteil 7.
 
 Die Tür ist da.
 
@@ -1253,7 +1208,7 @@ Blendend.`,
     narrative_variants: [
       {
         condition: { type: 'bool', target: 'has_tag19', value: true },
-        narrative: `Du stehst wieder vor Abteil 7. Die Tür ist da, massiv und realer als alles andere im Zug.
+        narrative: `Als die letzten Bilder nachglühen, stehst du wieder vor Abteil 7. Die Tür ist da, massiv und realer als alles andere im Zug.
 
 Sie ist offen. Ein Spaltbreit goldenes Licht dringt heraus, aber es blendet dich nicht. Der Schlüsselanhänger in deiner Hand erzeugt ein schützendes Feld, eine kühle Brise, die das Feuer des Lichts abmildert.
 
@@ -1324,7 +1279,7 @@ Du trittst über die Schwelle.`
     id: 'c7_s13_seven_price',
     chapter: 7,
     title: 'Abteil 7 - Der Preis',
-    narrative: `Du trittst ein.
+    narrative: `Du trittst über die Schwelle von Abteil 7.
 
 Das Abteil ist… anders.
 
@@ -1444,7 +1399,7 @@ Die Gestalt steht auf.
     id: 'c7_s13_comp7_recognized',
     chapter: 7,
     title: 'Die Erkenntnis - Abteil 7',
-    narrative: `Du trittst ein.
+    narrative: `Du trittst über die Schwelle von Abteil 7.
 
 Das Abteil ist… anders.
 
@@ -1590,7 +1545,7 @@ Traurig. Liebevoll.
     id: 'c7_s14_seven_decision',
     chapter: 7,
     title: 'Abteil 7 - Entscheidung',
-    narrative: `Die Gestalt nickt.
+    narrative: `Auf deine Worte hin nickt die Gestalt.
 
 „So sei es."
 
@@ -1665,7 +1620,7 @@ Du bist… bereit.`,
     id: 'c7_s15_recorder_trigger',
     chapter: 7,
     title: 'Der Rekorder',
-    narrative: `Du blickst auf den Kassettenrekorder.
+    narrative: `Zurück im Gang blickst du auf den Kassettenrekorder.
 
 Der Rekorder, den du die ganze Zeit bei dir hattest.
 
@@ -1748,51 +1703,22 @@ Drückst du?`,
     id: 'c7_s16_recorder_playback',
     chapter: 7,
     title: 'Die Kassette - Wiedergabe',
-    narrative: `Du drückst Play.
+    narrative: `Dann drückst du Play.
 
-Die Kassette beginnt zu laufen.
-
-Zuerst – nur Rauschen.
-
-Dann – eine Stimme.
-
-Deine Stimme.
-
-Aber… jünger.
-
-Oder älter.
-
-Schwer zu sagen.
+Die Kassette läuft an. Erst Rauschen. Dann deine Stimme - jünger, vielleicht älter, unmöglich zu sagen.
 
 „Test. Eins. Zwei. Drei."
-
 „19. September 1973."
+„Ich bin im Nachtzug 19. Wagen 7, Sitz 19. Es ist 19:19 Uhr."
 
-„Ich bin im Nachtzug 19."
+Eine Pause, dann flacher Atem.
 
-„Wagen 7, Sitz 19."
+„Ich habe Angst. Etwas stimmt nicht. Der Zug fährt zu schnell. Viel zu schnell."
+„Die Schienen ... ich glaube, da ist ..."
 
-„Es ist… 19:19 Uhr."
+Dann das Geräusch: Metall, das zerreißt. Glas. Schreie. Und plötzlich Stille.
 
-Eine Pause.
-
-„Ich habe… Angst."
-
-„Etwas stimmt nicht."
-
-„Der Zug… fährt zu schnell."
-
-„Viel zu schnell."
-
-„Die Schienen… ich glaube, da ist…"
-
-Ein Geräusch.
-
-Ein schreckliches, zerreißendes Geräusch.
-
-Dann – Stille.
-
-Dann – deine Stimme wieder:
+Nach einem langen Knistern hörst du wieder deine Stimme:
 
 „Ich bin tot, oder?"`,
     choices: [
@@ -1834,53 +1760,19 @@ Dann – deine Stimme wieder:
     title: 'Die Kassette - Wahrheit',
     narrative: `Die Kassette läuft weiter.
 
-Deine Stimme:
+Deine Stimme, brüchig und fern:
 
-„Ich bin tot."
+„Ich bin tot. Aber ich bin noch hier. Im Zug. Er fährt weiter. Immer weiter. Durch Zeit. Durch Erinnerungen. Ich sehe andere Passagiere. Sind sie auch ...?"
 
-„Aber ich bin noch hier."
+Dann Comp7:
 
-„Im Zug."
+„Ja. Wir alle. Wir sind im Moment des Unfalls zurückgeblieben. Gefangen, bis wir bereit sind loszulassen. Bereit zu gehen."
 
-„Er fährt weiter."
+Wieder deine Stimme:
 
-„Immer weiter."
+„Ich will gehen. Aber ich habe Angst. So viel Angst."
 
-„Durch… die Zeit."
-
-„Durch… Erinnerungen."
-
-„Ich sehe… andere."
-
-„Andere Passagiere."
-
-„Sind sie auch…?"
-
-Eine andere Stimme. Comp7.
-
-„Ja. Wir alle."
-
-„Wir alle sind… zurückgeblieben."
-
-„Im Moment des Unfalls."
-
-„Gefangen."
-
-„Bis wir… bereit sind."
-
-„Bereit, loszulassen."
-
-„Bereit, zu gehen."
-
-Dann – deine Stimme wieder:
-
-„Ich will gehen."
-
-„Aber ich habe Angst."
-
-„So viel Angst."
-
-Die Kassette endet.
+Die Kassette stoppt.
 
 Klick.`,
     choices: [
@@ -1919,7 +1811,7 @@ Klick.`,
     ],
     state_notes: [
       'Set-Piece Teil 2: Vollständige Wahrheit (conditional)',
-      'CONDITION: accept_death nur bei tickets_truth >= 6',
+      'CONDITION: accept_death nur bei tickets_truth >= 5',
       'Tod bestätigt',
       'Zug als Limbus/Fegefeuer bestätigt',
       'Comp7 Stimme'
@@ -1938,40 +1830,15 @@ Klick.`,
     title: 'Nach der Kassette',
     narrative: `Du legst den Rekorder weg.
 
-Deine Hände zittern.
+Deine Hände zittern - nicht vor Kälte, sondern vor Klarheit.
 
-Nicht vor Kälte.
+Seit 1973 bist du tot. Und doch nicht ganz.
+Du hängst in diesem Zwischenraum fest, zwischen Leben und Tod, zwischen Erinnern und Vergessen.
 
-Vor Klarheit.
-
-Vor dem Wissen.
-
-Du bist… tot.
-
-Seit 1973.
-
-Aber auch… nicht.
-
-Nicht ganz.
-
-Nicht vollständig.
-
-Du bist in diesem Zwischenraum.
-
-Diesem Ort zwischen Leben und Tod.
-
-Zwischen Erinnern und Vergessen.
-
-Und jetzt…
-
-Jetzt musst du wählen.
-
-Vollständig.
-
-Endgültig.
+Jetzt bleibt nur noch eine Entscheidung.
+Vollständig. Endgültig.
 
 Gehst du?
-
 Oder bleibst du?`,
     choices: [
       {
@@ -2007,7 +1874,7 @@ Oder bleibst du?`,
     id: 'c7_s19_interlude_train_stops',
     chapter: 7,
     title: 'Stillstand',
-    narrative: `Der Zug… hält.
+    narrative: `Egal, wie du dich entschieden hast: Der Zug… hält.
 
 Nicht langsam.
 
@@ -2157,61 +2024,27 @@ Dann ist es vorbei.`
     id: 'c7_s20_conductor_finale',
     chapter: 7,
     title: 'Der Schaffner - Abschied',
-    narrative: `Der Schaffner erscheint.
+    narrative: `Der Schaffner erscheint zum letzten Mal.
 
-Zum letzten Mal.
+Er wirkt nicht mehr bedrohlich, nicht mehr unnahbar. Nur müde. Alt. Menschlich.
 
-Er sieht… anders aus.
+„Es ist Zeit," sagt er. „Für dich. Für alle."
 
-Nicht mehr bedrohlich.
+Er reicht dir deine Fahrkarte. Jetzt ist jede Zeile ausgefüllt: dein Name, dein Ziel, deine Zeit.
 
-Nicht mehr mysteriös.
-
-Nur… müde.
-
-Alt.
-
-Menschlich.
-
-„Es ist Zeit," sagt er leise.
-
-„Für dich."
-
-„Für alle."
-
-Er reicht dir… deine Fahrkarte.
-
-Sie ist vollständig ausgefüllt jetzt.
-
-Jede Zeile.
-
-Jedes Detail.
-
-Dein Name. Dein Ziel. Deine Zeit.
-
-„Du hast gut gewählt," sagt er.
-
-„Oder… gut genug."
-
-Er lächelt. Schwach.
-
-„Es gibt keine perfekte Wahl."
-
-„Nur… deine Wahl."
+„Du hast gut gewählt," sagt er, dann ein schwaches Lächeln. „Oder gut genug. Eine perfekte Wahl gibt es nicht. Nur deine."
 
 Er deutet zur Tür.
 
-„Geh. Und… leb."
-
-„Oder… was auch immer danach kommt."
+„Geh. Und leb. Oder ... was auch immer danach kommt."
 
 Dann verschwindet er.
-
 Endgültig.`,
     choices: [
       {
         id: 'thank_conductor_high_attention',
         label: '„Danke. Für alles."',
+        weight: 'neutral',
         condition: {
           type: 'compare',
           target: 'conductor_attention',
@@ -2222,27 +2055,30 @@ Endgültig.`,
           { type: 'inc', target: 'tickets_love', value: 2 },
           { type: 'inc', target: 'tickets_truth', value: 1 }
         ],
-        next: 'c7_s21_photo_revelation'
+        next: 'c7_s20c_conductor_echo'
       },
       {
         id: 'say_nothing',
         label: 'Schweigen',
+        weight: 'neutral',
         effects: [
           { type: 'inc', target: 'tickets_guilt', value: 1 }
         ],
-        next: 'c7_s21_photo_revelation'
+        next: 'c7_s20c_conductor_echo'
       },
       {
         id: 'take_ticket',
         label: 'Die Fahrkarte nehmen',
+        weight: 'neutral',
         effects: [
           { type: 'inc', target: 'tickets_truth', value: 1 }
         ],
-        next: 'c7_s21_photo_revelation'
+        next: 'c7_s20c_conductor_echo'
       },
       {
         id: 'last_sacrifice',
         label: 'Ein letztes Opfer bringen',
+        weight: 'irreversibel',
         effects: [
           { type: 'inc', target: 'memory_drift', value: 3 }
         ],
@@ -2304,38 +2140,42 @@ Welchen Preis zahlst du?`,
       {
         id: 'sacrifice_for_truth',
         label: 'Erinnerung opfern für Klarheit',
+        weight: 'irreversibel',
         effects: [
           { type: 'inc', target: 'tickets_truth', value: 2 },
           { type: 'inc', target: 'memory_drift', value: 2 }
         ],
-        next: 'c7_s21_photo_revelation'
+        next: 'c7_s20c_conductor_echo'
       },
       {
         id: 'sacrifice_for_escape',
         label: 'Identität opfern für Flucht',
+        weight: 'irreversibel',
         effects: [
           { type: 'inc', target: 'tickets_escape', value: 2 },
           { type: 'inc', target: 'memory_drift', value: 2 }
         ],
-        next: 'c7_s21_photo_revelation'
+        next: 'c7_s20c_conductor_echo'
       },
       {
         id: 'sacrifice_for_guilt',
         label: 'Zukunft opfern für Verantwortung',
+        weight: 'irreversibel',
         effects: [
           { type: 'inc', target: 'tickets_guilt', value: 2 },
           { type: 'inc', target: 'memory_drift', value: 2 }
         ],
-        next: 'c7_s21_photo_revelation'
+        next: 'c7_s20c_conductor_echo'
       },
       {
         id: 'sacrifice_for_love',
         label: 'Selbst opfern für Verbindung',
+        weight: 'irreversibel',
         effects: [
           { type: 'inc', target: 'tickets_love', value: 2 },
           { type: 'inc', target: 'memory_drift', value: 2 }
         ],
-        next: 'c7_s21_photo_revelation'
+        next: 'c7_s20c_conductor_echo'
       }
     ],
     state_notes: [
@@ -2348,6 +2188,141 @@ Welchen Preis zahlst du?`,
   },
 
   // ==========================================================================
+  // STANDARD: Letzte Worte im Abteil (Agency ohne System-Einfluss)
+  // ==========================================================================
+
+  'c7_s20c_conductor_echo': {
+    id: 'c7_s20c_conductor_echo',
+    chapter: 7,
+    title: 'Echo im Gang',
+    narrative: `Wo der Schaffner eben stand, bleibt nur ein Hauch kalter Luft.
+
+Doch seine letzten Worte hallen nach.
+
+Du kannst antworten.
+
+Nicht für ihn.
+
+Für dich.`,
+    choices: [
+      {
+        id: 'echo_acceptance',
+        label: '„Ich gehe. Aber ich vergesse euch nicht."',
+        effects: [
+          { type: 'set', target: 'mut', value: 4 }
+        ],
+        next: 'c7_s20d_echo_acceptance'
+      },
+      {
+        id: 'echo_defiance',
+        label: '„Ich gehe erst, wenn ich alles verstanden habe."',
+        effects: [
+          { type: 'set', target: 'mut', value: 5 }
+        ],
+        next: 'c7_s20d_echo_defiance'
+      },
+      {
+        id: 'echo_gratitude',
+        label: '„Dann lass uns das würdig beenden."',
+        effects: [
+          { type: 'set', target: 'mut', value: 6 }
+        ],
+        next: 'c7_s20d_echo_gratitude'
+      }
+    ],
+    tags: ['interlude'],
+    state_notes: [
+      'Agency: zusätzlicher Abschiedsdialog ohne neue Effects',
+      'Rekombination in c7_s21_photo_revelation'
+    ],
+    atmosphere: 'somber'
+  },
+
+  // ==========================================================================
+  // STANDARD: Echo-Reaktion - Annahme
+  // ==========================================================================
+
+  'c7_s20d_echo_acceptance': {
+    id: 'c7_s20d_echo_acceptance',
+    chapter: 7,
+    title: 'Nicht vergessen',
+    narrative: `Deine Worte hängen im Gang, ohne Widerhall.
+
+Und doch fühlt es sich an, als hätten sie jemand erreicht.
+
+Nicht den Schaffner. Die, die mit dir gefahren sind.`,
+    choices: [
+      {
+        id: 'continue_after_echo_acceptance',
+        label: 'Weiter',
+        next: 'c7_s21_photo_revelation'
+      }
+    ],
+    tags: ['interlude'],
+    state_notes: [
+      'Choice-Reaktion: Annahme',
+      'Rekombination in c7_s21_photo_revelation'
+    ],
+    atmosphere: 'somber'
+  },
+
+  // ==========================================================================
+  // STANDARD: Echo-Reaktion - Trotz
+  // ==========================================================================
+
+  'c7_s20d_echo_defiance': {
+    id: 'c7_s20d_echo_defiance',
+    chapter: 7,
+    title: 'Hartnäckig',
+    narrative: `Der Satz klingt wie Widerstand.
+
+Die Luft wird kurz schärfer, kälter.
+
+Dann lässt der Druck nach, als hätte der Zug deinen Trotz notiert und akzeptiert.`,
+    choices: [
+      {
+        id: 'continue_after_echo_defiance',
+        label: 'Nicht stehenbleiben',
+        next: 'c7_s21_photo_revelation'
+      }
+    ],
+    tags: ['interlude'],
+    state_notes: [
+      'Choice-Reaktion: Trotz',
+      'Rekombination in c7_s21_photo_revelation'
+    ],
+    atmosphere: 'somber'
+  },
+
+  // ==========================================================================
+  // STANDARD: Echo-Reaktion - Dankbarkeit
+  // ==========================================================================
+
+  'c7_s20d_echo_gratitude': {
+    id: 'c7_s20d_echo_gratitude',
+    chapter: 7,
+    title: 'Würdig',
+    narrative: `Für einen Augenblick wird es warm im Gang.
+
+Wie ein stilles Nicken aus einer Richtung, die es nicht mehr gibt.
+
+Dann kehrt die Kälte zurück, aber sie wirkt weniger feindlich.`,
+    choices: [
+      {
+        id: 'continue_after_echo_gratitude',
+        label: 'Den Blick nach vorn richten',
+        next: 'c7_s21_photo_revelation'
+      }
+    ],
+    tags: ['interlude'],
+    state_notes: [
+      'Choice-Reaktion: Dankbarkeit',
+      'Rekombination in c7_s21_photo_revelation'
+    ],
+    atmosphere: 'somber'
+  },
+
+  // ==========================================================================
   // STANDARD: Foto Enthüllung (Conditional)
   // ==========================================================================
 
@@ -2355,7 +2330,7 @@ Welchen Preis zahlst du?`,
     id: 'c7_s21_photo_revelation',
     chapter: 7,
     title: 'Das Foto',
-    narrative: `Du erinnerst dich an das Foto.
+    narrative: `Nach den letzten Worten des Schaffners erinnerst du dich an das Foto.
 
 Das Foto vom schlaflosen Mann.
 
@@ -2405,7 +2380,7 @@ Auf der Rückseite steht jetzt mehr:
         effects: [
           { type: 'inc', target: 'tickets_truth', value: 2 }
         ],
-        next: 'c7_s22_tag19_resonance'
+        next: 'c7_s21b_echo_callback'
       },
       {
         id: 'trace_anomaly',
@@ -2419,7 +2394,7 @@ Auf der Rückseite steht jetzt mehr:
           { type: 'inc', target: 'tickets_truth', value: 1 },
           { type: 'inc', target: 'memory_drift', value: 1 }
         ],
-        next: 'c7_s22_tag19_resonance'
+        next: 'c7_s21b_echo_callback'
       },
       {
         id: 'put_away_photo',
@@ -2427,7 +2402,7 @@ Auf der Rückseite steht jetzt mehr:
         effects: [
           { type: 'inc', target: 'tickets_escape', value: 1 }
         ],
-        next: 'c7_s22_tag19_resonance'
+        next: 'c7_s21b_echo_callback'
       }
     ],
     state_notes: [
@@ -2439,6 +2414,74 @@ Auf der Rückseite steht jetzt mehr:
   },
 
   // ==========================================================================
+  // STANDARD: Später Callback auf Schaffner-Echo
+  // ==========================================================================
+
+  'c7_s21b_echo_callback': {
+    id: 'c7_s21b_echo_callback',
+    chapter: 7,
+    title: 'Nach dem Echo',
+    narrative: `Das Foto sinkt wieder in deine Hand.
+
+Dein letzter Satz im Gang wirkt noch nach, wie eine Haltung, die du mitgenommen hast.`,
+    narrative_variants: [
+      {
+        condition: {
+          type: 'compare',
+          target: 'mut',
+          operator: '==',
+          value: 4
+        },
+        narrative: `Das Foto sinkt wieder in deine Hand.
+
+Dein Satz über Erinnern macht den Gang nicht heller, aber weniger kalt.
+
+Du spürst, dass du gehst, ohne abzuschneiden.`
+      },
+      {
+        condition: {
+          type: 'compare',
+          target: 'mut',
+          operator: '==',
+          value: 5
+        },
+        narrative: `Das Foto sinkt wieder in deine Hand.
+
+Der Trotz von eben bleibt in dir wie ein kleiner Widerhaken.
+
+Nicht gegen die Wahrheit. Gegen das Verschwinden.`
+      },
+      {
+        condition: {
+          type: 'compare',
+          target: 'mut',
+          operator: '==',
+          value: 6
+        },
+        narrative: `Das Foto sinkt wieder in deine Hand.
+
+Dein Dank von eben wirkt nach wie ein stilles Ritual.
+
+Als hättest du der Fahrt einen Abschluss gegeben, bevor sie endet.`
+      }
+    ],
+    choices: [
+      {
+        id: 'continue_to_tag_after_echo_callback',
+        label: 'Auf das Etikett sehen',
+        next: 'c7_s22_tag19_resonance'
+      }
+    ],
+    tags: ['interlude'],
+    state_notes: [
+      'Später Callback auf c7_s20c/c7_s20d',
+      'mut wird hier nur als Flavor-Flag genutzt',
+      'Kein Einfluss auf Endings/Route'
+    ],
+    atmosphere: 'somber'
+  },
+
+  // ==========================================================================
   // STANDARD: Tag19 finale Bedeutung (Conditional)
   // ==========================================================================
 
@@ -2446,7 +2489,7 @@ Auf der Rückseite steht jetzt mehr:
     id: 'c7_s22_tag19_resonance',
     chapter: 7,
     title: 'Das Etikett',
-    narrative: `Das Tag19-Etikett liegt schwer in deiner Hand.
+    narrative: `Mit der Erkenntnis aus dem Foto in dir liegt das Tag19-Etikett schwer in deiner Hand.
 
 Es wird heiß. Nicht sichtbar, aber spürbar. Ein Puls, der sich durch den Knochen frisst.
 
@@ -2479,7 +2522,7 @@ Ein Summen setzt ein – tief, unter der Hörschwelle. Nicht vom Tag. Aus dir.`,
     id: 'c7_s22_tag19_final',
     chapter: 7,
     title: 'Das Etikett - Letzte Bedeutung',
-    narrative: `Wagen 7, Sitz 19.
+    narrative: `Der Puls hämmert weiter: Wagen 7, Sitz 19.
 
 1973. Letzte Fahrt.
 
@@ -2569,7 +2612,7 @@ Das Tag pulsiert. Wartend.`,
     id: 'c7_s23_interlude_doors_open',
     chapter: 7,
     title: 'Die Türen',
-    narrative: `Die Türen…
+    narrative: `Dann beginnen die Türen…
 
 Beginnen sich zu öffnen.
 
@@ -2658,51 +2701,17 @@ Real. Fest. Endgültig.`,
     title: 'Der echte Bahnsteig',
     narrative: `Du trittst hinaus.
 
-Der Bahnsteig ist… anders.
+Der Bahnsteig ist anders als alle davor: nicht verschwommen, nicht traumhaft, nicht unheimlich. Einfach da. Real. Fest. Wirklich.
 
-Nicht wie die anderen Stationen.
+Ein Schild hängt an der Kante, doch der Name bleibt unlesbar. Die Buchstaben verschwimmen oder verändern sich, je nachdem, wie du hinsiehst.
 
-Nicht verschwommen oder traumhaft.
+Für jeden Passagier ein anderer Bahnhof. Ein anderes Ziel. Ein anderes Danach.
 
-Nicht mystisch oder unheimlich.
+Du blickst zurück. Der Zug steht noch da, die Türen offen.
 
-Einfach… da.
-
-Real. Fest. Wirklich.
-
-Es gibt ein Schild.
-
-Mit dem Namen der Station.
-
-Aber… es ist nicht lesbar.
-
-Die Buchstaben verschwimmen.
-
-Oder… sie ändern sich.
-
-Je nachdem, wie du hinsiehst.
-
-Für jeden Passagier… eine andere Station.
-
-Ein anderes Ziel.
-
-Ein anderes… danach.
-
-Du blickst zurück zum Zug.
-
-Er steht noch da.
-
-Die Türen offen.
-
-Aber… du weißt.
-
-Wenn du jetzt gehst…
-
-Gibt es kein Zurück.
+Aber du weißt: Wenn du jetzt gehst, gibt es kein Zurück.
 
 Nie wieder.
-
-Die Frage ist:
 
 Bist du bereit?`,
     choices: [
@@ -2797,14 +2806,16 @@ Bist bereit.`,
       {
         id: 'step_off',
         label: 'Aussteigen',
+        weight: 'irreversibel',
         effects: [
           { type: 'inc', target: 'station_count', value: 1 }
         ],
-        next: 'c7_end_station'
+        next: 'c7_s25b_threshold_dialog'
       },
       {
         id: 'look_back_one_last_time',
         label: 'Ein letztes Mal zurückblicken',
+        weight: 'irreversibel',
         condition: {
           type: 'compare',
           target: 'tickets_truth',
@@ -2815,7 +2826,7 @@ Bist bereit.`,
           { type: 'inc', target: 'tickets_truth', value: 1 },
           { type: 'inc', target: 'station_count', value: 1 }
         ],
-        next: 'c7_end_station'
+        next: 'c7_s25b_threshold_dialog'
       }
     ],
     state_notes: [
@@ -2824,6 +2835,205 @@ Bist bereit.`,
       'Identitätsfrage',
       'Übergang zu Endstation',
       'CONDITION: look_back_one_last_time bei tickets_truth >= 3'
+    ],
+    atmosphere: 'somber'
+  },
+
+  // ==========================================================================
+  // STANDARD: Letzter Dialog vor der Endstation
+  // ==========================================================================
+
+  'c7_s25b_threshold_dialog': {
+    id: 'c7_s25b_threshold_dialog',
+    chapter: 7,
+    title: 'Die Schwelle',
+    narrative: `Der Bahnsteig ist still, als würde die Welt den Atem anhalten.
+
+Noch ein Gedanke.
+
+Noch ein Satz, bevor alles fest wird.`,
+    choices: [
+      {
+        id: 'threshold_name_choice',
+        label: 'Deinen Namen laut sagen',
+        effects: [
+          { type: 'set', target: 'wissen', value: 7 }
+        ],
+        next: 'c7_s25c_threshold_name'
+      },
+      {
+        id: 'threshold_thank_choice',
+        label: 'Dich bei den Verlorenen bedanken',
+        effects: [
+          { type: 'set', target: 'wissen', value: 8 }
+        ],
+        next: 'c7_s25c_threshold_thanks'
+      },
+      {
+        id: 'threshold_silent_choice',
+        label: 'Schweigend den ersten Schritt setzen',
+        effects: [
+          { type: 'set', target: 'wissen', value: 9 }
+        ],
+        next: 'c7_s25c_threshold_silence'
+      }
+    ],
+    tags: ['interlude'],
+    state_notes: [
+      'Agency: letzter Mikro-Dialog ohne zusätzliche Effects',
+      'Rekombination in c7_end_station'
+    ],
+    atmosphere: 'somber'
+  },
+
+  // ==========================================================================
+  // STANDARD: Schwellen-Reaktion - Name
+  // ==========================================================================
+
+  'c7_s25c_threshold_name': {
+    id: 'c7_s25c_threshold_name',
+    chapter: 7,
+    title: 'Der eigene Name',
+    narrative: `Du sagst deinen Namen laut.
+
+Der Klang ist rau, aber er gehört dir.
+
+Der Bahnsteig antwortet mit Stille, die nicht mehr leer wirkt.`,
+    choices: [
+      {
+        id: 'continue_after_threshold_name',
+        label: 'Weiter',
+        next: 'c7_s25d_threshold_callback'
+      }
+    ],
+    tags: ['interlude'],
+    state_notes: [
+      'Choice-Reaktion: Name',
+      'Rekombination in c7_end_station'
+    ],
+    atmosphere: 'somber'
+  },
+
+  // ==========================================================================
+  // STANDARD: Schwellen-Reaktion - Dank
+  // ==========================================================================
+
+  'c7_s25c_threshold_thanks': {
+    id: 'c7_s25c_threshold_thanks',
+    chapter: 7,
+    title: 'Ein Dank',
+    narrative: `„Danke," sagst du in die Luft, zu niemandem und zu allen.
+
+Zwischen den Schienen scheint etwas zu zittern, wie eine letzte Erinnerung, die loslässt.
+
+Dann wird es ruhig.`,
+    choices: [
+      {
+        id: 'continue_after_threshold_thanks',
+        label: 'Den Schritt setzen',
+        next: 'c7_s25d_threshold_callback'
+      }
+    ],
+    tags: ['interlude'],
+    state_notes: [
+      'Choice-Reaktion: Dank',
+      'Rekombination in c7_end_station'
+    ],
+    atmosphere: 'somber'
+  },
+
+  // ==========================================================================
+  // STANDARD: Schwellen-Reaktion - Schweigen
+  // ==========================================================================
+
+  'c7_s25c_threshold_silence': {
+    id: 'c7_s25c_threshold_silence',
+    chapter: 7,
+    title: 'Ohne Worte',
+    narrative: `Du bleibst stumm.
+
+Der erste Schritt klingt deshalb lauter als erwartet.
+
+Nicht hart. Nur endgültig.`,
+    choices: [
+      {
+        id: 'continue_after_threshold_silence',
+        label: 'Nicht mehr zurücksehen',
+        next: 'c7_s25d_threshold_callback'
+      }
+    ],
+    tags: ['interlude'],
+    state_notes: [
+      'Choice-Reaktion: Schweigen',
+      'Rekombination in c7_end_station'
+    ],
+    atmosphere: 'somber'
+  },
+
+  // ==========================================================================
+  // STANDARD: Später Callback auf Schwellenwahl
+  // ==========================================================================
+
+  'c7_s25d_threshold_callback': {
+    id: 'c7_s25d_threshold_callback',
+    chapter: 7,
+    title: 'Der letzte Nachhall',
+    narrative: `Der Bahnsteig bleibt still.
+
+Aber dein letzter Satz davor hängt noch in der Luft.`,
+    narrative_variants: [
+      {
+        condition: {
+          type: 'compare',
+          target: 'wissen',
+          operator: '==',
+          value: 7
+        },
+        narrative: `Der Bahnsteig bleibt still.
+
+Dass du deinen Namen gesagt hast, wirkt wie ein Anker im letzten Windstoß.
+
+Du trittst nicht als Unbekannter ins Danach.`
+      },
+      {
+        condition: {
+          type: 'compare',
+          target: 'wissen',
+          operator: '==',
+          value: 8
+        },
+        narrative: `Der Bahnsteig bleibt still.
+
+Dein Dank schwingt noch nach, leise, aber deutlich.
+
+Als hätte die Fahrt nicht nur ein Ende, sondern auch eine Form bekommen.`
+      },
+      {
+        condition: {
+          type: 'compare',
+          target: 'wissen',
+          operator: '==',
+          value: 9
+        },
+        narrative: `Der Bahnsteig bleibt still.
+
+Dein Schweigen von eben war kein Ausweichen.
+
+Es war eine Entscheidung, die keinen zusätzlichen Satz mehr brauchte.`
+      }
+    ],
+    choices: [
+      {
+        id: 'continue_to_end_station_after_threshold_callback',
+        label: 'Weiter',
+        next: 'c7_end_station'
+      }
+    ],
+    tags: ['interlude'],
+    state_notes: [
+      'Später Callback auf c7_s25b/c7_s25c',
+      'wissen wird hier nur als Flavor-Flag genutzt',
+      'Kein Einfluss auf Endings/Route'
     ],
     atmosphere: 'somber'
   },
@@ -2895,6 +3105,7 @@ Was nimmst du mit… ins Danach?`,
       {
         id: 'truth_path',
         label: 'Der Wahrheit begegnen – koste es, was es wolle',
+        weight: 'irreversibel',
         condition: {
           type: 'compare',
           target: 'tickets_truth',
@@ -2909,6 +3120,7 @@ Was nimmst du mit… ins Danach?`,
       {
         id: 'love_path',
         label: 'Jemandem folgen – nicht allein sein',
+        weight: 'irreversibel',
         condition: {
           type: 'compare',
           target: 'tickets_love',
@@ -2923,6 +3135,7 @@ Was nimmst du mit… ins Danach?`,
       {
         id: 'guilt_path',
         label: 'Die Verantwortung tragen – und weitergehen',
+        weight: 'irreversibel',
         condition: {
           type: 'compare',
           target: 'tickets_guilt',
@@ -2937,6 +3150,7 @@ Was nimmst du mit… ins Danach?`,
       {
         id: 'escape_path',
         label: 'Im Zug bleiben – für immer',
+        weight: 'irreversibel',
         condition: {
           type: 'compare',
           target: 'tickets_escape',
@@ -2951,6 +3165,7 @@ Was nimmst du mit… ins Danach?`,
       {
         id: 'limbo_path',
         label: 'Nicht entscheiden – auf der Schwelle bleiben',
+        weight: 'irreversibel',
         effects: [
           { type: 'inc', target: 'memory_drift', value: 1 }
         ],

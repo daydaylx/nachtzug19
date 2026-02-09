@@ -20,49 +20,41 @@ export const endingScenes: ScenesCollection = {
     title: 'Licht',
     narrative: `Du steigst aus.
 
-Der Bahnsteig ist warm. Nicht heiß. Nicht kalt. Genau richtig.
+Der Bahnsteig ist warm, genau richtig.
 
-Hinter dir schließt sich die Tür. Ein leises Klicken. Final.
+Hinter dir klickt die Tür ins Schloss.
 
-Du drehst dich um. Der Zug – NACHTZUG 19 – steht noch da. Aber er verblasst. Langsam. Als würde er von der Sonne aufgelöst.
+Du drehst dich um. Der NACHTZUG 19 steht noch da, verblasst aber langsam, als würde Sonnenlicht ihn auflösen.
 
-Durch die Fenster siehst du sie. Alle.
+Durch die Fenster siehst du sie alle.
 
-Der Schlaflose. Er lächelt. Nicht müde. Erleichtert. Er hebt die Hand. Winkt. Dann löst er sich auf. Nicht schmerzhaft. Einfach... weg.
+Der Schlaflose lächelt erleichtert, hebt die Hand, dann löst er sich still auf.
 
-Der Junge. Er steht am Fenster von Wagen 3. Er sieht dich an. Direkt. Seine Augen sind klar. Keine Angst mehr. Er winkt. Einmal. Kurz.
+Der Junge steht am Fenster von Wagen 3, sieht dich direkt an und formt lautlos ein einziges Wort: "Danke."
 
-"Danke," formt er stumm mit den Lippen.
+Dann ist er fort.
 
-Dann ist er weg.
+Comp7 steht im Gang von Wagen 7. Ihre Notizbücher liegen verstreut auf dem Boden, plötzlich bedeutungslos.
 
-Comp7. Sie steht im Gang von Wagen 7. Ihre Notizbücher liegen auf dem Boden. Verstreut. Nicht mehr wichtig.
+Sie legt die Hand an die Scheibe. Du legst deine auf dieselbe Stelle. Das Glas ist warm, fast wie Haut.
 
-Sie legt die Hand ans Fenster.
+Für einen Atemzug fühlt es sich an, als würdet ihr euch halten.
 
-Du legst deine Hand auf dieselbe Stelle. Das Glas ist warm.
-
-Für einen Moment fühlt es sich an, als würdest du ihre Hand halten.
-
-Dann lässt sie los.
-
-Sie lächelt. Zum ersten Mal.
+Dann lässt sie los. Sie lächelt, zum ersten Mal.
 
 "Leb wohl," sagst du.
 
 Sie nickt. "Leb."
 
-Dann ist auch sie weg.
+Dann verschwindet auch sie.
 
-Der Schaffner. Er steht ganz hinten. Im letzten Wagen. Seine Uniform ist perfekt. Kein Staub. Keine Falten.
+Ganz hinten im letzten Wagen steht der Schaffner. Seine Uniform sitzt makellos, als hätte es nie Staub gegeben.
 
-Er sieht dich an. Nickt. Einmal.
+Er nickt dir einmal zu, zieht die Mütze und hält sie vor die Brust.
 
-Dann zieht er die Mütze. Hält sie in der Hand.
+"Gute Reise," sagt er leise.
 
-"Gute Reise," sagt er. Seine Stimme ist leise. Aber du hörst sie.
-
-Dann verschwindet auch er.`,
+Dann ist auch er weg.`,
     choices: [
       {
         id: 'continue',
@@ -88,28 +80,29 @@ Dann verschwindet auch er.`,
     title: 'Leere',
     narrative: `Der Zug ist weg.
 
-Du stehst allein auf dem Bahnsteig. Aber es fühlt sich nicht leer an.
+Du stehst allein auf dem Bahnsteig, aber es fühlt sich nicht leer an.
 
-Die Uhr an der Wand zeigt 06:00. Morgen. Zum ersten Mal seit… wie lange? … tickt sie.
+Die Uhr an der Wand zeigt 06:00. Sie tickt.
 
 Zeit. Echte Zeit.
 
-Die Luft riecht nach frischem Regen. Nach Asphalt. Nach Kaffee aus einem Automaten. Nach Leben.
+Die Luft riecht nach Regen, Asphalt und Kaffee aus einem Automaten.
 
-Ein echter Zug fährt ein. Menschen steigen aus. Müde. Verschlafen. Mit Koffern.
+Ein gewöhnlicher Zug fährt ein. Menschen steigen aus, müde und verschlafen, mit Taschen und Koffern.
 
 Eine Frau sieht dich an. "Entschuldigung, ist das Gleis 4?"
 
-"Ja. Gleis 4." Deine Stimme funktioniert. Klar. Ohne Echo.
+"Ja. Gleis 4." Deine Stimme ist klar. Ohne Echo.
 
-Die Sonne geht auf. Ein orangefarbener Streifen am Horizont. Dann gelb. Dann weiß.
+Die Sonne schiebt sich über den Horizont: erst orange, dann gelb, dann weiß.
 
 Du verlässt den Bahnhof.
 
-Draußen: Eine Stadt. Modern. Laut. Lebendig.
+Draußen liegt eine Stadt, modern, laut, lebendig.
 
-Du weißt nicht, wo du bist. Du weißt nicht, welches Jahr es ist. Aber du gehst.
+Du weißt nicht, wo du bist. Du weißt nicht, welches Jahr es ist.
 
+Aber du gehst.
 Du lebst.
 
 ---
@@ -151,49 +144,47 @@ Du lebst.
     title: 'Wiedersehen',
     narrative: `Du steigst aus.
 
-Und da... steht jemand.
-
-Auf dem Bahnsteig. Wartend.
+Und da steht jemand auf dem Bahnsteig.
 
 Nicht Comp7. Nicht der Junge. Nicht der Schlaflose.
 
-Sondern... **Emma**.
+Sondern **Emma**.
 
-Das Gesicht aus deinen Träumen. Die Stimme vom Kassettenrekorder.
+Das Gesicht aus deinen Träumen. Die Stimme vom Kassettenrekorder. Die Person, die du die ganze Fahrt gesucht hast.
 
-Die Person, die du gesucht hast. Die ganze Fahrt lang.
+Emma sieht älter aus. Grauere Haare. Fältchen um die Augen.
 
-Sie sieht älter aus. Grauere Haare. Fältchen um die Augen. Aber...
-
-Sie lächelt.
+Aber sie lächelt.
 
 Genau wie damals.
 
-"Du bist zu spät," sagt sie. Ihre Stimme bricht. "Fünfzig Jahre zu spät."
+"Du bist zu spät," sagt sie mit brechender Stimme. "Fünfzig Jahre zu spät."
 
-Du kannst nicht sprechen. Die Worte bleiben stecken.
+Du bringst erst kein Wort heraus.
 
 "Ich weiß," flüsterst du schließlich.
 
-Sie geht auf dich zu. Langsam. Als hätte sie Angst, dass du verschwindest, wenn sie zu schnell gehst.
+Sie geht langsam auf dich zu, als hätte sie Angst, du könntest verschwinden, wenn sie sich zu schnell bewegt.
 
-Ihre Hand hebt sich. Berührt dein Gesicht. Warm. Real.
+Ihre Hand berührt dein Gesicht.
 
-"Du bist... wirklich hier," sagt sie. Tränen in den Augen.
+Warm. Real.
+
+"Du bist wirklich hier," sagt sie, Tränen in den Augen.
 
 "Ich bin hier."
 
-"Ich habe gewartet. So lange. Sie haben gesagt, ich soll aufhören. Sie haben gesagt, du kommst nicht zurück. Aber ich... ich konnte nicht."
+"Ich habe gewartet. So lange. Alle haben gesagt, ich soll aufhören. Dass du nicht zurückkommst. Aber ich konnte nicht."
 
-Du nimmst ihre Hand. Hältst sie fest.
+Du nimmst ihre Hand und hältst sie fest.
 
 "Ich bin zurück."
 
-"Nein," sagt sie leise. "Du bist... angekommen."
+"Nein," sagt sie leise. "Du bist angekommen."
 
-Hinter dir: Der Zug. Er verblasst. Langsam.
+Hinter dir verblasst der Zug.
 
-Aber du drehst dich nicht um.
+Du drehst dich nicht um.
 
 Du siehst nur Emma an.`,
     choices: [
@@ -219,7 +210,7 @@ Du siehst nur Emma an.`,
     id: 'ending_love_02',
     chapter: 7,
     title: 'Verlorene Zeit',
-    narrative: `"Fünfzig Jahre," sagst du. "Ich war... weg."
+    narrative: `"Fünfzig Jahre," sagst du. "Ich war weg."
 
 "Ich weiß."
 
@@ -287,47 +278,23 @@ Ihr Haus ist klein. Gemütlich. Fotos an der Wand. Ein Leben ohne dich.
 
 Aber du kannst nicht weitergehen.
 
-Deine Füße... sie bleiben stehen. Direkt am Rand des Bahnsteigs.
+Deine Füße bleiben am Rand des Bahnsteigs stehen.
 
-Du siehst zurück zum Zug.
+Du blickst zurück zum Zug.
 
-Er verblasst. Langsam. Aber er verblasst.
-
-Und in den Fenstern... siehst du sie.
-
-Die anderen Passagiere.
-
-Die Menschen, die noch im Zug sind.
-
-Der Schlaflose. Er sieht dich an. Seine Augen sind leer.
-
-Der Junge. Er steht am Fenster. Seine Hand liegt auf dem Glas.
-
-"Warum gehst du?" scheint er zu fragen. "Warum lässt du uns hier?"
-
-Comp7. Sie sitzt in Wagen 7. Umgeben von ihren Notizbüchern. Allein.
-
-Sie sieht dich nicht an.
-
-Sie schreibt. Weiter. Immer weiter.
-
-19. 19. 19.
+Er verblasst langsam, und in den Fenstern siehst du die anderen: den Schlaflosen mit leeren Augen, den Jungen mit der Hand am Glas, Comp7 in Wagen 7, allein zwischen ihren Notizbüchern, wie sie weiter schreibt: 19. 19. 19.
 
 Du hast sie zurückgelassen.
 
 Alle.
 
-Du bist gegangen. Aber sie... sie sind noch da.
-
-Im Zug. In der Schleife. In der Erinnerung.
+Du bist gegangen, aber sie sind noch da. Im Zug. In der Schleife. In der Erinnerung.
 
 "Es war nicht deine Schuld," sagt eine Stimme.
 
-Du drehst dich um.
+Du drehst dich um. Der Schaffner steht neben dir auf dem Bahnsteig.
 
-Der Schaffner. Er steht neben dir. Auf dem Bahnsteig.
-
-"Der Unfall. 1973. Es war nicht deine Schuld."
+"Der Unfall 1973. Es war nicht deine Schuld."
 
 "Ich weiß," flüsterst du.
 
@@ -335,11 +302,11 @@ Der Schaffner. Er steht neben dir. Auf dem Bahnsteig.
 
 Du schweigst.
 
-"Du hättest sie nicht retten können," sagt er. "Die 19 Menschen im Zug. Du hättest nichts tun können."
+"Du hättest sie nicht retten können. Die 19 Menschen im Zug. Du hättest nichts tun können."
 
-"Ich hätte... nicht einsteigen sollen. An dem Tag. Wenn ich..."
+"Ich hätte nicht einsteigen sollen. An dem Tag. Wenn ich ..."
 
-"Dann wärst du nicht gestorben. Aber sie... wären es trotzdem."
+"Dann wärst du nicht gestorben. Aber sie wären es trotzdem."
 
 Du siehst ihn an.
 
@@ -376,19 +343,19 @@ Du siehst ihn an.
 
 "Das musst du entscheiden," sagt der Schaffner.
 
-"Du kannst die Toten nicht retten. Aber du kannst sie lebendig halten. In der Erinnerung."
+"Du kannst die Toten nicht retten. Aber du kannst sie in der Erinnerung lebendig halten."
 
 Der Zug verschwindet. Ganz.
 
 Du stehst allein auf dem Bahnsteig. Aber du weißt, was du tun musst.
 
-Du gehst zu einer Bibliothek. Suchst nach Informationen.
+Du gehst in eine Bibliothek und suchst nach Informationen.
 
 Nachtzug 19. 19. September 1973. 19:19 Uhr.
 
 Du liest die Namen. Jeden einzelnen.
 
-Du schreibst sie auf. Nicht um zu vergessen. Sondern um zu erinnern.
+Du schreibst sie auf. Nicht um zu vergessen, sondern um zu erinnern.
 
 ---
 
@@ -428,49 +395,41 @@ Du schreibst sie auf. Nicht um zu vergessen. Sondern um zu erinnern.
     title: 'Bleiben',
     narrative: `Du steigst nicht aus.
 
-Die Türen sind offen. Der Bahnsteig wartet.
+Die Türen sind offen, der Bahnsteig wartet - aber du drehst dich um und gehst zurück in den Zug.
 
-Aber du...
-
-Du drehst dich um.
-
-Gehst zurück in den Zug.
-
-Die Türen schließen sich hinter dir. Leise. Final.
+Hinter dir schließen sich die Türen, leise und endgültig.
 
 "Bleibst du?" fragt eine Stimme.
 
-Der Schlaflose. Er sitzt auf seinem alten Platz. Sieht müde aus. Wie immer.
+Der Schlaflose sitzt auf seinem alten Platz. Müde wie immer.
 
 "Ja," sagst du.
 
 "Warum?"
 
-"Weil... ich nicht bereit bin."
+"Weil ich nicht bereit bin."
 
-Er nickt. Als hätte er das erwartet.
+Er nickt, als hätte er nichts anderes erwartet.
 
 "Ich verstehe."
 
 Du setzt dich ihm gegenüber.
 
-Der Zug setzt sich in Bewegung. Sanft. Lautlos.
-
-Draußen: Schwärze. Wie immer.
+Der Zug setzt sich lautlos in Bewegung. Draußen nur Schwärze.
 
 "Wo fahren wir hin?" fragst du.
 
-"Nirgendwohin," sagt der Schlaflose. "Wir fahren im Kreis."
+"Nirgendwohin," sagt er. "Wir fahren im Kreis."
 
 "Für immer?"
 
 "Bis wir bereit sind."
 
-Du lehnst den Kopf ans Fenster. Das Glas ist kalt.
+Du lehnst den Kopf ans kalte Fenster.
 
 "Und wenn ich nie bereit bin?"
 
-Er lächelt. Müde. Traurig.
+Er lächelt müde, traurig.
 
 "Dann bleibst du. Wie ich. Wie die anderen."`,
     choices: [
@@ -497,9 +456,11 @@ Er lächelt. Müde. Traurig.
     id: 'ending_escape_02',
     chapter: 7,
     title: 'Die Schleife',
-    narrative: `Der Zug fährt. Weiter. Immer weiter.
+    narrative: `Der Zug fährt weiter. Immer weiter.
 
-Die Durchsage wiederholt sich. Die Uhr zeigt 23:47. Immer.
+Die Durchsage wiederholt sich. Die Uhr zeigt 23:47.
+
+Immer.
 
 Der Junge malt den Zug. Comp7 schreibt 19. 19. 19. Der Schlaflose starrt ins Schwarz.
 
@@ -511,13 +472,15 @@ Ihr wisst beide, dass es eine Lüge ist.
 
 Der Schaffner kommt. "Ihr Ticket, bitte."
 
-Du gibst ihm das Tag19. Er nickt. "Gültig." 
+Du gibst ihm das Tag19. Er nickt. "Gültig."
 
-"Bis wann?" 
+"Bis wann?"
 
-"Bis Sie bereit sind auszusteigen." 
+"Bis Sie bereit sind auszusteigen."
 
-Der Zug fährt weiter. 23:47. Immer 23:47.
+Der Zug fährt weiter. 23:47.
+
+Immer 23:47.
 
 Du schließt die Augen.
 
@@ -563,35 +526,33 @@ Du schließt die Augen.
 
 Die Türen sind offen.
 
-Vor dir: Die Welt. Hell. Laut. Unbekannt.
+Vor dir liegt die Welt: hell, laut, unbekannt.
 
-Hinter dir: Der Zug. Dunkel. Vertraut. Sicher.
+Hinter dir der Zug: dunkel, vertraut, sicher.
 
 Du kannst dich nicht entscheiden.
 
-Ein Schritt nach vorne?
-
+Ein Schritt nach vorn?
 Ein Schritt zurück?
 
-Du bleibst stehen. Genau in der Mitte.
+Du bleibst genau in der Mitte stehen.
 
 Auf der Schwelle.
 
 Weder drinnen noch draußen.
-
 Weder tot noch lebendig.
 
-"Was tust du?" fragt der Schaffner. Er steht neben dir.
+"Was tust du?" fragt der Schaffner neben dir.
 
-"Ich... weiß es nicht."
+"Ich weiß es nicht."
 
 "Du musst entscheiden."
 
-"Kann ich nicht einfach... hier bleiben?"
+"Kann ich nicht einfach hier bleiben?"
 
-Er sieht dich an. Lange. Dann schüttelt er den Kopf.
+Er sieht dich lange an und schüttelt dann den Kopf.
 
-"Nein. Das ist keine Entscheidung. Das ist... Stillstand."
+"Nein. Das ist keine Entscheidung. Das ist Stillstand."
 
 "Aber ich bin nicht bereit."
 
@@ -601,15 +562,13 @@ Du schweigst.
 
 Die Türen beginnen zu piepen. Eine Warnung.
 
-Sie werden sich bald schließen.
+Sie werden sich gleich schließen.
 
 "Letzte Chance," sagt der Schaffner.
 
-Du siehst nach vorne. Nach hinten.
+Du siehst nach vorn. Nach hinten.
 
-Und du...
-
-...kannst dich immer noch nicht entscheiden.`,
+Und kannst dich immer noch nicht entscheiden.`,
     choices: [
       {
         id: 'continue',
@@ -638,7 +597,7 @@ Und du...
 
 Halb.
 
-Sie bleiben stecken. Piepen. Versuchen sich zu schließen. Scheitern.
+Dann bleiben sie stecken. Sie piepen, rucken, versuchen es erneut - und scheitern.
 
 Du stehst genau dazwischen.
 
@@ -650,13 +609,16 @@ Der Schaffner seufzt.
 
 "Was passiert jetzt?"
 
-"Nichts," sagt er. "Und alles. Du bist... zwischen."
+"Nichts," sagt er. "Und alles. Du bist zwischen."
 
-Der Zug fährt nicht weiter. Bleibt stehen.
+Der Zug fährt nicht weiter.
+Der Bahnsteig verschwindet nicht.
 
-Der Bahnsteig verschwindet nicht. Bleibt da.
+Beides bleibt.
 
-Du bleibst. Genau hier. Auf der Schwelle.
+Und du bleibst mit.
+
+Genau hier. Auf der Schwelle.
 
 "Für wie lange?" fragst du.
 
@@ -666,19 +628,14 @@ Du bleibst. Genau hier. Auf der Schwelle.
 
 Er lächelt nicht. "Dann bleibst du hier. Zwischen. Für immer."
 
-Die Welt um dich herum verblasst. Nicht ganz. Aber... ein bisschen.
-
-Die Farben werden grauer. Die Geräusche leiser. Die Zeit langsamer.
+Die Welt um dich herum verblasst ein wenig. Die Farben werden grauer, die Geräusche leiser, die Zeit langsamer.
 
 Du bist nicht tot. Aber auch nicht lebendig.
-
 Nicht im Zug. Aber auch nicht draußen.
 
-Du bist... zwischen.
+Du bist zwischen.
 
-Und vielleicht...
-
-...bleibst du hier für immer.
+Vielleicht bleibst du es für immer.
 
 In der Schwebe.
 

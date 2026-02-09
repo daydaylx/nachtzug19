@@ -1,14 +1,15 @@
 package de.daydaylx.nachtzug19.ui.components
 
+import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
-import androidx.compose.foundation.background
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.interaction.collectIsFocusedAsState
+import androidx.compose.foundation.interaction.collectIsPressedAsState
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -18,76 +19,39 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.Outline
-import androidx.compose.ui.graphics.Path
-import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.disabled
 import androidx.compose.ui.semantics.role
 import androidx.compose.ui.semantics.semantics
-import androidx.compose.ui.unit.Density
-import androidx.compose.ui.unit.LayoutDirection
-import androidx.compose.ui.geometry.Rect
-import androidx.compose.ui.geometry.RoundRect
-import androidx.compose.ui.geometry.CornerRadius
-import androidx.compose.ui.geometry.Size
-import androidx.compose.ui.text.font.FontFamily
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
+import de.daydaylx.nachtzug19.model.ChoiceWeight
 import de.daydaylx.nachtzug19.ui.theme.NachtzugColors
 
-enum class Tone {
-    OBSERVANT, CAUTIOUS, IMPULSIVE, COMPASSIONATE
-}
-
-data class TicketChoiceStyle(
-    val isWeighted: Boolean = true,
-    val tone: Tone? = null
+private data class ChoiceVisualStyle(
+    val accent: Color,
+    val badgeLabel: String,
+    val accessibilityLabel: String
 )
 
-private class TicketShape(
-    private val cornerRadius: Dp,
-    private val holeRadius: Dp,
-    private val holeCount: Int = 7
-) : Shape {
-    override fun createOutline(
-        size: Size,
-        layoutDirection: LayoutDirection,
-        density: Density
-    ): Outline {
-        val cornerRadiusPx = with(density) { cornerRadius.toPx() }
-        val holeRadiusPx = with(density) { holeRadius.toPx() }
-
-        val path = Path().apply {
-            addRoundRect(
-                RoundRect(
-                    left = 0f,
-                    top = 0f,
-                    right = size.width,
-                    bottom = size.height,
-                    cornerRadius = CornerRadius(cornerRadiusPx)
-                )
-            )
-            
-            val holeSpacing = size.height / (holeCount + 1)
-            val holeX = size.width
-            
-            for (i in 1..holeCount) {
-                val holeY = holeSpacing * i
-                val holeRect = Rect(
-                    left = holeX - holeRadiusPx,
-                    top = holeY - holeRadiusPx,
-                    right = holeX + holeRadiusPx,
-                    bottom = holeY + holeRadiusPx
-                )
-                addOval(holeRect)
-            }
-        }
-        return Outline.Generic(path)
+private fun ChoiceWeight.visualStyle(): ChoiceVisualStyle {
+    return when (this) {
+        ChoiceWeight.Neutral -> ChoiceVisualStyle(
+            accent = NachtzugColors.StationNeon,
+            badgeLabel = "Neutral",
+            accessibilityLabel = "neutral"
+        )
+        ChoiceWeight.Riskant -> ChoiceVisualStyle(
+            accent = NachtzugColors.ControlOrange,
+            badgeLabel = "Riskant",
+            accessibilityLabel = "riskant"
+        )
+        ChoiceWeight.Irreversibel -> ChoiceVisualStyle(
+            accent = NachtzugColors.WarningRed,
+            badgeLabel = "Endgültig",
+            accessibilityLabel = "irreversibel"
+        )
     }
 }
 
@@ -96,120 +60,120 @@ fun TicketChoice(
     label: String,
     onClick: () -> Unit,
     isProcessing: Boolean,
-    style: TicketChoiceStyle = TicketChoiceStyle(),
+    weight: ChoiceWeight = ChoiceWeight.Neutral,
+    enabled: Boolean = true,
     modifier: Modifier = Modifier
 ) {
-    var isPressed by remember { mutableStateOf(false) }
-    val enabled = !isProcessing
-    val shape = remember { TicketShape(cornerRadius = 12.dp, holeRadius = 4.dp) }
-    
-    // Accessibility & Focus Handling
+    val isEnabled = enabled && !isProcessing
+    val visualStyle = remember(weight) { weight.visualStyle() }
+    val shape = RoundedCornerShape(12.dp)
     val interactionSource = remember { MutableInteractionSource() }
+    val isPressed by interactionSource.collectIsPressedAsState()
     val isFocused by interactionSource.collectIsFocusedAsState()
-    
+
     val scale by animateFloatAsState(
-        targetValue = if (isPressed) 0.98f else 1f,
+        targetValue = if (isPressed) 0.994f else 1f,
         label = "ticketScale",
-        animationSpec = tween(150)
+        animationSpec = tween(120)
     )
-    
+
+    val borderColor by animateColorAsState(
+        targetValue = when {
+            !isEnabled -> NachtzugColors.ReaderBorder.copy(alpha = 0.24f)
+            isFocused -> visualStyle.accent.copy(alpha = 0.85f)
+            isPressed -> visualStyle.accent.copy(alpha = 0.70f)
+            else -> visualStyle.accent.copy(alpha = 0.45f)
+        },
+        label = "ticketBorder"
+    )
+
+    val cardColor by animateColorAsState(
+        targetValue = if (isEnabled) {
+            NachtzugColors.TicketEmpty.copy(alpha = 0.90f)
+        } else {
+            NachtzugColors.TicketEmpty.copy(alpha = 0.55f)
+        },
+        label = "ticketCard"
+    )
+
     Surface(
         modifier = modifier
             .fillMaxWidth()
             .scale(scale)
             .shadow(
-                elevation = if (isFocused) 8.dp else 4.dp,
+                elevation = if (isFocused) 6.dp else 3.dp,
                 shape = shape,
-                spotColor = if (isFocused) NachtzugColors.StationNeon.copy(alpha = 0.5f) else Color.Black.copy(alpha = 0.3f)
+                spotColor = Color.Black.copy(alpha = 0.35f)
             )
             .clickable(
                 interactionSource = interactionSource,
                 indication = null,
-                enabled = enabled
+                enabled = isEnabled
             ) {
-                isPressed = true
                 onClick()
             }
             .semantics(mergeDescendants = true) {
                 role = Role.Button
-                contentDescription = label
-                if (!enabled) disabled()
+                contentDescription = "$label, ${visualStyle.accessibilityLabel}"
+                if (!isEnabled) disabled()
             },
         shape = shape,
-        color = if (enabled) NachtzugColors.TicketEmpty else NachtzugColors.TicketEmpty.copy(alpha = 0.55f),
+        color = cardColor,
         border = BorderStroke(
             width = if (isFocused) 2.dp else 1.dp,
-            color = when {
-                !enabled -> NachtzugColors.ReaderBorder.copy(alpha = 0.2f)
-                isFocused -> NachtzugColors.StationNeon
-                isPressed -> NachtzugColors.StationNeon.copy(alpha = 0.5f)
-                else -> NachtzugColors.ReaderBorder.copy(alpha = 0.3f)
-            }
+            color = borderColor
         )
     ) {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(horizontal = 16.dp, vertical = 16.dp),
-            horizontalArrangement = Arrangement.SpaceBetween,
+                .padding(horizontal = 12.dp, vertical = 14.dp),
+            horizontalArrangement = Arrangement.spacedBy(10.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
+            Box(
+                modifier = Modifier
+                    .width(3.dp)
+                    .height(34.dp),
+            ) {
+                Surface(
+                    modifier = Modifier.fillMaxSize(),
+                    color = visualStyle.accent.copy(alpha = if (isEnabled) 0.65f else 0.25f),
+                    shape = RoundedCornerShape(999.dp)
+                ) {}
+            }
+
             Text(
                 text = label,
                 style = MaterialTheme.typography.bodyLarge.copy(
-                    fontSize = 16.sp,
-                    fontFamily = FontFamily.SansSerif,
-                    color = when {
-                        !enabled -> MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f)
-                        isPressed || isFocused -> NachtzugColors.StationNeon
-                        else -> MaterialTheme.colorScheme.onSurface
-                    },
-                    lineHeight = 22.sp
+                    color = if (isEnabled) {
+                        MaterialTheme.colorScheme.onSurface.copy(alpha = 0.93f)
+                    } else {
+                        MaterialTheme.colorScheme.onSurface.copy(alpha = 0.48f)
+                    }
                 ),
-                textAlign = TextAlign.Start,
                 modifier = Modifier
                     .weight(1f)
-                    .padding(end = 16.dp),
+                    .padding(end = 8.dp),
                 maxLines = 4,
                 overflow = TextOverflow.Ellipsis
             )
-            
-            TicketStampArea(
-                style = style,
-                enabled = enabled
-            )
-        }
-    }
-    
-    LaunchedEffect(enabled) {
-        if (!enabled) {
-            isPressed = false
-        }
-    }
-}
 
-@Composable
-private fun TicketStampArea(style: TicketChoiceStyle, enabled: Boolean) {
-    Box(
-        modifier = Modifier.size(32.dp),
-        contentAlignment = Alignment.Center
-    ) {
-        Box(
-            modifier = Modifier
-                .size(28.dp)
-                .background(
-                    color = NachtzugColors.TicketFilled.copy(alpha = if (enabled) 0.1f else 0.05f),
-                    shape = CircleShape
-                ),
-            contentAlignment = Alignment.Center
-        ) {
-            Text(
-                text = if (style.tone != null) "★" else "19",
-                style = MaterialTheme.typography.labelSmall.copy(
-                    fontSize = if (style.tone != null) 14.sp else 10.sp,
-                    color = NachtzugColors.TicketFilled.copy(alpha = if (enabled) 0.5f else 0.25f)
+            Surface(
+                color = visualStyle.accent.copy(alpha = if (isEnabled) 0.18f else 0.08f),
+                shape = RoundedCornerShape(10.dp),
+                border = BorderStroke(
+                    width = 1.dp,
+                    color = visualStyle.accent.copy(alpha = if (isEnabled) 0.40f else 0.20f)
                 )
-            )
+            ) {
+                Text(
+                    text = visualStyle.badgeLabel,
+                    style = MaterialTheme.typography.labelSmall,
+                    color = visualStyle.accent.copy(alpha = if (isEnabled) 0.95f else 0.40f),
+                    modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp)
+                )
+            }
         }
     }
 }

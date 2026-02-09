@@ -72,13 +72,13 @@ Am Rand – auf einer Bank, die du vorhin nicht gesehen hast, schwörst du es �
 
 Welcher Wind? Es gibt keine Fenster hier.
 
-Ein Name brennt sich in deine Gedanken. Emma. Nicht wie eine Erinnerung – wie eine Narbe. Ein Gesicht, das du fast sehen kannst. Braune Augen. Sommerspr ossen auf der Nase. Ein Lächeln, das du nie vergessen wolltest. Aber die Details verschwimmen, je mehr du versuchst, sie festzuhalten.
+Ein Name brennt sich in deine Gedanken. Emma. Nicht wie eine Erinnerung – wie eine Narbe. Ein Gesicht, das du fast sehen kannst. Braune Augen. Sommersprossen auf der Nase. Ein Lächeln, das du nie vergessen wolltest. Aber die Details verschwimmen, je mehr du versuchst, das Bild festzuhalten.
 
-Wo ist sie? Warum ist sie nicht hier? Oder… war sie hier? Warst du zu spät?`,
+Wo ist Emma? Warum ist Emma nicht hier? Oder… war Emma hier? Warst du zu spät?`,
     narrative_variants: [
       {
         min_drift: 5,
-        narrative: `Die Luft riecht nach kaltem Zigarettenrauch. Die Gestalt mit der Zeitung sitzt näher. Die Schlagzeile: „ENERGIEKRISE—". Der Rest ist verwischt. Die Gestalt blättert nicht um. Emma. Der Name brennt in deinem Kopf. Du musst sie finden.`
+        narrative: `Die Luft riecht nach kaltem Zigarettenrauch. Die Gestalt mit der Zeitung sitzt näher. Die Schlagzeile: „ENERGIEKRISE—". Der Rest ist verwischt. Die Gestalt blättert nicht um. Emma. Der Name brennt in deinem Kopf. Du musst Emma finden.`
       }
     ],
     choices: [
@@ -124,7 +124,7 @@ Wo ist sie? Warum ist sie nicht hier? Oder… war sie hier? Warst du zu spät?`,
     id: 'c1_s01a_platform_details',
     chapter: 1,
     title: 'Das Gerät',
-    narrative: `Du setzt dich in Bewegung. Der Beton unter deinen Sohlen klingt hohl. Am Rand des Bahnsteigs: Eine gelbe Linie, abgeblättert. Dahinter die Schienen. Schwarz. Matt. Als wären sie aus etwas anderem als Metall gemacht.
+    narrative: `Du reißt dich von der Frage los und setzt dich in Bewegung. Der Beton unter deinen Sohlen klingt hohl. Am Rand des Bahnsteigs: Eine gelbe Linie, abgeblättert. Dahinter die Schienen. Schwarz. Matt. Als wären sie aus etwas anderem als Metall gemacht.
 
 Du greifst in deine Tasche. Da ist… etwas. Ein Gerät.
 
@@ -296,13 +296,13 @@ Hinter dir: Das Brummen wird leiser. Der Zug wird gleich weiterfahren. Du weißt
     id: 'c1_s02b_threshold',
     chapter: 1,
     title: 'Schwelle',
-    narrative: `Du stellst einen Fuß auf die Stufe. (Hook)
+    narrative: `Du stellst einen Fuß auf die Stufe.
 
 Das Metall ist feucht, fast glitschig. Nicht nass – aber auch nicht trocken. Eine Feuchtigkeit, die sich anfühlt wie kalter Schweiß. Ein kurzer Geruch von warmem Staub schlägt dir entgegen, süßlich und alt, als würde der Zug ausatmen – einen langsamen, tiefen Atemzug aus seiner Tiefe.
 
 Hinter dir klackt die Anzeigetafel einmal, laut und final. Du drehst dich um. Die Ziffern haben gewechselt. 23:48. Eine Minute ist vergangen. Oder sind es zwei? Warst du länger auf dem Bahnsteig, als du dachtest?
 
-Der Nebel kriecht näher. Die Gestalt mit der Zeitung ist verschwunden. War sie jemals da? (Konsequenz)`,
+Der Nebel kriecht näher. Die Gestalt mit der Zeitung ist verschwunden. War sie jemals da?`,
     choices: [
       {
         id: 'step_in',
@@ -335,7 +335,7 @@ Der Nebel kriecht näher. Die Gestalt mit der Zeitung ist verschwunden. War sie 
     id: 'c1_s03_inside_train',
     chapter: 1,
     title: 'Innen',
-    narrative: `Du steigst ein. Die Tür schließt sich mit einem finalen Klack.
+    narrative: `Du antwortest dir nicht, sondern steigst ein. Die Tür schließt sich mit einem finalen Klack.
 
 Stille. Eine zu saubere Stille, als hätte jemand den Ton abgedreht. Der Druck auf deinen Ohren wächst, wie unter Wasser.
 
@@ -343,7 +343,7 @@ Der Wagen ist ein Gang mit Abteilen. Orange-braune Polstersitze, abgenutzt, Sieb
 
 Der Zug setzt sich in Bewegung – sanft, schwebend. Kein Ruck.
 
-Emma hätte diesen Zug gehasst. Zu alt. Zu kalt. Zu falsch. Aber sie ist nicht hier. Du musst sie finden.
+Emma hätte diesen Zug gehasst. Zu alt. Zu kalt. Zu falsch. Aber Emma ist nicht hier. Du musst Emma finden.
 
 Zur Linken: Ein Mann, mittleren Alters, der aus dem Fenster starrt. Seine Augen sind rot umrandet. Er trägt einen braunen Anzug, der aus der Zeit gefallen wirkt.
 
@@ -447,7 +447,7 @@ Dann, eine Stimme hinter dir: „Du auch?"`,
     id: 'c1_s03b_window_vibration',
     chapter: 1,
     title: 'Fensterpuls',
-    narrative: `Das Glas vibriert kurz. Ein Puls, der durch deine Schläfe fährt, schmerzhaft und präzise.
+    narrative: `Noch bevor du auf die Stimme reagieren kannst, vibriert das Glas. Ein Puls fährt durch deine Schläfe, schmerzhaft und präzise.
 
 Für einen Augenblick siehst du nicht die Dunkelheit draußen, sondern Bahnsteige, die sich überlagern – wie Doppelbelichtungen, wie Bilder, die nicht richtig übereinanderliegen. Drei, vier, fünf Bahnsteige gleichzeitig, alle leer.
 
@@ -603,7 +603,7 @@ Er beugt sich vor, senkt die Stimme. „Hör zu. Wenn der Schaffner kommt… Sag
     id: 'c1_s04b_corridor_breath',
     chapter: 1,
     title: 'Der Atem des Zuges',
-    narrative: `Ihr steht im Gang. Einen Moment lang scheint der Zug den Atem anzuhalten.
+    narrative: `Ohne dass ihr es merkt, steht ihr schon im Gang. Einen Moment lang scheint der Zug den Atem anzuhalten.
 
 Dann ein leises Ausströmen, wie ein Ventil. Die Lampen flackern, und im Glas der Tür siehst du dein Gesicht für einen Wimpernschlag älter.
 
