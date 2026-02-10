@@ -58,6 +58,8 @@ function getStateValue(state: GameState, target: EffectTarget): number | boolean
   if (target === 'played_recorder') return state.items.played_recorder;
   if (target === 'memory_search_active') return state.items.memory_search_active;
   if (target === 'emma_memory_unlocked') return state.items.emma_memory_unlocked;
+  if (target === 'stance_bold') return state.items.stance_bold;
+  if (target === 'stance_cautious') return state.items.stance_cautious;
 
   // Meta
   if (target === 'chapter_index') return state.chapter_index;
@@ -99,6 +101,8 @@ function setStateValue(state: GameState, target: EffectTarget, value: number | b
   if (target === 'played_recorder') { state.items.played_recorder = value as boolean; return; }
   if (target === 'memory_search_active') { state.items.memory_search_active = value as boolean; return; }
   if (target === 'emma_memory_unlocked') { state.items.emma_memory_unlocked = value as boolean; return; }
+  if (target === 'stance_bold') { state.items.stance_bold = value as boolean; return; }
+  if (target === 'stance_cautious') { state.items.stance_cautious = value as boolean; return; }
 
   // Meta
   if (target === 'chapter_index') { state.chapter_index = value as number; return; }
@@ -178,11 +182,11 @@ function autoClamp(state: GameState): void {
   state.stats.wissen = Math.max(0, Math.min(10, state.stats.wissen));
   state.stats.empathie = Math.max(0, Math.min(10, state.stats.empathie));
 
-  // Tickets (0-50) - Erhöhtes Limit für Endgame-Skalierung (Story-Requirement bis 12+)
-  state.tickets.tickets_truth = Math.max(0, Math.min(50, state.tickets.tickets_truth));
-  state.tickets.tickets_escape = Math.max(0, Math.min(50, state.tickets.tickets_escape));
-  state.tickets.tickets_guilt = Math.max(0, Math.min(50, state.tickets.tickets_guilt));
-  state.tickets.tickets_love = Math.max(0, Math.min(50, state.tickets.tickets_love));
+  // Tickets (0-20) - Endings bei 12, Clamp bei 20 für Puffer
+  state.tickets.tickets_truth = Math.max(0, Math.min(20, state.tickets.tickets_truth));
+  state.tickets.tickets_escape = Math.max(0, Math.min(20, state.tickets.tickets_escape));
+  state.tickets.tickets_guilt = Math.max(0, Math.min(20, state.tickets.tickets_guilt));
+  state.tickets.tickets_love = Math.max(0, Math.min(20, state.tickets.tickets_love));
 
   // Pressure (0-6)
   state.pressure.conductor_attention = Math.max(0, Math.min(6, state.pressure.conductor_attention));

@@ -235,6 +235,44 @@ Du öffnest den Mund, um zu antworten. Aber du weißt es nicht.
 Seine Hände zittern. Die Fingernägel sind abgekaut, blutig. „Ich habe alles versucht. Alles gesagt. Aber es reicht nie. Es reicht nie."
 
 Er blickt dich an. Direkt. Durchdringend. „Was hast du ihnen gesagt? Warum bist du noch hier? Was macht dich… anders?"`,
+    narrative_variants: [
+      {
+        condition: { type: 'compare', target: 'rel_boy', operator: '>=', value: 2 },
+        narrative: `Du findest den schlaflosen Mann in seinem Abteil. Die Tür steht offen.
+
+Er sieht noch blasser aus als zuvor — wächsern, fast durchscheinend. Aber als du eintrittst, hebt er den Blick. Und zum ersten Mal sieht er nicht nur müde aus. Er sieht überrascht aus.
+
+„Der Junge hat mit dir gesprochen," sagt er. Keine Frage. „Er spricht nie mit jemandem. Seit Jahren nicht. Seit…" Er bricht ab. Reibt sich die Schläfen.
+
+„Er hat dir seinen Rekorder gegeben? Oder... angeboten?"
+
+Du nickst.
+
+Er starrt dich an. Lang. Durchdringend. „Das ändert alles. Der Junge weiß Dinge. Er hört Dinge. Die Kassetten…" Er senkt die Stimme. „Die Kassetten sind nicht leer. Was darauf ist — das ist keine Musik."
+
+Seine Hände zittern. „Sie kommen näher. Die Kontrollen. Jedes Mal härter. Aber wenn der Junge dir vertraut…" Ein Flackern von etwas wie Hoffnung in seinen toten Augen. „Dann hast du vielleicht eine Chance, die ich nie hatte."
+
+Er blickt dich an. „Was macht dich anders?"`,
+        replace_mode: 'full'
+      },
+      {
+        condition: { type: 'bool', target: 'has_recorder', value: true },
+        narrative: `Du findest den schlaflosen Mann in seinem Abteil. Die Tür steht offen.
+
+Er sieht noch blasser aus als zuvor. Aber sein Blick fällt sofort auf den Kassettenrekorder in deiner Hand. Seine Augen weiten sich.
+
+„Woher hast du den?" flüstert er. „Den Rekorder. Das ist… das ist der Rekorder. Vom Jungen."
+
+Er steht auf. Kommt näher. Zu nah. Du riechst etwas Süßliches — Verwesung? Angst?
+
+„Hast du ihn abgespielt? Hast du gehört, was darauf ist?" Seine Stimme bricht. „Das Surren. Das Surren ist nicht das Band. Das sind Stimmen. Verschoben. Verlangsamt. Die Stimmen der 19."
+
+Er packt deinen Arm. „Du musst vorsichtig sein. Der Schaffner weiß, dass du ihn hast. Deshalb werden die Kontrollen härter."
+
+Er lässt los. Setzt sich. „Was macht dich anders?"`,
+        replace_mode: 'full'
+      }
+    ],
     choices: [
       {
         id: 'comfort_him',
@@ -323,6 +361,46 @@ Du könntest auch weitergehen. Weitergehen, als wäre diese Tür nie dagewesen.
 Aber dann wüsstest du nie, was sich dahinter verbirgt.
 
 Was tust du?`,
+    narrative_variants: [
+      {
+        condition: {
+          type: 'and',
+          conditions: [
+            { type: 'compare', target: 'memory_drift', operator: '>=', value: 4 },
+            { type: 'bool', target: 'has_recorder', value: true }
+          ]
+        },
+        narrative: `Du gehst den Gang entlang. Die Frage des Schlaflosen — nein. Des Jungen. Nein. Des Schlaflosen. Die Stimmen verschwimmen. Wer hat was gesagt? Du drückst den Rekorder an dein Ohr. Das leise Surren gibt dir Halt. Fokus. Die Stimmen trennen sich wieder.
+
+Abteil 7.
+
+Die Tür ist geschlossen. Kein Licht. Kein Geräusch. Nur Schwärze.
+
+Aber der Rekorder reagiert. Das Surren wird lauter. Die Kassette dreht sich schneller. Du hörst — Fragmente. Eine Stimme, die du kennst. Emmas Stimme? Nein. Deine eigene Stimme. Von damals. 1973.
+
+„Geh nicht nach Abteil 7."
+
+Aber der Rekorder sagt dir: Geh. Die Wahrheit ist dort drin. Du musst nur zuhören.
+
+Was tust du?`
+      },
+      {
+        min_drift: 4,
+        narrative: `Du gehst den Gang entlang. Die Frage des — wer war das? Der Schlaflose. Oder war es Comp7? Du erinnerst dich nicht. Der Gang sieht aus wie ein Gang, durch den du schon gegangen bist. Zweimal. Dreimal. Die Wände haben die gleichen Flecken. Die gleichen Kratzer. Oder andere Kratzer, die genauso aussehen.
+
+Abteil 7.
+
+Abteil... 7? Die Nummer auf der Metallplatte flackert. Für einen Moment liest du „19". Dann wieder „7". Dann „19". War das Abteil immer Nummer 7? Oder hat sich die Nummer geändert?
+
+Du erinnerst dich an eine Warnung. Irgendjemand hat dich gewarnt. Der Schlaflose? Der Schaffner? Emma? Nein — Emma ist nicht hier. Oder doch?
+
+Die Tür ist unverschlossen.
+
+Aber du bist dir nicht sicher, ob es die richtige Tür ist. Du bist dir nicht mehr sicher, ob es den richtigen Gang gibt. Oder ob es dich gibt.
+
+Was tust du?`
+      }
+    ],
     choices: [
       {
         id: 'walk_past',
@@ -358,7 +436,7 @@ Was tust du?`,
           value: 3
         },
         effects: [
-          { type: 'inc', target: 'tickets_truth', value: 4 },
+          { type: 'inc', target: 'tickets_truth', value: 2 },
           { type: 'inc', target: 'conductor_attention', value: 2 },
           { type: 'inc', target: 'memory_drift', value: 2 }
         ],
@@ -383,7 +461,7 @@ Was tust du?`,
           value: 4
         },
         effects: [
-          { type: 'inc', target: 'tickets_truth', value: 4 },
+          { type: 'inc', target: 'tickets_truth', value: 2 },
           { type: 'inc', target: 'conductor_attention', value: 3 },
           { type: 'inc', target: 'memory_drift', value: 2 }
         ],
@@ -1139,7 +1217,7 @@ Die Luft im Abteil wird dünner, sauerstoffarm. Deine Lungen brennen, während e
           value: 4
         },
         effects: [
-          { type: 'inc', target: 'tickets_guilt', value: 3 },
+          { type: 'inc', target: 'tickets_guilt', value: 2 },
           { type: 'dec', target: 'conductor_attention', value: 2 }
         ],
         next: 'c5_s16_control3_aftermath'
@@ -1428,7 +1506,7 @@ Der Schaffner steht hinter dir.
           value: 4
         },
         effects: [
-          { type: 'inc', target: 'tickets_escape', value: 3 }
+          { type: 'inc', target: 'tickets_escape', value: 2 }
         ],
         next: 'c5_s22_before_station'
       },
@@ -1442,7 +1520,7 @@ Der Schaffner steht hinter dir.
           value: 3
         },
         effects: [
-          { type: 'inc', target: 'tickets_guilt', value: 3 }
+          { type: 'inc', target: 'tickets_guilt', value: 2 }
         ],
         next: 'c5_s22_before_station'
       },
@@ -1640,7 +1718,7 @@ Comp7 steht im Türrahmen des Zuges.
         condition: {
           type: 'or',
           conditions: [
-            { type: 'compare', target: 'tickets_truth', operator: '>=', value: 4 },
+            { type: 'compare', target: 'tickets_truth', operator: '>=', value: 8 },
             { type: 'bool', target: 'has_tag19', value: true }
           ]
         },

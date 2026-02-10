@@ -154,6 +154,28 @@ Der Gang vor dir wirkt endlos. Die Fenster zur Linken sind jetzt Spiegel.
 Du gehst an ihnen vorbei. In jedem Fenster siehst du eine andere Version von dir: eine weint, eine lacht, eine ist blutverschmiert, eine ist alt.
 
 Als du vorbeigehst, drehen sie sich gleichzeitig nach dir um.`,
+    narrative_variants: [
+      {
+        min_drift: 4,
+        narrative: `Du verlässt den Waschraum. Der Gang — aber welcher Gang? Du erinnerst dich an den Anfang. Der Bahnsteig. Emma. Nein — war es Emma? Der Name verschwimmt. E... Emilia? Nein. Emma. Emma. Du hältst den Namen fest wie einen Rettungsring.
+
+Die Fenster zur Linken sind Spiegel. Aber die Versionen von dir darin stimmen nicht. Eine trägt eine Uniform — die Uniform des Schaffners. Eine hat keine Augen. Eine bewegt den Mund und formt Worte, die du nicht hören kannst, aber du liest von ihren Lippen: „Du warst nicht im Zug. Du warst der Zug."
+
+Als du vorbeigehst, drehen sie sich gleichzeitig nach dir um.
+
+Und zum ersten Mal bist du dir nicht sicher, welche Version real ist.`
+      },
+      {
+        min_drift: 3,
+        narrative: `Du reißt den Blick vom Spiegel los und verlässt den Waschraum.
+
+Der Gang vor dir — warst du schon einmal hier? Ja. In Kapitel 2. Nein — Kapitel 1? Der Gang sah anders aus. Oder sah er genau so aus? Die Fenster zur Linken sind Spiegel. In jedem siehst du eine Version von dir.
+
+Aber etwas stimmt nicht. Die Version, die weint — die hat den Kassettenrekorder. Hast du den Rekorder? Du greifst in deine Tasche. Ja. Nein. Du bist dir nicht sicher. Die Erinnerung daran, wie du ihn bekommen hast, ist verschwommen. War es der Junge? Oder hast du ihn gefunden? Lag er auf einem Sitz?
+
+Die Versionen drehen sich gleichzeitig um.`
+      }
+    ],
     choices: [
       {
         id: 'run',
@@ -188,7 +210,33 @@ Als du vorbeigehst, drehen sie sich gleichzeitig nach dir um.`,
     title: 'Flüstern',
     narrative: `Noch während du weitergehst, hörst du Stimmen, aber sie kommen nicht von den Türen.
 
-Sie kommen aus den Spiegeln. Wie Atem auf Glas. Ein Wort wiederholt sich: „Neunzehn.“`,
+Sie kommen aus den Spiegeln. Wie Atem auf Glas. Ein Wort wiederholt sich: „Neunzehn."`,
+    narrative_variants: [
+      {
+        condition: {
+          type: 'and',
+          conditions: [
+            { type: 'compare', target: 'memory_drift', operator: '>=', value: 4 },
+            { type: 'bool', target: 'has_tag19', value: true }
+          ]
+        },
+        narrative: `Stimmen aus den Spiegeln. Wie Atem auf Glas.
+
+Aber der Schlüsselanhänger in deiner Tasche wird heiß. Tag 19. Er vibriert — und die Stimmen werden klarer. Nicht „Neunzehn". Das hörst du jetzt: „Neun-zehn." Zwei Worte. Neun. Zehn. Wie eine Aufzählung, die noch nicht fertig ist.
+
+Und plötzlich weißt du: die Spiegel lügen. Die Versionen von dir — sie sind nicht du. Sie sind die anderen. Die 19, die im Zug gestorben sind. Und der Anhänger hat dir gezeigt, was wirklich dort ist.
+
+Ohne den Anhänger hättest du das nicht erkannt. Die Drift hätte dich überwältigt.`
+      },
+      {
+        min_drift: 4,
+        narrative: `Stimmen. Von überall. Aus den Spiegeln, aus dem Boden, aus deinem eigenen Mund — wartest du? Sprichst du gerade? Du bist dir nicht sicher.
+
+Ein Wort. Oder zwei. Oder keines. „Neunzehn." Oder war es „Neun"? Oder „Zehn"? Oder dein Name? Nein — du erinnerst dich nicht an deinen Namen. Du erinnerst dich an Emma. Emilia. E... Der Name verschwimmt.
+
+Die Stimmen werden lauter. Du gehst schneller. Aber der Gang wird nicht kürzer.`
+      }
+    ],
     choices: [
       {
         id: 'answer_whisper',

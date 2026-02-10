@@ -23,8 +23,8 @@ export type PlayerStats = {
 };
 
 /**
- * Tickets (0-50) - Entscheidungsmuster, die Zugang zu Wagen gewähren
- * (Limit erhöht, da Story-Progress bis >12 skaliert)
+ * Tickets (0-20) - Entscheidungsmuster, die Endings freischalten
+ * Ending-Schwelle: 12, Clamp: 20 (Puffer)
  */
 export type Tickets = {
   tickets_truth: number;   // Wahrheit suchen
@@ -61,6 +61,8 @@ export type Items = {
   played_recorder: boolean; // Ob der Rekorder jemals abgespielt wurde
   memory_search_active: boolean; // P1: Spieler sucht aktiv nach einer Erinnerung/Person
   emma_memory_unlocked: boolean; // Phase 0: Emma memory fragment unlocked (c4 Tag19)
+  stance_bold: boolean;     // Tone: Spieler wählt mutige/direkte Haltung
+  stance_cautious: boolean; // Tone: Spieler wählt vorsichtige/abwartende Haltung
 };
 
 /**
@@ -135,7 +137,7 @@ export type EffectTarget =
   // Relations
   | 'rel_comp7' | 'rel_boy' | 'rel_sleepless'
   // Items
-  | 'has_recorder' | 'has_tag19' | 'has_ticket' | 'photo_anomaly' | 'played_recorder' | 'memory_search_active' | 'emma_memory_unlocked'
+  | 'has_recorder' | 'has_tag19' | 'has_ticket' | 'photo_anomaly' | 'played_recorder' | 'memory_search_active' | 'emma_memory_unlocked' | 'stance_bold' | 'stance_cautious'
   // Meta
   | 'chapter_index' | 'station_count';
 
@@ -369,7 +371,9 @@ export function createInitialState(start_scene_id: string = 'c1_s01_platform'): 
       photo_anomaly: false,
       played_recorder: false,
       memory_search_active: false,
-      emma_memory_unlocked: false
+      emma_memory_unlocked: false,
+      stance_bold: false,
+      stance_cautious: false
     },
 
     // Meta

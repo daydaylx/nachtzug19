@@ -516,11 +516,33 @@ Sie zeigt aus dem Fenster. Dort, im Gang des Zuges, stehst du selbst und starrst
     id: 'c3_s04b_third_announcement',
     chapter: 3,
     title: 'Ankündigung',
-    narrative: `Die Lautsprecher kreischen: „Kontrolle-Kontrolle-Kontrolle!“
+    narrative: `Die Lautsprecher kreischen: „Kontrolle-Kontrolle-Kontrolle!"
 
-Comp7 steht auf, Hände zitternd. „Sie kommen wieder. Du brauchst die richtige Antwort.“
+Comp7 steht auf, Hände zitternd. „Sie kommen wieder. Du brauchst die richtige Antwort."
 
 Schwere Schritte.`,
+    narrative_variants: [
+      {
+        condition: { type: 'compare', target: 'tickets_truth', operator: '>=', value: 4 },
+        narrative: `Die Lautsprecher kreischen: „Kontrolle-Kontrolle-Kontrolle!"
+
+Die Schleife. Du hast sie verstanden — oder zumindest akzeptiert. Und jetzt, wo du weißt, dass der Zug im Kreis fährt, fühlt sich die Kontrolle anders an. Nicht wie eine Prüfung. Wie ein Test, ob du bereit bist, aus dem Kreis auszubrechen.
+
+Comp7 steht auf. Ihre Hände zittern, aber sie sieht dich an — direkt, zum ersten Mal ohne Ausweichen. „Du hast verstanden. Das macht die nächste Kontrolle gefährlicher. Sie merken es, wenn jemand aufwacht."
+
+Schwere Schritte. Näher.`
+      },
+      {
+        condition: { type: 'compare', target: 'tickets_escape', operator: '>=', value: 3 },
+        narrative: `Die Lautsprecher kreischen: „Kontrolle-Kontrolle-Kontrolle!"
+
+Du hast abgelehnt. Unmöglich — das hast du gesagt. Aber das Bild bleibt: du selbst, im Gang, mit einer anderen Jacke. Dein eigenes Gesicht, das zurückstarrt.
+
+Comp7 steht auf. Sie sieht dich an, fast mitleidig. „Du glaubst mir nicht. Das ist in Ordnung. Die Kontrolle kommt trotzdem."
+
+Schwere Schritte.`
+      }
+    ],
     choices: [
       {
         id: 'go_to_control',

@@ -36,7 +36,7 @@ Du weißt nicht mehr, warum du hier bist. Die Erinnerung fühlt sich an wie ein 
         id: 'look_around',
         label: 'Umsehen',
         effects: [
-          { type: 'inc', target: 'tickets_truth', value: 1 }
+          { type: 'set', target: 'stance_bold', value: true }
         ],
         next: 'c1_s01_platform_b'
       },
@@ -44,7 +44,7 @@ Du weißt nicht mehr, warum du hier bist. Die Erinnerung fühlt sich an wie ein 
         id: 'wait_patiently',
         label: 'Warten',
         effects: [
-          { type: 'inc', target: 'tickets_escape', value: 1 }
+          { type: 'set', target: 'stance_cautious', value: true }
         ],
         next: 'c1_s01_platform_b'
       }
@@ -76,6 +76,26 @@ Ein Name brennt sich in deine Gedanken. Emma. Nicht wie eine Erinnerung – wie 
 
 Wo ist Emma? Warum ist Emma nicht hier? Oder… war Emma hier? Warst du zu spät?`,
     narrative_variants: [
+      {
+        condition: { type: 'bool', target: 'stance_bold', value: true },
+        narrative: `Du hast dich umgesehen. Bewusst. Jedes Detail aufgesogen.
+
+Und jetzt siehst du mehr: Am Rand — auf einer Bank, die du vorhin nicht gesehen hast — sitzt eine Gestalt. Sie liest eine Zeitung. Die Seiten rascheln nicht. „ÖLKRISE VERSCHÄRFT SICH", steht da in altmodischer Frakturschrift. Die Gestalt blättert nicht um.
+
+Du hast nach Antworten gesucht. Die Antwort, die du findest, ist ein Name. Emma. Er brennt sich in deine Gedanken. Nicht wie eine Erinnerung — wie eine Narbe. Ein Gesicht, das du fast sehen kannst. Braune Augen. Sommersprossen.
+
+Wo ist Emma? Du hast das Gefühl, dass das Umschauen dir geholfen hat — aber die wichtigste Frage bleibt offen.`
+      },
+      {
+        condition: { type: 'bool', target: 'stance_cautious', value: true },
+        narrative: `Du hast gewartet. Stillgestanden. Die Leere an dir vorbeiziehen lassen.
+
+Und sie hat geantwortet: Am Rand — auf einer Bank, die vorher nicht da war, du schwörst es — sitzt eine Gestalt. Sie liest eine Zeitung. Die Seiten rascheln nicht. „ÖLKRISE VERSCHÄRFT SICH", steht da. Die Gestalt blättert nicht um. Nicht einmal, als der Wind durch den Bahnsteig fegt.
+
+Welcher Wind? Es gibt keine Fenster hier.
+
+Ein Name taucht auf, ungefiltert, wie etwas, das du unterdrückt hast. Emma. Ein Gesicht, das du fast sehen kannst. Braune Augen. Sommersprossen auf der Nase. Aber je länger du wartest, desto mehr verschwimmt es.`
+      },
       {
         min_drift: 5,
         narrative: `Die Luft riecht nach kaltem Zigarettenrauch. Die Gestalt mit der Zeitung sitzt näher. Die Schlagzeile: „ENERGIEKRISE—". Der Rest ist verwischt. Die Gestalt blättert nicht um. Emma. Der Name brennt in deinem Kopf. Du musst Emma finden.`
@@ -189,6 +209,18 @@ Die Türen öffnen sich mit einem Zischen. Nicht mechanisch. Organisch. Wie ein 
 
 Die Stufen glänzen feucht, schwarz wie nasses Holz. Ein dünner Nebel hängt in der Tür, rollt sich über die Kante, kriecht auf den Bahnsteig. Niemand steigt aus. Niemand ruft. Nur die offene Tür. Wartend.`,
     narrative_variants: [
+      {
+        condition: { type: 'bool', target: 'memory_search_active', value: true },
+        narrative: `Das Brummen wird lauter. Tiefer. Ein Beben in den Knochen, in den Zähnen. Dann gleitet der Zug in den Bahnhof. Lautlos.
+
+Du umklammerst das Gerät. Das Display bleibt schwarz — aber es ist warm. Wärmer, als es sein sollte. Als hätte jemand es gerade erst benutzt.
+
+Der Zug sieht aus wie ein alter Nachtzug. Achtziger Jahre. Abblätternde dunkelrote Farbe. Die Wagen verschwimmen am Ende in der Dunkelheit. Durch die Scheiben siehst du Silhouetten — und für einen Moment, nur einen Moment, glaubst du, eine davon zu erkennen. Das Gesicht. Die Sommersprossen.
+
+Emma?
+
+Die Türen öffnen sich. Warme Luft strömt heraus. Das Gerät vibriert kurz in deiner Hand. Einmal. Als hätte es eine Nachricht empfangen.`
+      },
       {
         min_drift: 5,
         narrative: `Das Brummen wird lauter. Der Zug gleitet herein. Lautlos. Dunkelrot, fast schwarz. Die Wagen sind endlos. Durch die Scheiben: Eingefrorene Silhouetten. Warme, süßliche Luft strömt heraus. Die Stufen glänzen schwarz. Niemand steigt aus.`
@@ -308,7 +340,7 @@ Der Nebel kriecht näher. Die Gestalt mit der Zeitung ist verschwunden. War sie 
         id: 'step_in',
         label: 'Einsteigen',
         effects: [
-          { type: 'inc', target: 'tickets_truth', value: 1 }
+          { type: 'set', target: 'stance_bold', value: true }
         ],
         next: 'c1_s03_inside_train'
       },
@@ -316,7 +348,7 @@ Der Nebel kriecht näher. Die Gestalt mit der Zeitung ist verschwunden. War sie 
         id: 'hesitate_step',
         label: 'Kurz zögern',
         effects: [
-          { type: 'inc', target: 'tickets_escape', value: 1 }
+          { type: 'set', target: 'stance_cautious', value: true }
         ],
         next: 'c1_s03_inside_train'
       }
@@ -484,25 +516,23 @@ Dann ist alles wieder still. Dein Herzschlag zu laut.`,
     id: 'c1_s04_sleepless_intro',
     chapter: 1,
     title: 'Der Schlaflose',
-    narrative: `Der Mann steht im Gang. Er lehnt gegen die Wand, aber nicht entspannt – eher, als würde er zusammenbrechen, wenn er sich nicht festhält. Seine Augen sind rot umrandet. Tief eingesunken. Die Haut darunter ist violett verfärbt, als hätte er seit Wochen nicht geschlafen.
+    narrative: `Der Mann lehnt im Gang. Nicht lehnt — hängt. Als hätte jemand ihn dort abgestellt und vergessen, ihn wieder mitzunehmen. Seine Augen sind rot umrandet. Die Haut darunter violett. Er sieht aus wie jemand, der das Schlafen verlernt hat und seitdem alles andere auch.
 
-„Du auch?" sagt er. Seine Stimme ist rau. Brüchig. Wie Schmirgelpapier auf Glas.
+„Du auch?" Rau. Brüchig. Wie jemand, der so lange nicht gesprochen hat, dass seine Stimme Staub ansetzt.
 
 „Auch was?"
 
-„Keine Ahnung, wo du eingestiegen bist. Kein Ticket in der Tasche. Keine Erinnerung, warum du hier bist." Er wischt sich über die Augen. „Keine Ahnung, wie lange du schon fährst."
+„Kein Ticket. Keine Erinnerung. Keine Ahnung, wie lange schon." Er wischt sich über die Augen, eine Bewegung, die er schon tausendmal gemacht hat. „Der lustige Teil ist, ich weiß auch nicht mehr, ob das der lustige Teil ist. Vielleicht war der lustige Teil gestern. Oder... letztes Jahr. Keine Ahnung." Er lacht. Ein trockenes, kaputtes Geräusch. „Wann war das letzte Mal, dass du geschlafen hast? Nein, sag's nicht. Du weißt es nicht. Willkommen im Club."
 
-Er lächelt müde. Kein echtes Lächeln. Nur ein Zucken der Mundwinkel. „Willkommen im Nachtzug."
+Du greifst in deine Tasche. Leer. Kein Ticket. Kein Ausweis.
 
-Du greifst in deine Tasche. Leer. Kein Ticket. Kein Ausweis. Dein Handy – oder was es war – ist still, schwer, nutzlos. Nur ein schwarzes Rechteck aus Glas und Plastik.
+„Wo sind wir?"
 
-„Wo sind wir?" Deine Stimme klingt fremd. Zu laut in der Stille des Zuges.
+„Unterwegs." Er sagt es, wie man sagt: das Wetter ist schlecht. Eine Tatsache, die niemanden mehr aufregt. „Immer unterwegs. Von Station zu Station. Niemand steigt aus. Niemand kommt an. Ich hab aufgehört zu zählen. Dann hab ich wieder angefangen. Dann hab ich die Zählung verloren. Dann..." Er bricht ab. Starrt an die Wand.
 
-Er zuckt mit den Schultern. „Unterwegs." Eine Pause. „Immer unterwegs. Von Station zu Station. Aber niemand steigt aus. Niemand kommt an."
+„Wie lange fährst du schon mit?"
 
-Er blickt dich an. „Wie lange fährst du schon mit?"
-
-Du öffnest den Mund, um zu antworten. Aber du weißt es nicht. Eine Stunde? Einen Tag? Länger?`,
+Du öffnest den Mund. Keine Antwort.`,
     choices: [
       {
         id: 'ask_where',

@@ -169,6 +169,28 @@ Darauf steht in deiner Handschrift: „Du hattest nie ein Ticket."`,
 Ein Zugwind streicht an dir vorbei, obwohl keine Tür offen ist. Die Fenster spiegeln dich nur halb – als wäre der Rest deines Gesichts noch unterwegs.
 
 Aus der Ferne hörst du das Surren des Kassettenrekorders wieder.`,
+    narrative_variants: [
+      {
+        condition: { type: 'compare', target: 'rel_boy', operator: '>=', value: 1 },
+        narrative: `Du gehst in den Gang. Das Metall unter deinen Schuhen wirkt kälter als zuvor.
+
+Der Junge. Du hast ihn angesprochen — und jetzt trägst du sein Schweigen mit dir. Seine großen Augen, die dich nicht angesehen haben, die durch dich hindurch gesehen haben. Er weiß etwas. Oder er ist etwas. Die Kopfhörer. Das Surren.
+
+Ein Zugwind streicht an dir vorbei. Die Fenster spiegeln dich nur halb. Und für einen Moment, ganz kurz, spiegeln sie auch den Jungen — obwohl er nicht hinter dir steht.
+
+Das Surren des Kassettenrekorders. Näher jetzt. Als würde es dich rufen.`
+      },
+      {
+        condition: { type: 'compare', target: 'memory_drift', operator: '>=', value: 1 },
+        narrative: `Du gehst in den Gang. Der Zettel in deiner Tasche — „Du hattest nie ein Ticket" — fühlt sich schwerer an, als Papier sein sollte. Deine eigene Handschrift. Wann hast du das geschrieben?
+
+Das Metall unter deinen Schuhen ist kalt. Ein Zugwind streicht vorbei. Die Fenster spiegeln dich nur halb — und der fehlende Teil deines Gesichts sieht aus wie jemand anderes.
+
+Du greifst nach dem Zettel. Er ist noch da. Beweis, dass etwas nicht stimmt. Beweis, den du behalten hast.
+
+Aus der Ferne: das Surren des Kassettenrekorders.`
+      }
+    ],
     choices: [
       {
         id: 'follow_sound',
@@ -201,15 +223,19 @@ Aus der Ferne hörst du das Surren des Kassettenrekorders wieder.`,
     id: 'c2_s02_boy_recorder',
     chapter: 2,
     title: 'Das Angebot',
-    narrative: `Dem Surren folgend bleibst du vor dem Jungen stehen. Er nimmt die Kopfhörer ab.
+    narrative: `Dem Surren folgend bleibst du vor dem Jungen stehen. Er nimmt die Kopfhörer ab. Langsam. Als wäre es ein Ritual.
 
-„Du suchst ein Ticket," sagt er. „Gibt's nicht. Niemand hat eins."
+Er sieht dich an. Große Augen. Zu alt für sein Gesicht.
 
-Er drückt auf Play. Ein Knistern, dann eine verzerrte Stimme: „—nächster Halt: [unverständlich]—"
+„Ticket." Ein Wort. Kein Fragezeichen. „Gibt's nicht."
 
-„Die Station," sagt der Junge ernst. „Sie war mal da. Jetzt fehlt sie."
+Er drückt Play. Knistern. Dann eine Stimme, verzerrt, tief: „—nächster Halt: [unverständlich]—"
 
-Er hält dir den Rekorder hin. „Behalt ihn. Vielleicht ist deine Stimme noch drauf."`,
+„Weg." Er zeigt auf den Rekorder. „Die Station. War da. Ist weg." Jedes Wort wie ein Stein, den er vorsichtig ablegt. Keine Erklärung. Keine Entschuldigung. Nur Fakten, so wie ein Kind Fakten sieht — ohne Zweifel.
+
+Er hält dir den Rekorder hin. Kein Zögern.
+
+„Für dich. Deine Stimme. Ist noch drauf." Und dann, leiser, fast unhörbar: „Du klingst traurig darauf."`,
     choices: [
       {
         id: 'take_recorder',
@@ -444,21 +470,19 @@ Die Zahlen klirren leise, als wären sie aus Glas. Du blinzelst – und sie sitz
     id: 'c2_s03_comp7_intro',
     chapter: 2,
     title: 'Abteil 7',
-    narrative: `Mit den verrutschenden Wagennummern noch im Blick erreichst du das Ende des Gangs. Dort sitzt eine Person: Comp7.
+    narrative: `Ende des Gangs. Dort sitzt eine Person. Nicht „sitzt" — arbeitet. Ihre Hände bewegen sich über ein Notizbuch wie ein Chirurg über einen Patienten. Schnell. Präzise. Kein Zögern.
 
-Vor ihr ein vollgeschriebenes Notizbuch. Ihr Gesicht ist unscharf – dein Blick rutscht ab.
+Du öffnest den Mund.
 
-Du öffnest den Mund, um etwas zu sagen.
+„Nicht." Ein Wort. Wie eine Tür, die zuschlägt. Sie schreibt weiter. Drei Sekunden. Fünf. Dann der Stift, abgelegt. Genau parallel zur Buchkante.
 
-„Nicht jetzt," schnauzt sie, ohne aufzublicken. Ihre Hand fliegt über das Papier, kritzelt hastig.
+Sie sieht dich an. Kurz. Taxierend. Wie jemand, der Daten sammelt, nicht Blicke.
 
-Dann stoppt sie. Atmet aus.
+„Comp7. Kein Name. Irrelevant." Stakkato. Jedes Wort einzeln, als würde sie es wiegen. „Du. Rekorder. Passagier seit Station eins. Kein Ticket." Sie tippt auf das Notizbuch. „Steht alles hier."
 
-„Entschuldigung." Ihre Stimme ist leiser jetzt. „Ich... ich muss das aufschreiben, bevor ich es vergesse."
+Ihr Gesicht ist merkwürdig unscharf — dein Blick rutscht ab, als wäre er geölt. Aber ihre Stimme ist das Schärfste in diesem Zug.
 
-Sie sieht dich an. „Du hast den Rekorder. Ich bin Comp7. Ich weiß meinen Namen nicht mehr."
-
-Sie deutet auf das Buch. „Ich schreibe alles auf. Damit ich nicht vergesse."`,
+„Ich schreibe. Damit die Drift nicht gewinnt. Verstehst du Drift?" Sie wartet nicht auf deine Antwort. „Noch nicht. Wirst du."`,
     choices: [
       {
         id: 'ask_notebook',
@@ -500,16 +524,19 @@ Sie deutet auf das Buch. „Ich schreibe alles auf. Damit ich nicht vergesse."`,
     id: 'c2_s03a_comp7_notebook',
     chapter: 2,
     title: 'Das Logbuch',
-    narrative: `Comp7 schiebt das Buch zu dir. Listen. Daten.
+    narrative: `Comp7 schiebt das Buch zu dir. Kein Angebot — ein Befehl.
 
-„Station 1: Leer. Station 2: Leer."
-„Passagier #[UNLESBAR]: Du? Hat Rekorder. Wird kontrolliert."
+Listen. Tabellen. Zahlenkolonnen. Ihre Handschrift ist winzig, geometrisch, jeder Buchstabe gleich hoch.
 
-Sie sieht dich an. „Er kommt. Der Schaffner. Er fragt nicht nach Ticket. Er fragt nach dem *Grund*."
+„Station 1: 0 Passagiere ausgestiegen. Station 2: 0." Sie tippt auf die Einträge. „19 Stationen. 19 Passagiere. Kein Zufall. Muster."
 
-Schwere Schritte im Gang. Rhythmisch.
+Unten auf der Seite, in einer anderen Tinte: „Passagier #[UNLESERLICH]: Rekorder. Wird kontrolliert. Überlebenswahrscheinlichkeit: gering."
 
-„Drei Wege," flüstert sie. „Ehrlichkeit, Flucht, oder Liebe. Viel Glück."`,
+„Er kommt." Kein Flüstern — sachlich, wie eine Durchsage. „Der Schaffner. Fragt nicht nach Ticket. Fragt nach dem Grund."
+
+Schwere Schritte. Rhythmisch. 2-Sekunden-Intervall.
+
+„Drei Antworten funktionieren." Sie zählt an den Fingern ab. „Wahrheit. Flucht. Verbindung." Dann, fast beiläufig: „Ich habe alle drei versucht. Bin immer noch hier."`,
     choices: [
       {
         id: 'thank_comp7',

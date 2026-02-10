@@ -20,7 +20,7 @@ describe('applyEffects', () => {
       { type: 'inc', target: 'memory_drift', value: 999 }
     ]);
 
-    expect(state.tickets.tickets_truth).toBe(50);
+    expect(state.tickets.tickets_truth).toBe(20);
     expect(state.relations.rel_comp7).toBe(-2);
     expect(state.pressure.memory_drift).toBe(6);
   });

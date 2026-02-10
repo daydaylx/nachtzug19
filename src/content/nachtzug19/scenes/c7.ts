@@ -266,7 +266,7 @@ Dann ist sie weg.`,
           type: 'and',
           conditions: [
             { type: 'compare', target: 'rel_comp7', operator: '>=', value: 2 },
-            { type: 'compare', target: 'tickets_truth', operator: '>=', value: 4 }
+            { type: 'compare', target: 'tickets_truth', operator: '>=', value: 8 }
           ]
         },
         effects: [
@@ -427,7 +427,7 @@ Seine Augen - deine Augen - füllen sich mit Tränen.
         id: 'integrate_innocence',
         label: '„Komm nach Hause. Zu mir."',
         effects: [
-          { type: 'inc', target: 'tickets_love', value: 3 },
+          { type: 'inc', target: 'tickets_love', value: 2 },
           { type: 'inc', target: 'tickets_truth', value: 2 },
           { type: 'inc', target: 'rel_boy', value: 2 }
         ],
@@ -437,7 +437,7 @@ Seine Augen - deine Augen - füllen sich mit Tränen.
         id: 'accept_loss',
         label: '„Ich weiß jetzt, wer du warst. Wer ich war."',
         effects: [
-          { type: 'inc', target: 'tickets_truth', value: 3 },
+          { type: 'inc', target: 'tickets_truth', value: 2 },
           { type: 'inc', target: 'tickets_guilt', value: 1 }
         ],
         next: 'c7_s05_interlude_timeshift'
@@ -452,7 +452,7 @@ Seine Augen - deine Augen - füllen sich mit Tränen.
           value: 1
         },
         effects: [
-          { type: 'inc', target: 'tickets_love', value: 4 },
+          { type: 'inc', target: 'tickets_love', value: 2 },
           { type: 'inc', target: 'tickets_truth', value: 1 },
           { type: 'set', target: 'rel_boy', value: 4 }
         ],
@@ -699,7 +699,7 @@ Die Stimme lacht.
           value: 3
         },
         effects: [
-          { type: 'inc', target: 'tickets_truth', value: 3 },
+          { type: 'inc', target: 'tickets_truth', value: 2 },
           { type: 'inc', target: 'tickets_guilt', value: 1 }
         ],
         next: 'c7_s07_announcement_name'
@@ -785,7 +785,7 @@ An alles.`,
           value: 4
         },
         effects: [
-          { type: 'inc', target: 'tickets_truth', value: 3 },
+          { type: 'inc', target: 'tickets_truth', value: 2 },
           { type: 'inc', target: 'tickets_guilt', value: 2 },
           { type: 'inc', target: 'memory_drift', value: 1 }
         ],
@@ -1234,7 +1234,7 @@ Du trittst über die Schwelle.`
           value: 5
         },
         effects: [
-          { type: 'inc', target: 'tickets_truth', value: 3 }
+          { type: 'inc', target: 'tickets_truth', value: 2 }
         ],
         next: 'c7_s13_comp7_recognized'
       },
@@ -1352,7 +1352,7 @@ Die Gestalt steht auf.
           value: 3
         },
         effects: [
-          { type: 'inc', target: 'tickets_love', value: 3 },
+          { type: 'inc', target: 'tickets_love', value: 2 },
           { type: 'inc', target: 'tickets_truth', value: 1 }
         ],
         next: 'c7_s14_seven_decision'
@@ -1367,7 +1367,7 @@ Die Gestalt steht auf.
           value: 4
         },
         effects: [
-          { type: 'inc', target: 'tickets_escape', value: 3 }
+          { type: 'inc', target: 'tickets_escape', value: 2 }
         ],
         next: 'c7_s14_seven_decision'
       },
@@ -1485,7 +1485,7 @@ Traurig. Liebevoll.
         id: 'integrate_love',
         label: '„Komm mit mir. Du gehörst zu mir."',
         effects: [
-          { type: 'inc', target: 'tickets_love', value: 4 },
+          { type: 'inc', target: 'tickets_love', value: 2 },
           { type: 'inc', target: 'tickets_truth', value: 2 },
           { type: 'set', target: 'rel_comp7', value: 4 }
         ],
@@ -1501,7 +1501,7 @@ Traurig. Liebevoll.
           value: 3
         },
         effects: [
-          { type: 'inc', target: 'tickets_truth', value: 3 },
+          { type: 'inc', target: 'tickets_truth', value: 2 },
           { type: 'inc', target: 'tickets_guilt', value: 2 }
         ],
         next: 'c7_s14_seven_decision'
@@ -1511,7 +1511,7 @@ Traurig. Liebevoll.
         label: '„Liebe und Verlust – beides ist Teil von mir."',
         effects: [
           { type: 'inc', target: 'tickets_love', value: 2 },
-          { type: 'inc', target: 'tickets_truth', value: 3 },
+          { type: 'inc', target: 'tickets_truth', value: 2 },
           { type: 'inc', target: 'tickets_guilt', value: 1 }
         ],
         next: 'c7_s14_seven_decision'
@@ -1649,6 +1649,44 @@ Deine Wahrheit.
 Die Wahrheit dessen, was 1973 passiert ist.
 
 Drückst du?`,
+    narrative_variants: [
+      {
+        condition: {
+          type: 'and',
+          conditions: [
+            { type: 'bool', target: 'has_recorder', value: true },
+            { type: 'compare', target: 'rel_boy', operator: '>=', value: 2 }
+          ]
+        },
+        narrative: `Zurück im Gang blickst du auf den Kassettenrekorder.
+
+Den Rekorder des Jungen. Du erinnerst dich — wie er ihn dir gegeben hat. Ohne Worte. Nur ein Blick, der sagte: „Du wirst ihn brauchen." Er hatte recht.
+
+Der Junge, der nie sprach. Der immer zuhörte. Der wusste, was auf den Kassetten ist, bevor du es wusstest. Vielleicht hat er es immer gewusst.
+
+Und jetzt vibriert der Rekorder. Leicht. Als wäre er lebendig. Der Play-Knopf leuchtet rot. Pulsierend. Wie ein Herz.
+
+Du denkst an den Jungen. An sein Vertrauen. An das, was der Schlaflose gesagt hat: „Die Kassetten sind nicht leer. Was darauf ist — das ist keine Musik."
+
+Die Wahrheit dessen, was 1973 passiert ist. Der Junge hat sie dir anvertraut.
+
+Drückst du?`
+      },
+      {
+        condition: { type: 'bool', target: 'played_recorder', value: true },
+        narrative: `Zurück im Gang blickst du auf den Kassettenrekorder.
+
+Du hast ihn schon einmal abgespielt. Damals — die Fragmente. Die Stimmen. Das Rauschen, das sich langsam zu Worten formte. Aber du hast nicht alles gehört. Du hast abgebrochen. Oder die Kassette hat abgebrochen.
+
+Jetzt vibriert er. Anders als vorher. Stärker. Der Play-Knopf leuchtet rot. Pulsierend.
+
+Diesmal wird er nicht abbrechen. Diesmal ist die Kassette bereit. Diesmal bist du bereit.
+
+Die ganze Wahrheit. 1973. Die 19.
+
+Drückst du?`
+      }
+    ],
     choices: [
       {
         id: 'play_recorder_final',
@@ -1659,7 +1697,7 @@ Drückst du?`,
           value: true
         },
         effects: [
-          { type: 'inc', target: 'tickets_truth', value: 3 },
+          { type: 'inc', target: 'tickets_truth', value: 2 },
           { type: 'inc', target: 'tickets_guilt', value: 2 }
         ],
         next: 'c7_s16_recorder_playback'
@@ -1786,7 +1824,7 @@ Klick.`,
           value: 5
         },
         effects: [
-          { type: 'inc', target: 'tickets_truth', value: 3 },
+          { type: 'inc', target: 'tickets_truth', value: 2 },
           { type: 'inc', target: 'tickets_guilt', value: 1 }
         ],
         next: 'c7_s18_recorder_aftermath'
@@ -2549,11 +2587,11 @@ Das Tag pulsiert. Wartend.`,
           type: 'and',
           conditions: [
             { type: 'bool', target: 'has_tag19', value: true },
-            { type: 'compare', target: 'tickets_truth', operator: '>=', value: 5 }
+            { type: 'compare', target: 'tickets_truth', operator: '>=', value: 10 }
           ]
         },
         effects: [
-          { type: 'inc', target: 'tickets_truth', value: 4 },
+          { type: 'inc', target: 'tickets_truth', value: 2 },
           { type: 'set', target: 'memory_drift', value: 0 }
         ],
         next: 'c7_s23_interlude_doors_open'
@@ -3110,7 +3148,7 @@ Was nimmst du mit… ins Danach?`,
           type: 'compare',
           target: 'tickets_truth',
           operator: '>=',
-          value: 5
+          value: 12
         },
         effects: [
           { type: 'inc', target: 'tickets_truth', value: 1 }
@@ -3125,7 +3163,7 @@ Was nimmst du mit… ins Danach?`,
           type: 'compare',
           target: 'tickets_love',
           operator: '>=',
-          value: 5
+          value: 12
         },
         effects: [
           { type: 'inc', target: 'tickets_love', value: 1 }
@@ -3140,7 +3178,7 @@ Was nimmst du mit… ins Danach?`,
           type: 'compare',
           target: 'tickets_guilt',
           operator: '>=',
-          value: 5
+          value: 12
         },
         effects: [
           { type: 'inc', target: 'tickets_guilt', value: 1 }
@@ -3155,7 +3193,7 @@ Was nimmst du mit… ins Danach?`,
           type: 'compare',
           target: 'tickets_escape',
           operator: '>=',
-          value: 5
+          value: 12
         },
         effects: [
           { type: 'inc', target: 'tickets_escape', value: 1 }
@@ -3175,7 +3213,7 @@ Was nimmst du mit… ins Danach?`,
     tags: ['station_end'],
     state_notes: [
       'Station-End: Finale - Zug verblasst (1973 aufgelöst)',
-      'ENDINGS: Truth, Love, Guilt, Escape (Schwellenwerte 5 = max Clamp)',
+      'ENDINGS: Truth, Love, Guilt, Escape (Schwellenwerte 12 — erfordert bewusstes Spielen)',
       'FALLBACK: Limbo Ending (nicht entscheiden)',
       'Jedes Ending führt zu 2 interaktiven Epilog-Szenen',
       'R1: Engine erhoeht memory_drift/station_count automatisch (keine manuellen station_end-Effects)'

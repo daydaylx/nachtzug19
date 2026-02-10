@@ -66,6 +66,8 @@ enum class EffectTarget {
   @SerialName("played_recorder") PlayedRecorder,
   @SerialName("memory_search_active") MemorySearchActive,
   @SerialName("emma_memory_unlocked") EmmaMemoryUnlocked,
+  @SerialName("stance_bold") StanceBold,
+  @SerialName("stance_cautious") StanceCautious,
   @SerialName("chapter_index") ChapterIndex,
   @SerialName("station_count") StationCount
 }
@@ -125,7 +127,9 @@ data class Items(
   val photo_anomaly: Boolean,
   val played_recorder: Boolean,
   val memory_search_active: Boolean,
-  val emma_memory_unlocked: Boolean
+  val emma_memory_unlocked: Boolean,
+  val stance_bold: Boolean,
+  val stance_cautious: Boolean
 )
 
 @Serializable
@@ -356,7 +360,9 @@ fun createInitialState(startSceneId: String): GameState {
       photo_anomaly = false,
       played_recorder = false,
       memory_search_active = false,
-      emma_memory_unlocked = false
+      emma_memory_unlocked = false,
+      stance_bold = false,
+      stance_cautious = false
     ),
     current_scene_id = startSceneId,
     visited_scene_ids = emptyList(),
