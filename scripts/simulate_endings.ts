@@ -213,11 +213,11 @@ function evaluateCondition(state: GameState, condition: Condition): boolean {
 function determineEnding(state: GameState): { id: string; type: 'TRUTH' | 'LOVE' | 'GUILT' | 'ESCAPE' | 'LIMBO' } {
   const { tickets_truth, tickets_love, tickets_guilt, tickets_escape } = state.tickets;
 
-  // Priority: First ticket to reach 5
-  if (tickets_truth >= 5) return { id: 'ending_truth_01', type: 'TRUTH' };
-  if (tickets_love >= 5) return { id: 'ending_love_01', type: 'LOVE' };
-  if (tickets_guilt >= 5) return { id: 'ending_guilt_01', type: 'GUILT' };
-  if (tickets_escape >= 5) return { id: 'ending_escape_01', type: 'ESCAPE' };
+  // Priority: First ticket to reach 12
+  if (tickets_truth >= 12) return { id: 'ending_truth_01', type: 'TRUTH' };
+  if (tickets_love >= 12) return { id: 'ending_love_01', type: 'LOVE' };
+  if (tickets_guilt >= 12) return { id: 'ending_guilt_01', type: 'GUILT' };
+  if (tickets_escape >= 12) return { id: 'ending_escape_01', type: 'ESCAPE' };
 
   // Fallback: LIMBO
   return { id: 'ending_limbo_01', type: 'LIMBO' };

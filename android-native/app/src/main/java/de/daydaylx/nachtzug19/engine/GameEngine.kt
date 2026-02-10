@@ -51,10 +51,10 @@ private fun autoClamp(state: GameState): GameState {
       empathie = state.stats.empathie.coerceIn(0, 10)
     ),
     tickets = state.tickets.copy(
-      tickets_truth = state.tickets.tickets_truth.coerceIn(0, 50),
-      tickets_escape = state.tickets.tickets_escape.coerceIn(0, 50),
-      tickets_guilt = state.tickets.tickets_guilt.coerceIn(0, 50),
-      tickets_love = state.tickets.tickets_love.coerceIn(0, 50)
+      tickets_truth = state.tickets.tickets_truth.coerceIn(0, 20),
+      tickets_escape = state.tickets.tickets_escape.coerceIn(0, 20),
+      tickets_guilt = state.tickets.tickets_guilt.coerceIn(0, 20),
+      tickets_love = state.tickets.tickets_love.coerceIn(0, 20)
     ),
     pressure = state.pressure.copy(
       conductor_attention = state.pressure.conductor_attention.coerceIn(0, 6),
@@ -238,6 +238,8 @@ private fun getStateValue(state: GameState, target: EffectTarget): Any {
     EffectTarget.PlayedRecorder -> state.items.played_recorder
     EffectTarget.MemorySearchActive -> state.items.memory_search_active
     EffectTarget.EmmaMemoryUnlocked -> state.items.emma_memory_unlocked
+    EffectTarget.StanceBold -> state.items.stance_bold
+    EffectTarget.StanceCautious -> state.items.stance_cautious
     EffectTarget.ChapterIndex -> state.chapter_index
     EffectTarget.StationCount -> state.station_count
   }
@@ -264,6 +266,8 @@ private fun setStateValue(state: GameState, target: EffectTarget, value: Any): G
     EffectTarget.PlayedRecorder -> state.copy(items = state.items.copy(played_recorder = value as Boolean))
     EffectTarget.MemorySearchActive -> state.copy(items = state.items.copy(memory_search_active = value as Boolean))
     EffectTarget.EmmaMemoryUnlocked -> state.copy(items = state.items.copy(emma_memory_unlocked = value as Boolean))
+    EffectTarget.StanceBold -> state.copy(items = state.items.copy(stance_bold = value as Boolean))
+    EffectTarget.StanceCautious -> state.copy(items = state.items.copy(stance_cautious = value as Boolean))
     EffectTarget.ChapterIndex -> state.copy(chapter_index = value as Int)
     EffectTarget.StationCount -> state.copy(station_count = value as Int)
   }

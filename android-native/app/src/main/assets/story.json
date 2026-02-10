@@ -153,9 +153,9 @@
           "label": "Umsehen",
           "effects": [
             {
-              "type": "inc",
-              "target": "tickets_truth",
-              "value": 1
+              "type": "set",
+              "target": "stance_bold",
+              "value": true
             }
           ],
           "next": "c1_s01_platform_b"
@@ -165,9 +165,9 @@
           "label": "Warten",
           "effects": [
             {
-              "type": "inc",
-              "target": "tickets_escape",
-              "value": 1
+              "type": "set",
+              "target": "stance_cautious",
+              "value": true
             }
           ],
           "next": "c1_s01_platform_b"
@@ -237,6 +237,22 @@
       ],
       "atmosphere": "somber",
       "narrative_variants": [
+        {
+          "condition": {
+            "type": "bool",
+            "target": "stance_bold",
+            "value": true
+          },
+          "narrative": "Du hast dich umgesehen. Bewusst. Jedes Detail aufgesogen.\n\nUnd jetzt siehst du mehr: Am Rand — auf einer Bank, die du vorhin nicht gesehen hast — sitzt eine Gestalt. Sie liest eine Zeitung. Die Seiten rascheln nicht. „ÖLKRISE VERSCHÄRFT SICH\", steht da in altmodischer Frakturschrift. Die Gestalt blättert nicht um.\n\nDu hast nach Antworten gesucht. Die Antwort, die du findest, ist ein Name. Emma. Er brennt sich in deine Gedanken. Nicht wie eine Erinnerung — wie eine Narbe. Ein Gesicht, das du fast sehen kannst. Braune Augen. Sommersprossen.\n\nWo ist Emma? Du hast das Gefühl, dass das Umschauen dir geholfen hat — aber die wichtigste Frage bleibt offen."
+        },
+        {
+          "condition": {
+            "type": "bool",
+            "target": "stance_cautious",
+            "value": true
+          },
+          "narrative": "Du hast gewartet. Stillgestanden. Die Leere an dir vorbeiziehen lassen.\n\nUnd sie hat geantwortet: Am Rand — auf einer Bank, die vorher nicht da war, du schwörst es — sitzt eine Gestalt. Sie liest eine Zeitung. Die Seiten rascheln nicht. „ÖLKRISE VERSCHÄRFT SICH\", steht da. Die Gestalt blättert nicht um. Nicht einmal, als der Wind durch den Bahnsteig fegt.\n\nWelcher Wind? Es gibt keine Fenster hier.\n\nEin Name taucht auf, ungefiltert, wie etwas, das du unterdrückt hast. Emma. Ein Gesicht, das du fast sehen kannst. Braune Augen. Sommersprossen auf der Nase. Aber je länger du wartest, desto mehr verschwimmt es."
+        },
         {
           "min_drift": 5,
           "narrative": "Die Luft riecht nach kaltem Zigarettenrauch. Die Gestalt mit der Zeitung sitzt näher. Die Schlagzeile: „ENERGIEKRISE—\". Der Rest ist verwischt. Die Gestalt blättert nicht um. Emma. Der Name brennt in deinem Kopf. Du musst Emma finden."
@@ -364,6 +380,14 @@
       "atmosphere": "tense",
       "narrative_variants": [
         {
+          "condition": {
+            "type": "bool",
+            "target": "memory_search_active",
+            "value": true
+          },
+          "narrative": "Das Brummen wird lauter. Tiefer. Ein Beben in den Knochen, in den Zähnen. Dann gleitet der Zug in den Bahnhof. Lautlos.\n\nDu umklammerst das Gerät. Das Display bleibt schwarz — aber es ist warm. Wärmer, als es sein sollte. Als hätte jemand es gerade erst benutzt.\n\nDer Zug sieht aus wie ein alter Nachtzug. Achtziger Jahre. Abblätternde dunkelrote Farbe. Die Wagen verschwimmen am Ende in der Dunkelheit. Durch die Scheiben siehst du Silhouetten — und für einen Moment, nur einen Moment, glaubst du, eine davon zu erkennen. Das Gesicht. Die Sommersprossen.\n\nEmma?\n\nDie Türen öffnen sich. Warme Luft strömt heraus. Das Gerät vibriert kurz in deiner Hand. Einmal. Als hätte es eine Nachricht empfangen."
+        },
+        {
           "min_drift": 5,
           "narrative": "Das Brummen wird lauter. Der Zug gleitet herein. Lautlos. Dunkelrot, fast schwarz. Die Wagen sind endlos. Durch die Scheiben: Eingefrorene Silhouetten. Warme, süßliche Luft strömt heraus. Die Stufen glänzen schwarz. Niemand steigt aus."
         }
@@ -449,9 +473,9 @@
           "label": "Einsteigen",
           "effects": [
             {
-              "type": "inc",
-              "target": "tickets_truth",
-              "value": 1
+              "type": "set",
+              "target": "stance_bold",
+              "value": true
             }
           ],
           "next": "c1_s03_inside_train"
@@ -461,9 +485,9 @@
           "label": "Kurz zögern",
           "effects": [
             {
-              "type": "inc",
-              "target": "tickets_escape",
-              "value": 1
+              "type": "set",
+              "target": "stance_cautious",
+              "value": true
             }
           ],
           "next": "c1_s03_inside_train"
@@ -640,7 +664,7 @@
       "id": "c1_s04_sleepless_intro",
       "chapter": 1,
       "title": "Der Schlaflose",
-      "narrative": "Der Mann steht im Gang. Er lehnt gegen die Wand, aber nicht entspannt – eher, als würde er zusammenbrechen, wenn er sich nicht festhält. Seine Augen sind rot umrandet. Tief eingesunken. Die Haut darunter ist violett verfärbt, als hätte er seit Wochen nicht geschlafen.\n\n„Du auch?\" sagt er. Seine Stimme ist rau. Brüchig. Wie Schmirgelpapier auf Glas.\n\n„Auch was?\"\n\n„Keine Ahnung, wo du eingestiegen bist. Kein Ticket in der Tasche. Keine Erinnerung, warum du hier bist.\" Er wischt sich über die Augen. „Keine Ahnung, wie lange du schon fährst.\"\n\nEr lächelt müde. Kein echtes Lächeln. Nur ein Zucken der Mundwinkel. „Willkommen im Nachtzug.\"\n\nDu greifst in deine Tasche. Leer. Kein Ticket. Kein Ausweis. Dein Handy – oder was es war – ist still, schwer, nutzlos. Nur ein schwarzes Rechteck aus Glas und Plastik.\n\n„Wo sind wir?\" Deine Stimme klingt fremd. Zu laut in der Stille des Zuges.\n\nEr zuckt mit den Schultern. „Unterwegs.\" Eine Pause. „Immer unterwegs. Von Station zu Station. Aber niemand steigt aus. Niemand kommt an.\"\n\nEr blickt dich an. „Wie lange fährst du schon mit?\"\n\nDu öffnest den Mund, um zu antworten. Aber du weißt es nicht. Eine Stunde? Einen Tag? Länger?",
+      "narrative": "Der Mann lehnt im Gang. Nicht lehnt — hängt. Als hätte jemand ihn dort abgestellt und vergessen, ihn wieder mitzunehmen. Seine Augen sind rot umrandet. Die Haut darunter violett. Er sieht aus wie jemand, der das Schlafen verlernt hat und seitdem alles andere auch.\n\n„Du auch?\" Rau. Brüchig. Wie jemand, der so lange nicht gesprochen hat, dass seine Stimme Staub ansetzt.\n\n„Auch was?\"\n\n„Kein Ticket. Keine Erinnerung. Keine Ahnung, wie lange schon.\" Er wischt sich über die Augen, eine Bewegung, die er schon tausendmal gemacht hat. „Der lustige Teil ist, ich weiß auch nicht mehr, ob das der lustige Teil ist. Vielleicht war der lustige Teil gestern. Oder... letztes Jahr. Keine Ahnung.\" Er lacht. Ein trockenes, kaputtes Geräusch. „Wann war das letzte Mal, dass du geschlafen hast? Nein, sag's nicht. Du weißt es nicht. Willkommen im Club.\"\n\nDu greifst in deine Tasche. Leer. Kein Ticket. Kein Ausweis.\n\n„Wo sind wir?\"\n\n„Unterwegs.\" Er sagt es, wie man sagt: das Wetter ist schlecht. Eine Tatsache, die niemanden mehr aufregt. „Immer unterwegs. Von Station zu Station. Niemand steigt aus. Niemand kommt an. Ich hab aufgehört zu zählen. Dann hab ich wieder angefangen. Dann hab ich die Zählung verloren. Dann...\" Er bricht ab. Starrt an die Wand.\n\n„Wie lange fährst du schon mit?\"\n\nDu öffnest den Mund. Keine Antwort.",
       "choices": [
         {
           "id": "ask_where",
@@ -1709,6 +1733,26 @@
         }
       ],
       "atmosphere": "tense",
+      "narrative_variants": [
+        {
+          "condition": {
+            "type": "compare",
+            "target": "rel_boy",
+            "operator": ">=",
+            "value": 1
+          },
+          "narrative": "Du gehst in den Gang. Das Metall unter deinen Schuhen wirkt kälter als zuvor.\n\nDer Junge. Du hast ihn angesprochen — und jetzt trägst du sein Schweigen mit dir. Seine großen Augen, die dich nicht angesehen haben, die durch dich hindurch gesehen haben. Er weiß etwas. Oder er ist etwas. Die Kopfhörer. Das Surren.\n\nEin Zugwind streicht an dir vorbei. Die Fenster spiegeln dich nur halb. Und für einen Moment, ganz kurz, spiegeln sie auch den Jungen — obwohl er nicht hinter dir steht.\n\nDas Surren des Kassettenrekorders. Näher jetzt. Als würde es dich rufen."
+        },
+        {
+          "condition": {
+            "type": "compare",
+            "target": "memory_drift",
+            "operator": ">=",
+            "value": 1
+          },
+          "narrative": "Du gehst in den Gang. Der Zettel in deiner Tasche — „Du hattest nie ein Ticket\" — fühlt sich schwerer an, als Papier sein sollte. Deine eigene Handschrift. Wann hast du das geschrieben?\n\nDas Metall unter deinen Schuhen ist kalt. Ein Zugwind streicht vorbei. Die Fenster spiegeln dich nur halb — und der fehlende Teil deines Gesichts sieht aus wie jemand anderes.\n\nDu greifst nach dem Zettel. Er ist noch da. Beweis, dass etwas nicht stimmt. Beweis, den du behalten hast.\n\nAus der Ferne: das Surren des Kassettenrekorders."
+        }
+      ],
       "tags": [
         "interlude"
       ],
@@ -1720,7 +1764,7 @@
       "id": "c2_s02_boy_recorder",
       "chapter": 2,
       "title": "Das Angebot",
-      "narrative": "Dem Surren folgend bleibst du vor dem Jungen stehen. Er nimmt die Kopfhörer ab.\n\n„Du suchst ein Ticket,\" sagt er. „Gibt's nicht. Niemand hat eins.\"\n\nEr drückt auf Play. Ein Knistern, dann eine verzerrte Stimme: „—nächster Halt: [unverständlich]—\"\n\n„Die Station,\" sagt der Junge ernst. „Sie war mal da. Jetzt fehlt sie.\"\n\nEr hält dir den Rekorder hin. „Behalt ihn. Vielleicht ist deine Stimme noch drauf.\"",
+      "narrative": "Dem Surren folgend bleibst du vor dem Jungen stehen. Er nimmt die Kopfhörer ab. Langsam. Als wäre es ein Ritual.\n\nEr sieht dich an. Große Augen. Zu alt für sein Gesicht.\n\n„Ticket.\" Ein Wort. Kein Fragezeichen. „Gibt's nicht.\"\n\nEr drückt Play. Knistern. Dann eine Stimme, verzerrt, tief: „—nächster Halt: [unverständlich]—\"\n\n„Weg.\" Er zeigt auf den Rekorder. „Die Station. War da. Ist weg.\" Jedes Wort wie ein Stein, den er vorsichtig ablegt. Keine Erklärung. Keine Entschuldigung. Nur Fakten, so wie ein Kind Fakten sieht — ohne Zweifel.\n\nEr hält dir den Rekorder hin. Kein Zögern.\n\n„Für dich. Deine Stimme. Ist noch drauf.\" Und dann, leiser, fast unhörbar: „Du klingst traurig darauf.\"",
       "choices": [
         {
           "id": "take_recorder",
@@ -2023,7 +2067,7 @@
       "id": "c2_s03_comp7_intro",
       "chapter": 2,
       "title": "Abteil 7",
-      "narrative": "Mit den verrutschenden Wagennummern noch im Blick erreichst du das Ende des Gangs. Dort sitzt eine Person: Comp7.\n\nVor ihr ein vollgeschriebenes Notizbuch. Ihr Gesicht ist unscharf – dein Blick rutscht ab.\n\nDu öffnest den Mund, um etwas zu sagen.\n\n„Nicht jetzt,\" schnauzt sie, ohne aufzublicken. Ihre Hand fliegt über das Papier, kritzelt hastig.\n\nDann stoppt sie. Atmet aus.\n\n„Entschuldigung.\" Ihre Stimme ist leiser jetzt. „Ich... ich muss das aufschreiben, bevor ich es vergesse.\"\n\nSie sieht dich an. „Du hast den Rekorder. Ich bin Comp7. Ich weiß meinen Namen nicht mehr.\"\n\nSie deutet auf das Buch. „Ich schreibe alles auf. Damit ich nicht vergesse.\"",
+      "narrative": "Ende des Gangs. Dort sitzt eine Person. Nicht „sitzt\" — arbeitet. Ihre Hände bewegen sich über ein Notizbuch wie ein Chirurg über einen Patienten. Schnell. Präzise. Kein Zögern.\n\nDu öffnest den Mund.\n\n„Nicht.\" Ein Wort. Wie eine Tür, die zuschlägt. Sie schreibt weiter. Drei Sekunden. Fünf. Dann der Stift, abgelegt. Genau parallel zur Buchkante.\n\nSie sieht dich an. Kurz. Taxierend. Wie jemand, der Daten sammelt, nicht Blicke.\n\n„Comp7. Kein Name. Irrelevant.\" Stakkato. Jedes Wort einzeln, als würde sie es wiegen. „Du. Rekorder. Passagier seit Station eins. Kein Ticket.\" Sie tippt auf das Notizbuch. „Steht alles hier.\"\n\nIhr Gesicht ist merkwürdig unscharf — dein Blick rutscht ab, als wäre er geölt. Aber ihre Stimme ist das Schärfste in diesem Zug.\n\n„Ich schreibe. Damit die Drift nicht gewinnt. Verstehst du Drift?\" Sie wartet nicht auf deine Antwort. „Noch nicht. Wirst du.\"",
       "choices": [
         {
           "id": "ask_notebook",
@@ -2087,7 +2131,7 @@
       "id": "c2_s03a_comp7_notebook",
       "chapter": 2,
       "title": "Das Logbuch",
-      "narrative": "Comp7 schiebt das Buch zu dir. Listen. Daten.\n\n„Station 1: Leer. Station 2: Leer.\"\n„Passagier #[UNLESBAR]: Du? Hat Rekorder. Wird kontrolliert.\"\n\nSie sieht dich an. „Er kommt. Der Schaffner. Er fragt nicht nach Ticket. Er fragt nach dem *Grund*.\"\n\nSchwere Schritte im Gang. Rhythmisch.\n\n„Drei Wege,\" flüstert sie. „Ehrlichkeit, Flucht, oder Liebe. Viel Glück.\"",
+      "narrative": "Comp7 schiebt das Buch zu dir. Kein Angebot — ein Befehl.\n\nListen. Tabellen. Zahlenkolonnen. Ihre Handschrift ist winzig, geometrisch, jeder Buchstabe gleich hoch.\n\n„Station 1: 0 Passagiere ausgestiegen. Station 2: 0.\" Sie tippt auf die Einträge. „19 Stationen. 19 Passagiere. Kein Zufall. Muster.\"\n\nUnten auf der Seite, in einer anderen Tinte: „Passagier #[UNLESERLICH]: Rekorder. Wird kontrolliert. Überlebenswahrscheinlichkeit: gering.\"\n\n„Er kommt.\" Kein Flüstern — sachlich, wie eine Durchsage. „Der Schaffner. Fragt nicht nach Ticket. Fragt nach dem Grund.\"\n\nSchwere Schritte. Rhythmisch. 2-Sekunden-Intervall.\n\n„Drei Antworten funktionieren.\" Sie zählt an den Fingern ab. „Wahrheit. Flucht. Verbindung.\" Dann, fast beiläufig: „Ich habe alle drei versucht. Bin immer noch hier.\"",
       "choices": [
         {
           "id": "thank_comp7",
@@ -3065,7 +3109,7 @@
       "id": "c3_s04b_third_announcement",
       "chapter": 3,
       "title": "Ankündigung",
-      "narrative": "Die Lautsprecher kreischen: „Kontrolle-Kontrolle-Kontrolle!“\n\nComp7 steht auf, Hände zitternd. „Sie kommen wieder. Du brauchst die richtige Antwort.“\n\nSchwere Schritte.",
+      "narrative": "Die Lautsprecher kreischen: „Kontrolle-Kontrolle-Kontrolle!\"\n\nComp7 steht auf, Hände zitternd. „Sie kommen wieder. Du brauchst die richtige Antwort.\"\n\nSchwere Schritte.",
       "choices": [
         {
           "id": "go_to_control",
@@ -3109,6 +3153,26 @@
         }
       ],
       "atmosphere": "danger",
+      "narrative_variants": [
+        {
+          "condition": {
+            "type": "compare",
+            "target": "tickets_truth",
+            "operator": ">=",
+            "value": 4
+          },
+          "narrative": "Die Lautsprecher kreischen: „Kontrolle-Kontrolle-Kontrolle!\"\n\nDie Schleife. Du hast sie verstanden — oder zumindest akzeptiert. Und jetzt, wo du weißt, dass der Zug im Kreis fährt, fühlt sich die Kontrolle anders an. Nicht wie eine Prüfung. Wie ein Test, ob du bereit bist, aus dem Kreis auszubrechen.\n\nComp7 steht auf. Ihre Hände zittern, aber sie sieht dich an — direkt, zum ersten Mal ohne Ausweichen. „Du hast verstanden. Das macht die nächste Kontrolle gefährlicher. Sie merken es, wenn jemand aufwacht.\"\n\nSchwere Schritte. Näher."
+        },
+        {
+          "condition": {
+            "type": "compare",
+            "target": "tickets_escape",
+            "operator": ">=",
+            "value": 3
+          },
+          "narrative": "Die Lautsprecher kreischen: „Kontrolle-Kontrolle-Kontrolle!\"\n\nDu hast abgelehnt. Unmöglich — das hast du gesagt. Aber das Bild bleibt: du selbst, im Gang, mit einer anderen Jacke. Dein eigenes Gesicht, das zurückstarrt.\n\nComp7 steht auf. Sie sieht dich an, fast mitleidig. „Du glaubst mir nicht. Das ist in Ordnung. Die Kontrolle kommt trotzdem.\"\n\nSchwere Schritte."
+        }
+      ],
       "tags": [],
       "state_notes": [
         "Kontrolle 2 Vorbereitung"
@@ -3266,6 +3330,16 @@
         }
       ],
       "atmosphere": "danger",
+      "narrative_variants": [
+        {
+          "min_drift": 4,
+          "narrative": "Du verlässt den Waschraum. Der Gang — aber welcher Gang? Du erinnerst dich an den Anfang. Der Bahnsteig. Emma. Nein — war es Emma? Der Name verschwimmt. E... Emilia? Nein. Emma. Emma. Du hältst den Namen fest wie einen Rettungsring.\n\nDie Fenster zur Linken sind Spiegel. Aber die Versionen von dir darin stimmen nicht. Eine trägt eine Uniform — die Uniform des Schaffners. Eine hat keine Augen. Eine bewegt den Mund und formt Worte, die du nicht hören kannst, aber du liest von ihren Lippen: „Du warst nicht im Zug. Du warst der Zug.\"\n\nAls du vorbeigehst, drehen sie sich gleichzeitig nach dir um.\n\nUnd zum ersten Mal bist du dir nicht sicher, welche Version real ist."
+        },
+        {
+          "min_drift": 3,
+          "narrative": "Du reißt den Blick vom Spiegel los und verlässt den Waschraum.\n\nDer Gang vor dir — warst du schon einmal hier? Ja. In Kapitel 2. Nein — Kapitel 1? Der Gang sah anders aus. Oder sah er genau so aus? Die Fenster zur Linken sind Spiegel. In jedem siehst du eine Version von dir.\n\nAber etwas stimmt nicht. Die Version, die weint — die hat den Kassettenrekorder. Hast du den Rekorder? Du greifst in deine Tasche. Ja. Nein. Du bist dir nicht sicher. Die Erinnerung daran, wie du ihn bekommen hast, ist verschwommen. War es der Junge? Oder hast du ihn gefunden? Lag er auf einem Sitz?\n\nDie Versionen drehen sich gleichzeitig um."
+        }
+      ],
       "tags": [
         "drift_variant"
       ],
@@ -3277,7 +3351,7 @@
       "id": "c4_interlude_01b_mirror_whisper",
       "chapter": 4,
       "title": "Flüstern",
-      "narrative": "Noch während du weitergehst, hörst du Stimmen, aber sie kommen nicht von den Türen.\n\nSie kommen aus den Spiegeln. Wie Atem auf Glas. Ein Wort wiederholt sich: „Neunzehn.“",
+      "narrative": "Noch während du weitergehst, hörst du Stimmen, aber sie kommen nicht von den Türen.\n\nSie kommen aus den Spiegeln. Wie Atem auf Glas. Ein Wort wiederholt sich: „Neunzehn.\"",
       "choices": [
         {
           "id": "answer_whisper",
@@ -3305,6 +3379,31 @@
         }
       ],
       "atmosphere": "mystic",
+      "narrative_variants": [
+        {
+          "condition": {
+            "type": "and",
+            "conditions": [
+              {
+                "type": "compare",
+                "target": "memory_drift",
+                "operator": ">=",
+                "value": 4
+              },
+              {
+                "type": "bool",
+                "target": "has_tag19",
+                "value": true
+              }
+            ]
+          },
+          "narrative": "Stimmen aus den Spiegeln. Wie Atem auf Glas.\n\nAber der Schlüsselanhänger in deiner Tasche wird heiß. Tag 19. Er vibriert — und die Stimmen werden klarer. Nicht „Neunzehn\". Das hörst du jetzt: „Neun-zehn.\" Zwei Worte. Neun. Zehn. Wie eine Aufzählung, die noch nicht fertig ist.\n\nUnd plötzlich weißt du: die Spiegel lügen. Die Versionen von dir — sie sind nicht du. Sie sind die anderen. Die 19, die im Zug gestorben sind. Und der Anhänger hat dir gezeigt, was wirklich dort ist.\n\nOhne den Anhänger hättest du das nicht erkannt. Die Drift hätte dich überwältigt."
+        },
+        {
+          "min_drift": 4,
+          "narrative": "Stimmen. Von überall. Aus den Spiegeln, aus dem Boden, aus deinem eigenen Mund — wartest du? Sprichst du gerade? Du bist dir nicht sicher.\n\nEin Wort. Oder zwei. Oder keines. „Neunzehn.\" Oder war es „Neun\"? Oder „Zehn\"? Oder dein Name? Nein — du erinnerst dich nicht an deinen Namen. Du erinnerst dich an Emma. Emilia. E... Der Name verschwimmt.\n\nDie Stimmen werden lauter. Du gehst schneller. Aber der Gang wird nicht kürzer."
+        }
+      ],
       "tags": [
         "interlude"
       ],
@@ -3906,7 +4005,7 @@
                 "type": "compare",
                 "target": "tickets_truth",
                 "operator": ">=",
-                "value": 4
+                "value": 8
               },
               {
                 "type": "bool",
@@ -4276,6 +4375,27 @@
         }
       ],
       "atmosphere": "tense",
+      "narrative_variants": [
+        {
+          "condition": {
+            "type": "compare",
+            "target": "rel_boy",
+            "operator": ">=",
+            "value": 2
+          },
+          "narrative": "Du findest den schlaflosen Mann in seinem Abteil. Die Tür steht offen.\n\nEr sieht noch blasser aus als zuvor — wächsern, fast durchscheinend. Aber als du eintrittst, hebt er den Blick. Und zum ersten Mal sieht er nicht nur müde aus. Er sieht überrascht aus.\n\n„Der Junge hat mit dir gesprochen,\" sagt er. Keine Frage. „Er spricht nie mit jemandem. Seit Jahren nicht. Seit…\" Er bricht ab. Reibt sich die Schläfen.\n\n„Er hat dir seinen Rekorder gegeben? Oder... angeboten?\"\n\nDu nickst.\n\nEr starrt dich an. Lang. Durchdringend. „Das ändert alles. Der Junge weiß Dinge. Er hört Dinge. Die Kassetten…\" Er senkt die Stimme. „Die Kassetten sind nicht leer. Was darauf ist — das ist keine Musik.\"\n\nSeine Hände zittern. „Sie kommen näher. Die Kontrollen. Jedes Mal härter. Aber wenn der Junge dir vertraut…\" Ein Flackern von etwas wie Hoffnung in seinen toten Augen. „Dann hast du vielleicht eine Chance, die ich nie hatte.\"\n\nEr blickt dich an. „Was macht dich anders?\"",
+          "replace_mode": "full"
+        },
+        {
+          "condition": {
+            "type": "bool",
+            "target": "has_recorder",
+            "value": true
+          },
+          "narrative": "Du findest den schlaflosen Mann in seinem Abteil. Die Tür steht offen.\n\nEr sieht noch blasser aus als zuvor. Aber sein Blick fällt sofort auf den Kassettenrekorder in deiner Hand. Seine Augen weiten sich.\n\n„Woher hast du den?\" flüstert er. „Den Rekorder. Das ist… das ist der Rekorder. Vom Jungen.\"\n\nEr steht auf. Kommt näher. Zu nah. Du riechst etwas Süßliches — Verwesung? Angst?\n\n„Hast du ihn abgespielt? Hast du gehört, was darauf ist?\" Seine Stimme bricht. „Das Surren. Das Surren ist nicht das Band. Das sind Stimmen. Verschoben. Verlangsamt. Die Stimmen der 19.\"\n\nEr packt deinen Arm. „Du musst vorsichtig sein. Der Schaffner weiß, dass du ihn hast. Deshalb werden die Kontrollen härter.\"\n\nEr lässt los. Setzt sich. „Was macht dich anders?\"",
+          "replace_mode": "full"
+        }
+      ],
       "state_notes": [
         "Letztes Gespräch mit Schlaflosem",
         "rel_sleepless beeinflusst spätere Szenen",
@@ -4341,7 +4461,7 @@
             {
               "type": "inc",
               "target": "tickets_truth",
-              "value": 4
+              "value": 2
             },
             {
               "type": "inc",
@@ -4386,7 +4506,7 @@
             {
               "type": "inc",
               "target": "tickets_truth",
-              "value": 4
+              "value": 2
             },
             {
               "type": "inc",
@@ -4403,6 +4523,31 @@
         }
       ],
       "atmosphere": "tense",
+      "narrative_variants": [
+        {
+          "condition": {
+            "type": "and",
+            "conditions": [
+              {
+                "type": "compare",
+                "target": "memory_drift",
+                "operator": ">=",
+                "value": 4
+              },
+              {
+                "type": "bool",
+                "target": "has_recorder",
+                "value": true
+              }
+            ]
+          },
+          "narrative": "Du gehst den Gang entlang. Die Frage des Schlaflosen — nein. Des Jungen. Nein. Des Schlaflosen. Die Stimmen verschwimmen. Wer hat was gesagt? Du drückst den Rekorder an dein Ohr. Das leise Surren gibt dir Halt. Fokus. Die Stimmen trennen sich wieder.\n\nAbteil 7.\n\nDie Tür ist geschlossen. Kein Licht. Kein Geräusch. Nur Schwärze.\n\nAber der Rekorder reagiert. Das Surren wird lauter. Die Kassette dreht sich schneller. Du hörst — Fragmente. Eine Stimme, die du kennst. Emmas Stimme? Nein. Deine eigene Stimme. Von damals. 1973.\n\n„Geh nicht nach Abteil 7.\"\n\nAber der Rekorder sagt dir: Geh. Die Wahrheit ist dort drin. Du musst nur zuhören.\n\nWas tust du?"
+        },
+        {
+          "min_drift": 4,
+          "narrative": "Du gehst den Gang entlang. Die Frage des — wer war das? Der Schlaflose. Oder war es Comp7? Du erinnerst dich nicht. Der Gang sieht aus wie ein Gang, durch den du schon gegangen bist. Zweimal. Dreimal. Die Wände haben die gleichen Flecken. Die gleichen Kratzer. Oder andere Kratzer, die genauso aussehen.\n\nAbteil 7.\n\nAbteil... 7? Die Nummer auf der Metallplatte flackert. Für einen Moment liest du „19\". Dann wieder „7\". Dann „19\". War das Abteil immer Nummer 7? Oder hat sich die Nummer geändert?\n\nDu erinnerst dich an eine Warnung. Irgendjemand hat dich gewarnt. Der Schlaflose? Der Schaffner? Emma? Nein — Emma ist nicht hier. Oder doch?\n\nDie Tür ist unverschlossen.\n\nAber du bist dir nicht sicher, ob es die richtige Tür ist. Du bist dir nicht mehr sicher, ob es den richtigen Gang gibt. Oder ob es dich gibt.\n\nWas tust du?"
+        }
+      ],
       "tags": [
         "setup",
         "reveal"
@@ -5082,7 +5227,7 @@
             {
               "type": "inc",
               "target": "tickets_guilt",
-              "value": 3
+              "value": 2
             },
             {
               "type": "dec",
@@ -5341,7 +5486,7 @@
             {
               "type": "inc",
               "target": "tickets_escape",
-              "value": 3
+              "value": 2
             }
           ],
           "next": "c5_s22_before_station"
@@ -5359,7 +5504,7 @@
             {
               "type": "inc",
               "target": "tickets_guilt",
-              "value": 3
+              "value": 2
             }
           ],
           "next": "c5_s22_before_station"
@@ -5568,6 +5713,24 @@
       ],
       "atmosphere": "dark",
       "narrative_variants": [
+        {
+          "condition": {
+            "type": "and",
+            "conditions": [
+              {
+                "type": "bool",
+                "target": "memory_search_active",
+                "value": true
+              },
+              {
+                "type": "bool",
+                "target": "has_tag19",
+                "value": false
+              }
+            ]
+          },
+          "narrative": "Als hätte dich der Zug zurück in dich selbst gezogen, sitzt du wieder im Abteil.\n\nEmma.\n\nDer Name ist noch da. Stärker als vorher. Du hast ihn am Anfang gerufen — auf dem Bahnsteig, in die leere Nacht hinein. Und jetzt, fünf Stationen später, hallt er immer noch nach. Nur anders. Nicht mehr wie ein Ruf. Wie ein Versprechen. Oder eine Schuld.\n\nWann bist du wieder eingestiegen? Du erinnerst dich an die Station, an Comp7 im Türrahmen. „Noch eine Station.\"\n\nDraußen ist nichts. Nicht einmal Dunkelheit. Und in dieser Abwesenheit, in diesem Nichts, meinst du für einen Moment eine Gestalt zu sehen. Wartend. Auf einem anderen Bahnsteig. In einer anderen Zeit.\n\nEmma wartet. Irgendwo. Oder Emma hat aufgehört zu warten. Und du weißt nicht, was schlimmer wäre.\n\nKalt. Steril. Falsch. Aber der Name brennt."
+        },
         {
           "condition": {
             "type": "bool",
@@ -5822,7 +5985,7 @@
             {
               "type": "inc",
               "target": "tickets_truth",
-              "value": 3
+              "value": 2
             },
             {
               "type": "inc",
@@ -6202,7 +6365,7 @@
             {
               "type": "inc",
               "target": "tickets_truth",
-              "value": 3
+              "value": 2
             },
             {
               "type": "inc",
@@ -6330,7 +6493,7 @@
             {
               "type": "inc",
               "target": "tickets_truth",
-              "value": 3
+              "value": 2
             },
             {
               "type": "inc",
@@ -6394,7 +6557,7 @@
             {
               "type": "inc",
               "target": "tickets_truth",
-              "value": 3
+              "value": 2
             },
             {
               "type": "inc",
@@ -6527,7 +6690,7 @@
             {
               "type": "inc",
               "target": "tickets_love",
-              "value": 3
+              "value": 2
             },
             {
               "type": "inc",
@@ -6551,7 +6714,7 @@
             {
               "type": "inc",
               "target": "tickets_escape",
-              "value": 3
+              "value": 2
             }
           ],
           "next": "c6_s20_offer_aftermath"
@@ -6827,7 +6990,7 @@
             {
               "type": "inc",
               "target": "tickets_truth",
-              "value": 3
+              "value": 2
             },
             {
               "type": "inc",
@@ -7045,7 +7208,7 @@
             "type": "compare",
             "target": "tickets_truth",
             "operator": ">=",
-            "value": 5
+            "value": 12
           },
           "effects": [
             {
@@ -7064,7 +7227,7 @@
             "type": "compare",
             "target": "tickets_love",
             "operator": ">=",
-            "value": 5
+            "value": 12
           },
           "effects": [
             {
@@ -7083,7 +7246,7 @@
             "type": "compare",
             "target": "tickets_guilt",
             "operator": ">=",
-            "value": 5
+            "value": 12
           },
           "effects": [
             {
@@ -7102,7 +7265,7 @@
             "type": "compare",
             "target": "tickets_escape",
             "operator": ">=",
-            "value": 5
+            "value": 12
           },
           "effects": [
             {
@@ -7133,7 +7296,7 @@
       ],
       "state_notes": [
         "Station-End: Finale - Zug verblasst (1973 aufgelöst)",
-        "ENDINGS: Truth, Love, Guilt, Escape (Schwellenwerte 5 = max Clamp)",
+        "ENDINGS: Truth, Love, Guilt, Escape (Schwellenwerte 12 — erfordert bewusstes Spielen)",
         "FALLBACK: Limbo Ending (nicht entscheiden)",
         "Jedes Ending führt zu 2 interaktiven Epilog-Szenen",
         "R1: Engine erhoeht memory_drift/station_count automatisch (keine manuellen station_end-Effects)"
@@ -7329,7 +7492,7 @@
                 "type": "compare",
                 "target": "tickets_truth",
                 "operator": ">=",
-                "value": 4
+                "value": 8
               }
             ]
           },
@@ -7399,7 +7562,7 @@
             {
               "type": "inc",
               "target": "tickets_love",
-              "value": 3
+              "value": 2
             },
             {
               "type": "inc",
@@ -7421,7 +7584,7 @@
             {
               "type": "inc",
               "target": "tickets_truth",
-              "value": 3
+              "value": 2
             },
             {
               "type": "inc",
@@ -7444,7 +7607,7 @@
             {
               "type": "inc",
               "target": "tickets_love",
-              "value": 4
+              "value": 2
             },
             {
               "type": "inc",
@@ -7668,7 +7831,7 @@
             {
               "type": "inc",
               "target": "tickets_truth",
-              "value": 3
+              "value": 2
             },
             {
               "type": "inc",
@@ -7752,7 +7915,7 @@
             {
               "type": "inc",
               "target": "tickets_truth",
-              "value": 3
+              "value": 2
             },
             {
               "type": "inc",
@@ -8083,7 +8246,7 @@
             {
               "type": "inc",
               "target": "tickets_truth",
-              "value": 3
+              "value": 2
             }
           ],
           "next": "c7_s13_comp7_recognized"
@@ -8153,7 +8316,7 @@
             {
               "type": "inc",
               "target": "tickets_love",
-              "value": 4
+              "value": 2
             },
             {
               "type": "inc",
@@ -8181,7 +8344,7 @@
             {
               "type": "inc",
               "target": "tickets_truth",
-              "value": 3
+              "value": 2
             },
             {
               "type": "inc",
@@ -8203,7 +8366,7 @@
             {
               "type": "inc",
               "target": "tickets_truth",
-              "value": 3
+              "value": 2
             },
             {
               "type": "inc",
@@ -8286,7 +8449,7 @@
             {
               "type": "inc",
               "target": "tickets_love",
-              "value": 3
+              "value": 2
             },
             {
               "type": "inc",
@@ -8309,7 +8472,7 @@
             {
               "type": "inc",
               "target": "tickets_escape",
-              "value": 3
+              "value": 2
             }
           ],
           "next": "c7_s14_seven_decision"
@@ -8396,7 +8559,7 @@
             {
               "type": "inc",
               "target": "tickets_truth",
-              "value": 3
+              "value": 2
             },
             {
               "type": "inc",
@@ -8437,6 +8600,35 @@
         }
       ],
       "atmosphere": "tense",
+      "narrative_variants": [
+        {
+          "condition": {
+            "type": "and",
+            "conditions": [
+              {
+                "type": "bool",
+                "target": "has_recorder",
+                "value": true
+              },
+              {
+                "type": "compare",
+                "target": "rel_boy",
+                "operator": ">=",
+                "value": 2
+              }
+            ]
+          },
+          "narrative": "Zurück im Gang blickst du auf den Kassettenrekorder.\n\nDen Rekorder des Jungen. Du erinnerst dich — wie er ihn dir gegeben hat. Ohne Worte. Nur ein Blick, der sagte: „Du wirst ihn brauchen.\" Er hatte recht.\n\nDer Junge, der nie sprach. Der immer zuhörte. Der wusste, was auf den Kassetten ist, bevor du es wusstest. Vielleicht hat er es immer gewusst.\n\nUnd jetzt vibriert der Rekorder. Leicht. Als wäre er lebendig. Der Play-Knopf leuchtet rot. Pulsierend. Wie ein Herz.\n\nDu denkst an den Jungen. An sein Vertrauen. An das, was der Schlaflose gesagt hat: „Die Kassetten sind nicht leer. Was darauf ist — das ist keine Musik.\"\n\nDie Wahrheit dessen, was 1973 passiert ist. Der Junge hat sie dir anvertraut.\n\nDrückst du?"
+        },
+        {
+          "condition": {
+            "type": "bool",
+            "target": "played_recorder",
+            "value": true
+          },
+          "narrative": "Zurück im Gang blickst du auf den Kassettenrekorder.\n\nDu hast ihn schon einmal abgespielt. Damals — die Fragmente. Die Stimmen. Das Rauschen, das sich langsam zu Worten formte. Aber du hast nicht alles gehört. Du hast abgebrochen. Oder die Kassette hat abgebrochen.\n\nJetzt vibriert er. Anders als vorher. Stärker. Der Play-Knopf leuchtet rot. Pulsierend.\n\nDiesmal wird er nicht abbrechen. Diesmal ist die Kassette bereit. Diesmal bist du bereit.\n\nDie ganze Wahrheit. 1973. Die 19.\n\nDrückst du?"
+        }
+      ],
       "state_notes": [
         "Recorder Trigger (nur wenn has_recorder)",
         "CONDITION: play_recorder_final nur bei has_recorder",
@@ -8510,7 +8702,7 @@
             {
               "type": "inc",
               "target": "tickets_truth",
-              "value": 3
+              "value": 2
             },
             {
               "type": "inc",
@@ -9076,7 +9268,7 @@
                 "type": "compare",
                 "target": "tickets_truth",
                 "operator": ">=",
-                "value": 5
+                "value": 10
               }
             ]
           },
@@ -9084,7 +9276,7 @@
             {
               "type": "inc",
               "target": "tickets_truth",
-              "value": 4
+              "value": 2
             },
             {
               "type": "set",

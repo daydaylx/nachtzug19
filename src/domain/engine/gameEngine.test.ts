@@ -29,7 +29,7 @@ describe('NACHTZUG 19 engine integration', () => {
     transitionToNextScene(state, scene, choice, bundle.scenes);
 
     expect(state.current_scene_id).toBe(choice.next);
-    expect(state.tickets.tickets_truth).toBe(1);
+    expect(state.items.stance_bold).toBe(true);
   });
 
   it('hides choices when conditions are not met', () => {
@@ -209,15 +209,14 @@ describe('resolveSceneNarrative - Drift-Mechanik', () => {
 // ============================================================================
 // P1-01: Ending Reachability Tests
 // ============================================================================
-// Purpose: Verify that all endings are reachable with max ticket values (5).
-// This test prevents regression of the critical P0 bug where thresholds (6)
-// exceeded the clamp limit (5), making endings unreachable.
+// Purpose: Verify that all endings are reachable with max ticket values (20).
+// Ending thresholds are 12, clamp is 20 — endings require deliberate focus.
 // ============================================================================
 
 describe('Ending Reachability - Ticket Threshold vs Clamp', () => {
-  const TICKET_CLAMP_MAX = 5;
+  const TICKET_CLAMP_MAX = 20;
 
-  // Ending conditions from c7_s27_finale
+  // Ending conditions from c7_end_station
   const endingConditions: Array<{ name: string; condition: SimpleCondition }> = [
     {
       name: 'Truth Ending',
@@ -225,7 +224,7 @@ describe('Ending Reachability - Ticket Threshold vs Clamp', () => {
         type: 'compare',
         target: 'tickets_truth',
         operator: '>=',
-        value: 5
+        value: 12
       }
     },
     {
@@ -234,7 +233,7 @@ describe('Ending Reachability - Ticket Threshold vs Clamp', () => {
         type: 'compare',
         target: 'tickets_guilt',
         operator: '>=',
-        value: 5
+        value: 12
       }
     },
     {
@@ -243,12 +242,12 @@ describe('Ending Reachability - Ticket Threshold vs Clamp', () => {
         type: 'compare',
         target: 'tickets_love',
         operator: '>=',
-        value: 5
+        value: 12
       }
     }
   ];
 
-  it('all ticket-based endings should be reachable with max tickets (5)', () => {
+  it('all ticket-based endings should be reachable with max tickets (20)', () => {
     for (const { name, condition } of endingConditions) {
       const state = createInitialState();
 
@@ -267,7 +266,7 @@ describe('Ending Reachability - Ticket Threshold vs Clamp', () => {
     }
   });
 
-  it('ending thresholds should not exceed clamp max (5)', () => {
+  it('ending thresholds should not exceed clamp max (20)', () => {
     for (const { name, condition } of endingConditions) {
       expect(
         condition.value as number,
@@ -286,7 +285,7 @@ describe('Ending Reachability - Ticket Threshold vs Clamp', () => {
 });
 
 describe('Regression Guard - No Ticket Threshold > Clamp in Story', () => {
-  const TICKET_CLAMP_MAX = 5;
+  const TICKET_CLAMP_MAX = 20;
   const TICKET_TARGETS = ['tickets_truth', 'tickets_escape', 'tickets_guilt', 'tickets_love'];
 
   // Known intentional Easter eggs: Choices with impossible thresholds (design decision)
@@ -294,7 +293,7 @@ describe('Regression Guard - No Ticket Threshold > Clamp in Story', () => {
   // NOTE: All former Easter eggs were converted to realistic thresholds (HIGH #2 fix)
   const ALLOWED_EASTER_EGGS = new Set<string>([]);
 
-  it('no choice condition should require tickets > clamp max (5) except allowed Easter eggs', () => {
+  it('no choice condition should require tickets > clamp max (20) except allowed Easter eggs', () => {
     const violations: string[] = [];
     const foundEasterEggs: string[] = [];
 

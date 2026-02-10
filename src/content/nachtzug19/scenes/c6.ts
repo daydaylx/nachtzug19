@@ -39,6 +39,28 @@ Im Abteil hängt ein Geruch von Desinfektionsmittel, wie in einem verlassenen Kr
 Kalt. Steril. Falsch.`,
     narrative_variants: [
       {
+        condition: {
+          type: 'and',
+          conditions: [
+            { type: 'bool', target: 'memory_search_active', value: true },
+            { type: 'bool', target: 'has_tag19', value: false }
+          ]
+        },
+        narrative: `Als hätte dich der Zug zurück in dich selbst gezogen, sitzt du wieder im Abteil.
+
+Emma.
+
+Der Name ist noch da. Stärker als vorher. Du hast ihn am Anfang gerufen — auf dem Bahnsteig, in die leere Nacht hinein. Und jetzt, fünf Stationen später, hallt er immer noch nach. Nur anders. Nicht mehr wie ein Ruf. Wie ein Versprechen. Oder eine Schuld.
+
+Wann bist du wieder eingestiegen? Du erinnerst dich an die Station, an Comp7 im Türrahmen. „Noch eine Station."
+
+Draußen ist nichts. Nicht einmal Dunkelheit. Und in dieser Abwesenheit, in diesem Nichts, meinst du für einen Moment eine Gestalt zu sehen. Wartend. Auf einem anderen Bahnsteig. In einer anderen Zeit.
+
+Emma wartet. Irgendwo. Oder Emma hat aufgehört zu warten. Und du weißt nicht, was schlimmer wäre.
+
+Kalt. Steril. Falsch. Aber der Name brennt.`
+      },
+      {
         condition: { type: 'bool', target: 'has_tag19', value: true },
         narrative: `Als hätte dich der Zug genau an diesen Punkt zurückgefaltet, sitzt du wieder im Abteil.
 
@@ -433,7 +455,7 @@ Etwas erinnerst.`,
           value: 3
         },
         effects: [
-          { type: 'inc', target: 'tickets_truth', value: 3 },
+          { type: 'inc', target: 'tickets_truth', value: 2 },
           { type: 'inc', target: 'tickets_guilt', value: 1 },
           { type: 'inc', target: 'memory_drift', value: 1 }
         ],
@@ -852,7 +874,7 @@ Die Kälte des Metalls in deiner Hand ist der einzige Beweis dafür, dass du noc
           value: 3
         },
         effects: [
-          { type: 'inc', target: 'tickets_truth', value: 3 },
+          { type: 'inc', target: 'tickets_truth', value: 2 },
           { type: 'inc', target: 'tickets_guilt', value: 1 }
         ],
         next: 'c6_s14_mirror_aftermath'
@@ -987,7 +1009,7 @@ Drückst du ihn wieder?`
           value: true
         },
         effects: [
-          { type: 'inc', target: 'tickets_truth', value: 3 },
+          { type: 'inc', target: 'tickets_truth', value: 2 },
           { type: 'inc', target: 'tickets_guilt', value: 2 },
           { type: 'inc', target: 'memory_drift', value: 1 }
         ],
@@ -1086,7 +1108,7 @@ Dein Sitz.
           value: true
         },
         effects: [
-          { type: 'inc', target: 'tickets_truth', value: 3 },
+          { type: 'inc', target: 'tickets_truth', value: 2 },
           { type: 'inc', target: 'memory_drift', value: 2 }
         ],
         next: 'c6_s17_lights_failing'
@@ -1295,7 +1317,7 @@ Er steht auf. „Aber du… du wirst dich erinnern. An alles."
           value: 2
         },
         effects: [
-          { type: 'inc', target: 'tickets_love', value: 3 },
+          { type: 'inc', target: 'tickets_love', value: 2 },
           { type: 'inc', target: 'tickets_truth', value: 2 }
         ],
         next: 'c6_s20_offer_aftermath'
@@ -1311,7 +1333,7 @@ Er steht auf. „Aber du… du wirst dich erinnern. An alles."
           value: 3
         },
         effects: [
-          { type: 'inc', target: 'tickets_escape', value: 3 }
+          { type: 'inc', target: 'tickets_escape', value: 2 }
         ],
         next: 'c6_s20_offer_aftermath'
       },
@@ -1649,7 +1671,7 @@ Und langsam kommt die Erinnerung zurück.`,
           value: 4
         },
         effects: [
-          { type: 'inc', target: 'tickets_truth', value: 3 },
+          { type: 'inc', target: 'tickets_truth', value: 2 },
           { type: 'inc', target: 'tickets_guilt', value: 2 }
         ],
         next: 'c6_s22b_reflection_callback'
