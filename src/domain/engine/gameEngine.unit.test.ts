@@ -31,6 +31,25 @@ describe('applyEffects', () => {
     expect(state.items.has_recorder).toBe(true);
   });
 
+  it('stance flags are mutually exclusive', () => {
+    const state = createInitialState('start');
+
+    // Set bold
+    applyEffects(state, [{ type: 'set', target: 'stance_bold', value: true }]);
+    expect(state.items.stance_bold).toBe(true);
+    expect(state.items.stance_cautious).toBe(false);
+
+    // Set cautious — bold should be cleared
+    applyEffects(state, [{ type: 'set', target: 'stance_cautious', value: true }]);
+    expect(state.items.stance_cautious).toBe(true);
+    expect(state.items.stance_bold).toBe(false);
+
+    // Set bold again — cautious should be cleared
+    applyEffects(state, [{ type: 'set', target: 'stance_bold', value: true }]);
+    expect(state.items.stance_bold).toBe(true);
+    expect(state.items.stance_cautious).toBe(false);
+  });
+
   it('supports has_ticket in effects and conditions', () => {
     const state = createInitialState('start');
 

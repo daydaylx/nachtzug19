@@ -237,7 +237,7 @@ export type NarrativeVariant = {
   min_drift?: number;             // Optional: Ab welchem memory_drift diese Variante gilt
   condition?: Condition;          // Optional: Generische Condition (z.B. has_tag19)
   narrative: string;              // Alternative Narrative
-  replace_mode?: 'full' | 'overlay';  // Default: 'full' (komplette Ersetzung)
+  priority?: number;              // Höherer Wert gewinnt. Default: 10 (condition), 0 (drift-only)
 };
 
 /**

@@ -8,6 +8,7 @@ import de.daydaylx.nachtzug19.model.GameSave
 import de.daydaylx.nachtzug19.model.GameState
 import de.daydaylx.nachtzug19.model.HistoryEntry
 import de.daydaylx.nachtzug19.model.ReaderSettings
+import de.daydaylx.nachtzug19.model.createInitialState
 import kotlinx.serialization.builtins.ListSerializer
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
@@ -29,15 +30,43 @@ class GameDataStore(private val context: Context) {
     val historyJson = prefs[historyKey]
     val currentSceneId = prefs[currentSceneKey]
 
-    val state = StoryJson.json.decodeFromString(GameState.serializer(), stateJson)
+    val saved = StoryJson.json.decodeFromString(GameState.serializer(), stateJson)
     val history = historyJson?.let {
       StoryJson.json.decodeFromString(ListSerializer(HistoryEntry.serializer()), it)
-    } ?: state.history
+    } ?: saved.history
+
+    // Deep merge against defaults so old saves get new fields
+    val defaults = createInitialState(saved.current_scene_id)
+    val state = defaults.copy(
+      stats = saved.stats,
+      tickets = saved.tickets,
+      pressure = saved.pressure,
+      relations = saved.relations,
+      items = defaults.items.copy(
+        has_recorder = saved.items.has_recorder,
+        has_tag19 = saved.items.has_tag19,
+        has_ticket = saved.items.has_ticket,
+        photo_anomaly = saved.items.photo_anomaly,
+        played_recorder = saved.items.played_recorder,
+        memory_search_active = saved.items.memory_search_active,
+        emma_memory_unlocked = saved.items.emma_memory_unlocked,
+        stance_bold = saved.items.stance_bold,
+        stance_cautious = saved.items.stance_cautious
+      ),
+      current_scene_id = saved.current_scene_id,
+      visited_scene_ids = saved.visited_scene_ids,
+      chapter_index = saved.chapter_index,
+      station_count = saved.station_count,
+      history = history,
+      isGameOver = saved.isGameOver,
+      endingId = saved.endingId,
+      save_version = saved.save_version
+    )
 
     val resolvedCurrentScene = currentSceneId ?: state.current_scene_id
     return GameSave(
       current_scene_id = resolvedCurrentScene,
-      state = state.copy(current_scene_id = resolvedCurrentScene, history = history),
+      state = state.copy(current_scene_id = resolvedCurrentScene),
       history = history
     )
   }

@@ -4383,8 +4383,7 @@
             "operator": ">=",
             "value": 2
           },
-          "narrative": "Du findest den schlaflosen Mann in seinem Abteil. Die Tür steht offen.\n\nEr sieht noch blasser aus als zuvor — wächsern, fast durchscheinend. Aber als du eintrittst, hebt er den Blick. Und zum ersten Mal sieht er nicht nur müde aus. Er sieht überrascht aus.\n\n„Der Junge hat mit dir gesprochen,\" sagt er. Keine Frage. „Er spricht nie mit jemandem. Seit Jahren nicht. Seit…\" Er bricht ab. Reibt sich die Schläfen.\n\n„Er hat dir seinen Rekorder gegeben? Oder... angeboten?\"\n\nDu nickst.\n\nEr starrt dich an. Lang. Durchdringend. „Das ändert alles. Der Junge weiß Dinge. Er hört Dinge. Die Kassetten…\" Er senkt die Stimme. „Die Kassetten sind nicht leer. Was darauf ist — das ist keine Musik.\"\n\nSeine Hände zittern. „Sie kommen näher. Die Kontrollen. Jedes Mal härter. Aber wenn der Junge dir vertraut…\" Ein Flackern von etwas wie Hoffnung in seinen toten Augen. „Dann hast du vielleicht eine Chance, die ich nie hatte.\"\n\nEr blickt dich an. „Was macht dich anders?\"",
-          "replace_mode": "full"
+          "narrative": "Du findest den schlaflosen Mann in seinem Abteil. Die Tür steht offen.\n\nEr sieht noch blasser aus als zuvor — wächsern, fast durchscheinend. Aber als du eintrittst, hebt er den Blick. Und zum ersten Mal sieht er nicht nur müde aus. Er sieht überrascht aus.\n\n„Der Junge hat mit dir gesprochen,\" sagt er. Keine Frage. „Er spricht nie mit jemandem. Seit Jahren nicht. Seit…\" Er bricht ab. Reibt sich die Schläfen.\n\n„Er hat dir seinen Rekorder gegeben? Oder... angeboten?\"\n\nDu nickst.\n\nEr starrt dich an. Lang. Durchdringend. „Das ändert alles. Der Junge weiß Dinge. Er hört Dinge. Die Kassetten…\" Er senkt die Stimme. „Die Kassetten sind nicht leer. Was darauf ist — das ist keine Musik.\"\n\nSeine Hände zittern. „Sie kommen näher. Die Kontrollen. Jedes Mal härter. Aber wenn der Junge dir vertraut…\" Ein Flackern von etwas wie Hoffnung in seinen toten Augen. „Dann hast du vielleicht eine Chance, die ich nie hatte.\"\n\nEr blickt dich an. „Was macht dich anders?\""
         },
         {
           "condition": {
@@ -4392,8 +4391,7 @@
             "target": "has_recorder",
             "value": true
           },
-          "narrative": "Du findest den schlaflosen Mann in seinem Abteil. Die Tür steht offen.\n\nEr sieht noch blasser aus als zuvor. Aber sein Blick fällt sofort auf den Kassettenrekorder in deiner Hand. Seine Augen weiten sich.\n\n„Woher hast du den?\" flüstert er. „Den Rekorder. Das ist… das ist der Rekorder. Vom Jungen.\"\n\nEr steht auf. Kommt näher. Zu nah. Du riechst etwas Süßliches — Verwesung? Angst?\n\n„Hast du ihn abgespielt? Hast du gehört, was darauf ist?\" Seine Stimme bricht. „Das Surren. Das Surren ist nicht das Band. Das sind Stimmen. Verschoben. Verlangsamt. Die Stimmen der 19.\"\n\nEr packt deinen Arm. „Du musst vorsichtig sein. Der Schaffner weiß, dass du ihn hast. Deshalb werden die Kontrollen härter.\"\n\nEr lässt los. Setzt sich. „Was macht dich anders?\"",
-          "replace_mode": "full"
+          "narrative": "Du findest den schlaflosen Mann in seinem Abteil. Die Tür steht offen.\n\nEr sieht noch blasser aus als zuvor. Aber sein Blick fällt sofort auf den Kassettenrekorder in deiner Hand. Seine Augen weiten sich.\n\n„Woher hast du den?\" flüstert er. „Den Rekorder. Das ist… das ist der Rekorder. Vom Jungen.\"\n\nEr steht auf. Kommt näher. Zu nah. Du riechst etwas Süßliches — Verwesung? Angst?\n\n„Hast du ihn abgespielt? Hast du gehört, was darauf ist?\" Seine Stimme bricht. „Das Surren. Das Surren ist nicht das Band. Das sind Stimmen. Verschoben. Verlangsamt. Die Stimmen der 19.\"\n\nEr packt deinen Arm. „Du musst vorsichtig sein. Der Schaffner weiß, dass du ihn hast. Deshalb werden die Kontrollen härter.\"\n\nEr lässt los. Setzt sich. „Was macht dich anders?\""
         }
       ],
       "state_notes": [
