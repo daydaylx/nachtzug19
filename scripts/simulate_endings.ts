@@ -69,7 +69,9 @@ function createInitialState(): GameState {
       photo_anomaly: false,
       played_recorder: false,
       memory_search_active: false,
-      emma_memory_unlocked: false
+      emma_memory_unlocked: false,
+      stance_bold: false,
+      stance_cautious: false
     },
     chapter_index: 1,
     station_count: 0,
@@ -109,6 +111,8 @@ function applyEffect(state: GameState, effect: Effect): void {
     played_recorder: { obj: state.items, key: 'played_recorder' },
     memory_search_active: { obj: state.items, key: 'memory_search_active' },
     emma_memory_unlocked: { obj: state.items, key: 'emma_memory_unlocked' },
+    stance_bold: { obj: state.items, key: 'stance_bold' },
+    stance_cautious: { obj: state.items, key: 'stance_cautious' },
     // Meta (directly on state, not state.metadata)
     chapter_index: { obj: state, key: 'chapter_index' },
     station_count: { obj: state, key: 'station_count' },
@@ -138,15 +142,27 @@ function applyEffect(state: GameState, effect: Effect): void {
     mapping.obj[mapping.key] = Math.max(min, Math.min(max, currentValue));
   }
 
-  // Clamp tickets to 0-50 (game rule)
+  // Stance mutual exclusion
+  if (target === 'stance_bold' && value === true) {
+    state.items.stance_cautious = false;
+  } else if (target === 'stance_cautious' && value === true) {
+    state.items.stance_bold = false;
+  }
+
+  // Clamp tickets to 0-20 (game rule)
   if (target.startsWith('tickets_')) {
     const ticketKey = target as 'tickets_truth' | 'tickets_love' | 'tickets_guilt' | 'tickets_escape';
-    state.tickets[ticketKey] = Math.max(0, Math.min(50, state.tickets[ticketKey]));
+    state.tickets[ticketKey] = Math.max(0, Math.min(20, state.tickets[ticketKey]));
   }
 
   // Clamp conductor_attention to 0-6
   if (target === 'conductor_attention') {
     state.pressure.conductor_attention = Math.max(0, Math.min(6, state.pressure.conductor_attention));
+  }
+
+  // Clamp memory_drift to 0-6
+  if (target === 'memory_drift') {
+    state.pressure.memory_drift = Math.max(0, Math.min(6, state.pressure.memory_drift));
   }
 }
 
@@ -471,17 +487,75 @@ function printReport(stats: SimulationStats): void {
     }
   }
 
-  // Check if any ticket is hard to max
-  console.log('## Ticket Reachability\n');
+  // Check if any ticket is hard to reach threshold 12
+  console.log('## Ticket Reachability (threshold: 12)\n');
   Object.entries(stats.ticket_stats).forEach(([ticket, stat]) => {
-    if (stat.max < 5) {
-      console.log(`⚠️ **${ticket.toUpperCase()}**: Max value = ${stat.max} (never reaches 5!)`);
+    if (stat.max < 12) {
+      console.log(`⚠️ **${ticket.toUpperCase()}**: Max value = ${stat.max} (never reaches 12!)`);
       console.log(`   → Players cannot unlock ${ticket.toUpperCase()} ending!\n`);
-    } else if (stat.avg < 2.5) {
+    } else if (stat.avg < 6) {
       console.log(`⚠️ **${ticket.toUpperCase()}**: Average = ${stat.avg.toFixed(2)} (hard to accumulate)`);
       console.log(`   → Consider adding more ${ticket.toUpperCase()}-boosting choices\n`);
+    } else {
+      console.log(`✅ **${ticket.toUpperCase()}**: Max=${stat.max}, Avg=${stat.avg.toFixed(2)}, Median=${stat.median}`);
     }
   });
+}
+
+// ============================================================================
+// Viable Path Analysis
+// ============================================================================
+
+function printViablePathReport(results: SimulationResult[]): void {
+  console.log('\n## Viable Path Analysis\n');
+
+  const THRESHOLD = 12;
+  const endingTypes = ['TRUTH', 'LOVE', 'GUILT', 'ESCAPE', 'LIMBO'] as const;
+  const ticketKeyMap: Record<string, keyof SimulationResult['final_state']> = {
+    TRUTH: 'tickets_truth',
+    LOVE: 'tickets_love',
+    GUILT: 'tickets_guilt',
+    ESCAPE: 'tickets_escape',
+  };
+
+  // For each ending type, show ticket distributions of playthroughs that reached it
+  for (const ending of endingTypes) {
+    const endingResults = results.filter(r => r.ending_type === ending);
+    if (endingResults.length === 0) {
+      console.log(`### ${ending}: NEVER REACHED\n`);
+      continue;
+    }
+
+    const pct = ((endingResults.length / results.length) * 100).toFixed(1);
+    console.log(`### ${ending} (${endingResults.length} playthroughs, ${pct}%)\n`);
+
+    // Show ticket distribution for this ending
+    const ticketNames = ['tickets_truth', 'tickets_escape', 'tickets_guilt', 'tickets_love'] as const;
+    for (const tk of ticketNames) {
+      const values = endingResults.map(r => r.final_state[tk]);
+      const avg = values.reduce((a, b) => a + b, 0) / values.length;
+      const max = Math.max(...values);
+      const min = Math.min(...values);
+      const reachedThreshold = values.filter(v => v >= THRESHOLD).length;
+      const thresholdPct = ((reachedThreshold / values.length) * 100).toFixed(1);
+      console.log(`  ${tk.padEnd(16)}: avg=${avg.toFixed(1).padStart(5)}, range=[${min}-${max}], >=12: ${thresholdPct}%`);
+    }
+
+    // Show avg choices and scenes
+    const avgChoices = endingResults.reduce((a, r) => a + r.choices_made, 0) / endingResults.length;
+    const avgScenes = endingResults.reduce((a, r) => a + r.scenes_visited, 0) / endingResults.length;
+    console.log(`  avg_choices: ${avgChoices.toFixed(1)}, avg_scenes: ${avgScenes.toFixed(1)}\n`);
+  }
+
+  // Summary: which endings have at least 1% reach rate
+  console.log('### Viability Summary\n');
+  for (const ending of endingTypes) {
+    const count = results.filter(r => r.ending_type === ending).length;
+    const pct = (count / results.length) * 100;
+    const viable = pct >= 1;
+    console.log(`  ${ending.padEnd(7)}: ${viable ? '✅ VIABLE' : '❌ NOT VIABLE'} (${pct.toFixed(1)}%)`);
+  }
+  console.log('');
 }
 
 // ============================================================================
@@ -524,6 +598,9 @@ async function main() {
 
   // Print report
   printReport(stats);
+
+  // Print viable path analysis
+  printViablePathReport(results);
 
   console.log('\n✅ Simulation complete! Results saved to console.\n');
 }

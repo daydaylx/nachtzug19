@@ -253,7 +253,6 @@ Er starrt dich an. Lang. Durchdringend. „Das ändert alles. Der Junge weiß Di
 Seine Hände zittern. „Sie kommen näher. Die Kontrollen. Jedes Mal härter. Aber wenn der Junge dir vertraut…" Ein Flackern von etwas wie Hoffnung in seinen toten Augen. „Dann hast du vielleicht eine Chance, die ich nie hatte."
 
 Er blickt dich an. „Was macht dich anders?"`,
-        replace_mode: 'full'
       },
       {
         condition: { type: 'bool', target: 'has_recorder', value: true },
@@ -269,8 +268,7 @@ Er steht auf. Kommt näher. Zu nah. Du riechst etwas Süßliches — Verwesung? 
 
 Er packt deinen Arm. „Du musst vorsichtig sein. Der Schaffner weiß, dass du ihn hast. Deshalb werden die Kontrollen härter."
 
-Er lässt los. Setzt sich. „Was macht dich anders?"`,
-        replace_mode: 'full'
+Er lässt los. Setzt sich. „Was macht dich anders?"`
       }
     ],
     choices: [

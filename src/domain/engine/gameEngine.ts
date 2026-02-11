@@ -163,6 +163,13 @@ export function applyEffects(state: GameState, effects: Effect[]): void {
 
     setStateValue(state, effect.target, newValue);
 
+    // Stance mutual exclusion: setting one clears the other
+    if (effect.target === 'stance_bold' && newValue === true) {
+      setStateValue(state, 'stance_cautious', false);
+    } else if (effect.target === 'stance_cautious' && newValue === true) {
+      setStateValue(state, 'stance_bold', false);
+    }
+
     // Optional: Log-Eintrag
     if (effect.note) {
       console.log(`[Effect] ${effect.note}: ${effect.target} = ${newValue}`);
@@ -303,55 +310,57 @@ export function getAvailableChoices(state: GameState, scene: Scene): Choice[] {
  * @returns Die passende Narrative als String
  */
 export function resolveSceneNarrative(scene: Scene, state: GameState): string {
-  // Fallback: Leere Narrative
   if (!scene.narrative) {
     return '';
   }
 
-  // Basis-Narrative (ohne Drift-Varianten)
   const baseNarrative = scene.narrative;
 
-  // Keine Varianten vorhanden -> Basis zurückgeben
   if (!scene.narrative_variants || scene.narrative_variants.length === 0) {
     return baseNarrative;
   }
 
-  // 1. Suche nach Varianten mit expliziter Condition (z.B. Items wie has_tag19)
-  // Diese haben Vorrang vor reinem Drift.
-  // Performance: Direkt iterieren statt .find() um Closure-Overhead zu minimieren (minimal)
-  for (const variant of scene.narrative_variants) {
-    if (variant.condition && evaluateCondition(state, variant.condition)) {
-      return variant.narrative;
-    }
-  }
-
-  // 2. Suche nach der besten Drift-Variante (höchster min_drift, der <= currentDrift ist)
-  // Performance: Single-Pass Iteration statt .filter().sort()
-  let bestDriftVariant = null;
-  let maxDriftFound = -1;
+  // Evaluate all matching variants, assign effective priority, pick highest
+  let bestVariant: { narrative: string; effectivePriority: number } | null = null;
   const currentDrift = state.pressure.memory_drift;
 
   for (const variant of scene.narrative_variants) {
-    // Überspringe Varianten mit Condition (bereits geprüft) oder ohne min_drift
-    if (variant.condition || variant.min_drift === undefined) {
+    let matches = false;
+    let effectivePriority: number;
+
+    if (variant.condition) {
+      // Condition-based variant
+      matches = evaluateCondition(state, variant.condition);
+      // Also check min_drift if both are set
+      if (matches && variant.min_drift !== undefined) {
+        matches = currentDrift >= variant.min_drift;
+      }
+      effectivePriority = variant.priority ?? 10;
+    } else if (variant.min_drift !== undefined) {
+      // Drift-only variant
+      matches = currentDrift >= variant.min_drift;
+      // For drift-only, higher min_drift = more specific = tiebreaker via drift value
+      effectivePriority = variant.priority ?? 0;
+    } else {
       continue;
     }
 
-    if (currentDrift >= variant.min_drift) {
-      // Wenn wir eine Variante finden, die "schwerer" wiegt (höherer Drift-Wert), nehmen wir diese
-      if (variant.min_drift > maxDriftFound) {
-        maxDriftFound = variant.min_drift;
-        bestDriftVariant = variant;
+    if (matches) {
+      // Tiebreaker for same priority: higher min_drift wins
+      const driftTiebreaker = (variant.min_drift ?? 0) * 0.01;
+      const score = effectivePriority + driftTiebreaker;
+      const bestScore = bestVariant
+        ? (bestVariant as any)._score ?? 0
+        : -Infinity;
+
+      if (score > bestScore) {
+        bestVariant = { narrative: variant.narrative, effectivePriority };
+        (bestVariant as any)._score = score;
       }
     }
   }
 
-  if (bestDriftVariant) {
-    return bestDriftVariant.narrative;
-  }
-
-  // Kein Match: Basis-Narrative zurückgeben
-  return baseNarrative;
+  return bestVariant ? bestVariant.narrative : baseNarrative;
 }
 
 // ============================================================================
@@ -564,7 +573,19 @@ export class GameEngine {
           console.warn(`[Load] Save version mismatch: ${key}`);
           return false;
         }
-        const hydratedState: GameState = { ...savedState };
+        // Deep merge against defaults so old saves get new fields
+        const defaults = createInitialState(savedState.current_scene_id);
+        const hydratedState: GameState = {
+          ...defaults,
+          ...savedState,
+          stats: { ...defaults.stats, ...savedState.stats },
+          tickets: { ...defaults.tickets, ...savedState.tickets },
+          pressure: { ...defaults.pressure, ...savedState.pressure },
+          relations: { ...defaults.relations, ...savedState.relations },
+          items: { ...defaults.items, ...savedState.items },
+          visited_scene_ids: savedState.visited_scene_ids ?? defaults.visited_scene_ids,
+          history: savedState.history ?? defaults.history,
+        };
         if (parsed && typeof parsed.current_scene_id === 'string') {
           hydratedState.current_scene_id = parsed.current_scene_id;
         }

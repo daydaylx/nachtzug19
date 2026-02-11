@@ -91,45 +91,45 @@ enum class ChoiceWeight {
 
 @Serializable
 data class PlayerStats(
-  val mut: Int,
-  val wissen: Int,
-  val empathie: Int
+  val mut: Int = 5,
+  val wissen: Int = 3,
+  val empathie: Int = 4
 )
 
 @Serializable
 data class Tickets(
-  val tickets_truth: Int,
-  val tickets_escape: Int,
-  val tickets_guilt: Int,
-  val tickets_love: Int
+  val tickets_truth: Int = 0,
+  val tickets_escape: Int = 0,
+  val tickets_guilt: Int = 0,
+  val tickets_love: Int = 0
 ) {
   fun total(): Int = tickets_truth + tickets_escape + tickets_guilt + tickets_love
 }
 
 @Serializable
 data class Pressure(
-  val conductor_attention: Int,
-  val memory_drift: Int
+  val conductor_attention: Int = 0,
+  val memory_drift: Int = 0
 )
 
 @Serializable
 data class Relations(
-  val rel_comp7: Int,
-  val rel_boy: Int,
-  val rel_sleepless: Int
+  val rel_comp7: Int = 0,
+  val rel_boy: Int = 0,
+  val rel_sleepless: Int = 0
 )
 
 @Serializable
 data class Items(
-  val has_recorder: Boolean,
-  val has_tag19: Boolean,
-  val has_ticket: Boolean,
-  val photo_anomaly: Boolean,
-  val played_recorder: Boolean,
-  val memory_search_active: Boolean,
-  val emma_memory_unlocked: Boolean,
-  val stance_bold: Boolean,
-  val stance_cautious: Boolean
+  val has_recorder: Boolean = false,
+  val has_tag19: Boolean = false,
+  val has_ticket: Boolean = false,
+  val photo_anomaly: Boolean = false,
+  val played_recorder: Boolean = false,
+  val memory_search_active: Boolean = false,
+  val emma_memory_unlocked: Boolean = false,
+  val stance_bold: Boolean = false,
+  val stance_cautious: Boolean = false
 )
 
 @Serializable
@@ -214,7 +214,7 @@ data class NarrativeVariant(
   val min_drift: Int? = null,
   val condition: Condition? = null,
   val narrative: String,
-  val replace_mode: String? = null
+  val priority: Int? = null
 )
 
 @Serializable

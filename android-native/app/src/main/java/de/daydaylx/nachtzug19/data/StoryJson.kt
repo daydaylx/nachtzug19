@@ -7,6 +7,7 @@ object StoryJson {
     ignoreUnknownKeys = true
     isLenient = true
     explicitNulls = false
+    coerceInputValues = true
     classDiscriminator = "type"
   }
 }

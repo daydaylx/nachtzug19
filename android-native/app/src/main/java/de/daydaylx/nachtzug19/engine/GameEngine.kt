@@ -39,6 +39,12 @@ fun applyEffects(state: GameState, effects: List<Effect>): GameState {
       }
     }
     next = setStateValue(next, effect.target, newValue)
+    // Stance mutual exclusion: setting one clears the other
+    if (effect.target == EffectTarget.StanceBold && newValue == true) {
+      next = setStateValue(next, EffectTarget.StanceCautious, false)
+    } else if (effect.target == EffectTarget.StanceCautious && newValue == true) {
+      next = setStateValue(next, EffectTarget.StanceBold, false)
+    }
   }
   return autoClamp(next)
 }
@@ -104,19 +110,38 @@ fun resolveSceneNarrative(scene: Scene, state: GameState): String {
   val variants = scene.narrative_variants ?: emptyList()
   if (variants.isEmpty()) return baseNarrative
 
-  // 1. Condition check (Priority)
-  val conditionVariant = variants.find { it.condition != null && evaluateCondition(state, it.condition) }
-  if (conditionVariant != null) {
-    return conditionVariant.narrative
+  val currentDrift = state.pressure.memory_drift
+  var bestNarrative: String? = null
+  var bestScore = Double.NEGATIVE_INFINITY
+
+  for (variant in variants) {
+    var matches = false
+    val effectivePriority: Int
+
+    if (variant.condition != null) {
+      matches = evaluateCondition(state, variant.condition)
+      if (matches && variant.min_drift != null) {
+        matches = currentDrift >= variant.min_drift
+      }
+      effectivePriority = variant.priority ?: 10
+    } else if (variant.min_drift != null) {
+      matches = currentDrift >= variant.min_drift
+      effectivePriority = variant.priority ?: 0
+    } else {
+      continue
+    }
+
+    if (matches) {
+      val driftTiebreaker = (variant.min_drift ?: 0) * 0.01
+      val score = effectivePriority.toDouble() + driftTiebreaker
+      if (score > bestScore) {
+        bestScore = score
+        bestNarrative = variant.narrative
+      }
+    }
   }
 
-  // 2. Drift check (Fallback)
-  val currentDrift = state.pressure.memory_drift
-  val driftVariants = variants.filter { it.min_drift != null }
-  val sorted = driftVariants.sortedByDescending { it.min_drift!! }
-  val match = sorted.firstOrNull { currentDrift >= it.min_drift!! }
-  
-  return match?.narrative ?: baseNarrative
+  return bestNarrative ?: baseNarrative
 }
 
 fun transitionToNextScene(
