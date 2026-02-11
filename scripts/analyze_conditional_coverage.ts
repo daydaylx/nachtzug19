@@ -46,7 +46,9 @@ function createInitialState(startSceneId: string): GameState {
       photo_anomaly: false,
       played_recorder: false,
       memory_search_active: false,
-      emma_memory_unlocked: false
+      emma_memory_unlocked: false,
+      stance_bold: false,
+      stance_cautious: false
     },
     chapter_index: 1,
     station_count: 0,

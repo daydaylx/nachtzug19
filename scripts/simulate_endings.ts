@@ -511,12 +511,6 @@ function printViablePathReport(results: SimulationResult[]): void {
 
   const THRESHOLD = 12;
   const endingTypes = ['TRUTH', 'LOVE', 'GUILT', 'ESCAPE', 'LIMBO'] as const;
-  const ticketKeyMap: Record<string, keyof SimulationResult['final_state']> = {
-    TRUTH: 'tickets_truth',
-    LOVE: 'tickets_love',
-    GUILT: 'tickets_guilt',
-    ESCAPE: 'tickets_escape',
-  };
 
   // For each ending type, show ticket distributions of playthroughs that reached it
   for (const ending of endingTypes) {
