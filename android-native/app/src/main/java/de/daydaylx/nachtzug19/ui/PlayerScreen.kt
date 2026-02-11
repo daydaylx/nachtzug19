@@ -43,6 +43,32 @@ import de.daydaylx.nachtzug19.model.ReaderSettings
 import de.daydaylx.nachtzug19.model.SceneTag
 import de.daydaylx.nachtzug19.model.resolvedWeight
 import de.daydaylx.nachtzug19.ui.components.*
+import de.daydaylx.nachtzug19.ui.theme.NachtzugColors
+import kotlinx.coroutines.delay
+
+private const val READTHROUGH_LENGTH_THRESHOLD = 420
+private const val READ_UNLOCK_PROGRESS_THRESHOLD = 0.70f
+private const val READ_UNLOCK_AUTO_RELEASE_MS = 10_000L
+
+internal fun shouldUnlockChoices(
+  enforceReadBeforeChoices: Boolean,
+  narrativeLength: Int,
+  scrollMaxValue: Int,
+  scrollValue: Int,
+  autoUnlockElapsed: Boolean
+): Boolean {
+  if (!enforceReadBeforeChoices || narrativeLength < READTHROUGH_LENGTH_THRESHOLD) {
+    return true
+  }
+  if (scrollMaxValue <= 0) {
+    return true
+  }
+  if (autoUnlockElapsed) {
+    return true
+  }
+  val readProgress = scrollValue.toFloat() / scrollMaxValue.toFloat()
+  return readProgress >= READ_UNLOCK_PROGRESS_THRESHOLD
+}
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -55,14 +81,15 @@ fun PlayerScreen(
 ) {
   var showStatus by remember { mutableStateOf(false) }
   var showExitDialog by remember { mutableStateOf(false) }
-  var isProcessing by remember { mutableStateOf(false) }
+  var processingChoiceKey by remember { mutableStateOf<String?>(null) }
   
   val settings = uiState.settings
   val motionPolicy = remember(settings) { settings.toMotionPolicy() }
+  val atmosphereLayersEnabled = motionPolicy.allowContinuousEffects
 
   // Reset processing state when scene changes
   LaunchedEffect(uiState.currentScene) {
-    isProcessing = false
+    processingChoiceKey = null
   }
 
   BackHandler {
@@ -128,7 +155,7 @@ fun PlayerScreen(
       )
       
       // Safe zone overlay for text readability
-      SafeZoneOverlay(enabled = true)
+      SafeZoneOverlay(enabled = atmosphereLayersEnabled)
       
       // Existing layers
       if (motionPolicy.allowBackgroundDrift && uiState.state != null) {
@@ -137,8 +164,8 @@ fun PlayerScreen(
           enabled = true
         )
       }
-      VignetteLayer()
-      NoiseLayer(enabled = motionPolicy.allowContinuousEffects)
+      VignetteLayer(enabled = atmosphereLayersEnabled)
+      NoiseLayer(enabled = atmosphereLayersEnabled)
 
       when {
         uiState.isLoading -> {
@@ -165,9 +192,10 @@ fun PlayerScreen(
             showAnnouncement = uiState.currentScene?.tags?.contains(SceneTag.Announcement) == true,
             announcementText = uiState.currentScene?.announcement ?: "",
             motionPolicy = motionPolicy,
-            isProcessing = isProcessing,
-            onChoice = { choice ->
-              isProcessing = true
+            atmosphereLayersEnabled = atmosphereLayersEnabled,
+            processingChoiceKey = processingChoiceKey,
+            onChoice = { choice, choiceKey ->
+              processingChoiceKey = choiceKey
               onChoice(choice)
             },
             onShowStatus = { showStatus = true }
@@ -178,18 +206,13 @@ fun PlayerScreen(
       if (settings.showStatus && showStatus && uiState.state != null) {
         ModalBottomSheet(
           onDismissRequest = { showStatus = false },
-          containerColor = Color(0xFF141A22),
-          contentColor = Color(0xFFE8E8E8),
+          containerColor = NachtzugColors.BackgroundPanel,
+          contentColor = NachtzugColors.TextPrimary,
           scrimColor = Color.Black.copy(alpha = 0.55f)
         ) {
           StatusSheet(uiState)
         }
       }
-
-      ChoiceFeedback(
-        visible = isProcessing,
-        motionPolicy = motionPolicy
-      )
     }
   }
 
@@ -209,8 +232,9 @@ private fun StoryReader(
   showAnnouncement: Boolean,
   announcementText: String,
   motionPolicy: MotionPolicy,
-  isProcessing: Boolean,
-  onChoice: (Choice) -> Unit,
+  atmosphereLayersEnabled: Boolean,
+  processingChoiceKey: String?,
+  onChoice: (Choice, String) -> Unit,
   onShowStatus: () -> Unit
 ) {
   val state = uiState.state
@@ -226,12 +250,45 @@ private fun StoryReader(
   val showStatusQuickAction = settings.showStatus && !showMicrobar && state != null
   val narrativeScrollState = rememberScrollState()
   val sceneKey = uiState.currentScene?.id ?: narrative
-  val narrativeRequiresReadthrough = narrative.length >= 420
-  val choicesUnlocked by remember(narrative, narrativeScrollState.maxValue, narrativeScrollState.value) {
+  val unlockPercent = (READ_UNLOCK_PROGRESS_THRESHOLD * 100).toInt()
+  val unlockSeconds = (READ_UNLOCK_AUTO_RELEASE_MS / 1_000L).toInt()
+  val narrativeRequiresReadthrough = narrative.length >= READTHROUGH_LENGTH_THRESHOLD
+  val interactionLocked = processingChoiceKey != null
+  var autoUnlockElapsed by remember(sceneKey, settings.enforceReadBeforeChoices, narrative) {
+    mutableStateOf(false)
+  }
+  var autoUnlockSecondsRemaining by remember(sceneKey, settings.enforceReadBeforeChoices, narrative) {
+    mutableStateOf(unlockSeconds)
+  }
+
+  LaunchedEffect(sceneKey, settings.enforceReadBeforeChoices, narrativeRequiresReadthrough) {
+    autoUnlockElapsed = false
+    autoUnlockSecondsRemaining = unlockSeconds
+    if (!settings.enforceReadBeforeChoices || !narrativeRequiresReadthrough) {
+      return@LaunchedEffect
+    }
+    while (autoUnlockSecondsRemaining > 0) {
+      delay(1_000L)
+      autoUnlockSecondsRemaining -= 1
+    }
+    autoUnlockElapsed = true
+  }
+
+  val choicesUnlocked by remember(
+    narrative,
+    settings.enforceReadBeforeChoices,
+    narrativeScrollState.maxValue,
+    narrativeScrollState.value,
+    autoUnlockElapsed
+  ) {
     derivedStateOf {
-      !narrativeRequiresReadthrough ||
-        narrativeScrollState.maxValue == 0 ||
-        narrativeScrollState.value >= narrativeScrollState.maxValue
+      shouldUnlockChoices(
+        enforceReadBeforeChoices = settings.enforceReadBeforeChoices,
+        narrativeLength = narrative.length,
+        scrollMaxValue = narrativeScrollState.maxValue,
+        scrollValue = narrativeScrollState.value,
+        autoUnlockElapsed = autoUnlockElapsed
+      )
     }
   }
 
@@ -266,6 +323,7 @@ private fun StoryReader(
       narrative = narrative,
       scrollState = narrativeScrollState,
       showScrollIndicators = !settings.reduceMotion,
+      showAtmosphereLayers = atmosphereLayersEnabled,
       textSizeSp = settings.textSizeSp,
       enableTypewriter = false,
       modifier = Modifier
@@ -285,10 +343,11 @@ private fun StoryReader(
           .padding(bottom = bottomChoicePadding)
     ) {
         if (!choicesUnlocked) {
+            val countdown = autoUnlockSecondsRemaining.coerceAtLeast(1)
             Text(
-              text = "Bis zum Ende scrollen, um Entscheidungen freizuschalten.",
+              text = "Scrolle mindestens $unlockPercent % oder warte noch $countdown s, um Entscheidungen freizuschalten.",
               style = MaterialTheme.typography.labelSmall,
-              color = Color(0xB3E8E8E8)
+              color = NachtzugColors.TextPrimary.copy(alpha = 0.70f)
             )
         }
         if (showMicrobar) {
@@ -308,11 +367,13 @@ private fun StoryReader(
             onClick = onShowStatus
           )
         }
-        choices.forEach { choice ->
+        choices.forEachIndexed { index, choice ->
+            val choiceKey = choice.id ?: "choice_$index"
             TicketChoice(
                 label = choice.label ?: "Weiter",
-                onClick = { onChoice(choice) },
-                isProcessing = isProcessing,
+                onClick = { onChoice(choice, choiceKey) },
+                isProcessing = processingChoiceKey == choiceKey,
+                isInteractionLocked = interactionLocked,
                 weight = choice.resolvedWeight(),
                 enabled = choicesUnlocked
             )
@@ -337,15 +398,15 @@ private fun StatusQuickAction(
     Box(
       modifier = Modifier
         .clip(shape)
-        .background(Color(0xCC141A22))
-        .border(width = 1.dp, color = Color(0x665BC0BE), shape = shape)
+        .background(NachtzugColors.ReaderScrimStrong)
+        .border(width = 1.dp, color = NachtzugColors.StationNeon.copy(alpha = 0.40f), shape = shape)
         .clickable(onClick = onClick)
         .padding(horizontal = horizontalPadding, vertical = verticalPadding)
     ) {
       Text(
         text = "Status",
         style = MaterialTheme.typography.labelMedium,
-        color = Color(0xFF5BC0BE)
+        color = NachtzugColors.StationNeon
       )
     }
   }

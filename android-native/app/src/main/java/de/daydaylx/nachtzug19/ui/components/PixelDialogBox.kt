@@ -31,6 +31,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
+import de.daydaylx.nachtzug19.ui.theme.NachtzugColors
 
 /**
  * Dialog-Container für Titel + Narrative mit optionalen Scroll-Hinweisen.
@@ -43,13 +44,14 @@ fun PixelDialogBox(
   modifier: Modifier = Modifier,
   contentPadding: Dp = 12.dp,
   showScrollIndicators: Boolean = true,
+  showAtmosphereLayers: Boolean = true,
   textSizeSp: Float = 16f,
   enableTypewriter: Boolean = false
 ) {
   // Higher opacity + local dimming: keeps narrative readable over photo-rich backgrounds.
-  val borderOuter = Color(0xCC0B0F14)
-  val borderInner = Color(0xAA2E3540)
-  val background = Color(0xD4141A22)
+  val borderOuter = NachtzugColors.PanelBorderOuterStrong
+  val borderInner = NachtzugColors.PanelBorderInnerStrong
+  val background = NachtzugColors.ReaderPanelStrong
   val borderSize = 3.dp
   val innerBorderSize = 1.dp
   val hasOverflow = scrollState.maxValue > 0
@@ -61,6 +63,10 @@ fun PixelDialogBox(
   var skipRequested by remember(narrative, enableTypewriter) { mutableStateOf(false) }
   var speedMultiplier by remember(narrative, enableTypewriter) { mutableFloatStateOf(1f) }
   var typewriterFinished by remember(narrative, enableTypewriter) { mutableStateOf(!enableTypewriter) }
+  val scrollIndicatorVisible = showScrollIndicators &&
+    hasOverflow &&
+    scrollState.canScrollForward &&
+    (!enableTypewriter || typewriterFinished)
 
   Box(
     modifier = modifier
@@ -86,41 +92,52 @@ fun PixelDialogBox(
       modifier = Modifier
         .fillMaxSize()
         .background(
-          Brush.verticalGradient(
-            colors = listOf(
-              Color(0xD6141A22),
-              Color(0xE6141A22),
-              Color(0xD6141A22)
+          if (showAtmosphereLayers) {
+            Brush.verticalGradient(
+              colors = listOf(
+                NachtzugColors.ReaderPanelGradientLow,
+                NachtzugColors.ReaderPanelGradientHigh,
+                NachtzugColors.ReaderPanelGradientLow
+              )
             )
-          )
+          } else {
+            Brush.verticalGradient(
+              colors = listOf(
+                NachtzugColors.ReaderPanelStrong,
+                NachtzugColors.ReaderPanelStrong
+              )
+            )
+          }
         )
         .padding(contentPadding)
     ) {
-      Box(
-        modifier = Modifier
-          .fillMaxSize()
-          .background(
-            Brush.radialGradient(
-              colors = listOf(
-                Color.Transparent,
-                Color.Black.copy(alpha = 0.22f)
-              ),
-              radius = Float.POSITIVE_INFINITY
+      if (showAtmosphereLayers) {
+        Box(
+          modifier = Modifier
+            .fillMaxSize()
+            .background(
+              Brush.radialGradient(
+                colors = listOf(
+                  Color.Transparent,
+                  Color.Black.copy(alpha = 0.22f)
+                ),
+                radius = Float.POSITIVE_INFINITY
+              )
             )
-          )
-      )
+        )
+      }
 
       Column(
         modifier = Modifier
         .fillMaxWidth()
         .verticalScroll(scrollState)
-        .padding(bottom = if (showScrollIndicators && hasOverflow) 28.dp else 0.dp)
+        .padding(bottom = if (scrollIndicatorVisible) 28.dp else 0.dp)
       ) {
         if (!title.isNullOrBlank()) {
           Text(
             text = title,
             style = MaterialTheme.typography.titleMedium,
-            color = Color(0xFFE8E8E8)
+            color = NachtzugColors.TextPrimary
           )
           Spacer(modifier = Modifier.height(8.dp))
         }
@@ -155,7 +172,7 @@ fun PixelDialogBox(
         )
       }
 
-      if (showScrollIndicators && hasOverflow && scrollState.canScrollForward) {
+      if (scrollIndicatorVisible) {
         Column(
           modifier = Modifier
             .align(Alignment.BottomCenter)
@@ -180,14 +197,14 @@ private fun TypewriterControl(
   onClick: () -> Unit
 ) {
   val background = if (active) {
-    Color(0xFF223744)
+    NachtzugColors.BackgroundTypewriterControlActive
   } else {
-    Color(0x66222A34)
+    NachtzugColors.BackgroundTypewriterControlIdle
   }
   val border = if (active) {
-    Color(0xFF5BC0BE)
+    NachtzugColors.StationNeon
   } else {
-    Color(0x663E4753)
+    NachtzugColors.ReaderBorderHint
   }
 
   Box(
@@ -201,7 +218,7 @@ private fun TypewriterControl(
     Text(
       text = label,
       style = MaterialTheme.typography.labelSmall,
-      color = Color(0xFFE8E8E8)
+      color = NachtzugColors.TextPrimary
     )
   }
 }

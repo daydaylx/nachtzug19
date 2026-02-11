@@ -33,18 +33,18 @@ object OverworldData {
    * Orientiert an klassischen 16-Bit RPG-Ästhetiken (Pokémon Ruby/Sapphire)
    */
   val palette = WorldPalette(
-    background = Color(0xFF0D1117),      // Tiefes Nachtblau (außerhalb)
-    floor = Color(0xFF5C4A3D),           // Warmes Holzbraun (Zugboden)
-    wall = Color(0xFF3D3229),            // Dunkles Holz (Wände/Paneele)
-    accent = Color(0xFFD4A574),          // Warmes Amber (Lampen/Akzente)
-    player = Color(0xFFE8D4B8),          // Helle Spielerfigur
-    npc = Color(0xFF7EB88C),             // Gedämpftes Grün für NPCs
-    hotspot = Color(0xFFE07856),         // Orange für Interaktionen
-    window = Color(0xFF1A2A3A),          // Dunkles Fenster (Nacht draußen)
-    carpet = Color(0xFF8B4A4A),          // Burgunder Teppich (Zugläufer)
-    metal = Color(0xFF7B8B9C),           // Metall-Akzente (Griffe, Rahmen)
-    lamp = Color(0xFFFFD93D),            // Warmes Lampenlicht
-    shadow = Color(0xFF1A1510)           // Warmer Schatten
+    background = NachtzugColors.OverworldBackground,      // Tiefes Nachtblau (außerhalb)
+    floor = NachtzugColors.OverworldFloor,                // Warmes Holzbraun (Zugboden)
+    wall = NachtzugColors.OverworldWall,                  // Dunkles Holz (Wände/Paneele)
+    accent = NachtzugColors.OverworldAccent,              // Warmes Amber (Lampen/Akzente)
+    player = NachtzugColors.OverworldPlayer,              // Helle Spielerfigur
+    npc = NachtzugColors.OverworldNpc,                    // Gedämpftes Grün für NPCs
+    hotspot = NachtzugColors.ControlOrange,               // Orange für Interaktionen
+    window = NachtzugColors.OverworldWindow,              // Dunkles Fenster (Nacht draußen)
+    carpet = NachtzugColors.OverworldCarpet,              // Burgunder Teppich (Zugläufer)
+    metal = NachtzugColors.OverworldMetal,                // Metall-Akzente (Griffe, Rahmen)
+    lamp = NachtzugColors.OverworldLamp,                  // Warmes Lampenlicht
+    shadow = NachtzugColors.OverworldShadow               // Warmer Schatten
   )
 
   fun ambienceTint(tag: String): Color {

@@ -1,6 +1,7 @@
 package de.daydaylx.nachtzug19.ui.overworld
 
 import androidx.compose.ui.graphics.Color
+import de.daydaylx.nachtzug19.ui.theme.NachtzugColors
 
 /**
  * @deprecated GBA-Pixel-Overworld System deprecated. Use Reader Noir (PlayerScreen) instead.
@@ -85,33 +86,33 @@ data class Tileset(
 object DefaultTileset {
     val tiles = listOf(
         // Floor tiles (checkerboard pattern)
-        TileDefinition(0, TileType.FLOOR_A, Color(0xFF1B222C)),
-        TileDefinition(1, TileType.FLOOR_B, Color(0xFF232A36)),
+        TileDefinition(0, TileType.FLOOR_A, NachtzugColors.TileFloorA),
+        TileDefinition(1, TileType.FLOOR_B, NachtzugColors.TileFloorB),
         
         // Wall tiles
-        TileDefinition(2, TileType.WALL_TOP, Color(0xFF2A3039)),
-        TileDefinition(3, TileType.WALL_BOTTOM, Color(0xFF2A3039)),
-        TileDefinition(4, TileType.WALL_LEFT, Color(0xFF2A3039)),
-        TileDefinition(5, TileType.WALL_RIGHT, Color(0xFF2A3039)),
+        TileDefinition(2, TileType.WALL_TOP, NachtzugColors.TileWall),
+        TileDefinition(3, TileType.WALL_BOTTOM, NachtzugColors.TileWall),
+        TileDefinition(4, TileType.WALL_LEFT, NachtzugColors.TileWall),
+        TileDefinition(5, TileType.WALL_RIGHT, NachtzugColors.TileWall),
         
         // Corner tiles
-        TileDefinition(6, TileType.WALL_CORNER_TL, Color(0xFF2A3039)),
-        TileDefinition(7, TileType.WALL_CORNER_TR, Color(0xFF2A3039)),
-        TileDefinition(8, TileType.WALL_CORNER_BL, Color(0xFF2A3039)),
-        TileDefinition(9, TileType.WALL_CORNER_BR, Color(0xFF2A3039)),
+        TileDefinition(6, TileType.WALL_CORNER_TL, NachtzugColors.TileWall),
+        TileDefinition(7, TileType.WALL_CORNER_TR, NachtzugColors.TileWall),
+        TileDefinition(8, TileType.WALL_CORNER_BL, NachtzugColors.TileWall),
+        TileDefinition(9, TileType.WALL_CORNER_BR, NachtzugColors.TileWall),
         
         // Door tiles
-        TileDefinition(10, TileType.DOOR, Color(0xFF5BC0BE)),  // Unlocked - Station Neon
-        TileDefinition(11, TileType.DOOR_LOCKED, Color(0xFFD32F2F)),  // Locked - Warning Red
+        TileDefinition(10, TileType.DOOR, NachtzugColors.StationNeon),  // Unlocked - Station Neon
+        TileDefinition(11, TileType.DOOR_LOCKED, NachtzugColors.WarningRed),  // Locked - Warning Red
         
         // Window tile
-        TileDefinition(12, TileType.WINDOW, Color(0xFF88CCDD)),
+        TileDefinition(12, TileType.WINDOW, NachtzugColors.TileWindow),
         
         // Seat tile
-        TileDefinition(13, TileType.SEAT, Color(0xFF3E4652)),
+        TileDefinition(13, TileType.SEAT, NachtzugColors.TileSeat),
         
         // Special floor tiles
-        TileDefinition(14, TileType.FLOOR_SPECIAL, Color(0xFF151A22))
+        TileDefinition(14, TileType.FLOOR_SPECIAL, NachtzugColors.TileFloorSpecial)
     )
     
     val tileset = Tileset(

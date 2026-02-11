@@ -22,6 +22,7 @@ import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.dp
+import de.daydaylx.nachtzug19.ui.theme.NachtzugColors
 
 /**
  * Pixel-basierte Top-Bar für Kapitel-Label, Status und Einstellungen.
@@ -34,9 +35,9 @@ fun PixelHUD(
   onSettingsClick: () -> Unit,
   modifier: Modifier = Modifier
 ) {
-  val borderOuter = Color(0xFF0B0F14)
-  val borderInner = Color(0xFF2E3540)
-  val background = Color(0xFF141A22)
+  val borderOuter = NachtzugColors.PanelBorderOuter
+  val borderInner = NachtzugColors.PanelBorderInner
+  val background = NachtzugColors.BackgroundPanel
 
   Box(
     modifier = modifier
@@ -71,7 +72,7 @@ fun PixelHUD(
           HudIconButton(
             icon = ReaderIcons.Status,
             contentDescription = "Status",
-            tint = Color(0xFF5BC0BE),
+            tint = NachtzugColors.StationNeon,
             onClick = onStatusClick
           )
           Spacer(modifier = Modifier.width(4.dp))
@@ -79,7 +80,7 @@ fun PixelHUD(
         HudIconButton(
           icon = ReaderIcons.Settings,
           contentDescription = "Einstellungen",
-          tint = Color(0xFFE8E8E8),
+          tint = NachtzugColors.TextPrimary,
           onClick = onSettingsClick
         )
       }
@@ -112,6 +113,6 @@ private fun PixelLabel(text: String) {
   Text(
     text = text,
     style = MaterialTheme.typography.labelMedium,
-    color = Color(0xFFE8E8E8)
+    color = NachtzugColors.TextPrimary
   )
 }

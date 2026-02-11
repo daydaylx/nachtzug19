@@ -14,24 +14,24 @@ data class PixelSprite(
 
 object PixelAssets {
     // Colors
-    val C_SKIN = Color(0xFFE8C07D)
-    val C_HAIR = Color(0xFF5A3A29)
-    val C_UNIFORM = Color(0xFF2A3039)
+    val C_SKIN = NachtzugColors.PixelSkin
+    val C_HAIR = NachtzugColors.PixelHair
+    val C_UNIFORM = NachtzugColors.PixelUniform
     val C_UNIFORM_ACCENT = NachtzugColors.StationNeon // Cyan
     val C_RED = NachtzugColors.WarningRed
     val C_WHITE = Color.White
-    val C_SHIRT = Color(0xFF8899A6)
-    val C_JEANS = Color(0xFF3E5F8A)
-    val C_GLASS = Color(0xFF88CCDD).copy(alpha = 0.3f)
-    val C_FRAME = Color(0xFF444444)
-    val C_SEAT = Color(0xFF8B4513) // Brown leather
+    val C_SHIRT = NachtzugColors.PixelShirt
+    val C_JEANS = NachtzugColors.PixelJeans
+    val C_GLASS = NachtzugColors.PixelGlass.copy(alpha = 0.3f)
+    val C_FRAME = NachtzugColors.PixelFrame
+    val C_SEAT = NachtzugColors.PixelSeat // Brown leather
 
     // 12x16 Player (Backpack Traveler)
     val PLAYER = parseSprite(
         12, 16,
         mapOf(
             'S' to C_SKIN, 'H' to C_HAIR, 'J' to C_JEANS, 'T' to C_SHIRT, 
-            'B' to Color(0xFF654321), // Backpack brown
+            'B' to NachtzugColors.PixelBackpack, // Backpack brown
             'X' to Color.Black
         ),
         """
@@ -86,7 +86,7 @@ object PixelAssets {
         12, 16,
         mapOf(
             'S' to C_SKIN, 'R' to C_RED, 'W' to C_WHITE,
-            'B' to Color.Blue, 'X' to Color.Black
+            'B' to NachtzugColors.PixelBoyPants, 'X' to Color.Black
         ),
         """
         ....RRRR....
@@ -112,7 +112,7 @@ object PixelAssets {
     val SLEEPLESS = parseSprite(
         12, 16,
         mapOf(
-            'S' to C_SKIN, 'G' to Color.DarkGray, 'X' to Color.Black
+            'S' to C_SKIN, 'G' to NachtzugColors.PixelSleeplessHoodie, 'X' to Color.Black
         ),
         """
         ....GGGG....

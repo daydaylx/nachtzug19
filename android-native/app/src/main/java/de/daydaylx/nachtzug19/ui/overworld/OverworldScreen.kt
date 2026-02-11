@@ -508,7 +508,7 @@ private fun DrawScope.drawPlayer(center: Offset, tileSize: Float, color: Color) 
 
   // Haare (dunkel)
   drawArc(
-    color = Color(0xFF3D3229),
+    color = NachtzugColors.OverworldWall,
     startAngle = 180f,
     sweepAngle = 180f,
     useCenter = true,
@@ -593,7 +593,7 @@ private fun DrawScope.drawNpcHotspot(
   )
 
   // Kopf
-  val skinColor = Color(0xFFDEB887)  // Hautfarbe
+  val skinColor = NachtzugColors.OverworldNpcSkin
   drawOval(
     color = skinColor,
     topLeft = Offset(pos.x - unit * 2, pos.y - unit * 4),
@@ -602,7 +602,7 @@ private fun DrawScope.drawNpcHotspot(
 
   // Haare (variiert je nach NPC, hier dunkel)
   drawArc(
-    color = Color(0xFF4A3728),
+    color = NachtzugColors.OverworldNpcHair,
     startAngle = 180f,
     sweepAngle = 180f,
     useCenter = true,

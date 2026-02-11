@@ -11,9 +11,7 @@ data class MotionPolicy(
   val allowContinuousEffects: Boolean,
   val allowBackgroundDrift: Boolean,
   val backgroundCrossfadeDurationMs: Int,
-  val overlayTransitionDurationMs: Int,
-  val choiceFeedbackFadeDurationMs: Int,
-  val choiceFeedbackVisibleMs: Long
+  val overlayTransitionDurationMs: Int
 )
 
 fun ReaderSettings.toMotionPolicy(): MotionPolicy {
@@ -23,9 +21,7 @@ fun ReaderSettings.toMotionPolicy(): MotionPolicy {
       allowContinuousEffects = false,
       allowBackgroundDrift = false,
       backgroundCrossfadeDurationMs = 0,
-      overlayTransitionDurationMs = 0,
-      choiceFeedbackFadeDurationMs = 0,
-      choiceFeedbackVisibleMs = 0L
+      overlayTransitionDurationMs = 0
     )
   }
 
@@ -35,8 +31,6 @@ fun ReaderSettings.toMotionPolicy(): MotionPolicy {
     allowContinuousEffects = ambientFxEnabled,
     allowBackgroundDrift = ambientFxEnabled,
     backgroundCrossfadeDurationMs = 420,
-    overlayTransitionDurationMs = 200,
-    choiceFeedbackFadeDurationMs = 120,
-    choiceFeedbackVisibleMs = 220L
+    overlayTransitionDurationMs = 200
   )
 }

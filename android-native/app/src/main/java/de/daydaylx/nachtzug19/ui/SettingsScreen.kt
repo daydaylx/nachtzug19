@@ -54,6 +54,7 @@ fun SettingsScreen(
   var localSettings by remember(settings) { mutableStateOf(settings) }
   val motionPolicy = remember(localSettings) { localSettings.toMotionPolicy() }
   val scrollState = rememberScrollState()
+  val atmosphereLayersEnabled = motionPolicy.allowContinuousEffects
 
   Box(modifier = Modifier.fillMaxSize()) {
     AnimatedBackground(
@@ -62,9 +63,9 @@ fun SettingsScreen(
       motionPolicy = motionPolicy,
       enabled = true
     )
-    SafeZoneOverlay(enabled = true)
-    VignetteLayer()
-    NoiseLayer(enabled = motionPolicy.allowContinuousEffects)
+    SafeZoneOverlay(enabled = atmosphereLayersEnabled)
+    VignetteLayer(enabled = atmosphereLayersEnabled)
+    NoiseLayer(enabled = atmosphereLayersEnabled)
 
     Column(
       modifier = Modifier
@@ -84,19 +85,27 @@ fun SettingsScreen(
         Text(
           text = "Textgröße",
           style = MaterialTheme.typography.labelLarge,
-          color = Color(0xFFE8E8E8)
+          color = NachtzugColors.TextPrimary
         )
         Row(
           modifier = Modifier.fillMaxWidth(),
           horizontalArrangement = Arrangement.SpaceBetween
         ) {
-          Text("14", style = MaterialTheme.typography.labelSmall, color = Color(0x99E8E8E8))
+          Text(
+            "14",
+            style = MaterialTheme.typography.labelSmall,
+            color = NachtzugColors.TextPrimary.copy(alpha = 0.60f)
+          )
           Text(
             text = localSettings.textSizeSp.toInt().toString(),
             style = MaterialTheme.typography.labelSmall,
             color = NachtzugColors.StationNeon
           )
-          Text("24", style = MaterialTheme.typography.labelSmall, color = Color(0x99E8E8E8))
+          Text(
+            "24",
+            style = MaterialTheme.typography.labelSmall,
+            color = NachtzugColors.TextPrimary.copy(alpha = 0.60f)
+          )
         }
         Slider(
           value = localSettings.textSizeSp,
@@ -112,6 +121,15 @@ fun SettingsScreen(
           )
         )
         SettingHint("Empfohlen: 18 pt für ruhiges Lesen auf dem Smartphone.")
+        SettingsToggleRow(
+          label = "Lesen erzwingen (Choices erst nach Scroll)",
+          hint = "Wenn aktiv, werden Entscheidungen bei langen Texten erst nach ~70 % Scroll freigeschaltet.",
+          checked = localSettings.enforceReadBeforeChoices,
+          onToggle = {
+            localSettings = localSettings.copy(enforceReadBeforeChoices = it)
+            onUpdateSettings(localSettings)
+          }
+        )
       }
 
       SettingsSection(
@@ -180,9 +198,9 @@ private fun SettingsHeader(
   onBack: () -> Unit,
   modifier: Modifier = Modifier
 ) {
-  val borderOuter = Color(0xFF0B0F14)
-  val borderInner = Color(0xFF2E3540)
-  val background = Color(0xFF141A22)
+  val borderOuter = NachtzugColors.PanelBorderOuter
+  val borderInner = NachtzugColors.PanelBorderInner
+  val background = NachtzugColors.BackgroundPanel
 
   Box(
     modifier = modifier
@@ -213,14 +231,14 @@ private fun SettingsHeader(
         Icon(
           imageVector = Icons.AutoMirrored.Filled.ArrowBack,
           contentDescription = "Zurück",
-          tint = Color(0xFFE8E8E8)
+          tint = NachtzugColors.TextPrimary
         )
       }
       Spacer(modifier = Modifier.width(8.dp))
       Text(
         text = "Einstellungen",
         style = MaterialTheme.typography.titleMedium,
-        color = Color(0xFFE8E8E8)
+        color = NachtzugColors.TextPrimary
       )
     }
   }
@@ -233,9 +251,9 @@ private fun SettingsSection(
   modifier: Modifier = Modifier,
   content: @Composable ColumnScope.() -> Unit
 ) {
-  val borderOuter = Color(0x990B0F14)
-  val borderInner = Color(0x882E3540)
-  val background = Color(0xB2141A22)
+  val borderOuter = NachtzugColors.PanelBorderOuterSoft
+  val borderInner = NachtzugColors.PanelBorderInnerSoft
+  val background = NachtzugColors.ReaderPanelSoft
   val borderSize = 2.dp
   val innerBorderSize = 1.dp
 
@@ -300,7 +318,11 @@ private fun SettingsToggleRow(
       Text(
         text = label,
         style = MaterialTheme.typography.bodyMedium,
-        color = if (enabled) Color(0xFFE8E8E8) else Color(0x80E8E8E8)
+        color = if (enabled) {
+          NachtzugColors.TextPrimary
+        } else {
+          NachtzugColors.TextPrimary.copy(alpha = 0.5f)
+        }
       )
       SettingHint(
         text = hint,
@@ -315,10 +337,10 @@ private fun SettingsToggleRow(
       colors = SwitchDefaults.colors(
         checkedThumbColor = NachtzugColors.StationNeon,
         checkedTrackColor = NachtzugColors.TicketEmpty,
-        uncheckedThumbColor = Color(0xFF7A8694),
-        uncheckedTrackColor = Color(0xFF27313D),
+        uncheckedThumbColor = NachtzugColors.TextDisabled,
+        uncheckedTrackColor = NachtzugColors.SwitchTrackOff,
         checkedBorderColor = NachtzugColors.StationNeon,
-        uncheckedBorderColor = Color(0x553E4753)
+        uncheckedBorderColor = NachtzugColors.ReaderBorderMuted
       )
     )
   }
@@ -332,6 +354,10 @@ private fun SettingHint(
   Text(
     text = text,
     style = MaterialTheme.typography.bodySmall,
-    color = if (enabled) Color(0xB3C9D0D8) else Color(0x669AA4AF)
+    color = if (enabled) {
+      NachtzugColors.TextMuted.copy(alpha = 0.70f)
+    } else {
+      NachtzugColors.TextMutedSoft.copy(alpha = 0.40f)
+    }
   )
 }

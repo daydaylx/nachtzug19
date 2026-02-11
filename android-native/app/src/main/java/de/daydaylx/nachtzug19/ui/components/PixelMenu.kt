@@ -25,6 +25,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
+import de.daydaylx.nachtzug19.ui.theme.NachtzugColors
 import de.daydaylx.nachtzug19.ui.theme.PixelTypography
 
 /**
@@ -62,8 +63,8 @@ private fun PixelMenuRow(
   selected: Boolean,
   onClick: () -> Unit
 ) {
-  val background = if (selected) Color(0xAA1B2330) else Color(0x9910151D)  // 67% / 60% opaque - more transparent
-  val cursorColor = if (selected) Color(0xFFFFD369) else Color(0xFFE8E8E8)
+  val background = if (selected) NachtzugColors.BackgroundMenuSelected else NachtzugColors.BackgroundMenuIdle
+  val cursorColor = if (selected) NachtzugColors.TextHighlight else NachtzugColors.TextPrimary
 
   // Focus State Support for Accessibility
   val interactionSource = remember { MutableInteractionSource() }
@@ -75,7 +76,7 @@ private fun PixelMenuRow(
       .background(background)
       .border(
         width = if (isFocused) 2.dp else 0.dp,
-        color = if (isFocused) Color(0xFF00BCD4) else Color.Transparent
+        color = if (isFocused) NachtzugColors.FocusCyan else Color.Transparent
       )
       .clickable(
         interactionSource = interactionSource,
@@ -97,7 +98,7 @@ private fun PixelMenuRow(
     Text(
       text = label,
       style = PixelTypography.body,
-      color = Color(0xFFE8E8E8)
+      color = NachtzugColors.TextPrimary
     )
   }
 }

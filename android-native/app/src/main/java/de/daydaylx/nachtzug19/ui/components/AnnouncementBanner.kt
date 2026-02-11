@@ -19,6 +19,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import de.daydaylx.nachtzug19.ui.theme.NachtzugColors
 
 /**
  * Announcement Banner für wichtige Durchsagen.
@@ -60,10 +61,10 @@ fun AnnouncementBanner(
         Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .background(Color(0xFF1A1F2B))
+                .background(NachtzugColors.BackgroundAnnouncement)
                 .border(
                     width = 1.dp,
-                    color = Color(0xFFFFD369)
+                    color = NachtzugColors.TextHighlight
                 )
                 .padding(vertical = 8.dp, horizontal = 12.dp),
             contentAlignment = Alignment.Center
@@ -71,7 +72,7 @@ fun AnnouncementBanner(
             Text(
                 text = text,
                 style = MaterialTheme.typography.labelMedium,
-                color = Color(0xFFFFD369),
+                color = NachtzugColors.TextHighlight,
                 textAlign = TextAlign.Center
             )
         }

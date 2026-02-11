@@ -13,11 +13,12 @@ import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.drawscope.DrawScope
+import de.daydaylx.nachtzug19.ui.theme.NachtzugColors
 import kotlin.math.sin
 import kotlin.random.Random
 
-private val BgDark = Color(0xFF0B0F14)
-private val BgLighter = Color(0xFF141A22)
+private val BgDark = NachtzugColors.BackgroundDeep
+private val BgLighter = NachtzugColors.BackgroundPanel
 
 @Composable
 fun BackgroundBase(modifier: Modifier = Modifier) {
@@ -63,8 +64,8 @@ fun BackgroundDrift(
 
   // Color shifts based on drift level
   val driftColor = when {
-    driftLevel <= 3 -> Color(0xFF0A0F14) // Neutral to slightly cold
-    else -> Color(0xFF0A0F12) // Colder at high drift
+    driftLevel <= 3 -> NachtzugColors.DriftOverlayNeutral // Neutral to slightly cold
+    else -> NachtzugColors.DriftOverlayCold // Colder at high drift
   }
   
   val driftAlpha = 0.02f + (0.03f * driftLevel / 6f)
@@ -128,7 +129,12 @@ private fun DrawScope.drawGlitches(driftLevel: Int) {
 }
 
 @Composable
-fun VignetteLayer(modifier: Modifier = Modifier) {
+fun VignetteLayer(
+  enabled: Boolean = true,
+  modifier: Modifier = Modifier
+) {
+  if (!enabled) return
+
   Box(
     modifier = modifier
       .fillMaxSize()

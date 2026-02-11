@@ -2,7 +2,12 @@ package de.daydaylx.nachtzug19.ui.components
 
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.animation.core.LinearEasing
+import androidx.compose.animation.core.RepeatMode
 import androidx.compose.animation.core.tween
+import androidx.compose.animation.core.animateFloat
+import androidx.compose.animation.core.infiniteRepeatable
+import androidx.compose.animation.core.rememberInfiniteTransition
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
@@ -28,6 +33,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import de.daydaylx.nachtzug19.model.ChoiceWeight
 import de.daydaylx.nachtzug19.ui.theme.NachtzugColors
+import kotlinx.coroutines.delay
 
 private data class ChoiceVisualStyle(
     val accent: Color,
@@ -60,16 +66,58 @@ fun TicketChoice(
     label: String,
     onClick: () -> Unit,
     isProcessing: Boolean,
+    isInteractionLocked: Boolean = false,
     weight: ChoiceWeight = ChoiceWeight.Neutral,
     enabled: Boolean = true,
     modifier: Modifier = Modifier
 ) {
-    val isEnabled = enabled && !isProcessing
     val visualStyle = remember(weight) { weight.visualStyle() }
+    val isEnabled = enabled && !isInteractionLocked
     val shape = RoundedCornerShape(12.dp)
     val interactionSource = remember { MutableInteractionSource() }
     val isPressed by interactionSource.collectIsPressedAsState()
     val isFocused by interactionSource.collectIsFocusedAsState()
+    var processingDots by remember(label) { mutableIntStateOf(3) }
+
+    LaunchedEffect(isProcessing) {
+        if (!isProcessing) {
+            processingDots = 3
+            return@LaunchedEffect
+        }
+        while (isProcessing) {
+            for (dotCount in 1..3) {
+                processingDots = dotCount
+                delay(220L)
+            }
+        }
+    }
+
+    val processingPulse = if (isProcessing) {
+        val transition = rememberInfiniteTransition(label = "ticketProcessingPulse")
+        val alpha by transition.animateFloat(
+            initialValue = 0.45f,
+            targetValue = 1f,
+            animationSpec = infiniteRepeatable(
+                animation = tween(durationMillis = 480, easing = LinearEasing),
+                repeatMode = RepeatMode.Reverse
+            ),
+            label = "ticketProcessingAlpha"
+        )
+        alpha
+    } else {
+        1f
+    }
+
+    val displayedLabel = if (isProcessing) {
+        "Wird verarbeitet${".".repeat(processingDots)}"
+    } else {
+        label
+    }
+    val badgeLabel = if (isProcessing) {
+        ".".repeat(processingDots)
+    } else {
+        visualStyle.badgeLabel
+    }
 
     val scale by animateFloatAsState(
         targetValue = if (isPressed) 0.994f else 1f,
@@ -114,7 +162,11 @@ fun TicketChoice(
             }
             .semantics(mergeDescendants = true) {
                 role = Role.Button
-                contentDescription = "$label, ${visualStyle.accessibilityLabel}"
+                contentDescription = if (isProcessing) {
+                    "$label, wird verarbeitet"
+                } else {
+                    "$label, ${visualStyle.accessibilityLabel}"
+                }
                 if (!isEnabled) disabled()
             },
         shape = shape,
@@ -144,9 +196,11 @@ fun TicketChoice(
             }
 
             Text(
-                text = label,
+                text = displayedLabel,
                 style = MaterialTheme.typography.bodyLarge.copy(
-                    color = if (isEnabled) {
+                    color = if (isProcessing) {
+                        MaterialTheme.colorScheme.onSurface.copy(alpha = 0.56f + 0.34f * processingPulse)
+                    } else if (isEnabled) {
                         MaterialTheme.colorScheme.onSurface.copy(alpha = 0.93f)
                     } else {
                         MaterialTheme.colorScheme.onSurface.copy(alpha = 0.48f)
@@ -168,9 +222,13 @@ fun TicketChoice(
                 )
             ) {
                 Text(
-                    text = visualStyle.badgeLabel,
+                    text = badgeLabel,
                     style = MaterialTheme.typography.labelSmall,
-                    color = visualStyle.accent.copy(alpha = if (isEnabled) 0.95f else 0.40f),
+                    color = if (isProcessing) {
+                        visualStyle.accent.copy(alpha = 0.35f + 0.60f * processingPulse)
+                    } else {
+                        visualStyle.accent.copy(alpha = if (isEnabled) 0.95f else 0.40f)
+                    },
                     modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp)
                 )
             }

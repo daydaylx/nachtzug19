@@ -40,16 +40,16 @@ fun TicketStamp(
         onDismissRequest = onToggleTooltip
       ) {
         Surface(
-          color = Color(0xFF141A22),
+          color = NachtzugColors.BackgroundPanel,
           shape = MaterialTheme.shapes.small,
-          border = androidx.compose.foundation.BorderStroke(1.dp, Color(0x553E4753)),
+          border = androidx.compose.foundation.BorderStroke(1.dp, NachtzugColors.ReaderBorderMuted),
           shadowElevation = 4.dp,
           modifier = Modifier.padding(bottom = 8.dp).width(180.dp)
         ) {
           Text(
             text = description,
             style = MaterialTheme.typography.bodySmall,
-            color = Color(0xFFE8E8E8),
+            color = NachtzugColors.TextPrimary,
             modifier = Modifier.padding(8.dp)
           )
         }
@@ -64,7 +64,7 @@ fun TicketStamp(
       Text(
         text = label,
         style = MaterialTheme.typography.labelSmall.copy(fontSize = 10.sp),
-        color = Color(0x99E8E8E8)
+        color = NachtzugColors.TextPrimary.copy(alpha = 0.60f)
       )
 
       Canvas(modifier = Modifier.size(60.dp, 16.dp)) {
@@ -74,7 +74,7 @@ fun TicketStamp(
       Text(
         text = "$value/$maxValue",
         style = MaterialTheme.typography.labelSmall.copy(fontSize = 9.sp),
-        color = Color(0x77E8E8E8)
+        color = NachtzugColors.TextPrimary.copy(alpha = 0.47f)
       )
     }
   }
@@ -164,7 +164,7 @@ private fun DrawScope.drawPressureSegments(
     val color = when {
         !filled -> baseColor.copy(alpha = 0.2f)
         index >= dangerThreshold -> NachtzugColors.WarningRed
-        index >= warningThreshold -> Color(0xFFE09F3E) // Orange/Warning
+        index >= warningThreshold -> NachtzugColors.WarningAmber
         else -> baseColor
     }
 
@@ -230,7 +230,7 @@ fun RelationshipDots(
     // Mapping: -2 (Hostile/Red) ... 0 (Neutral/Gray) ... +4 (Friendly/Green)
     val color = when {
         value < 0 -> NachtzugColors.WarningRed
-        value > 2 -> Color(0xFF5BC0BE) // Teal
+        value > 2 -> NachtzugColors.StationNeon
         else -> Color.Gray
     }
     

@@ -17,6 +17,7 @@ import androidx.compose.ui.res.painterResource
 import de.daydaylx.nachtzug19.R
 import de.daydaylx.nachtzug19.model.SceneTag
 import de.daydaylx.nachtzug19.ui.MotionPolicy
+import de.daydaylx.nachtzug19.ui.theme.NachtzugColors
 
 /**
  * Background Asset System for NACHTZUG 19
@@ -191,8 +192,8 @@ fun AnimatedBackground(
 ) {
     // Drift-based color tint
     val tintColor = when {
-        driftLevel >= 5 -> Color(0xFF0A0D12) // Very cold at high drift
-        driftLevel >= 3 -> Color(0xFF0B0F14) // Slightly cold
+        driftLevel >= 5 -> NachtzugColors.DriftTintHigh // Very cold at high drift
+        driftLevel >= 3 -> NachtzugColors.DriftTintMid // Slightly cold
         else -> Color.Transparent // No tint
     }
 

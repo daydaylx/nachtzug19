@@ -3,12 +3,18 @@ package de.daydaylx.nachtzug19.model
 import de.daydaylx.nachtzug19.data.StoryJson
 import kotlinx.serialization.decodeFromString
 import org.junit.Assert.assertFalse
+import org.junit.Assert.assertTrue
 import org.junit.Test
 
 class ReaderSettingsTest {
   @Test
   fun microbarIsOffByDefault() {
     assertFalse(ReaderSettings().showMicrobar)
+  }
+
+  @Test
+  fun readthroughGateIsOnByDefault() {
+    assertTrue(ReaderSettings().enforceReadBeforeChoices)
   }
 
   @Test
@@ -26,5 +32,6 @@ class ReaderSettingsTest {
     val decoded = StoryJson.json.decodeFromString<ReaderSettings>(legacySettingsJson)
 
     assertFalse(decoded.showMicrobar)
+    assertTrue(decoded.enforceReadBeforeChoices)
   }
 }

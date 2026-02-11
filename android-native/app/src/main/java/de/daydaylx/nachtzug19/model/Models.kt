@@ -286,6 +286,7 @@ data class ReaderSettings(
   val textSizeSp: Float = 18f,
   val reduceMotion: Boolean = false,
   val immersionFx: Boolean = true,
+  val enforceReadBeforeChoices: Boolean = true,
   val showStatus: Boolean = true,
   val showMicrobar: Boolean = false,
   val showRelations: Boolean = false

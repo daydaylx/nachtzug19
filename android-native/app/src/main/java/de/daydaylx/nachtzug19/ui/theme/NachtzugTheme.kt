@@ -6,7 +6,6 @@ import androidx.compose.material3.lightColorScheme
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Typography
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.sp
@@ -16,8 +15,8 @@ private val DarkColorScheme = darkColorScheme(
   secondary = NachtzugColors.ControlOrange,
   background = NachtzugColors.Background,
   surface = NachtzugColors.ReaderCard,
-  onBackground = Color(0xFFE8E8E8),
-  onSurface = Color(0xFFE8E8E8),
+  onBackground = NachtzugColors.TextPrimary,
+  onSurface = NachtzugColors.TextPrimary,
   error = NachtzugColors.WarningRed
 )
 
@@ -26,8 +25,8 @@ private val LightColorScheme = lightColorScheme(
   secondary = NachtzugColors.ControlOrange,
   background = NachtzugColors.Background,
   surface = NachtzugColors.ReaderCard,
-  onBackground = Color(0xFFE8E8E8),
-  onSurface = Color(0xFFE8E8E8),
+  onBackground = NachtzugColors.TextPrimary,
+  onSurface = NachtzugColors.TextPrimary,
   error = NachtzugColors.WarningRed
 )
 

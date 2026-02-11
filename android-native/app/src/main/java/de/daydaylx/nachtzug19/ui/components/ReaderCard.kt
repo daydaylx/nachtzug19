@@ -23,6 +23,7 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
+import de.daydaylx.nachtzug19.ui.theme.NachtzugColors
 import kotlin.math.roundToInt
 
 /**
@@ -91,7 +92,7 @@ fun ReaderCard(
         Color.Black.copy(alpha = 0.3f)
     
     // Reader card background color (warm dark gray, not pure white)
-    val cardBackgroundColor = Color(0xFF1A1F26)
+    val cardBackgroundColor = NachtzugColors.BackgroundPanelElevated
     
     Card(
         modifier = modifier

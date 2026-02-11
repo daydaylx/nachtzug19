@@ -48,7 +48,7 @@ fun StatusSheet(
     Text(
       text = "STATUS",
       style = MaterialTheme.typography.labelMedium,
-      color = Color(0xFFE8E8E8)
+      color = NachtzugColors.TextPrimary
     )
 
     StatusSection(title = "Tickets") {
@@ -97,14 +97,14 @@ fun StatusSheet(
         PressureBar(
           label = "Aufmerksamkeit (Schaffner)",
           value = state.pressure.conductor_attention,
-          baseColor = androidx.compose.ui.graphics.Color(0xFFE07856),
+          baseColor = NachtzugColors.ControlOrange,
           warningThreshold = 3,
           dangerThreshold = 5
         )
         PressureBar(
           label = "Erinnerungsdrift",
           value = state.pressure.memory_drift,
-          baseColor = androidx.compose.ui.graphics.Color(0xFF9BC1BC),
+          baseColor = NachtzugColors.DriftNeutral,
           warningThreshold = 3,
           dangerThreshold = 5
         )
@@ -133,9 +133,9 @@ private fun StatusSection(
   modifier: Modifier = Modifier,
   content: @Composable ColumnScope.() -> Unit
 ) {
-  val borderOuter = Color(0x990B0F14)
-  val borderInner = Color(0x882E3540)
-  val background = Color(0xB2141A22)
+  val borderOuter = NachtzugColors.PanelBorderOuterSoft
+  val borderInner = NachtzugColors.PanelBorderInnerSoft
+  val background = NachtzugColors.ReaderPanelSoft
   val borderSize = 3.dp
   val innerBorderSize = 1.dp
 

@@ -3,17 +3,16 @@ package de.daydaylx.nachtzug19.ui.theme
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.graphics.Color
 
 private val NachtzugColorScheme = darkColorScheme(
-  primary = Color(0xFF5BC0BE),
-  secondary = Color(0xFF9BC1BC),
-  background = Color(0xFF0B0F14),
-  surface = Color(0xFF141A22),
-  onPrimary = Color(0xFF001F1F),
-  onSecondary = Color(0xFF0B0F14),
-  onBackground = Color(0xFFE6EBE0),
-  onSurface = Color(0xFFE6EBE0)
+  primary = NachtzugColors.StationNeon,
+  secondary = NachtzugColors.DriftNeutral,
+  background = NachtzugColors.BackgroundDeep,
+  surface = NachtzugColors.BackgroundPanel,
+  onPrimary = NachtzugColors.BackgroundDeep,
+  onSecondary = NachtzugColors.BackgroundDeep,
+  onBackground = NachtzugColors.TextPrimary,
+  onSurface = NachtzugColors.TextPrimary
 )
 
 @Composable
