@@ -47,6 +47,7 @@ fun PixelDialogBox(
   showAtmosphereLayers: Boolean = true,
   textSizeSp: Float = 16f,
   enableTypewriter: Boolean = false,
+  typewriterSpeed: Float = 1.0f,
   onTypewriterFinished: (() -> Unit)? = null
 ) {
   // Higher opacity + local dimming: keeps narrative readable over photo-rich backgrounds.
@@ -62,7 +63,6 @@ fun PixelDialogBox(
     scrollState.value.toFloat() / scrollState.maxValue.toFloat()
   }
   var skipRequested by remember(narrative, enableTypewriter) { mutableStateOf(false) }
-  var speedMultiplier by remember(narrative, enableTypewriter) { mutableFloatStateOf(1f) }
   var typewriterFinished by remember(narrative, enableTypewriter) { mutableStateOf(!enableTypewriter) }
   val scrollIndicatorVisible = showScrollIndicators &&
     hasOverflow &&
@@ -143,22 +143,11 @@ fun PixelDialogBox(
           Spacer(modifier = Modifier.height(8.dp))
         }
         if (enableTypewriter && !typewriterFinished) {
-          Row(
-            modifier = Modifier.fillMaxWidth(),
-            verticalAlignment = Alignment.CenterVertically
-          ) {
-            TypewriterControl(
-              label = if (speedMultiplier > 1f) "Tempo x3" else "Tempo x1",
-              active = speedMultiplier > 1f,
-              onClick = { speedMultiplier = if (speedMultiplier > 1f) 1f else 3f }
-            )
-            Spacer(modifier = Modifier.width(8.dp))
-            TypewriterControl(
-              label = "Sofort",
-              active = false,
-              onClick = { skipRequested = true }
-            )
-          }
+          TypewriterControl(
+            label = "Sofort",
+            active = false,
+            onClick = { skipRequested = true }
+          )
           Spacer(modifier = Modifier.height(8.dp))
         }
 
@@ -166,7 +155,7 @@ fun PixelDialogBox(
           text = narrative,
           textSizeSp = textSizeSp,
           enabled = enableTypewriter,
-          speedMultiplier = speedMultiplier,
+          speedMultiplier = typewriterSpeed,
           skip = skipRequested,
           style = MaterialTheme.typography.bodyLarge,
           onAnimationFinished = {

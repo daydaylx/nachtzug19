@@ -186,7 +186,7 @@ private fun StoryPanel(
   title: String?,
   beatPhase: BeatPhase,
   typewriterEnabled: Boolean,
-  typewriterSpeed: Float,  // TODO: Pass to PixelDialogBox when supported
+  typewriterSpeed: Float,
   textSizeSp: Float,
   atmosphereLayersEnabled: Boolean,
   onTypewriterComplete: () -> Unit
@@ -202,6 +202,7 @@ private fun StoryPanel(
     showAtmosphereLayers = atmosphereLayersEnabled,
     textSizeSp = textSizeSp,
     enableTypewriter = shouldTypewrite,
+    typewriterSpeed = typewriterSpeed,
     onTypewriterFinished = if (shouldTypewrite) onTypewriterComplete else null,
     modifier = Modifier.fillMaxSize()
   )
