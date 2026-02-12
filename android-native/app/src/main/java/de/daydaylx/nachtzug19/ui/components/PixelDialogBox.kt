@@ -46,7 +46,8 @@ fun PixelDialogBox(
   showScrollIndicators: Boolean = true,
   showAtmosphereLayers: Boolean = true,
   textSizeSp: Float = 16f,
-  enableTypewriter: Boolean = false
+  enableTypewriter: Boolean = false,
+  onTypewriterFinished: (() -> Unit)? = null
 ) {
   // Higher opacity + local dimming: keeps narrative readable over photo-rich backgrounds.
   val borderOuter = NachtzugColors.PanelBorderOuterStrong
@@ -168,7 +169,10 @@ fun PixelDialogBox(
           speedMultiplier = speedMultiplier,
           skip = skipRequested,
           style = MaterialTheme.typography.bodyLarge,
-          onAnimationFinished = { typewriterFinished = true }
+          onAnimationFinished = {
+            typewriterFinished = true
+            onTypewriterFinished?.invoke()
+          }
         )
       }
 

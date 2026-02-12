@@ -21,6 +21,7 @@ import de.daydaylx.nachtzug19.model.StoryContent
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 
 private const val TAG = "NachtzugViewModel"
@@ -35,7 +36,14 @@ data class UiState(
   val availableChoices: List<Choice> = emptyList(),
   val resolvedNarrative: String = "",
   val ending: Ending? = null,
-  val settings: ReaderSettings = ReaderSettings()
+  val settings: ReaderSettings = ReaderSettings(),
+
+  // Story Mode Fields (nur aktiv wenn readerMode == STORY)
+  val narrativeBeats: NarrativeBeats? = null,
+  val beatIndex: Int = 0,
+  val beatPhase: BeatPhase = BeatPhase.LOADING,
+  val isBacklogOpen: Boolean = false,
+  val backlog: List<BacklogEntry> = emptyList()
 )
 
 class GameViewModel(
@@ -103,6 +111,12 @@ class GameViewModel(
     }
 
     viewModelScope.launch {
+      dataStore.backlogFlow().collect { backlog ->
+        _uiState.value = _uiState.value.copy(backlog = backlog)
+      }
+    }
+
+    viewModelScope.launch {
       try {
         val story = repository.loadStory()
         engine.setStory(story.scenesById, story.endings, story.manifest.start_scene_id)
@@ -157,10 +171,23 @@ class GameViewModel(
   }
 
   fun makeChoice(choice: Choice) {
+    // Story Mode: Set phase to CHOICE_COMMITTING
+    if (_uiState.value.settings.readerMode == de.daydaylx.nachtzug19.model.ReaderMode.STORY) {
+      _uiState.value = _uiState.value.copy(beatPhase = BeatPhase.CHOICE_COMMITTING)
+    }
+
     val story = _uiState.value.story ?: return
     engine.makeChoice(choice)
     updateUi(story)
     saveCurrentState()
+
+    // Story Mode: Reset beat index on new scene
+    if (_uiState.value.settings.readerMode == de.daydaylx.nachtzug19.model.ReaderMode.STORY) {
+      _uiState.value = _uiState.value.copy(
+        beatIndex = 0,
+        beatPhase = BeatPhase.SCENE_READY
+      )
+    }
   }
 
   fun openSceneForHotspot(hotspotId: String) {
@@ -176,10 +203,24 @@ class GameViewModel(
     engine.setState(next)
     updateUi(story)
     _uiState.value = _uiState.value.copy(isOverlayOpen = true)
+
+    // Story Mode: Treat overlay as separate beat context
+    if (_uiState.value.settings.readerMode == de.daydaylx.nachtzug19.model.ReaderMode.STORY) {
+      _uiState.value = _uiState.value.copy(
+        beatIndex = 0,  // Reset for overlay
+        beatPhase = BeatPhase.SCENE_READY
+      )
+      // Do NOT saveReaderProgress() - Overlay is temporary
+    }
   }
 
   fun closeSceneOverlay() {
     _uiState.value = _uiState.value.copy(isOverlayOpen = false)
+
+    // Story Mode: Restore main scene state from before overlay
+    if (_uiState.value.settings.readerMode == de.daydaylx.nachtzug19.model.ReaderMode.STORY) {
+      restoreReaderProgressIfPossible()  // Restore previous beat index
+    }
   }
 
   fun resetGame() {
@@ -221,6 +262,142 @@ class GameViewModel(
       resolvedNarrative = narrative,
       ending = ending
     )
+
+    // Update beats for Story Mode
+    updateBeatsIfStoryMode(narrative, _uiState.value.settings)
+  }
+
+  private fun updateBeatsIfStoryMode(narrative: String, settings: ReaderSettings) {
+    if (settings.readerMode != de.daydaylx.nachtzug19.model.ReaderMode.STORY) {
+      _uiState.value = _uiState.value.copy(
+        narrativeBeats = null,
+        beatIndex = 0,
+        beatPhase = BeatPhase.SCENE_READY
+      )
+      return
+    }
+
+    val beats = BeatSplitter.splitIntoBeats(narrative)
+    _uiState.value = _uiState.value.copy(
+      narrativeBeats = beats,
+      beatIndex = 0,
+      beatPhase = BeatPhase.SCENE_READY
+    )
+
+    // Restore progress if applicable
+    restoreReaderProgressIfPossible()
+  }
+
+  private fun restoreReaderProgressIfPossible() {
+    viewModelScope.launch {
+      val progress = dataStore.readerProgressFlow().first() ?: return@launch
+      val uiState = _uiState.value
+
+      // Nur wiederherstellen wenn gleiche Szene
+      if (progress.sceneId == uiState.currentScene?.id) {
+        val beats = uiState.narrativeBeats
+        if (beats != null && progress.beatIndex in beats.beats.indices) {
+          _uiState.value = _uiState.value.copy(
+            beatIndex = progress.beatIndex,
+            beatPhase = BeatPhase.BEAT_REVEALED
+          )
+        }
+      }
+    }
+  }
+
+  // Story Mode: Tap Event Handler
+  fun onTapContent() {
+    val uiState = _uiState.value
+    val settings = uiState.settings
+
+    if (settings.readerMode != de.daydaylx.nachtzug19.model.ReaderMode.STORY) return
+
+    when (uiState.beatPhase) {
+      BeatPhase.BEAT_TYPING -> {
+        // Tap während Typewriter → sofort komplett anzeigen
+        _uiState.value = _uiState.value.copy(beatPhase = BeatPhase.BEAT_REVEALED)
+      }
+      BeatPhase.BEAT_REVEALED -> {
+        val beats = uiState.narrativeBeats ?: return
+        val currentIndex = uiState.beatIndex
+
+        if (currentIndex < beats.beats.lastIndex) {
+          // Nächster Beat
+          advanceToNextBeat()
+        } else {
+          // Letzter Beat erreicht → Choices
+          _uiState.value = _uiState.value.copy(beatPhase = BeatPhase.CHOICES_AVAILABLE)
+        }
+      }
+      BeatPhase.CHOICES_AVAILABLE -> {
+        // Tap im Content macht nichts (Choices brauchen expliziten Tap)
+      }
+      else -> { /* Ignore */ }
+    }
+  }
+
+  // Story Mode: Typewriter Complete Handler
+  fun onTypewriterComplete() {
+    if (_uiState.value.settings.readerMode != de.daydaylx.nachtzug19.model.ReaderMode.STORY) return
+    if (_uiState.value.beatPhase == BeatPhase.BEAT_TYPING) {
+      _uiState.value = _uiState.value.copy(beatPhase = BeatPhase.BEAT_REVEALED)
+    }
+  }
+
+  private fun advanceToNextBeat() {
+    val uiState = _uiState.value
+    val beats = uiState.narrativeBeats ?: return
+    val newIndex = (uiState.beatIndex + 1).coerceAtMost(beats.beats.lastIndex)
+
+    // Append current beat to backlog
+    appendBeatToBacklog(
+      sceneId = uiState.currentScene?.id ?: "",
+      beatIndex = uiState.beatIndex,
+      text = beats.beats.getOrNull(uiState.beatIndex) ?: ""
+    )
+
+    _uiState.value = _uiState.value.copy(
+      beatIndex = newIndex,
+      beatPhase = BeatPhase.BEAT_TYPING
+    )
+
+    // Save progress
+    saveReaderProgress()
+  }
+
+  private fun appendBeatToBacklog(sceneId: String, beatIndex: Int, text: String) {
+    viewModelScope.launch {
+      val current = dataStore.backlogFlow().first()
+      val newEntry = BacklogEntry(
+        timestamp = System.currentTimeMillis(),
+        sceneId = sceneId,
+        beatIndex = beatIndex,
+        text = text
+      )
+      dataStore.saveBacklog(current + newEntry)
+    }
+  }
+
+  private fun saveReaderProgress() {
+    viewModelScope.launch {
+      val uiState = _uiState.value
+      val sceneId = uiState.currentScene?.id ?: return@launch
+      val progress = ReaderProgress(
+        sceneId = sceneId,
+        beatIndex = uiState.beatIndex
+      )
+      dataStore.saveReaderProgress(progress)
+    }
+  }
+
+  // Backlog UI Toggle
+  fun onOpenBacklog() {
+    _uiState.value = _uiState.value.copy(isBacklogOpen = true)
+  }
+
+  fun onCloseBacklog() {
+    _uiState.value = _uiState.value.copy(isBacklogOpen = false)
   }
 
   private fun applyPendingDebugScene(story: StoryContent) {

@@ -9,6 +9,8 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.History
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -33,7 +35,8 @@ fun PixelHUD(
   showStatusButton: Boolean,
   onStatusClick: () -> Unit,
   onSettingsClick: () -> Unit,
-  modifier: Modifier = Modifier
+  modifier: Modifier = Modifier,
+  onBacklogClick: (() -> Unit)? = null  // Optional: Only for Story Mode
 ) {
   val borderOuter = NachtzugColors.PanelBorderOuter
   val borderInner = NachtzugColors.PanelBorderInner
@@ -68,6 +71,16 @@ fun PixelHUD(
       PixelLabel(text = title)
 
       Row(verticalAlignment = Alignment.CenterVertically) {
+        // Backlog button (Story Mode only)
+        if (onBacklogClick != null) {
+          HudIconButton(
+            icon = Icons.Filled.History,
+            contentDescription = "Backlog öffnen",
+            tint = NachtzugColors.TextMuted,
+            onClick = onBacklogClick
+          )
+          Spacer(modifier = Modifier.width(4.dp))
+        }
         if (showStatusButton) {
           HudIconButton(
             icon = ReaderIcons.Status,

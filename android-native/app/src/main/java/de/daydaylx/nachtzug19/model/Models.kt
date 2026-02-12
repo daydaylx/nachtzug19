@@ -282,6 +282,12 @@ data class StoryContent(
 )
 
 @Serializable
+enum class ReaderMode {
+  SCROLL,  // Bestehender scroll-basierter Flow
+  STORY    // Neu: Beat-basiert mit Tap-to-advance
+}
+
+@Serializable
 data class ReaderSettings(
   val textSizeSp: Float = 18f,
   val reduceMotion: Boolean = false,
@@ -289,7 +295,10 @@ data class ReaderSettings(
   val enforceReadBeforeChoices: Boolean = true,
   val showStatus: Boolean = true,
   val showMicrobar: Boolean = false,
-  val showRelations: Boolean = false
+  val showRelations: Boolean = false,
+  val readerMode: ReaderMode = ReaderMode.STORY,
+  val typewriterEnabled: Boolean = true,
+  val typewriterSpeed: Float = 1.0f  // 0.5x - 2.0x
 )
 
 @Serializable

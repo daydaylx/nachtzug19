@@ -24,6 +24,10 @@ class GameDataStore(private val context: Context) {
   private val currentSceneKey = stringPreferencesKey("current_scene_id")
   private val settingsKey = stringPreferencesKey("settings_json")
 
+  // Story Mode UI-only persistence
+  private val readerProgressKey = stringPreferencesKey("reader_progress_json")
+  private val backlogKey = stringPreferencesKey("backlog_json")
+
   suspend fun loadGame(): GameSave? {
     val prefs = context.dataStore.data.first()
     val stateJson = prefs[stateKey] ?: return null
@@ -90,6 +94,50 @@ class GameDataStore(private val context: Context) {
   suspend fun saveSettings(settings: ReaderSettings) {
     context.dataStore.edit { prefs ->
       prefs[settingsKey] = StoryJson.json.encodeToString(ReaderSettings.serializer(), settings)
+    }
+  }
+
+  // Reader Progress (Story Mode)
+  suspend fun saveReaderProgress(progress: de.daydaylx.nachtzug19.ui.ReaderProgress) {
+    context.dataStore.edit { prefs ->
+      prefs[readerProgressKey] = StoryJson.json.encodeToString(
+        de.daydaylx.nachtzug19.ui.ReaderProgress.serializer(),
+        progress
+      )
+    }
+  }
+
+  fun readerProgressFlow(): Flow<de.daydaylx.nachtzug19.ui.ReaderProgress?> {
+    return context.dataStore.data.map { prefs ->
+      prefs[readerProgressKey]?.let {
+        StoryJson.json.decodeFromString(
+          de.daydaylx.nachtzug19.ui.ReaderProgress.serializer(),
+          it
+        )
+      }
+    }
+  }
+
+  // Backlog (Story Mode)
+  suspend fun saveBacklog(backlog: List<de.daydaylx.nachtzug19.ui.BacklogEntry>) {
+    // Cap bei 200 Einträgen für Performance
+    val capped = backlog.takeLast(200)
+    context.dataStore.edit { prefs ->
+      prefs[backlogKey] = StoryJson.json.encodeToString(
+        ListSerializer(de.daydaylx.nachtzug19.ui.BacklogEntry.serializer()),
+        capped
+      )
+    }
+  }
+
+  fun backlogFlow(): Flow<List<de.daydaylx.nachtzug19.ui.BacklogEntry>> {
+    return context.dataStore.data.map { prefs ->
+      prefs[backlogKey]?.let {
+        StoryJson.json.decodeFromString(
+          ListSerializer(de.daydaylx.nachtzug19.ui.BacklogEntry.serializer()),
+          it
+        )
+      } ?: emptyList()
     }
   }
 }

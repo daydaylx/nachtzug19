@@ -26,7 +26,11 @@ fun AppRoot(
         onChoice = { viewModel.makeChoice(it) },
         onReset = { viewModel.resetGame() },
         onOpenSettings = { navController.navigate(ROUTE_SETTINGS) },
-        onExit = { /* Optional: Activity finish */ }
+        onExit = { /* Optional: Activity finish */ },
+        onTapContent = { viewModel.onTapContent() },
+        onTypewriterComplete = { viewModel.onTypewriterComplete() },
+        onOpenBacklog = { viewModel.onOpenBacklog() },
+        onCloseBacklog = { viewModel.onCloseBacklog() }
       )
     }
     composable(ROUTE_SETTINGS) {

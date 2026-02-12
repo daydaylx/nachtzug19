@@ -189,6 +189,79 @@ fun SettingsScreen(
           }
         )
       }
+
+      SettingsSection(
+        title = "Reader-Modus",
+        description = "Wähle zwischen Scroll- und Story-Modus."
+      ) {
+        SettingsToggleRow(
+          label = "Story-Modus (Tap-to-advance)",
+          hint = "Beat-basierter Flow mit Typewriter-Effekt. Tippe zum Weiterlesen. Aus = klassischer Scroll-Modus.",
+          checked = localSettings.readerMode == de.daydaylx.nachtzug19.model.ReaderMode.STORY,
+          onToggle = { checked ->
+            localSettings = localSettings.copy(
+              readerMode = if (checked) de.daydaylx.nachtzug19.model.ReaderMode.STORY
+                          else de.daydaylx.nachtzug19.model.ReaderMode.SCROLL
+            )
+            onUpdateSettings(localSettings)
+          }
+        )
+
+        if (localSettings.readerMode == de.daydaylx.nachtzug19.model.ReaderMode.STORY) {
+          SettingsToggleRow(
+            label = "Typewriter-Effekt",
+            hint = "Zeigt Text sukzessive an. Aus = sofortige Anzeige.",
+            checked = localSettings.typewriterEnabled,
+            onToggle = {
+              localSettings = localSettings.copy(typewriterEnabled = it)
+              onUpdateSettings(localSettings)
+            }
+          )
+
+          if (localSettings.typewriterEnabled) {
+            Text(
+              text = "Typewriter-Geschwindigkeit",
+              style = MaterialTheme.typography.labelLarge,
+              color = NachtzugColors.TextPrimary
+            )
+            Row(
+              modifier = Modifier.fillMaxWidth(),
+              horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+              Text(
+                "0.5x",
+                style = MaterialTheme.typography.labelSmall,
+                color = NachtzugColors.TextPrimary.copy(alpha = 0.60f)
+              )
+              Text(
+                text = "${localSettings.typewriterSpeed}x",
+                style = MaterialTheme.typography.labelSmall,
+                color = NachtzugColors.StationNeon
+              )
+              Text(
+                "2.0x",
+                style = MaterialTheme.typography.labelSmall,
+                color = NachtzugColors.TextPrimary.copy(alpha = 0.60f)
+              )
+            }
+            Slider(
+              value = localSettings.typewriterSpeed,
+              onValueChange = {
+                localSettings = localSettings.copy(typewriterSpeed = it)
+                onUpdateSettings(localSettings)
+              },
+              valueRange = 0.5f..2.0f,
+              steps = 2,  // 0.5, 1.0, 1.5, 2.0
+              colors = SliderDefaults.colors(
+                thumbColor = NachtzugColors.StationNeon,
+                activeTrackColor = NachtzugColors.StationNeon,
+                inactiveTrackColor = NachtzugColors.ReaderBorder
+              )
+            )
+            SettingHint("Empfohlen: 1.0x. Bei 'Bewegung reduzieren' wird auf 10x beschleunigt.")
+          }
+        }
+      }
     }
   }
 }
