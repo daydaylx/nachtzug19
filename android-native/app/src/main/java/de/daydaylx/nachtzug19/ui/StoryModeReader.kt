@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.key
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -114,6 +115,8 @@ fun StoryModeReader(
         beat = currentBeat,
         title = title,
         beatPhase = uiState.beatPhase,
+        beatIndex = uiState.beatIndex,
+        totalBeats = beats?.beats?.size ?: 1,
         typewriterEnabled = settings.typewriterEnabled,
         typewriterSpeed = if (settings.reduceMotion) 10.0f else settings.typewriterSpeed,
         textSizeSp = settings.textSizeSp,
@@ -159,14 +162,16 @@ fun StoryModeReader(
       if (uiState.beatPhase == BeatPhase.CHOICES_AVAILABLE) {
         choices.forEachIndexed { index, choice ->
           val choiceKey = choice.id ?: "choice_$index"
-          TicketChoice(
-            label = choice.label ?: "Weiter",
-            onClick = { onChoice(choice, choiceKey) },
-            isProcessing = processingChoiceKey == choiceKey,
-            isInteractionLocked = interactionLocked,
-            weight = choice.resolvedWeight(),
-            enabled = true
-          )
+          key(choiceKey) {
+            TicketChoice(
+              label = choice.label ?: "Weiter",
+              onClick = { onChoice(choice, choiceKey) },
+              isProcessing = processingChoiceKey == choiceKey,
+              isInteractionLocked = interactionLocked,
+              weight = choice.resolvedWeight(),
+              enabled = true
+            )
+          }
         }
       }
     }
@@ -185,6 +190,8 @@ private fun StoryPanel(
   beat: String,
   title: String?,
   beatPhase: BeatPhase,
+  beatIndex: Int,
+  totalBeats: Int,
   typewriterEnabled: Boolean,
   typewriterSpeed: Float,
   textSizeSp: Float,
@@ -193,17 +200,32 @@ private fun StoryPanel(
 ) {
   // Determine if we should enable typewriter based on beatPhase
   val shouldTypewrite = beatPhase == BeatPhase.BEAT_TYPING && typewriterEnabled
+  val showProgress = totalBeats > 1
 
-  PixelDialogBox(
-    title = title,
-    narrative = beat,
-    scrollState = androidx.compose.foundation.rememberScrollState(),
-    showScrollIndicators = false,  // Story mode doesn't need scroll indicators
-    showAtmosphereLayers = atmosphereLayersEnabled,
-    textSizeSp = textSizeSp,
-    enableTypewriter = shouldTypewrite,
-    typewriterSpeed = typewriterSpeed,
-    onTypewriterFinished = if (shouldTypewrite) onTypewriterComplete else null,
-    modifier = Modifier.fillMaxSize()
-  )
+  Box(modifier = Modifier.fillMaxSize()) {
+    PixelDialogBox(
+      title = title,
+      narrative = beat,
+      scrollState = androidx.compose.foundation.rememberScrollState(),
+      showScrollIndicators = false,  // Story mode doesn't need scroll indicators
+      showAtmosphereLayers = atmosphereLayersEnabled,
+      textSizeSp = textSizeSp,
+      enableTypewriter = shouldTypewrite,
+      typewriterSpeed = typewriterSpeed,
+      onTypewriterFinished = if (shouldTypewrite) onTypewriterComplete else null,
+      modifier = Modifier.fillMaxSize()
+    )
+
+    // Beat Progress Indicator (top right)
+    if (showProgress) {
+      Text(
+        text = "${beatIndex + 1}/$totalBeats",
+        style = MaterialTheme.typography.labelSmall,
+        color = NachtzugColors.TextMuted.copy(alpha = 0.65f),
+        modifier = Modifier
+          .align(Alignment.TopEnd)
+          .padding(16.dp)
+      )
+    }
+  }
 }

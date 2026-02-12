@@ -20,6 +20,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.key
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -212,14 +213,16 @@ fun ScrollModeReader(
         }
         choices.forEachIndexed { index, choice ->
             val choiceKey = choice.id ?: "choice_$index"
-            TicketChoice(
-                label = choice.label ?: "Weiter",
-                onClick = { onChoice(choice, choiceKey) },
-                isProcessing = processingChoiceKey == choiceKey,
-                isInteractionLocked = interactionLocked,
-                weight = choice.resolvedWeight(),
-                enabled = choicesUnlocked
-            )
+            key(choiceKey) {
+                TicketChoice(
+                    label = choice.label ?: "Weiter",
+                    onClick = { onChoice(choice, choiceKey) },
+                    isProcessing = processingChoiceKey == choiceKey,
+                    isInteractionLocked = interactionLocked,
+                    weight = choice.resolvedWeight(),
+                    enabled = choicesUnlocked
+                )
+            }
         }
     }
     Spacer(modifier = Modifier.height(bottomGap))

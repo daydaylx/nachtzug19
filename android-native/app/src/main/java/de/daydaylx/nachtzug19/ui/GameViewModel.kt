@@ -362,8 +362,29 @@ class GameViewModel(
       beatPhase = BeatPhase.BEAT_TYPING
     )
 
-    // Save progress
+    // Save progress (reader position + game state)
     saveReaderProgress()
+    autoSaveGameState()
+  }
+
+  private fun autoSaveGameState() {
+    val state = _uiState.value.state ?: return
+    val currentScene = _uiState.value.currentScene ?: return
+
+    viewModelScope.launch {
+      try {
+        val save = GameSave(
+          current_scene_id = currentScene.id,
+          state = state,
+          history = state.history
+        )
+        dataStore.saveGame(save)
+      } catch (e: Exception) {
+        if (BuildConfig.DEBUG) {
+          android.util.Log.e(TAG, "Auto-save failed", e)
+        }
+      }
+    }
   }
 
   private fun appendBeatToBacklog(sceneId: String, beatIndex: Int, text: String) {

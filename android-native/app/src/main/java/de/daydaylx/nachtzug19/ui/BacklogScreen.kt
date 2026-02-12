@@ -95,10 +95,37 @@ private fun BacklogItem(entry: BacklogEntry) {
       )
       .padding(12.dp)
   ) {
+    // Scene ID (compact label)
+    if (entry.sceneId.isNotBlank()) {
+      Text(
+        text = formatSceneLabel(entry.sceneId),
+        style = MaterialTheme.typography.labelSmall,
+        color = NachtzugColors.TextMuted.copy(alpha = 0.7f),
+        modifier = Modifier.padding(bottom = 4.dp)
+      )
+    }
+
+    // Beat text
     Text(
       text = entry.text,
       style = MaterialTheme.typography.bodyMedium,
       color = NachtzugColors.TextMuted
     )
+  }
+}
+
+/**
+ * Formats scene ID into a readable label.
+ * Examples: "c1_start" -> "Kapitel 1", "c3_control_2" -> "Kapitel 3"
+ */
+private fun formatSceneLabel(sceneId: String): String {
+  return when {
+    sceneId.startsWith("c") -> {
+      val chapterNum = sceneId.substringAfter("c").substringBefore("_")
+      "Kapitel $chapterNum"
+    }
+    sceneId.startsWith("ending") -> "Ending"
+    sceneId.startsWith("start") -> "Prolog"
+    else -> sceneId
   }
 }
