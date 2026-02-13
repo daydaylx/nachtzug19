@@ -917,29 +917,15 @@ Die Kälte des Metalls in deiner Hand ist der einzige Beweis dafür, dass du noc
     title: 'Nach dem Spiegel',
     narrative: `Als die Gestalt zerfällt, bist du allein im Abteil.
 
-Die Gestalt ist weg.
+Der Platz vor dir ist leer, als wäre dort nie jemand gestanden.
 
-War sie je da?
+Und doch hat sich etwas verschoben.
 
-Aber… etwas hat sich verändert.
+Erinnerungsfragmente greifen ineinander: ein Gesicht, ein Name, ein Ort. Nichts Vollständiges, aber genug, um nicht mehr so zu tun, als wüsstest du gar nichts.
 
-Du erinnerst dich jetzt an… Fragmente.
+Deine Hände zittern nicht vor Kälte.
 
-Ein Gesicht. Ein Name. Ein Ort.
-
-Nichts Vollständiges.
-
-Aber mehr als vorher.
-
-Viel mehr.
-
-Deine Hände zittern.
-
-Nicht vor Kälte.
-
-Vor Erkenntnis.
-
-Vor dem, was kommt.`,
+Sie zittern vor Erkenntnis - und vor dem, was als Nächstes kommen muss.`,
     choices: [
       {
         id: 'embrace_memory',
@@ -1516,7 +1502,11 @@ Bist du bereit?`,
 
 Dann klarer.
 
-Als würdest du dir zum ersten Mal selbst zuhören.`,
+Als würdest du dir zum ersten Mal selbst zuhören.
+
+Die Fensterscheibe vor dir spiegelt dich nur bruchstückhaft. Stirn, Mund, Schulter, dazwischen Dunkelheit. Trotzdem reicht es, um zu sehen, dass du nicht mehr dieselbe Haltung hast wie am Anfang der Fahrt.
+
+Der Zug fährt ruhig, fast höflich, als gäbe er dir diesen Moment absichtlich. Keine Durchsage, kein Flackern, kein Eingriff. Nur die Frage, welche Stimme du jetzt zu deiner machst.`,
     choices: [
       {
         id: 'choose_truth_voice',
@@ -1563,7 +1553,11 @@ Als würdest du dir zum ersten Mal selbst zuhören.`,
 
 Nichts antwortet dir.
 
-Aber in dir wird etwas still: keine Ausrede, kein Umweg, nur der nächste Schritt.`,
+Aber in dir wird etwas still: keine Ausrede, kein Umweg, nur der nächste Schritt.
+
+Du merkst, wie viel Kraft es kostet, nicht sofort zu relativieren. Keine neue Geschichte, kein "ja, aber". Nur diese eine Linie, die du gerade gezogen hast.
+
+Sie tröstet nicht. Sie trägt.`,
     choices: [
       {
         id: 'continue_after_truth_voice',
@@ -1591,7 +1585,11 @@ Aber in dir wird etwas still: keine Ausrede, kein Umweg, nur der nächste Schrit
 
 Für einen Herzschlag fühlt sich der Zug weniger wie ein Urteil an.
 
-Wie ein Flur, durch den man gehen darf.`,
+Wie ein Flur, durch den man gehen darf.
+
+Die Schuld verschwindet nicht, aber sie verliert für einen Moment ihre Zähne. Du musst sie nicht wegdiskutieren, nur nicht mehr von ihr führen lassen.
+
+In der kurzen Ruhe zwischen zwei Schienenstößen merkst du: Milde ist hier kein Trostpflaster, sondern eine Entscheidung gegen den nächsten Selbstangriff.`,
     choices: [
       {
         id: 'continue_after_mercy_voice',
@@ -1619,7 +1617,11 @@ Wie ein Flur, durch den man gehen darf.`,
 
 Du spürst die Angst noch.
 
-Nur steht sie nicht mehr vor dir, sondern neben dir.`,
+Nur steht sie nicht mehr vor dir, sondern neben dir.
+
+Du wartest auf den Moment, in dem dir der Mut wieder wegrutscht. Er kommt nicht sofort. Das reicht.
+
+Der nächste Schritt fühlt sich nicht heroisch an. Nur möglich. Und genau das macht ihn echt.`,
     choices: [
       {
         id: 'continue_after_courage_voice',
@@ -1674,7 +1676,7 @@ Und langsam kommt die Erinnerung zurück.`,
           { type: 'inc', target: 'tickets_truth', value: 2 },
           { type: 'inc', target: 'tickets_guilt', value: 2 }
         ],
-        next: 'c6_s22b_reflection_callback'
+        next: 'c6_s22a_full_memory_echo'
       },
       {
         id: 'remember_partial',
@@ -1682,7 +1684,7 @@ Und langsam kommt die Erinnerung zurück.`,
         effects: [
           { type: 'inc', target: 'tickets_truth', value: 2 }
         ],
-        next: 'c6_s22b_reflection_callback'
+        next: 'c6_s22a_partial_memory_echo'
       },
       {
         id: 'resist_memory',
@@ -1690,7 +1692,7 @@ Und langsam kommt die Erinnerung zurück.`,
         effects: [
           { type: 'inc', target: 'tickets_escape', value: 1 }
         ],
-        next: 'c6_s22b_reflection_callback'
+        next: 'c6_s22a_resist_memory_echo'
       }
     ],
     state_notes: [
@@ -1703,6 +1705,127 @@ Und langsam kommt die Erinnerung zurück.`,
   },
 
   // ==========================================================================
+  // STANDARD: Sofortreaktion - volle Erinnerung
+  // ==========================================================================
+
+  'c6_s22a_full_memory_echo': {
+    id: 'c6_s22a_full_memory_echo',
+    chapter: 6,
+    title: 'Zu viel auf einmal',
+    narrative: `Die Bilder kommen nicht nacheinander, sondern gleichzeitig.
+
+Bahnsteig. Aufprall. Stimmen. Licht.
+
+Für einen Moment verlierst du den Boden unter dir, ohne dich zu bewegen.
+
+Dein Magen zieht sich zusammen, als müsste dein Körper die Reihenfolge der Ereignisse erst nachträglich sortieren.`,
+    choices: [
+      {
+        id: 'full_memory_ground',
+        label: 'Die Hand auf den Sitz legen',
+        effects: [
+          { type: 'set', target: 'wissen', value: 20 }
+        ],
+        next: 'c6_s22b_reflection_callback'
+      },
+      {
+        id: 'full_memory_speak',
+        label: '„Ich halte das aus."',
+        effects: [
+          { type: 'set', target: 'wissen', value: 21 }
+        ],
+        next: 'c6_s22b_reflection_callback'
+      }
+    ],
+    tags: ['interlude'],
+    state_notes: [
+      'Mini-Dialog nach voller Erinnerung',
+      'Tonwahl ohne Route-Impact'
+    ],
+    atmosphere: 'somber'
+  },
+
+  // ==========================================================================
+  // STANDARD: Sofortreaktion - teilweise Erinnerung
+  // ==========================================================================
+
+  'c6_s22a_partial_memory_echo': {
+    id: 'c6_s22a_partial_memory_echo',
+    chapter: 6,
+    title: 'Unvollständiges Bild',
+    narrative: `Einige Details greifen, andere bleiben verschwommen.
+
+Gerade genug Wahrheit, um weiterzugehen. Gerade genug Lücke, um unsicher zu bleiben.
+
+Die fehlenden Stellen tun nicht weniger weh - sie tun nur später weh.`,
+    choices: [
+      {
+        id: 'partial_memory_accept',
+        label: 'Mit der Lücke leben',
+        effects: [
+          { type: 'set', target: 'wissen', value: 22 }
+        ],
+        next: 'c6_s22b_reflection_callback'
+      },
+      {
+        id: 'partial_memory_push',
+        label: 'Noch einmal nachfassen',
+        effects: [
+          { type: 'set', target: 'wissen', value: 23 }
+        ],
+        next: 'c6_s22b_reflection_callback'
+      }
+    ],
+    tags: ['interlude'],
+    state_notes: [
+      'Mini-Dialog nach teilweiser Erinnerung',
+      'Tonwahl ohne Route-Impact'
+    ],
+    atmosphere: 'somber'
+  },
+
+  // ==========================================================================
+  // STANDARD: Sofortreaktion - Erinnerung widerstehen
+  // ==========================================================================
+
+  'c6_s22a_resist_memory_echo': {
+    id: 'c6_s22a_resist_memory_echo',
+    chapter: 6,
+    title: 'Wegdrücken',
+    narrative: `Du drückst die Bilder zurück, bevor sie ganz scharf werden.
+
+Das schützt dich für den Moment.
+
+Und kostet dich Klarheit für den nächsten.
+
+Du spürst sofort, wie die Erleichterung einen Preiszettel trägt.`,
+    choices: [
+      {
+        id: 'resist_memory_keep_wall',
+        label: 'Die Mauer stehen lassen',
+        effects: [
+          { type: 'set', target: 'wissen', value: 24 }
+        ],
+        next: 'c6_s22b_reflection_callback'
+      },
+      {
+        id: 'resist_memory_soften',
+        label: 'Die Mauer einen Spalt öffnen',
+        effects: [
+          { type: 'set', target: 'wissen', value: 25 }
+        ],
+        next: 'c6_s22b_reflection_callback'
+      }
+    ],
+    tags: ['interlude'],
+    state_notes: [
+      'Mini-Dialog nach Erinnerungsabwehr',
+      'Tonwahl ohne Route-Impact'
+    ],
+    atmosphere: 'somber'
+  },
+
+  // ==========================================================================
   // STANDARD: Später Callback auf Reflexions-Stimme
   // ==========================================================================
 
@@ -1712,7 +1835,9 @@ Und langsam kommt die Erinnerung zurück.`,
     title: 'Innere Linie',
     narrative: `Die Erinnerung kippt zurück in die Gegenwart.
 
-Und du merkst, dass ein Satz von eben noch in dir steht.`,
+Und du merkst, dass ein Satz von eben noch in dir steht.
+
+Der Wagen klingt wieder normal, aber dein innerer Takt ist ein anderer als davor.`,
     narrative_variants: [
       {
         condition: {

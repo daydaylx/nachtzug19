@@ -146,7 +146,8 @@ Ein feiner Schwindel zieht dir durch den Magen: Die Welt ist stumm geworden.`,
         id: 'test_voice',
         label: 'Versuchen zu sprechen',
         effects: [
-          { type: 'inc', target: 'tickets_truth', value: 1 }
+          { type: 'inc', target: 'tickets_truth', value: 1 },
+          { type: 'inc', target: 'conductor_attention', value: 1 }
         ],
         next: 'c7_s02_interlude_silence_b'
       },
@@ -154,7 +155,8 @@ Ein feiner Schwindel zieht dir durch den Magen: Die Welt ist stumm geworden.`,
         id: 'touch_wall_silence',
         label: 'Wand berühren',
         effects: [
-          { type: 'inc', target: 'tickets_truth', value: 1 }
+          { type: 'inc', target: 'tickets_truth', value: 1 },
+          { type: 'inc', target: 'memory_drift', value: 1 }
         ],
         next: 'c7_s02_interlude_silence_b'
       }
@@ -1401,85 +1403,35 @@ Die Gestalt steht auf.
     title: 'Die Erkenntnis - Abteil 7',
     narrative: `Du trittst über die Schwelle von Abteil 7.
 
-Das Abteil ist… anders.
+Das Abteil ist anders - größer und kleiner zugleich, als würde es sich bei jedem Atemzug neu vermessen.
 
-Größer. Oder kleiner.
-
-Es verändert sich.
-
-Und da sitzt… du.
+Und dort sitzt du.
 
 Aber nicht nur du.
 
 **Comp7.**
 
-Die Gestalt aus Abteil 7.
-
-Die Gestalt, die niemals wirklich da war.
-
-Die niemals real war.
+Die Gestalt aus Abteil 7. Die Gestalt, die nie wirklich ein eigener Mitreisender war.
 
 „Du verstehst es jetzt," sagt sie.
 
-Und du tust es.
+Und du verstehst tatsächlich: Comp7 war der Teil von dir, der nicht loslassen konnte. Der an Liebe und Bindung festhielt. An dem Menschen, der im Unfall starb. An allem, was du hättest sein können.
 
-Du verstehst.
-
-Comp7 war nie ein Mitreisender.
-
-Nie eine andere Person.
-
-Comp7 war… der Teil von dir, der nicht loslassen konnte.
-
-Der Teil, der an der Liebe festhielt. An der Bindung.
-
-An dem Menschen, der im Unfall starb.
-
-An allem, was du hättest sein können. Hättest tun können.
-
-„Fünfzig Jahre," flüstert die Gestalt.
-
-„Hast du an mich festgehalten."
-
-„An uns."
-
-„An der Liebe, die nicht sterben durfte."
-
-„An der Schuld, nicht genug geliebt zu haben."
+„Fünfzig Jahre," flüstert die Gestalt. „Hast du an mich festgehalten. An uns. An der Liebe, die nicht sterben durfte. An der Schuld, nicht genug geliebt zu haben."
 
 Sie steht auf.
 
-Und du erkennst das Gesicht.
+Jetzt erkennst du das Gesicht.
 
-Es ist nicht dein Gesicht.
+Nicht deins.
 
-Es ist… ihr Gesicht. Sein Gesicht.
+Ihr Gesicht. Sein Gesicht. Das Gesicht derjenigen, die du verloren hast.
 
-Das Gesicht derjenigen, die du verloren hast.
+„Der Preis," sagt sie, „ist die Liebe selbst. Du kannst weitergehen - aber nur, wenn du mich zurücklässt. Diesen Teil von dir, der nie aufgehört hat zu trauern. Und nie aufgehört hat zu lieben."
 
-„Der Preis," sagt die Gestalt, „ist die Liebe selbst."
+Sie lächelt traurig, beinahe zärtlich.
 
-„Du kannst weitergehen."
-
-„Aber nur, wenn du… mich zurücklässt."
-
-„Diesen Teil von dir, der nie aufgehört hat zu trauern."
-
-„Der nie aufgehört hat zu lieben."
-
-„Oder…"
-
-Die Gestalt lächelt.
-
-Traurig. Liebevoll.
-
-„Du nimmst mich mit."
-
-„Integrierst diesen Teil wieder."
-
-„Und lebst mit der Liebe. Mit der Trauer. Mit allem."
-
-„Für den Rest deines Lebens."`,
+„Oder du nimmst mich mit. Integrierst diesen Teil wieder. Und lebst mit Liebe, Trauer und allem, was daran hängt. Für den Rest deines Lebens."`,
     choices: [
       {
         id: 'integrate_love',
@@ -2848,7 +2800,7 @@ Bist bereit.`,
         effects: [
           { type: 'inc', target: 'station_count', value: 1 }
         ],
-        next: 'c7_s25b_threshold_dialog'
+        next: 'c7_s25a_step_off_echo'
       },
       {
         id: 'look_back_one_last_time',
@@ -2864,7 +2816,7 @@ Bist bereit.`,
           { type: 'inc', target: 'tickets_truth', value: 1 },
           { type: 'inc', target: 'station_count', value: 1 }
         ],
-        next: 'c7_s25b_threshold_dialog'
+        next: 'c7_s25a_look_back_echo'
       }
     ],
     state_notes: [
@@ -2873,6 +2825,88 @@ Bist bereit.`,
       'Identitätsfrage',
       'Übergang zu Endstation',
       'CONDITION: look_back_one_last_time bei tickets_truth >= 3'
+    ],
+    atmosphere: 'somber'
+  },
+
+  // ==========================================================================
+  // STANDARD: Unmittelbare Reaktion - Aussteigen
+  // ==========================================================================
+
+  'c7_s25a_step_off_echo': {
+    id: 'c7_s25a_step_off_echo',
+    chapter: 7,
+    title: 'Der erste echte Schritt',
+    narrative: `Dein Fuß setzt auf dem Bahnsteig auf.
+
+Nicht zögernd. Nicht heroisch. Nur endgültig.
+
+Unter der Sohle fühlt sich der Beton rau an, unbestreitbar echt.
+
+Der Zug bleibt hinter dir offen, aber du drehst dich nicht sofort um.`,
+    choices: [
+      {
+        id: 'step_off_keep_forward',
+        label: 'Den Blick nach vorn halten',
+        effects: [
+          { type: 'set', target: 'empathie', value: 30 }
+        ],
+        next: 'c7_s25b_threshold_dialog'
+      },
+      {
+        id: 'step_off_whisper',
+        label: 'Leise: „Ich gehe."',
+        effects: [
+          { type: 'set', target: 'empathie', value: 31 }
+        ],
+        next: 'c7_s25b_threshold_dialog'
+      }
+    ],
+    tags: ['interlude'],
+    state_notes: [
+      'Mini-Dialog nach finalem Schritt',
+      'Tonwahl ohne Route-Impact'
+    ],
+    atmosphere: 'somber'
+  },
+
+  // ==========================================================================
+  // STANDARD: Unmittelbare Reaktion - letzter Blick
+  // ==========================================================================
+
+  'c7_s25a_look_back_echo': {
+    id: 'c7_s25a_look_back_echo',
+    chapter: 7,
+    title: 'Ein letzter Blick',
+    narrative: `Du drehst dich ein letztes Mal um.
+
+Im Türrahmen stehen Licht und Schatten übereinander, als würde der Zug gleichzeitig Abschied nehmen und dich zurückrufen.
+
+Dann wird es still genug, dass dein eigener Atem wie eine Antwort klingt.
+
+Zwischen zwei Schienenstößen glaubst du, ein letztes Knacken der Lautsprecher zu hören, aber es kommt kein Satz mehr.`,
+    choices: [
+      {
+        id: 'look_back_close_with_nod',
+        label: 'Dem Zug zunicken',
+        effects: [
+          { type: 'set', target: 'empathie', value: 32 }
+        ],
+        next: 'c7_s25b_threshold_dialog'
+      },
+      {
+        id: 'look_back_close_with_name',
+        label: 'Den eigenen Namen einmal denken',
+        effects: [
+          { type: 'set', target: 'empathie', value: 33 }
+        ],
+        next: 'c7_s25b_threshold_dialog'
+      }
+    ],
+    tags: ['interlude'],
+    state_notes: [
+      'Mini-Dialog nach letztem Rückblick',
+      'Tonwahl ohne Route-Impact'
     ],
     atmosphere: 'somber'
   },
@@ -2889,7 +2923,9 @@ Bist bereit.`,
 
 Noch ein Gedanke.
 
-Noch ein Satz, bevor alles fest wird.`,
+Noch ein Satz, bevor alles fest wird.
+
+Du spürst, dass hier nicht nur ein Kapitel endet, sondern eine Version von dir.`,
     choices: [
       {
         id: 'threshold_name_choice',
@@ -2936,7 +2972,9 @@ Noch ein Satz, bevor alles fest wird.`,
 
 Der Klang ist rau, aber er gehört dir.
 
-Der Bahnsteig antwortet mit Stille, die nicht mehr leer wirkt.`,
+Der Bahnsteig antwortet mit Stille, die nicht mehr leer wirkt.
+
+Zum ersten Mal klingt dein Name nicht wie Erinnerung, sondern wie Gegenwart.`,
     choices: [
       {
         id: 'continue_after_threshold_name',
@@ -2992,7 +3030,9 @@ Dann wird es ruhig.`,
 
 Der erste Schritt klingt deshalb lauter als erwartet.
 
-Nicht hart. Nur endgültig.`,
+Nicht hart. Nur endgültig.
+
+Im Schweigen steckt kein Mangel mehr, sondern Richtung.`,
     choices: [
       {
         id: 'continue_after_threshold_silence',
@@ -3018,7 +3058,9 @@ Nicht hart. Nur endgültig.`,
     title: 'Der letzte Nachhall',
     narrative: `Der Bahnsteig bleibt still.
 
-Aber dein letzter Satz davor hängt noch in der Luft.`,
+Aber dein letzter Satz davor hängt noch in der Luft.
+
+Du merkst, dass Nachhall und Entscheidung jetzt dasselbe sind.`,
     narrative_variants: [
       {
         condition: {
@@ -3088,57 +3130,29 @@ Es war eine Entscheidung, die keinen zusätzlichen Satz mehr brauchte.`
 
 Vollständig. Endgültig. Real.
 
-Der Zug hinter dir… beginnt zu verblassen.
+Hinter dir beginnt der Zug langsam zu verblassen, als sänke er zurück in die Zeit - zurück nach 1973, zurück in den Moment, in dem alles endete und zugleich neu begann.
 
-Nicht plötzlich. Langsam.
+Du drehst dich ein letztes Mal um und siehst den Nachtzug 19, der dich durch Zeit, Erinnerung und Tod getragen hat, bis hierher.
 
-Als würde er… zurück in die Zeit sinken.
+Die Gestalten am Bahnsteig sind jetzt klar. Gesichter. Menschen.
 
-Zurück zu 1973.
+Manche erkennst du. Manche nicht.
 
-Zurück zu dem Moment, wo alles endete.
+Aber alle warten.
 
-Und… neu begann.
-
-Du drehst dich um.
-
-Ein letztes Mal.
-
-Siehst den Zug.
-
-Den Nachtzug 19.
-
-Der dich getragen hat.
-
-Durch Zeit. Durch Erinnerung. Durch Tod.
-
-Bis hierher.
-
-Die Gestalten am Bahnsteig sind jetzt klar.
-
-Gesichter. Menschen. Real.
-
-Manche… erkennst du.
-
-Manche nicht.
-
-Aber alle… warten.
-
-Auf dich.
-
-Oder… mit dir.
+Nicht nur auf dich - auch mit dir.
 
 Bereit für das, was jetzt kommt.
 
 Die Fahrt ist vorbei.
 
-Die Geschichte… beginnt jetzt.
+Die Geschichte beginnt jetzt.
 
 Wer bist du?
 
 Was hast du gewählt?
 
-Was nimmst du mit… ins Danach?`,
+Was nimmst du mit ins Danach?`,
     choices: [
       {
         id: 'truth_path',

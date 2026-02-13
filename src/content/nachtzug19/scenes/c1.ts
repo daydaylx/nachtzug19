@@ -279,7 +279,13 @@ An der Seite des Wagens: Ein Schriftzug. Verblichen. Du kannst nur Teile lesen: 
 
 Durch das nächste Fenster siehst du eine Frau. Sie starrt geradeaus. Ihre Augen bewegen sich nicht. Ihre Hände liegen gefaltet im Schoß. Perfekt symmetrisch. Du wartest darauf, dass sie blinzelt. Sie tut es nicht.
 
-Hinter dir: Das Brummen wird leiser. Der Zug wird gleich weiterfahren. Du weißt es.`,
+Hinter dir: Das Brummen wird leiser. Der Zug wird gleich weiterfahren. Du weißt es.
+
+Ein Windstoß trägt kalten Metallgeruch über den Bahnsteig. Für eine Sekunde hörst du aus dem Wageninneren ein leises Klirren, als hätten sich Gläser berührt, obwohl niemand sich bewegt.
+
+Über der Tür hängt eine Lampe, die nicht flackert, sondern pulsiert. Sehr langsam. Wie ein ruhiger Herzschlag, der nicht zu dir gehört.
+
+Du merkst, dass dein Zögern nicht aus Unsicherheit kommt, sondern aus einem seltsamen Wiedererkennen: als hättest du genau diese Schwelle schon einmal gespürt und damals zu spät reagiert.`,
     choices: [
       {
         id: 'board_now',
@@ -437,7 +443,13 @@ Durch das Fenster: Schwärze. Keine Lichter, keine Landschaft. Aber ab und zu ei
 
 Du lehnst den Kopf ans Fenster. Das Glas ist warm. Viel zu warm.
 
-Dann, eine Stimme hinter dir: „Du auch?"`,
+Dann, eine Stimme hinter dir: „Du auch?"
+
+Du drehst dich noch nicht um. Stattdessen hörst du auf die Art, wie die Worte fallen: nicht neugierig, nicht freundlich, eher erschöpft solidarisch.
+
+Unter dem Sitz vibriert es kurz, als würde der Zug über eine Weiche fahren, aber draußen bleibt die Dunkelheit unverändert. Keine Kurve, kein Lichtwechsel, nur dieser kurze Schock im Körper.
+
+Du legst die Finger an die Fensterkante und spürst eine feine Feuchtigkeit, die dort nicht sein dürfte. Wie Kondenswasser von innen.`,
     choices: [
       {
         id: 'turn_around',
@@ -563,7 +575,10 @@ Du öffnest den Mund. Keine Antwort.`,
       }
     ],
     tags: ['reveal'],
-    state_notes: [],
+    state_notes: [
+      'Schlafloser-Dialog vertieft Zugregeln',
+      'Beziehungsaufbau vor Compartment-7-Beat'
+    ],
     atmosphere: 'tense'
   },
 
@@ -637,7 +652,13 @@ Er beugt sich vor, senkt die Stimme. „Hör zu. Wenn der Schaffner kommt… Sag
 
 Dann ein leises Ausströmen, wie ein Ventil. Die Lampen flackern, und im Glas der Tür siehst du dein Gesicht für einen Wimpernschlag älter.
 
-Der Schlaflose tippt mit dem Finger gegen die Wand. „Hörst du das?"`,
+Der Schlaflose tippt mit dem Finger gegen die Wand. „Hörst du das?"
+
+Du legst ebenfalls die Hand an das Metall. Unter der kalten Oberfläche arbeitet ein tiefer Ton, fast zu niedrig, um ihn wirklich zu hören, eher ein Druck hinter den Zähnen.
+
+Für einen Augenblick seid ihr beide still und dieselbe Stille fühlt sich bei ihm routiniert an, bei dir neu und bedrohlich.
+
+Er zieht die Hand zurück, als hätte er sich verbrannt, obwohl das Metall kalt ist. „So fängt es an," murmelt er. Mehr zu sich selbst als zu dir.`,
     choices: [
       {
         id: 'listen_closer',
@@ -777,7 +798,10 @@ Als wären sie alle in einer Schleife gefangen. Als würden sie dieselbe Bewegun
       }
     ],
     tags: ['setup'],
-    state_notes: [],
+    state_notes: [
+      'Passagier-Loop als Spannungsaufbau',
+      'Alle Optionen rekombinieren in den Rhythmus-Beat'
+    ],
     atmosphere: 'somber'
   },
 
@@ -790,7 +814,13 @@ Als wären sie alle in einer Schleife gefangen. Als würden sie dieselbe Bewegun
     title: 'Rhythmus',
     narrative: `Der Zug rattert. Nicht laut, aber präzise, wie ein Metronom.
 
-Der Teenager mit den Kopfhörern nickt im Takt – ein winziger Widerhaken im Muster. Für einen Moment glaubst du, dass jemand deinen Namen flüstert.`,
+Der Teenager mit den Kopfhörern nickt im Takt – ein winziger Widerhaken im Muster. Für einen Moment glaubst du, dass jemand deinen Namen flüstert.
+
+Du versuchst, die Quelle zu finden, aber der Ton scheint nicht aus einer Richtung zu kommen. Eher aus den Zwischenräumen: zwischen zwei Waggonstößen, zwischen zwei Atemzügen, zwischen einem Gedanken und dem nächsten.
+
+Als der Teenager kurz den Kopf hebt, bist du sicher, dass seine Lippen ein Wort formen. Vielleicht deinen Namen. Vielleicht nur den Takt.
+
+Dann schaut er wieder ins Leere und der Rhythmus nimmt dich mit, ob du willst oder nicht.`,
     choices: [
       {
         id: 'follow_rhythm',
@@ -871,7 +901,10 @@ Er verstummt. Schüttelt den Kopf.
       }
     ],
     tags: ['reveal', 'setup'],
-    state_notes: [],
+    state_notes: [
+      'Klopfen triggert früh erhöhte Schaffner-Aufmerksamkeit',
+      'Callback: frühe Initiative kann später als Risiko gespiegelt werden'
+    ],
     atmosphere: 'mystic'
   },
 
@@ -892,7 +925,11 @@ Dann, ein Knall. Als würde etwas umfallen.
 
 Der Boden unter dir vibriert plötzlich. Nicht vom Zug. Von der Tür.
 
-Dann: Stille. Der Zug wird langsamer.`,
+Du merkst erst jetzt, dass du den Atem angehalten hast.
+
+Als du wieder Luft holst, schmeckt sie nach Staub und Tinte.
+
+Dann: Stille. Kein Kratzen mehr. Nur die Bremsen des Zuges.`,
     choices: [
       {
         id: 'knock_again',
@@ -942,11 +979,11 @@ Dann: Stille. Der Zug wird langsamer.`,
     id: 'c1_end_station',
     chapter: 1,
     title: 'Halt',
-    narrative: `Der Zug hält. Sanft. Ohne Ruck. Als würde er nicht bremsen, sondern einfach… aufhören zu existieren.
+    narrative: `Der Zug hält sanft, ohne jeden Ruck, als würde er nicht bremsen, sondern einfach aufhören zu existieren.
 
-Du schaust aus dem Fenster. Draußen: Ein Bahnsteig. Identisch zum ersten. Nicht ähnlich – identisch. Dieselbe Neonröhre. Dieselbe Anzeigetafel. Dieselbe Uhr: 23:47. Als hätte sich die Zeit nicht bewegt. Als wärt ihr nie losgefahren.
+Du schaust aus dem Fenster. Draußen liegt ein Bahnsteig, identisch zum ersten: dieselbe Neonröhre, dieselbe Anzeigetafel, dieselbe Uhr auf 23:47. Als hätte sich die Zeit keinen Millimeter bewegt.
 
-Niemand steigt ein. Niemand steigt aus. Die Türen öffnen sich – ein Zischen, ein Ausatmen. Aber der Bahnsteig bleibt leer. Kalt. Wartend.
+Niemand steigt ein, niemand steigt aus. Die Türen öffnen sich mit einem langen Zischen, aber der Bahnsteig bleibt leer und wartend.
 
 Du drehst dich zum Schlaflosen um. Er steht am Fenster, starrt hinaus. Aber irgendetwas ist anders. Seine Haltung? Seine Kleidung?
 
@@ -956,7 +993,7 @@ Er bemerkt deinen Blick. „Was?"
 
 „Deine Jacke…" Du zögerst. „Sie war grau."
 
-Er lacht trocken. Ein Geräusch ohne Humor. „Sie war immer blau." Er sagt es, als wäre es die offensichtlichste Sache der Welt. Als wärst du verrückt, es anzuzweifeln.
+Er lacht trocken, ein Geräusch ohne Humor. „Sie war immer blau." Er sagt es so selbstverständlich, dass deine Erinnerung plötzlich wie ein Fehler klingt.
 
 Er zerknüllt einen Zettel, den er in der Hand hält. Du hast ihn vorher nicht gesehen. Wo kam er her? Seine Finger zittern, als er ihn zu einem harten Ball presst.
 
@@ -966,7 +1003,11 @@ Er zerknüllt einen Zettel, den er in der Hand hält. Du hast ihn vorher nicht g
 
 Er reibt sich die Augen. „Das ist das erste Zeichen. Wenn die Details anfangen zu rutschen. Farben. Namen. Gesichter." Er blickt dich an. „Bei mir hat es drei Stationen gedauert. Bei dir ist es schon nach einer angefangen."
 
-Die Türen schließen sich. Der Zug fährt an. Du spürst es – etwas fehlt. Etwas Kleines. Aber du kannst nicht sagen, was.`,
+Die Türen schließen sich. Der Zug fährt an.
+
+Du spürst sofort, dass etwas fehlt - etwas Kleines, aber Zentrales.
+
+Nur was genau, kannst du nicht mehr sagen.`,
     choices: [
       {
         id: 'continue_to_chapter_2',
@@ -974,7 +1015,7 @@ Die Türen schließen sich. Der Zug fährt an. Du spürst es – etwas fehlt. Et
         effects: [
           { type: 'set', target: 'chapter_index', value: 2 }
         ],
-        next: 'c2_s01_ticket_search'
+        next: 'c1_end_station_sideword'
       },
       {
         id: 'confront_jacket_change',
@@ -992,7 +1033,7 @@ Die Türen schließen sich. Der Zug fährt an. Du spürst es – etwas fehlt. Et
           { type: 'inc', target: 'tickets_truth', value: 1 },
           { type: 'inc', target: 'rel_sleepless', value: 1 }
         ],
-        next: 'c2_s01_ticket_search'
+        next: 'c1_end_station_sideword'
       },
       {
         id: 'nod_to_conductor',
@@ -1008,13 +1049,62 @@ Die Türen schließen sich. Der Zug fährt an. Du spürst es – etwas fehlt. Et
           { type: 'inc', target: 'conductor_attention', value: 1 },
           { type: 'inc', target: 'tickets_guilt', value: 1 }
         ],
-        next: 'c2_s01_ticket_search'
+        next: 'c1_end_station_sideword'
       }
     ],
     tags: ['station_end'],
     state_notes: [
       'Merged Platform Look + End Scene',
       'Preserves Drift Mechanics'
+    ],
+    atmosphere: 'somber'
+  },
+
+  // ==========================================================================
+  // STANDARD: Kleiner Abschlussdialog ohne Gewicht
+  // ==========================================================================
+
+  'c1_end_station_sideword': {
+    id: 'c1_end_station_sideword',
+    chapter: 1,
+    title: 'Noch ein Satz',
+    narrative: `Der Schlaflose bleibt kurz an der Tür stehen, bevor ihr beide weitergeht.
+
+Seine Finger trommeln einmal gegen den Rahmen, als müsste er prüfen, ob der Takt noch stimmt.
+
+„Nur damit ich weiß, dass du noch da bist," sagt er. „Sag noch etwas."
+
+In seinem Blick liegt keine Neugier, eher eine Bitte, die er nicht oft ausspricht.`,
+    choices: [
+      {
+        id: 'sideword_brief',
+        label: '„Ich bin da."',
+        effects: [
+          { type: 'set', target: 'empathie', value: 40 }
+        ],
+        next: 'c2_s01_ticket_search'
+      },
+      {
+        id: 'sideword_name',
+        label: '„Ich vergesse den Namen nicht."',
+        effects: [
+          { type: 'set', target: 'empathie', value: 41 }
+        ],
+        next: 'c2_s01_ticket_search'
+      },
+      {
+        id: 'sideword_silence',
+        label: 'Nur nicken',
+        effects: [
+          { type: 'set', target: 'empathie', value: 42 }
+        ],
+        next: 'c2_s01_ticket_search'
+      }
+    ],
+    tags: ['interlude'],
+    state_notes: [
+      'Mini-Dialog: Tonwahl ohne Route-Impact',
+      'empathie-Wert ist nur Flavor und wird später überschrieben'
     ],
     atmosphere: 'somber'
   }

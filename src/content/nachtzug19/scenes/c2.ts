@@ -26,7 +26,13 @@ Du gehst durch den Wagen. Der Schlaflose starrt aus dem Fenster. Seine Jacke ist
 
 Ein kaltes Gefühl kriecht deinen Nacken hoch: Du hast kein Ticket.
 
-Von weiter vorn kommt ein Metallklackern. Rhythmisch. Näher kommend. Kontrolle.`,
+Von weiter vorn kommt ein Metallklackern. Rhythmisch. Näher kommend. Kontrolle.
+
+Du drückst die Finger gegen den Stoff deiner Jacke, als könnte dort doch noch irgendwo ein Papierrand zu spüren sein. Nichts. Nur der eigene Puls, hart und unregelmäßig.
+
+Im Fenster wandert dein Spiegelbild mit, einen halben Schritt zu langsam. Für einen Atemzug sieht es aus, als würde es dich nicht nachahmen, sondern prüfen.
+
+Das Klackern wird lauter. Nicht schnell, nicht hektisch. Sicher. So geht jemand, der weiß, dass er immer gefunden wird.`,
     choices: [
       {
         id: 'search_self',
@@ -73,7 +79,13 @@ Von weiter vorn kommt ein Metallklackern. Rhythmisch. Näher kommend. Kontrolle.
 
 Im nächsten Abteil sitzt ein Junge. Vielleicht zwölf. Er trägt große Kopfhörer und hält einen alten Kassettenrekorder.
 
-Er bemerkt dich nicht. Oder tut so. Du hörst das leise Surren des Rekorders.`,
+Er bemerkt dich nicht. Oder tut so. Du hörst das leise Surren des Rekorders.
+
+Der Wagen riecht nach nasser Wolle und Metallstaub. Niemand spricht. Selbst das Rascheln der Zeitung klingt gedämpft, als würde jede Bewegung in Watte passieren.
+
+Du bleibst einen Moment stehen, länger als nötig. Niemand hebt den Blick. Diese Gleichgültigkeit fühlt sich nicht wie Ruhe an, eher wie eine Übereinkunft, an der du nicht teilnimmst.
+
+Nur der Junge hat einen eigenen Rhythmus. Sein Fuß wippt genau im Takt des Bandlaufs, als würde er einer Musik folgen, die nur er hören kann.`,
     choices: [
       {
         id: 'go_to_boy',
@@ -235,7 +247,13 @@ Er drückt Play. Knistern. Dann eine Stimme, verzerrt, tief: „—nächster Hal
 
 Er hält dir den Rekorder hin. Kein Zögern.
 
-„Für dich. Deine Stimme. Ist noch drauf." Und dann, leiser, fast unhörbar: „Du klingst traurig darauf."`,
+„Für dich. Deine Stimme. Ist noch drauf." Und dann, leiser, fast unhörbar: „Du klingst traurig darauf."
+
+Seine Hand bleibt ausgestreckt, regungslos. Nicht bittend, nicht drängend. Nur offen. Hinter ihm flackert das Licht einmal kurz auf, und für den Bruchteil einer Sekunde wirkt sein Schatten viel größer als sein Körper.
+
+Du hörst wieder das Klacken der Kontrolle im Nachbarwagen. Zwei Welten, die gleichzeitig näher kommen: der Schaffner von vorn, der Junge vor dir.
+
+Der Rekorder ist plötzlich mehr als ein Gegenstand. Er ist ein Beweis, dass du schon vor dir selbst hier warst. Oder dass etwas von dir nie aufgehört hat, hier zu sein.`,
     choices: [
       {
         id: 'take_recorder',
@@ -437,7 +455,11 @@ Aber du hältst den schweren Rekorder in der Hand.`,
     title: 'Verrutscht',
     narrative: `Die Wagennummern stimmen nicht mehr. Aus einer 3 wird eine 8, aus einer 6 eine 9.
 
-Die Zahlen klirren leise, als wären sie aus Glas. Du blinzelst – und sie sitzen wieder fest.`,
+Die Zahlen klirren leise, als wären sie aus Glas.
+
+Für einen Augenblick bist du sicher, dass auch deine eigene Sitznummer nicht mehr zu dir gehört.
+
+Du blinzelst - und alles sitzt wieder fest.`,
     choices: [
       {
         id: 'trace_numbers',
@@ -482,7 +504,13 @@ Sie sieht dich an. Kurz. Taxierend. Wie jemand, der Daten sammelt, nicht Blicke.
 
 Ihr Gesicht ist merkwürdig unscharf — dein Blick rutscht ab, als wäre er geölt. Aber ihre Stimme ist das Schärfste in diesem Zug.
 
-„Ich schreibe. Damit die Drift nicht gewinnt. Verstehst du Drift?" Sie wartet nicht auf deine Antwort. „Noch nicht. Wirst du."`,
+„Ich schreibe. Damit die Drift nicht gewinnt. Verstehst du Drift?" Sie wartet nicht auf deine Antwort. „Noch nicht. Wirst du."
+
+Der Tisch zwischen euch ist voller Kerben, als wären dort über Jahre Namen eingeritzt und wieder herausgekratzt worden. Neben dem Notizbuch liegt ein zweiter Stift, unbenutzt, exakt ausgerichtet.
+
+Comp7 folgt deinem Blick. „Nicht anfassen." Wieder dieses kurze, harte Stakkato. Dann weicher, fast erschöpft: „Ordnung ist das Einzige, was bleibt, wenn Erinnerungen anfangen zu rutschen."
+
+Du merkst, dass sie nicht nur dich beobachtet. Sie beobachtet den Moment. Als würde sie prüfen, ob er sich diesmal anders verhält als sonst.`,
     choices: [
       {
         id: 'ask_notebook',
@@ -576,7 +604,13 @@ Schwere Schritte. Rhythmisch. 2-Sekunden-Intervall.
 
 Das Wort hängt schwer in der Luft. Kontrolle.
 
-Du musst dich entscheiden. Jetzt. Was sagst du ihm?`,
+Du musst dich entscheiden. Jetzt. Was sagst du ihm?
+
+Ein Mann zwei Reihen weiter klappt sein Buch zu, ohne eine Seite zu markieren. Eine Frau zieht den Kragen hoch, als würde die Temperatur plötzlich fallen. Niemand rennt. Niemand diskutiert. Alle nehmen dieselbe Haltung ein: warten und kleiner werden.
+
+Der Zug schlingert leicht, dann wieder nicht. Für einen Moment glaubst du, dass ihr steht, obwohl die Schienen unter dir noch vibrieren.
+
+Du spürst, wie deine Zunge am Gaumen klebt. Wahrheit, Lüge, Flucht: Es sind nicht nur Antworten. Es sind Rollen. Und gleich entscheidest du, welche Version von dir den Schaffner ansehen wird.`,
     choices: [
       {
         id: 'prepare_truth',
@@ -625,9 +659,13 @@ Du musst dich entscheiden. Jetzt. Was sagst du ihm?`,
     id: 'c2_s04b_breath_control',
     chapter: 2,
     title: 'Ein Atemzug',
-    narrative: `Der Gang scheint enger zu werden. Du hörst das Klacken der Kelle – näher, näher.
+    narrative: `Der Gang scheint enger zu werden. Du hörst das Klacken der Kelle - näher, näher.
 
-Dein Atem beschlägt die Luft vor dir. Für einen Moment siehst du den Abdruck deiner Lippen darin.`,
+Dein Atem beschlägt die Luft vor dir. Für einen Moment siehst du den Abdruck deiner Lippen darin.
+
+Im Beschlag liegt kurz eine zweite Kontur, als würde jemand direkt hinter dir mitatmen.
+
+Als du den Kopf drehst, ist da nur der leere Gang.`,
     choices: [
       {
         id: 'steady_posture',
@@ -660,15 +698,13 @@ Dein Atem beschlägt die Luft vor dir. Für einen Moment siehst du den Abdruck d
     id: 'c2_s04a_conductor_approach',
     chapter: 2,
     title: 'Schritte',
-    narrative: `Schritte im Gang. Schwer. Rhythmisch. Jeder Schlag ein hohles *Tock*.
+    narrative: `Schwere Schritte im Gang. Rhythmisch. Jeder Schlag ein hohles *Tock*.
 
-Das Licht flackert. Aus. An. Aus.
+Das Licht flackert: aus, an, aus.
 
-Die Luft riecht nach Ozon.
+Die Luft riecht nach Ozon, und für einen Moment glaubst du, dass der ganze Wagen stillhält, nur um ihn durchzulassen.
 
-Als das Licht wieder angeht, steht er direkt vor dir.
-
-Riesig. Uniform ohne Falten. Gesicht eine Wachsmaske.
+Als das Licht wieder angeht, steht er direkt vor dir: riesig, Uniform ohne Falten, Gesicht wie eine Wachsmaske.
 
 „Fahrkarten bitte."`,
     choices: [
@@ -703,13 +739,15 @@ Riesig. Uniform ohne Falten. Gesicht eine Wachsmaske.
     id: 'c2_control_01_approach',
     chapter: 2,
     title: 'Der Schaffner',
-    narrative: `„Fahrkarten bitte." Stimme wie aus einem Lautsprecher.
+    narrative: `„Fahrkarten bitte." Seine Stimme klingt, als käme sie aus einem Lautsprecher in der Decke.
 
 „Ich habe keine," sagst du.
 
-Er starrt dich an. Zehn Sekunden. Dann schaut er auf seine Kelle. Sie ist leer.
+Er starrt dich an. Zehn Sekunden lang. Dann senkt er den Blick auf seine Kelle - sie ist leer.
 
-„Kein Ticket bedeutet keine Berechtigung. Es sei denn, Sie haben einen Grund."`,
+„Kein Ticket bedeutet keine Berechtigung. Es sei denn, Sie haben einen Grund."
+
+Der Satz bleibt zwischen euch hängen wie ein Urteil, das noch nicht gesprochen ist.`,
     choices: [
       {
         id: 'wait_silent',
@@ -744,7 +782,13 @@ Er starrt dich an. Zehn Sekunden. Dann schaut er auf seine Kelle. Sie ist leer.
 
 „Warum sind Sie hier?"
 
-Die Zeit dehnt sich.`,
+Die Zeit dehnt sich.
+
+Hinter ihm summt der Wagen, dumpf und fern, als hättest du den Kopf unter Wasser. Deine Finger verkrampfen sich an der Sitzkante, bis die Knöchel weiß werden.
+
+Du denkst an den Jungen mit dem Rekorder. An Comp7s Listen. An den Namen, den du dir im Kopf immer wieder vorsagst, damit er nicht verrutscht.
+
+Der Schaffner blinzelt nicht. In seinem Blick liegt nichts Menschliches und trotzdem etwas Erwartendes: als würde er nicht prüfen, ob du lügst, sondern welche Geschichte du bereit bist zu tragen.`,
     choices: [
       {
         id: 'offer_truth',
@@ -821,7 +865,15 @@ Der Schlaflose dreht sich um: „Er erfindet alles. Wir auch."
 
 Seine Jacke ist jetzt rot.
 
-„Der Zug erfindet uns neu. Bis wir vergessen, wer wir waren."`,
+„Der Zug erfindet uns neu. Bis wir vergessen, wer wir waren."
+
+Er streicht über den Ärmel, als müsste er sich selbst von der Farbe überzeugen. Seine Hand zittert, kaum sichtbar.
+
+„Früher hab ich mich jedes Mal gewehrt," sagt er, jetzt leiser. „Hab mir Namen auf den Unterarm geschrieben. Hab sie laut gesagt, bis die Stimme weg war."
+
+Er sieht dich an, müde und klar zugleich. „Heute reicht manchmal ein Blick von jemand anderem. Einer, der noch weiß, dass ich da bin."
+
+Der Zug macht einen langen, tiefen Ton, wie ein Atemzug, den niemand von euch genommen hat.`,
     choices: [
       {
         id: 'accept_truth',
@@ -860,7 +912,13 @@ Seine Jacke ist jetzt rot.
 
 Das Rattern wirkt für einen Moment fern, als würde der Zug euch zuhören.
 
-„Bevor wir weiterfahren," sagt er leise, „sag irgendwas Echtes."`,
+„Bevor wir weiterfahren," sagt er leise, „sag irgendwas Echtes."
+
+Er sieht nicht zu dir, sondern auf seine Hände, als müsste er erst prüfen, ob sie noch zu ihm gehören. Unter den Nägeln sitzt dunkler Staub, als hätte er an Metall gekratzt.
+
+Du merkst, dass diese Bitte keine Floskel ist. Für ihn ist „etwas Echtes" kein Gefühlston, sondern ein Halteseil.
+
+Hinter euch läuft die Durchsage erneut an und bricht nach zwei Wörtern ab. Keiner von euch dreht sich um.`,
     choices: [
       {
         id: 'ask_his_name',
@@ -906,6 +964,8 @@ Das Rattern wirkt für einen Moment fern, als würde der Zug euch zuhören.
 
 „Ich hatte mal einen," sagt er nach einer Weile. „Er lag mir immer auf der Zunge. Jetzt ist da nur Metallgeschmack."
 
+Er reibt Daumen und Zeigefinger aneinander, als suche er dort Buchstaben.
+
 Dann nickt er Richtung Fenster. „Wenn deiner noch da ist, halt ihn fest."`,
     choices: [
       {
@@ -933,6 +993,8 @@ Dann nickt er Richtung Fenster. „Wenn deiner noch da ist, halt ihn fest."`,
 
 „Gut," murmelt er. „Dann gibt es wenigstens einen Punkt, der nicht verrutscht."
 
+Für einen Atemzug wird seine Stimme ruhiger, als hätte auch er kurz Halt.
+
 Er tippt dir kurz gegen den Ärmel. „Sprich den Namen weiter. Sonst nimmt ihn der Zug."`,
     choices: [
       {
@@ -959,6 +1021,8 @@ Er tippt dir kurz gegen den Ärmel. „Sprich den Namen weiter. Sonst nimmt ihn 
     narrative: `Du sagst nichts.
 
 Der Schlaflose sagt auch nichts. Ihr steht nur da, während der Zug durch euch hindurch zu fahren scheint.
+
+Das Neonlicht summt über euch wie eine Leitung, die gerade noch hält.
 
 Nach ein paar Atemzügen flüstert er: „Vielleicht reicht das schon. Nicht allein zu schweigen."`,
     choices: [
@@ -991,7 +1055,13 @@ Dann geht das Licht aus. Als es wieder anspringt, ist sie weg.
 
 Du drehst dich um. Der Wagen hat sich verändert. Der Junge ist weg. Comp7 schreibt.
 
-Ohne aufzublicken sagt sie: „Du hast die erste Kontrolle überstanden. Beim nächsten Halt wird es enger.“`,
+Ohne aufzublicken sagt sie: „Du hast die erste Kontrolle überstanden. Beim nächsten Halt wird es enger.“
+
+Der Bahnsteig draußen trägt kein Schild. Nur eine nackte Betonwand, auf der Wasser in dünnen Linien nach unten läuft. Jede Linie sieht aus wie eine Uhr, deren Zeiger fehlen.
+
+Du legst die Hand an die Scheibe. Das Glas ist warm, als stünde dort draußen Sommer, obwohl im Wagen Winterluft hängt.
+
+Comp7s Stift kratzt weiter über Papier, in gleichmäßigem Takt. Das Geräusch beruhigt nicht. Es erinnert dich nur daran, dass hier jemand gegen das Vergessen anschreibt, Zeile für Zeile, Halt für Halt.`,
     choices: [
       {
         id: 'continue_chapter_3',
@@ -1036,7 +1106,19 @@ Für einen Moment denkst du an das, was gerade im Gang zwischen euch stand.
 
 Nicht als Information.
 
-Als Haltung.`,
+Als Haltung.
+
+Du sitzt wieder auf deinem Platz, aber dein Körper bleibt angespannt, als müsste er noch auf eine zweite Frage antworten. Die Fensterscheibe vibriert leicht an deiner Stirn.
+
+Im Wagen verteilt sich das normale Geräuschbild wieder: ein Husten, das Scharnier einer Tür, fernes Schienenklacken. Trotzdem wirkt alles dünner, als läge über jedem Ton ein feiner Filter.
+
+Du merkst, dass dich die Kontrolle nicht nur erschöpft hat. Sie hat etwas sortiert. Nicht die Fakten. Die Richtung.
+
+Der nächste Halt ist noch nicht da, aber du bist ihm schon näher als eben.
+
+Du presst den Rücken gegen die Lehne und merkst erst dann, wie kalt der Stoff geworden ist. In deinem Kopf wiederholt sich die Frage des Schaffners, aber sie klingt jetzt weniger wie ein Angriff und mehr wie ein Spiegel.
+
+Wenn der Zug dich schon neu zusammensetzt, dann vielleicht nicht völlig ohne dich.`,
     narrative_variants: [
       {
         condition: {

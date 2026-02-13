@@ -673,7 +673,9 @@ Seine Stimme zittert leicht.
 
 „Wenn das Band endet," sagt er, „will ich nicht allein sein."
 
-Sein Blick bleibt auf dir hängen. Wartend.`,
+Sein Blick bleibt auf dir hängen, offen und unbeweglich.
+
+Du merkst, dass er nicht nach Trost fragt, sondern nach Verbindlichkeit.`,
     choices: [
       {
         id: 'promise_presence',
@@ -719,6 +721,8 @@ Sein Blick bleibt auf dir hängen. Wartend.`,
     narrative: `Der Junge nickt sofort, als hätte er auf genau diesen Satz gewartet.
 
 Er legt eine Hand auf den Rekorder und atmet hörbar aus.
+
+Seine Schultern sinken ein paar Zentimeter, als wäre dort eben noch Gewicht gewesen.
 
 „Dann kann ich vielleicht sitzenbleiben, bis ich bereit bin," flüstert er.`,
     choices: [
@@ -775,6 +779,8 @@ Er dreht den Rekorder einmal in der Hand, als würde er dessen Gewicht neu prüf
     narrative: `„Gut," sagt er nach einer Pause. „Dann bin ich nicht falsch, weil ich Angst habe."
 
 Seine Schultern sinken ein kleines Stück.
+
+Er blickt kurz in den Gang und dann wieder zu dir.
 
 „Dann gehen wir eben mit Angst."`,
     choices: [
@@ -1040,7 +1046,11 @@ Emma. Du warst auf dem Weg zu ihr. Und der Zug... ist nie angekommen.`
     title: 'Was nachklingt',
     narrative: `Die Erinnerung reißt ab.
 
-Was bleibt, ist das Gefühl einer Stimme, die nicht loslässt.`,
+Was bleibt, ist das Gefühl einer Stimme, die nicht loslässt.
+
+Der Gang vor dir ist derselbe wie eben, aber dein Schritt hat ein anderes Gewicht. Als hätte der kurze Rückblick die Luft dichter gemacht.
+
+Du merkst, dass nicht der genaue Wortlaut entscheidend war, sondern die Richtung, die er in dir gesetzt hat.`,
     narrative_variants: [
       {
         condition: {
@@ -1053,7 +1063,9 @@ Was bleibt, ist das Gefühl einer Stimme, die nicht loslässt.`,
 
 Dir fällt wieder ein, wie der Junge ausgeatmet hat, als du ihm Nähe versprochen hast.
 
-In dem Moment klingt selbst der Gang weniger feindlich.`
+In dem Moment klingt selbst der Gang weniger feindlich.
+
+Du gehst weiter, ohne die Schultern hochzuziehen. Zum ersten Mal seit Langem nicht aus Trotz, sondern weil jemand neben dir weniger allein wirkte.`
       },
       {
         condition: {
@@ -1066,7 +1078,9 @@ In dem Moment klingt selbst der Gang weniger feindlich.`
 
 Sein vorsichtiges „Ein Anfang klingt besser" bleibt in dir hängen.
 
-Vielleicht gilt das nicht nur für ihn.`
+Vielleicht gilt das nicht nur für ihn.
+
+Der Satz wirkt klein, fast unscheinbar, und gerade deshalb tragfähig: kein großer Schwur, nur ein Anfang, der nicht sofort wieder widerrufen werden muss.`
       },
       {
         condition: {
@@ -1079,7 +1093,9 @@ Vielleicht gilt das nicht nur für ihn.`
 
 „Dann gehen wir eben mit Angst" - der Satz sitzt plötzlich glasklar in dir.
 
-Nicht beruhigend. Aber brauchbar.`
+Nicht beruhigend. Aber brauchbar.
+
+Du spürst die Angst noch in den Handflächen, aber sie nimmt dir nicht mehr den nächsten Schritt. Sie läuft mit, statt dich festzunageln.`
       }
     ],
     choices: [
@@ -1218,7 +1234,7 @@ Die Luft im Abteil wird dünner, sauerstoffarm. Deine Lungen brennen, während e
           { type: 'inc', target: 'tickets_guilt', value: 2 },
           { type: 'dec', target: 'conductor_attention', value: 2 }
         ],
-        next: 'c5_s16_control3_aftermath'
+        next: 'c5_s15b_confession_response'
       },
       {
         id: 'ask_comp7_help',
@@ -1233,7 +1249,7 @@ Die Luft im Abteil wird dünner, sauerstoffarm. Deine Lungen brennen, während e
           { type: 'inc', target: 'tickets_love', value: 2 },
           { type: 'dec', target: 'conductor_attention', value: 1 }
         ],
-        next: 'c5_s16_control3_aftermath'
+        next: 'c5_s15b_comp7_response'
       },
       {
         id: 'harsh_response',
@@ -1248,7 +1264,7 @@ Die Luft im Abteil wird dünner, sauerstoffarm. Deine Lungen brennen, während e
           { type: 'inc', target: 'tickets_truth', value: 1 },
           { type: 'inc', target: 'conductor_attention', value: 2 }
         ],
-        next: 'c5_s16_control3_aftermath'
+        next: 'c5_s15b_defiance_response'
       },
       {
         id: 'deny_everything',
@@ -1256,7 +1272,7 @@ Die Luft im Abteil wird dünner, sauerstoffarm. Deine Lungen brennen, während e
         effects: [
           { type: 'inc', target: 'tickets_escape', value: 2 }
         ],
-        next: 'c5_s16_control3_aftermath'
+        next: 'c5_s15b_blank_response'
       }
     ],
     state_notes: [
@@ -1268,6 +1284,166 @@ Die Luft im Abteil wird dünner, sauerstoffarm. Deine Lungen brennen, während e
     ],
     tags: ['control'],
     atmosphere: 'danger'
+  },
+
+  // ==========================================================================
+  // STANDARD: Unmittelbare Reaktion auf Geständnis
+  // ==========================================================================
+
+  'c5_s15b_confession_response': {
+    id: 'c5_s15b_confession_response',
+    chapter: 5,
+    title: 'Das Wort bleibt',
+    narrative: `Der Schaffner blinzelt langsam.
+
+„Endlich ein Satz ohne Maske," sagt er leise.
+
+Du merkst, dass dein eigener Satz noch im Raum steht wie warme Luft nach einem Schrei.
+
+Unter seiner Ruhe wirkt etwas enger, als hätte deine Antwort ihn einen Moment aus dem Takt gebracht.`,
+    choices: [
+      {
+        id: 'confession_breathe',
+        label: 'Langsam ausatmen',
+        effects: [
+          { type: 'set', target: 'empathie', value: 10 }
+        ],
+        next: 'c5_s16_control3_aftermath'
+      },
+      {
+        id: 'confession_add_line',
+        label: '„Und ich zahle den Preis dafür."',
+        effects: [
+          { type: 'set', target: 'empathie', value: 11 }
+        ],
+        next: 'c5_s16_control3_aftermath'
+      }
+    ],
+    tags: ['interlude'],
+    state_notes: [
+      'Mini-Dialog nach Geständnis',
+      'Tonwahl ohne Route-Impact'
+    ],
+    atmosphere: 'somber'
+  },
+
+  // ==========================================================================
+  // STANDARD: Unmittelbare Reaktion auf Comp7-Hilfe
+  // ==========================================================================
+
+  'c5_s15b_comp7_response': {
+    id: 'c5_s15b_comp7_response',
+    chapter: 5,
+    title: 'Der Blick zur Seite',
+    narrative: `Der Schaffner folgt deinem Blick, als könnte er Comp7 durch Wände sehen.
+
+„Du suchst Halt in anderen," sagt er. „Besser als im Nichts."
+
+Du hörst Comp7s Stift in der Ferne nicht, aber du weißt genau, wo das Geräusch im Wagen wäre.`,
+    choices: [
+      {
+        id: 'comp7_hold_line',
+        label: 'Bei Comp7 bleiben',
+        effects: [
+          { type: 'set', target: 'empathie', value: 12 }
+        ],
+        next: 'c5_s16_control3_aftermath'
+      },
+      {
+        id: 'comp7_answer_soft',
+        label: '„Allein reicht hier nicht."',
+        effects: [
+          { type: 'set', target: 'empathie', value: 13 }
+        ],
+        next: 'c5_s16_control3_aftermath'
+      }
+    ],
+    tags: ['interlude'],
+    state_notes: [
+      'Mini-Dialog nach Comp7-Option',
+      'Tonwahl ohne Route-Impact'
+    ],
+    atmosphere: 'somber'
+  },
+
+  // ==========================================================================
+  // STANDARD: Unmittelbare Reaktion auf Trotz
+  // ==========================================================================
+
+  'c5_s15b_defiance_response': {
+    id: 'c5_s15b_defiance_response',
+    chapter: 5,
+    title: 'Gegen den Blick',
+    narrative: `Der Schaffner lächelt nicht, aber seine Haltung wird härter.
+
+„Trotz ist auch eine Antwort," sagt er. „Nur meistens eine kurze."
+
+Der Gang hinter ihm wirkt enger, als hätte dein Satz eine Tür fast zugeschoben.`,
+    choices: [
+      {
+        id: 'defiance_hold',
+        label: 'Nicht zurückweichen',
+        effects: [
+          { type: 'set', target: 'empathie', value: 14 }
+        ],
+        next: 'c5_s16_control3_aftermath'
+      },
+      {
+        id: 'defiance_reframe',
+        label: '„Kurz reicht für den nächsten Schritt."',
+        effects: [
+          { type: 'set', target: 'empathie', value: 15 }
+        ],
+        next: 'c5_s16_control3_aftermath'
+      }
+    ],
+    tags: ['interlude'],
+    state_notes: [
+      'Mini-Dialog nach Trotz-Option',
+      'Tonwahl ohne Route-Impact'
+    ],
+    atmosphere: 'danger'
+  },
+
+  // ==========================================================================
+  // STANDARD: Unmittelbare Reaktion auf Verdrängung
+  // ==========================================================================
+
+  'c5_s15b_blank_response': {
+    id: 'c5_s15b_blank_response',
+    chapter: 5,
+    title: 'Leerstelle',
+    narrative: `„Ich weiß es nicht."
+
+Der Satz fällt flach zwischen euch.
+
+Der Schaffner nickt nur, als hätte er genau damit gerechnet.
+
+Gerade dieses Nicken trifft dich härter als ein Widerspruch.`,
+    choices: [
+      {
+        id: 'blank_look_down',
+        label: 'Den Blick senken',
+        effects: [
+          { type: 'set', target: 'empathie', value: 16 }
+        ],
+        next: 'c5_s16_control3_aftermath'
+      },
+      {
+        id: 'blank_hold_eye',
+        label: 'Den Blick halten',
+        effects: [
+          { type: 'set', target: 'empathie', value: 17 }
+        ],
+        next: 'c5_s16_control3_aftermath'
+      }
+    ],
+    tags: ['interlude'],
+    state_notes: [
+      'Mini-Dialog nach Verdrängungs-Option',
+      'Tonwahl ohne Route-Impact'
+    ],
+    atmosphere: 'somber'
   },
 
   // ==========================================================================
@@ -1504,7 +1680,8 @@ Der Schaffner steht hinter dir.
           value: 4
         },
         effects: [
-          { type: 'inc', target: 'tickets_escape', value: 2 }
+          { type: 'inc', target: 'tickets_escape', value: 2 },
+          { type: 'inc', target: 'memory_drift', value: 1 }
         ],
         next: 'c5_s22_before_station'
       },
@@ -1534,7 +1711,8 @@ Der Schaffner steht hinter dir.
         id: 'stay_in_train',
         label: 'Im Zug bleiben – weiterfahren',
         effects: [
-          { type: 'inc', target: 'tickets_escape', value: 2 }
+          { type: 'inc', target: 'tickets_escape', value: 1 },
+          { type: 'inc', target: 'conductor_attention', value: 1 }
         ],
         next: 'c5_s22_before_station'
       }
@@ -1673,7 +1851,11 @@ Die Türen öffnen sich.
 
 Du stehst auf und trittst hinaus auf den Bahnsteig.
 
-Die Luft ist kühler, klarer. Sie schmeckt nach Regen und altem Stein.`,
+Die Luft ist kühler, klarer. Sie schmeckt nach Regen und altem Stein.
+
+Für einen Atemzug klingt der Zug hinter dir fern, fast harmlos.
+
+Dann hörst du wieder das tiefe Metallgeräusch unter dem Bahnsteig und weißt, dass der Abstand nur geliehen ist.`,
     choices: [
       {
         id: 'take_in_platform',

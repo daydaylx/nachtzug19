@@ -32,7 +32,13 @@ Du hebst die linke Hand. Es hebt die rechte. Ein perfektes Abbild.
 
 Doch als du blinzelst, bleiben seine Augen weit offen.
 
-Es lächelt. Du nicht.`,
+Es lächelt. Du nicht.
+
+Ein Tropfen läuft vom Hahn und trifft das Becken mit einem einzelnen, klaren Ton. Im Spiegel siehst du den Tropfen nicht fallen.
+
+Du hältst den Atem an, nur um zu prüfen, ob auch dein Spiegelbild ihn anhält. Es tut es. Zu spät.
+
+Die Neonröhre über dir flackert kurz, und im Flackern wirkt dein Gesicht um Jahre älter, als hätte der Zug eine künftige Version von dir für einen Augenblick eingeblendet.`,
     choices: [
       {
         id: 'touch_mirror',
@@ -79,7 +85,13 @@ Hinter deinem Spiegelbild schält sich eine zweite Gestalt aus dem Dampf. Sie si
 
 Zwei Versionen von dir. Eine im Hier. Eine im Dort.
 
-Die zweite Version formt lautlos Worte: „Wir sind viele.“`,
+Die zweite Version formt lautlos Worte: „Wir sind viele.“
+
+Die Wärme im Glas pulsiert gegen deine Fingerkuppen, fast wie ein zweiter Herzschlag. Nicht synchron zu deinem.
+
+Du versuchst den Blick auf eine einzige Version zu fixieren, aber die Ränder beginnen zu wandern. Für den Bruchteil einer Sekunde siehst du hinter beiden Gesichtern einen dunklen Bahnsteig und eine Uhr, die auf derselben Minute hängen geblieben ist.
+
+Dann glättet sich die Oberfläche wieder. Nur dein Atem geht zu schnell.`,
     choices: [
       {
         id: 'press_hand',
@@ -115,7 +127,9 @@ Die zweite Version formt lautlos Worte: „Wir sind viele.“`,
 
 „Ich bin das, was übrig bleibt,“ flüstert es. Du hörst es nicht mit den Ohren, sondern direkt im Kopf.
 
-„Wenn du gehst, bleibe ich hier. Wie die anderen Male.“`,
+„Wenn du gehst, bleibe ich hier. Wie die anderen Male.“
+
+Für einen Moment bewegt es den Mund noch, nachdem du aufgehört hast zu blinzeln.`,
     choices: [
       {
         id: 'ask_how_many',
@@ -210,7 +224,13 @@ Die Versionen drehen sich gleichzeitig um.`
     title: 'Flüstern',
     narrative: `Noch während du weitergehst, hörst du Stimmen, aber sie kommen nicht von den Türen.
 
-Sie kommen aus den Spiegeln. Wie Atem auf Glas. Ein Wort wiederholt sich: „Neunzehn."`,
+Sie kommen aus den Spiegeln. Wie Atem auf Glas. Ein Wort wiederholt sich: „Neunzehn."
+
+Die Scheiben beschlagen von innen, obwohl der Gang kalt ist. Für einen Moment zeichnen sich darin Fingerlinien ab, als hätte jemand direkt hinter dem Glas entlanggetastet.
+
+Du gehst schneller, doch das Flüstern passt sich deinem Tempo an. Kein Chor, eher viele Versionen derselben Stimme, jede leicht verschoben.
+
+Als du kurz stehenbleibst, verstummen sie nicht. Sie rücken nur näher.`,
     narrative_variants: [
       {
         condition: {
@@ -279,7 +299,13 @@ Aus dem Lautsprecher kommt deine eigene Stimme:
 
 „—Vierter Durchlauf. Wieder hier. Ich weiß jetzt, was der Spiegel ist. Er zeigt nicht mich. Er zeigt die, die es nicht geschafft haben.—"
 
-Die Stimme bricht ab. Dann schreit sie.`,
+Die Stimme bricht ab. Dann schreit sie.
+
+Der Schrei hält zu lange an, ohne Luft zu holen, bis er ins Bandrauschen kippt. Darunter hörst du einen zweiten Kanal, fast unhörbar: Türen, die auf- und zuschlagen, immer wieder, immer derselbe Abstand.
+
+Du legst die Hand auf das Gehäuse. Das Metall ist warm, als läge der Rekorder seit Stunden in einer Tasche an einem fremden Körper.
+
+In der Fensterscheibe hinter dem Tisch spiegelt sich dein Rücken. Für einen Moment hebt das Spiegelbild die Hand früher als du.`,
     narrative_variants: [
       {
         condition: { type: 'bool', target: 'has_recorder', value: false },
@@ -331,7 +357,15 @@ Die Stimme bricht ab. Dann schreit sie.`
 
 Dann Stille. So sauber, dass du dein Blut in den Ohren hörst.
 
-Im Spiegel hinter dir erscheint eine Silhouette. Comp7.`,
+Im Spiegel hinter dir erscheint eine Silhouette. Comp7.
+
+Die Bandspule dreht sich aus, Millimeter für Millimeter, bis sie mit einem trockenen Klicken stillsteht. Dieses kleine Geräusch wirkt lauter als der Schrei von eben.
+
+Du wartest auf das übliche Zugrasseln im Hintergrund, aber es kommt nicht sofort. Für einen langen Herzschlag klingt der ganze Wagen wie ein luftdichter Raum.
+
+Erst dann kehrt das tiefe Dröhnen zurück, dumpf und fern, als hätte jemand den Ton aus dem Nebenabteil wieder eingeschaltet.
+
+Die Silhouette im Spiegel bewegt sich nicht synchron mit deinem Atem. Sie kippt den Kopf minimal zur Seite. Du weißt, dass es Comp7 ist, bevor du dich umdrehst.`,
     choices: [
       {
         id: 'turn_to_comp7',
@@ -372,7 +406,13 @@ Im Spiegel hinter dir erscheint eine Silhouette. Comp7.`,
 
 „Du warst es. In einer anderen Runde. Der Zug fährt im Kreis, aber er vergisst nichts. Die Spiegel, die Bänder… sie sind das Gedächtnis des Zuges.“
 
-Sie beugt sich vor. „Wir müssen etwas finden. Etwas Festes. Sonst löst du dich auf wie die anderen im Spiegel.“`,
+Sie beugt sich vor. „Wir müssen etwas finden. Etwas Festes. Sonst löst du dich auf wie die anderen im Spiegel.“
+
+Sie legt zwei Finger auf den Tisch zwischen euch, genau auf eine alte Brandspur im Holz. „Ich hab versucht, mir alles zu merken," sagt sie. „Gesichter. Halte. Reihenfolgen. Es reicht nicht."
+
+Ihre Stimme bricht nicht, aber sie wird leiser. „Der Zug liebt Details. Er tauscht sie gegeneinander aus, bis du nicht mehr sagen kannst, was ursprünglich war."
+
+Dann richtet sie sich wieder auf, als hätte sie einen Schalter umgelegt. „Deshalb brauchen wir einen Anker, keinen Beweis. Etwas, das auch dann noch wahr ist, wenn alles andere kippt."`,
     choices: [
       {
         id: 'ask_what_to_find',
@@ -407,7 +447,23 @@ Sie beugt sich vor. „Wir müssen etwas finden. Etwas Festes. Sonst löst du di
     title: 'Hinweis',
     narrative: `Comp7 tippt mit dem Finger auf den Tisch, als würde sie eine Zahl markieren.
 
-„Nicht dein Name hält dich hier,“ sagt sie. „Etwas anderes. Etwas, das immer gleich bleibt.“`,
+„Nicht dein Name hält dich hier,“ sagt sie. „Etwas anderes. Etwas, das immer gleich bleibt.“
+
+Sie zeichnet mit dem Fingernagel eine unsichtbare Linie in das Holz, immer wieder dieselbe Bewegung, bis ein leises Kratzen hörbar wird.
+
+„Namen brechen zuerst," sagt sie. „Dann Gesichter. Dann Gründe. Irgendwann bleiben nur Muster übrig."
+
+Du willst fragen, warum sie das so sicher weiß, aber ihre Augen beantworten es schon: weil sie lange genug hier war, um es mehrfach zu verlieren.
+
+„Wenn du einen festen Punkt hast," fährt sie fort, „kannst du um ihn herum lügen, zweifeln, schreien. Aber du verschwindest nicht vollständig."
+
+Ihre Hand stoppt. „Ohne Punkt bist du nur noch Reaktion."
+
+Sie lehnt sich zurück und schließt kurz die Augen, als würde sie einen Satz auswendig aufsagen. „Ich hab einmal versucht, den Anker zu ignorieren," sagt sie. „Drei Runden später wusste ich nicht mehr, ob ich dich warnen will oder nur meine Notizen wiederholen."
+
+Du hörst den Satz und verstehst: Selbst ihre Klarheit ist geliehen, fragil, immer kurz vor dem Zerfall.
+
+„Frag nicht nur nach der Zahl," sagt sie. „Frag, was sie in dir festhält."`,
     choices: [
       {
         id: 'press_for_number',
@@ -485,7 +541,13 @@ Du fällst. Nicht tief. Nur… aus der Ordnung.
 
 Du landest auf etwas Hartem. Der Boden eines Abteils. Aber es ist verbrannt. Alt.
 
-Zwischen der Asche glänzt etwas.`,
+Zwischen der Asche glänzt etwas.
+
+Der Geruch trifft dich zuerst: nasser Ruß, heißes Öl, ein bitterer Metallton auf der Zunge. Die Luft ist trocken und schneidend, jeder Atemzug kratzt.
+
+Um dich herum stehen Sitzgestelle wie verkohlte Rippen. Auf einem Fensterrahmen klebt geschmolzener Lack in langen Tränen.
+
+Du hörst fernes Rattern, aber es passt nicht zu den Gleisen unter dir. Es klingt, als würden mehrere Fahrten gleichzeitig durch denselben Wagen laufen, übereinander, nicht ganz deckungsgleich.`,
     choices: [
       {
         id: 'search_ashes',
@@ -519,7 +581,15 @@ Zwischen der Asche glänzt etwas.`,
     title: 'Glut',
     narrative: `Zwischen der Asche glimmt etwas wie ein langsamer Puls.
 
-Die Luft schmeckt nach Eisen. Deine Finger werden warm, obwohl um dich alles kalt ist.`,
+Die Luft schmeckt nach Eisen. Deine Finger werden warm, obwohl um dich alles kalt ist.
+
+Du pustest den Staub beiseite. Die Glut darunter ist kein Feuer, eher ein tiefes, rotes Atmen aus dem Schutt.
+
+Jedes Mal, wenn das Glimmen heller wird, flackern um dich herum kurze Bilder auf: ein Bahnsteig im Regen, ein helles Küchenlicht, ein leerer Sitzplatz mit deinem Mantel darüber.
+
+Du kneifst die Augen zusammen, aber die Bilder bleiben für den Bruchteil einer Sekunde hinter den Lidern stehen.
+
+Es fühlt sich an, als hätte der Zug die Erinnerungen nicht gelöscht, sondern unter einer Schicht Asche abgelegt.`,
     choices: [
       {
         id: 'reach_in',
@@ -566,7 +636,13 @@ Du hast diesen Anhänger schon einmal gefunden. Und verloren. Und wiedergefunden
 
 Du bist nicht nur ein Passagier. Du bist Teil des Wracks.
 
-„Tag 19," flüsterst du. Und du weißt, dass es wahr ist.`,
+„Tag 19," flüsterst du. Und du weißt, dass es wahr ist.
+
+Das Messing schneidet kalt in deine Handfläche, obwohl es eben noch warm war. Auf der Rückseite sind feine Kratzer, parallel, als hätte jemand mit einem Messer immer wieder dieselbe Stelle bearbeitet.
+
+Mit dem Anhänger im Griff ordnen sich Geräusche im Wagen neu. Das entfernte Dröhnen bekommt Richtung. Das Flackern bekommt Takt. Selbst dein Atem fühlt sich plötzlich in ein Raster gezwungen an.
+
+Es ist kein Trost. Es ist Gewicht. Aber zum ersten Mal seit Langem trägt dieses Gewicht einen Sinn.`,
     narrative_variants: [
       {
         condition: { type: 'bool', target: 'memory_search_active', value: true },
@@ -629,7 +705,13 @@ Wie ausradiert.
 
 Du hast etwas gefunden (die 19). Aber du hast etwas verloren (dich selbst).
 
-Der Zug bremst.`,
+Der Zug bremst.
+
+Du versuchst den Namen ein zweites Mal. Dann ein drittes. Jedes Mal bleibt nur der Anfangslaut, roh und unvollständig, als hätte jemand den Rest aus deinem Hals herausgeschnitten.
+
+Im Fensterglas schreibst du den Buchstaben mit dem Finger in den Beschlag. Nach zwei Sekunden läuft Wasser darüber und zieht ihn wieder aus der Form.
+
+Der Anhänger liegt schwer in deiner Faust. Der Preis ist nicht abstrakt. Er sitzt jetzt in jedem Satz, den du beginnst und nicht beenden kannst.`,
     choices: [
       {
         id: 'accept_exchange',
@@ -663,7 +745,23 @@ Der Zug bremst.`,
     title: 'Nachhall',
     narrative: `Du hörst deinen Namen nicht, aber du spürst seine Form – wie eine Narbe ohne Schmerz.
 
-Das Tag19 liegt schwer in deiner Hand. Ein Gewicht, das dich nach vorne zieht.`,
+Das Tag19 liegt schwer in deiner Hand. Ein Gewicht, das dich nach vorne zieht.
+
+Du fährst mit dem Daumen über die eingravierte Zahl, wieder und wieder, bis die Haut an der Kuppe taub wird. Die Kontur der Neunzehn ist klarer als jeder Buchstabe deines eigenen Namens.
+
+Im Fenster versucht dein Spiegelbild kurz den Mund zu formen. Derselbe Anfangslaut wie eben. Dann verwischt es im Vorbeiziehen der Tunnellichter.
+
+Der Zug nimmt Fahrt auf. Mit jedem Schienenstoß rutscht etwas in dir einen Millimeter weiter, als müsste dein Inneres sich neu einsortieren.
+
+Du beschließt, den Laut nicht mehr zu jagen. Noch nicht. Erst den Halt erreichen. Erst den nächsten festen Punkt.
+
+Das ist kein Aufgeben. Es ist Überleben in einer Sprache, die dir gerade entzogen wird.
+
+In der Fensterscheibe laufen Lichter über dein Gesicht wie fremde Finger. Jeder Lichtstreifen macht dich kurz zu jemand anderem, dann wieder zu dir, dann zu einer dritten Version dazwischen.
+
+Du legst den Anhänger an dein Brustbein, genau dort, wo der Schienenstoß am stärksten nachhallt.
+
+Wenn schon der Name fällt, dann bleibt wenigstens der Takt. Wenigstens diese Zahl. Wenigstens ein Punkt, von dem aus du dich wieder zusammensetzen kannst.`,
     choices: [
       {
         id: 'hold_tag_tight',
@@ -714,7 +812,13 @@ Hunderte Versionen von dir. Alte, junge, verletzte, lachende.
 
 Sie warten auf den Zug. Sie warten auf dich.
 
-Die Türen öffnen sich.`,
+Die Türen öffnen sich.
+
+Keine der Kopien blinzelt. Einige tragen Verletzungen, die du nicht hast. Andere lächeln mit einer Ruhe, die dir fremd ist. Eine hält etwas in der Hand, das wie dein Rekorder aussieht, aber mit geschmolzenem Gehäuse.
+
+Als die Türdichtung zischend nachgibt, bewegen sie sich nicht auf den Zug zu. Sie kippen nur minimal nach vorn, als würde dieselbe Entscheidung hundertfach in derselben Sekunde vorbereitet.
+
+Du spürst, wie dein Magen hart wird. Nicht aus Schreck allein, sondern aus Wiedererkennen.`,
     choices: [
       {
         id: 'close_eyes',
@@ -746,17 +850,43 @@ Die Türen öffnen sich.`,
     id: 'c4_end_station',
     chapter: 4,
     title: 'Ende 4',
-    narrative: `Eine der Kopien tritt vor. Sie legt die Hand an die Scheibe, genau dort, wo deine ist.
+    narrative: `Eine der Kopien tritt vor und legt die Hand an die Scheibe, genau dort, wo deine ist.
 
 Sie formt ein Wort mit den Lippen: „Bald.“
 
 Dann schlagen die Türen zu. Das Licht flackert aus.
 
-Als es wieder angeht, ist der Bahnsteig leer.
+Als es zurückkommt, ist der Bahnsteig leer.
 
 Du bist allein mit der 19 in deiner Hand.
 
-Der nächste Halt wartet schon.`,
+Für einen Moment bleibt ein Handabdruck außen auf der Scheibe zurück, zu groß und zu klar für bloßen Beschlag. Dann zerfließt auch er.
+
+Der Wagen setzt sich ruckfrei in Bewegung, als hätte es den Halt nie gegeben. Nur das Ziehen in deinem Arm verrät, wie fest du den Anhänger gehalten hast.
+
+Im Lautsprecher knackt es einmal, ohne Durchsage. Du wartest trotzdem auf Worte.
+
+Es kommen keine. Nur der Schienentakt und das Gefühl, dass etwas im Zug jetzt deinen neuen Namen kennt, auch wenn du ihn nicht mehr sagen kannst.
+
+Du lässt den Blick durch den Wagen gleiten. Sitze, Gepäckablagen, matte Lampen - alles normal. Und darunter ein zweiter Zustand, dünn und gespannt wie Draht.
+
+Du verstehst plötzlich, warum Comp7 schreibt und nicht aufhört: nicht, um zu beweisen, dass etwas passiert ist, sondern um eine Spur zu haben, wenn wieder alles so tut, als wäre nichts gewesen.
+
+Der Zug nimmt eine lange Kurve. Metall singt gegen Metall.
+
+Du schließt die Hand um die 19, bis die Kanten drücken.
+
+Wenn Kapitel 5 beginnt, fragst du nicht mehr, ob die Schleife echt ist. Nur noch, was sie von dir will.
+
+Die Lampen dimmen für einen Herzschlag und springen zurück. Im Scheibenglas siehst du mehrere Schichten deines Spiegelbilds, leicht zeitversetzt.
+
+Du hältst die Hand still auf dem Anhänger und wartest auf den nächsten Schienenstoß.
+
+Er trifft dich wie ein Startsignal.
+
+Vor dem dunklen Fenster nickst du dir kaum merklich zu.
+
+Der Zug antwortet mit einem langen, tiefen Knurren aus dem Unterboden.`,
     choices: [
       {
         id: 'continue_to_c5',
@@ -764,11 +894,114 @@ Der nächste Halt wartet schon.`,
         effects: [
           { type: 'set', target: 'chapter_index', value: 5 }
         ],
-        next: 'c5_s01_final_preparation'
+        next: 'c4_end_station_sideword'
       }
     ],
     tags: ['station_end'],
     state_notes: ['Übergang zu Kapitel 5'],
     atmosphere: 'dark'
+  },
+
+  // ============================================================================
+  // c4_end_station_sideword: Kleiner Neben-Dialog ohne globales Gewicht
+  // ============================================================================
+  'c4_end_station_sideword': {
+    id: 'c4_end_station_sideword',
+    chapter: 4,
+    title: 'Ein kurzer Blick',
+    narrative: `Comp7 steht plötzlich neben dir, den Stift noch in der Hand.
+
+Sie schreibt nicht, sie wartet nur.
+
+„Nur ein Satz," sagt sie. „Was bleibt dir von diesem Halt zuerst hängen?"`,
+    choices: [
+      {
+        id: 'sideword_copies',
+        label: '„Dass sie alle gewartet haben."',
+        next: 'c4_end_station_sideword_copies'
+      },
+      {
+        id: 'sideword_refuse',
+        label: '„Ich will darüber nicht reden."',
+        next: 'c4_end_station_sideword_refuse'
+      },
+      {
+        id: 'sideword_tag19',
+        label: '„Nur die 19 bleibt."',
+        next: 'c4_end_station_sideword_tag19'
+      }
+    ],
+    tags: ['interlude'],
+    state_notes: [
+      'Mini-Dialog: Atmosphäre und Ton',
+      'Alle Antworten führen ohne Systemwirkung zu Kapitel 5'
+    ],
+    atmosphere: 'somber'
+  },
+
+  // ============================================================================
+  // c4_end_station_sideword_copies: Reaktion 1
+  // ============================================================================
+  'c4_end_station_sideword_copies': {
+    id: 'c4_end_station_sideword_copies',
+    chapter: 4,
+    title: 'Sie warten',
+    narrative: `Comp7 nickt knapp. „Dann weißt du wenigstens, dass du gesehen wurdest."
+
+Sie notiert nichts, als müsste dieser Satz ungeschrieben bleiben.`,
+    choices: [
+      {
+        id: 'continue_from_c4_sideword_copies',
+        label: 'Weiter',
+        next: 'c5_s01_final_preparation'
+      }
+    ],
+    tags: ['interlude'],
+    state_notes: ['Neben-Dialog-Reaktion ohne Systemwirkung'],
+    atmosphere: 'somber'
+  },
+
+  // ============================================================================
+  // c4_end_station_sideword_refuse: Reaktion 2
+  // ============================================================================
+  'c4_end_station_sideword_refuse': {
+    id: 'c4_end_station_sideword_refuse',
+    chapter: 4,
+    title: 'Nicht jetzt',
+    narrative: `„Okay," sagt sie. „Dann schreiben wir es später. Aber wir schreiben es."
+
+Sie klappt das Notizbuch nicht auf, aber ihr Daumen bleibt auf der Kante liegen.`,
+    choices: [
+      {
+        id: 'continue_from_c4_sideword_refuse',
+        label: 'Weiter',
+        next: 'c5_s01_final_preparation'
+      }
+    ],
+    tags: ['interlude'],
+    state_notes: ['Neben-Dialog-Reaktion ohne Systemwirkung'],
+    atmosphere: 'somber'
+  },
+
+  // ============================================================================
+  // c4_end_station_sideword_tag19: Reaktion 3
+  // ============================================================================
+  'c4_end_station_sideword_tag19': {
+    id: 'c4_end_station_sideword_tag19',
+    chapter: 4,
+    title: 'Nur die Zahl',
+    narrative: `Comp7 betrachtet den Anhänger kurz. „Manchmal reicht eine Zahl als Geländer."
+
+Der Metallrand drückt in deine Haut, und der Schmerz wirkt für einen Moment ordentlich.`,
+    choices: [
+      {
+        id: 'continue_from_c4_sideword_tag19',
+        label: 'Weiter',
+        next: 'c5_s01_final_preparation'
+      }
+    ],
+    tags: ['interlude'],
+    state_notes: ['Neben-Dialog-Reaktion ohne Systemwirkung'],
+    atmosphere: 'somber'
   }
 };
