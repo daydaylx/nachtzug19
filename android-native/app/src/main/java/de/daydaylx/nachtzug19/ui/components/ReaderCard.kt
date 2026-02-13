@@ -2,6 +2,7 @@ package de.daydaylx.nachtzug19.ui.components
 
 import androidx.compose.animation.core.*
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.offset
@@ -200,15 +201,23 @@ fun ContinueHint(
     modifier: Modifier = Modifier
 ) {
     if (!visible) return
+    val shape = RoundedCornerShape(999.dp)
     
     Box(
         modifier = modifier,
         contentAlignment = androidx.compose.ui.Alignment.Center
     ) {
-        Text(
-            text = "Weiter unten",
-            style = MaterialTheme.typography.labelSmall,
-            color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.24f)
-        )
+      Box(
+        modifier = Modifier
+          .background(color = NachtzugColors.ReaderScrimStrong.copy(alpha = 0.80f), shape = shape)
+          .border(width = 1.dp, color = NachtzugColors.ReaderBorderStrong.copy(alpha = 0.72f), shape = shape)
+          .padding(horizontal = 10.dp, vertical = 3.dp)
+      ) {
+          Text(
+              text = "Weiter unten",
+              style = MaterialTheme.typography.labelSmall,
+              color = NachtzugColors.TextMuted.copy(alpha = 0.90f)
+          )
+      }
     }
 }

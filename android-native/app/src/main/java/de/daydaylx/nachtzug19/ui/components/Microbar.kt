@@ -14,6 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import de.daydaylx.nachtzug19.model.Tickets
@@ -39,8 +40,12 @@ fun Microbar(
       .fillMaxWidth()
       .clip(RoundedCornerShape(cornerRadius))
       .background(Color.Black.copy(alpha = 0.62f))
-      .padding(horizontal = horizontalPadding, vertical = verticalPadding)
-      .clickable(onClick = onClick),
+      .clickable(
+        role = Role.Button,
+        onClickLabel = "Statusdetails öffnen",
+        onClick = onClick
+      )
+      .padding(horizontal = horizontalPadding, vertical = verticalPadding),
     horizontalArrangement = Arrangement.SpaceEvenly,
     verticalAlignment = Alignment.CenterVertically
   ) {

@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
@@ -19,6 +20,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.TextUnitType
 import androidx.compose.ui.unit.dp
@@ -63,16 +65,20 @@ fun StoryModeReader(
   val beats = uiState.narrativeBeats
   val currentBeat = beats?.beats?.getOrNull(uiState.beatIndex) ?: narrative
   val isLastBeat = uiState.beatIndex == (beats?.beats?.lastIndex ?: 0)
-  val isSmallDisplayHeight = LocalConfiguration.current.screenHeightDp <= 760
+  val screenHeightDp = LocalConfiguration.current.screenHeightDp
+  val isSmallDisplayHeight = screenHeightDp <= 760
   val horizontalPadding = if (isSmallDisplayHeight) 14.dp else 20.dp
-  val topGap = if (isSmallDisplayHeight) 8.dp else 12.dp
-  val bottomGap = if (isSmallDisplayHeight) 8.dp else 12.dp
-  val choiceSpacing = if (isSmallDisplayHeight) 10.dp else 12.dp
-  val bottomChoicePadding = if (isSmallDisplayHeight) 8.dp else 12.dp
+  val topGap = if (isSmallDisplayHeight) 6.dp else 12.dp
+  val bottomGap = if (isSmallDisplayHeight) 4.dp else 10.dp
+  val choiceSpacing = if (isSmallDisplayHeight) 8.dp else 12.dp
+  val bottomChoicePadding = if (isSmallDisplayHeight) 4.dp else 10.dp
+  val panelMaxHeight = (screenHeightDp * if (isSmallDisplayHeight) 0.56f else 0.64f).dp
+  val panelMinHeight = if (isSmallDisplayHeight) 210.dp else 260.dp
   val showTopStationOverlay = showStationOverlay
   val showTopAnnouncement = showAnnouncement && !showTopStationOverlay
   val showMicrobar = settings.showStatus && settings.showMicrobar && state != null
   val interactionLocked = processingChoiceKey != null
+  val canAdvanceBeat = uiState.beatPhase != BeatPhase.CHOICES_AVAILABLE
 
   Column(
     modifier = Modifier
@@ -92,7 +98,8 @@ fun StoryModeReader(
       StationOverlay(
         visible = true,
         stationCount = state?.station_count ?: 0,
-        motionPolicy = motionPolicy
+        motionPolicy = motionPolicy,
+        dense = isSmallDisplayHeight
       )
       Spacer(modifier = Modifier.height(topGap))
     }
@@ -100,15 +107,17 @@ fun StoryModeReader(
     // Story Panel (main beat display)
     Box(
       modifier = Modifier
-        .weight(1f)
+        .heightIn(min = panelMinHeight, max = panelMaxHeight)
+        .weight(1f, fill = false)
         .fillMaxWidth()
         .clickable(
+          enabled = canAdvanceBeat,
+          role = Role.Button,
+          onClickLabel = "Nächsten Abschnitt anzeigen",
           interactionSource = remember { MutableInteractionSource() },
           indication = null
         ) {
-          if (uiState.beatPhase != BeatPhase.CHOICES_AVAILABLE) {
-            onTapContent()
-          }
+          onTapContent()
         }
     ) {
       StoryPanel(
@@ -135,7 +144,7 @@ fun StoryModeReader(
       }
     }
 
-    Spacer(modifier = Modifier.height(if (isSmallDisplayHeight) 12.dp else 16.dp))
+    Spacer(modifier = Modifier.height(if (isSmallDisplayHeight) 8.dp else 16.dp))
 
     // Bottom Area: Microbar + Choices
     Column(
@@ -154,7 +163,7 @@ fun StoryModeReader(
           dense = isSmallDisplayHeight,
           modifier = Modifier
             .fillMaxWidth()
-            .padding(vertical = if (isSmallDisplayHeight) 2.dp else 4.dp)
+            .padding(vertical = if (isSmallDisplayHeight) 1.dp else 4.dp)
         )
       }
 

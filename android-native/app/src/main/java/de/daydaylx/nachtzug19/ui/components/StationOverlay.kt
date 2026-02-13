@@ -25,7 +25,8 @@ import de.daydaylx.nachtzug19.ui.theme.NachtzugColors
 fun StationOverlay(
     visible: Boolean, 
     stationCount: Int,
-    motionPolicy: MotionPolicy
+    motionPolicy: MotionPolicy,
+    dense: Boolean = false
 ) {
     if (motionPolicy.allowTransitions) {
         AnimatedVisibility(
@@ -41,13 +42,15 @@ fun StationOverlay(
         ) {
             StationOverlayCard(
                 stationCount = stationCount,
-                pulseEnabled = motionPolicy.allowContinuousEffects
+                pulseEnabled = motionPolicy.allowContinuousEffects,
+                dense = dense
             )
         }
     } else if (visible) {
         StationOverlayCard(
             stationCount = stationCount,
-            pulseEnabled = false
+            pulseEnabled = false,
+            dense = dense
         )
     }
 }
@@ -55,7 +58,8 @@ fun StationOverlay(
 @Composable
 private fun StationOverlayCard(
     stationCount: Int,
-    pulseEnabled: Boolean
+    pulseEnabled: Boolean,
+    dense: Boolean
 ) {
     val alpha = if (pulseEnabled) {
         val infiniteTransition = rememberInfiniteTransition(label = "pulse")
@@ -72,13 +76,17 @@ private fun StationOverlayCard(
     } else {
         1f
     }
+    val cornerRadius = if (dense) 6.dp else 8.dp
+    val verticalPadding = if (dense) 8.dp else 12.dp
+    val horizontalPadding = if (dense) 12.dp else 16.dp
+    val badgeSize = if (dense) 34.dp else 40.dp
 
     Box(
         modifier = Modifier
             .fillMaxWidth()
-            .clip(RoundedCornerShape(8.dp))
+            .clip(RoundedCornerShape(cornerRadius))
             .background(Color.Black.copy(alpha = 0.9f))
-            .padding(vertical = 12.dp, horizontal = 16.dp)
+            .padding(vertical = verticalPadding, horizontal = horizontalPadding)
     ) {
         Row(
             modifier = Modifier.fillMaxWidth(),
@@ -94,14 +102,18 @@ private fun StationOverlayCard(
                 Text(
                     text = "Halt #$stationCount",
                     color = NachtzugColors.StationNeon.copy(alpha = alpha),
-                    style = MaterialTheme.typography.titleLarge
+                    style = if (dense) {
+                        MaterialTheme.typography.titleMedium
+                    } else {
+                        MaterialTheme.typography.titleLarge
+                    }
                 )
             }
             
             // Visual accent
             Box(
                 modifier = Modifier
-                    .size(40.dp)
+                    .size(badgeSize)
                     .background(
                         color = NachtzugColors.StationNeon.copy(alpha = 0.1f * alpha),
                         shape = RoundedCornerShape(4.dp)

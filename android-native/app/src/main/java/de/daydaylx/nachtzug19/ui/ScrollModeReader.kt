@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
@@ -40,6 +41,7 @@ import de.daydaylx.nachtzug19.ui.components.StationOverlay
 import de.daydaylx.nachtzug19.ui.components.TicketChoice
 import de.daydaylx.nachtzug19.ui.theme.NachtzugColors
 import kotlinx.coroutines.delay
+import kotlin.math.roundToInt
 
 private const val READTHROUGH_LENGTH_THRESHOLD = 420
 private const val READ_UNLOCK_PROGRESS_THRESHOLD = 0.70f
@@ -82,12 +84,15 @@ fun ScrollModeReader(
   onShowStatus: () -> Unit
 ) {
   val state = uiState.state
-  val isSmallDisplayHeight = LocalConfiguration.current.screenHeightDp <= 760
+  val screenHeightDp = LocalConfiguration.current.screenHeightDp
+  val isSmallDisplayHeight = screenHeightDp <= 760
   val horizontalPadding = if (isSmallDisplayHeight) 14.dp else 20.dp
-  val topGap = if (isSmallDisplayHeight) 8.dp else 12.dp
-  val bottomGap = if (isSmallDisplayHeight) 8.dp else 12.dp
-  val choiceSpacing = if (isSmallDisplayHeight) 10.dp else 12.dp
-  val bottomChoicePadding = if (isSmallDisplayHeight) 8.dp else 12.dp
+  val topGap = if (isSmallDisplayHeight) 6.dp else 12.dp
+  val bottomGap = if (isSmallDisplayHeight) 4.dp else 10.dp
+  val choiceSpacing = if (isSmallDisplayHeight) 8.dp else 12.dp
+  val bottomChoicePadding = if (isSmallDisplayHeight) 4.dp else 10.dp
+  val panelMaxHeight = (screenHeightDp * if (isSmallDisplayHeight) 0.54f else 0.62f).dp
+  val panelMinHeight = if (isSmallDisplayHeight) 210.dp else 260.dp
   val showTopStationOverlay = showStationOverlay
   val showTopAnnouncement = showAnnouncement && !showTopStationOverlay
   val showMicrobar = settings.showStatus && settings.showMicrobar && state != null
@@ -158,7 +163,8 @@ fun ScrollModeReader(
       StationOverlay(
         visible = true,
         stationCount = state?.station_count ?: 0,
-        motionPolicy = motionPolicy
+        motionPolicy = motionPolicy,
+        dense = isSmallDisplayHeight
       )
     }
 
@@ -172,11 +178,12 @@ fun ScrollModeReader(
       enableTypewriter = false,
       modifier = Modifier
         .fillMaxWidth()
-        .weight(1f)
+        .heightIn(min = panelMinHeight, max = panelMaxHeight)
+        .weight(1f, fill = false)
         .padding(top = topGap)
     )
 
-    Spacer(modifier = Modifier.height(if (isSmallDisplayHeight) 12.dp else 16.dp))
+    Spacer(modifier = Modifier.height(if (isSmallDisplayHeight) 8.dp else 16.dp))
 
     // Choices Area (Ticket Style)
     Column(
@@ -187,11 +194,17 @@ fun ScrollModeReader(
           .padding(bottom = bottomChoicePadding)
     ) {
         if (!choicesUnlocked) {
+            val scrollProgressPercent = if (narrativeScrollState.maxValue <= 0) {
+              unlockPercent
+            } else {
+              ((narrativeScrollState.value.toFloat() / narrativeScrollState.maxValue.toFloat())
+                .coerceIn(0f, 1f) * 100f).roundToInt()
+            }
+            val percentRemaining = (unlockPercent - scrollProgressPercent).coerceAtLeast(0)
             val countdown = autoUnlockSecondsRemaining.coerceAtLeast(1)
-            Text(
-              text = "Scrolle mindestens $unlockPercent % oder warte noch $countdown s, um Entscheidungen freizuschalten.",
-              style = MaterialTheme.typography.labelSmall,
-              color = NachtzugColors.TextPrimary.copy(alpha = 0.70f)
+            ReadUnlockHint(
+              percentRemaining = percentRemaining,
+              countdown = countdown
             )
         }
         if (showMicrobar) {
@@ -203,7 +216,7 @@ fun ScrollModeReader(
             dense = isSmallDisplayHeight,
             modifier = Modifier
               .fillMaxWidth()
-              .padding(vertical = if (isSmallDisplayHeight) 2.dp else 4.dp)
+              .padding(vertical = if (isSmallDisplayHeight) 1.dp else 4.dp)
           )
         } else if (showStatusQuickAction) {
           StatusQuickAction(
@@ -226,6 +239,33 @@ fun ScrollModeReader(
         }
     }
     Spacer(modifier = Modifier.height(bottomGap))
+  }
+}
+
+@Composable
+private fun ReadUnlockHint(
+  percentRemaining: Int,
+  countdown: Int
+) {
+  val shape = RoundedCornerShape(10.dp)
+  val message = if (percentRemaining > 0) {
+    "Noch $percentRemaining % scrollen oder $countdown s warten, dann werden Entscheidungen aktiv."
+  } else {
+    "Noch $countdown s warten, dann werden Entscheidungen aktiv."
+  }
+  Box(
+    modifier = Modifier
+      .fillMaxWidth()
+      .clip(shape)
+      .background(NachtzugColors.ReaderScrimStrong)
+      .border(width = 1.dp, color = NachtzugColors.ReaderBorderStrong.copy(alpha = 0.72f), shape = shape)
+      .padding(horizontal = 12.dp, vertical = 8.dp)
+  ) {
+    Text(
+      text = message,
+      style = MaterialTheme.typography.labelMedium,
+      color = NachtzugColors.TextPrimary.copy(alpha = 0.92f)
+    )
   }
 }
 

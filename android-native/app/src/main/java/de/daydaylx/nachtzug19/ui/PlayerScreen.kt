@@ -94,11 +94,19 @@ fun PlayerScreen(
       val chapterLabel = uiState.state?.chapter_index?.let { "K$it" } ?: "K?"
       PixelHUD(
         title = "$chapterLabel · NACHTZUG 19",
-        showStatusButton = false,
-        onStatusClick = {},
+        showStatusButton = settings.showStatus,
+        onStatusClick = {
+          if (uiState.isBacklogOpen) {
+            onCloseBacklog()
+          }
+          showStatus = true
+        },
         onSettingsClick = onOpenSettings,
         onBacklogClick = if (settings.readerMode == de.daydaylx.nachtzug19.model.ReaderMode.STORY) {
-          onOpenBacklog
+          {
+            showStatus = false
+            onOpenBacklog()
+          }
         } else null
       )
     }
@@ -170,14 +178,19 @@ fun PlayerScreen(
               processingChoiceKey = choiceKey
               onChoice(choice)
             },
-            onShowStatus = { showStatus = true },
+            onShowStatus = {
+              if (uiState.isBacklogOpen) {
+                onCloseBacklog()
+              }
+              showStatus = true
+            },
             onTapContent = onTapContent,
             onTypewriterComplete = onTypewriterComplete
           )
         }
       }
 
-      if (settings.showStatus && showStatus && uiState.state != null) {
+      if (settings.showStatus && showStatus && !uiState.isBacklogOpen && uiState.state != null) {
         ModalBottomSheet(
           onDismissRequest = { showStatus = false },
           containerColor = NachtzugColors.BackgroundPanel,
@@ -189,7 +202,7 @@ fun PlayerScreen(
       }
 
       // Backlog sheet (Story Mode only)
-      if (uiState.isBacklogOpen && settings.readerMode == de.daydaylx.nachtzug19.model.ReaderMode.STORY) {
+      if (uiState.isBacklogOpen && !showStatus && settings.readerMode == de.daydaylx.nachtzug19.model.ReaderMode.STORY) {
         BacklogSheet(
           backlog = uiState.backlog,
           onDismiss = onCloseBacklog

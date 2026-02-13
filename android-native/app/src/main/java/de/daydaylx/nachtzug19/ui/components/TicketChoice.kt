@@ -127,19 +127,19 @@ fun TicketChoice(
 
     val borderColor by animateColorAsState(
         targetValue = when {
-            !isEnabled -> NachtzugColors.ReaderBorder.copy(alpha = 0.24f)
-            isFocused -> visualStyle.accent.copy(alpha = 0.85f)
-            isPressed -> visualStyle.accent.copy(alpha = 0.70f)
-            else -> visualStyle.accent.copy(alpha = 0.45f)
+            !isEnabled -> NachtzugColors.ReaderBorder.copy(alpha = 0.36f)
+            isFocused -> visualStyle.accent.copy(alpha = 0.92f)
+            isPressed -> visualStyle.accent.copy(alpha = 0.80f)
+            else -> visualStyle.accent.copy(alpha = 0.62f)
         },
         label = "ticketBorder"
     )
 
     val cardColor by animateColorAsState(
         targetValue = if (isEnabled) {
-            NachtzugColors.TicketEmpty.copy(alpha = 0.90f)
+            NachtzugColors.BackgroundPanelElevated.copy(alpha = 0.96f)
         } else {
-            NachtzugColors.TicketEmpty.copy(alpha = 0.55f)
+            NachtzugColors.BackgroundPanel.copy(alpha = 0.90f)
         },
         label = "ticketCard"
     )
@@ -190,7 +190,7 @@ fun TicketChoice(
             ) {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
-                    color = visualStyle.accent.copy(alpha = if (isEnabled) 0.65f else 0.25f),
+                    color = visualStyle.accent.copy(alpha = if (isEnabled) 0.70f else 0.42f),
                     shape = RoundedCornerShape(999.dp)
                 ) {}
             }
@@ -203,7 +203,7 @@ fun TicketChoice(
                     } else if (isEnabled) {
                         MaterialTheme.colorScheme.onSurface.copy(alpha = 0.93f)
                     } else {
-                        MaterialTheme.colorScheme.onSurface.copy(alpha = 0.48f)
+                        MaterialTheme.colorScheme.onSurface.copy(alpha = 0.62f)
                     }
                 ),
                 modifier = Modifier
@@ -218,7 +218,7 @@ fun TicketChoice(
                 shape = RoundedCornerShape(10.dp),
                 border = BorderStroke(
                     width = 1.dp,
-                    color = visualStyle.accent.copy(alpha = if (isEnabled) 0.40f else 0.20f)
+                    color = visualStyle.accent.copy(alpha = if (isEnabled) 0.50f else 0.34f)
                 )
             ) {
                 Text(
@@ -227,7 +227,7 @@ fun TicketChoice(
                     color = if (isProcessing) {
                         visualStyle.accent.copy(alpha = 0.35f + 0.60f * processingPulse)
                     } else {
-                        visualStyle.accent.copy(alpha = if (isEnabled) 0.95f else 0.40f)
+                        visualStyle.accent.copy(alpha = if (isEnabled) 0.95f else 0.62f)
                     },
                     modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp)
                 )
