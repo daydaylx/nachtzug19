@@ -3168,7 +3168,7 @@ Was nimmst du mit ins Danach?`,
           type: 'compare',
           target: 'tickets_truth',
           operator: '>=',
-          value: 12
+          value: 10
         },
         effects: [
           { type: 'inc', target: 'tickets_truth', value: 1 }
@@ -3183,7 +3183,7 @@ Was nimmst du mit ins Danach?`,
           type: 'compare',
           target: 'tickets_love',
           operator: '>=',
-          value: 12
+          value: 10
         },
         effects: [
           { type: 'inc', target: 'tickets_love', value: 1 }
@@ -3198,7 +3198,7 @@ Was nimmst du mit ins Danach?`,
           type: 'compare',
           target: 'tickets_guilt',
           operator: '>=',
-          value: 12
+          value: 10
         },
         effects: [
           { type: 'inc', target: 'tickets_guilt', value: 1 }
@@ -3213,7 +3213,7 @@ Was nimmst du mit ins Danach?`,
           type: 'compare',
           target: 'tickets_escape',
           operator: '>=',
-          value: 12
+          value: 10
         },
         effects: [
           { type: 'inc', target: 'tickets_escape', value: 1 }
@@ -3233,7 +3233,7 @@ Was nimmst du mit ins Danach?`,
     tags: ['station_end'],
     state_notes: [
       'Station-End: Finale - Zug verblasst (1973 aufgelöst)',
-      'ENDINGS: Truth, Love, Guilt, Escape (Schwellenwerte 12 — erfordert bewusstes Spielen)',
+      'ENDINGS: Truth, Love, Guilt, Escape (Schwellenwerte 10 — erreichbar bei organischem Spiel)',
       'FALLBACK: Limbo Ending (nicht entscheiden)',
       'Jedes Ending führt zu 2 interaktiven Epilog-Szenen',
       'R1: Engine erhoeht memory_drift/station_count automatisch (keine manuellen station_end-Effects)'

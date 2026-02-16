@@ -852,9 +852,9 @@
           "label": "Weiter versuchen, es zu aktivieren",
           "effects": [
             {
-              "type": "inc",
-              "target": "tickets_truth",
-              "value": 1
+              "type": "set",
+              "target": "inspected_device",
+              "value": true
             }
           ],
           "next": "c1_hub_platform"
@@ -864,9 +864,9 @@
           "label": "Weglegen und vergessen",
           "effects": [
             {
-              "type": "inc",
-              "target": "tickets_escape",
-              "value": 1
+              "type": "set",
+              "target": "inspected_device",
+              "value": true
             }
           ],
           "next": "c1_hub_platform"
@@ -877,7 +877,8 @@
         "investigation"
       ],
       "state_notes": [
-        "Gerät zeigt \"NACHTZUG 19\" - erster direkter Name-Drop"
+        "Gerät zeigt \"NACHTZUG 19\" - erster direkter Name-Drop",
+        "Flag inspected_device für narrative Varianten (keine Tickets)"
       ]
     },
     {
@@ -892,13 +893,13 @@
           "effects": [
             {
               "type": "inc",
-              "target": "tickets_truth",
+              "target": "memory_drift",
               "value": 1
             },
             {
-              "type": "inc",
-              "target": "memory_drift",
-              "value": 1
+              "type": "set",
+              "target": "looked_into_void",
+              "value": true
             }
           ],
           "next": "c1_hub_platform"
@@ -908,9 +909,9 @@
           "label": "Sofort zurückspringen",
           "effects": [
             {
-              "type": "inc",
-              "target": "tickets_escape",
-              "value": 1
+              "type": "set",
+              "target": "looked_into_void",
+              "value": true
             }
           ],
           "next": "c1_hub_platform"
@@ -921,7 +922,8 @@
         "investigation"
       ],
       "state_notes": [
-        "Unendliche Tiefe - Reality-Check"
+        "Unendliche Tiefe - Reality-Check",
+        "memory_drift bleibt (Mechanik), Tickets entfernt (nur Flag looked_into_void)"
       ]
     },
     {
@@ -1086,13 +1088,13 @@
           "effects": [
             {
               "type": "inc",
-              "target": "tickets_truth",
+              "target": "memory_drift",
               "value": 1
             },
             {
-              "type": "inc",
-              "target": "memory_drift",
-              "value": 1
+              "type": "set",
+              "target": "gazed_into_darkness",
+              "value": true
             }
           ],
           "next": "c1_hub_train"
@@ -1102,9 +1104,9 @@
           "label": "Schnell zurück in den Gang",
           "effects": [
             {
-              "type": "inc",
-              "target": "tickets_escape",
-              "value": 1
+              "type": "set",
+              "target": "gazed_into_darkness",
+              "value": true
             }
           ],
           "next": "c1_hub_train"
@@ -1364,11 +1366,6 @@
           "effects": [
             {
               "type": "inc",
-              "target": "tickets_truth",
-              "value": 1
-            },
-            {
-              "type": "inc",
               "target": "rel_sleepless",
               "value": 2
             }
@@ -1381,13 +1378,13 @@
           "effects": [
             {
               "type": "inc",
-              "target": "tickets_truth",
+              "target": "memory_drift",
               "value": 1
             },
             {
-              "type": "inc",
-              "target": "memory_drift",
-              "value": 1
+              "type": "set",
+              "target": "noticed_jacket_change",
+              "value": true
             }
           ],
           "next": "c2_control_01_aftertalk"
@@ -1398,7 +1395,8 @@
         "reveal"
       ],
       "state_notes": [
-        "Merged Aftermath with Sleepless Talk"
+        "Merged Aftermath with Sleepless Talk",
+        "Truth-Tickets entfernt (Nachbesprechung), rel_sleepless & memory_drift bleiben"
       ]
     },
     {
@@ -1527,9 +1525,9 @@
           "label": "Schweigen",
           "effects": [
             {
-              "type": "inc",
-              "target": "tickets_truth",
-              "value": 1
+              "type": "set",
+              "target": "approach_response",
+              "value": "silent"
             }
           ],
           "next": "c2_control_01_question"
@@ -1539,9 +1537,9 @@
           "label": "„Es tut mir leid.\"",
           "effects": [
             {
-              "type": "inc",
-              "target": "tickets_guilt",
-              "value": 1
+              "type": "set",
+              "target": "approach_response",
+              "value": "apologize"
             }
           ],
           "next": "c2_control_01_question"
@@ -1551,7 +1549,9 @@
       "tags": [
         "control"
       ],
-      "state_notes": []
+      "state_notes": [
+        "Tickets entfernt - nur Flag approach_response für Ton"
+      ]
     },
     {
       "id": "c2_control_01_question",
@@ -1580,9 +1580,19 @@
           "id": "offer_search",
           "label": "„Ich suche Emma.\"",
           "condition": {
-            "type": "bool",
-            "target": "memory_search_active",
-            "value": true
+            "type": "or",
+            "conditions": [
+              {
+                "type": "bool",
+                "target": "memory_search_active",
+                "value": true
+              },
+              {
+                "type": "bool",
+                "target": "played_recorder",
+                "value": true
+              }
+            ]
           },
           "effects": [
             {
@@ -1882,13 +1892,13 @@
           "effects": [
             {
               "type": "inc",
-              "target": "tickets_truth",
+              "target": "memory_drift",
               "value": 1
             },
             {
-              "type": "inc",
-              "target": "memory_drift",
-              "value": 1
+              "type": "set",
+              "target": "kept_no_ticket_note",
+              "value": true
             }
           ],
           "next": "c2_s01c_corridor_chill"
@@ -1898,9 +1908,9 @@
           "label": "Zettel zerreißen",
           "effects": [
             {
-              "type": "inc",
-              "target": "tickets_escape",
-              "value": 1
+              "type": "set",
+              "target": "destroyed_evidence",
+              "value": true
             }
           ],
           "next": "c2_s01c_corridor_chill"
@@ -2156,13 +2166,13 @@
           "effects": [
             {
               "type": "inc",
-              "target": "tickets_truth",
+              "target": "memory_drift",
               "value": 1
             },
             {
-              "type": "inc",
-              "target": "memory_drift",
-              "value": 1
+              "type": "set",
+              "target": "counted_compartments",
+              "value": true
             }
           ],
           "next": "c2_s02b1_door_numbers"
@@ -2172,9 +2182,9 @@
           "label": "Direkt zum Licht gehen",
           "effects": [
             {
-              "type": "inc",
-              "target": "tickets_love",
-              "value": 1
+              "type": "set",
+              "target": "went_to_light",
+              "value": true
             }
           ],
           "next": "c2_s02b1_door_numbers"
@@ -2185,6 +2195,7 @@
         "drift_variant"
       ],
       "state_notes": [
+        "Tickets entfernt - nur Flags für Nuancen, memory_drift bleibt",
         "Merged corridor length and jacket color anomaly"
       ]
     },
@@ -2395,9 +2406,9 @@
           "label": "Die Wahrheit (Erinnerungslücke)",
           "effects": [
             {
-              "type": "inc",
-              "target": "tickets_truth",
-              "value": 1
+              "type": "set",
+              "target": "prepare_stance",
+              "value": "truth"
             }
           ],
           "next": "c2_s04b_breath_control"
@@ -2407,9 +2418,9 @@
           "label": "Eine Lüge erfinden",
           "effects": [
             {
-              "type": "inc",
-              "target": "tickets_escape",
-              "value": 1
+              "type": "set",
+              "target": "prepare_stance",
+              "value": "lie"
             },
             {
               "type": "inc",
@@ -2430,9 +2441,9 @@
           },
           "effects": [
             {
-              "type": "inc",
-              "target": "tickets_guilt",
-              "value": 1
+              "type": "set",
+              "target": "prepare_stance",
+              "value": "hide"
             },
             {
               "type": "inc",
@@ -2446,7 +2457,8 @@
       "atmosphere": "tense",
       "tags": [],
       "state_notes": [
-        "Fixed attention check for hiding"
+        "Fixed attention check for hiding",
+        "Tickets entfernt - nur Flag prepare_stance für narrative Varianten"
       ]
     },
     {
@@ -2460,9 +2472,9 @@
           "label": "Standhalten",
           "effects": [
             {
-              "type": "inc",
-              "target": "tickets_truth",
-              "value": 1
+              "type": "set",
+              "target": "conductor_stance",
+              "value": "face"
             }
           ],
           "next": "c2_control_01_approach"
@@ -2472,9 +2484,9 @@
           "label": "Blick senken",
           "effects": [
             {
-              "type": "inc",
-              "target": "tickets_guilt",
-              "value": 1
+              "type": "set",
+              "target": "conductor_stance",
+              "value": "down"
             }
           ],
           "next": "c2_control_01_approach"
@@ -2483,7 +2495,8 @@
       "atmosphere": "danger",
       "tags": [],
       "state_notes": [
-        "Direct approach"
+        "Direct approach",
+        "Tickets entfernt - nur Flag conductor_stance für Haltung"
       ]
     },
     {
@@ -2497,9 +2510,9 @@
           "label": "Haltung annehmen",
           "effects": [
             {
-              "type": "inc",
-              "target": "tickets_truth",
-              "value": 1
+              "type": "set",
+              "target": "breath_control",
+              "value": "steady"
             }
           ],
           "next": "c2_s04a_conductor_approach"
@@ -2509,9 +2522,9 @@
           "label": "Einen Schritt zurück",
           "effects": [
             {
-              "type": "inc",
-              "target": "tickets_escape",
-              "value": 1
+              "type": "set",
+              "target": "breath_control",
+              "value": "shrink"
             }
           ],
           "next": "c2_s04a_conductor_approach"
@@ -2522,7 +2535,8 @@
         "interlude"
       ],
       "state_notes": [
-        "Micro-Beat vor Kontrolle 1"
+        "Micro-Beat vor Kontrolle 1",
+        "Tickets entfernt - nur Flag breath_control für Nuancen"
       ]
     },
     {
@@ -7891,7 +7905,7 @@
             "type": "compare",
             "target": "tickets_truth",
             "operator": ">=",
-            "value": 12
+            "value": 10
           },
           "effects": [
             {
@@ -7910,7 +7924,7 @@
             "type": "compare",
             "target": "tickets_love",
             "operator": ">=",
-            "value": 12
+            "value": 10
           },
           "effects": [
             {
@@ -7929,7 +7943,7 @@
             "type": "compare",
             "target": "tickets_guilt",
             "operator": ">=",
-            "value": 12
+            "value": 10
           },
           "effects": [
             {
@@ -7948,7 +7962,7 @@
             "type": "compare",
             "target": "tickets_escape",
             "operator": ">=",
-            "value": 12
+            "value": 10
           },
           "effects": [
             {
@@ -7979,7 +7993,7 @@
       ],
       "state_notes": [
         "Station-End: Finale - Zug verblasst (1973 aufgelöst)",
-        "ENDINGS: Truth, Love, Guilt, Escape (Schwellenwerte 12 — erfordert bewusstes Spielen)",
+        "ENDINGS: Truth, Love, Guilt, Escape (Schwellenwerte 10 — erreichbar bei organischem Spiel)",
         "FALLBACK: Limbo Ending (nicht entscheiden)",
         "Jedes Ending führt zu 2 interaktiven Epilog-Szenen",
         "R1: Engine erhoeht memory_drift/station_count automatisch (keine manuellen station_end-Effects)"

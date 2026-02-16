@@ -85,6 +85,20 @@ export type Items = {
   knows_sleepless_warning: boolean; // Schlafloser hat gewarnt
   saw_passenger_loop: boolean;    // Passagier-Loop erkannt
   heard_comp7_scratching: boolean; // Kratzen hinter Tür 7 gehört
+
+  // Nuance Flags (keine Tickets, nur narrative Varianten)
+  inspected_device: boolean;      // K1: Gerät untersucht (statt Tickets)
+  looked_into_void: boolean;      // K1: Schienen-Tiefe angeschaut
+  gazed_into_darkness: boolean;   // K1: Fenster im Zug angestarrt
+  prepare_stance: string;         // K2: Vorbereitung-Haltung (truth/lie/hide)
+  breath_control: string;         // K2: Atem-Kontrolle (steady/shrink)
+  conductor_stance: string;       // K2: Haltung vor Schaffner (face/down)
+  approach_response: string;      // K2: Antwort-Ton (silent/apologize)
+  counted_compartments: boolean;  // K2: Abteile gezählt
+  went_to_light: boolean;         // K2: Zum Licht gegangen
+  kept_no_ticket_note: boolean;   // K2: Zettel "kein Ticket" behalten
+  destroyed_evidence: boolean;    // K2: Zettel zerrissen
+  noticed_jacket_change: boolean; // K2: Jackenfarbe-Wechsel bemerkt
 };
 
 /**
@@ -422,7 +436,21 @@ export function createInitialState(start_scene_id: string = 'c1_hub_platform'): 
       explored_comp7: false,
       knows_sleepless_warning: false,
       saw_passenger_loop: false,
-      heard_comp7_scratching: false
+      heard_comp7_scratching: false,
+
+      // Nuance Flags (keine Tickets, nur narrative Varianten)
+      inspected_device: false,
+      looked_into_void: false,
+      gazed_into_darkness: false,
+      prepare_stance: '',
+      breath_control: '',
+      conductor_stance: '',
+      approach_response: '',
+      counted_compartments: false,
+      went_to_light: false,
+      kept_no_ticket_note: false,
+      destroyed_evidence: false,
+      noticed_jacket_change: false
     },
 
     // Meta

@@ -148,8 +148,8 @@ Darauf steht in deiner Handschrift: „Du hattest nie ein Ticket."`,
         id: 'keep_note',
         label: 'Zettel behalten',
         effects: [
-          { type: 'inc', target: 'tickets_truth', value: 1 },
-          { type: 'inc', target: 'memory_drift', value: 1 }
+          { type: 'inc', target: 'memory_drift', value: 1 },
+          { type: 'set', target: 'kept_no_ticket_note', value: true }
         ],
         next: 'c2_s01c_corridor_chill'
       },
@@ -157,7 +157,7 @@ Darauf steht in deiner Handschrift: „Du hattest nie ein Ticket."`,
         id: 'throw_away',
         label: 'Zettel zerreißen',
         effects: [
-          { type: 'inc', target: 'tickets_escape', value: 1 }
+          { type: 'set', target: 'destroyed_evidence', value: true }
         ],
         next: 'c2_s01c_corridor_chill'
       }
@@ -386,8 +386,8 @@ Am Ende des schier endlosen Gangs brennt Licht in einem Abteil. Die Tür steht h
         id: 'count_compartments',
         label: 'Abteile zählen',
         effects: [
-          { type: 'inc', target: 'tickets_truth', value: 1 },
-          { type: 'inc', target: 'memory_drift', value: 1 }
+          { type: 'inc', target: 'memory_drift', value: 1 },
+          { type: 'set', target: 'counted_compartments', value: true }
         ],
         next: 'c2_s02b1_door_numbers'
       },
@@ -395,13 +395,14 @@ Am Ende des schier endlosen Gangs brennt Licht in einem Abteil. Die Tür steht h
         id: 'approach_lit_compartment',
         label: 'Direkt zum Licht gehen',
         effects: [
-          { type: 'inc', target: 'tickets_love', value: 1 }
+          { type: 'set', target: 'went_to_light', value: true }
         ],
         next: 'c2_s02b1_door_numbers'
       }
     ],
     tags: ['drift_variant'],
     state_notes: [
+      'Tickets entfernt - nur Flags für Nuancen, memory_drift bleibt',
       'Merged corridor length and jacket color anomaly'
     ],
     atmosphere: 'tense'
@@ -618,7 +619,7 @@ Du spürst, wie deine Zunge am Gaumen klebt. Wahrheit, Lüge, Flucht: Es sind ni
         id: 'prepare_truth',
         label: 'Die Wahrheit (Erinnerungslücke)',
         effects: [
-          { type: 'inc', target: 'tickets_truth', value: 1 }
+          { type: 'set', target: 'prepare_stance', value: 'truth' }
         ],
         next: 'c2_s04b_breath_control'
       },
@@ -626,7 +627,7 @@ Du spürst, wie deine Zunge am Gaumen klebt. Wahrheit, Lüge, Flucht: Es sind ni
         id: 'prepare_lie',
         label: 'Eine Lüge erfinden',
         effects: [
-          { type: 'inc', target: 'tickets_escape', value: 1 },
+          { type: 'set', target: 'prepare_stance', value: 'lie' },
           { type: 'inc', target: 'conductor_attention', value: 1 }
         ],
         next: 'c2_s04b_breath_control'
@@ -641,7 +642,7 @@ Du spürst, wie deine Zunge am Gaumen klebt. Wahrheit, Lüge, Flucht: Es sind ni
           value: 2
         },
         effects: [
-          { type: 'inc', target: 'tickets_guilt', value: 1 },
+          { type: 'set', target: 'prepare_stance', value: 'hide' },
           { type: 'inc', target: 'conductor_attention', value: 2 }
         ],
         next: 'c2_s04b_breath_control'
@@ -649,7 +650,8 @@ Du spürst, wie deine Zunge am Gaumen klebt. Wahrheit, Lüge, Flucht: Es sind ni
     ],
     tags: [],
     state_notes: [
-      'Fixed attention check for hiding'
+      'Fixed attention check for hiding',
+      'Tickets entfernt - nur Flag prepare_stance für narrative Varianten'
     ],
     atmosphere: 'tense'
   },
@@ -673,7 +675,7 @@ Als du den Kopf drehst, ist da nur der leere Gang.`,
         id: 'steady_posture',
         label: 'Haltung annehmen',
         effects: [
-          { type: 'inc', target: 'tickets_truth', value: 1 }
+          { type: 'set', target: 'breath_control', value: 'steady' }
         ],
         next: 'c2_s04a_conductor_approach'
       },
@@ -681,14 +683,15 @@ Als du den Kopf drehst, ist da nur der leere Gang.`,
         id: 'shrink_back',
         label: 'Einen Schritt zurück',
         effects: [
-          { type: 'inc', target: 'tickets_escape', value: 1 }
+          { type: 'set', target: 'breath_control', value: 'shrink' }
         ],
         next: 'c2_s04a_conductor_approach'
       }
     ],
     tags: ['interlude'],
     state_notes: [
-      'Micro-Beat vor Kontrolle 1'
+      'Micro-Beat vor Kontrolle 1',
+      'Tickets entfernt - nur Flag breath_control für Nuancen'
     ],
     atmosphere: 'tense'
   },
@@ -714,7 +717,7 @@ Als das Licht wieder angeht, steht er direkt vor dir: riesig, Uniform ohne Falte
         id: 'face_him',
         label: 'Standhalten',
         effects: [
-           { type: 'inc', target: 'tickets_truth', value: 1 }
+          { type: 'set', target: 'conductor_stance', value: 'face' }
         ],
         next: 'c2_control_01_approach'
       },
@@ -722,14 +725,15 @@ Als das Licht wieder angeht, steht er direkt vor dir: riesig, Uniform ohne Falte
         id: 'look_down',
         label: 'Blick senken',
         effects: [
-          { type: 'inc', target: 'tickets_guilt', value: 1 }
+          { type: 'set', target: 'conductor_stance', value: 'down' }
         ],
         next: 'c2_control_01_approach'
       }
     ],
     tags: [],
     state_notes: [
-      'Direct approach'
+      'Direct approach',
+      'Tickets entfernt - nur Flag conductor_stance für Haltung'
     ],
     atmosphere: 'danger'
   },
@@ -755,7 +759,7 @@ Der Satz bleibt zwischen euch hängen wie ein Urteil, das noch nicht gesprochen 
         id: 'wait_silent',
         label: 'Schweigen',
         effects: [
-          { type: 'inc', target: 'tickets_truth', value: 1 }
+          { type: 'set', target: 'approach_response', value: 'silent' }
         ],
         next: 'c2_control_01_question'
       },
@@ -763,13 +767,15 @@ Der Satz bleibt zwischen euch hängen wie ein Urteil, das noch nicht gesprochen 
         id: 'apologize',
         label: '„Es tut mir leid."',
         effects: [
-          { type: 'inc', target: 'tickets_guilt', value: 1 }
+          { type: 'set', target: 'approach_response', value: 'apologize' }
         ],
         next: 'c2_control_01_question'
       }
     ],
     tags: ['control'],
-    state_notes: [],
+    state_notes: [
+      'Tickets entfernt - nur Flag approach_response für Ton'
+    ],
     atmosphere: 'danger'
   },
 
@@ -805,9 +811,11 @@ Der Schaffner blinzelt nicht. In seinem Blick liegt nichts Menschliches und trot
         id: 'offer_search',
         label: '„Ich suche Emma."',
         condition: {
-          type: 'bool',
-          target: 'memory_search_active',
-          value: true
+          type: 'or',
+          conditions: [
+            { type: 'bool', target: 'memory_search_active', value: true },
+            { type: 'bool', target: 'played_recorder', value: true }
+          ]
         },
         effects: [
           { type: 'inc', target: 'tickets_love', value: 2 }
@@ -881,7 +889,6 @@ Der Zug macht einen langen, tiefen Ton, wie ein Atemzug, den niemand von euch ge
         id: 'accept_truth',
         label: '„Ich glaube dir."',
         effects: [
-          { type: 'inc', target: 'tickets_truth', value: 1 },
           { type: 'inc', target: 'rel_sleepless', value: 2 }
         ],
         next: 'c2_control_01_aftertalk'
@@ -890,15 +897,16 @@ Der Zug macht einen langen, tiefen Ton, wie ein Atemzug, den niemand von euch ge
         id: 'confront_jacket',
         label: '„Deine Jacke war eben noch schwarz."',
         effects: [
-          { type: 'inc', target: 'tickets_truth', value: 1 },
-          { type: 'inc', target: 'memory_drift', value: 1 }
+          { type: 'inc', target: 'memory_drift', value: 1 },
+          { type: 'set', target: 'noticed_jacket_change', value: true }
         ],
         next: 'c2_control_01_aftertalk'
       }
     ],
     tags: ['reveal'],
     state_notes: [
-      'Merged Aftermath with Sleepless Talk'
+      'Merged Aftermath with Sleepless Talk',
+      'Truth-Tickets entfernt (Nachbesprechung), rel_sleepless & memory_drift bleiben'
     ],
     atmosphere: 'somber'
   },

@@ -83,6 +83,20 @@ function getStateValue(state: GameState, target: EffectTarget): number | boolean
   if (target === 'saw_passenger_loop') return state.items.saw_passenger_loop;
   if (target === 'heard_comp7_scratching') return state.items.heard_comp7_scratching;
 
+  // Nuance Flags (narrative variants, no tickets)
+  if (target === 'inspected_device') return state.items.inspected_device;
+  if (target === 'looked_into_void') return state.items.looked_into_void;
+  if (target === 'gazed_into_darkness') return state.items.gazed_into_darkness;
+  if (target === 'prepare_stance') return state.items.prepare_stance;
+  if (target === 'breath_control') return state.items.breath_control;
+  if (target === 'conductor_stance') return state.items.conductor_stance;
+  if (target === 'approach_response') return state.items.approach_response;
+  if (target === 'counted_compartments') return state.items.counted_compartments;
+  if (target === 'went_to_light') return state.items.went_to_light;
+  if (target === 'kept_no_ticket_note') return state.items.kept_no_ticket_note;
+  if (target === 'destroyed_evidence') return state.items.destroyed_evidence;
+  if (target === 'noticed_jacket_change') return state.items.noticed_jacket_change;
+
   // Meta
   if (target === 'chapter_index') return state.chapter_index;
   if (target === 'station_count') return state.station_count;
@@ -147,6 +161,20 @@ function setStateValue(state: GameState, target: EffectTarget, value: number | b
   if (target === 'knows_sleepless_warning') { state.items.knows_sleepless_warning = value as boolean; return; }
   if (target === 'saw_passenger_loop') { state.items.saw_passenger_loop = value as boolean; return; }
   if (target === 'heard_comp7_scratching') { state.items.heard_comp7_scratching = value as boolean; return; }
+
+  // Nuance Flags (narrative variants, no tickets)
+  if (target === 'inspected_device') { state.items.inspected_device = value as boolean; return; }
+  if (target === 'looked_into_void') { state.items.looked_into_void = value as boolean; return; }
+  if (target === 'gazed_into_darkness') { state.items.gazed_into_darkness = value as boolean; return; }
+  if (target === 'prepare_stance') { state.items.prepare_stance = value as string; return; }
+  if (target === 'breath_control') { state.items.breath_control = value as string; return; }
+  if (target === 'conductor_stance') { state.items.conductor_stance = value as string; return; }
+  if (target === 'approach_response') { state.items.approach_response = value as string; return; }
+  if (target === 'counted_compartments') { state.items.counted_compartments = value as boolean; return; }
+  if (target === 'went_to_light') { state.items.went_to_light = value as boolean; return; }
+  if (target === 'kept_no_ticket_note') { state.items.kept_no_ticket_note = value as boolean; return; }
+  if (target === 'destroyed_evidence') { state.items.destroyed_evidence = value as boolean; return; }
+  if (target === 'noticed_jacket_change') { state.items.noticed_jacket_change = value as boolean; return; }
 
   // Meta
   if (target === 'chapter_index') { state.chapter_index = value as number; return; }

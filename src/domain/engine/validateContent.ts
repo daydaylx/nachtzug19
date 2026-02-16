@@ -42,6 +42,10 @@ const KNOWN_EFFECT_TARGETS: Set<EffectTarget> = new Set([
   // Items - Hub 2 (K1 Redesign)
   'explored_compartment', 'explored_sleepless', 'explored_passengers', 'explored_comp7',
   'knows_sleepless_warning', 'saw_passenger_loop', 'heard_comp7_scratching',
+  // Nuance Flags (narrative variants, no tickets)
+  'inspected_device', 'looked_into_void', 'gazed_into_darkness', 'prepare_stance',
+  'breath_control', 'conductor_stance', 'approach_response', 'counted_compartments',
+  'went_to_light', 'kept_no_ticket_note', 'destroyed_evidence', 'noticed_jacket_change',
   // Meta
   'chapter_index', 'station_count'
 ]);

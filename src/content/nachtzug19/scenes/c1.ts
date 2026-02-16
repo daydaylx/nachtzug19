@@ -359,7 +359,7 @@ Du kannst ihn nicht lesen. Die Tinte ist verwischt.`,
         id: 'keep_trying',
         label: 'Weiter versuchen, es zu aktivieren',
         effects: [
-          { type: 'inc', target: 'tickets_truth', value: 1 }
+          { type: 'set', target: 'inspected_device', value: true }
         ],
         next: 'c1_hub_platform'
       },
@@ -367,14 +367,15 @@ Du kannst ihn nicht lesen. Die Tinte ist verwischt.`,
         id: 'put_away',
         label: 'Weglegen und vergessen',
         effects: [
-          { type: 'inc', target: 'tickets_escape', value: 1 }
+          { type: 'set', target: 'inspected_device', value: true }
         ],
         next: 'c1_hub_platform'
       }
     ],
     tags: ['investigation'],
     state_notes: [
-      'Gerät zeigt "NACHTZUG 19" - erster direkter Name-Drop'
+      'Gerät zeigt "NACHTZUG 19" - erster direkter Name-Drop',
+      'Flag inspected_device für narrative Varianten (keine Tickets)'
     ],
     atmosphere: 'mystic'
   },
@@ -403,8 +404,8 @@ Das Brummen setzt ein.`,
         id: 'lean_closer',
         label: 'Dich über die Kante lehnen',
         effects: [
-          { type: 'inc', target: 'tickets_truth', value: 1 },
-          { type: 'inc', target: 'memory_drift', value: 1 }
+          { type: 'inc', target: 'memory_drift', value: 1 },
+          { type: 'set', target: 'looked_into_void', value: true }
         ],
         next: 'c1_hub_platform'
       },
@@ -412,14 +413,15 @@ Das Brummen setzt ein.`,
         id: 'pull_back',
         label: 'Sofort zurückspringen',
         effects: [
-          { type: 'inc', target: 'tickets_escape', value: 1 }
+          { type: 'set', target: 'looked_into_void', value: true }
         ],
         next: 'c1_hub_platform'
       }
     ],
     tags: ['investigation'],
     state_notes: [
-      'Unendliche Tiefe - Reality-Check'
+      'Unendliche Tiefe - Reality-Check',
+      'memory_drift bleibt (Mechanik), Tickets entfernt (nur Flag looked_into_void)'
     ],
     atmosphere: 'danger'
   },
@@ -818,8 +820,8 @@ Im Spiegelbild des Fensters siehst du dein Gesicht. Für einen Moment ist da noc
         id: 'stay_window',
         label: 'Beim Fenster bleiben und hinausstarren',
         effects: [
-          { type: 'inc', target: 'tickets_truth', value: 1 },
-          { type: 'inc', target: 'memory_drift', value: 1 }
+          { type: 'inc', target: 'memory_drift', value: 1 },
+          { type: 'set', target: 'gazed_into_darkness', value: true }
         ],
         next: 'c1_hub_train'
       },
@@ -827,7 +829,7 @@ Im Spiegelbild des Fensters siehst du dein Gesicht. Für einen Moment ist da noc
         id: 'leave_quickly',
         label: 'Schnell zurück in den Gang',
         effects: [
-          { type: 'inc', target: 'tickets_escape', value: 1 }
+          { type: 'set', target: 'gazed_into_darkness', value: true }
         ],
         next: 'c1_hub_train'
       }
