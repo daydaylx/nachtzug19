@@ -17,6 +17,7 @@ Die Architektur ist hybrid:
 - **Psychologisches Mystery**: Ein Zug, der offiziell nicht existiert. Stationen ohne Namen. Erinnerungen, die sich verändern.
 - **Ticket-System**: Sammle keine Gegenstände, sondern Entscheidungsmuster (Wahrheit, Flucht, Schuld, Liebe).
 - **Memory Drift**: Nach jeder Station verändert sich ein Detail – Namen, Gesichter, Erinnerungen kippen subtil.
+- **Hub-basierte Exploration** *(Kapitel 1)*: Freie Erkundung des Bahnsteigs und Zugs mit progressiven Enthüllungen und Auto-Transitions.
 - **7 Kapitel**: Vollständig implementiert mit ~24–29 Szenen pro Kapitel.
 - **Tag 19 Power-Up**: Synästhetische Effekte und Anker-Mechanik.
 
@@ -25,6 +26,7 @@ Die Architektur ist hybrid:
 - **JSON-Pipeline**: Ein Build-Skript exportiert den Content in eine optimierte `story.json`.
 - **Native Performance**: Die Android-App parst das JSON und rendert es nativ (keine WebView).
 - **Reader Noir UI**: Text-fokussierte Ästhetik mit Drift-Effekten, Papier-Textur und subtilen Animationen.
+- **Hub-System mit Auto-Transitions**: Freie Exploration mit konditionalen automatischen Szenenübergängen.
 - **Automatische Validierung**: TypeScript-Tests stellen sicher, dass der Content konsistent ist, bevor er in die App gelangt.
 - **MCP-Server**: Fortgeschrittene Analyse-Tools für Content-Validierung, Pacing-Analyse und Callback-Tracking.
 

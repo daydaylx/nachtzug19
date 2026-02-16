@@ -150,6 +150,8 @@ Nicht Comp7. Nicht der Junge. Nicht der Schlaflose.
 
 Sondern **Emma**.
 
+Der Name, den du seit dem ersten Bahnsteig in dir getragen hast, bekommt endlich wieder ein Gesicht.
+
 Das Gesicht aus deinen Träumen. Die Stimme vom Kassettenrekorder. Die Person, die du die ganze Fahrt gesucht hast.
 
 Emma sieht älter aus. Grauere Haare. Fältchen um die Augen.

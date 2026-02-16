@@ -34,7 +34,12 @@ enum class SceneTag {
   @SerialName("setup") Setup,
   @SerialName("announcement") Announcement,
   @SerialName("ending") Ending,
-  @SerialName("terminal") Terminal
+  @SerialName("terminal") Terminal,
+  @SerialName("hub") Hub,
+  @SerialName("investigation") Investigation,
+  @SerialName("event") Event,
+  @SerialName("special_path") SpecialPath,
+  @SerialName("emma_thread") EmmaThread
 }
 
 @Serializable
@@ -56,6 +61,8 @@ enum class EffectTarget {
   @SerialName("tickets_love") TicketsLove,
   @SerialName("conductor_attention") ConductorAttention,
   @SerialName("memory_drift") MemoryDrift,
+  @SerialName("hub_investigations") HubInvestigations,
+  @SerialName("train_explorations") TrainExplorations,
   @SerialName("rel_comp7") RelComp7,
   @SerialName("rel_boy") RelBoy,
   @SerialName("rel_sleepless") RelSleepless,
@@ -68,6 +75,27 @@ enum class EffectTarget {
   @SerialName("emma_memory_unlocked") EmmaMemoryUnlocked,
   @SerialName("stance_bold") StanceBold,
   @SerialName("stance_cautious") StanceCautious,
+  
+  // Hub 1: Bahnsteig (K1 Redesign)
+  @SerialName("investigated_board") InvestigatedBoard,
+  @SerialName("investigated_poster") InvestigatedPoster,
+  @SerialName("investigated_person") InvestigatedPerson,
+  @SerialName("investigated_device") InvestigatedDevice,
+  @SerialName("investigated_edge") InvestigatedEdge,
+  @SerialName("called_emma") CalledEmma,
+  @SerialName("saw_emma_vision") SawEmmaVision,
+  @SerialName("has_emma_note") HasEmmaNote,
+  @SerialName("knows_board_pattern") KnowsBoardPattern,
+  
+  // Hub 2: Zug (K1 Redesign)
+  @SerialName("explored_compartment") ExploredCompartment,
+  @SerialName("explored_sleepless") ExploredSleepless,
+  @SerialName("explored_passengers") ExploredPassengers,
+  @SerialName("explored_comp7") ExploredComp7,
+  @SerialName("knows_sleepless_warning") KnowsSleeplessWarning,
+  @SerialName("saw_passenger_loop") SawPassengerLoop,
+  @SerialName("heard_comp7_scratching") HeardComp7Scratching,
+  
   @SerialName("chapter_index") ChapterIndex,
   @SerialName("station_count") StationCount
 }
@@ -109,7 +137,9 @@ data class Tickets(
 @Serializable
 data class Pressure(
   val conductor_attention: Int = 0,
-  val memory_drift: Int = 0
+  val memory_drift: Int = 0,
+  val hub_investigations: Int = 0,  // K1 Redesign: Bahnsteig hub counter
+  val train_explorations: Int = 0   // K1 Redesign: Zug hub counter
 )
 
 @Serializable
@@ -129,7 +159,27 @@ data class Items(
   val memory_search_active: Boolean = false,
   val emma_memory_unlocked: Boolean = false,
   val stance_bold: Boolean = false,
-  val stance_cautious: Boolean = false
+  val stance_cautious: Boolean = false,
+  
+  // Hub 1: Bahnsteig (K1 Redesign)
+  val investigated_board: Boolean = false,
+  val investigated_poster: Boolean = false,
+  val investigated_person: Boolean = false,
+  val investigated_device: Boolean = false,
+  val investigated_edge: Boolean = false,
+  val called_emma: Boolean = false,
+  val saw_emma_vision: Boolean = false,
+  val has_emma_note: Boolean = false,
+  val knows_board_pattern: Boolean = false,
+  
+  // Hub 2: Zug (K1 Redesign)
+  val explored_compartment: Boolean = false,
+  val explored_sleepless: Boolean = false,
+  val explored_passengers: Boolean = false,
+  val explored_comp7: Boolean = false,
+  val knows_sleepless_warning: Boolean = false,
+  val saw_passenger_loop: Boolean = false,
+  val heard_comp7_scratching: Boolean = false
 )
 
 @Serializable
@@ -214,7 +264,8 @@ data class NarrativeVariant(
   val min_drift: Int? = null,
   val condition: Condition? = null,
   val narrative: String,
-  val priority: Int? = null
+  val priority: Int? = null,
+  val auto_next: String? = null  // Hub auto-transition feature
 )
 
 @Serializable

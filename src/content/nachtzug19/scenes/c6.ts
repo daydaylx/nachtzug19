@@ -1027,7 +1027,9 @@ Drückst du ihn wieder?`
     id: 'c6_s16_tag19_discovery',
     chapter: 6,
     title: 'Das Etikett',
-    narrative: `Du findest das Tag19-Etikett in deiner Tasche.
+    narrative: `Du tastest in deine Tasche nach dem Tag19-Etikett.
+
+Ob das Gewicht unter deinen Fingern gerade Metall ist oder nur Erinnerung, fühlt sich im ersten Moment gleich an.
 
 Das kleine, gelbe Etikett.
 
@@ -1279,6 +1281,8 @@ Er setzt sich dir gegenüber. „Ich kann dir… etwas anbieten. Ein Angebot. Nu
 Er beugt sich vor. „Du kannst gehen. Jetzt. An der nächsten Station. Mit allen Erinnerungen. Allen Antworten."
 
 „Aber…" Seine Augen fixieren dich. „Du kannst niemals zurückkommen."
+
+„Mit allen Erinnerungen," wiederholt er. „Auch mit dem einen Namen, den du die ganze Fahrt festgehalten hast."
 
 ---
 
@@ -1660,6 +1664,8 @@ Jetzt ist sie vollständig ausgefüllt, in deiner eigenen Handschrift.
 „Du hast sie am Anfang selbst geschrieben," sagt er. „Erinnerst du dich?"
 
 Du blickst auf die Karte.
+
+Die Buchstaben wirken nicht gedruckt. Eher so, als würden sie sich genau jetzt erst in das Papier drücken.
 
 Und langsam kommt die Erinnerung zurück.`,
     choices: [

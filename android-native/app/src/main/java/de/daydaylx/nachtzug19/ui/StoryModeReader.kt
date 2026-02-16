@@ -72,13 +72,29 @@ fun StoryModeReader(
   val bottomGap = if (isSmallDisplayHeight) 4.dp else 10.dp
   val choiceSpacing = if (isSmallDisplayHeight) 8.dp else 12.dp
   val bottomChoicePadding = if (isSmallDisplayHeight) 4.dp else 10.dp
-  val panelMaxHeight = (screenHeightDp * if (isSmallDisplayHeight) 0.56f else 0.64f).dp
-  val panelMinHeight = if (isSmallDisplayHeight) 210.dp else 260.dp
   val showTopStationOverlay = showStationOverlay
   val showTopAnnouncement = showAnnouncement && !showTopStationOverlay
   val showMicrobar = settings.showStatus && settings.showMicrobar && state != null
   val interactionLocked = processingChoiceKey != null
   val canAdvanceBeat = uiState.beatPhase != BeatPhase.CHOICES_AVAILABLE
+  val hasChoices = uiState.beatPhase == BeatPhase.CHOICES_AVAILABLE
+  val isShortBeat = currentBeat.length <= 220
+  val panelHeightRatio = when {
+    hasChoices && isSmallDisplayHeight -> 0.42f
+    hasChoices -> 0.46f
+    isShortBeat && isSmallDisplayHeight -> 0.48f
+    isShortBeat -> 0.52f
+    isSmallDisplayHeight -> 0.54f
+    else -> 0.60f
+  }
+  val panelMaxHeight = (screenHeightDp * panelHeightRatio).dp
+  val panelMinHeight = if (hasChoices) {
+    if (isSmallDisplayHeight) 170.dp else 190.dp
+  } else if (isSmallDisplayHeight) {
+    190.dp
+  } else {
+    220.dp
+  }
 
   Column(
     modifier = Modifier
@@ -108,17 +124,7 @@ fun StoryModeReader(
     Box(
       modifier = Modifier
         .heightIn(min = panelMinHeight, max = panelMaxHeight)
-        .weight(1f, fill = false)
         .fillMaxWidth()
-        .clickable(
-          enabled = canAdvanceBeat,
-          role = Role.Button,
-          onClickLabel = "Nächsten Abschnitt anzeigen",
-          interactionSource = remember { MutableInteractionSource() },
-          indication = null
-        ) {
-          onTapContent()
-        }
     ) {
       StoryPanel(
         beat = currentBeat,
@@ -133,6 +139,22 @@ fun StoryModeReader(
         onTypewriterComplete = onTypewriterComplete
       )
 
+      // Dedicated tap layer above the panel to keep beat-advance reliable
+      // even when inner scroll/text composables consume gestures.
+      Box(
+        modifier = Modifier
+          .fillMaxSize()
+          .clickable(
+            enabled = canAdvanceBeat,
+            role = Role.Button,
+            onClickLabel = "Nächsten Abschnitt anzeigen",
+            interactionSource = remember { MutableInteractionSource() },
+            indication = null
+          ) {
+            onTapContent()
+          }
+      )
+
       // Continue hint (when not last beat and revealed)
       if (!isLastBeat && uiState.beatPhase == BeatPhase.BEAT_REVEALED) {
         ContinueHint(
@@ -145,6 +167,9 @@ fun StoryModeReader(
     }
 
     Spacer(modifier = Modifier.height(if (isSmallDisplayHeight) 8.dp else 16.dp))
+    if (!hasChoices) {
+      Spacer(modifier = Modifier.weight(1f))
+    }
 
     // Bottom Area: Microbar + Choices
     Column(

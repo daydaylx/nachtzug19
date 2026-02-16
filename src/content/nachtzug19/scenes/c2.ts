@@ -249,6 +249,8 @@ Er hält dir den Rekorder hin. Kein Zögern.
 
 „Für dich. Deine Stimme. Ist noch drauf." Und dann, leiser, fast unhörbar: „Du klingst traurig darauf."
 
+Er dreht das Gehäuse kurz zu dir. Unter alten Kleberesten erkennst du in verblasster Schrift zwei Worte: „Nicht löschen."
+
 Seine Hand bleibt ausgestreckt, regungslos. Nicht bittend, nicht drängend. Nur offen. Hinter ihm flackert das Licht einmal kurz auf, und für den Bruchteil einer Sekunde wirkt sein Schatten viel größer als sein Körper.
 
 Du hörst wieder das Klacken der Kontrolle im Nachbarwagen. Zwei Welten, die gleichzeitig näher kommen: der Schaffner von vorn, der Junge vor dir.
@@ -319,17 +321,17 @@ Der Rekorder ist plötzlich mehr als ein Gegenstand. Er ist ein Beweis, dass du 
 
 Du drückst Play.
 
-Zuerst nur Rauschen. Dann zwei Stimmen. Deine – jünger. Und eine zweite.
+Zuerst nur Rauschen. Dann zwei Stimmen. Deine – jünger, atemlos. Und eine zweite, die dir vom Bahnsteig her schon im Nacken sitzt.
 
-Emma.
+Nicht neu. Nur plötzlich scharf: Emma.
 
-„Warte am Bahnsteig," sagt Emma. Emmas Stimme bricht. „Bitte komm zurück. Ich kann nicht ohne—"
+„Warte am Bahnsteig," sagt Emma. Ihre Stimme bricht. „Bitte komm zurück. Ich kann nicht ohne dich—"
 
-Dann deine Stimme: „Emma, ich verspreche—"
+Dann deine Stimme: „Emma, ich verspreche, ich bin gleich bei dir—"
 
 Abbruch. Überschrieben von einem tiefen, mechanischen Brummen: „—NACHTZUG 19. Kein Ausstieg."
 
-Du stoppst das Band. Dein Herz hämmert. Das war... vor dem Unfall.
+Du stoppst das Band. Dein Herz hämmert. Das war... vor etwas. Vor dem Unfall, denkt ein Teil von dir, und du weißt nicht, woher diese Sicherheit kommt.
 
 Als du aufblickst, ist der Junge weg. Das Abteil ist leer.`,
     choices: [
@@ -500,7 +502,7 @@ Du öffnest den Mund.
 
 Sie sieht dich an. Kurz. Taxierend. Wie jemand, der Daten sammelt, nicht Blicke.
 
-„Comp7. Kein Name. Irrelevant." Stakkato. Jedes Wort einzeln, als würde sie es wiegen. „Du. Rekorder. Passagier seit Station eins. Kein Ticket." Sie tippt auf das Notizbuch. „Steht alles hier."
+„Comp7. Kein Name. Irrelevant." Stakkato. Jedes Wort einzeln, als würde sie es wiegen. „Du. Rekorder-Vermerk. Passagier seit Station eins. Kein Ticket." Sie tippt auf das Notizbuch. „Steht alles hier."
 
 Ihr Gesicht ist merkwürdig unscharf — dein Blick rutscht ab, als wäre er geölt. Aber ihre Stimme ist das Schärfste in diesem Zug.
 
@@ -786,7 +788,7 @@ Die Zeit dehnt sich.
 
 Hinter ihm summt der Wagen, dumpf und fern, als hättest du den Kopf unter Wasser. Deine Finger verkrampfen sich an der Sitzkante, bis die Knöchel weiß werden.
 
-Du denkst an den Jungen mit dem Rekorder. An Comp7s Listen. An den Namen, den du dir im Kopf immer wieder vorsagst, damit er nicht verrutscht.
+Du denkst an den Jungen mit dem Rekorder. An Comp7s Listen. An den Namen Emma, den du dir im Kopf immer wieder vorsagst, damit er nicht verrutscht.
 
 Der Schaffner blinzelt nicht. In seinem Blick liegt nichts Menschliches und trotzdem etwas Erwartendes: als würde er nicht prüfen, ob du lügst, sondern welche Geschichte du bereit bist zu tragen.`,
     choices: [
@@ -814,7 +816,7 @@ Der Schaffner blinzelt nicht. In seinem Blick liegt nichts Menschliches und trot
       },
       {
         id: 'offer_lie',
-        label: '„Ich besuche Verwandte."',
+        label: '„Ich muss am nächsten Halt zu jemandem."',
         condition: {
           type: 'compare',
           target: 'conductor_attention',
@@ -912,11 +914,13 @@ Der Zug macht einen langen, tiefen Ton, wie ein Atemzug, den niemand von euch ge
 
 Das Rattern wirkt für einen Moment fern, als würde der Zug euch zuhören.
 
-„Bevor wir weiterfahren," sagt er leise, „sag irgendwas Echtes."
+„Bevor wir weiterfahren," sagt er leise, „sag irgendwas Echtes. Etwas, das auch noch stimmt, wenn der Rest verrutscht."
 
 Er sieht nicht zu dir, sondern auf seine Hände, als müsste er erst prüfen, ob sie noch zu ihm gehören. Unter den Nägeln sitzt dunkler Staub, als hätte er an Metall gekratzt.
 
 Du merkst, dass diese Bitte keine Floskel ist. Für ihn ist „etwas Echtes" kein Gefühlston, sondern ein Halteseil.
+
+In dir taucht sofort ein Wort auf, das seit dem Bahnsteig nicht verschwunden ist.
 
 Hinter euch läuft die Durchsage erneut an und bricht nach zwei Wörtern ab. Keiner von euch dreht sich um.`,
     choices: [
@@ -930,7 +934,7 @@ Hinter euch läuft die Durchsage erneut an und bricht nach zwei Wörtern ab. Kei
       },
       {
         id: 'say_emma_name',
-        label: '„Ich suche Emma. Das ist das Einzige, das noch klar ist."',
+        label: '„Seit dem Bahnsteig bleibt nur ein Name klar: Emma."',
         effects: [
           { type: 'set', target: 'mut', value: 2 }
         ],
@@ -995,7 +999,11 @@ Dann nickt er Richtung Fenster. „Wenn deiner noch da ist, halt ihn fest."`,
 
 Für einen Atemzug wird seine Stimme ruhiger, als hätte auch er kurz Halt.
 
-Er tippt dir kurz gegen den Ärmel. „Sprich den Namen weiter. Sonst nimmt ihn der Zug."`,
+Er tippt dir kurz gegen den Ärmel. „Nicht wie ein Ruf. Wie ein Anker. Einmal laut, dann weiter innen."
+
+Du wiederholst den Namen leise. Nicht, um sie herbeizuzaubern. Nur, um nicht wieder im Rattern zu verschwinden.
+
+Er nickt knapp. „Genau so. Sonst nimmt ihn der Zug."`,
     choices: [
       {
         id: 'move_on_after_emma',

@@ -970,7 +970,9 @@ Wer?
 
 Das Bild verschwimmt. Du greifst danach, versuchst es festzuhalten, aber es zerrinnt zwischen deinen Gedanken.
 
-Was bleibt, ist nur ein Name. Ein Gesicht. Fast greifbar. Aber nicht ganz.`,
+Was bleibt, ist nur ein Name. Ein Gesicht. Fast greifbar. Aber nicht ganz.
+
+Der Anfangslaut bleibt hängen: E...`,
     narrative_variants: [
       {
         condition: { type: 'bool', target: 'emma_memory_unlocked', value: true },
@@ -1137,6 +1139,8 @@ Du spürst die Angst noch in den Handflächen, aber sie nimmt dir nicht mehr den
     Seine Stimme ist leiser als zuvor. Kälter.
 
     „Fahrkarte."
+
+    Ohne nachzudenken greifst du in die Innentasche. Dort steckt eine Fahrkarte, obwohl du schwören könntest, dass dort eben noch nichts war.
 
     Du reichst sie ihm. Sie fühlt sich schwer an, als wäre sie aus Blei gegossen. Als er sie nimmt, verschwindet für einen Moment das Zittern aus deiner Hand.
 

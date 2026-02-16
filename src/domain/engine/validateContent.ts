@@ -31,11 +31,17 @@ const KNOWN_EFFECT_TARGETS: Set<EffectTarget> = new Set([
   // Tickets
   'tickets_truth', 'tickets_escape', 'tickets_guilt', 'tickets_love',
   // Pressure
-  'conductor_attention', 'memory_drift',
+  'conductor_attention', 'memory_drift', 'hub_investigations', 'train_explorations',
   // Relations
   'rel_comp7', 'rel_boy', 'rel_sleepless',
   // Items
   'has_recorder', 'has_tag19', 'has_ticket', 'photo_anomaly', 'played_recorder', 'memory_search_active', 'emma_memory_unlocked', 'stance_bold', 'stance_cautious',
+  // Items - Hub 1 (K1 Redesign)
+  'investigated_board', 'investigated_poster', 'investigated_person', 'investigated_device', 'investigated_edge',
+  'called_emma', 'saw_emma_vision', 'has_emma_note', 'knows_board_pattern',
+  // Items - Hub 2 (K1 Redesign)
+  'explored_compartment', 'explored_sleepless', 'explored_passengers', 'explored_comp7',
+  'knows_sleepless_warning', 'saw_passenger_loop', 'heard_comp7_scratching',
   // Meta
   'chapter_index', 'station_count'
 ]);
@@ -217,11 +223,13 @@ function validateScene(
     return;
   }
 
-  // 2. Szene darf maximal 5 Choices haben
-  if (scene.choices.length > 5) {
+  // 2. Szene darf maximal 5 Choices haben (Ausnahme: Hub-Szenen dürfen mehr)
+  const isHub = scene.tags?.includes('hub');
+  const maxChoices = isHub ? 10 : 5;
+  if (scene.choices.length > maxChoices) {
     errors.push({
       type: 'error',
-      message: `Szene '${scene.id}' hat mehr als 5 Choices (${scene.choices.length} gefunden, max. 5 erlaubt)`,
+      message: `Szene '${scene.id}' hat mehr als ${maxChoices} Choices (${scene.choices.length} gefunden, max. ${maxChoices} erlaubt)`,
       scene_id: scene.id
     });
   }

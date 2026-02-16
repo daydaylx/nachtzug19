@@ -293,7 +293,13 @@ Dann ist sie weg.`,
       },
       {
         id: 'open_door_unknown',
-        label: 'Die Tür öffnen',
+        label: 'Die Tür trotz Unsicherheit öffnen',
+        condition: {
+          type: 'compare',
+          target: 'tickets_truth',
+          operator: '<',
+          value: 4
+        },
         effects: [
           { type: 'inc', target: 'tickets_escape', value: 1 }
         ],
@@ -687,7 +693,7 @@ Knistern.
 
 Die Stimme lacht.
 
-„Willkommen zuhause.`
+„Willkommen zuhause."`
       }
     ],
     choices: [
@@ -1964,7 +1970,7 @@ Es ist hier.
 
 Die Türen… stehen bereits offen.
 
-Jeden Moment.
+Als hättest du den Moment knapp verpasst.
 
 Und dann…
 
@@ -2925,7 +2931,7 @@ Noch ein Gedanke.
 
 Noch ein Satz, bevor alles fest wird.
 
-Du spürst, dass hier nicht nur ein Kapitel endet, sondern eine Version von dir.`,
+Du spürst, dass hier nicht nur eine Fahrt endet, sondern eine Version von dir.`,
     choices: [
       {
         id: 'threshold_name_choice',

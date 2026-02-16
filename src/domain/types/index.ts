@@ -39,6 +39,8 @@ export type Tickets = {
 export type Pressure = {
   conductor_attention: number;  // Je höher, desto härter die Kontrollen
   memory_drift: number;        // Ab 3: Textvarianten mit falschen Details
+  hub_investigations: number;  // K1: Bahnsteig-Hub Counter (0-6)
+  train_explorations: number;  // K1: Zug-Hub Counter (0-4)
 };
 
 /**
@@ -63,6 +65,26 @@ export type Items = {
   emma_memory_unlocked: boolean; // Phase 0: Emma memory fragment unlocked (c4 Tag19)
   stance_bold: boolean;     // Tone: Spieler wählt mutige/direkte Haltung
   stance_cautious: boolean; // Tone: Spieler wählt vorsichtige/abwartende Haltung
+  
+  // Hub 1: Bahnsteig (K1 Redesign)
+  investigated_board: boolean;    // Anzeigetafel untersucht
+  investigated_poster: boolean;   // Plakat untersucht
+  investigated_person: boolean;   // Gestalt mit Zeitung angesprochen
+  investigated_device: boolean;   // Gerät aktiviert
+  investigated_edge: boolean;     // Gelbe Linie/Schienen geprüft
+  called_emma: boolean;          // Emma gerufen (Sonderpfad-Trigger)
+  saw_emma_vision: boolean;      // Emma-Vision gesehen
+  has_emma_note: boolean;        // Emma's Zettel gefunden
+  knows_board_pattern: boolean;  // Anzeigetafel-Muster erkannt
+  
+  // Hub 2: Zug (K1 Redesign)
+  explored_compartment: boolean;  // Eigenes Abteil erkundet
+  explored_sleepless: boolean;    // Schlafloser-Dialog geführt
+  explored_passengers: boolean;   // Passagiere beobachtet
+  explored_comp7: boolean;        // Abteil 7 Tür gelauscht
+  knows_sleepless_warning: boolean; // Schlafloser hat gewarnt
+  saw_passenger_loop: boolean;    // Passagier-Loop erkannt
+  heard_comp7_scratching: boolean; // Kratzen hinter Tür 7 gehört
 };
 
 /**
@@ -133,11 +155,15 @@ export type EffectTarget =
   // Tickets
   | 'tickets_truth' | 'tickets_escape' | 'tickets_guilt' | 'tickets_love'
   // Pressure
-  | 'conductor_attention' | 'memory_drift'
+  | 'conductor_attention' | 'memory_drift' | 'hub_investigations' | 'train_explorations'
   // Relations
   | 'rel_comp7' | 'rel_boy' | 'rel_sleepless'
-  // Items
+  // Items (Original)
   | 'has_recorder' | 'has_tag19' | 'has_ticket' | 'photo_anomaly' | 'played_recorder' | 'memory_search_active' | 'emma_memory_unlocked' | 'stance_bold' | 'stance_cautious'
+  // Items (Hub 1: Bahnsteig)
+  | 'investigated_board' | 'investigated_poster' | 'investigated_person' | 'investigated_device' | 'investigated_edge' | 'called_emma' | 'saw_emma_vision' | 'has_emma_note' | 'knows_board_pattern'
+  // Items (Hub 2: Zug)
+  | 'explored_compartment' | 'explored_sleepless' | 'explored_passengers' | 'explored_comp7' | 'knows_sleepless_warning' | 'saw_passenger_loop' | 'heard_comp7_scratching'
   // Meta
   | 'chapter_index' | 'station_count';
 
@@ -209,7 +235,7 @@ export type Condition = SimpleCondition | BooleanCondition | AndCondition | OrCo
 /**
  * Scene Tags - Markierungen für spezielle Szenen
  */
-export type SceneTag = 'station_end' | 'control' | 'reveal' | 'drift_variant' | 'drift_seed' | 'interlude' | 'secret' | 'setup' | 'announcement' | 'ending' | 'terminal';
+export type SceneTag = 'station_end' | 'control' | 'reveal' | 'drift_variant' | 'drift_seed' | 'interlude' | 'secret' | 'setup' | 'announcement' | 'ending' | 'terminal' | 'hub' | 'investigation' | 'event' | 'special_path' | 'emma_thread';
 
 /**
  * Choice - Eine Entscheidungsmöglichkeit
@@ -238,6 +264,7 @@ export type NarrativeVariant = {
   condition?: Condition;          // Optional: Generische Condition (z.B. has_tag19)
   narrative: string;              // Alternative Narrative
   priority?: number;              // Höherer Wert gewinnt. Default: 10 (condition), 0 (drift-only)
+  auto_next?: string;             // Optional: Auto-Transition zur nächsten Szene (für Hub-Trigger)
 };
 
 /**
@@ -339,7 +366,7 @@ export type Flags = Record<string, boolean | undefined>;
 /**
  * Erstellt einen initialen GameState
  */
-export function createInitialState(start_scene_id: string = 'c1_s01_platform'): GameState {
+export function createInitialState(start_scene_id: string = 'c1_hub_platform'): GameState {
   return {
     // Legacy Stats (deprecated)
     stats: {
@@ -357,7 +384,9 @@ export function createInitialState(start_scene_id: string = 'c1_s01_platform'): 
     },
     pressure: {
       conductor_attention: 0,
-      memory_drift: 0
+      memory_drift: 0,
+      hub_investigations: 0,
+      train_explorations: 0
     },
     relations: {
       rel_comp7: 0,
@@ -373,7 +402,27 @@ export function createInitialState(start_scene_id: string = 'c1_s01_platform'): 
       memory_search_active: false,
       emma_memory_unlocked: false,
       stance_bold: false,
-      stance_cautious: false
+      stance_cautious: false,
+      
+      // Hub 1: Bahnsteig (K1 Redesign)
+      investigated_board: false,
+      investigated_poster: false,
+      investigated_person: false,
+      investigated_device: false,
+      investigated_edge: false,
+      called_emma: false,
+      saw_emma_vision: false,
+      has_emma_note: false,
+      knows_board_pattern: false,
+      
+      // Hub 2: Zug (K1 Redesign)
+      explored_compartment: false,
+      explored_sleepless: false,
+      explored_passengers: false,
+      explored_comp7: false,
+      knows_sleepless_warning: false,
+      saw_passenger_loop: false,
+      heard_comp7_scratching: false
     },
 
     // Meta

@@ -183,9 +183,10 @@ class GameViewModel(
 
     // Story Mode: Reset beat index on new scene
     if (_uiState.value.settings.readerMode == de.daydaylx.nachtzug19.model.ReaderMode.STORY) {
+      val initialPhase = initialStoryBeatPhase(_uiState.value.settings)
       _uiState.value = _uiState.value.copy(
         beatIndex = 0,
-        beatPhase = BeatPhase.SCENE_READY
+        beatPhase = initialPhase
       )
     }
   }
@@ -206,9 +207,10 @@ class GameViewModel(
 
     // Story Mode: Treat overlay as separate beat context
     if (_uiState.value.settings.readerMode == de.daydaylx.nachtzug19.model.ReaderMode.STORY) {
+      val initialPhase = initialStoryBeatPhase(_uiState.value.settings)
       _uiState.value = _uiState.value.copy(
         beatIndex = 0,  // Reset for overlay
-        beatPhase = BeatPhase.SCENE_READY
+        beatPhase = initialPhase
       )
       // Do NOT saveReaderProgress() - Overlay is temporary
     }
@@ -278,14 +280,23 @@ class GameViewModel(
     }
 
     val beats = BeatSplitter.splitIntoBeats(narrative)
+    val initialPhase = initialStoryBeatPhase(settings)
     _uiState.value = _uiState.value.copy(
       narrativeBeats = beats,
       beatIndex = 0,
-      beatPhase = BeatPhase.SCENE_READY
+      beatPhase = initialPhase
     )
 
     // Restore progress if applicable
     restoreReaderProgressIfPossible()
+  }
+
+  private fun initialStoryBeatPhase(settings: ReaderSettings): BeatPhase {
+    return if (settings.typewriterEnabled) {
+      BeatPhase.BEAT_TYPING
+    } else {
+      BeatPhase.BEAT_REVEALED
+    }
   }
 
   private fun restoreReaderProgressIfPossible() {

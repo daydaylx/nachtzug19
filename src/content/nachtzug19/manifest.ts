@@ -9,7 +9,7 @@ import { Manifest, EndingsCollection } from '../../domain/types';
 export const nachtzug19Manifest: Manifest = {
   id: 'nachtzug19',
   title: 'NACHTZUG 19',
-  start_scene_id: 'c1_s01_platform',
+  start_scene_id: 'c1_hub_platform',
   chapters: [
     {
       number: 1,

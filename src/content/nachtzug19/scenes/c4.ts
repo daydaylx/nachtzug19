@@ -183,7 +183,7 @@ Und zum ersten Mal bist du dir nicht sicher, welche Version real ist.`
         min_drift: 3,
         narrative: `Du reißt den Blick vom Spiegel los und verlässt den Waschraum.
 
-Der Gang vor dir — warst du schon einmal hier? Ja. In Kapitel 2. Nein — Kapitel 1? Der Gang sah anders aus. Oder sah er genau so aus? Die Fenster zur Linken sind Spiegel. In jedem siehst du eine Version von dir.
+Der Gang vor dir — warst du schon einmal hier? Ja. Beim letzten Halt. Nein, schon früher. Der Gang sah anders aus. Oder sah er genau so aus? Die Fenster zur Linken sind Spiegel. In jedem siehst du eine Version von dir.
 
 Aber etwas stimmt nicht. Die Version, die weint — die hat den Kassettenrekorder. Hast du den Rekorder? Du greifst in deine Tasche. Ja. Nein. Du bist dir nicht sicher. Die Erinnerung daran, wie du ihn bekommen hast, ist verschwommen. War es der Junge? Oder hast du ihn gefunden? Lag er auf einem Sitz?
 
@@ -398,7 +398,7 @@ Die Silhouette im Spiegel bewegt sich nicht synchron mit deinem Atem. Sie kippt 
     id: 'c4_s04_comp7_mirror_truth',
     chapter: 4,
     title: 'Erklärung',
-    narrative: `Comp7 sitzt plötzlich dir gegenüber. Ihre Augen sind verschiedenfarbig – eins grün, eins blau.
+    narrative: `Als du dich umdrehst, sitzt Comp7 dir gegenüber. Ihre Augen sind verschiedenfarbig – eins grün, eins blau.
 
 „Du hast es gehört," sagt sie. „Das Echo."
 
@@ -660,7 +660,7 @@ Dann das Datum. 19. September. 1973.
 
 Du hast diesen Anhänger schon einmal gefunden. Und verloren. Und wiedergefunden.
 
-„Tag 19," flüsterst du. Das war... vor dem Unfall.`
+„Tag 19," flüsterst du. Das war... vor etwas. Vor dem Unfall, denkst du, ohne zu wissen, woher diese Sicherheit kommt.`
       }
     ],
     choices: [
@@ -876,7 +876,7 @@ Der Zug nimmt eine lange Kurve. Metall singt gegen Metall.
 
 Du schließt die Hand um die 19, bis die Kanten drücken.
 
-Wenn Kapitel 5 beginnt, fragst du nicht mehr, ob die Schleife echt ist. Nur noch, was sie von dir will.
+Beim nächsten Halt fragst du nicht mehr, ob die Schleife echt ist. Nur noch, was sie von dir will.
 
 Die Lampen dimmen für einen Herzschlag und springen zurück. Im Scheibenglas siehst du mehrere Schichten deines Spiegelbilds, leicht zeitversetzt.
 

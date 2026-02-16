@@ -1,6 +1,6 @@
 import { Choice, EffectTarget, GameState, Scene, ScenesCollection } from '../../src/domain/types';
 import { createInitialState } from '../../src/domain/types';
-import { getAvailableChoices, transitionToNextScene } from '../../src/domain/engine/gameEngine';
+import { getAvailableChoices, transitionToNextScene, checkAutoNext, applyEffects } from '../../src/domain/engine/gameEngine';
 
 export type ChoicePolicy = (state: GameState, scene: Scene, choices: Choice[]) => Choice;
 
@@ -76,10 +76,44 @@ export function simulateWithPolicy(options: {
     }
 
     const available = getAvailableChoices(state, scene);
+    
+    // Check for auto_next before declaring stuck
     if (available.length === 0) {
-      stuck = true;
-      lastSceneId = scene.id;
-      break;
+      const autoNext = checkAutoNext(scene, state);
+      if (autoNext) {
+        // Auto-transition to next scene (hub exit mechanism)
+        if (scene.exit_effects) {
+          applyEffects(state, scene.exit_effects);
+        }
+        
+        const nextScene = scenes[autoNext];
+        if (!nextScene) {
+          stuck = true;
+          break;
+        }
+        
+        if (!state.visited_scene_ids.includes(autoNext)) {
+          state.visited_scene_ids.push(autoNext);
+        }
+        
+        state.current_scene_id = autoNext;
+        
+        if (nextScene.entry_effects) {
+          applyEffects(state, nextScene.entry_effects);
+        }
+        
+        if (nextScene.chapter !== undefined && nextScene.chapter !== state.chapter_index) {
+          state.chapter_index = nextScene.chapter;
+        }
+        
+        steps += 1;
+        lastSceneId = state.current_scene_id;
+        continue;
+      } else {
+        stuck = true;
+        lastSceneId = scene.id;
+        break;
+      }
     }
 
     const selected = policy(state, scene, available);

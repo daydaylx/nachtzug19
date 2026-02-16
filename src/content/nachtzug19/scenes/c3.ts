@@ -154,6 +154,8 @@ Er summt leise. Eine Melodie, die du kennst. Oder... kanntest.
 
 „Das hast du mir beigebracht," sagt er, ohne aufzublicken. „Als ich klein war. Erinnerst du dich?"
 
+Du willst sagen, dass das unmöglich ist, dass ihr fast gleich alt ausseht. Der Satz bleibt in deiner Kehle stecken.
+
 Er sieht dich an. Seine Augen sind älter als sein Gesicht.
 
 „Manchmal werden Dinge mehr," sagt er. „Wenn man vergisst, dass man sie schon hat."
@@ -258,6 +260,8 @@ Der Junge nickt langsam: „Der Zug zeichnet alles auf. Vergangenheit und Zukunf
     title: 'Zukunft',
     narrative: `Comp7s Stimme auf dem Band: „Er muss etwas geben. Etwas von sich abspalten.“
 
+Du erkennst sie sofort, obwohl ihr euch erst seit kurzem kennt.
+
 Dann ein Geräusch wie brechendes Eis.
 
 Der Junge nimmt dir das Gerät sanft aus der Hand: „Manche Antworten stehen noch nicht drauf.“
@@ -319,7 +323,7 @@ Der Junge schüttelt kaum merklich den Kopf. Kein Verbot, eher eine Warnung, die
 
 Der Schlaflose steht im Gang. Er wirkt blass.
 
-„Du suchst Wagen 7,“ sagt er. „Die Tür ist jetzt offen. Aber du musst etwas opfern, wenn die Kontrolle kommt.“`,
+„Du suchst Wagen 7,“ sagt er. „Die Tür ist jetzt offen. Aber das mit dem Opfer ist keine Metapher. Wenn die Kontrolle kommt, nimmt sie etwas Reales.“`,
     choices: [
       {
         id: 'ask_what_to_give',
@@ -806,6 +810,8 @@ Dir wird klar, dass die Kontrolle kein Dialog ist. Sie ist ein Vertrag. Und jede
 
 Er geht.
 
+Deine Hand sucht automatisch nach dem Rekorder und findet Gewicht oder Leere. Beides fühlt sich wie Verlust an.
+
 Comp7 tritt neben dich: „Er kann dich nicht rauswerfen, weil wir alle bereits draußen sind.“
 
 Der Wagen um euch herum wird plötzlich leer. Kein Junge, kein Schlafloser. Nur leere Sitze.
@@ -865,7 +871,9 @@ Der Zug fährt weiter, als wäre nichts passiert. Genau das macht es schwer zu e
 
 Die Tür öffnet sich, die Gestalt steigt ein, geht wortlos an dir vorbei und setzt sich.
 
-„Die Aufnahme ist fertig,“ sagt der Junge, der plötzlich wieder da ist. Er wirkt älter als eben.
+Du blinzelst einmal gegen das Neonlicht.
+
+„Die Aufnahme ist fertig,“ sagt der Junge, der beim zweiten Blick wieder da ist. Er wirkt älter als eben.
 
 Niemand im Wagen reagiert auf die Gestalt. Kein Blick, kein Zucken. Nur du folgst ihr mit den Augen, bis sie still nach draußen schaut, als warte sie auf deinen nächsten Fehler.
 

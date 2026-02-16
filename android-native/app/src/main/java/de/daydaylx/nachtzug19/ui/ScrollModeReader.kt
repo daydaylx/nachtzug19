@@ -179,7 +179,6 @@ fun ScrollModeReader(
       modifier = Modifier
         .fillMaxWidth()
         .heightIn(min = panelMinHeight, max = panelMaxHeight)
-        .weight(1f, fill = false)
         .padding(top = topGap)
     )
 

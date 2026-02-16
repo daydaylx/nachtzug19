@@ -1,251 +1,587 @@
 // ============================================================================
-// NACHTZUG 19 - Kapitel 1: Leerer Bahnsteig (REDUZED / P1 FIX)
+// NACHTZUG 19 - Kapitel 1: Leerer Bahnsteig (RADICAL REDESIGN v3.0)
 // ============================================================================
-// Szenen (18):
-// Setup: c1_s01_platform, c1_s01_platform_b, c1_s01a_platform_details
-// Train: c1_s02_train_appears, c1_s02a_train_exterior, c1_s02b_threshold
-// Inside: c1_s03_inside_train, c1_s03a_find_seat, c1_s03b_window_vibration
-// Sleepless: c1_s04_sleepless_intro, c1_s04a_sleepless_past, c1_s04b_corridor_breath
-// Anomaly: c1_s05_first_anomaly, c1_s05a_other_passengers, c1_s05a2_passenger_rhythm, c1_s05b_compartment7_tease, c1_s05c_comp7_listen
-// End: c1_end_station
+// STRUKTUR: Hub-basiertes Gameplay mit freier Erkundung
+// 
+// ACT 1: BAHNSTEIG-HUB (7 Szenen)
+//   - c1_hub_platform [Zentrale Hub-Szene, wiederholbar]
+//   - c1_inv_board, c1_inv_poster, c1_inv_person, c1_inv_device, c1_inv_edge
+//   - c1_trigger_emma [Sonderpfad] → c1_emma_note_read
+//
+// ACT 2: ZUG-ANNÄHERUNG (3 Szenen)
+//   - c1_event_train_arrival [Auto-Trigger nach 3 Investigations]
+//   - c1_transit_threshold [Schwelle]
+//   - c1_branching_entry [Verzweigung nach State]
+//
+// ACT 3: ZUG-HUB (5 Szenen)
+//   - c1_hub_train [Zweiter Hub, wiederholbar]
+//   - c1_train_compartment, c1_train_sleepless, c1_train_passengers, c1_train_comp7_locked
+//
+// ACT 4: ANOMALIE & COMP7 (3 Szenen)
+//   - c1_event_announcement [Auto-Trigger nach 2 Explorations]
+//   - c1_comp7_unlocked → c1_comp7_dialog
+//
+// ACT 5: HALT & KONSEQUENZEN (1 Szene)
+//   - c1_end_station [4 Varianten basierend auf dominantem Ticket]
+//
+// TOTAL: 20 Szenen (aber durch Hubs wiederholbar)
+// SPIELZEIT: 30-35 Minuten (durch Variabilität)
+// 
+// HUB-MECHANIK:
+//   1. Hub-Szene hat mehrere Choices mit Condition: item_flag === false
+//   2. Jede Choice setzt item_flag = true und erhöht Counter (hub_investigations)
+//   3. Bei 3+ Investigations: narrative_variant mit auto_next triggert
+//   4. Engine prüft auto_next BEVOR "keine Choices verfügbar" deklariert wird
+//   5. Auto-Transition läuft ohne User-Input → nahtloser Übergang
+//
+// PROGRESSIVE DISCOVERY:
+//   - Hub-Narrative ändern sich basierend auf hub_investigations Counter
+//   - Beispiel: Bei 0 Investigations: neutral, bei 2: angespannt, bei 3: Trigger
 // ============================================================================
 
 import { ScenesCollection } from '../../../domain/types';
 
 export const chapter1Scenes: ScenesCollection = {
   // ============================================================================
-  // c1_s01_platform: Einstieg (Split Part 1)
+  // ACT 1: BAHNSTEIG-HUB
   // ============================================================================
-  'c1_s01_platform': {
-    id: 'c1_s01_platform',
+
+  'c1_hub_platform': {
+    id: 'c1_hub_platform',
     chapter: 1,
     title: 'Leerer Bahnsteig',
     narrative: `Der Bahnsteig ist leer. Nicht „spät abends leer", sondern falsch leer. Eine Leere, die sich anfühlt wie ein vergessenes Wort auf der Zungenspitze.
 
-An der Wand klebt ein einzelnes Plakat. Verblasst. Orange Schrift auf braunem Grund – diese aggressive Typografie aus den Siebzigern, die schmerzt, wenn man zu lange hinschaut. „REISEN SIE MIT UNS", steht da in versetzten Großbuchstaben. Keine Webseite. Keine QR-Codes. Nur eine Telefonnummer mit zu wenigen Ziffern. Das Papier ist an den Ecken eingerissen, als hätte jemand versucht, es abzureißen, und aufgegeben.
+Du stehst da und versuchst dich zu erinnern, warum du hier bist. Die Erinnerung fühlt sich an wie ein Traum, der dir beim Aufwachen durch die Finger rinnt.
 
-Keine Bänke. Keine Automaten. Keine Hinweisschilder. Nur nackte Wände aus Beton, fleckig von Feuchtigkeit und… Nikotin? Die Wände sind gelb verfärbt, als hätten hier jahrzehntelang Menschen geraucht, obwohl die Luft kalt und steril ist. Eine Neonröhre flackert über dir mit einem leisen, nagenden Surren. Das Licht ist kalt, blaugrün, wirft harte Schatten auf den Boden. Deine Schatten sind zwei, drei – zu viele für eine Lichtquelle.
-
-Die Anzeigetafel – ein mechanisches Klappmodell aus einer Zeit vor LED-Displays – zeigt: 23:47. Die Ziffern sind groß, altmodisch, haben Serifen.
-
-Kein Text. Kein „Nächster Zug". Kein „Verspätung". Nur leere Fächer, die im Takt klacken, ohne etwas anzuzeigen. Klack. Klack. Klack. Ein Rhythmus wie ein langsamer Herzschlag.
-
-Du weißt nicht mehr, warum du hier bist. Die Erinnerung fühlt sich an wie ein Traum, der dir beim Aufwachen durch die Finger rinnt. Warst du verabredet? Solltest du jemanden treffen? Der Gedanke zerrinnt, bevor du ihn fassen kannst.`,
-    choices: [
-      {
-        id: 'look_around',
-        label: 'Umsehen',
-        effects: [
-          { type: 'set', target: 'stance_bold', value: true }
-        ],
-        next: 'c1_s01_platform_b'
-      },
-      {
-        id: 'wait_patiently',
-        label: 'Warten',
-        effects: [
-          { type: 'set', target: 'stance_cautious', value: true }
-        ],
-        next: 'c1_s01_platform_b'
-      }
-    ],
-    tags: ['setup'],
-    state_notes: [
-      'Split Part 1: Fokus auf Umgebung',
-      'Erste Orientierung'
-    ],
-    atmosphere: 'somber'
-  },
-
-  // ============================================================================
-  // c1_s01_platform_b: Einstieg (Split Part 2 - AGENCY FIX)
-  // ============================================================================
-  'c1_s01_platform_b': {
-    id: 'c1_s01_platform_b',
-    chapter: 1,
-    title: 'Atmosphäre',
-    narrative: `Aber du weißt: Du wartest auf etwas. Oder jemanden. Die Gewissheit sitzt in deinem Brustkorb wie ein Stein.
-
-Die Luft riecht nach kaltem Zigarettenrauch und Maschinenöl. Nicht nach frischem Rauch – nach altem. Nach Jahrzehnten. Als hätte jemand die Luft eingefroren, als hier noch geraucht werden durfte, und sie nie wieder aufgetaut. Der Geruch ist so dicht, dass du ihn auf der Zunge schmeckst. Bitter. Metallisch.
-
-Am Rand – auf einer Bank, die du vorhin nicht gesehen hast, schwörst du es – sitzt eine Gestalt. Sie liest eine Zeitung. Die Seiten rascheln nicht. Sie hält sie vollkommen still. Du siehst die Schlagzeile, aber das Datum ist verwischt, verschmiert, als hätte jemand darüber gewischt, bevor die Tinte trocken war. „ÖLKRISE VERSCHÄRFT SICH", steht da in dieser altmodischen Frakturschrift, die an Grabsteine erinnert. Die Gestalt blättert nicht um. Nicht einmal, als der Wind durch den Bahnsteig fegt.
-
-Welcher Wind? Es gibt keine Fenster hier.
-
-Ein Name brennt sich in deine Gedanken. Emma. Nicht wie eine Erinnerung – wie eine Narbe. Ein Gesicht, das du fast sehen kannst. Braune Augen. Sommersprossen auf der Nase. Ein Lächeln, das du nie vergessen wolltest. Aber die Details verschwimmen, je mehr du versuchst, das Bild festzuhalten.
-
-Wo ist Emma? Warum ist Emma nicht hier? Oder… war Emma hier? Warst du zu spät?`,
+Um dich herum: Details, die darauf warten, untersucht zu werden.`,
     narrative_variants: [
       {
-        condition: { type: 'bool', target: 'stance_bold', value: true },
-        narrative: `Du hast dich umgesehen. Bewusst. Jedes Detail aufgesogen.
+        condition: { type: 'compare', target: 'hub_investigations', operator: '==', value: 1 },
+        narrative: `Du kehrst zum Zentrum des Bahnsteigs zurück.
 
-Und jetzt siehst du mehr: Am Rand — auf einer Bank, die du vorhin nicht gesehen hast — sitzt eine Gestalt. Sie liest eine Zeitung. Die Seiten rascheln nicht. „ÖLKRISE VERSCHÄRFT SICH", steht da in altmodischer Frakturschrift. Die Gestalt blättert nicht um.
+Aber etwas hat sich verändert. Die Anzeigetafel klackt schneller. Die Luft riecht jetzt nach altem Zigarettenrauch.
 
-Du hast nach Antworten gesucht. Die Antwort, die du findest, ist ein Name. Emma. Er brennt sich in deine Gedanken. Nicht wie eine Erinnerung — wie eine Narbe. Ein Gesicht, das du fast sehen kannst. Braune Augen. Sommersprossen.
-
-Wo ist Emma? Du hast das Gefühl, dass das Umschauen dir geholfen hat — aber die wichtigste Frage bleibt offen.`
+Was als nächstes?`
       },
       {
-        condition: { type: 'bool', target: 'stance_cautious', value: true },
-        narrative: `Du hast gewartet. Stillgestanden. Die Leere an dir vorbeiziehen lassen.
+        condition: { type: 'compare', target: 'hub_investigations', operator: '==', value: 2 },
+        narrative: `Du stehst wieder in der Mitte.
 
-Und sie hat geantwortet: Am Rand — auf einer Bank, die vorher nicht da war, du schwörst es — sitzt eine Gestalt. Sie liest eine Zeitung. Die Seiten rascheln nicht. „ÖLKRISE VERSCHÄRFT SICH", steht da. Die Gestalt blättert nicht um. Nicht einmal, als der Wind durch den Bahnsteig fegt.
+Die Gestalt mit der Zeitung sitzt näher. Oder war sie schon immer so nah? Die gelbe Linie am Boden glüht schwach im Neonlicht.
 
-Welcher Wind? Es gibt keine Fenster hier.
-
-Ein Name taucht auf, ungefiltert, wie etwas, das du unterdrückt hast. Emma. Ein Gesicht, das du fast sehen kannst. Braune Augen. Sommersprossen auf der Nase. Aber je länger du wartest, desto mehr verschwimmt es.`
+Ein Name brennt in deinem Kopf: Emma.`
       },
       {
-        min_drift: 5,
-        narrative: `Die Luft riecht nach kaltem Zigarettenrauch. Die Gestalt mit der Zeitung sitzt näher. Die Schlagzeile: „ENERGIEKRISE—". Der Rest ist verwischt. Die Gestalt blättert nicht um. Emma. Der Name brennt in deinem Kopf. Du musst Emma finden.`
+        condition: { type: 'compare', target: 'hub_investigations', operator: '>=', value: 3 },
+        narrative: `Ein tiefes Brummen erfüllt die Luft. Es vibriert in deinem Brustkorb, in den Zähnen.
+
+Dann gleitet der Zug in den Bahnhof. Lautlos. Keine quietschenden Bremsen. Kein Rattern. Nur das Brummen, das langsam verstummt.
+
+Die Türen öffnen sich mit einem Zischen.`,
+        auto_next: 'c1_event_train_arrival'
       }
     ],
     choices: [
       {
-        id: 'search_person',
-        label: '„Emma?" rufen',
+        id: 'investigate_board',
+        label: 'Die Anzeigetafel [23:47, klackend]',
+        condition: {
+          type: 'bool',
+          target: 'investigated_board',
+          value: false
+        },
         effects: [
-          { type: 'inc', target: 'tickets_love', value: 1 },
-          { type: 'set', target: 'memory_search_active', value: true }
+          { type: 'inc', target: 'hub_investigations', value: 1 },
+          { type: 'set', target: 'investigated_board', value: true }
         ],
-        next: 'c1_s01a_platform_details'
+        next: 'c1_inv_board'
       },
       {
-        id: 'check_phone',
-        label: 'Handy checken',
+        id: 'investigate_poster',
+        label: 'Das verblasste Plakat an der Wand',
+        condition: {
+          type: 'bool',
+          target: 'investigated_poster',
+          value: false
+        },
         effects: [
-          { type: 'inc', target: 'tickets_escape', value: 1 }
+          { type: 'inc', target: 'hub_investigations', value: 1 },
+          { type: 'set', target: 'investigated_poster', value: true }
         ],
-        next: 'c1_s01a_platform_details'
+        next: 'c1_inv_poster'
       },
       {
-        id: 'try_leave',
-        label: 'Versuchen zu gehen',
+        id: 'investigate_person',
+        label: 'Die Gestalt mit der Zeitung',
+        condition: {
+          type: 'bool',
+          target: 'investigated_person',
+          value: false
+        },
         effects: [
-          { type: 'inc', target: 'tickets_guilt', value: 1 },
+          { type: 'inc', target: 'hub_investigations', value: 1 },
+          { type: 'set', target: 'investigated_person', value: true },
           { type: 'inc', target: 'conductor_attention', value: 1 }
         ],
-        next: 'c1_s01a_platform_details'
+        next: 'c1_inv_person'
+      },
+      {
+        id: 'investigate_device',
+        label: 'Dein Gerät in der Tasche',
+        condition: {
+          type: 'bool',
+          target: 'investigated_device',
+          value: false
+        },
+        effects: [
+          { type: 'inc', target: 'hub_investigations', value: 1 },
+          { type: 'set', target: 'investigated_device', value: true },
+          { type: 'inc', target: 'tickets_truth', value: 1 }
+        ],
+        next: 'c1_inv_device'
+      },
+      {
+        id: 'investigate_edge',
+        label: 'Die gelbe Linie am Rand des Bahnsteigs',
+        condition: {
+          type: 'bool',
+          target: 'investigated_edge',
+          value: false
+        },
+        effects: [
+          { type: 'inc', target: 'hub_investigations', value: 1 },
+          { type: 'set', target: 'investigated_edge', value: true },
+          { type: 'inc', target: 'tickets_truth', value: 1 }
+        ],
+        next: 'c1_inv_edge'
+      },
+      {
+        id: 'call_emma',
+        label: '„Emma!" in die Leere rufen',
+        condition: {
+          type: 'bool',
+          target: 'called_emma',
+          value: false
+        },
+        effects: [
+          { type: 'set', target: 'called_emma', value: true },
+          { type: 'set', target: 'memory_search_active', value: true },
+          { type: 'inc', target: 'tickets_love', value: 2 },
+          { type: 'inc', target: 'conductor_attention', value: 1 }
+        ],
+        next: 'c1_trigger_emma'
       }
     ],
-    tags: ['setup'],
+    tags: ['hub'],
     state_notes: [
-      'P1 FIX: Agency durch memory_search_active',
-      'Drift-Varianten hier integriert'
+      'Zentrale Hub-Szene - Spieler kehrt nach jeder Investigation zurück',
+      'Nach 3 hub_investigations → Auto-Transition zu c1_event_train_arrival',
+      'called_emma führt zu Sonderpfad'
     ],
     atmosphere: 'somber'
   },
 
   // ============================================================================
-  // c1_s01a_platform_details: Details & Gerät (Merged)
+  // INVESTIGATION 1: ANZEIGETAFEL
   // ============================================================================
-  'c1_s01a_platform_details': {
-    id: 'c1_s01a_platform_details',
+
+  'c1_inv_board': {
+    id: 'c1_inv_board',
     chapter: 1,
-    title: 'Das Gerät',
-    narrative: `Du reißt dich von der Frage los und setzt dich in Bewegung. Der Beton unter deinen Sohlen klingt hohl. Am Rand des Bahnsteigs: Eine gelbe Linie, abgeblättert. Dahinter die Schienen. Schwarz. Matt. Als wären sie aus etwas anderem als Metall gemacht.
+    title: 'Die Anzeigetafel',
+    narrative: `Du trittst näher an die Anzeigetafel heran.
 
-Du greifst in deine Tasche. Da ist… etwas. Ein Gerät.
+Es ist ein mechanisches Klappmodell aus einer Zeit vor LED-Displays. Die Ziffern sind groß, altmodisch, haben Serifen. Sie zeigen: 23:47.
 
-Ein rechteckiges Ding aus Plastik und Glas. Schwer. Der Bildschirm ist schwarz. Du drückst darauf, und für einen Moment flackert das Display auf – nicht mit Icons oder Apps, sondern mit statischem Rauschen, wie bei einem alten Fernseher.
+Kein Text. Kein „Nächster Zug". Kein „Verspätung". Nur leere Fächer, die im Takt klacken, ohne etwas anzuzeigen.
 
-Dann wird es wieder schwarz.
+Klack. Klack. Klack.
 
-Plötzlich flackert die Neonröhre über dir schneller. Ein, aus, ein, aus. Dein Schatten auf dem Boden streckt sich, wird unnatürlich lang. Ein tiefes Brummen erfüllt die Luft, vibriert in deinem Brustkorb.`,
+Du zählst mit. Drei Sekunden Abstand. Exakt. Wie ein Metronom. Oder ein Herzschlag, der nicht deiner ist.
+
+Dann, für einen Wimpernschlag, flackert ein Wort auf:
+
+RÜCK—
+
+Und weg. Zu schnell, um sicher zu sein. War es „Rückfahrt"? „Rückkehr"? Oder hast du dir das eingebildet?`,
     choices: [
       {
+        id: 'count_pattern',
+        label: 'Den Takt weiterzählen, das Muster suchen',
+        effects: [
+          { type: 'inc', target: 'tickets_truth', value: 1 },
+          { type: 'set', target: 'knows_board_pattern', value: true }
+        ],
+        next: 'c1_hub_platform'
+      },
+      {
+        id: 'try_touch',
+        label: 'Die Tafel berühren',
+        effects: [
+          { type: 'inc', target: 'memory_drift', value: 1 },
+          { type: 'inc', target: 'tickets_love', value: 1 }
+        ],
+        next: 'c1_hub_platform'
+      },
+      {
         id: 'step_back',
-        label: 'Zurücktreten',
+        label: 'Einen Schritt zurück, bevor es dich anzieht',
         effects: [
           { type: 'inc', target: 'tickets_escape', value: 1 }
         ],
-        next: 'c1_s02_train_appears'
-      },
+        next: 'c1_hub_platform'
+      }
+    ],
+    tags: ['investigation'],
+    state_notes: [
+      'knows_board_pattern → Callback in c1_event_announcement'
+    ],
+    atmosphere: 'mystic'
+  },
+
+  // ============================================================================
+  // INVESTIGATION 2: PLAKAT
+  // ============================================================================
+
+  'c1_inv_poster': {
+    id: 'c1_inv_poster',
+    chapter: 1,
+    title: 'Das Plakat',
+    narrative: `An der Wand klebt ein einzelnes Plakat. Verblasst. Orange Schrift auf braunem Grund – diese aggressive Typografie aus den Siebzigern, die schmerzt, wenn man zu lange hinschaut.
+
+„REISEN SIE MIT UNS", steht da in versetzten Großbuchstaben.
+
+Keine Webseite. Keine QR-Codes. Nur eine Telefonnummer mit zu wenigen Ziffern: 19-19-19.
+
+Das Papier ist an den Ecken eingerissen, als hätte jemand versucht, es abzureißen, und aufgegeben.
+
+Du streichst mit dem Finger über die Oberfläche. Die Tinte ist rau, fast wie Narbengewebe.`,
+    choices: [
       {
-        id: 'examine_tracks',
-        label: 'Die schwarzen Schienen fixieren',
+        id: 'note_number',
+        label: 'Die Nummer einprägen: 19-19-19',
         effects: [
           { type: 'inc', target: 'tickets_truth', value: 1 }
         ],
-        next: 'c1_s02_train_appears'
+        next: 'c1_hub_platform'
       },
       {
-        id: 'hold_device',
-        label: 'Das Gerät fest umklammern',
-        condition: {
-          type: 'bool',
-          target: 'memory_search_active',
-          value: true
-        },
+        id: 'tear_poster',
+        label: 'Versuchen, das Plakat abzureißen',
         effects: [
-          { type: 'inc', target: 'tickets_love', value: 1 }
+          { type: 'inc', target: 'tickets_escape', value: 1 },
+          { type: 'inc', target: 'conductor_attention', value: 1 }
         ],
-        next: 'c1_s02_train_appears'
+        next: 'c1_hub_platform'
       }
     ],
-    tags: ['drift_seed'],
+    tags: ['investigation'],
     state_notes: [
-      'Merged: Details, Device, Lights',
-      'Schnellerer Einstieg zum Zug'
+      '19-19-19 Pattern - wird in späteren Kapiteln wichtig'
+    ],
+    atmosphere: 'somber'
+  },
+
+  // ============================================================================
+  // INVESTIGATION 3: GESTALT
+  // ============================================================================
+
+  'c1_inv_person': {
+    id: 'c1_inv_person',
+    chapter: 1,
+    title: 'Die Gestalt',
+    narrative: `Am Rand – auf einer Bank, die du vorhin nicht gesehen hast, schwörst du es – sitzt eine Gestalt. Sie liest eine Zeitung. Die Seiten rascheln nicht. Sie hält sie vollkommen still.
+
+Du siehst die Schlagzeile: „ÖLKRISE VERSCHÄRFT SICH", in altmodischer Frakturschrift, die an Grabsteine erinnert. Das Datum ist verwischt.
+
+„Entschuldigung", sagst du.
+
+Die Gestalt reagiert nicht. Blättert nicht um. Nicht einmal, als du näher kommst.
+
+Du legst deine Hand auf ihre Schulter.
+
+Kalt. Hart. Wie Wachs.
+
+Für einen Herzschlag sieht ihr Gesicht aus wie deins. Dann ist es wieder fremd.`,
+    choices: [
+      {
+        id: 'take_newspaper',
+        label: 'Die Zeitung aus ihren Händen nehmen',
+        effects: [
+          { type: 'inc', target: 'tickets_truth', value: 2 },
+          { type: 'inc', target: 'memory_drift', value: 1 }
+        ],
+        next: 'c1_hub_platform'
+      },
+      {
+        id: 'back_away',
+        label: 'Langsam zurückweichen',
+        effects: [
+          { type: 'inc', target: 'tickets_escape', value: 1 }
+        ],
+        next: 'c1_hub_platform'
+      }
+    ],
+    tags: ['investigation'],
+    state_notes: [
+      'Erste Doppelgänger-Andeutung',
+      'Erhöht conductor_attention (bereits in Hub-Choice)'
     ],
     atmosphere: 'tense'
   },
 
   // ============================================================================
-  // c1_s02_train_appears: Zug erscheint
+  // INVESTIGATION 4: GERÄT
   // ============================================================================
-  'c1_s02_train_appears': {
-    id: 'c1_s02_train_appears',
+
+  'c1_inv_device': {
+    id: 'c1_inv_device',
     chapter: 1,
-    title: 'Der Zug',
-    narrative: `Das Brummen wird lauter. Tiefer. Ein Beben, das du nicht hörst, sondern spürst – in den Knochen, in den Zähnen. Dann gleitet der Zug in den Bahnhof. Lautlos. Keine Quietschenden Bremsen. Kein Rattern. Nur das Brummen, das langsam verstummt.
+    title: 'Das Gerät',
+    narrative: `Du greifst in deine Tasche. Da ist… etwas. Ein Gerät.
 
-Er sieht aus wie ein alter Nachtzug. Achtziger Jahre. Vielleicht noch früher. Abblätternde dunkelrote Farbe, stellenweise schwarz verfärbt – oder ist es Ruß? Fenster zu schmal, die Rahmen vergilbt wie alte Zähne. Die Wagen sind lang. Zu lang. Du zählst: Fünf. Sechs. Sieben. Acht. Sie verschwimmen am Ende in der Dunkelheit.
+Ein rechteckiges Ding aus Plastik und Glas. Schwer. Der Bildschirm ist schwarz. Du drückst darauf, und für einen Moment flackert das Display auf – nicht mit Icons oder Apps, sondern mit statischem Rauschen, wie bei einem alten Fernseher.
 
-Durch die Scheiben siehst du Silhouetten – Menschen, die reglos auf ihren Plätzen sitzen. Niemand bewegt sich. Niemand schaut auf. Niemand schaut hinaus. Als wären sie eingefroren. Oder gemalt. Flache Figuren auf Glas.
+Dann wird es wieder schwarz.
 
-Die Türen öffnen sich mit einem Zischen. Nicht mechanisch. Organisch. Wie ein Ausatmen. Warme Luft strömt heraus – zu warm für einen Nachtzug, zu feucht. Riecht nach altem Polster und etwas Süßlichem. Verbrannter Zucker? Oder... verbranntes Plastik? Nein. Etwas anderes. Etwas, das du nicht benennen kannst.
+Du versuchst es nochmal. Diesmal erscheinen Worte:
 
-Die Stufen glänzen feucht, schwarz wie nasses Holz. Ein dünner Nebel hängt in der Tür, rollt sich über die Kante, kriecht auf den Bahnsteig. Niemand steigt aus. Niemand ruft. Nur die offene Tür. Wartend.`,
-    narrative_variants: [
+NACHTZUG 19
+KEINE VERBINDUNG
+WARTEN SIE
+
+Das Display erlischt. Als du es umdrehst, ist auf der Rückseite ein Aufkleber: ein handgeschriebener Name.
+
+Du kannst ihn nicht lesen. Die Tinte ist verwischt.`,
+    choices: [
       {
-        condition: { type: 'bool', target: 'memory_search_active', value: true },
-        narrative: `Das Brummen wird lauter. Tiefer. Ein Beben in den Knochen, in den Zähnen. Dann gleitet der Zug in den Bahnhof. Lautlos.
-
-Du umklammerst das Gerät. Das Display bleibt schwarz — aber es ist warm. Wärmer, als es sein sollte. Als hätte jemand es gerade erst benutzt.
-
-Der Zug sieht aus wie ein alter Nachtzug. Achtziger Jahre. Abblätternde dunkelrote Farbe. Die Wagen verschwimmen am Ende in der Dunkelheit. Durch die Scheiben siehst du Silhouetten — und für einen Moment, nur einen Moment, glaubst du, eine davon zu erkennen. Das Gesicht. Die Sommersprossen.
-
-Emma?
-
-Die Türen öffnen sich. Warme Luft strömt heraus. Das Gerät vibriert kurz in deiner Hand. Einmal. Als hätte es eine Nachricht empfangen.`
+        id: 'keep_trying',
+        label: 'Weiter versuchen, es zu aktivieren',
+        effects: [
+          { type: 'inc', target: 'tickets_truth', value: 1 }
+        ],
+        next: 'c1_hub_platform'
       },
       {
-        min_drift: 5,
-        narrative: `Das Brummen wird lauter. Der Zug gleitet herein. Lautlos. Dunkelrot, fast schwarz. Die Wagen sind endlos. Durch die Scheiben: Eingefrorene Silhouetten. Warme, süßliche Luft strömt heraus. Die Stufen glänzen schwarz. Niemand steigt aus.`
+        id: 'put_away',
+        label: 'Weglegen und vergessen',
+        effects: [
+          { type: 'inc', target: 'tickets_escape', value: 1 }
+        ],
+        next: 'c1_hub_platform'
+      }
+    ],
+    tags: ['investigation'],
+    state_notes: [
+      'Gerät zeigt "NACHTZUG 19" - erster direkter Name-Drop'
+    ],
+    atmosphere: 'mystic'
+  },
+
+  // ============================================================================
+  // INVESTIGATION 5: GELBE LINIE
+  // ============================================================================
+
+  'c1_inv_edge': {
+    id: 'c1_inv_edge',
+    chapter: 1,
+    title: 'Die Kante',
+    narrative: `Du gehst zum Rand des Bahnsteigs. Eine gelbe Linie, abgeblättert. Dahinter die Schienen. Schwarz. Matt. Als wären sie aus etwas anderem als Metall gemacht.
+
+Du kniestdich hin und schaust hinunter.
+
+Dunkelheit. Keine Schwellen. Kein Kies. Nur... Nichts.
+
+Du wirfst einen kleinen Stein hinein. Er fällt. Und fällt. Kein Aufprall.
+
+Dann, aus der Tiefe: ein Lichtpunkt. Er wird größer. Näher. Schneller.
+
+Das Brummen setzt ein.`,
+    choices: [
+      {
+        id: 'lean_closer',
+        label: 'Dich über die Kante lehnen',
+        effects: [
+          { type: 'inc', target: 'tickets_truth', value: 1 },
+          { type: 'inc', target: 'memory_drift', value: 1 }
+        ],
+        next: 'c1_hub_platform'
+      },
+      {
+        id: 'pull_back',
+        label: 'Sofort zurückspringen',
+        effects: [
+          { type: 'inc', target: 'tickets_escape', value: 1 }
+        ],
+        next: 'c1_hub_platform'
+      }
+    ],
+    tags: ['investigation'],
+    state_notes: [
+      'Unendliche Tiefe - Reality-Check'
+    ],
+    atmosphere: 'danger'
+  },
+
+  // ============================================================================
+  // SONDERPFAD: EMMA RUFEN
+  // ============================================================================
+
+  'c1_trigger_emma': {
+    id: 'c1_trigger_emma',
+    chapter: 1,
+    title: 'Der Name',
+    narrative: `„EMMA!"
+
+Deine Stimme hallt über den leeren Bahnsteig, scharf und verzweifelt.
+
+Für einen Herzschlag: Stille.
+
+Dann—
+
+Am anderen Ende des Bahnsteigs, wo die Neonröhren in Dunkelheit übergehen, bewegt sich etwas.
+
+Eine Gestalt. Klein. Vertraut.
+
+Sie dreht sich um.
+
+Braune Augen. Sommersprossen auf der Nase. Ein Lächeln, das du nie vergessen wolltest.
+
+Emma.
+
+Sie hebt die Hand. Nicht winkend. Wartend. Als würde sie dich einladen zu folgen.
+
+Du machst einen Schritt nach vorn—
+
+—und das Licht flackert.
+
+Als es zurückkommt, ist sie weg.
+
+Aber auf dem Boden, genau wo sie stand, liegt etwas. Ein kleiner Zettel, zusammengefaltet.`,
+    choices: [
+      {
+        id: 'take_note',
+        label: 'Den Zettel aufheben',
+        effects: [
+          { type: 'set', target: 'saw_emma_vision', value: true },
+          { type: 'set', target: 'has_emma_note', value: true },
+          { type: 'inc', target: 'tickets_love', value: 2 },
+          { type: 'inc', target: 'memory_drift', value: 1 }
+        ],
+        next: 'c1_emma_note_read'
+      },
+      {
+        id: 'leave_it',
+        label: 'Den Zettel liegen lassen - das ist nicht real',
+        effects: [
+          { type: 'set', target: 'saw_emma_vision', value: true },
+          { type: 'inc', target: 'tickets_guilt', value: 2 },
+          { type: 'inc', target: 'tickets_escape', value: 1 }
+        ],
+        next: 'c1_hub_platform'
+      }
+    ],
+    tags: ['special_path', 'emma_thread'],
+    state_notes: [
+      'Nur erreichbar wenn called_emma in Hub gewählt',
+      'saw_emma_vision wird in ALLEN späteren Kapiteln als Callback genutzt'
+    ],
+    atmosphere: 'mystic'
+  },
+
+  'c1_emma_note_read': {
+    id: 'c1_emma_note_read',
+    chapter: 1,
+    title: 'Die Nachricht',
+    narrative: `Du faltest den Zettel auseinander.
+
+Deine eigene Handschrift. Aber du erinnerst dich nicht, das geschrieben zu haben:
+
+"Warte am Bahnsteig. Ich komme zurück. Versprochen."
+
+Darunter: Ein Datum. 23.04.2024.
+
+Ist das... heute? Gestern? Oder vor Jahren?
+
+Du drehst den Zettel um. Auf der Rückseite: Ein einzelnes Wort, in anderer Tinte:
+
+"WAGEN 7"`,
+    choices: [
+      {
+        id: 'keep_note',
+        label: 'Den Zettel sorgfältig einstecken',
+        effects: [
+          { type: 'inc', target: 'tickets_love', value: 1 }
+        ],
+        next: 'c1_hub_platform'
+      }
+    ],
+    tags: ['emma_thread'],
+    state_notes: [
+      'Emma-Note wird in K6 nochmal wichtig',
+      'Wagen 7 Hinweis'
+    ],
+    atmosphere: 'somber'
+  },
+
+  // ============================================================================
+  // ACT 2: ZUG-ANNÄHERUNG
+  // ============================================================================
+
+  'c1_event_train_arrival': {
+    id: 'c1_event_train_arrival',
+    chapter: 1,
+    title: 'Der Zug',
+    narrative: `Der Zug sieht aus wie ein alter Nachtzug. Achtziger Jahre. Vielleicht noch früher. Abblätternde dunkelrote Farbe, stellenweise schwarz verfärbt – oder ist es Ruß?
+
+Fenster zu schmal, die Rahmen vergilbt wie alte Zähne. Die Wagen sind lang. Zu lang. Du zählst: Fünf. Sechs. Sieben. Acht. Sie verschwimmen am Ende in der Dunkelheit.
+
+Durch die Scheiben siehst du Silhouetten – Menschen, die reglos auf ihren Plätzen sitzen. Niemand bewegt sich. Niemand schaut auf. Niemand schaut hinaus.
+
+Warme Luft strömt heraus – zu warm für einen Nachtzug, zu feucht. Riecht nach altem Polster und etwas Süßlichem. Verbrannter Zucker? Oder... verbranntes Plastik?
+
+An der Seite des Wagens: Ein Schriftzug. Verblichen. Du kannst nur Teile lesen: „—CHTZUG 1—". Der Rest fehlt.`,
+    narrative_variants: [
+      {
+        condition: {
+          type: 'and',
+          conditions: [
+            { type: 'bool', target: 'saw_emma_vision', value: true },
+            { type: 'bool', target: 'has_emma_note', value: true }
+          ]
+        },
+        narrative: `Der Zug sieht aus wie ein alter Nachtzug. Achtziger Jahre.
+
+Du umklammerst den Zettel in deiner Tasche. „WAGEN 7" steht darauf.
+
+Du suchst die Waggons ab. 1, 2, 3, 4, 5, 6... 7.
+
+Da. Am Ende. Ein Wagen mit einer massiven Holztür. Dunkler als der Rest.
+
+Emma wartet dort. Oder etwas, das aussieht wie Emma.`
       }
     ],
     choices: [
       {
         id: 'board_immediately',
-        label: 'Sofort einsteigen',
+        label: 'Keine Sekunde verlieren und einsteigen',
         effects: [
           { type: 'inc', target: 'tickets_escape', value: 1 }
         ],
-        next: 'c1_s02a_train_exterior'
+        next: 'c1_transit_threshold'
       },
       {
         id: 'inspect_train',
-        label: 'Den Zug genauer ansehen',
+        label: 'Noch einen prüfenden Blick auf die Außenseite',
         effects: [
           { type: 'inc', target: 'tickets_truth', value: 1 }
         ],
-        next: 'c1_s02a_train_exterior'
+        next: 'c1_transit_threshold'
       },
       {
         id: 'call_out',
-        label: 'In den Zug rufen',
+        label: 'In die Fenster hineinrufen',
         condition: {
           type: 'compare',
           target: 'conductor_attention',
@@ -253,127 +589,80 @@ Die Türen öffnen sich. Warme Luft strömt heraus. Das Gerät vibriert kurz in 
           value: 2
         },
         effects: [
-          { type: 'inc', target: 'tickets_truth', value: 1 },
+          { type: 'inc', target: 'tickets_love', value: 1 },
           { type: 'inc', target: 'conductor_attention', value: 1 }
         ],
-        next: 'c1_s02a_train_exterior'
+        next: 'c1_transit_threshold'
       }
     ],
-    tags: ['setup'],
+    tags: ['event'],
     state_notes: [
-      'P1 FIX: call_out blocked if attention >= 2'
+      'Auto-Trigger von c1_hub_platform nach 3 investigations',
+      'Emma-Note Callback'
     ],
     atmosphere: 'tense'
   },
 
-  // ============================================================================
-  // c1_s02a_train_exterior: Zug von außen betrachten
-  // ============================================================================
-  'c1_s02a_train_exterior': {
-    id: 'c1_s02a_train_exterior',
-    chapter: 1,
-    title: 'Von außen',
-    narrative: `Du stehst vor der offenen Tür.
-
-An der Seite des Wagens: Ein Schriftzug. Verblichen. Du kannst nur Teile lesen: „—CHTZUG 1—". Der Rest fehlt. Abgekratzt.
-
-Durch das nächste Fenster siehst du eine Frau. Sie starrt geradeaus. Ihre Augen bewegen sich nicht. Ihre Hände liegen gefaltet im Schoß. Perfekt symmetrisch. Du wartest darauf, dass sie blinzelt. Sie tut es nicht.
-
-Hinter dir: Das Brummen wird leiser. Der Zug wird gleich weiterfahren. Du weißt es.
-
-Ein Windstoß trägt kalten Metallgeruch über den Bahnsteig. Für eine Sekunde hörst du aus dem Wageninneren ein leises Klirren, als hätten sich Gläser berührt, obwohl niemand sich bewegt.
-
-Über der Tür hängt eine Lampe, die nicht flackert, sondern pulsiert. Sehr langsam. Wie ein ruhiger Herzschlag, der nicht zu dir gehört.
-
-Du merkst, dass dein Zögern nicht aus Unsicherheit kommt, sondern aus einem seltsamen Wiedererkennen: als hättest du genau diese Schwelle schon einmal gespürt und damals zu spät reagiert.`,
-    choices: [
-      {
-        id: 'board_now',
-        label: 'Einsteigen',
-        effects: [
-          { type: 'inc', target: 'tickets_escape', value: 1 }
-        ],
-        next: 'c1_s02b_threshold'
-      },
-      {
-        id: 'touch_exterior',
-        label: 'Die Außenwand berühren',
-        effects: [
-          { type: 'inc', target: 'tickets_truth', value: 1 }
-        ],
-        next: 'c1_s02b_threshold'
-      },
-      {
-        id: 'ask_aloud',
-        label: '„Ist da jemand?" rufen',
-        condition: {
-           type: 'compare',
-           target: 'conductor_attention',
-           operator: '<',
-           value: 2
-        },
-        effects: [
-          { type: 'inc', target: 'tickets_love', value: 1 },
-          { type: 'inc', target: 'conductor_attention', value: 1 }
-        ],
-        next: 'c1_s02b_threshold'
-      }
-    ],
-    tags: ['reveal'],
-    state_notes: [
-      'Shortened narrative',
-      'Direct link to c1_s03_inside_train'
-    ],
-    atmosphere: 'mystic'
-  },
-
-  // ==========================================================================
-  // c1_s02b_threshold: Schwelle zum Zug (Interlude)
-  // ==========================================================================
-  'c1_s02b_threshold': {
-    id: 'c1_s02b_threshold',
+  'c1_transit_threshold': {
+    id: 'c1_transit_threshold',
     chapter: 1,
     title: 'Schwelle',
     narrative: `Du stellst einen Fuß auf die Stufe.
 
-Das Metall ist feucht, fast glitschig. Nicht nass – aber auch nicht trocken. Eine Feuchtigkeit, die sich anfühlt wie kalter Schweiß. Ein kurzer Geruch von warmem Staub schlägt dir entgegen, süßlich und alt, als würde der Zug ausatmen – einen langsamen, tiefen Atemzug aus seiner Tiefe.
+Das Metall ist feucht, fast glitschig. Nicht nass – aber auch nicht trocken. Eine Feuchtigkeit, die sich anfühlt wie kalter Schweiß.
 
-Hinter dir klackt die Anzeigetafel einmal, laut und final. Du drehst dich um. Die Ziffern haben gewechselt. 23:48. Eine Minute ist vergangen. Oder sind es zwei? Warst du länger auf dem Bahnsteig, als du dachtest?
+Ein kurzer Geruch von warmem Staub schlägt dir entgegen, süßlich und alt, als würde der Zug ausatmen – einen langsamen, tiefen Atemzug aus seiner Tiefe.
+
+Hinter dir klackt die Anzeigetafel einmal, laut und final. Du drehst dich um. Die Ziffern haben gewechselt. 23:48.
+
+Eine Minute ist vergangen. Oder sind es zwei? Warst du länger auf dem Bahnsteig, als du dachtest?
 
 Der Nebel kriecht näher. Die Gestalt mit der Zeitung ist verschwunden. War sie jemals da?`,
+    narrative_variants: [
+      {
+        condition: { type: 'bool', target: 'saw_emma_vision', value: true },
+        narrative: `Du stellst einen Fuß auf die Stufe.
+
+In dem Moment, in dem dein Gewicht auf der Kante liegt, denkst du den Namen noch einmal stumm: Emma.
+
+Das Metall ist feucht. Hinter dir klackt die Anzeigetafel. 23:48.
+
+Der Nebel kriecht näher. Am Ende des Bahnsteigs, wo Emma stand, ist nur noch Dunkelheit.
+
+Aber der Zettel in deiner Tasche ist warm geworden. Als hätte er etwas aufgenommen.`
+      }
+    ],
     choices: [
       {
-        id: 'step_in',
-        label: 'Einsteigen',
+        id: 'step_in_bold',
+        label: 'Die Schwelle bewusst überschreiten',
         effects: [
           { type: 'set', target: 'stance_bold', value: true }
         ],
-        next: 'c1_s03_inside_train'
+        next: 'c1_branching_entry'
       },
       {
         id: 'hesitate_step',
-        label: 'Kurz zögern',
+        label: 'Noch einmal zurückblicken, dann einsteigen',
         effects: [
           { type: 'set', target: 'stance_cautious', value: true }
         ],
-        next: 'c1_s03_inside_train'
+        next: 'c1_branching_entry'
       }
     ],
-    tags: ['interlude'],
+    tags: ['setup'],
     state_notes: [
-      'Interlude: Schwelle zum Zug'
+      'Schwelle zum Zug',
+      'stance_bold/cautious wird gesetzt'
     ],
     atmosphere: 'tense'
   },
 
-  // ============================================================================
-  // c1_s03_inside_train: Im Zug (Merged Silence)
-  // ============================================================================
-  'c1_s03_inside_train': {
-    id: 'c1_s03_inside_train',
+  'c1_branching_entry': {
+    id: 'c1_branching_entry',
     chapter: 1,
     title: 'Innen',
-    narrative: `Du antwortest dir nicht, sondern steigst ein. Die Tür schließt sich mit einem finalen Klack.
+    narrative: `Die Tür schließt sich mit einem finalen Klack.
 
 Stille. Eine zu saubere Stille, als hätte jemand den Ton abgedreht. Der Druck auf deinen Ohren wächst, wie unter Wasser.
 
@@ -381,60 +670,140 @@ Der Wagen ist ein Gang mit Abteilen. Orange-braune Polstersitze, abgenutzt, Sieb
 
 Der Zug setzt sich in Bewegung – sanft, schwebend. Kein Ruck.
 
-Emma hätte diesen Zug gehasst. Zu alt. Zu kalt. Zu falsch. Aber Emma ist nicht hier. Du musst Emma finden.
-
-Zur Linken: Ein Mann, mittleren Alters, der aus dem Fenster starrt. Seine Augen sind rot umrandet. Er trägt einen braunen Anzug, der aus der Zeit gefallen wirkt.
-
-Zur Rechten: Ein leeres Abteil.`,
-    choices: [
+Um dich herum: Bereiche, die du erkunden kannst.`,
+    narrative_variants: [
       {
-        id: 'talk_to_man',
-        label: 'Den Mann ansprechen',
-        effects: [
-          { type: 'inc', target: 'tickets_love', value: 1 },
-          { type: 'inc', target: 'rel_sleepless', value: 1 }
-        ],
-        next: 'c1_s04_sleepless_intro'
-      },
-      {
-        id: 'find_seat',
-        label: 'Einen Platz suchen',
-        effects: [
-          { type: 'inc', target: 'tickets_escape', value: 1 }
-        ],
-        next: 'c1_s03a_find_seat'
-      },
-      {
-        id: 'test_silence',
-        label: 'Etwas flüstern',
         condition: {
-           type: 'compare',
-           target: 'conductor_attention',
-           operator: '<',
-           value: 2
+          type: 'and',
+          conditions: [
+            { type: 'bool', target: 'stance_bold', value: true },
+            { type: 'bool', target: 'saw_emma_vision', value: true }
+          ]
         },
-        effects: [
-          { type: 'inc', target: 'tickets_truth', value: 1 },
-          { type: 'inc', target: 'conductor_attention', value: 1 }
-        ],
-        next: 'c1_s03a_find_seat'
+        narrative: `Du steigst ein, ohne zu zögern. Die Tür fällt hinter dir ins Schloss.
+
+Stille. Zu sauber.
+
+Der Wagen riecht nach altem Rauch. Deine Hand liegt auf dem Zettel in der Tasche. „WAGEN 7" steht darauf.
+
+Du schaust den Gang entlang. Am Ende: eine Tür. Dunkler als der Rest.
+
+Dort musst du hin. Aber nicht jetzt. Erst musst du verstehen, wo du bist.`
       }
     ],
-    tags: [],
+    choices: [
+      {
+        id: 'enter_hub_train',
+        label: 'Den Zug erkunden',
+        effects: [],
+        next: 'c1_hub_train'
+      }
+    ],
+    tags: ['setup'],
     state_notes: [
-      'Merged Silence Interlude here',
-      'Skip Corridor Walk -> Direct to Find Seat or Talk'
+      'Verzweigung basierend auf stance + emma_vision',
+      'Führt direkt zu Hub 2'
     ],
     atmosphere: 'mystic'
   },
 
   // ============================================================================
-  // c1_s03a_find_seat: Platz suchen (Was s03b)
+  // ACT 3: ZUG-HUB
   // ============================================================================
-  'c1_s03a_find_seat': {
-    id: 'c1_s03a_find_seat',
+
+  'c1_hub_train': {
+    id: 'c1_hub_train',
     chapter: 1,
-    title: 'Sitzplatz',
+    title: 'Im Zug',
+    narrative: `Du stehst im Gang des Zuges.
+
+Um dich herum: vier Bereiche, die du erkunden kannst.`,
+    narrative_variants: [
+      {
+        condition: { type: 'compare', target: 'train_explorations', operator: '==', value: 1 },
+        narrative: `Du kehrst in den Gang zurück.
+
+Die Lampen flackern jetzt synchron. Als hättest du sie aufgeschreckt.`
+      },
+      {
+        condition: { type: 'compare', target: 'train_explorations', operator: '>=', value: 2 },
+        narrative: `Wieder im Gang.
+
+Die Lautsprecher knistern. Eine Durchsage bahnt sich an.`,
+        auto_next: 'c1_event_announcement'
+      }
+    ],
+    choices: [
+      {
+        id: 'explore_compartment',
+        label: '[A] Dein Abteil - das leere mit dem Fenster',
+        condition: {
+          type: 'bool',
+          target: 'explored_compartment',
+          value: false
+        },
+        effects: [
+          { type: 'inc', target: 'train_explorations', value: 1 },
+          { type: 'set', target: 'explored_compartment', value: true }
+        ],
+        next: 'c1_train_compartment'
+      },
+      {
+        id: 'explore_sleepless',
+        label: '[B] Der Mann mit den roten Augen',
+        condition: {
+          type: 'bool',
+          target: 'explored_sleepless',
+          value: false
+        },
+        effects: [
+          { type: 'inc', target: 'train_explorations', value: 1 },
+          { type: 'set', target: 'explored_sleepless', value: true }
+        ],
+        next: 'c1_train_sleepless'
+      },
+      {
+        id: 'explore_passengers',
+        label: '[C] Die anderen Passagiere',
+        condition: {
+          type: 'bool',
+          target: 'explored_passengers',
+          value: false
+        },
+        effects: [
+          { type: 'inc', target: 'train_explorations', value: 1 },
+          { type: 'set', target: 'explored_passengers', value: true }
+        ],
+        next: 'c1_train_passengers'
+      },
+      {
+        id: 'explore_comp7',
+        label: '[D] Die Tür mit der 7 (verschlossen)',
+        condition: {
+          type: 'bool',
+          target: 'explored_comp7',
+          value: false
+        },
+        effects: [
+          { type: 'inc', target: 'train_explorations', value: 1 },
+          { type: 'set', target: 'explored_comp7', value: true },
+          { type: 'inc', target: 'conductor_attention', value: 1 }
+        ],
+        next: 'c1_train_comp7_locked'
+      }
+    ],
+    tags: ['hub'],
+    state_notes: [
+      'Zweiter Hub - freie Wahl der Reihenfolge',
+      'Nach 2 Explorations triggert Durchsage automatisch'
+    ],
+    atmosphere: 'mystic'
+  },
+
+  'c1_train_compartment': {
+    id: 'c1_train_compartment',
+    chapter: 1,
+    title: 'Dein Abteil',
     narrative: `Du suchst dir ein Abteil. Leer. Du setzt dich ans Fenster.
 
 Die Polster sind weich, aber feucht. Als hätten sie lange in einem kalten Raum gestanden.
@@ -443,669 +812,482 @@ Durch das Fenster: Schwärze. Keine Lichter, keine Landschaft. Aber ab und zu ei
 
 Du lehnst den Kopf ans Fenster. Das Glas ist warm. Viel zu warm.
 
-Dann, eine Stimme hinter dir: „Du auch?"
-
-Du drehst dich noch nicht um. Stattdessen hörst du auf die Art, wie die Worte fallen: nicht neugierig, nicht freundlich, eher erschöpft solidarisch.
-
-Unter dem Sitz vibriert es kurz, als würde der Zug über eine Weiche fahren, aber draußen bleibt die Dunkelheit unverändert. Keine Kurve, kein Lichtwechsel, nur dieser kurze Schock im Körper.
-
-Du legst die Finger an die Fensterkante und spürst eine feine Feuchtigkeit, die dort nicht sein dürfte. Wie Kondenswasser von innen.`,
+Im Spiegelbild des Fensters siehst du dein Gesicht. Für einen Moment ist da noch jemand. Hinter dir. Aber als du dich umdrehst: niemand.`,
     choices: [
       {
-        id: 'turn_around',
-        label: 'Sich umdrehen',
-        effects: [
-          { type: 'inc', target: 'tickets_truth', value: 1 }
-        ],
-        next: 'c1_s03b_window_vibration'
-      },
-      {
-        id: 'ignore_voice',
-        label: 'Ignorieren',
-        effects: [
-          { type: 'inc', target: 'tickets_escape', value: 1 }
-        ],
-        next: 'c1_s03b_window_vibration'
-      },
-      {
-        id: 'stay_with_window',
-        label: 'Den Blick im Fenster halten',
-        effects: [
-          { type: 'inc', target: 'memory_drift', value: 1 },
-          { type: 'inc', target: 'tickets_truth', value: 1 }
-        ],
-        next: 'c1_s03b_window_vibration'
-      }
-    ],
-    tags: [],
-    state_notes: [
-      'Shortened path'
-    ],
-    atmosphere: 'somber'
-  },
-
-  // ==========================================================================
-  // c1_s03b_window_vibration: Fensterpuls (Interlude)
-  // ==========================================================================
-  'c1_s03b_window_vibration': {
-    id: 'c1_s03b_window_vibration',
-    chapter: 1,
-    title: 'Fensterpuls',
-    narrative: `Noch bevor du auf die Stimme reagieren kannst, vibriert das Glas. Ein Puls fährt durch deine Schläfe, schmerzhaft und präzise.
-
-Für einen Augenblick siehst du nicht die Dunkelheit draußen, sondern Bahnsteige, die sich überlagern – wie Doppelbelichtungen, wie Bilder, die nicht richtig übereinanderliegen. Drei, vier, fünf Bahnsteige gleichzeitig, alle leer.
-
-Dann ist alles wieder still. Dein Herzschlag zu laut.`,
-    choices: [
-      {
-        id: 'call_back',
-        label: 'Auf die Stimme reagieren',
-        effects: [
-          { type: 'inc', target: 'tickets_love', value: 1 }
-        ],
-        next: 'c1_s04_sleepless_intro'
-      },
-      {
-        id: 'steady_self',
-        label: 'Sich sammeln',
-        effects: [
-          { type: 'inc', target: 'tickets_truth', value: 1 }
-        ],
-        next: 'c1_s04_sleepless_intro'
-      }
-    ],
-    tags: ['interlude'],
-    state_notes: [
-      'Micro-Beat zwischen Sitzplatz und Gespräch'
-    ],
-    atmosphere: 'mystic'
-  },
-
-  // ============================================================================
-  // c1_s04_sleepless_intro: Der Schlaflose
-  // ============================================================================
-  'c1_s04_sleepless_intro': {
-    id: 'c1_s04_sleepless_intro',
-    chapter: 1,
-    title: 'Der Schlaflose',
-    narrative: `Der Mann lehnt im Gang. Nicht lehnt — hängt. Als hätte jemand ihn dort abgestellt und vergessen, ihn wieder mitzunehmen. Seine Augen sind rot umrandet. Die Haut darunter violett. Er sieht aus wie jemand, der das Schlafen verlernt hat und seitdem alles andere auch.
-
-„Du auch?" Rau. Brüchig. Wie jemand, der so lange nicht gesprochen hat, dass seine Stimme Staub ansetzt.
-
-„Auch was?"
-
-„Kein Ticket. Keine Erinnerung. Keine Ahnung, wie lange schon." Er wischt sich über die Augen, eine Bewegung, die er schon tausendmal gemacht hat. „Der lustige Teil ist, ich weiß auch nicht mehr, ob das der lustige Teil ist. Vielleicht war der lustige Teil gestern. Oder... letztes Jahr. Keine Ahnung." Er lacht. Ein trockenes, kaputtes Geräusch. „Wann war das letzte Mal, dass du geschlafen hast? Nein, sag's nicht. Du weißt es nicht. Willkommen im Club."
-
-Du greifst in deine Tasche. Leer. Kein Ticket. Kein Ausweis.
-
-„Wo sind wir?"
-
-„Unterwegs." Er sagt es, wie man sagt: das Wetter ist schlecht. Eine Tatsache, die niemanden mehr aufregt. „Immer unterwegs. Von Station zu Station. Niemand steigt aus. Niemand kommt an. Ich hab aufgehört zu zählen. Dann hab ich wieder angefangen. Dann hab ich die Zählung verloren. Dann..." Er bricht ab. Starrt an die Wand.
-
-„Wie lange fährst du schon mit?"
-
-Du öffnest den Mund. Keine Antwort.`,
-    choices: [
-      {
-        id: 'ask_where',
-        label: '„Wo fährt der Zug hin?"',
-        effects: [
-          { type: 'inc', target: 'tickets_truth', value: 1 },
-          { type: 'inc', target: 'rel_sleepless', value: 1 }
-        ],
-        next: 'c1_s04a_sleepless_past'
-      },
-      {
-        id: 'ask_how_long',
-        label: '„Wie lange bist du schon hier?"',
-        effects: [
-          { type: 'inc', target: 'tickets_love', value: 1 },
-          { type: 'inc', target: 'rel_sleepless', value: 1 }
-        ],
-        next: 'c1_s04a_sleepless_past'
-      },
-      {
-        id: 'deny',
-        label: '„Das kann nicht sein."',
-        effects: [
-          { type: 'inc', target: 'tickets_escape', value: 1 },
-          { type: 'dec', target: 'rel_sleepless', value: 1 }
-        ],
-        next: 'c1_s04a_sleepless_past'
-      }
-    ],
-    tags: ['reveal'],
-    state_notes: [
-      'Schlafloser-Dialog vertieft Zugregeln',
-      'Beziehungsaufbau vor Compartment-7-Beat'
-    ],
-    atmosphere: 'tense'
-  },
-
-  // ============================================================================
-  // c1_s04a_sleepless_past: Tiefere Konversation (Merged Warning)
-  // ============================================================================
-  'c1_s04a_sleepless_past': {
-    id: 'c1_s04a_sleepless_past',
-    chapter: 1,
-    title: 'Seine Geschichte',
-    narrative: `„Es war Nacht, als ich eingestiegen bin. Es ist immer noch Nacht." Er zeigt auf seine Uhr. Das Zifferblatt ist leer. Keine Zeiger.
-
-Er sieht dich an. „Hast du jemanden gesucht? Bevor du hier warst?"
-
-Ein Gesicht blitzt auf. Verschwimmt.
-
-„Die meisten von uns suchen jemanden. Oder sie laufen weg. Manchmal beides."
-
-Er beugt sich vor, senkt die Stimme. „Hör zu. Wenn der Schaffner kommt… Sag nicht dein Ziel. Er fragt nach dem Warum, nicht nach dem Wo. Verstanden?"`,
-    choices: [
-      {
-        id: 'admit_searching',
-        label: '„Ich suche jemanden. Emma."',
-        effects: [
-          { type: 'inc', target: 'tickets_love', value: 1 },
-          { type: 'inc', target: 'rel_sleepless', value: 2 }
-        ],
-        next: 'c1_s04b_corridor_breath'
-      },
-      {
-        id: 'admit_running',
-        label: '„Ich laufe weg."',
-        effects: [
-          { type: 'inc', target: 'tickets_guilt', value: 1 },
-          { type: 'inc', target: 'rel_sleepless', value: 1 }
-        ],
-        next: 'c1_s04b_corridor_breath'
-      },
-      {
-        id: 'ask_about_conductor',
-        label: '„Warum? Was macht der Schaffner?"',
-        condition: {
-           type: 'compare',
-           target: 'conductor_attention',
-           operator: '<',
-           value: 2
-        },
-        effects: [
-          { type: 'inc', target: 'tickets_truth', value: 1 },
-          { type: 'inc', target: 'conductor_attention', value: 1 }
-        ],
-        next: 'c1_s04b_corridor_breath'
-      }
-    ],
-    tags: ['reveal'],
-    state_notes: [
-      'Merged with warning about conductor',
-      'Shortened path'
-    ],
-    atmosphere: 'somber'
-  },
-
-  // ==========================================================================
-  // c1_s04b_corridor_breath: Gang-Atem (Interlude)
-  // ==========================================================================
-  'c1_s04b_corridor_breath': {
-    id: 'c1_s04b_corridor_breath',
-    chapter: 1,
-    title: 'Der Atem des Zuges',
-    narrative: `Ohne dass ihr es merkt, steht ihr schon im Gang. Einen Moment lang scheint der Zug den Atem anzuhalten.
-
-Dann ein leises Ausströmen, wie ein Ventil. Die Lampen flackern, und im Glas der Tür siehst du dein Gesicht für einen Wimpernschlag älter.
-
-Der Schlaflose tippt mit dem Finger gegen die Wand. „Hörst du das?"
-
-Du legst ebenfalls die Hand an das Metall. Unter der kalten Oberfläche arbeitet ein tiefer Ton, fast zu niedrig, um ihn wirklich zu hören, eher ein Druck hinter den Zähnen.
-
-Für einen Augenblick seid ihr beide still und dieselbe Stille fühlt sich bei ihm routiniert an, bei dir neu und bedrohlich.
-
-Er zieht die Hand zurück, als hätte er sich verbrannt, obwohl das Metall kalt ist. „So fängt es an," murmelt er. Mehr zu sich selbst als zu dir.`,
-    choices: [
-      {
-        id: 'listen_closer',
-        label: 'Genauer hinhören',
-        effects: [
-          { type: 'inc', target: 'tickets_truth', value: 1 }
-        ],
-        next: 'c1_s05_first_anomaly'
-      },
-      {
-        id: 'avoid_topic',
-        label: 'Das Thema wechseln',
-        effects: [
-          { type: 'inc', target: 'tickets_escape', value: 1 }
-        ],
-        next: 'c1_s05_first_anomaly'
-      }
-    ],
-    tags: ['interlude'],
-    state_notes: [
-      'Micro-Beat vor der Durchsage'
-    ],
-    atmosphere: 'tense'
-  },
-
-  // ============================================================================
-  // c1_s05_first_anomaly: Erste Anomalie (Merged Announcement)
-  // ============================================================================
-  'c1_s05_first_anomaly': {
-    id: 'c1_s05_first_anomaly',
-    chapter: 1,
-    title: 'Durchsage',
-    narrative: `Eine Lautsprecherdurchsage knistert durch den Wagen. Nicht aus den Lautsprechern – aus den Wänden selbst. Überall gleichzeitig.
-
-„Sehr geehrte Fahrgäste, wir erreichen in Kürze—"
-
-Pause. Zu lang. Unnatürlich. Als hätte der Sprecher vergessen, was er sagen wollte.
-
-„—[unverständlich]. Bitte achten Sie auf Ihre persönlichen Gegenstände."
-
-Die Stimme ist glatt, emotionslos. Eine Stimme aus einer anderen Zeit. Du versuchst, dich zu konzentrieren, aber das, was zwischen den Worten war, ist schon verblasst. Ein Loch im Satz. Eine Lücke, wo ein Name sein sollte.
-
-Der Schlaflose zuckt nicht mal. Er starrt nur an die Decke. „Der Name der Station. Er fehlt. Seit drei Halten. Immer die gleiche Durchsage. Immer die gleiche Lücke."
-
-Die Durchsage wiederholt sich, verzerrt, als würde das Band rückwärtslaufen: „—ückf—" Knistern. „—kehr—"
-
-Rückfahrt? Rückkehr?
-
-Du versuchst, die Silben festzuhalten, aber sie rutschen dir weg wie Eis.
-
-„Weil sie noch keinen Namen hat," sagt der Schlaflose leise. „Oder wir ihn vergessen haben. Sobald wir anhalten." Er sieht dich an. „Du wirst es merken. Nach der ersten Station. Etwas... fällt weg."`,
-    choices: [
-      {
-        id: 'write_it_down',
-        label: 'Versuchen, es aufzuschreiben',
-        effects: [
-          { type: 'inc', target: 'tickets_truth', value: 1 },
-          { type: 'inc', target: 'conductor_attention', value: 1 }
-        ],
-        next: 'c1_s05a_other_passengers'
-      },
-      {
-        id: 'ignore_anomaly',
-        label: 'Das Rauschen überhören',
-        effects: [
-          { type: 'inc', target: 'tickets_escape', value: 1 }
-        ],
-        next: 'c1_s05a_other_passengers'
-      },
-      {
-        id: 'analyze_fragment',
-        label: 'Über das Wort "Rückf-" nachdenken',
+        id: 'stay_window',
+        label: 'Beim Fenster bleiben und hinausstarren',
         effects: [
           { type: 'inc', target: 'tickets_truth', value: 1 },
           { type: 'inc', target: 'memory_drift', value: 1 }
         ],
-        next: 'c1_s05a_other_passengers'
+        next: 'c1_hub_train'
+      },
+      {
+        id: 'leave_quickly',
+        label: 'Schnell zurück in den Gang',
+        effects: [
+          { type: 'inc', target: 'tickets_escape', value: 1 }
+        ],
+        next: 'c1_hub_train'
       }
     ],
-    tags: ['drift_seed'],
+    tags: ['investigation'],
     state_notes: [
-      'Merged with announcement repeat hint',
-      'Shortened path to Other Passengers'
+      'Spiegelbild-Anomalie',
+      'Vorbereitung auf K4 Mirror-Theme'
     ],
     atmosphere: 'mystic'
   },
 
-  // ============================================================================
-  // c1_s05a_other_passengers: Andere Passagiere
-  // ============================================================================
-  'c1_s05a_other_passengers': {
-    id: 'c1_s05a_other_passengers',
+  'c1_train_sleepless': {
+    id: 'c1_train_sleepless',
     chapter: 1,
-    title: 'Die anderen',
-    narrative: `Du schaust dich um. Der Wagen ist nicht leer. Außer dem Schlaflosen sind da:
+    title: 'Der Schlaflose',
+    narrative: `Der Mann lehnt im Gang. Nicht lehnt — hängt. Als hätte jemand ihn dort abgestellt und vergessen, ihn wieder mitzunehmen.
 
-Eine Frau, Ende dreißig, vielleicht älter. Ihr Mantel ist zugeknöpft bis zum Kinn, obwohl es warm ist hier drin. Ihre Hände liegen gefaltet im Schoß, perfekt symmetrisch. Sie starrt geradeaus. Ihr Blick ist starr, fokussiert auf einen Punkt an der Wand, der nicht da ist.
+Seine Augen sind rot umrandet. Die Haut darunter violett. Er sieht aus wie jemand, der das Schlafen verlernt hat.
 
-Ein Mann mit Brille. Anzug. Er hält ein Buch, dick, ledergebunden. Aber als du näher kommst, siehst du: Die Seiten sind leer. Nur weiße Flächen. Kein Wort. Keine Zeile. Trotzdem blättert er um, als würde er lesen. Sein Finger gleitet über das Papier, als folgte er einem Text.
+„Du auch?" Rau. Brüchig.
 
-Ein Teenager mit Kopfhörern. Die Kopfhörer sind nicht angeschlossen – das Kabel hängt lose herunter. Aber er nickt im Rhythmus, wippt mit dem Kopf, bewegt lautlos die Lippen. Als würde er einen Song hören, den nur er kennt.
+„Auch was?"
 
-Niemand spricht. Niemand sieht dich an. Niemand bewegt sich – außer diesen kleinen, mechanischen Gesten. Umblättern. Nicken. Starren.
+„Kein Ticket. Keine Erinnerung. Keine Ahnung, wie lange schon." Er wischt sich über die Augen. „Wann war das letzte Mal, dass du geschlafen hast?"
 
-Als wären sie alle in einer Schleife gefangen. Als würden sie dieselbe Bewegung wiederholen, immer wieder, für immer.`,
+Du greifst in deine Tasche. Leer. Kein Ticket.
+
+„Wo sind wir?"
+
+„Unterwegs." Er sagt es, wie man sagt: das Wetter ist schlecht. „Immer unterwegs. Von Station zu Station. Niemand steigt aus."`,
     choices: [
       {
-        id: 'approach_woman',
-        label: 'Die Frau ansprechen',
-        condition: {
-           type: 'compare',
-           target: 'conductor_attention',
-           operator: '<',
-           value: 3
-        },
+        id: 'ask_warning',
+        label: '„Was soll ich wissen?"',
+        effects: [
+          { type: 'inc', target: 'tickets_truth', value: 1 },
+          { type: 'inc', target: 'rel_sleepless', value: 1 },
+          { type: 'set', target: 'knows_sleepless_warning', value: true }
+        ],
+        next: 'c1_hub_train'
+      },
+      {
+        id: 'comfort_him',
+        label: '„Ich bin auch hier. Du bist nicht allein."',
         effects: [
           { type: 'inc', target: 'tickets_love', value: 1 },
-          { type: 'inc', target: 'conductor_attention', value: 1 }
+          { type: 'inc', target: 'rel_sleepless', value: 2 }
         ],
-        next: 'c1_s05a2_passenger_rhythm'
+        next: 'c1_hub_train'
       },
       {
-        id: 'leave_them_alone',
-        label: 'Sie in Ruhe lassen',
+        id: 'deny_reality',
+        label: '„Das ist Panik, nicht Wahrheit."',
         effects: [
-          { type: 'inc', target: 'tickets_escape', value: 1 }
+          { type: 'inc', target: 'tickets_escape', value: 1 },
+          { type: 'dec', target: 'rel_sleepless', value: 1 }
         ],
-        next: 'c1_s05a2_passenger_rhythm'
-      },
-      {
-        id: 'count_passengers',
-        label: 'Die Passagiere zählen',
-        effects: [
-          { type: 'inc', target: 'tickets_truth', value: 1 }
-        ],
-        next: 'c1_s05a2_passenger_rhythm'
+        next: 'c1_hub_train'
       }
     ],
-    tags: ['setup'],
+    tags: ['investigation'],
     state_notes: [
-      'Passagier-Loop als Spannungsaufbau',
-      'Alle Optionen rekombinieren in den Rhythmus-Beat'
+      'Schlafloser-Intro',
+      'knows_sleepless_warning wird in K2 wichtig'
     ],
     atmosphere: 'somber'
   },
 
-  // ==========================================================================
-  // c1_s05a2_passenger_rhythm: Rhythmus der Fahrt (Interlude)
-  // ==========================================================================
-  'c1_s05a2_passenger_rhythm': {
-    id: 'c1_s05a2_passenger_rhythm',
+  'c1_train_passengers': {
+    id: 'c1_train_passengers',
     chapter: 1,
-    title: 'Rhythmus',
-    narrative: `Der Zug rattert. Nicht laut, aber präzise, wie ein Metronom.
+    title: 'Die Anderen',
+    narrative: `Du schaust dich um. Der Wagen ist nicht leer.
 
-Der Teenager mit den Kopfhörern nickt im Takt – ein winziger Widerhaken im Muster. Für einen Moment glaubst du, dass jemand deinen Namen flüstert.
+Eine Frau, Ende dreißig. Ihr Mantel ist zugeknöpft bis zum Kinn, obwohl es warm ist. Ihre Hände liegen gefaltet im Schoß, perfekt symmetrisch. Sie starrt geradeaus.
 
-Du versuchst, die Quelle zu finden, aber der Ton scheint nicht aus einer Richtung zu kommen. Eher aus den Zwischenräumen: zwischen zwei Waggonstößen, zwischen zwei Atemzügen, zwischen einem Gedanken und dem nächsten.
+Ein Mann mit Brille. Anzug. Er hält ein Buch, dick, ledergebunden. Aber als du näher kommst, siehst du: Die Seiten sind leer. Trotzdem blättert er um, als würde er lesen.
 
-Als der Teenager kurz den Kopf hebt, bist du sicher, dass seine Lippen ein Wort formen. Vielleicht deinen Namen. Vielleicht nur den Takt.
+Ein Teenager mit Kopfhörern. Die Kopfhörer sind nicht angeschlossen – das Kabel hängt lose herunter. Aber er nickt im Rhythmus, bewegt lautlos die Lippen.
 
-Dann schaut er wieder ins Leere und der Rhythmus nimmt dich mit, ob du willst oder nicht.`,
+Niemand spricht. Niemand sieht dich an. Als wären sie alle in einer Schleife gefangen.`,
     choices: [
       {
-        id: 'follow_rhythm',
-        label: 'Dem Rhythmus folgen',
+        id: 'watch_pattern',
+        label: 'Das Muster beobachten',
         effects: [
-          { type: 'inc', target: 'tickets_truth', value: 1 }
+          { type: 'inc', target: 'tickets_truth', value: 1 },
+          { type: 'set', target: 'saw_passenger_loop', value: true }
         ],
-        next: 'c1_s05b_compartment7_tease'
+        next: 'c1_hub_train'
       },
       {
-        id: 'break_pattern',
-        label: 'Dich bewusst abwenden',
+        id: 'leave_them',
+        label: 'Im Muster unsichtbar bleiben',
         effects: [
           { type: 'inc', target: 'tickets_escape', value: 1 }
         ],
-        next: 'c1_s05b_compartment7_tease'
+        next: 'c1_hub_train'
       }
     ],
-    tags: ['interlude'],
+    tags: ['investigation'],
     state_notes: [
-      'Micro-Beat vor Abteil 7'
+      'Passagier-Loop eingeführt',
+      'saw_passenger_loop → Callback in späteren Kapiteln'
     ],
     atmosphere: 'somber'
   },
 
-  // ============================================================================
-  // c1_s05b_compartment7_tease: Abteil 7 Andeutung
-  // ============================================================================
-  'c1_s05b_compartment7_tease': {
-    id: 'c1_s05b_compartment7_tease',
+  'c1_train_comp7_locked': {
+    id: 'c1_train_comp7_locked',
     chapter: 1,
-    title: 'Am Ende',
-    narrative: `Du gehst weiter durch den Wagen, an den eingefrorenen Passagieren vorbei. Der Gang ist schmal, die Wände zu nah. Am Ende: Eine Tür. Massiv. Holz. Dunkler als der Rest.
+    title: 'Abteil 7',
+    narrative: `Du gehst weiter durch den Wagen. Am Ende: Eine Tür. Massiv. Holz. Dunkler als der Rest.
 
 Nummer 7.
 
 Die Metallplatte ist angelaufen, grünlich. Als wäre sie sehr alt. Oder als hätte sie lange unter Wasser gelegen.
 
-Ein handgeschriebenes Schild, auf vergilbtem Papier, mit Klebeband befestigt: „Besetzt". Die Handschrift ist altmodisch, mit Füller geschrieben. Die Tinte ist verwischt.
+Ein handgeschriebenes Schild, auf vergilbtem Papier, mit Klebeband befestigt: „Besetzt".
 
-Du hörst Geräusche dahinter. Leises Kratzen. Papier auf Papier. Oder... Stift auf Papier? Jemand schreibt. Schnell. Hektisch. Ohne Pause.
-
-Der Schlaflose ruft von hinten, seine Stimme angespannt: „Geh da nicht rein. Nicht jetzt. Du bist noch nicht bereit." Er kommt näher, greift nach deinem Arm, zieht dich weg. „Glaub mir. Wart bis nach der ersten Station. Sonst..."
-
-Er verstummt. Schüttelt den Kopf.
-
-„Sonst was?"
-
-„Sonst verlierst du dich."`,
-    choices: [
+Du hörst Geräusche dahinter. Leises Kratzen. Papier auf Papier. Oder... Stift auf Papier? Jemand schreibt. Schnell. Hektisch. Ohne Pause.`,
+    narrative_variants: [
       {
-        id: 'knock_on_door',
-        label: 'An die Tür klopfen',
-        effects: [
-          { type: 'inc', target: 'tickets_truth', value: 1 },
-          { type: 'inc', target: 'conductor_attention', value: 2 },
-          { type: 'inc', target: 'rel_comp7', value: 1 }
-        ],
-        next: 'c1_s05c_comp7_listen'
-      },
-      {
-        id: 'listen_to_sleepless',
-        label: 'Auf den Schlaflosen hören',
-        effects: [
-          { type: 'inc', target: 'tickets_escape', value: 1 },
-          { type: 'inc', target: 'rel_sleepless', value: 1 }
-        ],
-        next: 'c1_s05c_comp7_listen'
-      },
-      {
-        id: 'feel_drawn',
-        label: 'Die Hand auf die Tür legen',
-        effects: [
-          { type: 'inc', target: 'tickets_love', value: 1 },
-          { type: 'inc', target: 'rel_comp7', value: 1 }
-        ],
-        next: 'c1_s05c_comp7_listen'
+        condition: { type: 'bool', target: 'has_emma_note', value: true },
+        narrative: `Am Ende des Gangs: Die Tür mit der 7.
+
+„WAGEN 7" steht auf dem Zettel in deiner Tasche.
+
+Die Tür ist verschlossen. Ein Schild: „Besetzt".
+
+Dahinter hörst du jemanden schreiben. Schnell. Hektisch.
+
+Emma? Oder jemand, der weiß, wo Emma ist?`
       }
     ],
-    tags: ['reveal', 'setup'],
+    choices: [
+      {
+        id: 'knock_door',
+        label: 'Klopfen',
+        effects: [
+          { type: 'inc', target: 'tickets_love', value: 1 },
+          { type: 'set', target: 'heard_comp7_scratching', value: true }
+        ],
+        next: 'c1_hub_train'
+      },
+      {
+        id: 'listen_only',
+        label: 'Nur horchen',
+        effects: [
+          { type: 'inc', target: 'tickets_truth', value: 1 },
+          { type: 'set', target: 'heard_comp7_scratching', value: true }
+        ],
+        next: 'c1_hub_train'
+      }
+    ],
+    tags: ['investigation'],
     state_notes: [
-      'Klopfen triggert früh erhöhte Schaffner-Aufmerksamkeit',
-      'Callback: frühe Initiative kann später als Risiko gespiegelt werden'
+      'Comp7 Tür - noch verschlossen',
+      'Emma-Note Callback',
+      'Öffnet sich nach c1_event_announcement'
     ],
     atmosphere: 'mystic'
   },
 
   // ============================================================================
-  // c1_s05c_comp7_listen: Vor der Tür horchen (Was s05d)
+  // ACT 4: ANOMALIE & COMP7
   // ============================================================================
-  'c1_s05c_comp7_listen': {
-    id: 'c1_s05c_comp7_listen',
+
+  'c1_event_announcement': {
+    id: 'c1_event_announcement',
     chapter: 1,
-    title: 'Horchen',
-    narrative: `Du bleibst kurz stehen. Von innen: Eine Stimme. Leise.
+    title: 'Durchsage',
+    narrative: `Eine Lautsprecherdurchsage knistert durch den Wagen. Nicht aus den Lautsprechern – aus den Wänden selbst.
 
-„—muss stimmen. Muss. Wenn ich nur—"
+„Sehr geehrte Fahrgäste, wir erreichen in Kürze—"
 
-Das Kratzen wird lauter. Hektischer.
+Pause. Zu lang. Unnatürlich.
 
-Dann, ein Knall. Als würde etwas umfallen.
+„—[unverständlich]. Bitte achten Sie auf Ihre persönlichen Gegenstände."
 
-Der Boden unter dir vibriert plötzlich. Nicht vom Zug. Von der Tür.
+Die Stimme ist glatt, emotionslos.
 
-Du merkst erst jetzt, dass du den Atem angehalten hast.
+Dann, leiser, fast nicht hörbar:
 
-Als du wieder Luft holst, schmeckt sie nach Staub und Tinte.
+„—ückf— —kehr—"
 
-Dann: Stille. Kein Kratzen mehr. Nur die Bremsen des Zuges.`,
+Rückfahrt? Rückkehr?`,
+    narrative_variants: [
+      {
+        condition: { type: 'bool', target: 'knows_board_pattern', value: true },
+        narrative: `Eine Lautsprecherdurchsage knistert.
+
+„Sehr geehrte Fahrgäste, wir erreichen in Kürze—"
+
+Pause.
+
+„—[unverständlich]—"
+
+Dann:
+
+„—ückf— —kehr—"
+
+Du erkennst es. Die Anzeigetafel auf dem Bahnsteig hat dir dasselbe Wort gezeigt. RÜCK—
+
+Das ist kein Zufall. Das ist ein Muster.`
+      }
+    ],
     choices: [
       {
-        id: 'knock_again',
-        label: 'Nochmal klopfen',
+        id: 'analyze_sound',
+        label: 'Das Wort zusammensetzen: RÜCKKEHR',
         effects: [
-          { type: 'inc', target: 'tickets_love', value: 1 },
-          { type: 'inc', target: 'conductor_attention', value: 1 },
+          { type: 'inc', target: 'tickets_truth', value: 2 },
+          { type: 'inc', target: 'memory_drift', value: 1 }
+        ],
+        next: 'c1_comp7_unlocked'
+      },
+      {
+        id: 'ignore_it',
+        label: 'So tun, als wäre es normal',
+        effects: [
+          { type: 'inc', target: 'tickets_escape', value: 1 }
+        ],
+        next: 'c1_comp7_unlocked'
+      }
+    ],
+    tags: ['event', 'drift_seed'],
+    state_notes: [
+      'Auto-Trigger nach 2 train_explorations',
+      'Callback zu knows_board_pattern'
+    ],
+    atmosphere: 'mystic'
+  },
+
+  'c1_comp7_unlocked': {
+    id: 'c1_comp7_unlocked',
+    chapter: 1,
+    title: 'Die Tür öffnet sich',
+    narrative: `Ein Klicken. Mechanisch. Final.
+
+Die Tür zu Wagen 7 steht einen Spalt offen.
+
+Von innen: Papiergeruch. Und eine Stimme.
+
+„Komm rein. Ich weiß, dass du da bist."`,
+    choices: [
+      {
+        id: 'enter_now',
+        label: 'Eintreten',
+        effects: [
+          { type: 'inc', target: 'rel_comp7', value: 1 }
+        ],
+        next: 'c1_comp7_dialog'
+      },
+      {
+        id: 'hesitate_door',
+        label: 'Zögern, dann eintreten',
+        effects: [
+          { type: 'inc', target: 'tickets_truth', value: 1 }
+        ],
+        next: 'c1_comp7_dialog'
+      }
+    ],
+    tags: ['reveal'],
+    state_notes: [
+      'Comp7 Unlock'
+    ],
+    atmosphere: 'mystic'
+  },
+
+  'c1_comp7_dialog': {
+    id: 'c1_comp7_dialog',
+    chapter: 1,
+    title: 'Comp7',
+    narrative: `Das Abteil ist voller Notizbücher. Überall. Gestapelt auf Tischen, auf dem Boden, an den Wänden.
+
+Eine Person sitzt am Fenster und schreibt. Schnell. Präzise. Ohne aufzublicken.
+
+„Passagier ohne Ticket. Rekorder-Vermerk. Kein Ausstieg seit Station 1." Sie tippt auf ihr Notizbuch. „Steht alles hier."
+
+Sie sieht dich an. Kurz. Taxierend.
+
+„Ich schreibe. Damit die Drift nicht gewinnt. Verstehst du Drift?"
+
+Sie wartet nicht auf deine Antwort.
+
+„Noch nicht. Wirst du."`,
+    narrative_variants: [
+      {
+        condition: { type: 'bool', target: 'saw_emma_vision', value: true },
+        narrative: `Das Abteil ist voller Notizbücher.
+
+Eine Person sitzt am Fenster und schreibt.
+
+„Passagier ohne Ticket. Kein Ausstieg seit Station 1." Sie blättert eine Seite um. Hält inne.
+
+„Emma. Den Namen hab ich schon gehört. Viele suchen jemanden."
+
+Sie sieht dich an. „Aber nicht alle finden zurück."`
+      }
+    ],
+    choices: [
+      {
+        id: 'ask_drift',
+        label: '„Was ist Drift?"',
+        effects: [
+          { type: 'inc', target: 'tickets_truth', value: 1 },
           { type: 'inc', target: 'rel_comp7', value: 1 }
         ],
         next: 'c1_end_station'
       },
       {
-        id: 'step_away',
-        label: 'Zurücktreten',
-        effects: [
-          { type: 'inc', target: 'tickets_guilt', value: 1 }
-        ],
-        next: 'c1_end_station'
-      },
-      {
-        id: 'speak_through_door',
-        label: 'Leise durch die Tür sprechen',
-        condition: {
-          type: 'compare',
-          target: 'rel_comp7',
-          operator: '>=',
-          value: 1
-        },
+        id: 'silent_acknowledge',
+        label: 'Ihre Anwesenheit still anerkennen',
         effects: [
           { type: 'inc', target: 'tickets_love', value: 1 },
-          { type: 'inc', target: 'rel_comp7', value: 2 }
+          { type: 'inc', target: 'rel_comp7', value: 1 }
         ],
         next: 'c1_end_station'
       }
     ],
     tags: ['reveal'],
     state_notes: [
-      'Skip Corridor End/Stranger -> Direct to Station'
+      'Comp7 First Contact',
+      'Emma-Callback wenn saw_emma_vision=true'
     ],
-    atmosphere: 'tense'
+    atmosphere: 'mystic'
   },
 
   // ============================================================================
-  // c1_end_station: Station Ende (Merged Platform Look)
+  // ACT 5: HALT & KONSEQUENZEN
   // ============================================================================
+
   'c1_end_station': {
     id: 'c1_end_station',
     chapter: 1,
-    title: 'Halt',
-    narrative: `Der Zug hält sanft, ohne jeden Ruck, als würde er nicht bremsen, sondern einfach aufhören zu existieren.
+    title: 'Der erste Halt',
+    narrative: `Der Zug hält. 23:47 Uhr. Wieder.
 
-Du schaust aus dem Fenster. Draußen liegt ein Bahnsteig, identisch zum ersten: dieselbe Neonröhre, dieselbe Anzeigetafel, dieselbe Uhr auf 23:47. Als hätte sich die Zeit keinen Millimeter bewegt.
-
-Niemand steigt ein, niemand steigt aus. Die Türen öffnen sich mit einem langen Zischen, aber der Bahnsteig bleibt leer und wartend.
-
-Du drehst dich zum Schlaflosen um. Er steht am Fenster, starrt hinaus. Aber irgendetwas ist anders. Seine Haltung? Seine Kleidung?
-
-Seine Jacke ist jetzt dunkelblau. Vorher war sie grau. Du bist sicher. Grau. Ein verwaschenes Grau.
-
-Er bemerkt deinen Blick. „Was?"
-
-„Deine Jacke…" Du zögerst. „Sie war grau."
-
-Er lacht trocken, ein Geräusch ohne Humor. „Sie war immer blau." Er sagt es so selbstverständlich, dass deine Erinnerung plötzlich wie ein Fehler klingt.
-
-Er zerknüllt einen Zettel, den er in der Hand hält. Du hast ihn vorher nicht gesehen. Wo kam er her? Seine Finger zittern, als er ihn zu einem harten Ball presst.
-
-„Was stand da?"
-
-„Nichts Wichtiges." Er wirft den Zettel weg. Er landet im Gang, rollt unter einen Sitz. „Nur... ein Name. Aber ich weiß nicht mehr, wessen."
-
-Er reibt sich die Augen. „Das ist das erste Zeichen. Wenn die Details anfangen zu rutschen. Farben. Namen. Gesichter." Er blickt dich an. „Bei mir hat es drei Stationen gedauert. Bei dir ist es schon nach einer angefangen."
-
-Die Türen schließen sich. Der Zug fährt an.
-
-Du spürst sofort, dass etwas fehlt - etwas Kleines, aber Zentrales.
-
-Nur was genau, kannst du nicht mehr sagen.`,
-    choices: [
+Der Bahnsteig ist leer.`,
+    narrative_variants: [
+      // TRUTH PATH: Highest Truth ticket (priority 40)
       {
-        id: 'continue_to_chapter_2',
-        label: 'Weiterfahren',
-        effects: [
-          { type: 'set', target: 'chapter_index', value: 2 }
-        ],
-        next: 'c1_end_station_sideword'
-      },
-      {
-        id: 'confront_jacket_change',
-        label: 'Auf der Farbe beharren',
-        condition: {
-          type: 'or',
-          conditions: [
-            { type: 'compare', target: 'tickets_truth', operator: '>=', value: 3 },
-            { type: 'compare', target: 'conductor_attention', operator: '>=', value: 3 }
-          ]
-        },
-        effects: [
-          { type: 'set', target: 'chapter_index', value: 2 },
-          { type: 'inc', target: 'memory_drift', value: 2 },
-          { type: 'inc', target: 'tickets_truth', value: 1 },
-          { type: 'inc', target: 'rel_sleepless', value: 1 }
-        ],
-        next: 'c1_end_station_sideword'
-      },
-      {
-        id: 'nod_to_conductor',
-        label: 'Dem Schaffner zunicken (den du ahnst)',
         condition: {
           type: 'compare',
-          target: 'conductor_attention',
+          target: 'tickets_truth',
           operator: '>=',
-          value: 2
+          value: 5
         },
-        effects: [
-          { type: 'set', target: 'chapter_index', value: 2 },
-          { type: 'inc', target: 'conductor_attention', value: 1 },
-          { type: 'inc', target: 'tickets_guilt', value: 1 }
-        ],
-        next: 'c1_end_station_sideword'
+        narrative: `Der Zug hält. 23:47 Uhr. Wieder.
+
+Du hast es gesehen. Das Muster. Die Wiederholungen. Die Anomalien. Alles passt zusammen wie Puzzleteile, die du noch nicht ordnen kannst.
+
+Comp7 steht am Fenster von Wagen 7 und schreibt. Sie sieht nicht auf, aber du weißt, dass sie dich beobachtet.
+
+Der Bahnsteig ist derselbe wie vorhin. Jedes Detail identisch. Die Anzeigetafel klackt weiter: 23:47. 23:47. 23:47.
+
+Du verstehst langsam: Das hier ist kein Zufall. Das hier ist eine Maschine. Und du bist ein Teil davon.`,
+        priority: 40
+      },
+      // LOVE PATH: Emma vision + Love ticket (priority 35)
+      {
+        condition: {
+          type: 'and',
+          conditions: [
+            { type: 'compare', target: 'tickets_love', operator: '>=', value: 4 },
+            { type: 'bool', target: 'saw_emma_vision', value: true }
+          ]
+        },
+        narrative: `Der Zug hält. 23:47 Uhr.
+
+Draußen auf dem Bahnsteig, am Ende, wo die Neonröhren in Dunkelheit übergehen: eine Gestalt.
+
+Klein. Vertraut.
+
+Sie steht einfach nur da. Wartet.
+
+Emma.
+
+Oder die Erinnerung an Emma. Oder was der Zug dir zeigen will.
+
+Du legst die Hand an die Scheibe. Das Glas ist warm. Für einen Atemzug glaubst du, dass sie zurückwinkt.
+
+Dann geht das Licht aus.
+
+Als es wieder anspringt, ist sie weg.
+
+Aber der Zettel in deiner Tasche ist schwerer geworden.`,
+        priority: 35
+      },
+      // ESCAPE PATH: High Escape, low Attention (priority 30)
+      {
+        condition: {
+          type: 'and',
+          conditions: [
+            { type: 'compare', target: 'tickets_escape', operator: '>=', value: 4 },
+            { type: 'compare', target: 'conductor_attention', operator: '<=', value: 1 }
+          ]
+        },
+        narrative: `Der Zug hält. 23:47 Uhr.
+
+Du bist unsichtbar geblieben. Hast dich zurückgehalten. Wenig berührt, wenig gesprochen, wenig gefragt.
+
+Der Bahnsteig ist leer. Die Tür öffnet sich.
+
+Für einen Moment überlegst du: Aussteigen? Jetzt, solange noch niemand schaut?
+
+Aber Comp7s Worte hallen nach: „Kein Ausstieg seit Station 1."
+
+Du weißt nicht, ob das eine Regel ist. Oder eine Warnung. Oder beides.
+
+Die Tür schließt sich wieder.
+
+Du bist geblieben. Weil Bleiben sicherer ist. Oder weil du keine Wahl hattest.`,
+        priority: 30
+      },
+      // GUILT PATH: Fallback for Guilt or mixed paths (priority 25)
+      {
+        condition: {
+          type: 'compare',
+          target: 'tickets_guilt',
+          operator: '>=',
+          value: 3
+        },
+        narrative: `Der Zug hält. 23:47 Uhr.
+
+Der Bahnsteig ist leer. Dieselben Neonröhren. Dieselbe Anzeigetafel.
+
+Du denkst an die Gestalt mit der Zeitung. An den Schlafloser. An Comp7 hinter ihrer Tür.
+
+Alle gefangen. Wie du.
+
+Der Gedanke drückt schwer auf deiner Brust: Wärst du nie eingestiegen, hätte sich irgendetwas geändert? Für sie? Für dich?
+
+Die Tür öffnet sich. Niemand steigt ein. Niemand steigt aus.
+
+Der Zug fährt weiter.`,
+        priority: 25
+      }
+    ],
+    exit_effects: [
+      { type: 'inc', target: 'memory_drift', value: 1 },
+      { type: 'set', target: 'chapter_index', value: 2 }
+    ],
+    choices: [
+      {
+        id: 'continue_journey',
+        label: 'Der Veränderung folgen',
+        effects: [],
+        next: 'c2_s01_ticket_search'
       }
     ],
     tags: ['station_end'],
     state_notes: [
-      'Merged Platform Look + End Scene',
-      'Preserves Drift Mechanics'
-    ],
-    atmosphere: 'somber'
-  },
-
-  // ==========================================================================
-  // STANDARD: Kleiner Abschlussdialog ohne Gewicht
-  // ==========================================================================
-
-  'c1_end_station_sideword': {
-    id: 'c1_end_station_sideword',
-    chapter: 1,
-    title: 'Noch ein Satz',
-    narrative: `Der Schlaflose bleibt kurz an der Tür stehen, bevor ihr beide weitergeht.
-
-Seine Finger trommeln einmal gegen den Rahmen, als müsste er prüfen, ob der Takt noch stimmt.
-
-„Nur damit ich weiß, dass du noch da bist," sagt er. „Sag noch etwas."
-
-In seinem Blick liegt keine Neugier, eher eine Bitte, die er nicht oft ausspricht.`,
-    choices: [
-      {
-        id: 'sideword_brief',
-        label: '„Ich bin da."',
-        effects: [
-          { type: 'set', target: 'empathie', value: 40 }
-        ],
-        next: 'c2_s01_ticket_search'
-      },
-      {
-        id: 'sideword_name',
-        label: '„Ich vergesse den Namen nicht."',
-        effects: [
-          { type: 'set', target: 'empathie', value: 41 }
-        ],
-        next: 'c2_s01_ticket_search'
-      },
-      {
-        id: 'sideword_silence',
-        label: 'Nur nicken',
-        effects: [
-          { type: 'set', target: 'empathie', value: 42 }
-        ],
-        next: 'c2_s01_ticket_search'
-      }
-    ],
-    tags: ['interlude'],
-    state_notes: [
-      'Mini-Dialog: Tonwahl ohne Route-Impact',
-      'empathie-Wert ist nur Flavor und wird später überschrieben'
+      '4 verschiedene Enden basierend auf Spielstil',
+      'R1: memory_drift +1 automatisch',
+      'Führt zu K2'
     ],
     atmosphere: 'somber'
   }
 };
+

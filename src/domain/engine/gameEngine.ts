@@ -44,6 +44,8 @@ function getStateValue(state: GameState, target: EffectTarget): number | boolean
   // Pressure
   if (target === 'conductor_attention') return state.pressure.conductor_attention;
   if (target === 'memory_drift') return state.pressure.memory_drift;
+  if (target === 'hub_investigations') return state.pressure.hub_investigations;
+  if (target === 'train_explorations') return state.pressure.train_explorations;
 
   // Relations
   if (target === 'rel_comp7') return state.relations.rel_comp7;
@@ -60,6 +62,26 @@ function getStateValue(state: GameState, target: EffectTarget): number | boolean
   if (target === 'emma_memory_unlocked') return state.items.emma_memory_unlocked;
   if (target === 'stance_bold') return state.items.stance_bold;
   if (target === 'stance_cautious') return state.items.stance_cautious;
+
+  // Items - Hub 1 (K1 Redesign)
+  if (target === 'investigated_board') return state.items.investigated_board;
+  if (target === 'investigated_poster') return state.items.investigated_poster;
+  if (target === 'investigated_person') return state.items.investigated_person;
+  if (target === 'investigated_device') return state.items.investigated_device;
+  if (target === 'investigated_edge') return state.items.investigated_edge;
+  if (target === 'called_emma') return state.items.called_emma;
+  if (target === 'saw_emma_vision') return state.items.saw_emma_vision;
+  if (target === 'has_emma_note') return state.items.has_emma_note;
+  if (target === 'knows_board_pattern') return state.items.knows_board_pattern;
+
+  // Items - Hub 2 (K1 Redesign)
+  if (target === 'explored_compartment') return state.items.explored_compartment;
+  if (target === 'explored_sleepless') return state.items.explored_sleepless;
+  if (target === 'explored_passengers') return state.items.explored_passengers;
+  if (target === 'explored_comp7') return state.items.explored_comp7;
+  if (target === 'knows_sleepless_warning') return state.items.knows_sleepless_warning;
+  if (target === 'saw_passenger_loop') return state.items.saw_passenger_loop;
+  if (target === 'heard_comp7_scratching') return state.items.heard_comp7_scratching;
 
   // Meta
   if (target === 'chapter_index') return state.chapter_index;
@@ -87,6 +109,8 @@ function setStateValue(state: GameState, target: EffectTarget, value: number | b
   // Pressure
   if (target === 'conductor_attention') { state.pressure.conductor_attention = value as number; return; }
   if (target === 'memory_drift') { state.pressure.memory_drift = value as number; return; }
+  if (target === 'hub_investigations') { state.pressure.hub_investigations = value as number; return; }
+  if (target === 'train_explorations') { state.pressure.train_explorations = value as number; return; }
 
   // Relations
   if (target === 'rel_comp7') { state.relations.rel_comp7 = value as number; return; }
@@ -103,6 +127,26 @@ function setStateValue(state: GameState, target: EffectTarget, value: number | b
   if (target === 'emma_memory_unlocked') { state.items.emma_memory_unlocked = value as boolean; return; }
   if (target === 'stance_bold') { state.items.stance_bold = value as boolean; return; }
   if (target === 'stance_cautious') { state.items.stance_cautious = value as boolean; return; }
+
+  // Items - Hub 1 (K1 Redesign)
+  if (target === 'investigated_board') { state.items.investigated_board = value as boolean; return; }
+  if (target === 'investigated_poster') { state.items.investigated_poster = value as boolean; return; }
+  if (target === 'investigated_person') { state.items.investigated_person = value as boolean; return; }
+  if (target === 'investigated_device') { state.items.investigated_device = value as boolean; return; }
+  if (target === 'investigated_edge') { state.items.investigated_edge = value as boolean; return; }
+  if (target === 'called_emma') { state.items.called_emma = value as boolean; return; }
+  if (target === 'saw_emma_vision') { state.items.saw_emma_vision = value as boolean; return; }
+  if (target === 'has_emma_note') { state.items.has_emma_note = value as boolean; return; }
+  if (target === 'knows_board_pattern') { state.items.knows_board_pattern = value as boolean; return; }
+
+  // Items - Hub 2 (K1 Redesign)
+  if (target === 'explored_compartment') { state.items.explored_compartment = value as boolean; return; }
+  if (target === 'explored_sleepless') { state.items.explored_sleepless = value as boolean; return; }
+  if (target === 'explored_passengers') { state.items.explored_passengers = value as boolean; return; }
+  if (target === 'explored_comp7') { state.items.explored_comp7 = value as boolean; return; }
+  if (target === 'knows_sleepless_warning') { state.items.knows_sleepless_warning = value as boolean; return; }
+  if (target === 'saw_passenger_loop') { state.items.saw_passenger_loop = value as boolean; return; }
+  if (target === 'heard_comp7_scratching') { state.items.heard_comp7_scratching = value as boolean; return; }
 
   // Meta
   if (target === 'chapter_index') { state.chapter_index = value as number; return; }
@@ -361,6 +405,56 @@ export function resolveSceneNarrative(scene: Scene, state: GameState): string {
   }
 
   return bestVariant ? bestVariant.narrative : baseNarrative;
+}
+
+/**
+ * Prüft, ob eine Szene eine auto_next-Transition basierend auf narrative_variants hat.
+ * Wird für Hub-Szenen verwendet, die automatisch weiterleiten, wenn Bedingungen erfüllt sind.
+ * 
+ * @param scene - Die Szene
+ * @param state - Der aktuelle GameState
+ * @returns Scene-ID für auto_next oder null
+ */
+export function checkAutoNext(scene: Scene, state: GameState): string | null {
+  if (!scene.narrative_variants || scene.narrative_variants.length === 0) {
+    return null;
+  }
+
+  // Check all variants in priority order
+  let bestVariant: { auto_next: string; priority: number } | null = null;
+  const currentDrift = state.pressure.memory_drift;
+
+  for (const variant of scene.narrative_variants) {
+    if (!variant.auto_next) continue;
+
+    let matches = false;
+    let effectivePriority: number;
+
+    if (variant.condition) {
+      matches = evaluateCondition(state, variant.condition);
+      if (matches && variant.min_drift !== undefined) {
+        matches = currentDrift >= variant.min_drift;
+      }
+      effectivePriority = variant.priority ?? 10;
+    } else if (variant.min_drift !== undefined) {
+      matches = currentDrift >= variant.min_drift;
+      effectivePriority = variant.priority ?? 0;
+    } else {
+      continue;
+    }
+
+    if (matches) {
+      const driftTiebreaker = (variant.min_drift ?? 0) * 0.01;
+      const score = effectivePriority + driftTiebreaker;
+      const bestScore = bestVariant ? bestVariant.priority : -Infinity;
+
+      if (score > bestScore) {
+        bestVariant = { auto_next: variant.auto_next, priority: score };
+      }
+    }
+  }
+
+  return bestVariant ? bestVariant.auto_next : null;
 }
 
 // ============================================================================

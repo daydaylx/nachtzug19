@@ -144,6 +144,54 @@ fun resolveSceneNarrative(scene: Scene, state: GameState): String {
   return bestNarrative ?: baseNarrative
 }
 
+/**
+ * Checks if a scene has an auto_next transition based on narrative_variants.
+ * Used for hub scenes that automatically redirect when conditions are met.
+ * 
+ * @param scene The scene to check
+ * @param state The current game state
+ * @return Scene ID for auto_next or null
+ */
+fun checkAutoNext(scene: Scene, state: GameState): String? {
+  val variants = scene.narrative_variants ?: return null
+  if (variants.isEmpty()) return null
+
+  val currentDrift = state.pressure.memory_drift
+  var bestAutoNext: String? = null
+  var bestScore = Double.NEGATIVE_INFINITY
+
+  for (variant in variants) {
+    if (variant.auto_next == null) continue
+
+    var matches = false
+    val effectivePriority: Int
+
+    if (variant.condition != null) {
+      matches = evaluateCondition(state, variant.condition)
+      if (matches && variant.min_drift != null) {
+        matches = currentDrift >= variant.min_drift
+      }
+      effectivePriority = variant.priority ?: 10
+    } else if (variant.min_drift != null) {
+      matches = currentDrift >= variant.min_drift
+      effectivePriority = variant.priority ?: 0
+    } else {
+      continue
+    }
+
+    if (matches) {
+      val driftTiebreaker = (variant.min_drift ?: 0) * 0.01
+      val score = effectivePriority.toDouble() + driftTiebreaker
+      if (score > bestScore) {
+        bestScore = score
+        bestAutoNext = variant.auto_next
+      }
+    }
+  }
+
+  return bestAutoNext
+}
+
 fun transitionToNextScene(
   state: GameState,
   currentScene: Scene,
@@ -253,6 +301,8 @@ private fun getStateValue(state: GameState, target: EffectTarget): Any {
     EffectTarget.TicketsLove -> state.tickets.tickets_love
     EffectTarget.ConductorAttention -> state.pressure.conductor_attention
     EffectTarget.MemoryDrift -> state.pressure.memory_drift
+    EffectTarget.HubInvestigations -> state.pressure.hub_investigations
+    EffectTarget.TrainExplorations -> state.pressure.train_explorations
     EffectTarget.RelComp7 -> state.relations.rel_comp7
     EffectTarget.RelBoy -> state.relations.rel_boy
     EffectTarget.RelSleepless -> state.relations.rel_sleepless
@@ -265,6 +315,27 @@ private fun getStateValue(state: GameState, target: EffectTarget): Any {
     EffectTarget.EmmaMemoryUnlocked -> state.items.emma_memory_unlocked
     EffectTarget.StanceBold -> state.items.stance_bold
     EffectTarget.StanceCautious -> state.items.stance_cautious
+    
+    // Hub 1: Bahnsteig
+    EffectTarget.InvestigatedBoard -> state.items.investigated_board
+    EffectTarget.InvestigatedPoster -> state.items.investigated_poster
+    EffectTarget.InvestigatedPerson -> state.items.investigated_person
+    EffectTarget.InvestigatedDevice -> state.items.investigated_device
+    EffectTarget.InvestigatedEdge -> state.items.investigated_edge
+    EffectTarget.CalledEmma -> state.items.called_emma
+    EffectTarget.SawEmmaVision -> state.items.saw_emma_vision
+    EffectTarget.HasEmmaNote -> state.items.has_emma_note
+    EffectTarget.KnowsBoardPattern -> state.items.knows_board_pattern
+    
+    // Hub 2: Zug
+    EffectTarget.ExploredCompartment -> state.items.explored_compartment
+    EffectTarget.ExploredSleepless -> state.items.explored_sleepless
+    EffectTarget.ExploredPassengers -> state.items.explored_passengers
+    EffectTarget.ExploredComp7 -> state.items.explored_comp7
+    EffectTarget.KnowsSleeplessWarning -> state.items.knows_sleepless_warning
+    EffectTarget.SawPassengerLoop -> state.items.saw_passenger_loop
+    EffectTarget.HeardComp7Scratching -> state.items.heard_comp7_scratching
+    
     EffectTarget.ChapterIndex -> state.chapter_index
     EffectTarget.StationCount -> state.station_count
   }
@@ -281,6 +352,8 @@ private fun setStateValue(state: GameState, target: EffectTarget, value: Any): G
     EffectTarget.TicketsLove -> state.copy(tickets = state.tickets.copy(tickets_love = value as Int))
     EffectTarget.ConductorAttention -> state.copy(pressure = state.pressure.copy(conductor_attention = value as Int))
     EffectTarget.MemoryDrift -> state.copy(pressure = state.pressure.copy(memory_drift = value as Int))
+    EffectTarget.HubInvestigations -> state.copy(pressure = state.pressure.copy(hub_investigations = value as Int))
+    EffectTarget.TrainExplorations -> state.copy(pressure = state.pressure.copy(train_explorations = value as Int))
     EffectTarget.RelComp7 -> state.copy(relations = state.relations.copy(rel_comp7 = value as Int))
     EffectTarget.RelBoy -> state.copy(relations = state.relations.copy(rel_boy = value as Int))
     EffectTarget.RelSleepless -> state.copy(relations = state.relations.copy(rel_sleepless = value as Int))
@@ -293,6 +366,27 @@ private fun setStateValue(state: GameState, target: EffectTarget, value: Any): G
     EffectTarget.EmmaMemoryUnlocked -> state.copy(items = state.items.copy(emma_memory_unlocked = value as Boolean))
     EffectTarget.StanceBold -> state.copy(items = state.items.copy(stance_bold = value as Boolean))
     EffectTarget.StanceCautious -> state.copy(items = state.items.copy(stance_cautious = value as Boolean))
+    
+    // Hub 1: Bahnsteig
+    EffectTarget.InvestigatedBoard -> state.copy(items = state.items.copy(investigated_board = value as Boolean))
+    EffectTarget.InvestigatedPoster -> state.copy(items = state.items.copy(investigated_poster = value as Boolean))
+    EffectTarget.InvestigatedPerson -> state.copy(items = state.items.copy(investigated_person = value as Boolean))
+    EffectTarget.InvestigatedDevice -> state.copy(items = state.items.copy(investigated_device = value as Boolean))
+    EffectTarget.InvestigatedEdge -> state.copy(items = state.items.copy(investigated_edge = value as Boolean))
+    EffectTarget.CalledEmma -> state.copy(items = state.items.copy(called_emma = value as Boolean))
+    EffectTarget.SawEmmaVision -> state.copy(items = state.items.copy(saw_emma_vision = value as Boolean))
+    EffectTarget.HasEmmaNote -> state.copy(items = state.items.copy(has_emma_note = value as Boolean))
+    EffectTarget.KnowsBoardPattern -> state.copy(items = state.items.copy(knows_board_pattern = value as Boolean))
+    
+    // Hub 2: Zug
+    EffectTarget.ExploredCompartment -> state.copy(items = state.items.copy(explored_compartment = value as Boolean))
+    EffectTarget.ExploredSleepless -> state.copy(items = state.items.copy(explored_sleepless = value as Boolean))
+    EffectTarget.ExploredPassengers -> state.copy(items = state.items.copy(explored_passengers = value as Boolean))
+    EffectTarget.ExploredComp7 -> state.copy(items = state.items.copy(explored_comp7 = value as Boolean))
+    EffectTarget.KnowsSleeplessWarning -> state.copy(items = state.items.copy(knows_sleepless_warning = value as Boolean))
+    EffectTarget.SawPassengerLoop -> state.copy(items = state.items.copy(saw_passenger_loop = value as Boolean))
+    EffectTarget.HeardComp7Scratching -> state.copy(items = state.items.copy(heard_comp7_scratching = value as Boolean))
+    
     EffectTarget.ChapterIndex -> state.copy(chapter_index = value as Int)
     EffectTarget.StationCount -> state.copy(station_count = value as Int)
   }

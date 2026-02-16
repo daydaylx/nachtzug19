@@ -19,17 +19,18 @@ describe('NACHTZUG 19 engine integration', () => {
   it('applies choice effects and moves to the next scene', () => {
     const state = createInitialState(bundle.startSceneId);
     const scene = bundle.scenes[state.current_scene_id];
-    // Changed from 'try_leave' to 'look_around' due to content split in C1
-    const choice = scene.choices.find((entry) => entry.id === 'look_around');
+    // Hub design: Use one of the investigation choices
+    const choice = scene.choices.find((entry) => entry.id === 'investigate_board');
 
     if (!choice || !choice.next) {
-      throw new Error('Expected look_around choice with next scene');
+      throw new Error('Expected investigate_board choice with next scene');
     }
 
     transitionToNextScene(state, scene, choice, bundle.scenes);
 
     expect(state.current_scene_id).toBe(choice.next);
-    expect(state.items.stance_bold).toBe(true);
+    expect(state.pressure.hub_investigations).toBe(1);
+    expect(state.items.investigated_board).toBe(true);
   });
 
   it('hides choices when conditions are not met', () => {
