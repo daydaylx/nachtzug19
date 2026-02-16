@@ -58,27 +58,15 @@ Um dich herum: Details, die darauf warten, untersucht zu werden.`,
     narrative_variants: [
       {
         condition: { type: 'compare', target: 'hub_investigations', operator: '==', value: 1 },
-        narrative: `Du kehrst zum Zentrum des Bahnsteigs zurück.
-
-Aber etwas hat sich verändert. Die Anzeigetafel klackt schneller. Die Luft riecht jetzt nach altem Zigarettenrauch.
-
-Was als nächstes?`
+        narrative: `Du kehrst zurück. Die Anzeigetafel klackt schneller.`
       },
       {
         condition: { type: 'compare', target: 'hub_investigations', operator: '==', value: 2 },
-        narrative: `Du stehst wieder in der Mitte.
-
-Die Gestalt mit der Zeitung sitzt näher. Oder war sie schon immer so nah? Die gelbe Linie am Boden glüht schwach im Neonlicht.
-
-Ein Name brennt in deinem Kopf: Emma.`
+        narrative: `Die Gestalt sitzt näher. Ein Name brennt in deinem Kopf: Emma.`
       },
       {
         condition: { type: 'compare', target: 'hub_investigations', operator: '>=', value: 3 },
-        narrative: `Ein tiefes Brummen erfüllt die Luft. Es vibriert in deinem Brustkorb, in den Zähnen.
-
-Dann gleitet der Zug in den Bahnhof. Lautlos. Keine quietschenden Bremsen. Kein Rattern. Nur das Brummen, das langsam verstummt.
-
-Die Türen öffnen sich mit einem Zischen.`,
+        narrative: `Ein tiefes Brummen. Dann gleitet der Zug lautlos ein. Die Türen öffnen sich.`,
         auto_next: 'c1_event_train_arrival'
       }
     ],
@@ -190,21 +178,13 @@ Die Türen öffnen sich mit einem Zischen.`,
     id: 'c1_inv_board',
     chapter: 1,
     title: 'Die Anzeigetafel',
-    narrative: `Du trittst näher an die Anzeigetafel heran.
-
-Es ist ein mechanisches Klappmodell aus einer Zeit vor LED-Displays. Die Ziffern sind groß, altmodisch, haben Serifen. Sie zeigen: 23:47.
-
-Kein Text. Kein „Nächster Zug". Kein „Verspätung". Nur leere Fächer, die im Takt klacken, ohne etwas anzuzeigen.
+    narrative: `Die Anzeigetafel zeigt 23:47. Ein altes Klappmodell, das im Takt klackt, ohne etwas anzuzeigen.
 
 Klack. Klack. Klack.
 
-Du zählst mit. Drei Sekunden Abstand. Exakt. Wie ein Metronom. Oder ein Herzschlag, der nicht deiner ist.
+Drei Sekunden Abstand. Exakt. Wie ein Herzschlag, der nicht deiner ist.
 
-Dann, für einen Wimpernschlag, flackert ein Wort auf:
-
-RÜCK—
-
-Und weg. Zu schnell, um sicher zu sein. War es „Rückfahrt"? „Rückkehr"? Oder hast du dir das eingebildet?`,
+Dann flackert ein Wort auf: RÜCK— Und weg.`,
     choices: [
       {
         id: 'count_pattern',
@@ -248,15 +228,11 @@ Und weg. Zu schnell, um sicher zu sein. War es „Rückfahrt"? „Rückkehr"? Od
     id: 'c1_inv_poster',
     chapter: 1,
     title: 'Das Plakat',
-    narrative: `An der Wand klebt ein einzelnes Plakat. Verblasst. Orange Schrift auf braunem Grund – diese aggressive Typografie aus den Siebzigern, die schmerzt, wenn man zu lange hinschaut.
+    narrative: `Ein verblasstes Plakat. Orange auf Braun, Siebziger-Typografie: „REISEN SIE MIT UNS".
 
-„REISEN SIE MIT UNS", steht da in versetzten Großbuchstaben.
+Keine Webseite. Nur eine Telefonnummer: 19-19-19.
 
-Keine Webseite. Keine QR-Codes. Nur eine Telefonnummer mit zu wenigen Ziffern: 19-19-19.
-
-Das Papier ist an den Ecken eingerissen, als hätte jemand versucht, es abzureißen, und aufgegeben.
-
-Du streichst mit dem Finger über die Oberfläche. Die Tinte ist rau, fast wie Narbengewebe.`,
+Du streichst über die Oberfläche. Die Tinte ist rau, fast wie Narbengewebe.`,
     choices: [
       {
         id: 'note_number',
@@ -291,19 +267,13 @@ Du streichst mit dem Finger über die Oberfläche. Die Tinte ist rau, fast wie N
     id: 'c1_inv_person',
     chapter: 1,
     title: 'Die Gestalt',
-    narrative: `Am Rand – auf einer Bank, die du vorhin nicht gesehen hast, schwörst du es – sitzt eine Gestalt. Sie liest eine Zeitung. Die Seiten rascheln nicht. Sie hält sie vollkommen still.
+    narrative: `Eine Gestalt sitzt auf einer Bank und liest eine Zeitung. Die Seiten rascheln nicht.
 
-Du siehst die Schlagzeile: „ÖLKRISE VERSCHÄRFT SICH", in altmodischer Frakturschrift, die an Grabsteine erinnert. Das Datum ist verwischt.
+„Entschuldigung", sagst du. Keine Reaktion.
 
-„Entschuldigung", sagst du.
+Du legst deine Hand auf ihre Schulter. Kalt. Hart. Wie Wachs.
 
-Die Gestalt reagiert nicht. Blättert nicht um. Nicht einmal, als du näher kommst.
-
-Du legst deine Hand auf ihre Schulter.
-
-Kalt. Hart. Wie Wachs.
-
-Für einen Herzschlag sieht ihr Gesicht aus wie deins. Dann ist es wieder fremd.`,
+Für einen Herzschlag sieht ihr Gesicht aus wie deins.`,
     choices: [
       {
         id: 'take_newspaper',
@@ -339,21 +309,13 @@ Für einen Herzschlag sieht ihr Gesicht aus wie deins. Dann ist es wieder fremd.
     id: 'c1_inv_device',
     chapter: 1,
     title: 'Das Gerät',
-    narrative: `Du greifst in deine Tasche. Da ist… etwas. Ein Gerät.
+    narrative: `Du greifst in deine Tasche. Ein Gerät. Schwarz, kalt.
 
-Ein rechteckiges Ding aus Plastik und Glas. Schwer. Der Bildschirm ist schwarz. Du drückst darauf, und für einen Moment flackert das Display auf – nicht mit Icons oder Apps, sondern mit statischem Rauschen, wie bei einem alten Fernseher.
+Du drückst darauf. Das Display flackert: statisches Rauschen, dann Worte.
 
-Dann wird es wieder schwarz.
+NACHTZUG 19 / KEINE VERBINDUNG / WARTEN SIE
 
-Du versuchst es nochmal. Diesmal erscheinen Worte:
-
-NACHTZUG 19
-KEINE VERBINDUNG
-WARTEN SIE
-
-Das Display erlischt. Als du es umdrehst, ist auf der Rückseite ein Aufkleber: ein handgeschriebener Name.
-
-Du kannst ihn nicht lesen. Die Tinte ist verwischt.`,
+Auf der Rückseite ein Aufkleber. Ein Name. Verwischt, unleserlich.`,
     choices: [
       {
         id: 'keep_trying',
@@ -388,17 +350,11 @@ Du kannst ihn nicht lesen. Die Tinte ist verwischt.`,
     id: 'c1_inv_edge',
     chapter: 1,
     title: 'Die Kante',
-    narrative: `Du gehst zum Rand des Bahnsteigs. Eine gelbe Linie, abgeblättert. Dahinter die Schienen. Schwarz. Matt. Als wären sie aus etwas anderem als Metall gemacht.
+    narrative: `Du gehst zum Rand. Dahinter die Schienen – schwarz, matt.
 
-Du kniestdich hin und schaust hinunter.
+Du schaust hinunter. Dunkelheit. Kein Kies. Nur... Nichts.
 
-Dunkelheit. Keine Schwellen. Kein Kies. Nur... Nichts.
-
-Du wirfst einen kleinen Stein hinein. Er fällt. Und fällt. Kein Aufprall.
-
-Dann, aus der Tiefe: ein Lichtpunkt. Er wird größer. Näher. Schneller.
-
-Das Brummen setzt ein.`,
+Ein Lichtpunkt, aus der Tiefe. Näher. Schneller. Das Brummen setzt ein.`,
     choices: [
       {
         id: 'lean_closer',
@@ -723,15 +679,11 @@ Um dich herum: vier Bereiche, die du erkunden kannst.`,
     narrative_variants: [
       {
         condition: { type: 'compare', target: 'train_explorations', operator: '==', value: 1 },
-        narrative: `Du kehrst in den Gang zurück.
-
-Die Lampen flackern jetzt synchron. Als hättest du sie aufgeschreckt.`
+        narrative: `Zurück im Gang. Die Lampen flackern synchron.`
       },
       {
         condition: { type: 'compare', target: 'train_explorations', operator: '>=', value: 2 },
-        narrative: `Wieder im Gang.
-
-Die Lautsprecher knistern. Eine Durchsage bahnt sich an.`,
+        narrative: `Die Lautsprecher knistern. Eine Durchsage bahnt sich an.`,
         auto_next: 'c1_event_announcement'
       }
     ],
