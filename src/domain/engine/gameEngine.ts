@@ -29,7 +29,7 @@ import {
 // Helper: Get State Value by Target
 // ============================================================================
 
-function getStateValue(state: GameState, target: EffectTarget): number | boolean {
+function getStateValue(state: GameState, target: EffectTarget): number | boolean | string {
   // Legacy Stats
   if (target === 'mut') return state.stats.mut;
   if (target === 'wissen') return state.stats.wissen;
@@ -108,7 +108,7 @@ function getStateValue(state: GameState, target: EffectTarget): number | boolean
 // Helper: Set State Value by Target
 // ============================================================================
 
-function setStateValue(state: GameState, target: EffectTarget, value: number | boolean): void {
+function setStateValue(state: GameState, target: EffectTarget, value: number | boolean | string): void {
   // Legacy Stats
   if (target === 'mut') { state.stats.mut = value as number; return; }
   if (target === 'wissen') { state.stats.wissen = value as number; return; }
@@ -166,10 +166,10 @@ function setStateValue(state: GameState, target: EffectTarget, value: number | b
   if (target === 'inspected_device') { state.items.inspected_device = value as boolean; return; }
   if (target === 'looked_into_void') { state.items.looked_into_void = value as boolean; return; }
   if (target === 'gazed_into_darkness') { state.items.gazed_into_darkness = value as boolean; return; }
-  if (target === 'prepare_stance') { state.items.prepare_stance = value as string; return; }
-  if (target === 'breath_control') { state.items.breath_control = value as string; return; }
-  if (target === 'conductor_stance') { state.items.conductor_stance = value as string; return; }
-  if (target === 'approach_response') { state.items.approach_response = value as string; return; }
+  if (target === 'prepare_stance') { state.items.prepare_stance = value as unknown as string; return; }
+  if (target === 'breath_control') { state.items.breath_control = value as unknown as string; return; }
+  if (target === 'conductor_stance') { state.items.conductor_stance = value as unknown as string; return; }
+  if (target === 'approach_response') { state.items.approach_response = value as unknown as string; return; }
   if (target === 'counted_compartments') { state.items.counted_compartments = value as boolean; return; }
   if (target === 'went_to_light') { state.items.went_to_light = value as boolean; return; }
   if (target === 'kept_no_ticket_note') { state.items.kept_no_ticket_note = value as boolean; return; }
@@ -195,7 +195,7 @@ export function applyEffects(state: GameState, effects: Effect[]): void {
   for (const effect of effects) {
     const currentValue = getStateValue(state, effect.target);
 
-    let newValue: number | boolean;
+    let newValue: number | boolean | string;
 
     switch (effect.type) {
       case 'inc':

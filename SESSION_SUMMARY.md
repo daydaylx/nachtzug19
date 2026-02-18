@@ -158,7 +158,7 @@ Höhere Priorität gewinnt bei mehreren Matches.
 
 ### TODO (Future Work)
 1. **Golden Master Traces** neu generieren für Kapitel 1
-2. **K2 Intro-Varianten** implementieren (4 verschiedene Starts basierend auf C1 Ending)
+2. ~~**K2 Intro-Varianten** implementieren~~ ✅ DONE (18.02.2026)
 3. **Validator verbessern** - auto_next-Awareness hinzufügen
 
 ---
@@ -224,7 +224,7 @@ Closes #XXX (falls Issue vorhanden)
 
 ### Kurzfristig (1-2 Tage)
 3. **Golden Master Traces regenerieren** - Neue Referenz-Daten für C1
-4. **K2 Intro-Varianten** - 4 verschiedene Starts implementieren
+4. ~~**K2 Intro-Varianten** - 4 verschiedene Starts implementieren~~ ✅ DONE (18.02.2026)
 
 ### Mittelfristig (1 Woche)
 5. **Validator verbessern** - auto_next-Awareness

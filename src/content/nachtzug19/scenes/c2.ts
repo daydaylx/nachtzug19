@@ -33,7 +33,94 @@ Du drückst die Finger gegen den Stoff deiner Jacke, als könnte dort doch noch 
 Im Fenster wandert dein Spiegelbild mit, einen halben Schritt zu langsam. Für einen Atemzug sieht es aus, als würde es dich nicht nachahmen, sondern prüfen.
 
 Das Klackern wird lauter. Nicht schnell, nicht hektisch. Sicher. So geht jemand, der weiß, dass er immer gefunden wird.`,
+    narrative_variants: [
+      {
+        // Truth-Pfad: Analytischer Geist, erkennt Muster sofort
+        condition: { type: 'compare', target: 'tickets_truth', operator: '>=', value: 5 },
+        narrative: `Der Zug fährt weiter. Das Brummen ist konstant, tief – und du hast es schon katalogisiert: 87 Hertz, ein leichtes Flackern alle achtzehn Sekunden.
+
+Du gehst durch den Wagen. Der Schlaflose starrt aus dem Fenster. Seine Jacke ist schwarz. Du weißt noch genau: Sie war blau. Du hast beides gesehen. Das bedeutet etwas.
+
+Dann die Erkenntnis, klar wie ein Schnitt: Du hast kein Ticket. Nicht verloren. Nie gehabt. Hast du das hier schon einmal gedacht?
+
+Von weiter vorn kommt ein Metallklackern. Rhythmisch, mit konstantem Intervall. Kontrolle – und du hast keine Antwort auf die einzige Frage, die sie stellen werden.
+
+Du drückst die Finger in den Jackenstoff, aber du suchst nicht wirklich. Du beobachtest dich beim Suchen. Als würdest du einem Fremden zusehen, der verzweifelt tut.
+
+Im Fenster wandert dein Spiegelbild einen halben Schritt zu langsam. Es hat aufgehört, deine Gesten zu kopieren. Es prüft dich.
+
+*Wann war ich hier zuletzt?* Die Frage bildet sich, bevor du entscheiden kannst, sie zu stellen. Das Klackern wird lauter.`,
+        priority: 40
+      },
+      {
+        // Love-Pfad: Emma-Vision prägt alles, der Zettel brennt in der Tasche
+        condition: {
+          type: 'and',
+          conditions: [
+            { type: 'bool', target: 'saw_emma_vision', value: true },
+            { type: 'bool', target: 'has_emma_note', value: true }
+          ]
+        },
+        narrative: `Der Zug fährt weiter. Das Brummen fühlt sich an wie ein Atem, der auf dich wartet.
+
+Du gehst durch den Wagen. Der Schlaflose starrt aus dem Fenster. Seine Jacke ist schwarz, aber du siehst kurz etwas anderes – ein Muster, ein Gesicht, das du nicht festhalten kannst. Emma.
+
+*Sie war hier.* Das weißt du, ohne zu wissen, wie.
+
+Dann der Griff an die Jacke, und deine Finger finden den gefalteten Zettel. Sie ist noch bei dir. Irgendwie. Du liest die Zeilen nicht nochmal – du kennst sie bereits auswendig, obwohl du sie kaum einmal gelesen hast.
+
+Von weiter vorn kommt ein Metallklackern. Kontrolle. Und du hast kein Ticket – aber das ist nicht das, was dich aufhält.
+
+Du suchst zwischen den Passagieren nach einem bestimmten Gesicht. Weißt du, wen du eigentlich suchst? Hast du sie je von vorne gesehen?
+
+Im Fenster wandert dein Spiegelbild mit, einen halben Schritt zu langsam. Es schaut dorthin, wo du nicht schaust. Das Klackern wird lauter.`,
+        priority: 35
+      },
+      {
+        // Escape-Pfad: Unsichtbar bleiben, kein Aufsehen erregen
+        condition: {
+          type: 'and',
+          conditions: [
+            { type: 'compare', target: 'tickets_escape', operator: '>=', value: 4 },
+            { type: 'compare', target: 'conductor_attention', operator: '<=', value: 1 }
+          ]
+        },
+        narrative: `Der Zug fährt weiter. Du hörst jeden Schritt, der nicht dein eigener ist.
+
+Du gehst durch den Wagen, dicht an der Wand, Schulter leicht eingezogen. Sitz niedrig. Kein Augenkontakt. Du weißt, wie man nicht gesehen wird – du übst das schon eine Weile.
+
+Der Schlaflose starrt aus dem Fenster. Seine Jacke ist schwarz. Du schaust weg, bevor er sich drehen kann.
+
+Dann der kalte Griff: kein Ticket. Du tastest ruhig, methodisch, ohne Panik. Panik macht laut. Du bist nicht laut.
+
+Von weiter vorn kommt ein Metallklackern. Kontrolle, noch drei Wagen entfernt, schätzt du. Zeit genug – wenn du jetzt richtig handelst.
+
+Du drückst dich in eine Ecke, Rücken zur Wand, und wartest ab. Dein Spiegelbild im Fenster starrt zurück. Du weichst seinem Blick aus. Es weicht nicht aus.
+
+Das Klackern wird lauter. Du zählst die Schritte.`,
+        priority: 30
+      },
+      {
+        // Guilt-Pfad: Etwas Unerledigtes lastet, Schuld färbt alles
+        condition: { type: 'compare', target: 'tickets_guilt', operator: '>=', value: 3 },
+        narrative: `Der Zug fährt weiter. Das Brummen klingt wie eine Frage, auf die du keine Antwort hast.
+
+Du gehst durch den Wagen. Der Schlaflose starrt aus dem Fenster. Seine Jacke ist schwarz. Du fragst dich, ob er dich kennt. Ob irgendjemand hier dich kennt. Ob du das verdient hättest.
+
+Das Ticket. Du hast keins. Natürlich nicht. Irgendwie fühlt sich das richtig an – als dürftest du gar keins haben.
+
+Von weiter vorn kommt ein Metallklackern. Kontrolleur. Dein Magen zieht sich zusammen, aber nicht vor Angst. Vor etwas Älterem.
+
+Du steckst die Hände in die Jacke. Leer. Deine Finger kennen diese Leere schon. Sie sind schon früher hier gewesen und haben nichts gefunden. Du weißt nicht, was du gesucht hättest.
+
+Im Fenster wandert dein Spiegelbild mit, einen halben Schritt zu langsam. Es sieht dich mit einem Ausdruck an, den du nicht aushalten willst.
+
+Das Klackern wird lauter. Du verdienst das, denkt ein Teil von dir. Ein anderer Teil schreit, dass das nicht stimmt.`,
+        priority: 25
+      }
+    ],
     choices: [
+
       {
         id: 'search_self',
         label: 'Taschen durchsuchen',
