@@ -483,84 +483,206 @@ Was tust du?`
   'c5_s08_abteil7_aftermath': {
     id: 'c5_s08_abteil7_aftermath',
     chapter: 5,
-    title: 'Nach Abteil 7',
-    narrative: `Als hättest du geblinzelt, stehst du wieder im Gang.
+    title: 'Innen',
+    narrative: `Der Raum ist größer als er von außen sein kann.
 
-Die Tür von Abteil 7 ist geschlossen.
+Das ist das Erste, was du begreifst – nicht mit dem Verstand, sondern mit dem Körper. Der Magen zieht sich zusammen wie vor einem langen Sturz. Die Wände liegen weit auseinander, weiter als ein Zugabteil erlaubt. Die Decke ist hoch und dunkel. Das Licht kommt von nirgendwo und von überall zugleich, ein fahles Grau, das keine Schatten wirft.
 
-War sie je offen?
+An den Wänden: Namen.
 
-Du versuchst, dich zu erinnern, was du gesehen hast.
+Eingeritzt. Geschrieben. Gekritzelt mit Bleistift, Tinte, Fingernagel. Manche fein und geordnet wie in einem Büro, manche so tief gegraben, dass das Holz gesplittert ist. Neunzehn Namen. Du zählst sie, obwohl du nicht weißt, warum du zählst. Als hättest du sie schon gezählt. Als wäre die Zahl immer gewesen, bevor du sie gesehen hast.
 
-Die Namen. Die Uhr. Die leeren Wände.
+In der Mitte des Raums: eine Uhr. An der Wand befestigt, Holzrahmen, weißes Zifferblatt. Die Zeiger stehen still. Beide zeigen auf 19 Minuten nach 19 Uhr. Das Datum unter dem Zifferblatt, eingeritzt, nicht gedruckt: *19. September 1973.*
 
-Aber die Details verschwimmen.
+Du machst einen Schritt auf die Namenswand zu.
 
-Nur ein Gefühl bleibt:
+Und dann siehst du deinen eigenen Namen.
 
-Etwas Wichtiges ist passiert.
+Er steht in der Mitte. Nicht größer als die anderen, nicht kleiner. Dieselbe Handschrift wie alle – nein, nicht dieselbe. *Deine* Handschrift. Du erkennst sie, obwohl du nicht weißt, wann du sie gelernt hast. Neben deinem Namen eine Zahl: *#19.*
 
-Etwas, das du nicht vergessen solltest.
+Der letzte Passagier.
 
-Aber du weißt nicht mehr genau, was.
+Das Rattern des Zuges hört nicht auf. Aber für einen Moment, genau einen Herzschlag lang, kannst du etwas anderes hören: Bremsen, die zu spät einsetzen. Metall auf Metall. Dann Stille, die viel zu laut ist. Und dann – nichts mehr. Schwarz.
 
-Der Zug rattert weiter.`,
+Du bist am 19. September 1973 gestorben. Der Nachtzug 19 ist entgleist. Du alle neunzehn Passagiere seid entgleist. Und seitdem fährt dieser Zug, und seitdem seid ihr an Bord, und seitdem hört es nicht auf.
+
+Bis jemand bereit ist, es aufzuhören.
+
+Du stehst vor deinem eigenen Namen und weißt jetzt, warum der Schaffner immer nach dem *Grund* fragt. Nicht nach dem Ticket. Nach dem Grund, warum du noch hier bist.
+
+Und du weißt die Antwort noch nicht.`,
+    narrative_variants: [
+      {
+        // Mit Rekorder: Emmas Stimme als Echo
+        condition: { type: 'bool', target: 'has_recorder', value: true },
+        narrative: `Der Raum ist größer als er von außen sein kann.
+
+Das erste Mal seit langer Zeit ist der Rekorder still. Das Surren hat aufgehört. Die Kassette dreht sich nicht mehr. Als hättest du das Ende der Aufnahme erreicht – oder als würde das, was in diesem Raum ist, keine Aufnahme zulassen.
+
+An den Wänden: Namen. Neunzehn, in verschiedenen Handschriften, verschiedenen Tinten. Manche tief eingeritzt, manche kaum sichtbar. In der Mitte der Wand: dein Name. Nummer 19.
+
+Die Uhr. *19. September 1973. 19:19 Uhr.*
+
+Du drückst den Rekorder gegen deine Brust, obwohl er jetzt schweigt. Und in diesem Schweigen hörst du etwas, das keine Aufnahme ist: Emmas Stimme, ohne Rauschen, ohne Verzerrung, klar wie eine Glocke.
+
+*„Komm zurück. Ich warte."*
+
+Sie hat gewartet. Sie wartet vielleicht immer noch – in einer anderen Zeit, in einem Ort, den du nicht mehr erreichen kannst, weil der Nachtzug 19 am 19. September 1973 entgleist ist und du Passagier #19 warst und bist und immer wärst.
+
+Du hältst den Rekorder. Er schweigt. Aber das Schweigen hat jetzt eine Form. Eine Richtung.
+
+Die Antwort auf die Frage des Schaffners – *warum bist du noch hier* – hat sich verschoben. Du bist noch hier, weil jemand wartet. Weil du gegangen bist, ohne Abschied zu nehmen. Weil der Abschied noch aussteht.
+
+Vor dir: die neunzehn Namen. Deiner in der Mitte.
+
+Du weißt jetzt, was du loswerden musst, bevor du gehen kannst.`,
+        priority: 35
+      },
+      {
+        // Mit Tag19: Vollständige Erkenntnis
+        condition: { type: 'bool', target: 'has_tag19', value: true },
+        narrative: `Der Raum ist größer als er von außen sein kann.
+
+Du greifst in die Tasche. Das Tag19-Etikett – das Gepäcketikett, das du in K4 gefunden hast. Du hältst es in der Hand und liest die Zahl wieder: *19.* Und darunter, in kleiner Druckschrift, die du vorhin noch nicht gesehen hast: *N19 – 19.09.1973.*
+
+An den Wänden: Namen. Neunzehn. Du gehst die Liste durch, langsam, und jeden Namen, an dem deine Augen hängen bleiben, spürst du wie eine kleine Erschütterung in der Brust – *kenne ich. Kannte ich. Saß mir gegenüber. War drei Reihen hinter mir.*
+
+Dann: dein eigener Name. Nummer 19.
+
+Die Gepäcknummer stimmt mit deiner Passagiernummer überein. Das Etikett gehört zu dir. Es hat immer zu dir gehört.
+
+Die Uhr zeigt 19:19. Das Datum: *19. September 1973.* An diesem Abend ist der Nachtzug 19 entgleist. An diesem Abend seid ihr alle gestorben. An diesem Abend hat die Schleife begonnen.
+
+Du hältst das Etikett, das Beweisstück aus einer Welt vor der Schleife, und verstehst: Das ist kein Fluch. Das ist kein Gefängnis, das dir aufgezwungen wurde. Die Schleife läuft, solange einer der neunzehn Passagiere nicht bereit ist loszulassen.
+
+Einer von neunzehn. Du weißt nicht, welcher. Aber der Schaffner fragt immer nach dem *Grund.* Und jetzt weißt du: Er fragt, weil er die Antwort noch nicht hat.
+
+Von dir.`,
+        priority: 30
+      }
+    ],
     choices: [
       {
-        id: 'try_to_remember',
-        label: 'Versuchen, sich zu erinnern',
+        id: 'touch_own_name',
+        label: 'Den eigenen Namen berühren',
         effects: [
-          { type: 'inc', target: 'tickets_truth', value: 1 },
-          { type: 'inc', target: 'memory_drift', value: 1 }
+          { type: 'inc', target: 'tickets_truth', value: 2 },
+          { type: 'inc', target: 'tickets_guilt', value: 1 },
+          { type: 'inc', target: 'memory_drift', value: 1 },
+          { type: 'set', target: 'emma_memory_unlocked', value: true }
         ],
-        next: 'c5_s10_boy_reunion'
+        next: 'c5_s08b_abteil7_exit'
       },
       {
-        id: 'let_it_go',
-        label: 'Es loslassen',
+        id: 'count_all_names',
+        label: 'Alle neunzehn Namen lesen',
         effects: [
-          { type: 'inc', target: 'tickets_escape', value: 1 },
-          { type: 'dec', target: 'memory_drift', value: 1 }
+          { type: 'inc', target: 'tickets_truth', value: 3 },
+          { type: 'inc', target: 'conductor_attention', value: 1 }
         ],
-        next: 'c5_s10_boy_reunion'
+        next: 'c5_s08b_abteil7_exit'
       },
       {
-        id: 'write_down_names',
-        label: 'Die Namen aufschreiben',
+        id: 'leave_immediately',
+        label: 'Sofort zurück in den Gang',
+        effects: [
+          { type: 'inc', target: 'tickets_escape', value: 2 },
+          { type: 'inc', target: 'memory_drift', value: 2 }
+        ],
+        next: 'c5_s08b_abteil7_exit'
+      },
+      {
+        id: 'sit_with_it',
+        label: 'Sich setzen und bleiben',
         condition: {
           type: 'compare',
-          target: 'tickets_truth',
+          target: 'tickets_love',
           operator: '>=',
-          value: 4
+          value: 3
         },
         effects: [
-          { type: 'inc', target: 'tickets_truth', value: 1 },
-          { type: 'inc', target: 'tickets_guilt', value: 1 }
+          { type: 'inc', target: 'tickets_love', value: 2 },
+          { type: 'inc', target: 'tickets_truth', value: 1 }
+        ],
+        next: 'c5_s08b_abteil7_exit'
+      }
+    ],
+    state_notes: [
+      'KERN-ENTHÜLLUNG: 19 Passagiere, 1973 Unglück, Spieler ist #19',
+      'emma_memory_unlocked wird hier gesetzt wenn eigener Name berührt',
+      'Narrative Variants: has_recorder (Emma-Echo, P35), has_tag19 (Etikett-P30)',
+      'Alle Choices führen zu c5_s08b_abteil7_exit'
+    ],
+    atmosphere: 'dark'
+  },
+
+  // ==========================================================================
+  // ÜBERGANG: Zurück in den Gang (nach Abteil 7)
+  // ==========================================================================
+
+  'c5_s08b_abteil7_exit': {
+    id: 'c5_s08b_abteil7_exit',
+    chapter: 5,
+    title: 'Zurück im Gang',
+    narrative: `Als du die Tür hinter dir schließt, merkt dein Körper erst, was er draußen gehalten hat.
+
+Deine Hände zittern minimal. Nicht vor Angst – vor der Unmöglichkeit, das Gesehene wieder rückgängig zu machen.
+
+Der Gang ist derselbe wie vorher. Dasselbe flackernde Licht. Dieselbe Kälte. Derselbe Geruch nach Metall und altem Stoff.
+
+Aber du bist nicht mehr dieselbe Person, die diesen Gang entlanggelaufen ist.
+
+Du weißt jetzt, warum der Zug fährt. Du weißt, wer du bist – wer du warst. Du weißt, dass der 19. September 1973 nicht nur ein Datum ist.
+
+Das Rattern der Räder klingt anders jetzt. Nicht mehr sinnlos. Fast wie ein Herzschlag.
+
+Neunzehn Namen an der Wand. Deiner in der Mitte. Die Uhr, die stehengeblieben ist.
+
+Du atmest einmal aus. Tief. Die Luft schmeckt nach dem, was hinter dir liegt.
+
+Dann gehst du weiter.`,
+    narrative_variants: [
+      {
+        condition: { type: 'bool', target: 'emma_memory_unlocked', value: true },
+        narrative: `Als du die Tür hinter dir schließt, brennt noch der Abdruck deines eigenen Namens im Gedächtnis.
+
+*#19.* Deine Handschrift. Auf der Wand eines Zuges, der am 19. September 1973 entgleist ist.
+
+Der Gang ist derselbe. Du nicht.
+
+Emmas Stimme hallt nach – nicht als Ton, sondern als Richtung. *Komm zurück. Ich warte.* Sie hat gewartet. Vielleicht wartet sie immer noch. In einer Zeit, die du nicht mehr berühren kannst, bis du bereit bist, das hier zu beenden.
+
+Du weißt jetzt, was dich hält. Nicht die Schleife. Nicht der Schaffner. Du selbst. Der Abschied, den du schuldig geblieben bist.
+
+Du gehst weiter. Aber jetzt mit einem Namen im Rücken, den du nicht mehr vergessen wirst.`,
+        priority: 25
+      }
+    ],
+    choices: [
+      {
+        id: 'walk_to_boy',
+        label: 'Den Jungen suchen',
+        effects: [
+          { type: 'inc', target: 'tickets_love', value: 1 }
         ],
         next: 'c5_s10_boy_reunion'
       },
       {
-        id: 'ponder_the_wall',
-        label: 'Die Kälte der Wand noch spüren',
-        condition: {
-          type: 'compare',
-          target: 'tickets_guilt',
-          operator: '>=',
-          value: 1
-        },
+        id: 'sit_alone_first',
+        label: 'Einen Moment allein bleiben',
         effects: [
-          { type: 'inc', target: 'tickets_guilt', value: 2 },
-          { type: 'inc', target: 'memory_drift', value: 1 }
+          { type: 'inc', target: 'tickets_truth', value: 1 }
         ],
         next: 'c5_s10_boy_reunion'
       }
     ],
+    tags: ['reveal'],
     state_notes: [
-      'Set-Piece Teil 3: Nachwirkungen',
-      'CONDITION: write_down_names (tickets_truth >= 4)',
-      'CONDITION: ponder_the_wall (tickets_guilt >= 1, Callback auf s07)'
+      'Übergangsszene nach Abteil-7-Enthüllung',
+      'Verarbeitung: Spieler trägt das Gesehene',
+      'Narrative Variant wenn emma_memory_unlocked (nur bei touch_own_name Choice)'
     ],
-    atmosphere: 'tense'
+    atmosphere: 'somber'
   },
 
   // ==========================================================================
