@@ -66,6 +66,73 @@ Für einen Moment bist du sicher: Wenn du jetzt gehst, wird die Tür hinter dir 
     atmosphere: 'mystic'
   },
 
+  // ============================================================================
+  // c3_s01a_after_station: Nach Station
+  // ============================================================================
+  'c3_s01a_after_station': {
+    id: 'c3_s01a_after_station',
+    chapter: 3,
+    title: 'Nach dem Halt',
+    narrative: `Der Zug gleitet lautlos weiter.
+
+Der Schlaflose sitzt drei Reihen weiter hinten; seine Jacke ist jetzt tiefschwarz, als wäre Farbe kein Zufall, sondern Entscheidung. Er schaut nicht auf. Er liest in nichts.
+
+In Comp7s leerem Abteil liegt ein aufgeschlagenes Notizbuch. Es war nicht da, als der Zug hielt. Du bist sicher.
+
+Die Seite ist in einer Handschrift geschrieben, die deiner sehr ähnelt, aber nicht ganz. Als hätte jemand versucht, sie nachzuahmen, oder als hättest du sie geschrieben und dann vergessen, wie deine eigene Schrift aussieht.
+
+Auf der Seite steht: *„Passagier #[UNLESBAR]: Sucht nach Emma. Findet Wagen 7. Findet sich. Weiß es noch nicht."*
+
+Das letzte Wort ist unterstrichen. Zweimal. Das zweite Mal tiefer, als hätte die Hand beim Schreiben gezittert und dann trotzdem weitergemacht.`,
+    narrative_variants: [
+      {
+        condition: { type: 'bool', target: 'has_emma_note', value: true },
+        narrative: `Der Zug gleitet lautlos weiter.
+
+Der Schlaflose sitzt drei Reihen weiter hinten; seine Jacke ist jetzt tiefschwarz. Er schaut nicht auf.
+
+In Comp7s leerem Abteil liegt ein aufgeschlagenes Notizbuch. Die Handschrift ähnelt deiner, aber ist nicht deine — oder war es mal.
+
+Auf der Seite steht: *„Passagier #[UNLESBAR]: Sucht nach Emma. Findet Wagen 7. Findet sich. Weiß es noch nicht."*
+
+Du greifst in die Tasche. Emmas Zettel ist noch da. Dieselbe Papiersorte. Dasselbe leichte Vergilben an der Kante.
+
+Du hältst beide nebeneinander, ohne sie zu berühren. Zwei Dokumente, die denselben Weg beschreiben, aus verschiedenen Richtungen.`,
+        priority: 30
+      }
+    ],
+    choices: [
+      {
+        id: 'read_notebook',
+        label: 'Die letzten Seiten lesen',
+        effects: [
+          { type: 'inc', target: 'tickets_truth', value: 2 },
+          { type: 'inc', target: 'memory_drift', value: 1 }
+        ],
+        next: 'c3_s01b_boy_return'
+      },
+      {
+        id: 'close_notebook',
+        label: 'Zuklappen ohne weiterzulesen',
+        effects: [
+          { type: 'inc', target: 'tickets_escape', value: 1 }
+        ],
+        next: 'c3_s01b_boy_return'
+      },
+      {
+        id: 'take_notebook',
+        label: 'Einzustecken versuchen',
+        effects: [
+          { type: 'inc', target: 'tickets_guilt', value: 1 },
+          { type: 'inc', target: 'tickets_truth', value: 1 }
+        ],
+        next: 'c3_s01b_boy_return'
+      }
+    ],
+    tags: ['drift_seed'],
+    state_notes: ['Notizbuch Vorhersage'],
+    atmosphere: 'mystic'
+  },
   // ==========================================================================
   // c3_s01c_door_pulse: Puls hinter der Tür (Interlude)
   // ==========================================================================
@@ -103,42 +170,6 @@ Dein Name liegt dir auf der Zunge, aber du schluckst ihn herunter.`,
       'Micro-Beat vor dem Gang'
     ],
     atmosphere: 'tense'
-  },
-
-  // ============================================================================
-  // c3_s01a_after_station: Nach Station
-  // ============================================================================
-  'c3_s01a_after_station': {
-    id: 'c3_s01a_after_station',
-    chapter: 3,
-    title: 'Nach dem Halt',
-    narrative: `Der Zug gleitet lautlos weiter.
-
-Der Schlaflose sitzt drei Reihen weiter hinten; seine Jacke ist jetzt tiefschwarz. In Comp7s leerem Abteil liegt ein Notizbuch.
-
-Auf der Seite steht: „Passagier #[UNLESBAR]: Sucht nach Emma. Findet Wagen 7.“`,
-    choices: [
-      {
-        id: 'read_notebook',
-        label: 'Darin lesen',
-        effects: [
-          { type: 'inc', target: 'tickets_truth', value: 2 },
-          { type: 'inc', target: 'memory_drift', value: 1 }
-        ],
-        next: 'c3_s01b_boy_return'
-      },
-      {
-        id: 'ignore_notebook',
-        label: 'Liegen lassen',
-        effects: [
-          { type: 'inc', target: 'tickets_escape', value: 1 }
-        ],
-        next: 'c3_s01b_boy_return'
-      }
-    ],
-    tags: ['drift_seed'],
-    state_notes: ['Notizbuch Vorhersage'],
-    atmosphere: 'mystic'
   },
 
   // ============================================================================
@@ -319,15 +350,51 @@ Der Junge schüttelt kaum merklich den Kopf. Kein Verbot, eher eine Warnung, die
     id: 'c3_s02b_corridor_shift',
     chapter: 3,
     title: 'Verschiebung',
-    narrative: `Der Gang hat sich verändert. Türennummern stimmen nicht mehr.
+    narrative: `Der Gang hat sich verändert.
 
-Der Schlaflose steht im Gang. Er wirkt blass.
+Nicht dramatisch — kein plötzlicher Strukturbruch. Nur die Türennummern stimmen nicht mehr. 4, 2, 9, 1. Keine Ordnung, die einem Menschen etwas sagen will.
 
-„Du suchst Wagen 7,“ sagt er. „Die Tür ist jetzt offen. Aber das mit dem Opfer ist keine Metapher. Wenn die Kontrolle kommt, nimmt sie etwas Reales.“`,
+Der Schlaflose steht in der Mitte des Gangs. Er muss sich bewegt haben, während du nicht hinschautes, aber du hast keine Schritte gehört.
+
+Er sieht dich an. Wirklich an, zum ersten Mal. Kein Wegschauen, kein Vorbeiblicken.
+
+„Du suchst Wagen 7," sagt er. Keine Frage. „Die Tür ist jetzt offen." Eine Pause, in der der Zug einmal tief atmet. „Das mit dem Opfer ist keine Metapher. Wenn die Kontrolle kommt, nimmt sie etwas Reales. Nicht symbolisch. Etwas, das du nicht mehr zurückbekommst."
+
+Er macht einen halben Schritt zur Seite — nicht, um Platz zu machen. Eher, als wollte er aus der Schusslinie.
+
+„Ich habe schon gegeben," sagt er leise, und du erkennst an seiner Stimme, dass er es nicht als Warnung meint. Nur als Zeugnis. „War ein guter Tausch. Glaube ich."
+
+Er dreht sich nicht um. Er schaut weiter in eine Richtung, die kein Fenster hat.`,
+    narrative_variants: [
+      {
+        condition: { type: 'bool', target: 'has_recorder', value: true },
+        narrative: `Der Gang hat sich verändert. Türennummern stimmen nicht mehr.
+
+Der Schlaflose steht in der Mitte. Er schaut dich an — wirklich an, zum ersten Mal.
+
+„Du suchst Wagen 7," sagt er. „Die Tür ist offen. Aber das mit dem Opfer ist keine Metapher."
+
+Sein Blick wandert kurz zu deiner Tasche, wo der Rekorder liegt. Ein kurzes Zucken um den Mund. Kein Mitleid. Eher Wiedererkennung.
+
+„Ich habe schon gegeben," sagt er. „Nicht was ich wollte. Was ich hatte."
+
+Er dreht sich weg, bevor du antwortest.`,
+        priority: 25
+      }
+    ],
     choices: [
       {
+        id: 'ask_what_he_gave',
+        label: '„Was hast du gegeben?"',
+        effects: [
+          { type: 'inc', target: 'tickets_love', value: 1 },
+          { type: 'inc', target: 'tickets_truth', value: 1 }
+        ],
+        next: 'c3_s02c_door_shadow'
+      },
+      {
         id: 'ask_what_to_give',
-        label: '„Was opfern?"',
+        label: '„Was soll ich geben?"',
         effects: [
           { type: 'inc', target: 'tickets_guilt', value: 1 }
         ],
@@ -335,7 +402,7 @@ Der Schlaflose steht im Gang. Er wirkt blass.
       },
       {
         id: 'ignore_warning',
-        label: 'Ignorieren und weitergehen',
+        label: 'An ihm vorbeigehen',
         effects: [
           { type: 'inc', target: 'tickets_escape', value: 1 }
         ],
@@ -343,7 +410,7 @@ Der Schlaflose steht im Gang. Er wirkt blass.
       }
     ],
     tags: ['drift_variant'],
-    state_notes: ['Raum-Reorganisation'],
+    state_notes: ['Raum-Reorganisation', 'Schlafloser als Zeuge'],
     atmosphere: 'tense'
   },
 
