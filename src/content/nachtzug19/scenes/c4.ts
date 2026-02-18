@@ -170,24 +170,26 @@ Du gehst an ihnen vorbei. In jedem Fenster siehst du eine andere Version von dir
 Als du vorbeigehst, drehen sie sich gleichzeitig nach dir um.`,
     narrative_variants: [
       {
-        min_drift: 4,
+        condition: { type: 'compare', target: 'memory_drift', operator: '>=', value: 4 },
         narrative: `Du verlässt den Waschraum. Der Gang — aber welcher Gang? Du erinnerst dich an den Anfang. Der Bahnsteig. Emma. Nein — war es Emma? Der Name verschwimmt. E... Emilia? Nein. Emma. Emma. Du hältst den Namen fest wie einen Rettungsring.
 
 Die Fenster zur Linken sind Spiegel. Aber die Versionen von dir darin stimmen nicht. Eine trägt eine Uniform — die Uniform des Schaffners. Eine hat keine Augen. Eine bewegt den Mund und formt Worte, die du nicht hören kannst, aber du liest von ihren Lippen: „Du warst nicht im Zug. Du warst der Zug."
 
 Als du vorbeigehst, drehen sie sich gleichzeitig nach dir um.
 
-Und zum ersten Mal bist du dir nicht sicher, welche Version real ist.`
+Und zum ersten Mal bist du dir nicht sicher, welche Version real ist.`,
+        priority: 30
       },
       {
-        min_drift: 3,
+        condition: { type: 'compare', target: 'memory_drift', operator: '>=', value: 3 },
         narrative: `Du reißt den Blick vom Spiegel los und verlässt den Waschraum.
 
 Der Gang vor dir — warst du schon einmal hier? Ja. Beim letzten Halt. Nein, schon früher. Der Gang sah anders aus. Oder sah er genau so aus? Die Fenster zur Linken sind Spiegel. In jedem siehst du eine Version von dir.
 
 Aber etwas stimmt nicht. Die Version, die weint — die hat den Kassettenrekorder. Hast du den Rekorder? Du greifst in deine Tasche. Ja. Nein. Du bist dir nicht sicher. Die Erinnerung daran, wie du ihn bekommen hast, ist verschwommen. War es der Junge? Oder hast du ihn gefunden? Lag er auf einem Sitz?
 
-Die Versionen drehen sich gleichzeitig um.`
+Die Versionen drehen sich gleichzeitig um.`,
+        priority: 20
       }
     ],
     choices: [
@@ -249,12 +251,13 @@ Und plötzlich weißt du: die Spiegel lügen. Die Versionen von dir — sie sind
 Ohne den Anhänger hättest du das nicht erkannt. Die Drift hätte dich überwältigt.`
       },
       {
-        min_drift: 4,
+        condition: { type: 'compare', target: 'memory_drift', operator: '>=', value: 4 },
         narrative: `Stimmen. Von überall. Aus den Spiegeln, aus dem Boden, aus deinem eigenen Mund — wartest du? Sprichst du gerade? Du bist dir nicht sicher.
 
 Ein Wort. Oder zwei. Oder keines. „Neunzehn." Oder war es „Neun"? Oder „Zehn"? Oder dein Name? Nein — du erinnerst dich nicht an deinen Namen. Du erinnerst dich an Emma. Emilia. E... Der Name verschwimmt.
 
-Die Stimmen werden lauter. Du gehst schneller. Aber der Gang wird nicht kürzer.`
+Die Stimmen werden lauter. Du gehst schneller. Aber der Gang wird nicht kürzer.`,
+        priority: 20
       }
     ],
     choices: [
@@ -404,9 +407,9 @@ Die Silhouette im Spiegel bewegt sich nicht synchron mit deinem Atem. Sie kippt 
 
 „Bin ich das?" fragst du.
 
-„Du warst es. In einer anderen Runde. Der Zug fährt im Kreis, aber er vergisst nichts. Die Spiegel, die Bänder… sie sind das Gedächtnis des Zuges.“
+„Du warst es. In einer anderen Runde. Der Zug fährt im Kreis, aber er vergisst nichts. Die Spiegel, die Bänder… sie sind das Gedächtnis des Zuges."
 
-Sie beugt sich vor. „Wir müssen etwas finden. Etwas Festes. Sonst löst du dich auf wie die anderen im Spiegel.“
+Sie beugt sich vor. „Wir müssen etwas finden. Etwas Festes. Sonst löst du dich auf wie die anderen im Spiegel."
 
 Sie legt zwei Finger auf den Tisch zwischen euch, genau auf eine alte Brandspur im Holz. „Ich hab versucht, mir alles zu merken," sagt sie. „Gesichter. Halte. Reihenfolgen. Es reicht nicht."
 
@@ -496,29 +499,76 @@ Du hörst den Satz und verstehst: Selbst ihre Klarheit ist geliehen, fragil, imm
     id: 'c4_s04a_comp7_identity',
     chapter: 4,
     title: 'Anker',
-    narrative: `„Ein Anker," sagt Comp7. „Ein Gegenstand, der durch alle Zyklen überlebt hat. Etwas mit einer Nummer.“
+    narrative: `„Ein Anker," sagt Comp7. „Ein Gegenstand, der durch alle Zyklen überlebt hat. Etwas mit einer Nummer."
 
 Sie greift nach deinem Arm. Ihr Griff ist fest, fast schmerzhaft.
 
-„Der Zug versucht, sich neu zu ordnen. Er wird gleich brechen. Wenn das passiert… such nach der 19.“
+„Der Zug versucht, sich neu zu ordnen. Er wird gleich brechen. Wenn das passiert… such nach der 19."
 
-„Warum 19?“
+„Warum 19?"
 
-„Weil es das Einzige ist, was sich nie ändert.“
+Stille. Das Zugdröhnen tritt für einen Moment zurück, als würde der Wagen selbst lauschen.
 
-Der Boden unter euch sackt plötzlich weg.`,
+„Weil es das Einzige ist, was sich nie ändert. Nicht das Datum. Nicht die Namen. Nicht einmal ich." Ihre Stimme bricht kurz. „Ich vergesse jede Runde mehr. Gestern konnte ich noch meinen richtigen Nachnamen sagen. Heute nicht mehr."
+
+Sie lässt deinen Arm los. Auf deiner Haut bleiben kurze weiße Striemen von ihren Fingern.
+
+„Wenn du die 19 findest," sagt sie, „wirst du verstehen, warum der Zug fährt. Nicht wohin. Warum. Das ist der Unterschied, der zählt."
+
+Irgendwo im Wagen kracht etwas — kein lautes Geräusch, eher ein tiefes Knacken, als würde ein Träger nachgeben.
+
+Das Licht flackert. Einmal. Zweimal. Bleibt.
+
+Sie sieht dich direkt an. Ihre verschiedenfarbigen Augen fixieren dich mit einer Präzision, die ihr zitterndes Kinn widerlegt. „Du wirst gleich fallen. Das ist in Ordnung. Such die 19, bevor du wieder aufstehst."`,
+    narrative_variants: [
+      {
+        condition: { type: 'compare', target: 'rel_comp7', operator: '>=', value: 3 },
+        narrative: `„Ein Anker," sagt Comp7. „Ein Gegenstand, der durch alle Zyklen überlebt hat. Etwas mit einer Nummer."
+
+Sie greift nach deinem Arm. Sanfter als du erwartet hättest.
+
+„Der Zug bricht gleich. Such nach der 19."
+
+Du willst fragen, aber sie schüttelt den Kopf — nicht abweisend, eher erschöpft. „Vertrau mir diesmal. Ich hab's schon zu oft erklärt und dabei jedes Mal ein Stück davon verloren."
+
+Ihre Finger lösen sich von deinem Arm. Sie lächelt kurz, ohne Freude, nur Wiedererkennung. „Du weißt mehr, als du denkst. Die Zahlen kennen dich bereits."
+
+Das Licht flackert. Das Zuggerüst gibt ein tiefes, organisches Knacken von sich.
+
+Sie wendet sich ab, als wäre das Gespräch damit vollständig. Als bräuchte sie die Bestätigung nicht mehr zu sehen.`,
+        priority: 25
+      }
+    ],
     choices: [
       {
+        id: 'ask_why_19',
+        label: '„Was bedeutet 19?"',
+        effects: [
+          { type: 'inc', target: 'tickets_truth', value: 2 },
+          { type: 'inc', target: 'rel_comp7', value: 1 }
+        ],
+        next: 'c4_s05_reality_fracture'
+      },
+      {
         id: 'hold_on',
-        label: 'Festhalten',
+        label: 'Nur festhalten',
         effects: [
           { type: 'inc', target: 'tickets_truth', value: 1 }
         ],
         next: 'c4_s05_reality_fracture'
+      },
+      {
+        id: 'reach_for_comp7',
+        label: 'Ihre Hand halten',
+        effects: [
+          { type: 'inc', target: 'tickets_love', value: 2 },
+          { type: 'inc', target: 'rel_comp7', value: 1 }
+        ],
+        next: 'c4_s05_reality_fracture'
       }
     ],
-    tags: ['setup'],
-    state_notes: ['Vorbereitung auf Reality Fracture'],
+    tags: ['setup', 'reveal'],
+    state_notes: ['Vorbereitung auf Reality Fracture', 'Comp7 zeigt Verletzlichkeit'],
     atmosphere: 'danger'
   },
 
