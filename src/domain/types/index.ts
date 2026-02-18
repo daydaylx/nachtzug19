@@ -178,6 +178,12 @@ export type EffectTarget =
   | 'investigated_board' | 'investigated_poster' | 'investigated_person' | 'investigated_device' | 'investigated_edge' | 'called_emma' | 'saw_emma_vision' | 'has_emma_note' | 'knows_board_pattern'
   // Items (Hub 2: Zug)
   | 'explored_compartment' | 'explored_sleepless' | 'explored_passengers' | 'explored_comp7' | 'knows_sleepless_warning' | 'saw_passenger_loop' | 'heard_comp7_scratching'
+  // Nuance Flags – boolean
+  | 'inspected_device' | 'looked_into_void' | 'gazed_into_darkness'
+  | 'counted_compartments' | 'went_to_light' | 'kept_no_ticket_note'
+  | 'destroyed_evidence' | 'noticed_jacket_change'
+  // Nuance Flags – string (narrative variants, set-only)
+  | 'prepare_stance' | 'breath_control' | 'conductor_stance' | 'approach_response'
   // Meta
   | 'chapter_index' | 'station_count';
 
@@ -187,7 +193,7 @@ export type EffectTarget =
 export type Effect = {
   type: EffectType;
   target: EffectTarget;
-  value: number | boolean;
+  value: number | boolean | string;
   clamp_min?: number;  // Für clamp: Minimum
   clamp_max?: number;  // Für clamp: Maximum
   note?: string;       // Optional: Log-Eintrag
@@ -209,7 +215,7 @@ export type SimpleCondition = {
   type: 'compare';
   target: EffectTarget;
   operator: ComparisonOperator;
-  value: number | boolean;
+  value: number | boolean | string;
 };
 
 /**

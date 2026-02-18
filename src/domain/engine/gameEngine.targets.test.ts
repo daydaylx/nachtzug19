@@ -44,6 +44,20 @@ const ALL_ENGINE_TARGETS: EffectTarget[] = [
   'knows_sleepless_warning',
   'saw_passenger_loop',
   'heard_comp7_scratching',
+  // Nuance Flags – boolean
+  'inspected_device',
+  'looked_into_void',
+  'gazed_into_darkness',
+  'counted_compartments',
+  'went_to_light',
+  'kept_no_ticket_note',
+  'destroyed_evidence',
+  'noticed_jacket_change',
+  // Nuance Flags – string
+  'prepare_stance',
+  'breath_control',
+  'conductor_stance',
+  'approach_response',
   'chapter_index',
   'station_count'
 ];
@@ -73,7 +87,22 @@ const BOOLEAN_TARGETS = new Set<EffectTarget>([
   'explored_comp7',
   'knows_sleepless_warning',
   'saw_passenger_loop',
-  'heard_comp7_scratching'
+  'heard_comp7_scratching',
+  'inspected_device',
+  'looked_into_void',
+  'gazed_into_darkness',
+  'counted_compartments',
+  'went_to_light',
+  'kept_no_ticket_note',
+  'destroyed_evidence',
+  'noticed_jacket_change'
+]);
+
+const STRING_TARGETS = new Set<EffectTarget>([
+  'prepare_stance',
+  'breath_control',
+  'conductor_stance',
+  'approach_response'
 ]);
 
 function collectConditionTargets(condition: Condition): string[] {
@@ -111,22 +140,23 @@ function collectContentTargets(scenes: ScenesCollection): string[] {
 
 function supportsSetAndRead(target: EffectTarget): boolean {
   const isBooleanTarget = BOOLEAN_TARGETS.has(target);
+  const isStringTarget = STRING_TARGETS.has(target);
   const state = createInitialState('c1_s01_platform');
-  const value: number | boolean = isBooleanTarget ? true : 1;
 
   try {
-    applyEffects(state, [{ type: 'set', target, value }]);
-
     if (isBooleanTarget) {
+      applyEffects(state, [{ type: 'set', target, value: true }]);
       return evaluateCondition(state, { type: 'bool', target, value: true });
     }
 
-    return evaluateCondition(state, {
-      type: 'compare',
-      target,
-      operator: '==',
-      value: 1
-    });
+    if (isStringTarget) {
+      applyEffects(state, [{ type: 'set', target, value: 'test_value' }]);
+      return evaluateCondition(state, { type: 'compare', target, operator: '==', value: 'test_value' });
+    }
+
+    // Numeric target
+    applyEffects(state, [{ type: 'set', target, value: 1 }]);
+    return evaluateCondition(state, { type: 'compare', target, operator: '==', value: 1 });
   } catch {
     return false;
   }

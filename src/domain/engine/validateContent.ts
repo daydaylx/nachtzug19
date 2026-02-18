@@ -25,6 +25,10 @@ import {
 // Known Effect Targets & Types
 // ============================================================================
 
+/**
+ * All valid effect targets — must stay in sync with EffectTarget in types/index.ts.
+ * Using a Set<EffectTarget> ensures TypeScript catches any drift at compile time.
+ */
 const KNOWN_EFFECT_TARGETS: Set<EffectTarget> = new Set([
   // Legacy Stats
   'mut', 'wissen', 'empathie',
@@ -42,12 +46,31 @@ const KNOWN_EFFECT_TARGETS: Set<EffectTarget> = new Set([
   // Items - Hub 2 (K1 Redesign)
   'explored_compartment', 'explored_sleepless', 'explored_passengers', 'explored_comp7',
   'knows_sleepless_warning', 'saw_passenger_loop', 'heard_comp7_scratching',
-  // Nuance Flags (narrative variants, no tickets)
-  'inspected_device', 'looked_into_void', 'gazed_into_darkness', 'prepare_stance',
-  'breath_control', 'conductor_stance', 'approach_response', 'counted_compartments',
-  'went_to_light', 'kept_no_ticket_note', 'destroyed_evidence', 'noticed_jacket_change',
+  // Nuance Flags – boolean
+  'inspected_device', 'looked_into_void', 'gazed_into_darkness',
+  'counted_compartments', 'went_to_light', 'kept_no_ticket_note', 'destroyed_evidence', 'noticed_jacket_change',
+  // Nuance Flags – string (set-only)
+  'prepare_stance', 'breath_control', 'conductor_stance', 'approach_response',
   // Meta
   'chapter_index', 'station_count'
+]);
+
+/**
+ * Targets that hold numeric values — the only targets valid for inc / dec / clamp.
+ */
+const NUMERIC_TARGETS: Set<EffectTarget> = new Set([
+  'mut', 'wissen', 'empathie',
+  'tickets_truth', 'tickets_escape', 'tickets_guilt', 'tickets_love',
+  'conductor_attention', 'memory_drift', 'hub_investigations', 'train_explorations',
+  'rel_comp7', 'rel_boy', 'rel_sleepless',
+  'chapter_index', 'station_count'
+]);
+
+/**
+ * Targets that hold string values — only valid for set.
+ */
+const STRING_TARGETS: Set<EffectTarget> = new Set([
+  'prepare_stance', 'breath_control', 'conductor_stance', 'approach_response'
 ]);
 
 const KNOWN_EFFECT_TYPES: Set<EffectType> = new Set([
@@ -179,6 +202,28 @@ function validateChoice(
         });
       }
 
+      // Prüfe: inc/dec/clamp nur für numerische Targets erlaubt
+      if ((effect.type === 'inc' || effect.type === 'dec' || effect.type === 'clamp')
+          && validateEffectTarget(effect.target)
+          && !NUMERIC_TARGETS.has(effect.target as EffectTarget)) {
+        errors.push({
+          type: 'error',
+          message: `Choice '${choiceLabel}' Effect #${idx}: '${effect.type}' ist nur für numerische Targets erlaubt, nicht für '${effect.target}'`,
+          scene_id: sceneId,
+          choice_id: choice.id
+        });
+      }
+
+      // Prüfe: string-Targets dürfen nur 'set' verwenden
+      if (STRING_TARGETS.has(effect.target as EffectTarget) && effect.type !== 'set') {
+        errors.push({
+          type: 'error',
+          message: `Choice '${choiceLabel}' Effect #${idx}: String-Target '${effect.target}' unterstützt nur 'set', nicht '${effect.type}'`,
+          scene_id: sceneId,
+          choice_id: choice.id
+        });
+      }
+
       // Warnung: clamp ohne clamp_min/clamp_max
       if (effect.type === 'clamp' && (effect.clamp_min === undefined || effect.clamp_max === undefined)) {
         warnings.push({
@@ -260,6 +305,22 @@ function validateScene(
           scene_id: scene.id
         });
       }
+      if ((effect.type === 'inc' || effect.type === 'dec' || effect.type === 'clamp')
+          && validateEffectTarget(effect.target)
+          && !NUMERIC_TARGETS.has(effect.target as EffectTarget)) {
+        errors.push({
+          type: 'error',
+          message: `Entry-Effect #${idx}: '${effect.type}' ist nur für numerische Targets erlaubt, nicht für '${effect.target}'`,
+          scene_id: scene.id
+        });
+      }
+      if (STRING_TARGETS.has(effect.target as EffectTarget) && effect.type !== 'set') {
+        errors.push({
+          type: 'error',
+          message: `Entry-Effect #${idx}: String-Target '${effect.target}' unterstützt nur 'set', nicht '${effect.type}'`,
+          scene_id: scene.id
+        });
+      }
     });
   }
 
@@ -276,6 +337,22 @@ function validateScene(
         errors.push({
           type: 'error',
           message: `Exit-Effect #${idx}: Unbekanntes Target '${effect.target}'`,
+          scene_id: scene.id
+        });
+      }
+      if ((effect.type === 'inc' || effect.type === 'dec' || effect.type === 'clamp')
+          && validateEffectTarget(effect.target)
+          && !NUMERIC_TARGETS.has(effect.target as EffectTarget)) {
+        errors.push({
+          type: 'error',
+          message: `Exit-Effect #${idx}: '${effect.type}' ist nur für numerische Targets erlaubt, nicht für '${effect.target}'`,
+          scene_id: scene.id
+        });
+      }
+      if (STRING_TARGETS.has(effect.target as EffectTarget) && effect.type !== 'set') {
+        errors.push({
+          type: 'error',
+          message: `Exit-Effect #${idx}: String-Target '${effect.target}' unterstützt nur 'set', nicht '${effect.type}'`,
           scene_id: scene.id
         });
       }

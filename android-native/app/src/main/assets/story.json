@@ -619,7 +619,7 @@
             "operator": "==",
             "value": 1
           },
-          "narrative": "Du kehrst zum Zentrum des Bahnsteigs zurück.\n\nAber etwas hat sich verändert. Die Anzeigetafel klackt schneller. Die Luft riecht jetzt nach altem Zigarettenrauch.\n\nWas als nächstes?"
+          "narrative": "Du kehrst zurück. Die Anzeigetafel klackt schneller."
         },
         {
           "condition": {
@@ -628,7 +628,7 @@
             "operator": "==",
             "value": 2
           },
-          "narrative": "Du stehst wieder in der Mitte.\n\nDie Gestalt mit der Zeitung sitzt näher. Oder war sie schon immer so nah? Die gelbe Linie am Boden glüht schwach im Neonlicht.\n\nEin Name brennt in deinem Kopf: Emma."
+          "narrative": "Die Gestalt sitzt näher. Ein Name brennt in deinem Kopf: Emma."
         },
         {
           "condition": {
@@ -637,7 +637,7 @@
             "operator": ">=",
             "value": 3
           },
-          "narrative": "Ein tiefes Brummen erfüllt die Luft. Es vibriert in deinem Brustkorb, in den Zähnen.\n\nDann gleitet der Zug in den Bahnhof. Lautlos. Keine quietschenden Bremsen. Kein Rattern. Nur das Brummen, das langsam verstummt.\n\nDie Türen öffnen sich mit einem Zischen.",
+          "narrative": "Ein tiefes Brummen. Dann gleitet der Zug lautlos ein. Die Türen öffnen sich.",
           "auto_next": "c1_event_train_arrival"
         }
       ],
@@ -759,7 +759,7 @@
             "operator": "==",
             "value": 1
           },
-          "narrative": "Du kehrst in den Gang zurück.\n\nDie Lampen flackern jetzt synchron. Als hättest du sie aufgeschreckt."
+          "narrative": "Zurück im Gang. Die Lampen flackern synchron."
         },
         {
           "condition": {
@@ -768,7 +768,7 @@
             "operator": ">=",
             "value": 2
           },
-          "narrative": "Wieder im Gang.\n\nDie Lautsprecher knistern. Eine Durchsage bahnt sich an.",
+          "narrative": "Die Lautsprecher knistern. Eine Durchsage bahnt sich an.",
           "auto_next": "c1_event_announcement"
         }
       ],
@@ -784,7 +784,7 @@
       "id": "c1_inv_board",
       "chapter": 1,
       "title": "Die Anzeigetafel",
-      "narrative": "Du trittst näher an die Anzeigetafel heran.\n\nEs ist ein mechanisches Klappmodell aus einer Zeit vor LED-Displays. Die Ziffern sind groß, altmodisch, haben Serifen. Sie zeigen: 23:47.\n\nKein Text. Kein „Nächster Zug\". Kein „Verspätung\". Nur leere Fächer, die im Takt klacken, ohne etwas anzuzeigen.\n\nKlack. Klack. Klack.\n\nDu zählst mit. Drei Sekunden Abstand. Exakt. Wie ein Metronom. Oder ein Herzschlag, der nicht deiner ist.\n\nDann, für einen Wimpernschlag, flackert ein Wort auf:\n\nRÜCK—\n\nUnd weg. Zu schnell, um sicher zu sein. War es „Rückfahrt\"? „Rückkehr\"? Oder hast du dir das eingebildet?",
+      "narrative": "Die Anzeigetafel zeigt 23:47. Ein altes Klappmodell, das im Takt klackt, ohne etwas anzuzeigen.\n\nKlack. Klack. Klack.\n\nDrei Sekunden Abstand. Exakt. Wie ein Herzschlag, der nicht deiner ist.\n\nDann flackert ein Wort auf: RÜCK— Und weg.",
       "choices": [
         {
           "id": "count_pattern",
@@ -845,7 +845,7 @@
       "id": "c1_inv_device",
       "chapter": 1,
       "title": "Das Gerät",
-      "narrative": "Du greifst in deine Tasche. Da ist… etwas. Ein Gerät.\n\nEin rechteckiges Ding aus Plastik und Glas. Schwer. Der Bildschirm ist schwarz. Du drückst darauf, und für einen Moment flackert das Display auf – nicht mit Icons oder Apps, sondern mit statischem Rauschen, wie bei einem alten Fernseher.\n\nDann wird es wieder schwarz.\n\nDu versuchst es nochmal. Diesmal erscheinen Worte:\n\nNACHTZUG 19\nKEINE VERBINDUNG\nWARTEN SIE\n\nDas Display erlischt. Als du es umdrehst, ist auf der Rückseite ein Aufkleber: ein handgeschriebener Name.\n\nDu kannst ihn nicht lesen. Die Tinte ist verwischt.",
+      "narrative": "Du greifst in deine Tasche. Ein Gerät. Schwarz, kalt.\n\nDu drückst darauf. Das Display flackert: statisches Rauschen, dann Worte.\n\nNACHTZUG 19 / KEINE VERBINDUNG / WARTEN SIE\n\nAuf der Rückseite ein Aufkleber. Ein Name. Verwischt, unleserlich.",
       "choices": [
         {
           "id": "keep_trying",
@@ -885,7 +885,7 @@
       "id": "c1_inv_edge",
       "chapter": 1,
       "title": "Die Kante",
-      "narrative": "Du gehst zum Rand des Bahnsteigs. Eine gelbe Linie, abgeblättert. Dahinter die Schienen. Schwarz. Matt. Als wären sie aus etwas anderem als Metall gemacht.\n\nDu kniestdich hin und schaust hinunter.\n\nDunkelheit. Keine Schwellen. Kein Kies. Nur... Nichts.\n\nDu wirfst einen kleinen Stein hinein. Er fällt. Und fällt. Kein Aufprall.\n\nDann, aus der Tiefe: ein Lichtpunkt. Er wird größer. Näher. Schneller.\n\nDas Brummen setzt ein.",
+      "narrative": "Du gehst zum Rand. Dahinter die Schienen – schwarz, matt.\n\nDu schaust hinunter. Dunkelheit. Kein Kies. Nur... Nichts.\n\nEin Lichtpunkt, aus der Tiefe. Näher. Schneller. Das Brummen setzt ein.",
       "choices": [
         {
           "id": "lean_closer",
@@ -930,7 +930,7 @@
       "id": "c1_inv_person",
       "chapter": 1,
       "title": "Die Gestalt",
-      "narrative": "Am Rand – auf einer Bank, die du vorhin nicht gesehen hast, schwörst du es – sitzt eine Gestalt. Sie liest eine Zeitung. Die Seiten rascheln nicht. Sie hält sie vollkommen still.\n\nDu siehst die Schlagzeile: „ÖLKRISE VERSCHÄRFT SICH\", in altmodischer Frakturschrift, die an Grabsteine erinnert. Das Datum ist verwischt.\n\n„Entschuldigung\", sagst du.\n\nDie Gestalt reagiert nicht. Blättert nicht um. Nicht einmal, als du näher kommst.\n\nDu legst deine Hand auf ihre Schulter.\n\nKalt. Hart. Wie Wachs.\n\nFür einen Herzschlag sieht ihr Gesicht aus wie deins. Dann ist es wieder fremd.",
+      "narrative": "Eine Gestalt sitzt auf einer Bank und liest eine Zeitung. Die Seiten rascheln nicht.\n\n„Entschuldigung\", sagst du. Keine Reaktion.\n\nDu legst deine Hand auf ihre Schulter. Kalt. Hart. Wie Wachs.\n\nFür einen Herzschlag sieht ihr Gesicht aus wie deins.",
       "choices": [
         {
           "id": "take_newspaper",
@@ -975,7 +975,7 @@
       "id": "c1_inv_poster",
       "chapter": 1,
       "title": "Das Plakat",
-      "narrative": "An der Wand klebt ein einzelnes Plakat. Verblasst. Orange Schrift auf braunem Grund – diese aggressive Typografie aus den Siebzigern, die schmerzt, wenn man zu lange hinschaut.\n\n„REISEN SIE MIT UNS\", steht da in versetzten Großbuchstaben.\n\nKeine Webseite. Keine QR-Codes. Nur eine Telefonnummer mit zu wenigen Ziffern: 19-19-19.\n\nDas Papier ist an den Ecken eingerissen, als hätte jemand versucht, es abzureißen, und aufgegeben.\n\nDu streichst mit dem Finger über die Oberfläche. Die Tinte ist rau, fast wie Narbengewebe.",
+      "narrative": "Ein verblasstes Plakat. Orange auf Braun, Siebziger-Typografie: „REISEN SIE MIT UNS\".\n\nKeine Webseite. Nur eine Telefonnummer: 19-19-19.\n\nDu streichst über die Oberfläche. Die Tinte ist rau, fast wie Narbengewebe.",
       "choices": [
         {
           "id": "note_number",

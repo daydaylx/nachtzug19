@@ -29,7 +29,7 @@ import {
 // Helper: Get State Value by Target
 // ============================================================================
 
-function getStateValue(state: GameState, target: EffectTarget): number | boolean {
+function getStateValue(state: GameState, target: EffectTarget): number | boolean | string {
   // Legacy Stats
   if (target === 'mut') return state.stats.mut;
   if (target === 'wissen') return state.stats.wissen;
@@ -83,19 +83,21 @@ function getStateValue(state: GameState, target: EffectTarget): number | boolean
   if (target === 'saw_passenger_loop') return state.items.saw_passenger_loop;
   if (target === 'heard_comp7_scratching') return state.items.heard_comp7_scratching;
 
-  // Nuance Flags (narrative variants, no tickets)
+  // Nuance Flags – boolean
   if (target === 'inspected_device') return state.items.inspected_device;
   if (target === 'looked_into_void') return state.items.looked_into_void;
   if (target === 'gazed_into_darkness') return state.items.gazed_into_darkness;
-  if (target === 'prepare_stance') return state.items.prepare_stance;
-  if (target === 'breath_control') return state.items.breath_control;
-  if (target === 'conductor_stance') return state.items.conductor_stance;
-  if (target === 'approach_response') return state.items.approach_response;
   if (target === 'counted_compartments') return state.items.counted_compartments;
   if (target === 'went_to_light') return state.items.went_to_light;
   if (target === 'kept_no_ticket_note') return state.items.kept_no_ticket_note;
   if (target === 'destroyed_evidence') return state.items.destroyed_evidence;
   if (target === 'noticed_jacket_change') return state.items.noticed_jacket_change;
+
+  // Nuance Flags – string
+  if (target === 'prepare_stance') return state.items.prepare_stance;
+  if (target === 'breath_control') return state.items.breath_control;
+  if (target === 'conductor_stance') return state.items.conductor_stance;
+  if (target === 'approach_response') return state.items.approach_response;
 
   // Meta
   if (target === 'chapter_index') return state.chapter_index;
@@ -108,77 +110,103 @@ function getStateValue(state: GameState, target: EffectTarget): number | boolean
 // Helper: Set State Value by Target
 // ============================================================================
 
-function setStateValue(state: GameState, target: EffectTarget, value: number | boolean): void {
+/** Runtime guard: ensures value is number, returns it (no `as` cast needed). */
+function requireNumber(value: number | boolean | string, target: string): number {
+  if (typeof value !== 'number') {
+    throw new Error(`Effect target '${target}' requires a number value, got ${typeof value}: ${JSON.stringify(value)}`);
+  }
+  return value;
+}
+
+/** Runtime guard: ensures value is boolean, returns it (no `as` cast needed). */
+function requireBoolean(value: number | boolean | string, target: string): boolean {
+  if (typeof value !== 'boolean') {
+    throw new Error(`Effect target '${target}' requires a boolean value, got ${typeof value}: ${JSON.stringify(value)}`);
+  }
+  return value;
+}
+
+/** Runtime guard: ensures value is string, returns it (no `as` cast needed). */
+function requireString(value: number | boolean | string, target: string): string {
+  if (typeof value !== 'string') {
+    throw new Error(`Effect target '${target}' requires a string value, got ${typeof value}: ${JSON.stringify(value)}`);
+  }
+  return value;
+}
+
+function setStateValue(state: GameState, target: EffectTarget, value: number | boolean | string): void {
   // Legacy Stats
-  if (target === 'mut') { state.stats.mut = value as number; return; }
-  if (target === 'wissen') { state.stats.wissen = value as number; return; }
-  if (target === 'empathie') { state.stats.empathie = value as number; return; }
+  if (target === 'mut') { state.stats.mut = requireNumber(value, target); return; }
+  if (target === 'wissen') { state.stats.wissen = requireNumber(value, target); return; }
+  if (target === 'empathie') { state.stats.empathie = requireNumber(value, target); return; }
 
   // Tickets
-  if (target === 'tickets_truth') { state.tickets.tickets_truth = value as number; return; }
-  if (target === 'tickets_escape') { state.tickets.tickets_escape = value as number; return; }
-  if (target === 'tickets_guilt') { state.tickets.tickets_guilt = value as number; return; }
-  if (target === 'tickets_love') { state.tickets.tickets_love = value as number; return; }
+  if (target === 'tickets_truth') { state.tickets.tickets_truth = requireNumber(value, target); return; }
+  if (target === 'tickets_escape') { state.tickets.tickets_escape = requireNumber(value, target); return; }
+  if (target === 'tickets_guilt') { state.tickets.tickets_guilt = requireNumber(value, target); return; }
+  if (target === 'tickets_love') { state.tickets.tickets_love = requireNumber(value, target); return; }
 
   // Pressure
-  if (target === 'conductor_attention') { state.pressure.conductor_attention = value as number; return; }
-  if (target === 'memory_drift') { state.pressure.memory_drift = value as number; return; }
-  if (target === 'hub_investigations') { state.pressure.hub_investigations = value as number; return; }
-  if (target === 'train_explorations') { state.pressure.train_explorations = value as number; return; }
+  if (target === 'conductor_attention') { state.pressure.conductor_attention = requireNumber(value, target); return; }
+  if (target === 'memory_drift') { state.pressure.memory_drift = requireNumber(value, target); return; }
+  if (target === 'hub_investigations') { state.pressure.hub_investigations = requireNumber(value, target); return; }
+  if (target === 'train_explorations') { state.pressure.train_explorations = requireNumber(value, target); return; }
 
   // Relations
-  if (target === 'rel_comp7') { state.relations.rel_comp7 = value as number; return; }
-  if (target === 'rel_boy') { state.relations.rel_boy = value as number; return; }
-  if (target === 'rel_sleepless') { state.relations.rel_sleepless = value as number; return; }
+  if (target === 'rel_comp7') { state.relations.rel_comp7 = requireNumber(value, target); return; }
+  if (target === 'rel_boy') { state.relations.rel_boy = requireNumber(value, target); return; }
+  if (target === 'rel_sleepless') { state.relations.rel_sleepless = requireNumber(value, target); return; }
 
   // Items
-  if (target === 'has_recorder') { state.items.has_recorder = value as boolean; return; }
-  if (target === 'has_tag19') { state.items.has_tag19 = value as boolean; return; }
-  if (target === 'has_ticket') { state.items.has_ticket = value as boolean; return; }
-  if (target === 'photo_anomaly') { state.items.photo_anomaly = value as boolean; return; }
-  if (target === 'played_recorder') { state.items.played_recorder = value as boolean; return; }
-  if (target === 'memory_search_active') { state.items.memory_search_active = value as boolean; return; }
-  if (target === 'emma_memory_unlocked') { state.items.emma_memory_unlocked = value as boolean; return; }
-  if (target === 'stance_bold') { state.items.stance_bold = value as boolean; return; }
-  if (target === 'stance_cautious') { state.items.stance_cautious = value as boolean; return; }
+  if (target === 'has_recorder') { state.items.has_recorder = requireBoolean(value, target); return; }
+  if (target === 'has_tag19') { state.items.has_tag19 = requireBoolean(value, target); return; }
+  if (target === 'has_ticket') { state.items.has_ticket = requireBoolean(value, target); return; }
+  if (target === 'photo_anomaly') { state.items.photo_anomaly = requireBoolean(value, target); return; }
+  if (target === 'played_recorder') { state.items.played_recorder = requireBoolean(value, target); return; }
+  if (target === 'memory_search_active') { state.items.memory_search_active = requireBoolean(value, target); return; }
+  if (target === 'emma_memory_unlocked') { state.items.emma_memory_unlocked = requireBoolean(value, target); return; }
+  if (target === 'stance_bold') { state.items.stance_bold = requireBoolean(value, target); return; }
+  if (target === 'stance_cautious') { state.items.stance_cautious = requireBoolean(value, target); return; }
 
   // Items - Hub 1 (K1 Redesign)
-  if (target === 'investigated_board') { state.items.investigated_board = value as boolean; return; }
-  if (target === 'investigated_poster') { state.items.investigated_poster = value as boolean; return; }
-  if (target === 'investigated_person') { state.items.investigated_person = value as boolean; return; }
-  if (target === 'investigated_device') { state.items.investigated_device = value as boolean; return; }
-  if (target === 'investigated_edge') { state.items.investigated_edge = value as boolean; return; }
-  if (target === 'called_emma') { state.items.called_emma = value as boolean; return; }
-  if (target === 'saw_emma_vision') { state.items.saw_emma_vision = value as boolean; return; }
-  if (target === 'has_emma_note') { state.items.has_emma_note = value as boolean; return; }
-  if (target === 'knows_board_pattern') { state.items.knows_board_pattern = value as boolean; return; }
+  if (target === 'investigated_board') { state.items.investigated_board = requireBoolean(value, target); return; }
+  if (target === 'investigated_poster') { state.items.investigated_poster = requireBoolean(value, target); return; }
+  if (target === 'investigated_person') { state.items.investigated_person = requireBoolean(value, target); return; }
+  if (target === 'investigated_device') { state.items.investigated_device = requireBoolean(value, target); return; }
+  if (target === 'investigated_edge') { state.items.investigated_edge = requireBoolean(value, target); return; }
+  if (target === 'called_emma') { state.items.called_emma = requireBoolean(value, target); return; }
+  if (target === 'saw_emma_vision') { state.items.saw_emma_vision = requireBoolean(value, target); return; }
+  if (target === 'has_emma_note') { state.items.has_emma_note = requireBoolean(value, target); return; }
+  if (target === 'knows_board_pattern') { state.items.knows_board_pattern = requireBoolean(value, target); return; }
 
   // Items - Hub 2 (K1 Redesign)
-  if (target === 'explored_compartment') { state.items.explored_compartment = value as boolean; return; }
-  if (target === 'explored_sleepless') { state.items.explored_sleepless = value as boolean; return; }
-  if (target === 'explored_passengers') { state.items.explored_passengers = value as boolean; return; }
-  if (target === 'explored_comp7') { state.items.explored_comp7 = value as boolean; return; }
-  if (target === 'knows_sleepless_warning') { state.items.knows_sleepless_warning = value as boolean; return; }
-  if (target === 'saw_passenger_loop') { state.items.saw_passenger_loop = value as boolean; return; }
-  if (target === 'heard_comp7_scratching') { state.items.heard_comp7_scratching = value as boolean; return; }
+  if (target === 'explored_compartment') { state.items.explored_compartment = requireBoolean(value, target); return; }
+  if (target === 'explored_sleepless') { state.items.explored_sleepless = requireBoolean(value, target); return; }
+  if (target === 'explored_passengers') { state.items.explored_passengers = requireBoolean(value, target); return; }
+  if (target === 'explored_comp7') { state.items.explored_comp7 = requireBoolean(value, target); return; }
+  if (target === 'knows_sleepless_warning') { state.items.knows_sleepless_warning = requireBoolean(value, target); return; }
+  if (target === 'saw_passenger_loop') { state.items.saw_passenger_loop = requireBoolean(value, target); return; }
+  if (target === 'heard_comp7_scratching') { state.items.heard_comp7_scratching = requireBoolean(value, target); return; }
 
-  // Nuance Flags (narrative variants, no tickets)
-  if (target === 'inspected_device') { state.items.inspected_device = value as boolean; return; }
-  if (target === 'looked_into_void') { state.items.looked_into_void = value as boolean; return; }
-  if (target === 'gazed_into_darkness') { state.items.gazed_into_darkness = value as boolean; return; }
-  if (target === 'prepare_stance') { state.items.prepare_stance = value as string; return; }
-  if (target === 'breath_control') { state.items.breath_control = value as string; return; }
-  if (target === 'conductor_stance') { state.items.conductor_stance = value as string; return; }
-  if (target === 'approach_response') { state.items.approach_response = value as string; return; }
-  if (target === 'counted_compartments') { state.items.counted_compartments = value as boolean; return; }
-  if (target === 'went_to_light') { state.items.went_to_light = value as boolean; return; }
-  if (target === 'kept_no_ticket_note') { state.items.kept_no_ticket_note = value as boolean; return; }
-  if (target === 'destroyed_evidence') { state.items.destroyed_evidence = value as boolean; return; }
-  if (target === 'noticed_jacket_change') { state.items.noticed_jacket_change = value as boolean; return; }
+  // Nuance Flags – boolean
+  if (target === 'inspected_device') { state.items.inspected_device = requireBoolean(value, target); return; }
+  if (target === 'looked_into_void') { state.items.looked_into_void = requireBoolean(value, target); return; }
+  if (target === 'gazed_into_darkness') { state.items.gazed_into_darkness = requireBoolean(value, target); return; }
+  if (target === 'counted_compartments') { state.items.counted_compartments = requireBoolean(value, target); return; }
+  if (target === 'went_to_light') { state.items.went_to_light = requireBoolean(value, target); return; }
+  if (target === 'kept_no_ticket_note') { state.items.kept_no_ticket_note = requireBoolean(value, target); return; }
+  if (target === 'destroyed_evidence') { state.items.destroyed_evidence = requireBoolean(value, target); return; }
+  if (target === 'noticed_jacket_change') { state.items.noticed_jacket_change = requireBoolean(value, target); return; }
+
+  // Nuance Flags – string
+  if (target === 'prepare_stance') { state.items.prepare_stance = requireString(value, target); return; }
+  if (target === 'breath_control') { state.items.breath_control = requireString(value, target); return; }
+  if (target === 'conductor_stance') { state.items.conductor_stance = requireString(value, target); return; }
+  if (target === 'approach_response') { state.items.approach_response = requireString(value, target); return; }
 
   // Meta
-  if (target === 'chapter_index') { state.chapter_index = value as number; return; }
-  if (target === 'station_count') { state.station_count = value as number; return; }
+  if (target === 'chapter_index') { state.chapter_index = requireNumber(value, target); return; }
+  if (target === 'station_count') { state.station_count = requireNumber(value, target); return; }
 
   throw new Error(`Unknown target: ${target}`);
 }
@@ -195,21 +223,27 @@ export function applyEffects(state: GameState, effects: Effect[]): void {
   for (const effect of effects) {
     const currentValue = getStateValue(state, effect.target);
 
-    let newValue: number | boolean;
+    let newValue: number | boolean | string;
 
     switch (effect.type) {
       case 'inc':
         if (typeof currentValue !== 'number') {
           throw new Error(`Cannot increment non-numeric target: ${effect.target}`);
         }
-        newValue = currentValue + (effect.value as number);
+        if (typeof effect.value !== 'number') {
+          throw new Error(`Effect 'inc' on '${effect.target}' requires a numeric value, got ${typeof effect.value}`);
+        }
+        newValue = currentValue + effect.value;
         break;
 
       case 'dec':
         if (typeof currentValue !== 'number') {
           throw new Error(`Cannot decrement non-numeric target: ${effect.target}`);
         }
-        newValue = currentValue - (effect.value as number);
+        if (typeof effect.value !== 'number') {
+          throw new Error(`Effect 'dec' on '${effect.target}' requires a numeric value, got ${typeof effect.value}`);
+        }
+        newValue = currentValue - effect.value;
         break;
 
       case 'set':
@@ -230,7 +264,7 @@ export function applyEffects(state: GameState, effects: Effect[]): void {
         break;
 
       default:
-        throw new Error(`Unknown effect type: ${(effect as any).type}`);
+        throw new Error(`Unknown effect type: ${(effect as { type: never }).type}`);
     }
 
     setStateValue(state, effect.target, newValue);
