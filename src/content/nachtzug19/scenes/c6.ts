@@ -153,7 +153,8 @@ Angst? Mitgefühl? Schuld?
 „Weißt du, was in Abteil 7 ist?" fragt sie leise.`,
     narrative_variants: [
       {
-        min_drift: 4,
+        condition: { type: 'compare', target: 'memory_drift', operator: '>=', value: 4 },
+        priority: 20,
         narrative: `Du findest Comp7... oder war ihr Name Comp8? In ihrem Abteil.
 
 Sie sitzt auf der Bank. Bewegungslos.
@@ -429,6 +430,39 @@ Wartet darauf, dass du… etwas tust.
 Etwas sagst.
 
 Etwas erinnerst.`,
+    narrative_variants: [
+      {
+        condition: { type: 'bool', target: 'emma_memory_unlocked', value: true },
+        priority: 30,
+        narrative: `Dann gibst du dem Impuls nach und öffnest die Tür.
+
+Das Abteil ist wie deines. Die gleichen Sitze. Das gleiche Fenster.
+
+Aber da sitzt… jemand.
+
+Eine Gestalt. Nicht mehr ganz verschwommen.
+
+Haare, die du kennst. Eine Haltung, die du kennst. Die Art, wie sie die Hände im Schoß gefaltet hält.
+
+Emma.
+
+Nicht deutlich. Nicht sicher. Aber genug, dass der Name auftaucht, bevor du ihn rufen kannst.
+
+Sie dreht sich nicht um. Sie weiß, dass du da bist.
+
+Die Gestalt hebt leicht die Hand – nicht als Gruß, eher als Zeichen. Ich bin hier. Ich war immer hier.
+
+Du weißt, dass es nicht die echte Emma ist. Es ist eine Erinnerung an sie. Eine Möglichkeit. Ein Fragment davon, was verloren gegangen ist.
+
+Aber das Fragment wartet.
+
+Wartet darauf, dass du… etwas tust.
+
+Etwas sagst.
+
+Etwas endgültig erinnerst.`
+      }
+    ],
     choices: [
       {
         id: 'speak_high_drift',
@@ -1060,7 +1094,8 @@ Dein Sitz.
 Aber… 1973?`,
     narrative_variants: [
       {
-        min_drift: 5,
+        condition: { type: 'compare', target: 'memory_drift', operator: '>=', value: 5 },
+        priority: 20,
         narrative: `Du findest das Etikett.
 
 Aber es ist nicht aus Metall. Es ist aus Knochen.
@@ -1169,7 +1204,8 @@ Der Schaffner.
 Er kommt.`,
     narrative_variants: [
       {
-        min_drift: 3,
+        condition: { type: 'compare', target: 'memory_drift', operator: '>=', value: 3 },
+        priority: 15,
         narrative: `Die Lichter flackern.
 
 Dann – aus.
@@ -1201,7 +1237,8 @@ Der Schaffner.
 Er tritt durch den Riss.`
       },
       {
-        min_drift: 5,
+        condition: { type: 'compare', target: 'memory_drift', operator: '>=', value: 5 },
+        priority: 25,
         narrative: `Die Lichter flackern.
 
 Und bleiben an.

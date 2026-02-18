@@ -636,7 +636,8 @@ Wagen 7. Sitz 19. 19. September 1973.
 Alles fällt an seinen Platz.`
       },
       {
-        min_drift: 3,
+        condition: { type: 'compare', target: 'memory_drift', operator: '>=', value: 3 },
+        priority: 15,
         narrative: `Die Lautsprecher knistern.
 
 Leise. Dann laut. Wie ein Schrei.
@@ -670,7 +671,8 @@ Die Lautsprecher bluten. Schwarze Tropfen fallen herab.
 Dann – Stille.`
       },
       {
-        min_drift: 5,
+        condition: { type: 'compare', target: 'memory_drift', operator: '>=', value: 5 },
+        priority: 25,
         narrative: `Die Lautsprecher explodieren nicht. Sie flüstern.
 
 Direkt in deinem Kopf.
@@ -1135,6 +1137,23 @@ Und dann… dieser Zug.
 Du verstehst jetzt.
 
 Alles.`,
+    narrative_variants: [
+      {
+        condition: { type: 'bool', target: 'has_recorder', value: true },
+        priority: 20,
+        narrative: `Lachen. Abschied. Winken. Der Zug fährt ab.
+
+Und jetzt weißt du: Das war auf der Kassette. Deine eigene Stimme, aufgenommen in dem Moment, in dem du noch nicht wusstest, was kommen würde.
+
+Dann – ein Geräusch. Metall. Schreie. Stille. Du hast es gehört. Auf dem Band. Und jetzt hörst du es wieder – aber nicht von außen. Von innen.
+
+Lange Dunkelheit.
+
+Und dann… dieser Zug. Dieser ewige Zug.
+
+Du verstehst jetzt alles. Und der Rekorder in deiner Hand ist der Beweis, dass du es schon die ganze Zeit wusstest – und trotzdem hierher zurückgekehrt bist.`
+      }
+    ],
     choices: [
       {
         id: 'understand',
@@ -1905,7 +1924,8 @@ Und dann…
 Dann ist es vorbei.`,
     narrative_variants: [
       {
-        min_drift: 3,
+        condition: { type: 'compare', target: 'memory_drift', operator: '>=', value: 3 },
+        priority: 15,
         narrative: `Der Zug… hält.
 
 Nicht langsam.
@@ -1941,7 +1961,8 @@ Und dann…
 Dann ist es vorbei.`
       },
       {
-        min_drift: 5,
+        condition: { type: 'compare', target: 'memory_drift', operator: '>=', value: 5 },
+        priority: 25,
         narrative: `Der Zug… hält.
 
 Nicht langsam.
