@@ -54,6 +54,31 @@ const KNOWN_EFFECT_TYPES: Set<EffectType> = new Set([
   'inc', 'dec', 'set', 'clamp'
 ]);
 
+/**
+ * Targets, auf denen inc/dec/clamp erlaubt sind (numerische Typen im State).
+ * Muss exakt mit den number-Feldern im GameState übereinstimmen.
+ */
+const NUMERIC_TARGETS: Set<EffectTarget> = new Set([
+  // Legacy Stats
+  'mut', 'wissen', 'empathie',
+  // Tickets
+  'tickets_truth', 'tickets_escape', 'tickets_guilt', 'tickets_love',
+  // Pressure
+  'conductor_attention', 'memory_drift', 'hub_investigations', 'train_explorations',
+  // Relations
+  'rel_comp7', 'rel_boy', 'rel_sleepless',
+  // Meta
+  'chapter_index', 'station_count'
+]);
+
+/**
+ * Targets mit string-Typ im State. Nur 'set' ist erlaubt; inc/dec/clamp sind verboten.
+ * Exportiert für Tests und externe Schema-Prüfungen.
+ */
+export const STRING_TARGETS: Set<EffectTarget> = new Set([
+  'prepare_stance', 'breath_control', 'conductor_stance', 'approach_response'
+]);
+
 // ============================================================================
 // Validation Helpers
 // ============================================================================
@@ -188,6 +213,18 @@ function validateChoice(
           choice_id: choice.id
         });
       }
+
+      // Semantische Typ-Prüfung: inc/dec/clamp nur auf Numeric-Targets
+      if ((effect.type === 'inc' || effect.type === 'dec' || effect.type === 'clamp')
+          && validateEffectTarget(effect.target)
+          && !NUMERIC_TARGETS.has(effect.target as EffectTarget)) {
+        errors.push({
+          type: 'error',
+          message: `Choice '${choiceLabel}' Effect #${idx}: '${effect.type}' ist nicht erlaubt auf nicht-numerischem Target '${effect.target}' (nur 'set' erlaubt)`,
+          scene_id: sceneId,
+          choice_id: choice.id
+        });
+      }
     });
   }
 
@@ -260,6 +297,16 @@ function validateScene(
           scene_id: scene.id
         });
       }
+      // Semantische Typ-Prüfung: inc/dec/clamp nur auf Numeric-Targets
+      if ((effect.type === 'inc' || effect.type === 'dec' || effect.type === 'clamp')
+          && validateEffectTarget(effect.target)
+          && !NUMERIC_TARGETS.has(effect.target as EffectTarget)) {
+        errors.push({
+          type: 'error',
+          message: `Entry-Effect #${idx}: '${effect.type}' ist nicht erlaubt auf nicht-numerischem Target '${effect.target}' (nur 'set' erlaubt)`,
+          scene_id: scene.id
+        });
+      }
     });
   }
 
@@ -276,6 +323,16 @@ function validateScene(
         errors.push({
           type: 'error',
           message: `Exit-Effect #${idx}: Unbekanntes Target '${effect.target}'`,
+          scene_id: scene.id
+        });
+      }
+      // Semantische Typ-Prüfung: inc/dec/clamp nur auf Numeric-Targets
+      if ((effect.type === 'inc' || effect.type === 'dec' || effect.type === 'clamp')
+          && validateEffectTarget(effect.target)
+          && !NUMERIC_TARGETS.has(effect.target as EffectTarget)) {
+        errors.push({
+          type: 'error',
+          message: `Exit-Effect #${idx}: '${effect.type}' ist nicht erlaubt auf nicht-numerischem Target '${effect.target}' (nur 'set' erlaubt)`,
           scene_id: scene.id
         });
       }

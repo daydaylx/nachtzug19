@@ -52,6 +52,9 @@ npm run export:story
 
 Dies erstellt `export/story.json` und kopiert es automatisch nach `android-native/app/src/main/assets/story.json`.
 
+> ⚠️ **`export/story.json` ist ein generiertes Artefakt** und wird nicht versioniert (via `.gitignore`).  
+> Es muss **vor jedem Android-Build** lokal erzeugt werden. Siehe auch [`export/README.md`](export/README.md).
+
 ### 2. Android App erstellen
 
 **Über die Kommandozeile:**

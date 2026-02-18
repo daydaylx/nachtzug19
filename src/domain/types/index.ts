@@ -213,7 +213,7 @@ export type SimpleCondition = {
   type: 'compare';
   target: EffectTarget;
   operator: ComparisonOperator;
-  value: number | boolean;
+  value: number | boolean | string;
 };
 
 /**

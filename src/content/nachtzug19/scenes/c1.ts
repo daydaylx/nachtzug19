@@ -86,20 +86,6 @@ Um dich herum: Details, die darauf warten, untersucht zu werden.`,
         next: 'c1_inv_board'
       },
       {
-        id: 'investigate_poster',
-        label: 'Das verblasste Plakat an der Wand',
-        condition: {
-          type: 'bool',
-          target: 'investigated_poster',
-          value: false
-        },
-        effects: [
-          { type: 'inc', target: 'hub_investigations', value: 1 },
-          { type: 'set', target: 'investigated_poster', value: true }
-        ],
-        next: 'c1_inv_poster'
-      },
-      {
         id: 'investigate_person',
         label: 'Die Gestalt mit der Zeitung',
         condition: {
@@ -113,21 +99,6 @@ Um dich herum: Details, die darauf warten, untersucht zu werden.`,
           { type: 'inc', target: 'conductor_attention', value: 1 }
         ],
         next: 'c1_inv_person'
-      },
-      {
-        id: 'investigate_device',
-        label: 'Dein Gerät in der Tasche',
-        condition: {
-          type: 'bool',
-          target: 'investigated_device',
-          value: false
-        },
-        effects: [
-          { type: 'inc', target: 'hub_investigations', value: 1 },
-          { type: 'set', target: 'investigated_device', value: true },
-          { type: 'inc', target: 'tickets_truth', value: 1 }
-        ],
-        next: 'c1_inv_device'
       },
       {
         id: 'investigate_edge',
@@ -468,17 +439,18 @@ Du drehst den Zettel um. Auf der Rückseite: Ein einzelnes Wort, in anderer Tint
     choices: [
       {
         id: 'keep_note',
-        label: 'Den Zettel sorgfältig einstecken',
+        label: 'Den Zettel sorgfältig einstecken – und zum Zug',
         effects: [
           { type: 'inc', target: 'tickets_love', value: 1 }
         ],
-        next: 'c1_hub_platform'
+        next: 'c1_event_train_arrival'
       }
     ],
     tags: ['emma_thread'],
     state_notes: [
       'Emma-Note wird in K6 nochmal wichtig',
-      'Wagen 7 Hinweis'
+      'Wagen 7 Hinweis',
+      'EXIT FIX: Direkt zu c1_event_train_arrival, nicht zurück zum Hub'
     ],
     atmosphere: 'somber'
   },
@@ -675,7 +647,7 @@ Dort musst du hin. Aber nicht jetzt. Erst musst du verstehen, wo du bist.`
     title: 'Im Zug',
     narrative: `Du stehst im Gang des Zuges.
 
-Um dich herum: vier Bereiche, die du erkunden kannst.`,
+Um dich herum: drei Bereiche, die du erkunden kannst.`,
     narrative_variants: [
       {
         condition: { type: 'compare', target: 'train_explorations', operator: '==', value: 1 },
@@ -717,22 +689,8 @@ Um dich herum: vier Bereiche, die du erkunden kannst.`,
         next: 'c1_train_sleepless'
       },
       {
-        id: 'explore_passengers',
-        label: '[C] Die anderen Passagiere',
-        condition: {
-          type: 'bool',
-          target: 'explored_passengers',
-          value: false
-        },
-        effects: [
-          { type: 'inc', target: 'train_explorations', value: 1 },
-          { type: 'set', target: 'explored_passengers', value: true }
-        ],
-        next: 'c1_train_passengers'
-      },
-      {
         id: 'explore_comp7',
-        label: '[D] Die Tür mit der 7 (verschlossen)',
+        label: '[C] Die Tür mit der 7 (verschlossen)',
         condition: {
           type: 'bool',
           target: 'explored_comp7',
@@ -748,8 +706,9 @@ Um dich herum: vier Bereiche, die du erkunden kannst.`,
     ],
     tags: ['hub'],
     state_notes: [
-      'Zweiter Hub - freie Wahl der Reihenfolge',
-      'Nach 2 Explorations triggert Durchsage automatisch'
+      'Zweiter Hub - freie Wahl der Reihenfolge (3 Choices nach Merge)',
+      'Nach 2 Explorations triggert Durchsage automatisch',
+      'HUB TRIM: explore_passengers entfernt – Loop-Text in c1_train_compartment integriert'
     ],
     atmosphere: 'mystic'
   },
@@ -766,14 +725,17 @@ Durch das Fenster: Schwärze. Keine Lichter, keine Landschaft. Aber ab und zu ei
 
 Du lehnst den Kopf ans Fenster. Das Glas ist warm. Viel zu warm.
 
-Im Spiegelbild des Fensters siehst du dein Gesicht. Für einen Moment ist da noch jemand. Hinter dir. Aber als du dich umdrehst: niemand.`,
+Im Spiegelbild des Fensters siehst du dein Gesicht. Für einen Moment ist da noch jemand. Hinter dir. Aber als du dich umdrehst: niemand.
+
+In den anderen Abteilen bewegen sich die Passagiere in kleinen, mechanischen Schleifen. Eine Frau mit gefaltetem Mantel, die Hände perfekt symmetrisch im Schoß. Ein Mann, der ein leeres Buch aufschlägt und umblättert, ohne je zu lesen. Niemand sieht raus. Niemand sieht rein. Als wären sie nicht hier, sondern aufgezeichnet.`,
     choices: [
       {
         id: 'stay_window',
         label: 'Beim Fenster bleiben und hinausstarren',
         effects: [
           { type: 'inc', target: 'memory_drift', value: 1 },
-          { type: 'set', target: 'gazed_into_darkness', value: true }
+          { type: 'set', target: 'gazed_into_darkness', value: true },
+          { type: 'set', target: 'saw_passenger_loop', value: true }
         ],
         next: 'c1_hub_train'
       },
@@ -781,7 +743,8 @@ Im Spiegelbild des Fensters siehst du dein Gesicht. Für einen Moment ist da noc
         id: 'leave_quickly',
         label: 'Schnell zurück in den Gang',
         effects: [
-          { type: 'set', target: 'gazed_into_darkness', value: true }
+          { type: 'set', target: 'gazed_into_darkness', value: true },
+          { type: 'set', target: 'saw_passenger_loop', value: true }
         ],
         next: 'c1_hub_train'
       }
@@ -789,7 +752,8 @@ Im Spiegelbild des Fensters siehst du dein Gesicht. Für einen Moment ist da noc
     tags: ['investigation'],
     state_notes: [
       'Spiegelbild-Anomalie',
-      'Vorbereitung auf K4 Mirror-Theme'
+      'Vorbereitung auf K4 Mirror-Theme',
+      'MERGE: Passagier-Loop-Text integriert, saw_passenger_loop wird hier gesetzt'
     ],
     atmosphere: 'mystic'
   },
@@ -1140,7 +1104,9 @@ Comp7 steht am Fenster von Wagen 7 und schreibt. Sie sieht nicht auf, aber du we
 
 Der Bahnsteig ist derselbe wie vorhin. Jedes Detail identisch. Die Anzeigetafel klackt weiter: 23:47. 23:47. 23:47.
 
-Du verstehst langsam: Das hier ist kein Zufall. Das hier ist eine Maschine. Und du bist ein Teil davon.`,
+Du verstehst langsam: Das hier ist kein Zufall. Das hier ist eine Maschine. Und du bist ein Teil davon.
+
+Die Uhr zeigt 23:47. Du bist seit Stunden unterwegs. Aber die Uhr sagt, du bist gerade erst angekommen.`,
         priority: 40
       },
       // LOVE PATH: Emma vision + Love ticket (priority 35)
@@ -1170,7 +1136,9 @@ Dann geht das Licht aus.
 
 Als es wieder anspringt, ist sie weg.
 
-Aber der Zettel in deiner Tasche ist schwerer geworden.`,
+Aber der Zettel in deiner Tasche ist schwerer geworden.
+
+Das Datum auf dem Zettel: heute Nacht. Du bist seit Stunden unterwegs. Das Datum sagt, du bist gerade erst angekommen.`,
         priority: 35
       },
       // ESCAPE PATH: High Escape, low Attention (priority 30)
@@ -1196,7 +1164,9 @@ Du weißt nicht, ob das eine Regel ist. Oder eine Warnung. Oder beides.
 
 Die Tür schließt sich wieder.
 
-Du bist geblieben. Weil Bleiben sicherer ist. Oder weil du keine Wahl hattest.`,
+Du bist geblieben. Weil Bleiben sicherer ist. Oder weil du keine Wahl hattest.
+
+Die Uhr zeigt 23:47. Du bist seit Stunden unterwegs. Aber die Uhr sagt, du bist gerade erst angekommen.`,
         priority: 30
       },
       // GUILT PATH: Fallback for Guilt or mixed paths (priority 25)
@@ -1219,7 +1189,9 @@ Der Gedanke drückt schwer auf deiner Brust: Wärst du nie eingestiegen, hätte 
 
 Die Tür öffnet sich. Niemand steigt ein. Niemand steigt aus.
 
-Der Zug fährt weiter.`,
+Der Zug fährt weiter.
+
+Die Uhr zeigt 23:47. Du bist seit Stunden unterwegs. Aber die Uhr sagt, du bist gerade erst angekommen.`,
         priority: 25
       }
     ],

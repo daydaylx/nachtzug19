@@ -20,7 +20,9 @@ export const chapter2Scenes: ScenesCollection = {
     id: 'c2_s01_ticket_search',
     chapter: 2,
     title: 'Ohne Ticket',
-    narrative: `Der Zug fährt weiter. Das Brummen ist konstant, tief.
+    narrative: `23:47. Und du fährst noch.
+
+Der Zug fährt weiter. Das Brummen ist konstant, tief.
 
 Du gehst durch den Wagen. Der Schlaflose starrt aus dem Fenster. Seine Jacke ist jetzt schwarz. War sie nicht eben noch blau?
 
