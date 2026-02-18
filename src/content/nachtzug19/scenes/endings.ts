@@ -216,41 +216,51 @@ Du siehst nur Emma an.`,
 
 "Ich weiß."
 
-Sie setzt sich auf eine Bank. Du setzt dich neben sie.
+Sie setzt sich auf eine Bank. Du setzt dich neben sie. Die Bank ist kalt. Du spürst es kaum.
 
 "Sie haben deinen Körper nie gefunden," sagt sie. "19 Tote. Aber nur 18 Leichen."
 
 "Verschwunden."
 
-"Ja."
+"Ja." Sie hält kurz inne. „Ich hab lange geglaubt, du bist absichtlich weg. Dass du... gegangen bist. Freiwillig. Weil ich etwas falsch gemacht habe."
 
-Sie erzählt von ihrem Leben. Von Jahren, die weitergingen, während du stehen geblieben bist.
+Du siehst sie an. „Nein."
 
-"Ich liebe dich," sagst du.
+„Ich weiß das jetzt." Sie wischt sich kurz die Augen. „Aber es hat lange gedauert."
 
-"Ich weiß," sagt sie. "Ich dich auch."
+Die Jahre, die sie beschreibt, hörst du zwischen den Sätzen. Nicht in dem, was sie sagt — in dem, was sie nicht sagt. In den Pausen, wo die Namen der anderen stehen sollten. In der Art, wie sie deinen Namen nicht ausspricht, als hätte sie ihn aufgespart.
+
+„Ich liebe dich," sagst du. Und du weißt, dass es unvollständig ist. Dass diese drei Wörter fünfzig Jahre nicht überbrücken, dass sie keine Schuld nehmen und keine Zeit zurückbringen. Aber sie sind wahr.
+
+„Ich weiß," sagt sie. „Ich dich auch."
 
 Sie steht auf. Reicht dir die Hand.
 
-"Komm."
+Ihr Haus ist klein. Gemütlich. Fotos an der Wand — Kinder, Enkel, Momente, die ohne dich waren. Du schaust sie alle an. Du kommst in keinem vor. Das schmerzt sauber und präzise.
 
-Ihr Haus ist klein. Gemütlich. Fotos an der Wand. Ein Leben ohne dich.
+„Wie lange habe ich?" fragst du.
 
-"Wie lange habe ich?" fragst du.
+„Ich weiß es nicht," sagt sie ehrlich. „Aber wir haben jetzt. Das ist mehr, als ich gedacht hatte."
 
-"Ich weiß es nicht," sagt sie ehrlich. "Aber wir haben jetzt."
+Es ist nicht das Wiedersehen aus deinen Träumen. Es ist etwas Raueres, Echtes.
+
+Durch das Fenster siehst du, wie der letzte Lichtschein des Nachtzuges hinter dem Horizont erlischt.
+
+Du wendest dich Emma zu.
 
 ---
 
 **ENDE: LIEBE**
 
-*Du hast jemanden gefunden. Oder... sie hat dich gefunden.*
+*Du hast fünfzig Jahre verpasst.*
 
-*Die Zeit, die ihr habt, ist vielleicht kurz. Vielleicht lang.*
+*Aber du bist angekommen.*
 
-*Aber sie ist echt.*
+*Das Leben, das ihr jetzt habt, ist kein ganzes Leben mehr.*
 
-*Und manchmal ist das genug.*`,
+*Aber es ist eures.*
+
+*Und das zählt mehr als jeder Takt, den der Zug dir gestohlen hat.*`,
     choices: [
       {
         id: 'finish',
@@ -278,45 +288,41 @@ Ihr Haus ist klein. Gemütlich. Fotos an der Wand. Ein Leben ohne dich.
     title: 'Schuld',
     narrative: `Du steigst aus.
 
-Aber du kannst nicht weitergehen.
+Aber du bleibst stehen.
 
-Deine Füße bleiben am Rand des Bahnsteigs stehen.
+Der Zug verblasst hinter dir, und in seinen Fenstern siehst du sie noch: den Schlaflosen mit leeren Augen. Den Jungen, die Hand gegen das Glas gedrückt, auf der Suche nach jemandem, der ihn sieht. Comp7 in Wagen 7, allein zwischen ihren Notizbüchern, schreibend ohne aufzuhören — 19. 19. 19. — als könnte die Zahl irgendwann eine andere Bedeutung annehmen.
 
-Du blickst zurück zum Zug.
+Du bist raus. Sie nicht.
 
-Er verblasst langsam, und in den Fenstern siehst du die anderen: den Schlaflosen mit leeren Augen, den Jungen mit der Hand am Glas, Comp7 in Wagen 7, allein zwischen ihren Notizbüchern, wie sie weiter schreibt: 19. 19. 19.
+Das ist kein neutraler Fakt.
 
-Du hast sie zurückgelassen.
+Der Tag-19-Anhänger liegt schwer in deiner Faust. Auf der Rückseite, die du nicht siehst, sind 18 Kratzer. Du hast sie nie gezählt, aber du weißt, dass es 18 sind.
 
-Alle.
+Du bist #19. Der letzte. Der, der gegangen ist.
 
-Du bist gegangen, aber sie sind noch da. Im Zug. In der Schleife. In der Erinnerung.
+Der Schaffner steht am Ende des Bahnsteigs. Er kommt nicht zu dir. Er wartet nur.
 
-"Es war nicht deine Schuld," sagt eine Stimme.
+Als du auf ihn zugehst, sieht er dich ohne Überraschung an. Als hätte er gewusst, dass genau du kommen würdest.
 
-Du drehst dich um. Der Schaffner steht neben dir auf dem Bahnsteig.
+„Sie haben einen Namen," sagst du. „Jeder von ihnen."
 
-"Der Unfall 1973. Es war nicht deine Schuld."
+„Ja."
 
-"Ich weiß," flüsterst du.
+„Ich kenne keinen einzigen."
 
-"Aber du glaubst es nicht."
+Er sieht dich lange an. „Nein. Aber du könntest."
 
-Du schweigst.
+Hinter dir erlischt das letzte Licht im letzten Wagen des Zuges.
 
-"Du hättest sie nicht retten können. Die 19 Menschen im Zug. Du hättest nichts tun können."
+Du drehst dich nicht um. Du weißt bereits, was du dort gesehen hättest: einen leeren Gang. Kein Flackern. Keine Stimmen.
 
-"Ich hätte nicht einsteigen sollen. An dem Tag. Wenn ich ..."
+Nur die Abwesenheit von 18 Menschen, die niemand vermisst, weil niemand mehr weiß, dass er sie vermissen sollte.
 
-"Dann wärst du nicht gestorben. Aber sie wären es trotzdem."
+Du öffnest die Hand. Schaust auf den Anhänger.
 
-Du siehst ihn an.
+„Ich werde nicht gut schlafen," sagst du.
 
-"Du kannst nicht die Schuld für etwas tragen, das du nicht kontrollieren konntest," sagt er.
-
-"Aber ich kann nicht loslassen."
-
-"Ich weiß," sagt er leise. "Deshalb bist du hier."`,
+„Nein," sagt er. „Das wirst du nicht."`,
     choices: [
       {
         id: 'continue',
@@ -330,9 +336,9 @@ Du siehst ihn an.
     tags: ['ending'],
     state_notes: [
       'Guilt Ending Part 1',
-      'Protagonist fühlt Schuld',
+      'Protagonist trägt Schuld, nicht Heilung',
       'NPCs sind noch im Zug',
-      'Schaffner konfrontiert'
+      'Schaffner kein Trost - nur Zeuge'
     ],
     atmosphere: 'somber'
   },
@@ -340,36 +346,70 @@ Du siehst ihn an.
   'ending_guilt_02': {
     id: 'ending_guilt_02',
     chapter: 7,
-    title: 'Verantwortung',
-    narrative: `"Was soll ich tun?" fragst du.
+    title: 'Die Namen',
+    narrative: `Du verlässt den Bahnhof allein.
 
-"Das musst du entscheiden," sagt der Schaffner.
+Keine Emma wartet auf dich. Keine Hand im Rücken. Keine Stimme, die sagt, es sei in Ordnung.
 
-"Du kannst die Toten nicht retten. Aber du kannst sie in der Erinnerung lebendig halten."
+Es ist nicht in Ordnung.
 
-Der Zug verschwindet. Ganz.
+Das weißt du. Das ist der Unterschied.
 
-Du stehst allein auf dem Bahnsteig. Aber du weißt, was du tun musst.
+In einer Stadtbibliothek, die nach altem Papier und Neonlicht riecht, sitzt du vor einem Mikrofilmleser.
 
-Du gehst in eine Bibliothek und suchst nach Informationen.
+*Nachtzug 19. Unglück. 19. September 1973.*
 
-Nachtzug 19. 19. September 1973. 19:19 Uhr.
+Die Zeitungsmeldungen sind kurz. „Betriebsunfall." „Bremsenversagen." „19 Tote." Die Namen stehen in einer Liste, alphabetisch geordnet, als wäre Alphabetisierung ein Akt der Würde.
 
-Du liest die Namen. Jeden einzelnen.
+Du liest sie einzeln.
 
-Du schreibst sie auf. Nicht um zu vergessen, sondern um zu erinnern.
+Jeden. Einzelnen.
+
+Du sprichst sie lautlos vor dich hin, damit sie nicht nur Zeichen auf Mikrofilm sind, sondern Laute, die jemand geformt hat.
+
+Es dauert länger, als du dachtest.
+
+Manche Namen stocken dir im Mund. Du weißt nicht warum. Vielleicht waren sie jung. Vielleicht hatten sie Kinder. Vielleicht haben sie genau wie du in jenem Moment an nichts Schlimmes gedacht.
+
+Draußen wird es Abend. Dann Nacht.
+
+Du bist der letzte Leser in der Bibliothek, als der Bibliothekar die Lampen dimmt.
+
+„Wir schließen in zehn Minuten."
+
+„Ich weiß," sagst du. „Noch einen Moment."
+
+Du nimmst ein Blatt Papier aus deiner Tasche und schreibst die 18 Namen auf. Nicht um sie zu archivieren. Nicht um sie irgendwo einzureichen.
+
+Nur damit jemand sie in der Hand hält.
+
+Du rollst das Papier zusammen und steckst es in deine Jackentasche, neben den Anhänger.
+
+Dann stehst du auf und gehst.
+
+Draußen ist die Luft kalt und klar. Du weißt noch immer nicht, wo du bist, oder was das Leben für dich bedeutet, jetzt, nach allem.
+
+Aber du weißt die 18 Namen.
+
+Und das zählt. Nicht als Genugtuung. Nicht als Vergebung.
+
+Nur als das, was übrig bleibt, wenn man alles andere loslässt.
 
 ---
 
 **ENDE: SCHULD**
 
-*Du trägst die Verantwortung für die Toten.*
+*Du hast keine Ruhe gefunden.*
 
-*Nicht ihre Schuld. Sondern ihre Erinnerung.*
+*Du wirst keine finden.*
 
-*Es ist schwer. Es tut weh.*
+*Aber du hast ihre Namen.*
 
-*Aber es ist... notwendig.*`,
+*Und du wirst sie nicht vergessen.*
+
+*Das ist nicht Heilung.*
+
+*Das ist Verantwortung.*`,
     choices: [
       {
         id: 'finish',
@@ -383,7 +423,8 @@ Du schreibst sie auf. Nicht um zu vergessen, sondern um zu erinnern.
     tags: ['ending', 'terminal'],
     state_notes: [
       'Guilt Ending Part 2',
-      'Verantwortung + Abschluss'
+      'Einsam + Namen als Last, nicht Heilung',
+      'Kein Frieden - nur Zweck'
     ],
     atmosphere: 'somber'
   },
