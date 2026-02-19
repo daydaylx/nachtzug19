@@ -85,6 +85,94 @@ describe('validateContent - canonical rules and graph guards', () => {
     expect(secretWarn).toBeUndefined();
   });
 
+  it('treats auto_next edges as reachable graph transitions', () => {
+    const scenes: ScenesCollection = {
+      start: {
+        id: 'start',
+        chapter: 1,
+        tags: ['station_end'],
+        choices: [
+          {
+            id: 'to_hub',
+            label: 'To hub',
+            effects: [],
+            next: 'hub'
+          }
+        ]
+      },
+      hub: {
+        id: 'hub',
+        chapter: 1,
+        narrative_variants: [
+          {
+            condition: { type: 'compare', target: 'wissen', operator: '>=', value: 0 },
+            narrative: 'Auto edge',
+            auto_next: 'auto_target'
+          }
+        ],
+        choices: [
+          {
+            id: 'finish',
+            label: 'Finish',
+            effects: [],
+            ending: 'A'
+          }
+        ]
+      },
+      auto_target: {
+        id: 'auto_target',
+        chapter: 1,
+        choices: [
+          {
+            id: 'end',
+            label: 'End',
+            effects: [],
+            ending: 'A'
+          }
+        ]
+      }
+    };
+
+    const result = validateContent('start', scenes, endings);
+    const unreachableWarn = result.warnings.find(
+      warn => warn.scene_id === 'auto_target' && warn.message.includes('nicht erreichbar')
+    );
+
+    expect(unreachableWarn).toBeUndefined();
+  });
+
+  it('fails when narrative variant auto_next points to missing scene', () => {
+    const scenes: ScenesCollection = {
+      start: {
+        id: 'start',
+        chapter: 1,
+        tags: ['station_end'],
+        narrative_variants: [
+          {
+            condition: { type: 'compare', target: 'wissen', operator: '>=', value: 0 },
+            narrative: 'Broken auto next',
+            auto_next: 'missing_scene'
+          }
+        ],
+        choices: [
+          {
+            id: 'finish',
+            label: 'Finish',
+            effects: [],
+            ending: 'A'
+          }
+        ]
+      }
+    };
+
+    const result = validateContent('start', scenes, endings);
+    const autoNextError = result.errors.find(
+      err => err.message.includes('auto_next verweist auf unbekannte Szene')
+    );
+
+    expect(autoNextError).toBeDefined();
+  });
+
   it('detects dead ends with no valid exits', () => {
     const scenes: ScenesCollection = {
       start: {

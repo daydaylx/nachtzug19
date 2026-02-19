@@ -115,6 +115,23 @@ function getConditionTargets(condition: Condition): string[] {
 }
 
 /**
+ * Liefert alle ausgehenden Scene-Kanten einer Szene:
+ * - Choice.next
+ * - narrative_variant.auto_next
+ */
+function getSceneOutgoingSceneIds(scene: Scene): string[] {
+  const choiceTargets = scene.choices
+    .map(choice => choice.next)
+    .filter((target): target is string => Boolean(target));
+
+  const autoNextTargets = (scene.narrative_variants || [])
+    .map(variant => variant.auto_next)
+    .filter((target): target is string => Boolean(target));
+
+  return [...new Set([...choiceTargets, ...autoNextTargets])];
+}
+
+/**
  * Zählt "starke" Effects (inc/dec mit value > 1, oder mehrere effects)
  */
 function countStrongEffects(effects: Effect[]): number {
@@ -368,7 +385,7 @@ function validateScene(
 
   // 7. Prüfe narrative_variants (falls vorhanden)
   if (scene.narrative_variants && scene.narrative_variants.length > 0) {
-    validateNarrativeVariants(scene.id, scene.narrative_variants, errors);
+    validateNarrativeVariants(scene.id, scene.narrative_variants, scenes, errors);
   }
 }
 
@@ -378,6 +395,7 @@ function validateScene(
 function validateNarrativeVariants(
   sceneId: string,
   variants: NarrativeVariant[],
+  scenes: ScenesCollection,
   errors: ValidationError[]
 ): void {
   const seenMinDrifts = new Set<number>();
@@ -419,6 +437,15 @@ function validateNarrativeVariants(
       errors.push({
         type: 'error',
         message: `Szene '${sceneId}' narrative_variant #${idx}: narrative darf nicht leer sein`,
+        scene_id: sceneId
+      });
+    }
+
+    // 5. auto_next muss auf existierende Szene verweisen
+    if (variant.auto_next && !scenes[variant.auto_next]) {
+      errors.push({
+        type: 'error',
+        message: `Szene '${sceneId}' narrative_variant #${idx}: auto_next verweist auf unbekannte Szene '${variant.auto_next}'`,
         scene_id: sceneId
       });
     }
@@ -548,9 +575,9 @@ function validateReachability(
     const scene = scenes[sceneId];
     if (!scene) continue;
 
-    scene.choices.forEach(choice => {
-      if (choice.next && !reachable.has(choice.next)) {
-        queue.push(choice.next);
+    getSceneOutgoingSceneIds(scene).forEach(nextSceneId => {
+      if (!reachable.has(nextSceneId)) {
+        queue.push(nextSceneId);
       }
     });
   }
@@ -579,9 +606,9 @@ function validateNoDeadEnds(
   errors: ValidationError[]
 ): void {
   Object.values(scenes).forEach(scene => {
-    const hasValidExit = scene.choices.some(choice => {
-      return (choice.next && scenes[choice.next]) || (choice.ending && endings[choice.ending]);
-    });
+    const hasEndingExit = scene.choices.some(choice => Boolean(choice.ending && endings[choice.ending]));
+    const hasSceneExit = getSceneOutgoingSceneIds(scene).some(targetId => Boolean(scenes[targetId]));
+    const hasValidExit = hasEndingExit || hasSceneExit;
 
     if (!hasValidExit) {
       errors.push({
@@ -619,10 +646,7 @@ function validateNoInfiniteLoops(
     const scene = scenes[sceneId];
     if (!scene) return;
 
-    scene.choices.forEach(choice => {
-      if (!choice.next) return;
-      const nextId = choice.next;
-
+    getSceneOutgoingSceneIds(scene).forEach(nextId => {
       if (!indices.has(nextId)) {
         strongconnect(nextId);
         lowlinks.set(sceneId, Math.min(lowlinks.get(sceneId)!, lowlinks.get(nextId)!));
@@ -663,10 +687,12 @@ function validateNoInfiniteLoops(
       const scene = scenes[sceneId];
       if (!scene) return; // Szene existiert nicht (sollte bereits anderswo als Error gemeldet sein)
 
-      scene.choices.forEach(choice => {
-        if (choice.ending) {
-          hasExit = true;
-        } else if (choice.next && !sccSet.has(choice.next)) {
+      if (scene.choices.some(choice => Boolean(choice.ending))) {
+        hasExit = true;
+      }
+
+      getSceneOutgoingSceneIds(scene).forEach(nextSceneId => {
+        if (!sccSet.has(nextSceneId)) {
           hasExit = true;
         }
       });

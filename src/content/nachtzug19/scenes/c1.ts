@@ -86,6 +86,20 @@ Um dich herum: Details, die darauf warten, untersucht zu werden.`,
         next: 'c1_inv_board'
       },
       {
+        id: 'investigate_poster',
+        label: 'Das verblasste Plakat [19-19-19]',
+        condition: {
+          type: 'bool',
+          target: 'investigated_poster',
+          value: false
+        },
+        effects: [
+          { type: 'inc', target: 'hub_investigations', value: 1 },
+          { type: 'set', target: 'investigated_poster', value: true }
+        ],
+        next: 'c1_inv_poster'
+      },
+      {
         id: 'investigate_person',
         label: 'Die Gestalt mit der Zeitung',
         condition: {
@@ -99,6 +113,20 @@ Um dich herum: Details, die darauf warten, untersucht zu werden.`,
           { type: 'inc', target: 'conductor_attention', value: 1 }
         ],
         next: 'c1_inv_person'
+      },
+      {
+        id: 'investigate_device',
+        label: 'Das kalte Gerät in deiner Tasche',
+        condition: {
+          type: 'bool',
+          target: 'investigated_device',
+          value: false
+        },
+        effects: [
+          { type: 'inc', target: 'hub_investigations', value: 1 },
+          { type: 'set', target: 'investigated_device', value: true }
+        ],
+        next: 'c1_inv_device'
       },
       {
         id: 'investigate_edge',
@@ -136,6 +164,7 @@ Um dich herum: Details, die darauf warten, untersucht zu werden.`,
     state_notes: [
       'Zentrale Hub-Szene - Spieler kehrt nach jeder Investigation zurück',
       'Nach 3 hub_investigations → Auto-Transition zu c1_event_train_arrival',
+      'Bis zu 5 Investigation-Pfade + Emma-Sonderpfad (Reihenfolge frei bis Trigger greift)',
       'called_emma führt zu Sonderpfad'
     ],
     atmosphere: 'somber'
@@ -689,8 +718,22 @@ Um dich herum: drei Bereiche, die du erkunden kannst.`,
         next: 'c1_train_sleepless'
       },
       {
+        id: 'explore_passengers',
+        label: '[C] Die reglosen Passagiere',
+        condition: {
+          type: 'bool',
+          target: 'explored_passengers',
+          value: false
+        },
+        effects: [
+          { type: 'inc', target: 'train_explorations', value: 1 },
+          { type: 'set', target: 'explored_passengers', value: true }
+        ],
+        next: 'c1_train_passengers'
+      },
+      {
         id: 'explore_comp7',
-        label: '[C] Die Tür mit der 7 (verschlossen)',
+        label: '[D] Die Tür mit der 7 (verschlossen)',
         condition: {
           type: 'bool',
           target: 'explored_comp7',
@@ -706,9 +749,8 @@ Um dich herum: drei Bereiche, die du erkunden kannst.`,
     ],
     tags: ['hub'],
     state_notes: [
-      'Zweiter Hub - freie Wahl der Reihenfolge (3 Choices nach Merge)',
-      'Nach 2 Explorations triggert Durchsage automatisch',
-      'HUB TRIM: explore_passengers entfernt – Loop-Text in c1_train_compartment integriert'
+      'Zweiter Hub - freie Wahl der Reihenfolge (4 Choices)',
+      'Nach 2 Explorations triggert Durchsage automatisch'
     ],
     atmosphere: 'mystic'
   },
@@ -1216,4 +1258,3 @@ Die Uhr zeigt 23:47. Du bist seit Stunden unterwegs. Aber die Uhr sagt, du bist 
     atmosphere: 'somber'
   }
 };
-
