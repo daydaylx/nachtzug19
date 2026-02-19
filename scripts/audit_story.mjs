@@ -15,22 +15,30 @@ import path from 'path';
 const STORY_JSON_PATH = './export/story.json';
 const REPORTS_DIR = './reports';
 const EVIDENCE_DIR = './reports/evidence';
+const TYPES_FILE_PATH = './src/domain/types/index.ts';
 
-// Valid state keys from types/index.ts
-const VALID_STATE_KEYS = new Set([
-  // Legacy Stats
-  'mut', 'wissen', 'empathie',
-  // Tickets
-  'tickets_truth', 'tickets_escape', 'tickets_guilt', 'tickets_love',
-  // Pressure
-  'conductor_attention', 'memory_drift',
-  // Relations
-  'rel_comp7', 'rel_boy', 'rel_sleepless',
-  // Items
-  'has_recorder', 'has_tag19', 'photo_anomaly',
-  // Meta
-  'chapter_index', 'station_count'
-]);
+async function loadValidStateKeys() {
+  const source = await fs.readFile(TYPES_FILE_PATH, 'utf-8');
+  const effectTargetMatch = source.match(/export type EffectTarget\s*=\s*([\s\S]*?);/);
+  if (!effectTargetMatch) {
+    throw new Error(`EffectTarget union not found in ${TYPES_FILE_PATH}`);
+  }
+
+  const unionBody = effectTargetMatch[1];
+  const keys = [];
+  const keyPattern = /'([^']+)'/g;
+  let match = keyPattern.exec(unionBody);
+  while (match) {
+    keys.push(match[1]);
+    match = keyPattern.exec(unionBody);
+  }
+
+  if (keys.length === 0) {
+    throw new Error(`No EffectTarget keys parsed from ${TYPES_FILE_PATH}`);
+  }
+
+  return new Set(keys);
+}
 
 // ============================================================================
 // DATA STRUCTURES
@@ -56,6 +64,10 @@ class AuditIssue {
 async function main() {
   console.log('🔍 NACHTZUG 19 Story QA Audit');
   console.log('=' .repeat(80));
+
+  const VALID_STATE_KEYS = await loadValidStateKeys();
+  console.log(`🧭 Loaded ${VALID_STATE_KEYS.size} EffectTarget keys from ${TYPES_FILE_PATH}`);
+  console.log('');
 
   // Load story.json
   const storyData = JSON.parse(await fs.readFile(STORY_JSON_PATH, 'utf-8'));
@@ -223,9 +235,12 @@ async function main() {
       choice.effects?.forEach(effect => {
         setStateKeys.add(effect.target);
       });
-      scene.entry_effects?.forEach(effect => {
-        setStateKeys.add(effect.target);
-      });
+    });
+    scene.entry_effects?.forEach(effect => {
+      setStateKeys.add(effect.target);
+    });
+    scene.exit_effects?.forEach(effect => {
+      setStateKeys.add(effect.target);
     });
   });
 
@@ -344,7 +359,7 @@ async function main() {
         'P0',
         'STATE',
         `Unknown state key "${key}" in ${location}`,
-        'Key not defined in EffectTarget union (types/index.ts:123-135)',
+        `Key not defined in EffectTarget union (${TYPES_FILE_PATH})`,
         {
           file: STORY_JSON_PATH,
           location,

@@ -585,6 +585,7 @@ export class GameEngine {
     this.scenes = scenes;
     this.endings = endings;
     this.state = createInitialState(startSceneId);
+    this.advanceAutoTransitions();
   }
 
   /**
@@ -653,6 +654,7 @@ export class GameEngine {
    */
   startGame(startSceneId?: string): void {
     this.state = createInitialState(startSceneId);
+    this.advanceAutoTransitions();
     this.notify();
   }
 
@@ -719,6 +721,7 @@ export class GameEngine {
         }
 
         this.state = hydratedState;
+        this.advanceAutoTransitions();
         this.notify();
         console.log(`[Load] Spielstand geladen: ${key}`);
         return true;
@@ -749,12 +752,74 @@ export class GameEngine {
 
     // Transition durchführen
     transitionToNextScene(this.state, currentScene, choice, this.scenes);
+    this.advanceAutoTransitions();
 
     // Auto-Save (optional)
     this.saveGame('auto');
 
     // Listeners benachrichtigen
     this.notify();
+  }
+
+  /**
+   * Führt eine einzelne auto_next-Transition aus, wenn die Szene keine verfügbaren Choices hat.
+   * @returns true, wenn eine Auto-Transition durchgeführt wurde
+   */
+  advanceAutoNextIfNeeded(): boolean {
+    if (this.state.isGameOver) return false;
+
+    const scene = this.getCurrentScene();
+    if (!scene) return false;
+
+    const availableChoices = getAvailableChoices(this.state, scene);
+    if (availableChoices.length > 0) return false;
+
+    const autoNextSceneId = checkAutoNext(scene, this.state);
+    if (!autoNextSceneId) return false;
+
+    const nextScene = this.scenes[autoNextSceneId];
+    if (!nextScene) {
+      throw new Error(`Auto-next scene not found: ${autoNextSceneId}`);
+    }
+
+    if (scene.exit_effects && scene.exit_effects.length > 0) {
+      applyEffects(this.state, scene.exit_effects);
+    }
+
+    if (!this.state.visited_scene_ids.includes(autoNextSceneId)) {
+      this.state.visited_scene_ids.push(autoNextSceneId);
+    }
+
+    this.state.current_scene_id = autoNextSceneId;
+
+    if (nextScene.entry_effects && nextScene.entry_effects.length > 0) {
+      applyEffects(this.state, nextScene.entry_effects);
+    }
+
+    if (nextScene.chapter !== undefined && nextScene.chapter !== this.state.chapter_index) {
+      this.state.chapter_index = nextScene.chapter;
+    }
+
+    console.log(`[AutoNext] ${scene.id} -> ${nextScene.id}`);
+    return true;
+  }
+
+  private advanceAutoTransitions(maxSteps: number = 12): void {
+    let steps = 0;
+    while (steps < maxSteps) {
+      const advanced = this.advanceAutoNextIfNeeded();
+      if (!advanced) return;
+      steps += 1;
+    }
+
+    const currentScene = this.getCurrentScene();
+    if (
+      currentScene &&
+      getAvailableChoices(this.state, currentScene).length === 0 &&
+      checkAutoNext(currentScene, this.state)
+    ) {
+      console.warn(`[AutoNext] Aborted after ${maxSteps} chained transitions to prevent loop.`);
+    }
   }
 }
 

@@ -1,27 +1,27 @@
 NACHTZUG 19 Audit Summary
 ========================
 
-Total Scenes: 181
-Total Choices: 422
-Total Edges: 422
+Total Scenes: 200
+Total Choices: 449
+Total Edges: 449
 
-Issues Found: 24
-- P0 (Critical): 22
-- P1 (High): 0
+Issues Found: 210
+- P0 (Critical): 0
+- P1 (High): 192
 - P2 (Medium): 0
-- P3 (Low): 2
+- P3 (Low): 18
 
 Graph Issues:
-- Unreachable Scenes: 0
+- Unreachable Scenes: 192
 - Dead-End Scenes: 0
 - Self-Loops: 0
 
 Choice Issues:
 - Illusion Choice Groups: 0
-- Unused State Keys: 2
+- Unused State Keys: 18
 
 State Issues:
-- Unknown State Keys: 5
+- Unknown State Keys: 0
 
 Reference Issues:
 - Broken Scene References: 0

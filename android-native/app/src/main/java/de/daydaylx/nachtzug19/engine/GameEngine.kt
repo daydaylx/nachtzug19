@@ -27,7 +27,7 @@ fun applyEffects(state: GameState, effects: List<Effect>): GameState {
       }
       EffectType.Set -> {
         val primitive = effect.value as? JsonPrimitive
-        primitive?.booleanOrNull ?: primitive?.intOrNull
+        primitive?.booleanOrNull ?: primitive?.intOrNull ?: primitive?.takeIf { it.isString }?.content
           ?: error("Unsupported value for set on ${effect.target}")
       }
       EffectType.Clamp -> {
@@ -79,15 +79,31 @@ fun evaluateCondition(state: GameState, condition: Condition): Boolean {
     is Condition.Compare -> {
       val current = getStateValue(state, condition.target)
       val primitive = condition.value as? JsonPrimitive
-      val targetValue = primitive?.booleanOrNull ?: primitive?.intOrNull
+      val targetValue = primitive?.booleanOrNull ?: primitive?.intOrNull ?: primitive?.takeIf { it.isString }?.content
         ?: error("Unsupported compare value")
       when (condition.operator) {
         de.daydaylx.nachtzug19.model.ComparisonOperator.Eq -> current == targetValue
         de.daydaylx.nachtzug19.model.ComparisonOperator.Neq -> current != targetValue
-        de.daydaylx.nachtzug19.model.ComparisonOperator.Gt -> (current as Int) > (targetValue as Int)
-        de.daydaylx.nachtzug19.model.ComparisonOperator.Lt -> (current as Int) < (targetValue as Int)
-        de.daydaylx.nachtzug19.model.ComparisonOperator.Gte -> (current as Int) >= (targetValue as Int)
-        de.daydaylx.nachtzug19.model.ComparisonOperator.Lte -> (current as Int) <= (targetValue as Int)
+        de.daydaylx.nachtzug19.model.ComparisonOperator.Gt -> {
+          val currentInt = current as? Int ?: error("Operator '>' requires numeric value for ${condition.target}")
+          val targetInt = targetValue as? Int ?: error("Operator '>' requires numeric comparison target for ${condition.target}")
+          currentInt > targetInt
+        }
+        de.daydaylx.nachtzug19.model.ComparisonOperator.Lt -> {
+          val currentInt = current as? Int ?: error("Operator '<' requires numeric value for ${condition.target}")
+          val targetInt = targetValue as? Int ?: error("Operator '<' requires numeric comparison target for ${condition.target}")
+          currentInt < targetInt
+        }
+        de.daydaylx.nachtzug19.model.ComparisonOperator.Gte -> {
+          val currentInt = current as? Int ?: error("Operator '>=' requires numeric value for ${condition.target}")
+          val targetInt = targetValue as? Int ?: error("Operator '>=' requires numeric comparison target for ${condition.target}")
+          currentInt >= targetInt
+        }
+        de.daydaylx.nachtzug19.model.ComparisonOperator.Lte -> {
+          val currentInt = current as? Int ?: error("Operator '<=' requires numeric value for ${condition.target}")
+          val targetInt = targetValue as? Int ?: error("Operator '<=' requires numeric comparison target for ${condition.target}")
+          currentInt <= targetInt
+        }
       }
     }
     is Condition.Bool -> {
@@ -288,6 +304,40 @@ class GameEngine {
     val currentScene = getCurrentScene() ?: error("No current scene")
     state = transitionToNextScene(state, currentScene, choice, scenes)
   }
+
+  fun advanceAutoNextIfNeeded(): Boolean {
+    if (state.isGameOver) return false
+
+    val scene = getCurrentScene() ?: return false
+    val availableChoices = getAvailableChoices(state, scene)
+    if (availableChoices.isNotEmpty()) return false
+
+    val autoNextSceneId = checkAutoNext(scene, state) ?: return false
+    val nextScene = scenes[autoNextSceneId] ?: error("Auto-next scene not found: $autoNextSceneId")
+
+    var transitioned = state
+    if (!scene.exit_effects.isNullOrEmpty()) {
+      transitioned = applyEffects(transitioned, scene.exit_effects)
+    }
+
+    transitioned = transitioned.copy(current_scene_id = autoNextSceneId)
+    if (!transitioned.visited_scene_ids.contains(autoNextSceneId)) {
+      transitioned = transitioned.copy(
+        visited_scene_ids = transitioned.visited_scene_ids + autoNextSceneId
+      )
+    }
+
+    if (!nextScene.entry_effects.isNullOrEmpty()) {
+      transitioned = applyEffects(transitioned, nextScene.entry_effects)
+    }
+
+    if (nextScene.chapter != transitioned.chapter_index) {
+      transitioned = transitioned.copy(chapter_index = nextScene.chapter)
+    }
+
+    state = transitioned
+    return true
+  }
 }
 
 private fun getStateValue(state: GameState, target: EffectTarget): Any {
@@ -335,7 +385,21 @@ private fun getStateValue(state: GameState, target: EffectTarget): Any {
     EffectTarget.KnowsSleeplessWarning -> state.items.knows_sleepless_warning
     EffectTarget.SawPassengerLoop -> state.items.saw_passenger_loop
     EffectTarget.HeardComp7Scratching -> state.items.heard_comp7_scratching
-    
+
+    // Nuance Flags (K1/K2)
+    EffectTarget.InspectedDevice -> state.items.inspected_device
+    EffectTarget.LookedIntoVoid -> state.items.looked_into_void
+    EffectTarget.GazedIntoDarkness -> state.items.gazed_into_darkness
+    EffectTarget.PrepareStance -> state.items.prepare_stance
+    EffectTarget.BreathControl -> state.items.breath_control
+    EffectTarget.ConductorStance -> state.items.conductor_stance
+    EffectTarget.ApproachResponse -> state.items.approach_response
+    EffectTarget.CountedCompartments -> state.items.counted_compartments
+    EffectTarget.WentToLight -> state.items.went_to_light
+    EffectTarget.KeptNoTicketNote -> state.items.kept_no_ticket_note
+    EffectTarget.DestroyedEvidence -> state.items.destroyed_evidence
+    EffectTarget.NoticedJacketChange -> state.items.noticed_jacket_change
+
     EffectTarget.ChapterIndex -> state.chapter_index
     EffectTarget.StationCount -> state.station_count
   }
@@ -386,7 +450,21 @@ private fun setStateValue(state: GameState, target: EffectTarget, value: Any): G
     EffectTarget.KnowsSleeplessWarning -> state.copy(items = state.items.copy(knows_sleepless_warning = value as Boolean))
     EffectTarget.SawPassengerLoop -> state.copy(items = state.items.copy(saw_passenger_loop = value as Boolean))
     EffectTarget.HeardComp7Scratching -> state.copy(items = state.items.copy(heard_comp7_scratching = value as Boolean))
-    
+
+    // Nuance Flags (K1/K2)
+    EffectTarget.InspectedDevice -> state.copy(items = state.items.copy(inspected_device = value as Boolean))
+    EffectTarget.LookedIntoVoid -> state.copy(items = state.items.copy(looked_into_void = value as Boolean))
+    EffectTarget.GazedIntoDarkness -> state.copy(items = state.items.copy(gazed_into_darkness = value as Boolean))
+    EffectTarget.PrepareStance -> state.copy(items = state.items.copy(prepare_stance = value as String))
+    EffectTarget.BreathControl -> state.copy(items = state.items.copy(breath_control = value as String))
+    EffectTarget.ConductorStance -> state.copy(items = state.items.copy(conductor_stance = value as String))
+    EffectTarget.ApproachResponse -> state.copy(items = state.items.copy(approach_response = value as String))
+    EffectTarget.CountedCompartments -> state.copy(items = state.items.copy(counted_compartments = value as Boolean))
+    EffectTarget.WentToLight -> state.copy(items = state.items.copy(went_to_light = value as Boolean))
+    EffectTarget.KeptNoTicketNote -> state.copy(items = state.items.copy(kept_no_ticket_note = value as Boolean))
+    EffectTarget.DestroyedEvidence -> state.copy(items = state.items.copy(destroyed_evidence = value as Boolean))
+    EffectTarget.NoticedJacketChange -> state.copy(items = state.items.copy(noticed_jacket_change = value as Boolean))
+
     EffectTarget.ChapterIndex -> state.copy(chapter_index = value as Int)
     EffectTarget.StationCount -> state.copy(station_count = value as Int)
   }

@@ -95,6 +95,20 @@ enum class EffectTarget {
   @SerialName("knows_sleepless_warning") KnowsSleeplessWarning,
   @SerialName("saw_passenger_loop") SawPassengerLoop,
   @SerialName("heard_comp7_scratching") HeardComp7Scratching,
+
+  // Nuance Flags (K1/K2)
+  @SerialName("inspected_device") InspectedDevice,
+  @SerialName("looked_into_void") LookedIntoVoid,
+  @SerialName("gazed_into_darkness") GazedIntoDarkness,
+  @SerialName("prepare_stance") PrepareStance,
+  @SerialName("breath_control") BreathControl,
+  @SerialName("conductor_stance") ConductorStance,
+  @SerialName("approach_response") ApproachResponse,
+  @SerialName("counted_compartments") CountedCompartments,
+  @SerialName("went_to_light") WentToLight,
+  @SerialName("kept_no_ticket_note") KeptNoTicketNote,
+  @SerialName("destroyed_evidence") DestroyedEvidence,
+  @SerialName("noticed_jacket_change") NoticedJacketChange,
   
   @SerialName("chapter_index") ChapterIndex,
   @SerialName("station_count") StationCount
@@ -179,7 +193,21 @@ data class Items(
   val explored_comp7: Boolean = false,
   val knows_sleepless_warning: Boolean = false,
   val saw_passenger_loop: Boolean = false,
-  val heard_comp7_scratching: Boolean = false
+  val heard_comp7_scratching: Boolean = false,
+
+  // Nuance Flags (keine Tickets, nur narrative Varianten)
+  val inspected_device: Boolean = false,
+  val looked_into_void: Boolean = false,
+  val gazed_into_darkness: Boolean = false,
+  val prepare_stance: String = "",
+  val breath_control: String = "",
+  val conductor_stance: String = "",
+  val approach_response: String = "",
+  val counted_compartments: Boolean = false,
+  val went_to_light: Boolean = false,
+  val kept_no_ticket_note: Boolean = false,
+  val destroyed_evidence: Boolean = false,
+  val noticed_jacket_change: Boolean = false
 )
 
 @Serializable
@@ -226,6 +254,12 @@ data class Effect(
     val primitive = value as? JsonPrimitive
     return primitive?.booleanOrNull
       ?: error("Effect value for ${target.name} must be a boolean")
+  }
+
+  fun valueAsString(): String {
+    val primitive = value as? JsonPrimitive
+    return primitive?.takeIf { it.isString }?.content
+      ?: error("Effect value for ${target.name} must be a string")
   }
 }
 
@@ -423,7 +457,19 @@ fun createInitialState(startSceneId: String): GameState {
       memory_search_active = false,
       emma_memory_unlocked = false,
       stance_bold = false,
-      stance_cautious = false
+      stance_cautious = false,
+      inspected_device = false,
+      looked_into_void = false,
+      gazed_into_darkness = false,
+      prepare_stance = "",
+      breath_control = "",
+      conductor_stance = "",
+      approach_response = "",
+      counted_compartments = false,
+      went_to_light = false,
+      kept_no_ticket_note = false,
+      destroyed_evidence = false,
+      noticed_jacket_change = false
     ),
     current_scene_id = startSceneId,
     visited_scene_ids = emptyList(),

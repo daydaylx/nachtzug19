@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import {
+  GameEngine,
   applyEffects,
   evaluateCondition,
   getAvailableChoices,
@@ -327,5 +328,94 @@ describe('transitionToNextScene', () => {
     expect(() => transitionToNextScene(state, scenes.start, choice, scenes)).toThrow(
       'Scene not found'
     );
+  });
+});
+
+describe('GameEngine auto-next integration', () => {
+  const endings = {
+    A: { id: 'A', title: 'A', narrative: 'A' }
+  };
+
+  it('advanceAutoNextIfNeeded transitions when no choices are available', () => {
+    const scenes: ScenesCollection = {
+      start: {
+        id: 'start',
+        choices: [
+          { id: 'noop', label: 'noop', effects: [], ending: 'A' }
+        ]
+      },
+      hub: {
+        id: 'hub',
+        choices: [],
+        narrative_variants: [
+          {
+            condition: { type: 'compare', target: 'hub_investigations', operator: '>=', value: 1 },
+            narrative: 'auto',
+            auto_next: 'next'
+          }
+        ],
+        exit_effects: [{ type: 'inc', target: 'memory_drift', value: 1 }]
+      },
+      next: {
+        id: 'next',
+        chapter: 2,
+        entry_effects: [{ type: 'inc', target: 'tickets_truth', value: 1 }],
+        choices: [
+          { id: 'finish', label: 'Finish', effects: [], ending: 'A' }
+        ]
+      }
+    };
+
+    const engine = new GameEngine(scenes, endings, 'start');
+    const state = engine.getState();
+    state.current_scene_id = 'hub';
+    state.pressure.hub_investigations = 1;
+
+    const advanced = engine.advanceAutoNextIfNeeded();
+
+    expect(advanced).toBe(true);
+    expect(state.current_scene_id).toBe('next');
+    expect(state.pressure.memory_drift).toBe(1);
+    expect(state.tickets.tickets_truth).toBe(1);
+    expect(state.chapter_index).toBe(2);
+    expect(state.visited_scene_ids).toContain('next');
+  });
+
+  it('makeChoice resolves chained auto-next transitions', () => {
+    const scenes: ScenesCollection = {
+      start: {
+        id: 'start',
+        choices: [
+          {
+            id: 'to_hub',
+            label: 'To hub',
+            effects: [{ type: 'inc', target: 'hub_investigations', value: 1 }],
+            next: 'hub'
+          }
+        ]
+      },
+      hub: {
+        id: 'hub',
+        choices: [],
+        narrative_variants: [
+          {
+            condition: { type: 'compare', target: 'hub_investigations', operator: '>=', value: 1 },
+            narrative: 'auto',
+            auto_next: 'next'
+          }
+        ]
+      },
+      next: {
+        id: 'next',
+        choices: [
+          { id: 'finish', label: 'Finish', effects: [], ending: 'A' }
+        ]
+      }
+    };
+
+    const engine = new GameEngine(scenes, endings, 'start');
+    engine.makeChoice(scenes.start.choices[0]);
+
+    expect(engine.getState().current_scene_id).toBe('next');
   });
 });

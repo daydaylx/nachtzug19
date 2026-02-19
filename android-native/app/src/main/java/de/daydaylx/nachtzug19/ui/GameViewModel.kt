@@ -247,6 +247,8 @@ class GameViewModel(
   }
 
   private fun updateUi(story: StoryContent) {
+    advanceAutoTransitionsIfNeeded()
+
     val state = engine.state
     val scene = engine.getCurrentScene()
     val choices = scene?.let { getAvailableChoices(state, it) } ?: emptyList()
@@ -267,6 +269,19 @@ class GameViewModel(
 
     // Update beats for Story Mode
     updateBeatsIfStoryMode(narrative, _uiState.value.settings)
+  }
+
+  private fun advanceAutoTransitionsIfNeeded(maxSteps: Int = 12) {
+    var steps = 0
+    while (steps < maxSteps) {
+      val advanced = engine.advanceAutoNextIfNeeded()
+      if (!advanced) return
+      steps += 1
+      if (BuildConfig.DEBUG) {
+        Log.d(TAG, "Auto-next applied (#$steps): ${engine.state.current_scene_id}")
+      }
+    }
+    Log.w(TAG, "Auto-next loop aborted after $maxSteps steps to prevent infinite transition chain")
   }
 
   private fun updateBeatsIfStoryMode(narrative: String, settings: ReaderSettings) {
