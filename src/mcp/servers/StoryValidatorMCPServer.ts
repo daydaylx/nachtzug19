@@ -74,7 +74,7 @@ export class StoryValidatorMCPServer extends MCPServerBase {
         parameters: {
           sceneId: {
             type: 'string',
-            description: 'Scene ID (z.B. "c1_s01_platform")',
+            description: 'Scene ID (z.B. "c1_hub_platform")',
             required: true
           }
         }

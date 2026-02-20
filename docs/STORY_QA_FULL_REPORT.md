@@ -1,4 +1,7 @@
 # STORY QA FULL REPORT - NACHTZUG 19
+> ⚠️ Historischer Snapshot (2026-01-31). Dieser Report basiert auf einem älteren Story-Stand (156 Szenen).  
+> Aktueller Baseline-Stand: `docs/STORY_REVISION_BASELINE_2026-02-20.md` und `docs/STORY_BIBLE.md`.
+
 **Datum**: 2026-01-31
 **Branch**: claude/nachtzug19-story-qa-audit-lTTwJ
 **Agent**: Story-QA-Agent (DOKS-FIRST, Gründlich, Minimal-Fixer)

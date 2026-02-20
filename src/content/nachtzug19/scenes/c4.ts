@@ -1000,7 +1000,7 @@ Sie notiert nichts, als müsste dieser Satz ungeschrieben bleiben.`,
     choices: [
       {
         id: 'continue_from_c4_sideword_copies',
-        label: 'Weiter',
+        label: 'Mit dem Satz weitergehen',
         next: 'c5_s01_final_preparation'
       }
     ],
@@ -1022,7 +1022,7 @@ Sie klappt das Notizbuch nicht auf, aber ihr Daumen bleibt auf der Kante liegen.
     choices: [
       {
         id: 'continue_from_c4_sideword_refuse',
-        label: 'Weiter',
+        label: 'Später darüber sprechen',
         next: 'c5_s01_final_preparation'
       }
     ],
@@ -1044,7 +1044,7 @@ Der Metallrand drückt in deine Haut, und der Schmerz wirkt für einen Moment or
     choices: [
       {
         id: 'continue_from_c4_sideword_tag19',
-        label: 'Weiter',
+        label: 'Den Anhänger als Anker halten',
         next: 'c5_s01_final_preparation'
       }
     ],

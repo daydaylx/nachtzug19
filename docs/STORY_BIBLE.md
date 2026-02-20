@@ -1,92 +1,62 @@
 # NACHTZUG 19 - Story Bible
 
-## 1. Kapitelübersicht
+## 1. Kapitelübersicht (Stand: 2026-02-20)
 
-Zusammenfassung der Struktur basierend auf dem `export/story.json` (Single Source of Truth).
+Quelle: `loadNachtzug19Story()` / `src/content/nachtzug19/manifest.ts`
 
-*   **C1: Leerer Bahnsteig (24 Szenen)**
-    *   Einstieg am leeren, surrealen Bahnsteig.
-    *   Begegnung mit der "Schlaflosen" Gestalt (Sleepless).
-    *   Erste Anomalien (Vibration, Zeitstillstand).
-    *   Betreten des Zuges.
+- **Startszene:** `c1_hub_platform`
+- **Gesamtszenen:** 201
+- **Endings:** 5
 
-*   **C2: Die erste Kontrolle (25 Szenen)**
-    *   Der Schaffner (Conductor) und die Ticket-Kontrolle.
-    *   Begegnung mit dem Kassettenjungen (Boy) und dem Rekorder.
-    *   Erste Hinweise auf "Comp7" (Abteil 7).
+### Kapitelstruktur
 
-*   **C3: Wagen 7 (27 Szenen)**
-    *   Untersuchung von Wagen 7.
-    *   Fund von Notizbüchern und Hinweisen.
-    *   Realitätsverschiebungen (Drift).
+- **C1: Leerer Bahnsteig (20 Szenen)**
+  - Hub-basierter Einstieg am Bahnsteig und im Zug
+  - Emma-Thread, erste Drift-Symptome, Einstieg in Wagen 7
+- **C2: Die erste Kontrolle (23 Szenen)**
+  - Erste Schaffner-Kontrolle als Pressure-Gate
+  - Rekorder/Junge/Comp7 werden mechanisch relevant
+- **C3: Wagen 7 (22 Szenen)**
+  - Loop-Vertiefung, Recorder-Anomalie, zweite Kontrolle
+- **C4: Spiegelungen (21 Szenen)**
+  - Spiegel- und Identitätsverschiebungen, Tag19-Vorbereitung
+- **C5: Die letzte Kontrolle (31 Szenen)**
+  - Verdichtung der Beziehungen, dritte Kontrolle, Kernentscheidungen
+- **C6: Ende der Linie (29 Szenen)**
+  - Auflösung/Angebot/letzte Vorentscheidungen
+- **C7: Entscheidung (55 Szenen inkl. Ending-Szenen)**
+  - Finalpfade, Endstation, interaktive Epiloge
 
-*   **C4: Spiegelungen (27 Szenen)**
-    *   Spiegelbilder, die nicht passen.
-    *   Erinnerungsfragmente.
-    *   Verstärkter "Memory Drift".
+## 2. Kanon (Core Entities)
 
-*   **C5: [Titel ausstehend] (25 Szenen)**
-    *   Rückkehr zu Abteil 7.
-    *   Konfrontation mit der eigenen Rolle.
-    *   Entscheidungskern ("Core Decision").
+- **Der Schaffner:** Systemdruck über `conductor_attention`
+- **Comp7:** Erinnerung/Gegenarchiv über `rel_comp7`
+- **Der Junge:** Rekorder-/Identitätsachse über `rel_boy`
+- **Der Schlaflose:** frühe Warnfigur über `rel_sleepless`
 
-*   **C6: [Titel ausstehend] (26 Szenen)**
-    *   Auflösung der Realität.
-    *   Spiegel-Choice und das "Angebot".
-    *   Finale Fahrt.
+### Schlüsselgegenstände
 
-*   **C7: [Titel ausstehend] (29 Szenen)**
-    *   Ankunft am Ziel (oder Nicht-Ziel).
-    *   Finale Konfrontation mit Conductor/Comp7.
-    *   Enden.
+- **Recorder** (`has_recorder`)
+- **Tag19** (`has_tag19`)
+- **Photo Anomaly** (`photo_anomaly`)
 
-## 2. Kanon (Canon)
+## 3. State Index (aktuell)
 
-### Figuren (Entities)
-*   **The Conductor (Der Schaffner):** Antagonist/Wächter. Reagiert auf `conductor_attention`.
-*   **Comp7 (Der Reisende in Abteil 7):** Mysteriöse Schlüsselfigur. Status: `rel_comp7`.
-*   **The Boy (Kassettenjunge):** Träger von Erinnerungen. Status: `rel_boy`.
-*   **The Sleepless (Der Schlaflose):** Warnende Gestalt am Anfang. Status: `rel_sleepless`.
+### Kategorien
 
-### Schlüsselgegenstände (Key Items)
-*   **Recorder:** Kassettenrekorder, erlaubt das Abspielen von Erinnerungen. (`has_recorder`)
-*   **Tag19:** Ein Etikett/Hinweis mit der Aufschrift "19". Wichtiges Indiz. (`has_tag19`)
-*   **Photo Anomaly:** Ein Foto, das sich verändert oder etwas Unmögliches zeigt. (`photo_anomaly`)
+- **Tickets (0-20):** `tickets_truth`, `tickets_escape`, `tickets_guilt`, `tickets_love`
+- **Pressure (0-6):** `conductor_attention`, `memory_drift`, `hub_investigations`, `train_explorations`
+- **Relations (-2 bis +10):** `rel_comp7`, `rel_boy`, `rel_sleepless`
+- **Items/Flags (bool + string Nuance-Flags):** siehe `src/domain/types/index.ts`
 
-## 3. Status-Verzeichnis (State Index)
+### Wichtige Meta-States
 
-Analyse basierend auf `export/story.json`.
+- `chapter_index`
+- `station_count`
+- `current_scene_id`
+- `visited_scene_ids`
 
-### Status-Kategorien
-*   **Tickets (0-5):** Narrative Währung für Enden.
-    *   `tickets_truth` (Wahrheit suchen)
-    *   `tickets_escape` (Flucht/Vermeidung)
-    *   `tickets_guilt` (Schuld/Verantwortung)
-    *   `tickets_love` (Verbindung)
-*   **Pressure (Druck/Chaos) (0-6):** Systemdruck.
-    *   `conductor_attention` (Gefahr durch Schaffner)
-    *   `memory_drift` (Realitätsverlust, steuert Textvarianten)
-*   **Relations (Beziehungen) (-2 bis +4):** NPC-Beziehungen.
-    *   `rel_comp7`
-    *   `rel_boy`
-    *   `rel_sleepless`
+## 4. Hinweise
 
-### Verwendungs-Matrix (Usage Matrix)
-
-| Variable | Typ | Orte (Schreiben) | Orte (Lesen) |
-| :--- | :--- | :--- | :--- |
-| **memory_drift** | Pressure | C1-C7 (div. Choices) | **Hoch** (Narrative Varianten, Bedingungen) |
-| **conductor_attention** | Pressure | C1-C7 | Mittel (Events) |
-| **tickets_truth** | Ticket | Hoch | Hoch (Schaltet Wahrheits-Pfade frei) |
-| **tickets_escape** | Ticket | Hoch | Mittel |
-| **tickets_guilt** | Ticket | Hoch | Niedrig |
-| **tickets_love** | Ticket | Hoch | Niedrig |
-| **rel_comp7** | Relation | C2, C3, C5, C6 | Hoch (Endgame) |
-| **rel_boy** | Relation | C2, C3, C5 | Mittel |
-| **rel_sleepless** | Relation | C1, C2, C5 | Niedrig |
-| **has_tag19** | Item | C4, C6 | C4, C6, C7 |
-| **has_recorder** | Item | C2 | C3, C4, C6, C7 |
-| **photo_anomaly** | Item | C5 | C7 |
-
-### Auffälligkeiten (Anomalies)
-*   **Set-Only Variables:** `chapter_index`, `station_count`. Werden gesetzt, aber im Story-Flow (JSON) nie für Verzweigungen abgefragt. Dienen vermutlich nur der UI/Meta-Logik.
+- `chapter_index` und `station_count` sind primär Meta-/Tracking-Variablen.
+- Canon Rules (R1-R4) bleiben in `docs/NACHTZUG_19_RULES.md` die normative Quelle.

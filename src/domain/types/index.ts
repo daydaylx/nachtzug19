@@ -289,7 +289,7 @@ export type NarrativeVariant = {
  * Scene - Eine Szene im Spiel
  */
 export type Scene = {
-  id: string;                    // Eindeutige ID (z.B. "c1_s01_platform")
+  id: string;                    // Eindeutige ID (z.B. "c1_hub_platform")
   chapter?: number;              // Kapitel 1-7
   title?: string;                // Kurztitel
   narrative?: string;            // Haupt-Text (3-12 Absätze)

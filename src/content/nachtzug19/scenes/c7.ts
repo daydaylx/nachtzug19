@@ -2271,7 +2271,7 @@ Nicht den Schaffner. Die, die mit dir gefahren sind.`,
     choices: [
       {
         id: 'continue_after_echo_acceptance',
-        label: 'Weiter',
+        label: 'Den Nachhall annehmen',
         next: 'c7_s21_photo_revelation'
       }
     ],
@@ -3002,7 +3002,7 @@ Zum ersten Mal klingt dein Name nicht wie Erinnerung, sondern wie Gegenwart.`,
     choices: [
       {
         id: 'continue_after_threshold_name',
-        label: 'Weiter',
+        label: 'Den Namen tragen',
         next: 'c7_s25d_threshold_callback'
       }
     ],
@@ -3129,7 +3129,7 @@ Es war eine Entscheidung, die keinen zusätzlichen Satz mehr brauchte.`
     choices: [
       {
         id: 'continue_to_end_station_after_threshold_callback',
-        label: 'Weiter',
+        label: 'Zur Endstation gehen',
         next: 'c7_end_station'
       }
     ],

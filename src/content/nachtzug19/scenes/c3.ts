@@ -196,6 +196,27 @@ Er tippt mit dem Fingernagel auf die Kante des Rekorders. Eins, zwei, drei. Imme
 „Du glaubst, du sammelst Hinweise," sagt er, und seine Stimme bleibt dabei ruhig, fast sachlich. „Aber der Zug sammelt dich. Stück für Stück."
 
 Zwischen euch liegt der Gang wie eine Grenze, die niemand eingezeichnet hat. Du merkst, dass du automatisch leiser atmest, als dürfte etwas hier nicht aufgeschreckt werden.`,
+    narrative_variants: [
+      {
+        condition: { type: 'bool', target: 'has_recorder', value: false },
+        priority: 20,
+        narrative: `Der Junge sitzt wieder in seinem Abteil, als wäre er nie weg gewesen. Er hält den Kassettenrekorder.
+
+Du hast keinen mehr. Das fehlende Gewicht in deiner Tasche fühlt sich plötzlich lauter an als jede Durchsage.
+
+Er summt leise. Eine Melodie, die du kennst. Oder... kanntest.
+
+„Das hast du mir beigebracht," sagt er. „Als ich klein war. Erinnerst du dich?"
+
+Du willst sagen, dass das unmöglich ist. Der Satz bleibt in deiner Kehle stecken.
+
+„Manchmal werden Dinge mehr," sagt er, „wenn man vergisst, dass man sie schon hat."
+
+Er tippt mit dem Fingernagel auf die Kante des Rekorders. Eins, zwei, drei.
+
+Zwischen euch liegt der Gang wie eine Grenze. Du merkst, wie bewusst du atmest, damit dir nicht auch noch das letzte Detail verrutscht.`
+      }
+    ],
     choices: [
       {
         id: 'play_own_recorder',
@@ -226,7 +247,10 @@ Zwischen euch liegt der Gang wie eine Grenze, die niemand eingezeichnet hat. Du 
       }
     ],
     tags: ['reveal'],
-    state_notes: ['Duplizierung von Gegenständen'],
+    state_notes: [
+      'Duplizierung von Gegenständen',
+      'Callback sichtbar: has_recorder=false verändert den Einstiegstext'
+    ],
     atmosphere: 'mystic'
   },
 
@@ -1036,7 +1060,7 @@ Er tippt zweimal auf den Rekorder, als markiere er genau diese Lücke.`,
     choices: [
       {
         id: 'continue_from_sideword_anchor',
-        label: 'Weiter',
+        label: 'Die stille Spur halten',
         next: 'c4_s01_mirror_intro'
       }
     ],
@@ -1058,7 +1082,7 @@ Er sagt es ohne Drama, nur mit der Müdigkeit von jemandem, der das schon kennt.
     choices: [
       {
         id: 'continue_from_sideword_direct',
-        label: 'Weiter',
+        label: 'Dem Schmerz folgen',
         next: 'c4_s01_mirror_intro'
       }
     ],
@@ -1080,7 +1104,7 @@ Trotzdem hält er das Gerät fester, als hätte er Angst vor genau dieser Antwor
     choices: [
       {
         id: 'continue_from_sideword_dodge',
-        label: 'Weiter',
+        label: 'Die Unklarheit mitnehmen',
         next: 'c4_s01_mirror_intro'
       }
     ],

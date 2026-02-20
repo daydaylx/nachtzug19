@@ -876,6 +876,42 @@ Hinter ihm summt der Wagen, dumpf und fern, als hättest du den Kopf unter Wasse
 Du denkst an den Jungen mit dem Rekorder. An Comp7s Listen. An den Namen Emma, den du dir im Kopf immer wieder vorsagst, damit er nicht verrutscht.
 
 Der Schaffner blinzelt nicht. In seinem Blick liegt nichts Menschliches und trotzdem etwas Erwartendes: als würde er nicht prüfen, ob du lügst, sondern welche Geschichte du bereit bist zu tragen.`,
+    narrative_variants: [
+      {
+        condition: {
+          type: 'and',
+          conditions: [
+            { type: 'bool', target: 'has_recorder', value: true },
+            { type: 'bool', target: 'memory_search_active', value: true }
+          ]
+        },
+        priority: 30,
+        narrative: `Er beugt sich vor. Du riechst kaltes Metall.
+
+„Warum sind Sie hier?"
+
+Deine Finger liegen auf dem Rekorder in deiner Tasche. Das Gehäuse ist warm, als hätte jemand kurz vorher auf Play gedrückt.
+
+Hinter ihm summt der Wagen dumpf. In deinem Kopf bleibt nur ein Name stabil: Emma.
+
+Der Schaffner sieht nicht auf deine Hände. Er sieht auf den Bruchteil einer Sekunde, in dem du überlegst, welche Wahrheit du ihm gibst.
+
+In seinem Blick liegt nichts Menschliches und trotzdem etwas Erwartendes: als würde er nicht prüfen, ob du lügst, sondern welche Geschichte du bereit bist zu tragen.`
+      },
+      {
+        condition: { type: 'bool', target: 'has_recorder', value: false },
+        priority: 20,
+        narrative: `Er beugt sich vor. Du riechst kaltes Metall.
+
+„Warum sind Sie hier?"
+
+Automatisch tastest du nach der Tasche, in der der Rekorder gewesen ist. Nichts. Nur Stoff.
+
+Hinter ihm summt der Wagen dumpf und fern, als hättest du den Kopf unter Wasser. Deine Finger verkrampfen sich an der Sitzkante.
+
+Der Schaffner blinzelt nicht. In seinem Blick liegt nichts Menschliches und trotzdem etwas Erwartendes: als würde er nicht prüfen, ob du lügst, sondern welche Geschichte du bereit bist zu tragen.`
+      }
+    ],
     choices: [
       {
         id: 'offer_truth',
@@ -934,7 +970,8 @@ Der Schaffner blinzelt nicht. In seinem Blick liegt nichts Menschliches und trot
     tags: ['control'],
     state_notes: [
       'Agency Fix: "Suche Emma" option added',
-      'Attention Fix: Lie blocked if attention >= 2'
+      'Attention Fix: Lie blocked if attention >= 2',
+      'Callback sichtbar: has_recorder / memory_search_active ändern den Verhörtext'
     ],
     atmosphere: 'danger'
   },
@@ -1060,7 +1097,7 @@ Dann nickt er Richtung Fenster. „Wenn deiner noch da ist, halt ihn fest."`,
     choices: [
       {
         id: 'move_on_after_name',
-        label: 'Weiter',
+        label: 'Seinen Rat mitnehmen',
         next: 'c2_end_station'
       }
     ],
@@ -1122,7 +1159,7 @@ Nach ein paar Atemzügen flüstert er: „Vielleicht reicht das schon. Nicht all
     choices: [
       {
         id: 'move_on_after_silence',
-        label: 'Weiter',
+        label: 'Gemeinsam weiteratmen',
         next: 'c2_end_station'
       }
     ],

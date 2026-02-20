@@ -143,7 +143,7 @@ function collectContentTargets(scenes: ScenesCollection): string[] {
 function supportsSetAndRead(target: EffectTarget): boolean {
   const isStringTarget = STRING_TARGETS.has(target);
   const isBooleanTarget = BOOLEAN_TARGETS.has(target);
-  const state = createInitialState('c1_s01_platform');
+  const state = createInitialState('c1_hub_platform');
 
   try {
     if (isStringTarget) {

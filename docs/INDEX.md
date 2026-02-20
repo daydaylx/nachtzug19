@@ -12,6 +12,9 @@ Diese Datei ist der Einstiegspunkt für die **aktive** Dokumentation.
 - [ARCHITECTURE.md](./ARCHITECTURE.md): TS/Kotlin-Systemüberblick
 - [CONCEPT_NACHTZUG_19.md](./CONCEPT_NACHTZUG_19.md): Story-Konzept, Figuren, Motivik
 - [NACHTZUG_19_RULES.md](./NACHTZUG_19_RULES.md): Canon Rules + Content-Invarianten
+- [STORY_BIBLE.md](./STORY_BIBLE.md): Aktueller Story-Stand (Szenenstruktur + State-Index)
+- [STORY_REVISION_BASELINE_2026-02-20.md](./STORY_REVISION_BASELINE_2026-02-20.md): Revisions-Baseline für große Story-Iteration
+- [LEGACY_CLEANUP_LOG_2026-02-20.md](./LEGACY_CLEANUP_LOG_2026-02-20.md): Dokumentierter Abbau veralteter Artefakte
 - [DECISION_SYSTEM.md](./DECISION_SYSTEM.md): Entscheidungslogik
 - [ANDROID_NATIVE_BUILD.md](./ANDROID_NATIVE_BUILD.md): Android Build/Run
 - [CHANGELOG.md](./CHANGELOG.md): Historie
@@ -63,4 +66,4 @@ docs/
 - Experimentelle Pläne nach `docs/_archive/plans/`.
 - Veraltete UI/Overworld-Unterlagen nach `docs/_archive/ui/`.
 
-Letzte Aktualisierung: 2026-02-07
+Letzte Aktualisierung: 2026-02-20

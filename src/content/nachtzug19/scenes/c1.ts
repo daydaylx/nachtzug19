@@ -158,6 +158,20 @@ Um dich herum: Details, die darauf warten, untersucht zu werden.`,
           { type: 'inc', target: 'conductor_attention', value: 1 }
         ],
         next: 'c1_trigger_emma'
+      },
+      {
+        id: 'follow_train_sound',
+        label: 'Dem Brummen folgen und zum Zug gehen',
+        condition: {
+          type: 'compare',
+          target: 'hub_investigations',
+          operator: '>=',
+          value: 3
+        },
+        effects: [
+          { type: 'set', target: 'stance_bold', value: true }
+        ],
+        next: 'c1_event_train_arrival'
       }
     ],
     tags: ['hub'],
@@ -165,7 +179,8 @@ Um dich herum: Details, die darauf warten, untersucht zu werden.`,
       'Zentrale Hub-Szene - Spieler kehrt nach jeder Investigation zurück',
       'Nach 3 hub_investigations → Auto-Transition zu c1_event_train_arrival',
       'Bis zu 5 Investigation-Pfade + Emma-Sonderpfad (Reihenfolge frei bis Trigger greift)',
-      'called_emma führt zu Sonderpfad'
+      'called_emma führt zu Sonderpfad',
+      'Anti-Stall: expliziter Vorwärts-Choice ab hub_investigations >= 3'
     ],
     atmosphere: 'somber'
   },
@@ -600,7 +615,9 @@ Aber der Zettel in deiner Tasche ist warm geworden. Als hätte er etwas aufgenom
       {
         id: 'hesitate_step',
         label: 'Noch einmal zurückblicken, dann einsteigen',
-        effects: [],
+        effects: [
+          { type: 'set', target: 'stance_cautious', value: true }
+        ],
         next: 'c1_branching_entry'
       }
     ],
@@ -643,6 +660,18 @@ Der Wagen riecht nach altem Rauch. Deine Hand liegt auf dem Zettel in der Tasche
 Du schaust den Gang entlang. Am Ende: eine Tür. Dunkler als der Rest.
 
 Dort musst du hin. Aber nicht jetzt. Erst musst du verstehen, wo du bist.`
+      },
+      {
+        condition: { type: 'bool', target: 'stance_cautious', value: true },
+        narrative: `Du steigst ein und hältst den Atem an, als könnte zu viel Bewegung etwas auslösen.
+
+Die Tür fällt hinter dir ins Schloss. Das Geräusch ist klein, aber endgültig.
+
+Der Wagen riecht nach altem Rauch. Die Messinglampen flackern in einem Rhythmus, den du noch nicht greifen kannst.
+
+Du bleibst einen Moment stehen, nimmst den Gang in Abschnitten wahr und merkst, wie dein Blick ständig zur Tür mit der 7 zurückkehrt.
+
+Wenn du hier heil rauswillst, musst du nicht schneller sein. Du musst genauer sein.`
       }
     ],
     choices: [
@@ -671,7 +700,7 @@ Dort musst du hin. Aber nicht jetzt. Erst musst du verstehen, wo du bist.`
     title: 'Im Zug',
     narrative: `Du stehst im Gang des Zuges.
 
-Um dich herum: drei Bereiche, die du erkunden kannst.`,
+Um dich herum: vier Bereiche, die du erkunden kannst.`,
     narrative_variants: [
       {
         condition: { type: 'compare', target: 'train_explorations', operator: '==', value: 1 },
@@ -740,12 +769,25 @@ Um dich herum: drei Bereiche, die du erkunden kannst.`,
           { type: 'inc', target: 'conductor_attention', value: 1 }
         ],
         next: 'c1_train_comp7_locked'
+      },
+      {
+        id: 'follow_announcement_signal',
+        label: 'Dem Lautsprecher-Knistern folgen',
+        condition: {
+          type: 'compare',
+          target: 'train_explorations',
+          operator: '>=',
+          value: 2
+        },
+        effects: [],
+        next: 'c1_event_announcement'
       }
     ],
     tags: ['hub'],
     state_notes: [
       'Zweiter Hub - freie Wahl der Reihenfolge (4 Choices)',
-      'Nach 2 Explorations triggert Durchsage automatisch'
+      'Nach 2 Explorations triggert Durchsage automatisch',
+      'Anti-Stall: manueller Forward-Choice ab train_explorations >= 2'
     ],
     atmosphere: 'mystic'
   },
@@ -777,7 +819,9 @@ In den anderen Abteilen bewegen sich die Passagiere in kleinen, mechanischen Sch
       {
         id: 'leave_quickly',
         label: 'Schnell zurück in den Gang',
-        effects: [],
+        effects: [
+          { type: 'set', target: 'stance_cautious', value: true }
+        ],
         next: 'c1_hub_train'
       }
     ],

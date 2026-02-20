@@ -58,7 +58,7 @@ Dann ist auch er weg.`,
     choices: [
       {
         id: 'continue',
-        label: 'Weiter',
+        label: 'Den Bahnsteig verlassen',
         effects: [
           { type: 'inc', target: 'tickets_truth', value: 1 }
         ],
@@ -119,7 +119,7 @@ Du lebst.
     choices: [
       {
         id: 'finish',
-        label: 'Ende',
+        label: 'In die Stadt gehen',
         effects: [
           { type: 'inc', target: 'tickets_truth', value: 1 }
         ],
@@ -192,7 +192,7 @@ Du siehst nur Emma an.`,
     choices: [
       {
         id: 'continue',
-        label: 'Weiter',
+        label: 'Emmas Hand halten',
         effects: [
           { type: 'inc', target: 'tickets_love', value: 1 }
         ],
@@ -264,7 +264,7 @@ Du wendest dich Emma zu.
     choices: [
       {
         id: 'finish',
-        label: 'Ende',
+        label: 'Mit Emma weitergehen',
         effects: [
           { type: 'inc', target: 'tickets_love', value: 1 }
         ],
@@ -326,7 +326,7 @@ Du öffnest die Hand. Schaust auf den Anhänger.
     choices: [
       {
         id: 'continue',
-        label: 'Weiter',
+        label: 'Die Namen annehmen',
         effects: [
           { type: 'inc', target: 'tickets_guilt', value: 1 }
         ],
@@ -413,7 +413,7 @@ Nur als das, was übrig bleibt, wenn man alles andere loslässt.
     choices: [
       {
         id: 'finish',
-        label: 'Ende',
+        label: 'Mit der Last leben',
         effects: [
           { type: 'inc', target: 'tickets_guilt', value: 1 }
         ],
@@ -478,7 +478,7 @@ Er lächelt müde, traurig.
     choices: [
       {
         id: 'continue',
-        label: 'Weiter',
+        label: 'Sitzen bleiben',
         effects: [
           { type: 'inc', target: 'tickets_escape', value: 1 }
         ],
@@ -543,7 +543,7 @@ Du schließt die Augen.
     choices: [
       {
         id: 'finish',
-        label: 'Ende',
+        label: 'Die Schleife akzeptieren',
         effects: [
           { type: 'inc', target: 'tickets_escape', value: 1 }
         ],
@@ -615,7 +615,7 @@ Und kannst dich immer noch nicht entscheiden.`,
     choices: [
       {
         id: 'continue',
-        label: 'Weiter',
+        label: 'Nicht antworten',
         effects: [
           { type: 'inc', target: 'memory_drift', value: 1 }
         ],
@@ -700,7 +700,7 @@ Wartend auf eine Entscheidung, die nie kommt.
     choices: [
       {
         id: 'finish',
-        label: 'Ende',
+        label: 'In der Schwebe bleiben',
         effects: [
           { type: 'inc', target: 'memory_drift', value: 1 }
         ],

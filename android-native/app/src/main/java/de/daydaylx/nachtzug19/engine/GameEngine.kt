@@ -274,7 +274,7 @@ fun transitionToNextScene(
 class GameEngine {
   private var scenes: Map<String, Scene> = emptyMap()
   private var endings: Map<String, de.daydaylx.nachtzug19.model.Ending> = emptyMap()
-  var state: GameState = createInitialState("c1_s01_platform")
+  var state: GameState = createInitialState("c1_hub_platform")
     private set
 
   fun setStory(scenes: Map<String, Scene>, endings: Map<String, de.daydaylx.nachtzug19.model.Ending>, startSceneId: String) {

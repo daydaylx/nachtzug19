@@ -88,7 +88,7 @@ class GameViewModel(
     ),
     "obj_window" to HotspotSceneMapping(
       defaultSceneId = "c1_s03a_find_seat",
-      fallbackSceneId = "c1_s01_platform",
+      fallbackSceneId = "c1_hub_platform",
       isActive = { state -> state.pressure.memory_drift >= 1 }
     ),
     "npc_comp7" to HotspotSceneMapping(

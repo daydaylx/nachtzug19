@@ -1,435 +1,350 @@
 #!/usr/bin/env tsx
 // ============================================================================
-// NACHTZUG 19 - Conditional Choice Coverage Analyzer
-// ============================================================================
-// Analysiert welche conditional Choices selten/nie erreicht werden:
-// - Simuliert 1000 Playthroughs
-// - Trackt wie oft jede conditional Choice sichtbar ist
-// - Identifiziert "Orphan Choices" (zu hohe Schwellen)
-// - Empfiehlt Threshold-Anpassungen
+// NACHTZUG 19 - Conditional Choice Coverage (Current Engine)
 // ============================================================================
 
-import type { GameState, Scene, Condition, Effect } from '../src/domain/types';
+import { loadNachtzug19Story } from '../src/domain/engine/loadStory';
+import {
+  Choice,
+  Condition,
+  GameState,
+  Scene,
+  ScenesCollection,
+  createInitialState,
+} from '../src/domain/types';
+import {
+  applyEffects,
+  checkAutoNext,
+  evaluateCondition,
+  getAvailableChoices,
+  transitionToNextScene,
+} from '../src/domain/engine/gameEngine';
 
-// ============================================================================
-// Types
-// ============================================================================
-
-type ChoiceCoverage = {
-  scene_id: string;
-  scene_title: string;
-  choice_id: string;
-  choice_label: string;
-  condition?: Condition;
-  condition_str: string;
-  times_available: number;
-  times_chosen: number;
-  availability_rate: number; // % of playthroughs where choice was available
-  selection_rate: number;    // % of times it was chosen when available
+type CoverageEntry = {
+  sceneId: string;
+  sceneTitle: string;
+  choiceId: string;
+  choiceLabel: string;
+  conditionStr: string;
+  timesAvailable: number;
+  runsAvailable: number;
+  timesChosen: number;
 };
 
-// ============================================================================
-// State Management (copied from simulate_endings.ts)
-// ============================================================================
-
-function createInitialState(startSceneId: string): GameState {
-  return {
-    current_scene_id: startSceneId,
-    stats: { mut: 0, wissen: 0, empathie: 0 },
-    tickets: { tickets_truth: 0, tickets_escape: 0, tickets_guilt: 0, tickets_love: 0 },
-    pressure: { conductor_attention: 0, memory_drift: 0, hub_investigations: 0, train_explorations: 0 },
-    relations: { rel_comp7: 0, rel_boy: 0, rel_sleepless: 0 },
-    items: {
-      has_recorder: false,
-      has_tag19: false,
-      has_ticket: false,
-      photo_anomaly: false,
-      played_recorder: false,
-      memory_search_active: false,
-      emma_memory_unlocked: false,
-      stance_bold: false,
-      stance_cautious: false,
-      investigated_board: false,
-      investigated_poster: false,
-      investigated_person: false,
-      investigated_device: false,
-      investigated_edge: false,
-      called_emma: false,
-      saw_emma_vision: false,
-      has_emma_note: false,
-      knows_board_pattern: false,
-      explored_compartment: false,
-      explored_sleepless: false,
-      explored_passengers: false,
-      explored_comp7: false,
-      knows_sleepless_warning: false,
-      saw_passenger_loop: false,
-      heard_comp7_scratching: false,
-      inspected_device: false,
-      looked_into_void: false,
-      gazed_into_darkness: false,
-      prepare_stance: '',
-      breath_control: '',
-      conductor_stance: '',
-      approach_response: '',
-      counted_compartments: false,
-      went_to_light: false,
-      kept_no_ticket_note: false,
-      destroyed_evidence: false,
-      noticed_jacket_change: false
-    },
-    chapter_index: 1,
-    station_count: 0,
-    visited_scene_ids: [],
-    history: [],
-    isGameOver: false,
-    save_version: 1
-  };
-}
-
-function applyEffect(state: GameState, effect: Effect): void {
-  const { type, target, value } = effect;
-
-  const stateMap: Record<string, { obj: any; key: string }> = {
-    tickets_truth: { obj: state.tickets, key: 'tickets_truth' },
-    tickets_love: { obj: state.tickets, key: 'tickets_love' },
-    tickets_guilt: { obj: state.tickets, key: 'tickets_guilt' },
-    tickets_escape: { obj: state.tickets, key: 'tickets_escape' },
-    conductor_attention: { obj: state.pressure, key: 'conductor_attention' },
-    memory_drift: { obj: state.pressure, key: 'memory_drift' },
-    rel_comp7: { obj: state.relations, key: 'rel_comp7' },
-    rel_boy: { obj: state.relations, key: 'rel_boy' },
-    rel_sleepless: { obj: state.relations, key: 'rel_sleepless' },
-    has_recorder: { obj: state.items, key: 'has_recorder' },
-    has_tag19: { obj: state.items, key: 'has_tag19' },
-    has_ticket: { obj: state.items, key: 'has_ticket' },
-    photo_anomaly: { obj: state.items, key: 'photo_anomaly' },
-    played_recorder: { obj: state.items, key: 'played_recorder' },
-    memory_search_active: { obj: state.items, key: 'memory_search_active' },
-    emma_memory_unlocked: { obj: state.items, key: 'emma_memory_unlocked' },
-    chapter_index: { obj: state, key: 'chapter_index' },
-    station_count: { obj: state, key: 'station_count' },
-    mut: { obj: state.stats, key: 'mut' },
-    wissen: { obj: state.stats, key: 'wissen' },
-    empathie: { obj: state.stats, key: 'empathie' }
-  };
-
-  const mapping = stateMap[target];
-  if (!mapping) return;
-
-  const currentValue = mapping.obj[mapping.key];
-
-  if (type === 'inc') {
-    mapping.obj[mapping.key] = currentValue + ((value as number) || 1);
-  } else if (type === 'dec') {
-    mapping.obj[mapping.key] = currentValue - ((value as number) || 1);
-  } else if (type === 'set') {
-    mapping.obj[mapping.key] = value;
-  } else if (type === 'clamp') {
-    const min = effect.clamp_min ?? 0;
-    const max = effect.clamp_max ?? 10;
-    mapping.obj[mapping.key] = Math.max(min, Math.min(max, currentValue));
-  }
-
-  // Clamp tickets to 0-50
-  if (target.startsWith('tickets_')) {
-    const ticketKey = target as 'tickets_truth' | 'tickets_love' | 'tickets_guilt' | 'tickets_escape';
-    state.tickets[ticketKey] = Math.max(0, Math.min(50, state.tickets[ticketKey]));
-  }
-
-  // Clamp conductor_attention to 0-6
-  if (target === 'conductor_attention') {
-    state.pressure.conductor_attention = Math.max(0, Math.min(6, state.pressure.conductor_attention));
-  }
-}
-
-function evaluateCondition(state: GameState, condition: Condition): boolean {
-  if (condition.type === 'compare') {
-    const { target, operator, value } = condition;
-
-    let currentValue: number | boolean = 0;
-
-    if (target.startsWith('tickets_')) {
-      const ticketKey = target as 'tickets_truth' | 'tickets_love' | 'tickets_guilt' | 'tickets_escape';
-      currentValue = state.tickets[ticketKey];
-    } else if (target === 'conductor_attention') {
-      currentValue = state.pressure.conductor_attention;
-    } else if (target === 'memory_drift') {
-      currentValue = state.pressure.memory_drift;
-    } else if (target.startsWith('rel_')) {
-      const relKey = target as 'rel_comp7' | 'rel_boy' | 'rel_sleepless';
-      currentValue = state.relations[relKey];
-    } else {
-      return false;
-    }
-
-    switch (operator) {
-      case '>=': return (currentValue as number) >= (value as number);
-      case '>': return (currentValue as number) > (value as number);
-      case '<=': return (currentValue as number) <= (value as number);
-      case '<': return (currentValue as number) < (value as number);
-      case '==': return currentValue === value;
-      case '!=': return currentValue !== value;
-      default: return false;
-    }
-  } else if (condition.type === 'bool') {
-    const { target, value } = condition;
-    const itemKey = target as keyof typeof state.items;
-    return state.items[itemKey] === value;
-  } else if (condition.type === 'and') {
-    return condition.conditions.every(c => evaluateCondition(state, c));
-  } else if (condition.type === 'or') {
-    return condition.conditions.some(c => evaluateCondition(state, c));
-  }
-
-  return false;
-}
-
-// ============================================================================
-// Condition to String
-// ============================================================================
+type CoverageMap = Map<string, CoverageEntry>;
 
 function conditionToString(condition: Condition): string {
-  if (condition.type === 'compare') {
-    return `${condition.target} ${condition.operator} ${condition.value}`;
-  } else if (condition.type === 'bool') {
-    return `${condition.target} == ${condition.value}`;
-  } else if (condition.type === 'and') {
-    return `(${condition.conditions.map(conditionToString).join(' AND ')})`;
-  } else if (condition.type === 'or') {
-    return `(${condition.conditions.map(conditionToString).join(' OR ')})`;
+  switch (condition.type) {
+    case 'compare':
+      return `${condition.target} ${condition.operator} ${condition.value}`;
+    case 'bool':
+      return `${condition.target} == ${condition.value}`;
+    case 'and':
+      return `(${condition.conditions.map(conditionToString).join(' AND ')})`;
+    case 'or':
+      return `(${condition.conditions.map(conditionToString).join(' OR ')})`;
+    default:
+      return 'unknown';
   }
-  return 'unknown';
 }
 
-// ============================================================================
-// Simulation with Coverage Tracking
-// ============================================================================
+function coverageKey(sceneId: string, choice: Choice): string {
+  return `${sceneId}::${choice.id ?? choice.label ?? 'unknown'}`;
+}
 
-function simulateWithCoverage(
+function weightedRandomChoice<T>(items: readonly T[], weights: readonly number[]): T {
+  const total = weights.reduce((acc, value) => acc + value, 0);
+  let roll = Math.random() * total;
+
+  for (let idx = 0; idx < items.length; idx += 1) {
+    roll -= weights[idx];
+    if (roll <= 0) return items[idx];
+  }
+
+  return items[items.length - 1];
+}
+
+function chooseExplorationChoice(
+  sceneId: string,
+  choices: Choice[],
+  sceneVisitCount: Map<string, number>,
+  coverage: CoverageMap,
+): Choice {
+  if (choices.length === 1) return choices[0];
+
+  const weights = choices.map((choice) => {
+    let weight = 1;
+
+    if (choice.condition) {
+      weight += 2;
+      const key = coverageKey(sceneId, choice);
+      const entry = coverage.get(key);
+      if (entry && entry.timesChosen < 5) {
+        weight += 2;
+      }
+    }
+
+    if (choice.next) {
+      const visits = sceneVisitCount.get(choice.next) ?? 0;
+      weight += Math.max(0, 3 - Math.min(3, visits));
+    }
+
+    if (choice.ending) {
+      weight += 4;
+    }
+
+    return weight;
+  });
+
+  return weightedRandomChoice(choices, weights);
+}
+
+function applyAutoTransitionIfNeeded(state: GameState, scenes: ScenesCollection): boolean {
+  if (state.isGameOver) return false;
+
+  const scene = scenes[state.current_scene_id];
+  if (!scene) return false;
+
+  const availableChoices = getAvailableChoices(state, scene);
+  if (availableChoices.length > 0) return false;
+
+  const autoNextSceneId = checkAutoNext(scene, state);
+  if (!autoNextSceneId) return false;
+
+  const nextScene = scenes[autoNextSceneId];
+  if (!nextScene) {
+    throw new Error(`Auto-next scene not found: ${autoNextSceneId}`);
+  }
+
+  if (scene.exit_effects && scene.exit_effects.length > 0) {
+    applyEffects(state, scene.exit_effects);
+  }
+
+  if (!state.visited_scene_ids.includes(autoNextSceneId)) {
+    state.visited_scene_ids.push(autoNextSceneId);
+  }
+
+  state.current_scene_id = autoNextSceneId;
+
+  if (nextScene.entry_effects && nextScene.entry_effects.length > 0) {
+    applyEffects(state, nextScene.entry_effects);
+  }
+
+  if (nextScene.chapter !== undefined && nextScene.chapter !== state.chapter_index) {
+    state.chapter_index = nextScene.chapter;
+  }
+
+  return true;
+}
+
+function advanceAutoTransitions(state: GameState, scenes: ScenesCollection, maxSteps: number = 12): void {
+  let steps = 0;
+  while (steps < maxSteps) {
+    const advanced = applyAutoTransitionIfNeeded(state, scenes);
+    if (!advanced) return;
+    steps += 1;
+  }
+}
+
+function registerAvailableConditionalChoices(
+  scene: Scene,
+  state: GameState,
+  coverage: CoverageMap,
+  runAvailableSet: Set<string>,
+): void {
+  scene.choices.forEach((choice) => {
+    if (!choice.condition) return;
+    if (typeof choice.condition === 'function') return;
+
+    const key = coverageKey(scene.id, choice);
+    const entry = coverage.get(key);
+    if (!entry) return;
+
+    if (evaluateCondition(state, choice.condition)) {
+      entry.timesAvailable += 1;
+      runAvailableSet.add(key);
+    }
+  });
+}
+
+function simulateCoverageRun(
   startSceneId: string,
-  scenesMap: Record<string, Scene>,
-  coverageMap: Map<string, ChoiceCoverage>,
-  maxChoices: number = 200
+  scenes: ScenesCollection,
+  coverage: CoverageMap,
+  maxSteps: number,
 ): void {
   const state = createInitialState(startSceneId);
-  let currentSceneId = state.current_scene_id;
-  let choicesMade = 0;
+  const sceneVisitCount = new Map<string, number>();
+  const runAvailableSet = new Set<string>();
 
-  while (choicesMade < maxChoices) {
-    const scene = scenesMap[currentSceneId];
-    if (!scene) break;
+  let steps = 0;
 
-    // Apply entry effects
-    if (scene.entry_effects) {
-      scene.entry_effects.forEach(effect => applyEffect(state, effect));
-    }
-
-    // Check all choices for availability
-    scene.choices.forEach(choice => {
-      const choiceKey = `${scene.id}::${choice.id || choice.label}`;
-      const coverage = coverageMap.get(choiceKey);
-
-      if (coverage) {
-        // Check if choice is available (condition met)
-        const isAvailable = !choice.condition ||
-                           typeof choice.condition === 'function' ||
-                           evaluateCondition(state, choice.condition);
-
-        if (isAvailable) {
-          coverage.times_available++;
-        }
-      }
-    });
-
-    // Filter available choices
-    const availableChoices = scene.choices.filter(choice => {
-      if (!choice.condition) return true;
-      if (typeof choice.condition === 'function') return true;
-      return evaluateCondition(state, choice.condition);
-    });
-
-    if (availableChoices.length === 0) break;
-
-    // Randomly select a choice
-    const selectedChoice = availableChoices[Math.floor(Math.random() * availableChoices.length)];
-
-    // Track selection
-    const choiceKey = `${scene.id}::${selectedChoice.id || selectedChoice.label}`;
-    const coverage = coverageMap.get(choiceKey);
-    if (coverage) {
-      coverage.times_chosen++;
-    }
-
-    // Apply choice effects
-    if (selectedChoice.effects) {
-      selectedChoice.effects.forEach(effect => applyEffect(state, effect));
-    }
-
-    choicesMade++;
-
-    // Apply exit effects
-    if (scene.exit_effects) {
-      scene.exit_effects.forEach(effect => applyEffect(state, effect));
-    }
-
-    // Move to next scene or ending
-    if (selectedChoice.ending || (selectedChoice.next && selectedChoice.next.startsWith('ending_'))) {
-      break; // End playthrough
-    } else if (selectedChoice.next) {
-      currentSceneId = selectedChoice.next;
-    } else {
-      break;
-    }
-  }
-}
-
-// ============================================================================
-// Main Analysis
-// ============================================================================
-
-async function main() {
-  console.log('🔍 Starting Conditional Choice Coverage Analysis...\n');
-
-  // Load all chapters
-  const [c1, c2, c3, c4, c5, c6, c7, endings] = await Promise.all([
-    import('../src/content/nachtzug19/scenes/c1'),
-    import('../src/content/nachtzug19/scenes/c2'),
-    import('../src/content/nachtzug19/scenes/c3'),
-    import('../src/content/nachtzug19/scenes/c4'),
-    import('../src/content/nachtzug19/scenes/c5'),
-    import('../src/content/nachtzug19/scenes/c6'),
-    import('../src/content/nachtzug19/scenes/c7'),
-    import('../src/content/nachtzug19/scenes/endings')
-  ]);
-
-  const allScenes = {
-    ...c1.chapter1Scenes,
-    ...c2.chapter2Scenes,
-    ...c3.chapter3Scenes,
-    ...c4.chapter4Scenes,
-    ...c5.c5Scenes,
-    ...c6.c6Scenes,
-    ...c7.c7Scenes,
-    ...endings.endingScenes
+  const markVisit = (sceneId: string): void => {
+    sceneVisitCount.set(sceneId, (sceneVisitCount.get(sceneId) ?? 0) + 1);
   };
 
-  console.log(`📚 Loaded ${Object.keys(allScenes).length} scenes\n`);
+  markVisit(state.current_scene_id);
 
-  // Initialize coverage map
-  const coverageMap = new Map<string, ChoiceCoverage>();
+  while (!state.isGameOver && steps < maxSteps) {
+    steps += 1;
 
-  Object.values(allScenes).forEach(scene => {
-    scene.choices.forEach(choice => {
-      if (choice.condition && typeof choice.condition !== 'function') {
-        const choiceKey = `${scene.id}::${choice.id || choice.label}`;
-        coverageMap.set(choiceKey, {
-          scene_id: scene.id,
-          scene_title: scene.title || scene.id,
-          choice_id: choice.id || '',
-          choice_label: choice.label || '',
-          condition: choice.condition,
-          condition_str: conditionToString(choice.condition),
-          times_available: 0,
-          times_chosen: 0,
-          availability_rate: 0,
-          selection_rate: 0
-        });
+    advanceAutoTransitions(state, scenes);
+    markVisit(state.current_scene_id);
+
+    const scene = scenes[state.current_scene_id];
+    if (!scene) break;
+
+    registerAvailableConditionalChoices(scene, state, coverage, runAvailableSet);
+
+    const availableChoices = getAvailableChoices(state, scene);
+    if (availableChoices.length === 0) break;
+
+    const selectedChoice = chooseExplorationChoice(scene.id, availableChoices, sceneVisitCount, coverage);
+
+    if (selectedChoice.condition) {
+      const key = coverageKey(scene.id, selectedChoice);
+      const entry = coverage.get(key);
+      if (entry) {
+        entry.timesChosen += 1;
       }
-    });
-  });
-
-  console.log(`🎯 Found ${coverageMap.size} conditional choices\n`);
-
-  // Run simulations
-  const numPlaythroughs = 1000;
-  console.log(`🎮 Running ${numPlaythroughs} simulations...\n`);
-
-  for (let i = 1; i <= numPlaythroughs; i++) {
-    if (i % 100 === 0) {
-      process.stdout.write(`\rProgress: ${i}/${numPlaythroughs}`);
     }
-    simulateWithCoverage('c1_s01_platform', allScenes, coverageMap);
+
+    transitionToNextScene(state, scene, selectedChoice, scenes);
+    markVisit(state.current_scene_id);
   }
 
-  console.log(`\n✅ Simulation complete!\n`);
-
-  // Calculate rates
-  coverageMap.forEach(coverage => {
-    coverage.availability_rate = (coverage.times_available / numPlaythroughs) * 100;
-    coverage.selection_rate = coverage.times_available > 0
-      ? (coverage.times_chosen / coverage.times_available) * 100
-      : 0;
+  runAvailableSet.forEach((key) => {
+    const entry = coverage.get(key);
+    if (entry) {
+      entry.runsAvailable += 1;
+    }
   });
-
-  // Sort by availability rate (ascending)
-  const sortedCoverage = Array.from(coverageMap.values()).sort((a, b) => a.availability_rate - b.availability_rate);
-
-  // Print report
-  console.log('# CONDITIONAL CHOICE COVERAGE REPORT\n');
-  console.log(`**Total Conditional Choices**: ${coverageMap.size}`);
-  console.log(`**Playthroughs**: ${numPlaythroughs}\n`);
-
-  // Identify orphan choices (never or rarely available)
-  const orphans = sortedCoverage.filter(c => c.availability_rate === 0);
-  const rare = sortedCoverage.filter(c => c.availability_rate > 0 && c.availability_rate < 10);
-  const uncommon = sortedCoverage.filter(c => c.availability_rate >= 10 && c.availability_rate < 30);
-
-  console.log('## Summary\n');
-  console.log(`- **Never Available**: ${orphans.length} (${((orphans.length / coverageMap.size) * 100).toFixed(1)}%)`);
-  console.log(`- **Rare** (< 10%): ${rare.length}`);
-  console.log(`- **Uncommon** (10-30%): ${uncommon.length}`);
-  console.log(`- **Common** (> 30%): ${sortedCoverage.length - orphans.length - rare.length - uncommon.length}\n`);
-
-  // Orphan Choices (P0 - Never Available)
-  if (orphans.length > 0) {
-    console.log('## ⚠️ ORPHAN CHOICES (Never Available)\n');
-    console.log('| Scene | Choice | Condition | Recommendation |');
-    console.log('|-------|--------|-----------|----------------|');
-    orphans.forEach(c => {
-      const condShort = c.condition_str.length > 40 ? c.condition_str.substring(0, 37) + '...' : c.condition_str;
-      console.log(`| ${c.scene_id} | ${c.choice_label.substring(0, 20)} | ${condShort} | Lower threshold or add path |`);
-    });
-    console.log('');
-  }
-
-  // Rare Choices (P1 - Seen < 10%)
-  if (rare.length > 0) {
-    console.log('## ⚠️ RARE CHOICES (< 10% Availability)\n');
-    console.log('| Scene | Choice | Condition | Availability | Recommendation |');
-    console.log('|-------|--------|-----------|--------------|----------------|');
-    rare.forEach(c => {
-      const condShort = c.condition_str.length > 30 ? c.condition_str.substring(0, 27) + '...' : c.condition_str;
-      console.log(`| ${c.scene_id} | ${c.choice_label.substring(0, 20)} | ${condShort} | ${c.availability_rate.toFixed(1)}% | Consider lowering threshold |`);
-    });
-    console.log('');
-  }
-
-  // Uncommon Choices (P2 - 10-30%)
-  if (uncommon.length > 0) {
-    console.log('## 📝 UNCOMMON CHOICES (10-30% Availability)\n');
-    console.log('| Scene | Choice | Condition | Availability |');
-    console.log('|-------|--------|-----------|--------------|');
-    uncommon.forEach(c => {
-      const condShort = c.condition_str.length > 40 ? c.condition_str.substring(0, 37) + '...' : c.condition_str;
-      console.log(`| ${c.scene_id} | ${c.choice_label.substring(0, 25)} | ${condShort} | ${c.availability_rate.toFixed(1)}% |`);
-    });
-    console.log('');
-  }
-
-  // Full table (sorted by availability, lowest first)
-  console.log('## Complete Coverage Table (Bottom 20)\n');
-  console.log('| Scene | Choice | Condition | Avail % | Chosen % |');
-  console.log('|-------|--------|-----------|---------|----------|');
-  sortedCoverage.slice(0, 20).forEach(c => {
-    const condShort = c.condition_str.length > 35 ? c.condition_str.substring(0, 32) + '...' : c.condition_str;
-    const label = c.choice_label.length > 25 ? c.choice_label.substring(0, 22) + '...' : c.choice_label;
-    console.log(
-      `| ${c.scene_id.padEnd(20)} | ${label.padEnd(25)} | ${condShort.padEnd(35)} | ${c.availability_rate.toFixed(1).padStart(5)}% | ${c.selection_rate.toFixed(1).padStart(6)}% |`
-    );
-  });
-
-  console.log('\n✅ Analysis complete!\n');
 }
 
-main().catch(console.error);
+async function main(): Promise<void> {
+  const playthroughs = Number.parseInt(process.argv[2] ?? '1000', 10);
+  const maxSteps = Number.parseInt(process.argv[3] ?? '350', 10);
+
+  if (!Number.isFinite(playthroughs) || playthroughs <= 0) {
+    throw new Error('Invalid playthrough count. Usage: tsx scripts/analyze_conditional_coverage.ts [playthroughs] [maxSteps]');
+  }
+
+  if (!Number.isFinite(maxSteps) || maxSteps <= 0) {
+    throw new Error('Invalid maxSteps. Usage: tsx scripts/analyze_conditional_coverage.ts [playthroughs] [maxSteps]');
+  }
+
+  console.log('🔍 Starting Conditional Choice Coverage Analysis...');
+  console.log('');
+
+  const story = await loadNachtzug19Story();
+  const scenes = story.scenes;
+
+  console.log(`📚 Loaded ${Object.keys(scenes).length} scenes`);
+
+  const coverage: CoverageMap = new Map();
+
+  Object.values(scenes).forEach((scene) => {
+    scene.choices.forEach((choice) => {
+      if (!choice.condition) return;
+      if (typeof choice.condition === 'function') return;
+
+      const key = coverageKey(scene.id, choice);
+      coverage.set(key, {
+        sceneId: scene.id,
+        sceneTitle: scene.title ?? scene.id,
+        choiceId: choice.id ?? 'unknown',
+        choiceLabel: choice.label ?? 'unknown',
+        conditionStr: conditionToString(choice.condition),
+        timesAvailable: 0,
+        runsAvailable: 0,
+        timesChosen: 0,
+      });
+    });
+  });
+
+  console.log(`🎯 Found ${coverage.size} conditional choices`);
+  console.log(`🎮 Running ${playthroughs} simulations...`);
+  console.log('');
+
+  const originalLog = console.log;
+  const originalWarn = console.warn;
+  console.log = () => {};
+  console.warn = () => {};
+
+  try {
+    for (let idx = 0; idx < playthroughs; idx += 1) {
+      simulateCoverageRun(story.startSceneId, scenes, coverage, maxSteps);
+
+      const checkpoint = (idx + 1) % 100 === 0 || idx + 1 === playthroughs;
+      if (checkpoint) {
+        process.stdout.write(`\rProgress: ${idx + 1}/${playthroughs}`);
+      }
+    }
+  } finally {
+    console.log = originalLog;
+    console.warn = originalWarn;
+  }
+
+  console.log('\n✅ Simulation complete!');
+  console.log('');
+  console.log('# CONDITIONAL CHOICE COVERAGE REPORT');
+  console.log('');
+  console.log(`**Total Conditional Choices**: ${coverage.size}`);
+  console.log(`**Playthroughs**: ${playthroughs}`);
+  console.log('');
+
+  const entries = [...coverage.values()].map((entry) => ({
+    ...entry,
+    availabilityRate: (entry.runsAvailable / playthroughs) * 100,
+    chosenWhenAvailable: entry.timesAvailable > 0
+      ? (entry.timesChosen / entry.timesAvailable) * 100
+      : 0,
+  }));
+
+  const neverAvailable = entries.filter((entry) => entry.runsAvailable === 0);
+  const rare = entries.filter((entry) => entry.runsAvailable > 0 && entry.availabilityRate < 10);
+  const uncommon = entries.filter((entry) => entry.availabilityRate >= 10 && entry.availabilityRate < 30);
+  const common = entries.filter((entry) => entry.availabilityRate >= 30);
+
+  console.log('## Summary');
+  console.log('');
+  console.log(`- **Never Available**: ${neverAvailable.length} (${((neverAvailable.length / entries.length) * 100).toFixed(1)}%)`);
+  console.log(`- **Rare** (< 10% runs): ${rare.length}`);
+  console.log(`- **Uncommon** (10-30% runs): ${uncommon.length}`);
+  console.log(`- **Common** (> 30% runs): ${common.length}`);
+  console.log('');
+
+  if (neverAvailable.length > 0) {
+    console.log('## ⚠️ Orphan Choices (Never Available)');
+    console.log('');
+    console.log('| Scene | Choice | Condition | Recommendation |');
+    console.log('|-------|--------|-----------|----------------|');
+    neverAvailable
+      .sort((a, b) => a.sceneId.localeCompare(b.sceneId))
+      .forEach((entry) => {
+        console.log(`| ${entry.sceneId} | ${entry.choiceLabel.substring(0, 26)} | ${entry.conditionStr.substring(0, 42)} | Rebalance threshold/path |`);
+      });
+    console.log('');
+  }
+
+  console.log('## Bottom 20 by Availability');
+  console.log('');
+  console.log('| Scene | Choice | Condition | Avail % | Chosen/Avail % |');
+  console.log('|-------|--------|-----------|---------|----------------|');
+
+  entries
+    .sort((a, b) => a.availabilityRate - b.availabilityRate)
+    .slice(0, 20)
+    .forEach((entry) => {
+      console.log(`| ${entry.sceneId.padEnd(18, ' ')} | ${entry.choiceLabel.substring(0, 24).padEnd(24, ' ')} | ${entry.conditionStr.substring(0, 25).padEnd(25, ' ')} | ${entry.availabilityRate.toFixed(1).padStart(6, ' ')}% | ${entry.chosenWhenAvailable.toFixed(1).padStart(14, ' ')}% |`);
+    });
+
+  console.log('');
+  console.log('✅ Analysis complete!');
+}
+
+main().catch((error) => {
+  console.error('❌ Coverage analysis failed');
+  console.error(error);
+  process.exit(1);
+});

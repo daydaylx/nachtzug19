@@ -1634,7 +1634,7 @@ In der kurzen Ruhe zwischen zwei Schienenstößen merkst du: Milde ist hier kein
     choices: [
       {
         id: 'continue_after_mercy_voice',
-        label: 'Weiter',
+        label: 'Mit Milde weitergehen',
         next: 'c6_s22_conductor_last'
       }
     ],
