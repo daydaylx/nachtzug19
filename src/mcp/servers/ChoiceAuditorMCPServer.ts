@@ -54,6 +54,18 @@ interface ChapterChoiceAnalysis {
 }
 
 /**
+ * Choice Density Analysis Result
+ */
+interface ChoiceDensityAnalysisResult {
+  chapter: number | null;
+  chapters: ChapterChoiceAnalysis[];
+  totalScenes: number;
+  totalChoices: number;
+  avgChoicesPerScene: number;
+  avgChoiceDensity: number;
+}
+
+/**
  * Choice Audit Result - Vollständiges Audit-Ergebnis
  */
 interface ChoiceAuditResult {
@@ -327,8 +339,6 @@ export class ChoiceAuditorMCPServer extends MCPServerBase {
           );
 
           if (hasStrongEffects && !hasStateNotes) {
-            choicesWithCallbacks++;
-
             issues.push({
               severity: 'warning',
               sceneId,
@@ -455,6 +465,21 @@ export class ChoiceAuditorMCPServer extends MCPServerBase {
       });
     });
 
+    chapterAnalyses.sort((a, b) => a.chapter - b.chapter);
+
+    const totalChoices = Array.from(chapterData.values()).reduce((sum, d) => sum + d.choiceCount, 0);
+    const totalScenes = Array.from(chapterData.values()).reduce((sum, d) => sum + d.sceneCount, 0);
+    const avgDensity = totalScenes > 0 ? totalChoices / totalScenes : 0;
+
+    const densityResult: ChoiceDensityAnalysisResult = {
+      chapter,
+      chapters: chapterAnalyses,
+      totalScenes,
+      totalChoices,
+      avgChoicesPerScene: avgDensity,
+      avgChoiceDensity: avgDensity
+    };
+
     if (printOutput) {
       const scope = chapter ? `Kapitel ${chapter}` : 'alle Kapitel';
       console.log(`\n🔍 === Choice Density Analyse: ${scope} ===\n`);
@@ -464,10 +489,6 @@ export class ChoiceAuditorMCPServer extends MCPServerBase {
         console.log(`${status} Kapitel ${analysis.chapter}: ${analysis.totalChoices} Choices in ${analysis.totalScenes} Szenen (Ø ${analysis.choiceDensity.toFixed(2)} Choices/Scene)`);
       });
 
-      const totalChoices = Array.from(chapterData.values()).reduce((sum, d) => sum + d.choiceCount, 0);
-      const totalScenes = Array.from(chapterData.values()).reduce((sum, d) => sum + d.sceneCount, 0);
-      const avgDensity = totalScenes > 0 ? totalChoices / totalScenes : 0;
-
       console.log(`\nDurchschnitt: ${avgDensity.toFixed(2)} Choices/Scene`);
     }
 
@@ -475,10 +496,7 @@ export class ChoiceAuditorMCPServer extends MCPServerBase {
       success: issues.filter(i => i.severity === 'error').length === 0,
       errors: issues.filter(i => i.severity === 'error').map(i => i.description),
       warnings: issues.filter(i => i.severity === 'warning').map(i => i.description),
-      data: {
-        chapter,
-        chapters: chapterAnalyses
-      }
+      data: densityResult
     };
   }
 
@@ -600,16 +618,17 @@ export class ChoiceAuditorMCPServer extends MCPServerBase {
     const callbackResult = await this.checkCallbackIntegrity(null, false);
     const densityResult = await this.analyzeChoiceDensity(null, false);
     const validationResult = await this.validateChoices(null, false);
+    const densityData = densityResult.data as ChoiceDensityAnalysisResult;
 
     const report: ChoiceAuditResult = {
       fakeChoiceAnalysis: fakeChoiceResult.data as FakeChoiceAnalysis,
       callbackAnalysis: callbackResult.data as ChoiceCallbackAnalysis,
-      chapters: (densityResult.data as any).chapters,
+      chapters: densityData.chapters,
       summary: {
         totalChoices: (validationResult.data as any).totalChoices,
-        totalScenes: (densityResult.data as any).totalScenes,
-        avgChoicesPerScene: (densityResult.data as any).avgChoicesPerScene,
-        avgChoiceDensity: (densityResult.data as any).avgChoiceDensity
+        totalScenes: densityData.totalScenes,
+        avgChoicesPerScene: densityData.avgChoicesPerScene,
+        avgChoiceDensity: densityData.avgChoiceDensity
       },
       recommendations: []  // Wird nachfolgend gefüllt
     };
@@ -677,6 +696,10 @@ export class ChoiceAuditorMCPServer extends MCPServerBase {
    * Gibt Report in der Konsole aus
    */
   private printConsoleReport(report: ChoiceAuditResult): void {
+    const avgChoicesPerScene = Number.isFinite(report.summary.avgChoicesPerScene)
+      ? report.summary.avgChoicesPerScene
+      : 0;
+
     console.log('\n' + '='.repeat(60));
     console.log('🔍 NACHTZUG 19 - Choice Audit Report');
     console.log('='.repeat(60) + '\n');
@@ -684,7 +707,7 @@ export class ChoiceAuditorMCPServer extends MCPServerBase {
     console.log('📊 Summary:');
     console.log(`   Total Choices: ${report.summary.totalChoices}`);
     console.log(`   Total Scenes: ${report.summary.totalScenes}`);
-    console.log(`   Avg Choices/Scene: ${report.summary.avgChoicesPerScene.toFixed(2)}`);
+    console.log(`   Avg Choices/Scene: ${avgChoicesPerScene.toFixed(2)}`);
 
     console.log('\n🎭 Fake Choices:');
     console.log(`   Total: ${report.fakeChoiceAnalysis.totalChoices}`);
@@ -697,8 +720,9 @@ export class ChoiceAuditorMCPServer extends MCPServerBase {
 
     console.log('\n📈 Choice Density by Chapter:');
     report.chapters.forEach(chapter => {
+      const chapterDensity = Number.isFinite(chapter.choiceDensity) ? chapter.choiceDensity : 0;
       const status = chapter.choiceDensity >= 1 ? '✅' : '⚠️';
-      console.log(`   ${status} Kapitel ${chapter.chapter}: ${chapter.choiceDensity.toFixed(2)} Choices/Scene`);
+      console.log(`   ${status} Kapitel ${chapter.chapter}: ${chapterDensity.toFixed(2)} Choices/Scene`);
     });
 
     if (report.recommendations.length > 0) {
@@ -715,12 +739,16 @@ export class ChoiceAuditorMCPServer extends MCPServerBase {
    * Gibt Report als Markdown aus
    */
   private printMarkdownReport(report: ChoiceAuditResult): void {
+    const avgChoicesPerScene = Number.isFinite(report.summary.avgChoicesPerScene)
+      ? report.summary.avgChoicesPerScene
+      : 0;
+
     console.log('# NACHTZUG 19 - Choice Audit Report\n');
 
     console.log('## Summary\n');
     console.log(`- **Total Choices:** ${report.summary.totalChoices}`);
     console.log(`- **Total Scenes:** ${report.summary.totalScenes}`);
-    console.log(`- **Avg Choices/Scene:** ${report.summary.avgChoicesPerScene.toFixed(2)}\n`);
+    console.log(`- **Avg Choices/Scene:** ${avgChoicesPerScene.toFixed(2)}\n`);
 
     console.log('## Fake Choices\n');
     console.log(`- **Total Choices:** ${report.fakeChoiceAnalysis.totalChoices}`);
@@ -733,9 +761,10 @@ export class ChoiceAuditorMCPServer extends MCPServerBase {
 
     console.log('## Choice Density by Chapter\n');
     report.chapters.forEach(chapter => {
+      const chapterDensity = Number.isFinite(chapter.choiceDensity) ? chapter.choiceDensity : 0;
       const status = chapter.choiceDensity >= 1 ? '✅' : '⚠️';
       console.log(`### ${status} Kapitel ${chapter.chapter}\n`);
-      console.log(`- **Choice Density:** ${chapter.choiceDensity.toFixed(2)} Choices/Scene`);
+      console.log(`- **Choice Density:** ${chapterDensity.toFixed(2)} Choices/Scene`);
       console.log(`- **Total Choices:** ${chapter.totalChoices}`);
       console.log(`- **Total Scenes:** ${chapter.totalScenes}\n`);
     });

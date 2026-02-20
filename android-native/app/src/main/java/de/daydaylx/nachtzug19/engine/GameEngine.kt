@@ -281,6 +281,7 @@ class GameEngine {
     this.scenes = scenes
     this.endings = endings
     state = createInitialState(startSceneId)
+    advanceAutoTransitions()
   }
 
   fun setState(newState: GameState) {
@@ -298,11 +299,13 @@ class GameEngine {
 
   fun reset(startSceneId: String) {
     state = createInitialState(startSceneId)
+    advanceAutoTransitions()
   }
 
   fun makeChoice(choice: Choice) {
     val currentScene = getCurrentScene() ?: error("No current scene")
     state = transitionToNextScene(state, currentScene, choice, scenes)
+    advanceAutoTransitions()
   }
 
   fun advanceAutoNextIfNeeded(): Boolean {
@@ -337,6 +340,24 @@ class GameEngine {
 
     state = transitioned
     return true
+  }
+
+  private fun advanceAutoTransitions(maxSteps: Int = 12) {
+    var steps = 0
+    while (steps < maxSteps) {
+      val advanced = advanceAutoNextIfNeeded()
+      if (!advanced) return
+      steps += 1
+    }
+
+    val currentScene = getCurrentScene()
+    if (
+      currentScene != null &&
+      getAvailableChoices(state, currentScene).isEmpty() &&
+      checkAutoNext(currentScene, state) != null
+    ) {
+      System.err.println("[AutoNext] Aborted after $maxSteps chained transitions to prevent loop.")
+    }
   }
 }
 

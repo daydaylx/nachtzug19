@@ -110,7 +110,7 @@ async function main() {
     definitions: {
       dead_end: 'Eine Szene ist ein Dead End, wenn sie keine ausgehenden Choices hat (leeres choices-Array oder alle Choices ohne next/ending) UND nicht selbst ein Ending-Target ist.',
       cycle: 'Ein Cycle (SCC mit Größe > 1) liegt vor, wenn eine Gruppe von Szenen sich gegenseitig erreichen kann. Self-Loops sind Szenen, die direkt auf sich selbst verweisen.',
-      unreachable: 'Eine Szene ist unreachable, wenn sie von der Startszene aus über keine Kombination von Choices erreicht werden kann.'
+      unreachable: 'Eine Szene ist unreachable, wenn sie von der Startszene aus über keine Kombination von Choices/auto_next-Kanten erreicht werden kann.'
     }
   };
 
@@ -165,7 +165,13 @@ function buildGraph(scenes) {
       if (choice.next) {
         neighbors.add(choice.next);
       }
-      // Note: choices with 'ending' don't add edges to scenes
+      // Note: choices with 'ending' don't add scene edges
+    }
+
+    for (const variant of scene.narrative_variants || []) {
+      if (variant.auto_next) {
+        neighbors.add(variant.auto_next);
+      }
     }
 
     graph.set(sceneId, neighbors);

@@ -21,6 +21,25 @@ async function runSmokeTest(): Promise<boolean> {
   let passed = 0;
   let failed = 0;
 
+  const testPlanByServer: Record<string, { name: string; params: Record<string, any> }> = {
+    'story-validator': {
+      name: 'validate',
+      params: { printOutput: false }
+    },
+    'content-auditor': {
+      name: 'analyzeStateFlow',
+      params: { target: 'tickets_truth', printOutput: false }
+    },
+    'pacing-analyzer': {
+      name: 'analyzeChapter',
+      params: { chapter: 1, printOutput: false }
+    },
+    'choice-auditor': {
+      name: 'generateChoiceReport',
+      params: { format: 'console' }
+    }
+  };
+
   // 1. Lade Story
   console.log('1️⃣  Lade Story...');
   try {
@@ -79,19 +98,32 @@ async function runSmokeTest(): Promise<boolean> {
 
         console.log(`      ✅ ${tools.length} Tools verfügbar`);
 
-        // Teste ein Tool pro Server
-        const testTool = tools[0];
-        console.log(`      🧪 Teste Tool: ${testTool.name}...`);
+        const plannedTool = testPlanByServer[serverMeta.id];
+        if (!plannedTool) {
+          console.log(`      ❌ Kein Smoke-Testplan für Server '${serverMeta.id}'`);
+          failed++;
+          continue;
+        }
 
-        const result = await server.executeTool(testTool.name, {
-          printOutput: false
-        });
+        const toolDef = tools.find((t: any) => t.name === plannedTool.name);
+        if (!toolDef) {
+          console.log(`      ❌ Tool '${plannedTool.name}' nicht gefunden`);
+          failed++;
+          continue;
+        }
+
+        console.log(`      🧪 Teste Tool: ${plannedTool.name}...`);
+        const result = await server.executeTool(plannedTool.name, plannedTool.params);
 
         if (result.success === undefined || typeof result.success !== 'boolean') {
           console.log(`      ❌ Tool hat kein gültiges success-Feld`);
           failed++;
         } else if (result.executionTime === undefined || typeof result.executionTime !== 'number') {
           console.log(`      ❌ Tool hat kein gültiges executionTime-Feld`);
+          failed++;
+        } else if (!result.success) {
+          const firstError = result.errors?.[0] || 'Unbekannter Fehler';
+          console.log(`      ❌ Tool fehlgeschlagen: ${firstError}`);
           failed++;
         } else {
           console.log(`      ✅ Tool ausgeführt (${result.executionTime}ms)`);

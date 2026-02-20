@@ -2029,7 +2029,6 @@ Comp7 steht im Türrahmen des Zuges.
           ]
         },
         effects: [
-          { type: 'set', target: 'chapter_index', value: 6 },
           { type: 'inc', target: 'tickets_truth', value: 1 }
         ],
         next: 'c6_s01_awakening'
@@ -2037,9 +2036,7 @@ Comp7 steht im Türrahmen des Zuges.
       {
         id: 'continue_normal',
         label: 'Wieder einsteigen',
-        effects: [
-          { type: 'set', target: 'chapter_index', value: 6 }
-        ],
+        effects: [],
         next: 'c6_s01_awakening'
       },
       {
@@ -2052,8 +2049,7 @@ Comp7 steht im Türrahmen des Zuges.
           value: 4
         },
         effects: [
-          { type: 'inc', target: 'tickets_guilt', value: 2 },
-          { type: 'set', target: 'chapter_index', value: 6 }
+          { type: 'inc', target: 'tickets_guilt', value: 2 }
         ],
         next: 'c6_s01_awakening'
       }

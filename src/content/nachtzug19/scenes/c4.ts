@@ -941,9 +941,7 @@ Der Zug antwortet mit einem langen, tiefen Knurren aus dem Unterboden.`,
       {
         id: 'continue_to_c5',
         label: 'Die 19 betrachten',
-        effects: [
-          { type: 'set', target: 'chapter_index', value: 5 }
-        ],
+        effects: [],
         next: 'c4_end_station_sideword'
       }
     ],

@@ -178,7 +178,9 @@ export class ContentAuditorMCPServer extends MCPServerBase {
    */
   private async analyzeStateFlow(target: string | null, printOutput: boolean) {
     const scenes = this['context'].scenes;
-    const targetsToAnalyze = target ? [target as EffectTarget] : this.getAllEffectTargets();
+    const targetsToAnalyze = target
+      ? [target as EffectTarget]
+      : this.getTrackedEffectTargets(scenes);
 
     const results: StateFlowAnalysis[] = [];
 
@@ -375,9 +377,6 @@ export class ContentAuditorMCPServer extends MCPServerBase {
     const scenes = this['context'].scenes;
     const issues: NarrativeConsistencyIssue[] = [];
 
-    // TODO: Implementiere echte Konsistenz-Checks
-    // Aktuell Platzhalter für zukünftige Implementierung
-
     // 1. Prüfe auf Duplikate bei Scene IDs
     const sceneIds = Object.keys(scenes);
     const duplicateIds = sceneIds.filter((id, index) => sceneIds.indexOf(id) !== index);
@@ -404,9 +403,9 @@ export class ContentAuditorMCPServer extends MCPServerBase {
       const scene = scenes[sceneId];
       if (!scene) continue;
 
-      scene.choices.forEach(choice => {
-        if (choice.next && !reachable.has(choice.next)) {
-          queue.push(choice.next);
+      this.getSceneOutgoingSceneIds(scene).forEach(nextId => {
+        if (!reachable.has(nextId)) {
+          queue.push(nextId);
         }
       });
     }
@@ -486,6 +485,7 @@ export class ContentAuditorMCPServer extends MCPServerBase {
    */
   private async generateReport(format: string) {
     const scenes = this['context'].scenes;
+    const targets = this.getTrackedEffectTargets(scenes);
 
     const report: ContentAnalysisResult = {
       stateFlowAnalysis: [],
@@ -500,12 +500,11 @@ export class ContentAuditorMCPServer extends MCPServerBase {
           s.choices.reduce((cSum, c) => cSum + (c.effects?.length || 0), 0),
           0
         ),
-        stateVariablesTracked: this.getAllEffectTargets().length
+        stateVariablesTracked: targets.length
       }
     };
 
     // Führe State-Flow Analyse für alle Targets durch
-    const targets = this.getAllEffectTargets();
     targets.forEach(target => {
       const analysis = this.analyzeStateFlowForTarget(target, scenes);
       report.stateFlowAnalysis.push(analysis);
@@ -608,21 +607,34 @@ export class ContentAuditorMCPServer extends MCPServerBase {
   /**
    * Hilfsmethode: Alle bekannten Effect Targets
    */
-  private getAllEffectTargets(): EffectTarget[] {
-    return [
-      // Tickets
-      'tickets_truth', 'tickets_escape', 'tickets_guilt', 'tickets_love',
-      // Pressure
-      'conductor_attention', 'memory_drift',
-      // Relations
-      'rel_comp7', 'rel_boy', 'rel_sleepless',
-      // Items
-      'has_recorder', 'has_tag19', 'has_ticket', 'photo_anomaly',
-      'played_recorder', 'memory_search_active', 'emma_memory_unlocked',
-      // Meta
-      'chapter_index', 'station_count',
-      // Legacy
-      'mut', 'wissen', 'empathie'
-    ];
+  private getTrackedEffectTargets(scenes: Record<string, Scene>): EffectTarget[] {
+    const targets = new Set<EffectTarget>();
+
+    Object.values(scenes).forEach(scene => {
+      scene.entry_effects?.forEach(effect => targets.add(effect.target));
+      scene.exit_effects?.forEach(effect => targets.add(effect.target));
+      scene.choices.forEach(choice => {
+        choice.effects?.forEach(effect => targets.add(effect.target));
+      });
+    });
+
+    return Array.from(targets).sort((a, b) => a.localeCompare(b));
+  }
+
+  /**
+   * Liefert alle ausgehenden Scene-Kanten einer Szene:
+   * - choice.next
+   * - narrative_variant.auto_next
+   */
+  private getSceneOutgoingSceneIds(scene: Scene): string[] {
+    const choiceTargets = scene.choices
+      .map(choice => choice.next)
+      .filter((target): target is string => Boolean(target));
+
+    const autoNextTargets = (scene.narrative_variants || [])
+      .map(variant => variant.auto_next)
+      .filter((target): target is string => Boolean(target));
+
+    return [...new Set([...choiceTargets, ...autoNextTargets])];
   }
 }

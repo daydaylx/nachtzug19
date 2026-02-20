@@ -321,7 +321,7 @@ Auf der Rückseite ein Aufkleber. Ein Name. Verwischt, unleserlich.`,
         id: 'keep_trying',
         label: 'Weiter versuchen, es zu aktivieren',
         effects: [
-          { type: 'set', target: 'inspected_device', value: true }
+          { type: 'inc', target: 'tickets_truth', value: 1 }
         ],
         next: 'c1_hub_platform'
       },
@@ -329,7 +329,7 @@ Auf der Rückseite ein Aufkleber. Ein Name. Verwischt, unleserlich.`,
         id: 'put_away',
         label: 'Weglegen und vergessen',
         effects: [
-          { type: 'set', target: 'inspected_device', value: true }
+          { type: 'inc', target: 'tickets_escape', value: 1 }
         ],
         next: 'c1_hub_platform'
       }
@@ -337,7 +337,7 @@ Auf der Rückseite ein Aufkleber. Ein Name. Verwischt, unleserlich.`,
     tags: ['investigation'],
     state_notes: [
       'Gerät zeigt "NACHTZUG 19" - erster direkter Name-Drop',
-      'Flag inspected_device für narrative Varianten (keine Tickets)'
+      'Choice-Ton wirkt auf Truth/Escape-Balance'
     ],
     atmosphere: 'mystic'
   },
@@ -360,24 +360,21 @@ Ein Lichtpunkt, aus der Tiefe. Näher. Schneller. Das Brummen setzt ein.`,
         id: 'lean_closer',
         label: 'Dich über die Kante lehnen',
         effects: [
-          { type: 'inc', target: 'memory_drift', value: 1 },
-          { type: 'set', target: 'looked_into_void', value: true }
+          { type: 'inc', target: 'memory_drift', value: 1 }
         ],
         next: 'c1_hub_platform'
       },
       {
         id: 'pull_back',
         label: 'Sofort zurückspringen',
-        effects: [
-          { type: 'set', target: 'looked_into_void', value: true }
-        ],
+        effects: [],
         next: 'c1_hub_platform'
       }
     ],
     tags: ['investigation'],
     state_notes: [
       'Unendliche Tiefe - Reality-Check',
-      'memory_drift bleibt (Mechanik), Tickets entfernt (nur Flag looked_into_void)'
+      'memory_drift bleibt als unmittelbare Konsequenz'
     ],
     atmosphere: 'danger'
   },
@@ -603,9 +600,7 @@ Aber der Zettel in deiner Tasche ist warm geworden. Als hätte er etwas aufgenom
       {
         id: 'hesitate_step',
         label: 'Noch einmal zurückblicken, dann einsteigen',
-        effects: [
-          { type: 'set', target: 'stance_cautious', value: true }
-        ],
+        effects: [],
         next: 'c1_branching_entry'
       }
     ],
@@ -775,19 +770,14 @@ In den anderen Abteilen bewegen sich die Passagiere in kleinen, mechanischen Sch
         id: 'stay_window',
         label: 'Beim Fenster bleiben und hinausstarren',
         effects: [
-          { type: 'inc', target: 'memory_drift', value: 1 },
-          { type: 'set', target: 'gazed_into_darkness', value: true },
-          { type: 'set', target: 'saw_passenger_loop', value: true }
+          { type: 'inc', target: 'memory_drift', value: 1 }
         ],
         next: 'c1_hub_train'
       },
       {
         id: 'leave_quickly',
         label: 'Schnell zurück in den Gang',
-        effects: [
-          { type: 'set', target: 'gazed_into_darkness', value: true },
-          { type: 'set', target: 'saw_passenger_loop', value: true }
-        ],
+        effects: [],
         next: 'c1_hub_train'
       }
     ],
@@ -795,7 +785,7 @@ In den anderen Abteilen bewegen sich die Passagiere in kleinen, mechanischen Sch
     state_notes: [
       'Spiegelbild-Anomalie',
       'Vorbereitung auf K4 Mirror-Theme',
-      'MERGE: Passagier-Loop-Text integriert, saw_passenger_loop wird hier gesetzt'
+      'MERGE: Passagier-Loop-Text integriert'
     ],
     atmosphere: 'mystic'
   },
@@ -825,8 +815,7 @@ Du greifst in deine Tasche. Leer. Kein Ticket.
         label: '„Was soll ich wissen?"',
         effects: [
           { type: 'inc', target: 'tickets_truth', value: 1 },
-          { type: 'inc', target: 'rel_sleepless', value: 1 },
-          { type: 'set', target: 'knows_sleepless_warning', value: true }
+          { type: 'inc', target: 'rel_sleepless', value: 1 }
         ],
         next: 'c1_hub_train'
       },
@@ -852,7 +841,7 @@ Du greifst in deine Tasche. Leer. Kein Ticket.
     tags: ['investigation'],
     state_notes: [
       'Schlafloser-Intro',
-      'knows_sleepless_warning wird in K2 wichtig'
+      'Truth/Love/Escape reagieren auf Gesprächston'
     ],
     atmosphere: 'somber'
   },
@@ -875,8 +864,7 @@ Niemand spricht. Niemand sieht dich an. Als wären sie alle in einer Schleife ge
         id: 'watch_pattern',
         label: 'Das Muster beobachten',
         effects: [
-          { type: 'inc', target: 'tickets_truth', value: 1 },
-          { type: 'set', target: 'saw_passenger_loop', value: true }
+          { type: 'inc', target: 'tickets_truth', value: 1 }
         ],
         next: 'c1_hub_train'
       },
@@ -892,7 +880,7 @@ Niemand spricht. Niemand sieht dich an. Als wären sie alle in einer Schleife ge
     tags: ['investigation'],
     state_notes: [
       'Passagier-Loop eingeführt',
-      'saw_passenger_loop → Callback in späteren Kapiteln'
+      'Muster-Beobachtung zahlt auf Truth ein'
     ],
     atmosphere: 'somber'
   },
@@ -929,8 +917,7 @@ Emma? Oder jemand, der weiß, wo Emma ist?`
         id: 'knock_door',
         label: 'Klopfen',
         effects: [
-          { type: 'inc', target: 'tickets_love', value: 1 },
-          { type: 'set', target: 'heard_comp7_scratching', value: true }
+          { type: 'inc', target: 'tickets_love', value: 1 }
         ],
         next: 'c1_hub_train'
       },
@@ -938,8 +925,7 @@ Emma? Oder jemand, der weiß, wo Emma ist?`
         id: 'listen_only',
         label: 'Nur horchen',
         effects: [
-          { type: 'inc', target: 'tickets_truth', value: 1 },
-          { type: 'set', target: 'heard_comp7_scratching', value: true }
+          { type: 'inc', target: 'tickets_truth', value: 1 }
         ],
         next: 'c1_hub_train'
       }
@@ -1238,8 +1224,7 @@ Die Uhr zeigt 23:47. Du bist seit Stunden unterwegs. Aber die Uhr sagt, du bist 
       }
     ],
     exit_effects: [
-      { type: 'inc', target: 'memory_drift', value: 1 },
-      { type: 'set', target: 'chapter_index', value: 2 }
+      { type: 'inc', target: 'memory_drift', value: 1 }
     ],
     choices: [
       {

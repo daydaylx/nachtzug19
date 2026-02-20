@@ -2084,9 +2084,7 @@ Bist du bereit?`,
       {
         id: 'open_door',
         label: 'Die Tür öffnen',
-        effects: [
-          { type: 'inc', target: 'station_count', value: 1 }
-        ],
+        effects: [],
         next: 'c6_end_station'
       },
       {
@@ -2099,8 +2097,7 @@ Bist du bereit?`,
           value: 3
         },
         effects: [
-          { type: 'inc', target: 'tickets_guilt', value: 1 },
-          { type: 'inc', target: 'station_count', value: 1 }
+          { type: 'inc', target: 'tickets_guilt', value: 1 }
         ],
         next: 'c6_end_station'
       }
@@ -2181,9 +2178,7 @@ Die wahre Endstation.`,
       {
         id: 'continue_to_chapter_7',
         label: 'Weiter zur letzten Station',
-        effects: [
-          { type: 'set', target: 'chapter_index', value: 7 }
-        ],
+        effects: [],
         next: 'c7_s01_final_approach'
       }
     ],

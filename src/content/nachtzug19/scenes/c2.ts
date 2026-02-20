@@ -237,17 +237,14 @@ Darauf steht in deiner Handschrift: „Du hattest nie ein Ticket."`,
         id: 'keep_note',
         label: 'Zettel behalten',
         effects: [
-          { type: 'inc', target: 'memory_drift', value: 1 },
-          { type: 'set', target: 'kept_no_ticket_note', value: true }
+          { type: 'inc', target: 'memory_drift', value: 1 }
         ],
         next: 'c2_s01c_corridor_chill'
       },
       {
         id: 'throw_away',
         label: 'Zettel zerreißen',
-        effects: [
-          { type: 'set', target: 'destroyed_evidence', value: true }
-        ],
+        effects: [],
         next: 'c2_s01c_corridor_chill'
       }
     ],
@@ -475,17 +472,14 @@ Am Ende des schier endlosen Gangs brennt Licht in einem Abteil. Die Tür steht h
         id: 'count_compartments',
         label: 'Abteile zählen',
         effects: [
-          { type: 'inc', target: 'memory_drift', value: 1 },
-          { type: 'set', target: 'counted_compartments', value: true }
+          { type: 'inc', target: 'memory_drift', value: 1 }
         ],
         next: 'c2_s02b1_door_numbers'
       },
       {
         id: 'approach_lit_compartment',
         label: 'Direkt zum Licht gehen',
-        effects: [
-          { type: 'set', target: 'went_to_light', value: true }
-        ],
+        effects: [],
         next: 'c2_s02b1_door_numbers'
       }
     ],
@@ -707,16 +701,13 @@ Du spürst, wie deine Zunge am Gaumen klebt. Wahrheit, Lüge, Flucht: Es sind ni
       {
         id: 'prepare_truth',
         label: 'Die Wahrheit (Erinnerungslücke)',
-        effects: [
-          { type: 'set', target: 'prepare_stance', value: 'truth' }
-        ],
+        effects: [],
         next: 'c2_s04b_breath_control'
       },
       {
         id: 'prepare_lie',
         label: 'Eine Lüge erfinden',
         effects: [
-          { type: 'set', target: 'prepare_stance', value: 'lie' },
           { type: 'inc', target: 'conductor_attention', value: 1 }
         ],
         next: 'c2_s04b_breath_control'
@@ -731,7 +722,6 @@ Du spürst, wie deine Zunge am Gaumen klebt. Wahrheit, Lüge, Flucht: Es sind ni
           value: 2
         },
         effects: [
-          { type: 'set', target: 'prepare_stance', value: 'hide' },
           { type: 'inc', target: 'conductor_attention', value: 2 }
         ],
         next: 'c2_s04b_breath_control'
@@ -740,7 +730,7 @@ Du spürst, wie deine Zunge am Gaumen klebt. Wahrheit, Lüge, Flucht: Es sind ni
     tags: [],
     state_notes: [
       'Fixed attention check for hiding',
-      'Tickets entfernt - nur Flag prepare_stance für narrative Varianten'
+      'Vorbereitung wirkt direkt über conductor_attention'
     ],
     atmosphere: 'tense'
   },
@@ -764,7 +754,7 @@ Als du den Kopf drehst, ist da nur der leere Gang.`,
         id: 'steady_posture',
         label: 'Haltung annehmen',
         effects: [
-          { type: 'set', target: 'breath_control', value: 'steady' }
+          { type: 'inc', target: 'tickets_truth', value: 1 }
         ],
         next: 'c2_s04a_conductor_approach'
       },
@@ -772,7 +762,7 @@ Als du den Kopf drehst, ist da nur der leere Gang.`,
         id: 'shrink_back',
         label: 'Einen Schritt zurück',
         effects: [
-          { type: 'set', target: 'breath_control', value: 'shrink' }
+          { type: 'inc', target: 'tickets_escape', value: 1 }
         ],
         next: 'c2_s04a_conductor_approach'
       }
@@ -780,7 +770,7 @@ Als du den Kopf drehst, ist da nur der leere Gang.`,
     tags: ['interlude'],
     state_notes: [
       'Micro-Beat vor Kontrolle 1',
-      'Tickets entfernt - nur Flag breath_control für Nuancen'
+      'Haltungswahl wirkt auf Truth/Escape-Balance'
     ],
     atmosphere: 'tense'
   },
@@ -806,7 +796,7 @@ Als das Licht wieder angeht, steht er direkt vor dir: riesig, Uniform ohne Falte
         id: 'face_him',
         label: 'Standhalten',
         effects: [
-          { type: 'set', target: 'conductor_stance', value: 'face' }
+          { type: 'inc', target: 'tickets_truth', value: 1 }
         ],
         next: 'c2_control_01_approach'
       },
@@ -814,7 +804,7 @@ Als das Licht wieder angeht, steht er direkt vor dir: riesig, Uniform ohne Falte
         id: 'look_down',
         label: 'Blick senken',
         effects: [
-          { type: 'set', target: 'conductor_stance', value: 'down' }
+          { type: 'inc', target: 'tickets_escape', value: 1 }
         ],
         next: 'c2_control_01_approach'
       }
@@ -822,7 +812,7 @@ Als das Licht wieder angeht, steht er direkt vor dir: riesig, Uniform ohne Falte
     tags: [],
     state_notes: [
       'Direct approach',
-      'Tickets entfernt - nur Flag conductor_stance für Haltung'
+      'Standhalten vs. Blick senken wirkt auf Truth/Escape-Balance'
     ],
     atmosphere: 'danger'
   },
@@ -848,7 +838,7 @@ Der Satz bleibt zwischen euch hängen wie ein Urteil, das noch nicht gesprochen 
         id: 'wait_silent',
         label: 'Schweigen',
         effects: [
-          { type: 'set', target: 'approach_response', value: 'silent' }
+          { type: 'dec', target: 'conductor_attention', value: 1 }
         ],
         next: 'c2_control_01_question'
       },
@@ -856,14 +846,14 @@ Der Satz bleibt zwischen euch hängen wie ein Urteil, das noch nicht gesprochen 
         id: 'apologize',
         label: '„Es tut mir leid."',
         effects: [
-          { type: 'set', target: 'approach_response', value: 'apologize' }
+          { type: 'inc', target: 'conductor_attention', value: 1 }
         ],
         next: 'c2_control_01_question'
       }
     ],
     tags: ['control'],
     state_notes: [
-      'Tickets entfernt - nur Flag approach_response für Ton'
+      'Reaktions-Ton wirkt direkt auf conductor_attention'
     ],
     atmosphere: 'danger'
   },
@@ -986,8 +976,7 @@ Der Zug macht einen langen, tiefen Ton, wie ein Atemzug, den niemand von euch ge
         id: 'confront_jacket',
         label: '„Deine Jacke war eben noch schwarz."',
         effects: [
-          { type: 'inc', target: 'memory_drift', value: 1 },
-          { type: 'set', target: 'noticed_jacket_change', value: true }
+          { type: 'inc', target: 'memory_drift', value: 1 }
         ],
         next: 'c2_control_01_aftertalk'
       }
@@ -1171,9 +1160,7 @@ Comp7s Stift kratzt weiter über Papier, in gleichmäßigem Takt. Das Geräusch 
       {
         id: 'continue_chapter_3',
         label: 'Der Veränderung folgen',
-        effects: [
-          { type: 'set', target: 'chapter_index', value: 3 }
-        ],
+        effects: [],
         next: 'c2_end_station_callback'
       },
       {
@@ -1185,7 +1172,6 @@ Comp7s Stift kratzt weiter über Papier, in gleichmäßigem Takt. Das Geräusch 
           value: true
         },
         effects: [
-          { type: 'set', target: 'chapter_index', value: 3 },
           { type: 'set', target: 'played_recorder', value: true }
         ],
         next: 'c2_end_station_callback'

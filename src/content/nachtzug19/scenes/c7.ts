@@ -2824,9 +2824,7 @@ Bist bereit.`,
         id: 'step_off',
         label: 'Aussteigen',
         weight: 'irreversibel',
-        effects: [
-          { type: 'inc', target: 'station_count', value: 1 }
-        ],
+        effects: [],
         next: 'c7_s25a_step_off_echo'
       },
       {
@@ -2840,8 +2838,7 @@ Bist bereit.`,
           value: 3
         },
         effects: [
-          { type: 'inc', target: 'tickets_truth', value: 1 },
-          { type: 'inc', target: 'station_count', value: 1 }
+          { type: 'inc', target: 'tickets_truth', value: 1 }
         ],
         next: 'c7_s25a_look_back_echo'
       }

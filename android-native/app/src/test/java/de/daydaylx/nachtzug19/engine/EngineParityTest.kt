@@ -6,7 +6,6 @@ import kotlinx.serialization.json.Json
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotNull
 import org.junit.Assert.assertTrue
-import org.junit.Ignore
 import org.junit.Test
 import java.io.File
 
@@ -50,7 +49,6 @@ class EngineParityTest {
 
     private val json = Json { ignoreUnknownKeys = true }
 
-    @Ignore("Chapter 1 hub redesign: Golden master traces need to be regenerated")
     @Test
     fun `golden master parity check`() {
         // 1. Load Paths
@@ -95,7 +93,7 @@ class EngineParityTest {
         var passedTraces = 0
         
         for (trace in traces) {
-            runTrace(gameEngine, trace)
+            runTrace(gameEngine, trace, storyExport.manifest.start_scene_id)
             passedTraces++
         }
 
@@ -103,13 +101,14 @@ class EngineParityTest {
         println("\n✅ SUCCESS: All ${traces.size} traces verified against Kotlin Engine.")
     }
 
-        private fun runTrace(engine: GameEngine, trace: Trace) {
-            // Reset Engine (Assuming start scene is constant c1_s01_platform as per traces)
-            engine.reset("c1_s01_platform")
+        private fun runTrace(engine: GameEngine, trace: Trace, startSceneId: String) {
+            // Reset Engine auf manifest-konforme Start-Szene.
+            engine.reset(startSceneId)
             
             var currentState = engine.state
-    
-            // Initial sanity check        assertEquals("Initial scene mismatch", "c1_s01_platform", currentState.current_scene_id)
+
+            // Initial sanity check
+            assertEquals("Initial scene mismatch", startSceneId, currentState.current_scene_id)
 
         for ((index, step) in trace.steps.withIndex()) {
             val currentScene = engine.getCurrentScene()

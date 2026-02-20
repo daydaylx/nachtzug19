@@ -71,7 +71,11 @@ async function main() {
 
   // Load story.json
   const storyData = JSON.parse(await fs.readFile(STORY_JSON_PATH, 'utf-8'));
-  const { manifest, scenes: scenesArray, endings } = storyData;
+  const { manifest } = storyData;
+  const scenesRaw = storyData.scenes || [];
+  const scenesArray = Array.isArray(scenesRaw) ? scenesRaw : Object.values(scenesRaw);
+  const endings = storyData.endings || {};
+  const endingIds = new Set(Object.keys(endings));
 
   // Convert scenes array to map
   const scenes = {};
@@ -79,7 +83,7 @@ async function main() {
     scenes[scene.id] = scene;
   });
 
-  console.log(`📊 Loaded ${scenesArray.length} scenes, ${endings?.length || 0} endings`);
+  console.log(`📊 Loaded ${scenesArray.length} scenes, ${endingIds.size} endings`);
   console.log('');
 
   // Initialize audit results
@@ -124,13 +128,20 @@ async function main() {
       graphData.totalChoices++;
       graphData.chapters[chapter].choiceCount++;
 
-      const target = choice.next || choice.ending;
-      if (target && !target.match(/^[A-Z]$/)) { // Not an ending
-        adjacencyList[sceneId].add(target);
-        if (inDegree[target] !== undefined) {
-          inDegree[target]++;
+      if (choice.next) {
+        adjacencyList[sceneId].add(choice.next);
+        if (inDegree[choice.next] !== undefined) {
+          inDegree[choice.next]++;
         }
-        graphData.totalEdges++;
+      }
+    });
+
+    scene.narrative_variants?.forEach(variant => {
+      if (variant.auto_next) {
+        adjacencyList[sceneId].add(variant.auto_next);
+        if (inDegree[variant.auto_next] !== undefined) {
+          inDegree[variant.auto_next]++;
+        }
       }
     });
 
@@ -140,6 +151,11 @@ async function main() {
       graphData.maxOutdegree.degree = adjacencyList[sceneId].size;
     }
   });
+
+  graphData.totalEdges = Object.values(adjacencyList).reduce(
+    (sum, targets) => sum + targets.size,
+    0
+  );
 
   // Find unreachable scenes (BFS from start)
   const reachable = new Set();

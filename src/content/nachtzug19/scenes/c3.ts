@@ -977,9 +977,7 @@ Und trotzdem gehst du weiter, weil Stillstand hier nur eine andere Form von Wied
       {
         id: 'continue_to_chapter_4',
         label: 'Die Aufnahme akzeptieren',
-        effects: [
-          { type: 'set', target: 'chapter_index', value: 4 }
-        ],
+        effects: [],
         next: 'c3_end_station_sideword'
       }
     ],

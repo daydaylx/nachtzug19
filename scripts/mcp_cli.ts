@@ -17,6 +17,7 @@ import {
  */
 async function main(): Promise<void> {
   const args = process.argv.slice(2);
+  let hasFailures = false;
 
   if (args.length === 0) {
     printHelp();
@@ -38,6 +39,12 @@ async function main(): Promise<void> {
   registerAllMCPServers(context);
 
   const command = args[0];
+  const runTool = async (serverId: string, toolName: string, params: Record<string, any>): Promise<void> => {
+    const ok = await executeTool(serverId, toolName, params);
+    if (!ok) {
+      hasFailures = true;
+    }
+  };
 
   switch (command) {
     case 'list':
@@ -60,14 +67,14 @@ async function main(): Promise<void> {
       } else {
         // Führe Tool aus
         const params = parseParams(args.slice(3));
-        await executeTool(serverId, toolName, params);
+        await runTool(serverId, toolName, params);
       }
       break;
     }
 
     case 'validate':
       // Alias für story-validator validate
-      await executeTool('story-validator', 'validate', { printOutput: true });
+      await runTool('story-validator', 'validate', { printOutput: true });
       break;
 
     case 'validate-chapter': {
@@ -76,28 +83,28 @@ async function main(): Promise<void> {
         console.error('❌ Ungültige Kapitel-Nummer');
         process.exit(1);
       }
-      await executeTool('story-validator', 'validateChapter', { chapter, printOutput: true });
+      await runTool('story-validator', 'validateChapter', { chapter, printOutput: true });
       break;
     }
 
     case 'analyze-state': {
       const target = args[1] || null;
-      await executeTool('content-auditor', 'analyzeStateFlow', { target, printOutput: true });
+      await runTool('content-auditor', 'analyzeStateFlow', { target, printOutput: true });
       break;
     }
 
     case 'check-callbacks': {
       const chapter = args[1] ? parseInt(args[1]) : null;
-      await executeTool('content-auditor', 'checkCallbacks', { chapter, printOutput: true });
+      await runTool('content-auditor', 'checkCallbacks', { chapter, printOutput: true });
       break;
     }
 
     case 'analyze-pacing': {
       const chapter = args[1] ? parseInt(args[1]) : null;
       if (chapter) {
-        await executeTool('pacing-analyzer', 'analyzeChapter', { chapter, printOutput: true });
+        await runTool('pacing-analyzer', 'analyzeChapter', { chapter, printOutput: true });
       } else {
-        await executeTool('pacing-analyzer', 'analyzeAllChapters', { printOutput: true });
+        await runTool('pacing-analyzer', 'analyzeAllChapters', { printOutput: true });
       }
       break;
     }
@@ -109,25 +116,25 @@ async function main(): Promise<void> {
         console.error('❌ Ungültige Kapitel-Nummer');
         process.exit(1);
       }
-      await executeTool('pacing-analyzer', 'checkChapterLength', { chapter, targetMinutes });
+      await runTool('pacing-analyzer', 'checkChapterLength', { chapter, targetMinutes });
       break;
     }
 
     case 'detect-fake-choices': {
       const chapter = args[1] ? parseInt(args[1]) : null;
-      await executeTool('choice-auditor', 'detectFakeChoices', { chapter, printOutput: true });
+      await runTool('choice-auditor', 'detectFakeChoices', { chapter, printOutput: true });
       break;
     }
 
     case 'check-callback-integrity': {
       const chapter = args[1] ? parseInt(args[1]) : null;
-      await executeTool('choice-auditor', 'checkCallbackIntegrity', { chapter, printOutput: true });
+      await runTool('choice-auditor', 'checkCallbackIntegrity', { chapter, printOutput: true });
       break;
     }
 
     case 'analyze-choices': {
       const chapter = args[1] ? parseInt(args[1]) : null;
-      await executeTool('choice-auditor', 'analyzeChoiceDensity', { chapter, printOutput: true });
+      await runTool('choice-auditor', 'analyzeChoiceDensity', { chapter, printOutput: true });
       break;
     }
 
@@ -136,22 +143,22 @@ async function main(): Promise<void> {
       const server = args[2];
 
       if (server === 'pacing') {
-        await executeTool('pacing-analyzer', 'generatePacingReport', { format });
+        await runTool('pacing-analyzer', 'generatePacingReport', { format });
       } else if (server === 'choice') {
-        await executeTool('choice-auditor', 'generateChoiceReport', { format });
+        await runTool('choice-auditor', 'generateChoiceReport', { format });
       } else if (server === 'content') {
-        await executeTool('content-auditor', 'generateReport', { format });
+        await runTool('content-auditor', 'generateReport', { format });
       } else {
         // Full Report
         console.log('\n' + '='.repeat(60));
         console.log('🔍 NACHTZUG 19 - Vollständiger MCP Report');
         console.log('='.repeat(60) + '\n');
 
-        await executeTool('pacing-analyzer', 'generatePacingReport', { format: 'console' });
+        await runTool('pacing-analyzer', 'generatePacingReport', { format: 'console' });
         console.log('\n' + '-'.repeat(60) + '\n');
-        await executeTool('choice-auditor', 'generateChoiceReport', { format: 'console' });
+        await runTool('choice-auditor', 'generateChoiceReport', { format: 'console' });
         console.log('\n' + '-'.repeat(60) + '\n');
-        await executeTool('content-auditor', 'generateReport', { format: 'console' });
+        await runTool('content-auditor', 'generateReport', { format: 'console' });
       }
       break;
     }
@@ -166,6 +173,10 @@ async function main(): Promise<void> {
       console.error(`❌ Unbekannter Befehl: ${command}`);
       console.log('   Nutze "npm run mcp help" für eine Liste aller Befehle\n');
       process.exit(1);
+  }
+
+  if (hasFailures) {
+    process.exit(1);
   }
 }
 
@@ -275,7 +286,7 @@ function listServerTools(serverId: string): void {
 /**
  * Führt ein Tool aus
  */
-async function executeTool(serverId: string, toolName: string, params: Record<string, any>): Promise<void> {
+async function executeTool(serverId: string, toolName: string, params: Record<string, any>): Promise<boolean> {
   const server = getMCPServer(serverId);
 
   if (!server) {
@@ -302,6 +313,8 @@ async function executeTool(serverId: string, toolName: string, params: Record<st
     console.warn('\n⚠️  Warnings:');
     result.warnings.forEach((warn: any) => console.warn(`  - ${warn}`));
   }
+
+  return result.success;
 }
 
 /**
