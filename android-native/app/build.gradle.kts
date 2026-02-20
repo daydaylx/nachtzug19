@@ -4,9 +4,54 @@ plugins {
   id("org.jetbrains.kotlin.plugin.serialization")
 }
 
+import java.io.FileInputStream
+import java.util.Properties
+
+fun readReleaseSigningValue(key: String, envKey: String): String? {
+  val localPropsFile = rootProject.file("local.properties")
+  val localProps = Properties()
+  if (localPropsFile.exists()) {
+    FileInputStream(localPropsFile).use { localProps.load(it) }
+  }
+
+  val fromLocal = localProps.getProperty(key)?.trim()
+  if (!fromLocal.isNullOrEmpty()) return fromLocal
+
+  val fromEnv = System.getenv(envKey)?.trim()
+  if (!fromEnv.isNullOrEmpty()) return fromEnv
+
+  return null
+}
+
+val releaseStoreFileRaw = readReleaseSigningValue("RELEASE_STORE_FILE", "NACHTZUG_RELEASE_STORE_FILE")
+val releaseStorePassword = readReleaseSigningValue("RELEASE_STORE_PASSWORD", "NACHTZUG_RELEASE_STORE_PASSWORD")
+val releaseKeyAlias = readReleaseSigningValue("RELEASE_KEY_ALIAS", "NACHTZUG_RELEASE_KEY_ALIAS")
+val releaseKeyPassword = readReleaseSigningValue("RELEASE_KEY_PASSWORD", "NACHTZUG_RELEASE_KEY_PASSWORD")
+
+val hasReleaseSigning = !releaseStoreFileRaw.isNullOrBlank()
+  && !releaseStorePassword.isNullOrBlank()
+  && !releaseKeyAlias.isNullOrBlank()
+  && !releaseKeyPassword.isNullOrBlank()
+
+val releaseStoreFile = releaseStoreFileRaw?.let { path ->
+  val candidate = file(path)
+  if (candidate.isAbsolute) candidate else rootProject.file(path)
+}
+
 android {
   namespace = "de.daydaylx.nachtzug19"
   compileSdk = 35
+
+  signingConfigs {
+    create("release") {
+      if (hasReleaseSigning && releaseStoreFile != null) {
+        storeFile = releaseStoreFile
+        storePassword = releaseStorePassword
+        keyAlias = releaseKeyAlias
+        keyPassword = releaseKeyPassword
+      }
+    }
+  }
 
   defaultConfig {
     applicationId = "de.daydaylx.nachtzug19"
@@ -23,6 +68,8 @@ android {
         getDefaultProguardFile("proguard-android-optimize.txt"),
         "proguard-rules.pro"
       )
+      // Für lokale RC-Builds fallback auf debug-signing; Store-Release muss per assertReleaseSigningConfigured abgesichert werden.
+      signingConfig = if (hasReleaseSigning) signingConfigs.getByName("release") else signingConfigs.getByName("debug")
       manifestPlaceholders["appLabel"] = "Nachtzug 19"
     }
     create("player") {
@@ -93,4 +140,34 @@ tasks.register<Copy>("syncStoryAssets") {
   from(storySource)
   into(storyAssetsDir)
   rename { "story.json" }
+}
+
+tasks.register("printReleaseSigningStatus") {
+  doLast {
+    if (hasReleaseSigning && releaseStoreFile != null && releaseStoreFile.exists()) {
+      println("✅ Release signing configured: ${releaseStoreFile.absolutePath}")
+    } else {
+      println("⚠️  Release signing NOT configured.")
+      println("Set one of:")
+      println("- local.properties keys: RELEASE_STORE_FILE, RELEASE_STORE_PASSWORD, RELEASE_KEY_ALIAS, RELEASE_KEY_PASSWORD")
+      println("- env vars: NACHTZUG_RELEASE_STORE_FILE, NACHTZUG_RELEASE_STORE_PASSWORD, NACHTZUG_RELEASE_KEY_ALIAS, NACHTZUG_RELEASE_KEY_PASSWORD")
+      if (releaseStoreFile != null && !releaseStoreFile.exists()) {
+        println("Configured store file does not exist: ${releaseStoreFile.absolutePath}")
+      }
+    }
+  }
+}
+
+tasks.register("assertReleaseSigningConfigured") {
+  doLast {
+    if (!hasReleaseSigning || releaseStoreFile == null || !releaseStoreFile.exists()) {
+      throw GradleException(
+        "Release signing missing. Configure RELEASE_* in local.properties or NACHTZUG_RELEASE_* env vars."
+      )
+    }
+  }
+}
+
+tasks.matching { it.name.startsWith("merge") && it.name.endsWith("Assets") }.configureEach {
+  dependsOn("syncStoryAssets")
 }
